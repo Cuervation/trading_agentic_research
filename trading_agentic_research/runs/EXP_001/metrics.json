@@ -1,0 +1,43 @@
+{
+  "strategy": {
+    "total_return_pct": 430.5243790643794,
+    "cagr_pct": 30.66125668218447,
+    "max_drawdown_pct": -33.49533031840631,
+    "start_date": "2020-01-02 00:00:00",
+    "end_date": "2026-03-30 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 94.5301136459709,
+    "cagr_pct": 11.25390024859323,
+    "max_drawdown_pct": -34.104746893243956,
+    "start_date": "2020-01-02 00:00:00",
+    "end_date": "2026-03-30 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 75,
+    "number_of_trades": 334,
+    "start_date": "2020-01-02 00:00:00",
+    "end_date": "2026-03-30 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-04-03; skipped rebalance.",
+      "Insufficient cash to enter PWR on 2021-09-27.",
+      "Insufficient cash to enter WFC on 2021-11-01.",
+      "Insufficient cash to enter ON on 2021-11-29.",
+      "Insufficient cash to enter SPG on 2022-01-03.",
+      "Insufficient cash to enter WSM on 2025-02-03.",
+      "Insufficient cash to enter WBD on 2025-09-29.",
+      "Insufficient cash to enter WBD on 2025-11-03.",
+      "Insufficient cash to enter NEM on 2025-12-01.",
+      "Insufficient cash to enter WBD on 2025-12-01.",
+      "Insufficient cash to enter NEM on 2025-12-29.",
+      "Insufficient cash to enter WBD on 2025-12-29.",
+      "Insufficient cash to enter NEM on 2026-02-02.",
+      "Insufficient cash to enter TER on 2026-02-02.",
+      "Insufficient cash to enter WBD on 2026-02-02."
+    ]
+  },
+  "costs": {
+    "applied": true,
+    "cost_per_side_pct": 0.24
+  }
+}

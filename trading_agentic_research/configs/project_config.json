@@ -1,0 +1,13 @@
+﻿{
+  "project_name": "trading_agentic_research",
+  "data_paths": {
+    "weekly_file_path": "",
+    "daily_folder_path": ""
+  },
+  "benchmark_ticker": "SPY",
+  "cost_per_side_pct": 0.24,
+  "initial_capital": 100000,
+  "rebalance_frequency": "monthly",
+  "signal_frequency": "weekly",
+  "execution_frequency": "daily"
+}

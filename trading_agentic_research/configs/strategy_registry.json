@@ -1,0 +1,17 @@
+﻿{
+  "project_name": "trading_agentic_research",
+  "version": 1,
+  "strategies": [
+    {
+      "strategy_id": "SP500_MOMENTUM_TREND_BASELINE_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "baseline_candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/baseline_momentum_trend_v1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Initial bibliographic baseline, not validated yet"
+    }
+  ]
+}
