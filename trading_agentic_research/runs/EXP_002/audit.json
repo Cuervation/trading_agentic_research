@@ -1,0 +1,29 @@
+{
+  "audit_status": "completed",
+  "decision": "promoted_candidate",
+  "reasons": [
+    "Strategy CAGR beats SPY CAGR.",
+    "Strategy beats SPY in more years than it loses."
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "No daily price date after signal_date=2026-04-03; skipped rebalance.",
+    "Insufficient cash to enter PWR on 2021-09-27.",
+    "Insufficient cash to enter WFC on 2021-11-01.",
+    "Insufficient cash to enter ON on 2021-11-29.",
+    "Insufficient cash to enter SPG on 2022-01-03.",
+    "Insufficient cash to enter WSM on 2025-02-03.",
+    "Insufficient cash to enter WBD on 2025-09-29.",
+    "Insufficient cash to enter WBD on 2025-11-03.",
+    "Insufficient cash to enter NEM on 2025-12-01.",
+    "Insufficient cash to enter WBD on 2025-12-01.",
+    "Insufficient cash to enter NEM on 2025-12-29.",
+    "Insufficient cash to enter WBD on 2025-12-29.",
+    "Insufficient cash to enter NEM on 2026-02-02.",
+    "Insufficient cash to enter TER on 2026-02-02.",
+    "Insufficient cash to enter WBD on 2026-02-02."
+  ],
+  "recommendation": "Candidate can move forward for manual review; baseline promotion remains blocked.",
+  "can_move_parent": true,
+  "can_promote_baseline": false
+}

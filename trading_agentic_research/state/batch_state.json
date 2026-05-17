@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "status": "stopped",
+  "max_runs": 20,
+  "completed": 5,
+  "consecutive_rejections": 0,
+  "history": [
+    {
+      "iteration": 1,
+      "run_id": "EXP_009",
+      "hypothesis_id": "HYP_MOMENTUM_EXIT_15_V1",
+      "family": "cross_sectional_momentum",
+      "decision": "accepted_for_followup"
+    },
+    {
+      "iteration": 2,
+      "run_id": "EXP_010",
+      "hypothesis_id": "HYP_MOMENTUM_EXIT_25_V1",
+      "family": "cross_sectional_momentum",
+      "decision": "accepted_for_followup"
+    },
+    {
+      "iteration": 3,
+      "run_id": "EXP_011",
+      "hypothesis_id": "HYP_MOMENTUM_TOPN_12_V1",
+      "family": "cross_sectional_momentum",
+      "decision": "accepted_for_followup"
+    },
+    {
+      "iteration": 4,
+      "run_id": "EXP_012",
+      "hypothesis_id": "HYP_MOMENTUM_TOPN_8_V1",
+      "family": "cross_sectional_momentum",
+      "decision": "accepted_for_followup"
+    },
+    {
+      "iteration": 5,
+      "run_id": "EXP_013",
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "decision": "accepted_for_followup"
+    }
+  ],
+  "last_updated_at": "2026-05-17T02:39:57.668188+00:00",
+  "stop_reason": "max_repeats_reached:HYP_MOMENTUM_CONCENTRATION_V1"
+}

@@ -6,7 +6,7 @@
   },
   "benchmark_ticker": "SPY",
   "cost_per_side_pct": 0.24,
-  "initial_capital": 100000,
+  "initial_capital": 10000,
   "rebalance_frequency": "monthly",
   "signal_frequency": "weekly",
   "execution_frequency": "daily"

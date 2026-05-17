@@ -1,0 +1,15 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExtractedPrinciple",
+  "type": "object",
+  "required": ["principle_id", "source_id", "family", "principle", "status"],
+  "properties": {
+    "principle_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "principle": {"type": "string", "minLength": 1},
+    "usable_columns": {"type": "array", "items": {"type": "string"}},
+    "status": {"type": "string"}
+  },
+  "additionalProperties": true
+}

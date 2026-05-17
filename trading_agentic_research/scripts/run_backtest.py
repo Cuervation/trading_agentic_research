@@ -7,6 +7,8 @@ import json
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -54,10 +56,12 @@ def ensure_valid_feature_store(df, label: str) -> None:
 
 
 def build_summary_markdown(
+    run_id: str,
     strategy_id: str,
     strategy_metrics: dict,
     spy_metrics: dict,
     comparison_summary: dict,
+    yearly_stats_df: pd.DataFrame,
     number_of_trades: int,
     warnings: list[str],
 ) -> str:
@@ -66,6 +70,7 @@ def build_summary_markdown(
     lines = [
         f"# Run Summary - {strategy_id}",
         "",
+        f"- Run id: `{run_id}`",
         f"- Strategy: `{strategy_id}`",
         f"- Period: {period}",
         f"- Total return: strategy {strategy_metrics.get('total_return_pct', 0.0):.2f}% vs SPY {spy_metrics.get('total_return_pct', 0.0):.2f}%",
@@ -76,8 +81,35 @@ def build_summary_markdown(
         f"- Trades: {number_of_trades}",
         f"- Recommendation hint: {comparison_summary.get('recommendation_hint', 'review')}",
         "",
-        "## Warnings",
+        "## Yearly Strategy Stats",
     ]
+
+    if yearly_stats_df.empty:
+        lines.append("- none")
+    else:
+        lines.extend(
+            [
+                "| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |",
+                "|---:|---:|---:|---:|:---|",
+            ]
+        )
+        for _, row in yearly_stats_df.sort_values("year").iterrows():
+            lines.append(
+                "| {year} | {strategy:.2f}% | {spy:.2f}% | {excess:.2f}% | {winner} |".format(
+                    year=int(row["year"]),
+                    strategy=float(row["strategy_return_pct"]),
+                    spy=float(row["spy_return_pct"]),
+                    excess=float(row["excess_return_pct"]),
+                    winner=str(row["winner"]),
+                )
+            )
+
+    lines.extend(
+        [
+            "",
+        "## Warnings",
+        ]
+    )
 
     if warnings:
         lines.extend([f"- {w}" for w in warnings])
@@ -85,6 +117,37 @@ def build_summary_markdown(
         lines.append("- none")
 
     return "\n".join(lines) + "\n"
+
+
+def build_yearly_strategy_stats(run_id: str, strategy_id: str, comparison_yearly: pd.DataFrame) -> pd.DataFrame:
+    """Return yearly strategy-vs-SPY stats with run and strategy identifiers."""
+    if comparison_yearly is None or comparison_yearly.empty:
+        return pd.DataFrame(
+            columns=[
+                "run_id",
+                "strategy_id",
+                "year",
+                "strategy_return_pct",
+                "spy_return_pct",
+                "excess_return_pct",
+                "winner",
+            ]
+        )
+
+    yearly = comparison_yearly.copy()
+    yearly.insert(0, "strategy_id", strategy_id)
+    yearly.insert(0, "run_id", run_id)
+    return yearly[
+        [
+            "run_id",
+            "strategy_id",
+            "year",
+            "strategy_return_pct",
+            "spy_return_pct",
+            "excess_return_pct",
+            "winner",
+        ]
+    ]
 
 
 def main() -> int:
@@ -142,8 +205,8 @@ def main() -> int:
     run_dir = Path("runs") / args.run_id
     run_dir.mkdir(parents=True, exist_ok=True)
 
-    equity_curve.to_csv(run_dir / "equity_curve.csv", index=False)
-    trades.to_csv(run_dir / "trades.csv", index=False)
+    equity_curve.to_csv(run_dir / "equity_curve.csv", index=False, sep=";", decimal=",")
+    trades.to_csv(run_dir / "trades.csv", index=False, sep=";", decimal=",")
 
     metrics_payload = {
         "strategy": strategy_metrics,
@@ -158,18 +221,26 @@ def main() -> int:
     with (run_dir / "metrics.json").open("w", encoding="utf-8") as f:
         json.dump(metrics_payload, f, indent=2, default=str)
 
-    comparison_daily.to_csv(run_dir / "spy_comparison_daily.csv", index=False)
-    comparison_monthly.to_csv(run_dir / "spy_comparison_monthly.csv", index=False)
-    comparison_yearly.to_csv(run_dir / "spy_comparison_yearly.csv", index=False)
+    comparison_daily.to_csv(run_dir / "spy_comparison_daily.csv", index=False, sep=";", decimal=",")
+    comparison_monthly.to_csv(run_dir / "spy_comparison_monthly.csv", index=False, sep=";", decimal=",")
+    comparison_yearly.to_csv(run_dir / "spy_comparison_yearly.csv", index=False, sep=";", decimal=",")
+    yearly_stats = build_yearly_strategy_stats(
+        run_id=args.run_id,
+        strategy_id=str(strategy_config.get("strategy_id", "unknown_strategy")),
+        comparison_yearly=comparison_yearly,
+    )
+    yearly_stats.to_csv(run_dir / "yearly_strategy_stats.csv", index=False, sep=";", decimal=",")
 
     with (run_dir / "spy_comparison_summary.json").open("w", encoding="utf-8") as f:
         json.dump(comparison_summary, f, indent=2, default=str)
 
     summary_md = build_summary_markdown(
+        run_id=args.run_id,
         strategy_id=str(strategy_config.get("strategy_id", "unknown_strategy")),
         strategy_metrics=strategy_metrics,
         spy_metrics=spy_metrics,
         comparison_summary=comparison_summary,
+        yearly_stats_df=yearly_stats,
         number_of_trades=int(len(trades)),
         warnings=list(diagnostics.get("warnings", [])),
     )

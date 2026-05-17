@@ -28,7 +28,7 @@ CRITICAL_WARNING_KEYWORDS = (
 )
 
 
-def audit_run_folder(run_dir: str | Path, min_trades: int = 10) -> dict:
+def audit_run_folder(run_dir: str | Path, min_trades: int = 10, parent_run_dir: str | Path | None = None) -> dict:
     """Audit one run folder and return the audit.json payload."""
     path = Path(run_dir)
     blocking_issues: list[str] = []
@@ -45,8 +45,6 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10) -> dict:
         if (path / "spy_comparison_summary.json").exists()
         else {}
     )
-    monthly_df = _read_csv(path / "spy_comparison_monthly.csv")
-    yearly_df = _read_csv(path / "spy_comparison_yearly.csv")
     trades_df = _read_csv(path / "trades.csv")
 
     warnings.extend(_extract_warnings(metrics))
@@ -83,6 +81,23 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10) -> dict:
     drawdown_improved = _drawdown_improved(strategy_dd, spy_dd)
     drawdown_exaggerated_worse = _drawdown_exaggerated_worse(strategy_dd, spy_dd)
 
+    parent_comparison = None
+    parent_pass = None
+    parent_strong_fail = False
+    if parent_run_dir is not None:
+        parent_comparison = build_parent_comparison(path, Path(parent_run_dir))
+        if not parent_comparison["parent_available"]:
+            blocking_issues.append(f"Parent comparison unavailable: {parent_comparison['blocking_issues']}")
+        else:
+            parent_pass = _parent_comparison_passes(parent_comparison)
+            parent_strong_fail = _parent_comparison_strong_fail(parent_comparison)
+            if parent_strong_fail:
+                reasons.append("Candidate underperforms parent CAGR and worsens drawdown.")
+            elif parent_pass:
+                reasons.append("Candidate improves enough versus current parent for follow-up review.")
+            else:
+                reasons.append("Candidate does not show enough improvement versus current parent.")
+
     if strategy_cagr is not None and spy_cagr is not None:
         if strategy_cagr < spy_cagr and not drawdown_improved:
             reasons.append("Strategy CAGR is below SPY CAGR and drawdown did not improve.")
@@ -110,19 +125,121 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10) -> dict:
         min_trades=min_trades,
         drawdown_improved=drawdown_improved,
         drawdown_exaggerated_worse=drawdown_exaggerated_worse,
+        parent_pass=parent_pass,
+        parent_strong_fail=parent_strong_fail,
     )
 
     recommendation = _recommendation_for(decision)
+    can_move_parent = decision in {"accepted_for_followup", "promoted_candidate"} and parent_pass is not False
 
-    return {
+    payload = {
         "audit_status": "completed" if not missing_files else "completed_with_missing_files",
         "decision": decision,
         "reasons": reasons,
         "blocking_issues": blocking_issues,
         "warnings": warnings,
         "recommendation": recommendation,
-        "can_move_parent": decision in {"accepted_for_followup", "promoted_candidate"},
+        "can_move_parent": can_move_parent,
         "can_promote_baseline": False,
+    }
+    if parent_comparison is not None:
+        payload["parent_comparison"] = parent_comparison
+    return payload
+
+
+def build_parent_comparison(run_dir: str | Path, parent_run_dir: str | Path) -> dict:
+    """Compare a candidate run against the current parent run."""
+    candidate_path = Path(run_dir)
+    parent_path = Path(parent_run_dir)
+    blocking_issues: list[str] = []
+
+    if not parent_path.exists() or not parent_path.is_dir():
+        return {"parent_available": False, "blocking_issues": [f"Parent folder not found: {parent_path}"]}
+
+    for name in ["metrics.json", "equity_curve.csv"]:
+        if not (parent_path / name).exists():
+            blocking_issues.append(f"Missing parent file: {name}")
+        if not (candidate_path / name).exists():
+            blocking_issues.append(f"Missing candidate file: {name}")
+    if blocking_issues:
+        return {"parent_available": False, "blocking_issues": blocking_issues}
+
+    candidate_metrics = _read_json(candidate_path / "metrics.json")
+    parent_metrics = _read_json(parent_path / "metrics.json")
+    candidate_equity = _read_csv(candidate_path / "equity_curve.csv")
+    parent_equity = _read_csv(parent_path / "equity_curve.csv")
+
+    period_counts = _parent_period_win_counts(candidate_equity, parent_equity)
+    strategy_cagr = _as_float(candidate_metrics.get("strategy", {}).get("cagr_pct"), 0.0)
+    parent_cagr = _as_float(parent_metrics.get("strategy", {}).get("cagr_pct"), 0.0)
+    strategy_dd = _as_float(candidate_metrics.get("strategy", {}).get("max_drawdown_pct"), 0.0)
+    parent_dd = _as_float(parent_metrics.get("strategy", {}).get("max_drawdown_pct"), 0.0)
+
+    return {
+        "parent_available": True,
+        "blocking_issues": [],
+        "parent_run_id": parent_path.name,
+        "strategy_cagr_pct": strategy_cagr,
+        "parent_cagr_pct": parent_cagr,
+        "excess_cagr_vs_parent_pct": round(strategy_cagr - parent_cagr, 6),
+        "strategy_max_drawdown_pct": strategy_dd,
+        "parent_max_drawdown_pct": parent_dd,
+        "drawdown_delta_vs_parent_pct": round(strategy_dd - parent_dd, 6),
+        **period_counts,
+    }
+
+
+def _parent_period_win_counts(candidate_equity: pd.DataFrame | None, parent_equity: pd.DataFrame | None) -> dict:
+    if candidate_equity is None or parent_equity is None:
+        return _empty_parent_period_counts()
+    required = {"date", "equity"}
+    if not required.issubset(candidate_equity.columns) or not required.issubset(parent_equity.columns):
+        return _empty_parent_period_counts()
+
+    candidate = candidate_equity[["date", "equity"]].copy()
+    parent = parent_equity[["date", "equity"]].copy()
+    candidate["date"] = pd.to_datetime(candidate["date"])
+    parent["date"] = pd.to_datetime(parent["date"])
+    merged = candidate.merge(parent, on="date", how="inner", suffixes=("_strategy", "_parent")).sort_values("date")
+    if merged.empty:
+        return _empty_parent_period_counts()
+
+    monthly = _count_period_winners(merged, [merged["date"].dt.year, merged["date"].dt.month])
+    yearly = _count_period_winners(merged, [merged["date"].dt.year])
+    return {
+        "months_beating_parent": monthly["strategy"],
+        "months_losing_to_parent": monthly["parent"],
+        "months_tied_parent": monthly["tie"],
+        "years_beating_parent": yearly["strategy"],
+        "years_losing_to_parent": yearly["parent"],
+        "years_tied_parent": yearly["tie"],
+    }
+
+
+def _count_period_winners(merged: pd.DataFrame, groupers: list[pd.Series]) -> dict[str, int]:
+    counts = {"strategy": 0, "parent": 0, "tie": 0}
+    for _, group in merged.groupby(groupers):
+        if len(group) < 1:
+            continue
+        strategy_return = (group["equity_strategy"].iloc[-1] / group["equity_strategy"].iloc[0] - 1.0) * 100.0
+        parent_return = (group["equity_parent"].iloc[-1] / group["equity_parent"].iloc[0] - 1.0) * 100.0
+        if strategy_return > parent_return:
+            counts["strategy"] += 1
+        elif strategy_return < parent_return:
+            counts["parent"] += 1
+        else:
+            counts["tie"] += 1
+    return counts
+
+
+def _empty_parent_period_counts() -> dict:
+    return {
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "months_tied_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0,
+        "years_tied_parent": 0,
     }
 
 
@@ -137,6 +254,8 @@ def _decide(
     min_trades: int,
     drawdown_improved: bool,
     drawdown_exaggerated_worse: bool,
+    parent_pass: bool | None = None,
+    parent_strong_fail: bool = False,
 ) -> str:
     if blocking_issues:
         return "rejected"
@@ -146,15 +265,39 @@ def _decide(
         return "rejected"
     if number_of_trades < min_trades:
         return "rejected"
+    if parent_strong_fail:
+        return "rejected"
     if strategy_cagr < spy_cagr and not drawdown_improved:
         return "rejected"
     if years_beating <= years_losing:
         return "rejected"
 
+    if parent_pass is False:
+        return "accepted_for_followup"
+
     if strategy_cagr > spy_cagr and years_beating > years_losing and not drawdown_exaggerated_worse:
         return "promoted_candidate"
 
     return "accepted_for_followup"
+
+
+def _parent_comparison_passes(parent_comparison: dict) -> bool:
+    cagr_delta = float(parent_comparison.get("excess_cagr_vs_parent_pct", 0.0))
+    drawdown_delta = float(parent_comparison.get("drawdown_delta_vs_parent_pct", 0.0))
+    years_beating = int(parent_comparison.get("years_beating_parent", 0))
+    years_losing = int(parent_comparison.get("years_losing_to_parent", 0))
+
+    if cagr_delta > 0 and drawdown_delta >= -5.0 and years_beating > years_losing:
+        return True
+    if drawdown_delta > 3.0 and cagr_delta >= -1.0 and years_beating >= years_losing:
+        return True
+    return False
+
+
+def _parent_comparison_strong_fail(parent_comparison: dict) -> bool:
+    cagr_delta = float(parent_comparison.get("excess_cagr_vs_parent_pct", 0.0))
+    drawdown_delta = float(parent_comparison.get("drawdown_delta_vs_parent_pct", 0.0))
+    return cagr_delta < 0 and drawdown_delta < 0
 
 
 def _recommendation_for(decision: str) -> str:
@@ -166,13 +309,23 @@ def _recommendation_for(decision: str) -> str:
 
 
 def _read_json(path: Path) -> dict[str, Any]:
-    with path.open("r", encoding="utf-8") as f:
+    with path.open("r", encoding="utf-8-sig") as f:
         return json.load(f)
 
 
 def _read_csv(path: Path) -> pd.DataFrame | None:
     if not path.exists():
         return None
+
+    with path.open("r", encoding="utf-8-sig") as f:
+        first_line = ""
+        for line in f:
+            if line.strip():
+                first_line = line
+                break
+
+    if ";" in first_line:
+        return pd.read_csv(path, sep=";", decimal=",")
     return pd.read_csv(path)
 
 

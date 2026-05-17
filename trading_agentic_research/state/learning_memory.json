@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "rules": {
+    "candidate_requires_basis": true,
+    "baseline_auto_promotion_allowed": false,
+    "spy_comparison_required": [
+      "monthly",
+      "yearly"
+    ],
+    "learning_memory_required": true
+  },
+  "family_summaries": {
+    "cross_sectional_momentum": {
+      "rejections": 0,
+      "acceptances": 6,
+      "promoted_candidates": 3
+    },
+    "risk_management": {
+      "rejections": 3,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    }
+  },
+  "learning_events": [
+    {
+      "learning_id": "LEARN_EXP_002",
+      "hypothesis_id": "HYP_BASELINE_MOMENTUM_TREND_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_002",
+      "decision": "promoted_candidate",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_003",
+      "hypothesis_id": "HYP_BASELINE_MOMENTUM_TREND_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_003",
+      "decision": "promoted_candidate",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_004",
+      "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
+      "family": "risk_management",
+      "run_id": "EXP_004",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_005",
+      "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
+      "family": "risk_management",
+      "run_id": "EXP_005",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_006",
+      "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
+      "family": "risk_management",
+      "run_id": "EXP_006",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_007",
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_007",
+      "decision": "promoted_candidate",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_008",
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_008",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_009",
+      "hypothesis_id": "HYP_MOMENTUM_EXIT_15_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_009",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_010",
+      "hypothesis_id": "HYP_MOMENTUM_EXIT_25_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_010",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_011",
+      "hypothesis_id": "HYP_MOMENTUM_TOPN_12_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_011",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_012",
+      "hypothesis_id": "HYP_MOMENTUM_TOPN_8_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_012",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_013",
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_013",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    }
+  ]
+}

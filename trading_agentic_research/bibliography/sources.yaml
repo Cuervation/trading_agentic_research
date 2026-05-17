@@ -1,0 +1,36 @@
+﻿sources:
+  - source_id: academic_momentum_jegadeesh_titman_1993
+    family: academic_momentum
+    title: "Momentum académico"
+    principle: "Comprar ganadores relativos en horizontes intermedios."
+    expected_mechanism: "Persistencia relativa de retornos entre activos."
+
+  - source_id: can_slim_oneil
+    family: can_slim
+    title: "CAN SLIM / O'Neil"
+    principle: "Priorizar líderes con fuerza relativa, dirección favorable de mercado y corte rápido de pérdidas."
+    expected_mechanism: "Liderazgo fundamental/técnico combinado con gestión estricta del riesgo."
+
+  - source_id: darvas_box
+    family: darvas_box
+    title: "Darvas Box"
+    principle: "Comprar rupturas de rango y usar stop debajo de la caja."
+    expected_mechanism: "Ruptura de consolidación con riesgo definido."
+
+  - source_id: faber_tactical_asset_allocation
+    family: tactical_asset_allocation
+    title: "Tactical Asset Allocation / Faber"
+    principle: "Usar filtros de tendencia de mercado para evitar grandes mercados bajistas."
+    expected_mechanism: "Reducir exposición cuando la tendencia agregada es negativa."
+
+  - source_id: trend_following_general
+    family: trend_following
+    title: "Trend following"
+    principle: "Dejar correr ganadores y cortar pérdidas."
+    expected_mechanism: "Capturar colas derechas y limitar pérdidas."
+
+  - source_id: risk_management_general
+    family: risk_management
+    title: "Risk management"
+    principle: "Controlar position sizing, drawdown, stop loss y trailing stop."
+    expected_mechanism: "Mejorar supervivencia y reducir profundidad de pérdidas."

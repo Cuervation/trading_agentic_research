@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hypothesis",
+  "type": "object",
+  "required": ["hypothesis_id", "family", "claim", "bibliography_basis", "empirical_basis", "status"],
+  "properties": {
+    "hypothesis_id": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "claim": {"type": "string", "minLength": 1},
+    "bibliography_basis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "principle_id": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "empirical_basis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["run_id"]},
+          {"required": ["learning_id"]}
+        ],
+        "properties": {
+          "run_id": {"type": "string"},
+          "learning_id": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "status": {"type": "string"},
+    "required_spy_comparison": {"type": "string"},
+    "strategy_overrides": {
+      "type": "object",
+      "description": "Small, auditable override patch to apply to the parent strategy config (no random changes).",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

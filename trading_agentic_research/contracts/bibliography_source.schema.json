@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BibliographySource",
+  "type": "object",
+  "required": ["source_id", "family", "title", "principle"],
+  "properties": {
+    "source_id": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "principle": {"type": "string", "minLength": 1},
+    "expected_mechanism": {"type": "string"}
+  },
+  "additionalProperties": true
+}

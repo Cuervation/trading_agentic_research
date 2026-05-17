@@ -118,3 +118,20 @@ Controlar explícitamente:
 - No descargar datos.
 - No correr backtests.
 - No agregar dependencias fuera de `pandas`, `numpy` y `pytest` sin justificación explícita.
+
+## 11. Capa de aprendizaje
+
+La bibliografía genera hipótesis; los backtests validan o rechazan esas hipótesis; la memoria aprende qué familias funcionan o fallan.
+
+Reglas duras:
+
+- Ningún candidato puede crearse sin `bibliography_basis` o `empirical_basis`.
+- Hipótesis bibliográficas deben guardar `source_id`.
+- Hipótesis empíricas deben guardar `run_id` o `learning_id`.
+- Familias con fallas repetidas entran en cooldown.
+- Mejoras por outliers deben marcar `concentration_risk`.
+- Más CAGR con mucho peor drawdown debe marcar `riskier_candidate`.
+- Menor drawdown con CAGR similar debe marcar `defensive_improvement`.
+- Ninguna hipótesis promueve baseline automáticamente.
+- Toda hipótesis compara contra SPY mes a mes y año a año.
+- Todo aprendizaje se escribe en `state/learning_memory.json`.

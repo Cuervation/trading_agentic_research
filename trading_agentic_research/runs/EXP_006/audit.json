@@ -1,0 +1,33 @@
+{
+  "audit_status": "completed",
+  "decision": "rejected",
+  "reasons": [
+    "Candidate underperforms parent CAGR and worsens drawdown.",
+    "Strategy CAGR beats SPY CAGR.",
+    "Strategy beats SPY in more years than it loses."
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "No daily price date after signal_date=2026-04-03; skipped rebalance."
+  ],
+  "recommendation": "Reject or fix blocking issues before further research.",
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "parent_comparison": {
+    "parent_available": true,
+    "blocking_issues": [],
+    "parent_run_id": "EXP_003",
+    "strategy_cagr_pct": 23.88504588655671,
+    "parent_cagr_pct": 29.18856609087568,
+    "excess_cagr_vs_parent_pct": -5.30352,
+    "strategy_max_drawdown_pct": -36.056023212497344,
+    "parent_max_drawdown_pct": -32.133163410740416,
+    "drawdown_delta_vs_parent_pct": -3.92286,
+    "months_beating_parent": 20,
+    "months_losing_to_parent": 38,
+    "months_tied_parent": 17,
+    "years_beating_parent": 1,
+    "years_losing_to_parent": 6,
+    "years_tied_parent": 0
+  }
+}

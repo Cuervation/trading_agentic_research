@@ -1,0 +1,15 @@
+{
+  "audit_status": "completed",
+  "decision": "promoted_candidate",
+  "reasons": [
+    "Strategy CAGR beats SPY CAGR.",
+    "Strategy beats SPY in more years than it loses."
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "No daily price date after signal_date=2026-04-03; skipped rebalance."
+  ],
+  "recommendation": "Candidate can move forward for manual review; baseline promotion remains blocked.",
+  "can_move_parent": true,
+  "can_promote_baseline": false
+}

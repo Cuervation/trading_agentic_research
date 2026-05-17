@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "runs": {
+    "EXP_002": {
+      "hypothesis_id": "HYP_BASELINE_MOMENTUM_TREND_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_002",
+      "decision": "promoted_candidate",
+      "metrics": {
+        "cagr_delta_pct": 19.40735643359124,
+        "max_drawdown_delta_pct": 0.6094165748376454,
+        "months_beating_spy": 48,
+        "months_losing_to_spy": 27,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 42.43701680915286
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_003": {
+      "hypothesis_id": "HYP_BASELINE_MOMENTUM_TREND_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_003",
+      "decision": "promoted_candidate",
+      "metrics": {
+        "cagr_delta_pct": 17.93466584228245,
+        "max_drawdown_delta_pct": 1.97158348250354,
+        "months_beating_spy": 47,
+        "months_losing_to_spy": 28,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 39.99456805488584
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_004": {
+      "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
+      "family": "risk_management",
+      "learning_id": "LEARN_EXP_004",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 12.631145637963481,
+        "max_drawdown_delta_pct": -1.9512763192533882,
+        "months_beating_spy": 40,
+        "months_losing_to_spy": 35,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 36.5666331811386,
+        "parent_cagr_delta_pct": -5.30352,
+        "parent_drawdown_delta_pct": -3.92286,
+        "months_beating_parent": 20,
+        "months_losing_to_parent": 38,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_005": {
+      "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
+      "family": "risk_management",
+      "learning_id": "LEARN_EXP_005",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 12.631145637963481,
+        "max_drawdown_delta_pct": -1.9512763192533882,
+        "months_beating_spy": 40,
+        "months_losing_to_spy": 35,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 36.5666331811386,
+        "parent_cagr_delta_pct": -5.30352,
+        "parent_drawdown_delta_pct": -3.92286,
+        "months_beating_parent": 20,
+        "months_losing_to_parent": 38,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_006": {
+      "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
+      "family": "risk_management",
+      "learning_id": "LEARN_EXP_006",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 12.631145637963481,
+        "max_drawdown_delta_pct": -1.9512763192533882,
+        "months_beating_spy": 40,
+        "months_losing_to_spy": 35,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 36.5666331811386,
+        "parent_cagr_delta_pct": -5.30352,
+        "parent_drawdown_delta_pct": -3.92286,
+        "months_beating_parent": 20,
+        "months_losing_to_parent": 38,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_007": {
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_007",
+      "decision": "promoted_candidate",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 8.167154,
+        "parent_drawdown_delta_pct": 2.887458,
+        "months_beating_parent": 38,
+        "months_losing_to_parent": 21,
+        "years_beating_parent": 7,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_008": {
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_008",
+      "decision": "accepted_for_followup",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 0.0,
+        "parent_drawdown_delta_pct": 0.0,
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_009": {
+      "hypothesis_id": "HYP_MOMENTUM_EXIT_15_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_009",
+      "decision": "accepted_for_followup",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 0.0,
+        "parent_drawdown_delta_pct": 0.0,
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_010": {
+      "hypothesis_id": "HYP_MOMENTUM_EXIT_25_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_010",
+      "decision": "accepted_for_followup",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 0.0,
+        "parent_drawdown_delta_pct": 0.0,
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_011": {
+      "hypothesis_id": "HYP_MOMENTUM_TOPN_12_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_011",
+      "decision": "accepted_for_followup",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 0.0,
+        "parent_drawdown_delta_pct": 0.0,
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_012": {
+      "hypothesis_id": "HYP_MOMENTUM_TOPN_8_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_012",
+      "decision": "accepted_for_followup",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 0.0,
+        "parent_drawdown_delta_pct": 0.0,
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_013": {
+      "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+      "family": "cross_sectional_momentum",
+      "learning_id": "LEARN_EXP_013",
+      "decision": "accepted_for_followup",
+      "metrics": {
+        "cagr_delta_pct": 26.101820237725047,
+        "max_drawdown_delta_pct": 4.85904099543021,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 44.70592481849762,
+        "parent_cagr_delta_pct": 0.0,
+        "parent_drawdown_delta_pct": 0.0,
+        "months_beating_parent": 0,
+        "months_losing_to_parent": 0,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 0
+      },
+      "can_promote_baseline": false
+    }
+  },
+  "hypothesis_evidence": {
+    "HYP_BASELINE_MOMENTUM_TREND_V1": [
+      "EXP_002",
+      "EXP_003"
+    ],
+    "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1": [
+      "EXP_004",
+      "EXP_005",
+      "EXP_006"
+    ],
+    "HYP_MOMENTUM_CONCENTRATION_V1": [
+      "EXP_007",
+      "EXP_008",
+      "EXP_013"
+    ],
+    "HYP_MOMENTUM_EXIT_15_V1": [
+      "EXP_009"
+    ],
+    "HYP_MOMENTUM_EXIT_25_V1": [
+      "EXP_010"
+    ],
+    "HYP_MOMENTUM_TOPN_12_V1": [
+      "EXP_011"
+    ],
+    "HYP_MOMENTUM_TOPN_8_V1": [
+      "EXP_012"
+    ]
+  }
+}

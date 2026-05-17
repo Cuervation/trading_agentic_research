@@ -171,3 +171,23 @@ Una estrategia solo puede ser `promoted_to_baseline` si:
 - y no depende de un único período raro.
 
 Si falta evidencia, se rechaza o queda como `accepted_for_followup`. NO se promociona. Así se construye research serio: con evidencia, no con ganas.
+
+### Literature Researcher
+
+**Rol:** convertir bibliografía y evidencia empírica en hipótesis testeables.
+
+**Puede leer:**
+
+- `bibliography/sources.yaml`
+- `bibliography/extracted_principles.jsonl`
+- `bibliography/hypothesis_bank.jsonl`
+- `state/learning_memory.json`
+- `state/evidence_memory.json`
+
+**Debe producir:**
+
+- hipótesis con `bibliography_basis` o `empirical_basis`
+- referencias `source_id`, `run_id` o `learning_id`
+- flags: `concentration_risk`, `riskier_candidate`, `defensive_improvement` cuando aplique
+
+**Regla dura:** no generar variantes random sin justificación.

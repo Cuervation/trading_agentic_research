@@ -1,7 +1,26 @@
-﻿{
-  "loop_status": "initialized",
+{
+  "loop_status": "completed",
   "active_strategy_family": "cross_sectional_momentum",
-  "last_run_id": null,
-  "mode": "bootstrap",
-  "notes": []
+  "last_run_id": "EXP_013",
+  "mode": "automatic_loop",
+  "notes": [
+    "Loop iteration started.",
+    "Command failed (1): C:\\Users\\celestinoh\\AppData\\Local\\Programs\\Python\\Python312\\python.exe scripts/update_parent.py --run-id EXP_005 --runs-dir runs --strategy-id SP500_MOMENTUM_TREND_TRAILING_STOP_V1",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed."
+  ]
 }

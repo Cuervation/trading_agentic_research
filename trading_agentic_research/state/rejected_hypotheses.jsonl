@@ -1,0 +1,3 @@
+{"hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1", "family": "risk_management", "run_id": "EXP_004", "learning_id": "LEARN_EXP_004", "decision": "rejected", "flags": ["parent_underperformance"]}
+{"hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1", "family": "risk_management", "run_id": "EXP_005", "learning_id": "LEARN_EXP_005", "decision": "rejected", "flags": ["parent_underperformance"]}
+{"hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1", "family": "risk_management", "run_id": "EXP_006", "learning_id": "LEARN_EXP_006", "decision": "rejected", "flags": ["parent_underperformance"]}

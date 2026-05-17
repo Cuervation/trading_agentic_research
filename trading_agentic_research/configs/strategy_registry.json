@@ -12,6 +12,17 @@
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
       "notes": "Initial bibliographic baseline, not validated yet"
+    },
+    {
+      "strategy_id": "SP500_MOMENTUM_TREND_CONCENTRATION_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/candidate_concentrated_momentum_v1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "More concentrated momentum basket derived from baseline evidence"
     }
   ]
 }

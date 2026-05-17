@@ -6,9 +6,26 @@ import pandas as pd
 from backtester.validation import audit_run_folder
 
 
-def _write_valid_run(run_dir: Path, *, strategy_cagr=12.0, spy_cagr=10.0, strategy_dd=-18.0, spy_dd=-20.0, years_win=2, years_loss=1, trades=12):
+def _write_valid_run(
+    run_dir: Path,
+    *,
+    strategy_cagr=12.0,
+    spy_cagr=10.0,
+    strategy_dd=-18.0,
+    spy_dd=-20.0,
+    years_win=2,
+    years_loss=1,
+    trades=12,
+    equity_values=None,
+):
     run_dir.mkdir(parents=True)
-    pd.DataFrame({"date": ["2026-01-01"], "equity": [100000]}).to_csv(run_dir / "equity_curve.csv", index=False)
+    equity_values = equity_values or [100000, 105000, 112000]
+    pd.DataFrame(
+        {
+            "date": pd.date_range("2026-01-01", periods=len(equity_values), freq="ME"),
+            "equity": equity_values,
+        }
+    ).to_csv(run_dir / "equity_curve.csv", index=False)
     pd.DataFrame(
         {
             "ticker": [f"T{i}" for i in range(trades)],
@@ -123,3 +140,54 @@ def test_audit_run_folder_rejects_missing_costs(tmp_path):
 
     assert audit["decision"] == "rejected"
     assert any("costs" in issue.lower() for issue in audit["blocking_issues"])
+
+
+def test_audit_run_folder_rejects_candidate_that_loses_to_parent(tmp_path):
+    parent_dir = tmp_path / "EXP_PARENT"
+    run_dir = tmp_path / "EXP_CHILD"
+    _write_valid_run(
+        parent_dir,
+        strategy_cagr=30.0,
+        strategy_dd=-20.0,
+        equity_values=[100000, 120000, 140000],
+    )
+    _write_valid_run(
+        run_dir,
+        strategy_cagr=20.0,
+        spy_cagr=10.0,
+        strategy_dd=-30.0,
+        spy_dd=-35.0,
+        equity_values=[100000, 110000, 115000],
+    )
+
+    audit = audit_run_folder(run_dir, min_trades=10, parent_run_dir=parent_dir)
+
+    assert audit["decision"] == "rejected"
+    assert audit["can_move_parent"] is False
+    assert audit["parent_comparison"]["excess_cagr_vs_parent_pct"] == -10.0
+    assert audit["parent_comparison"]["drawdown_delta_vs_parent_pct"] == -10.0
+
+
+def test_audit_run_folder_parent_comparison_blocks_parent_move_without_promotion(tmp_path):
+    parent_dir = tmp_path / "EXP_PARENT"
+    run_dir = tmp_path / "EXP_CHILD"
+    _write_valid_run(
+        parent_dir,
+        strategy_cagr=20.0,
+        strategy_dd=-20.0,
+        equity_values=[100000, 103000, 120000],
+    )
+    _write_valid_run(
+        run_dir,
+        strategy_cagr=21.0,
+        spy_cagr=10.0,
+        strategy_dd=-27.0,
+        spy_dd=-35.0,
+        equity_values=[100000, 105000, 121000],
+    )
+
+    audit = audit_run_folder(run_dir, min_trades=10, parent_run_dir=parent_dir)
+
+    assert audit["decision"] == "accepted_for_followup"
+    assert audit["can_move_parent"] is False
+    assert audit["parent_comparison"]["parent_available"] is True
