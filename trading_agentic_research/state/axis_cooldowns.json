@@ -1,5 +1,16 @@
 {
   "version": 1,
-  "axes": {},
+  "axes": {
+    "mixed:mixed": {
+      "status": "axis_exhausted",
+      "reason": "three_duplicate_results",
+      "duplicate_result": 46
+    },
+    "unknown:unknown": {
+      "status": "axis_exhausted",
+      "reason": "three_duplicate_results",
+      "duplicate_result": 29
+    }
+  },
   "axis_rejection_threshold": 3
 }

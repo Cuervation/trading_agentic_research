@@ -37,6 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--strategy-config", required=True, help="Path to strategy config JSON.")
     parser.add_argument("--project-config", required=True, help="Path to project config JSON.")
     parser.add_argument("--run-id", required=True, help="Run identifier, e.g. EXP_001.")
+    parser.add_argument("--runs-dir", default="runs", help="Base output directory for run artifacts.")
     parser.add_argument("--parent-run-id", default=None, help="Optional parent run id for manifest lineage.")
     parser.add_argument("--parent-strategy-config", default=None, help="Optional parent strategy config for manifest changed_parameters.")
     return parser.parse_args()
@@ -206,7 +207,7 @@ def main() -> int:
         spy_metrics=spy_metrics,
     )
 
-    run_dir = Path("runs") / args.run_id
+    run_dir = Path(args.runs_dir) / args.run_id
     run_dir.mkdir(parents=True, exist_ok=True)
 
     equity_curve.to_csv(run_dir / "equity_curve.csv", index=False, sep=";", decimal=",")

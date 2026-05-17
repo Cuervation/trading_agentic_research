@@ -4,7 +4,7 @@
   "type": "object",
   "required": ["hypothesis_id", "status", "run_backtest", "changed_parameters", "config_hash", "parent_config_hash", "can_move_parent", "can_promote_baseline"],
   "properties": {
-    "status": {"enum": ["passed", "metric_no_effect", "duplicate_result"]},
+    "status": {"enum": ["passed", "metric_no_effect", "duplicate_result", "low_materiality"]},
     "run_backtest": {"type": "boolean"},
     "duplicate_of_run_id": {"type": ["string", "null"]}
   },
