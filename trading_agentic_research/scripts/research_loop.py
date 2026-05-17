@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.generate_hypotheses_from_bibliography import validate_candidate_basis
+from scripts.governance import changed_parameters_between, has_real_strategy_change
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
 
 CommandRunner = Callable[[list[str]], subprocess.CompletedProcess]
@@ -31,6 +32,7 @@ class LoopInputs:
     family: str
     parent_run_id: str | None
     allow_parent_update: bool
+    parent_strategy_config_path: Path | None = None
 
 
 def read_json(path: str | Path) -> dict:
@@ -95,7 +97,46 @@ def resolve_loop_inputs(args: argparse.Namespace) -> LoopInputs:
         family=str(family),
         parent_run_id=str(parent_run_id) if parent_run_id else None,
         allow_parent_update=bool(args.allow_parent_update),
+        parent_strategy_config_path=resolve_parent_strategy_config_path(
+            state_dir=args.state_dir,
+            strategy_registry_path=getattr(args, "strategy_registry", "configs/strategy_registry.json"),
+            explicit_parent_strategy_config=getattr(args, "parent_strategy_config", None),
+            current_parent=current_parent,
+        ),
     )
+
+
+def resolve_parent_strategy_config_path(
+    *,
+    state_dir: str | Path,
+    strategy_registry_path: str | Path,
+    explicit_parent_strategy_config: str | None,
+    current_parent: dict | None = None,
+) -> Path | None:
+    if explicit_parent_strategy_config:
+        p = Path(explicit_parent_strategy_config)
+        return p if p.exists() else None
+
+    parent = current_parent if current_parent is not None else (read_json(Path(state_dir) / "current_parent.json") if (Path(state_dir) / "current_parent.json").exists() else {})
+    parent_strategy_id = parent.get("current_parent_strategy_id")
+    if not parent_strategy_id or not Path(strategy_registry_path).exists():
+        return None
+
+    registry = read_json(strategy_registry_path)
+    for row in registry.get("strategies", []):
+        if row.get("strategy_id") == parent_strategy_id and row.get("config_path"):
+            p = Path(row["config_path"])
+            if not p.is_absolute():
+                p = ROOT / p
+            return p if p.exists() else None
+    return None
+
+
+def validate_candidate_has_real_change(strategy_config: dict, parent_strategy_config: dict | None) -> list[str]:
+    """Block no-op candidates before expensive backtests."""
+    if not has_real_strategy_change(parent_strategy_config, strategy_config):
+        raise ValueError("blocked_no_op: candidate does not change any real strategy parameter versus parent config.")
+    return changed_parameters_between(parent_strategy_config, strategy_config) if parent_strategy_config else list(strategy_config.get("changed_parameters", []) or [])
 
 
 def validate_candidate_is_justified(strategy_config: dict, hypothesis: dict | None) -> None:
@@ -130,21 +171,27 @@ def preflight_score(inputs: LoopInputs, state_dir: str | Path = "state") -> dict
 
 
 def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_dir: str | Path = "reports") -> list[list[str]]:
+    backtest_command = [
+        sys.executable,
+        "scripts/run_backtest.py",
+        "--weekly-file",
+        inputs.weekly_file,
+        "--daily-folder",
+        inputs.daily_folder,
+        "--strategy-config",
+        str(inputs.strategy_config_path),
+        "--project-config",
+        str(inputs.project_config_path),
+        "--run-id",
+        inputs.run_id,
+    ]
+    if inputs.parent_run_id:
+        backtest_command.extend(["--parent-run-id", inputs.parent_run_id])
+    if inputs.parent_strategy_config_path:
+        backtest_command.extend(["--parent-strategy-config", str(inputs.parent_strategy_config_path)])
+
     commands = [
-        [
-            sys.executable,
-            "scripts/run_backtest.py",
-            "--weekly-file",
-            inputs.weekly_file,
-            "--daily-folder",
-            inputs.daily_folder,
-            "--strategy-config",
-            str(inputs.strategy_config_path),
-            "--project-config",
-            str(inputs.project_config_path),
-            "--run-id",
-            inputs.run_id,
-        ],
+        backtest_command,
         [
             sys.executable,
             "scripts/evaluate_candidate.py",
@@ -220,6 +267,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--reports-dir", default="reports")
     parser.add_argument("--state-dir", default="state")
+    parser.add_argument("--strategy-registry", default="configs/strategy_registry.json")
+    parser.add_argument("--parent-strategy-config", default=None)
     parser.add_argument("--allow-parent-update", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
@@ -231,6 +280,15 @@ def main() -> int:
     strategy_config = read_json(inputs.strategy_config_path)
     hypothesis = find_hypothesis(inputs.hypothesis_id)
     validate_candidate_is_justified(strategy_config, hypothesis)
+    parent_strategy_config = read_json(inputs.parent_strategy_config_path) if inputs.parent_strategy_config_path else None
+    try:
+        changed_parameters = validate_candidate_has_real_change(strategy_config, parent_strategy_config)
+    except ValueError as exc:
+        update_research_state(args.state_dir, inputs.run_id, "blocked_no_op", str(exc))
+        print(str(exc))
+        return 2
+    if changed_parameters and not strategy_config.get("changed_parameters"):
+        strategy_config["changed_parameters"] = changed_parameters
 
     score = preflight_score(inputs, state_dir=args.state_dir)
     if score.get("decision") == "rejected":

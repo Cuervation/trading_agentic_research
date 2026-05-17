@@ -6,6 +6,7 @@ import pytest
 
 from scripts.run_research_batch import (
     _cooldown_families,
+    add_family_cooldown,
     _latest_learning_flags,
     _load_batch_state,
     _repeat_blocked_hypothesis_ids,
@@ -130,3 +131,18 @@ def test_run_candidate_generation_command_success():
     assert ok is True
     assert "scripts/generate_candidates_from_parent.py" in " ".join(captured["command"])
     assert "--families" in captured["command"]
+
+
+
+def test_max_repeats_adds_cooldown(tmp_path):
+    cooldowns = add_family_cooldown(
+        state_dir=tmp_path,
+        family="cross_sectional_momentum",
+        reason="max_repeats_reached:HYP_MOMENTUM_CONCENTRATION_V1",
+        hypothesis_id="HYP_MOMENTUM_CONCENTRATION_V1",
+    )
+
+    payload = cooldowns["cooldowns"]["cross_sectional_momentum"]
+    assert payload["reason"] == "max_repeats_reached:HYP_MOMENTUM_CONCENTRATION_V1"
+    assert payload["hypothesis_id"] == "HYP_MOMENTUM_CONCENTRATION_V1"
+    assert "cooldown_until" in payload

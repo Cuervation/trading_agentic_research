@@ -1,0 +1,20 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExtractedClaim",
+  "type": "object",
+  "required": ["claim_id", "source_id", "family", "claim", "causal_mechanism", "suggested_variables", "possible_filters", "possible_rankings", "expected_risks", "falsification_rule", "status"],
+  "properties": {
+    "claim_id": {"type": "string"},
+    "source_id": {"type": "string"},
+    "family": {"type": "string"},
+    "claim": {"type": "string"},
+    "causal_mechanism": {"type": "string"},
+    "suggested_variables": {"type": "array", "items": {"type": "string"}},
+    "possible_filters": {"type": "array", "items": {"type": "string"}},
+    "possible_rankings": {"type": "array", "items": {"type": "string"}},
+    "expected_risks": {"type": "array", "items": {"type": "string"}},
+    "falsification_rule": {"type": "string"},
+    "status": {"type": "string"}
+  },
+  "additionalProperties": true
+}

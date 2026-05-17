@@ -61,6 +61,28 @@ def _write_valid_run(
         encoding="utf-8",
     )
 
+    (run_dir / "run_manifest.json").write_text(
+        json.dumps(
+            {
+                "run_id": run_dir.name,
+                "parent_run_id": None,
+                "strategy_id": "STRAT_TEST",
+                "strategy_version": "1",
+                "hypothesis_id": "HYP_TEST",
+                "hypothesis_family": "cross_sectional_momentum",
+                "bibliography_basis": [{"source_id": "academic_momentum_jegadeesh_titman_1993"}],
+                "empirical_basis": [],
+                "changed_parameters": ["entry_rule.top_n"],
+                "config_hash": "cfg",
+                "code_hash": "code",
+                "data_hash": "data",
+                "initial_capital": 100000.0,
+                "generated_at": "2026-05-17T00:00:00+00:00",
+            }
+        ),
+        encoding="utf-8",
+    )
+
 
 def test_audit_run_folder_promoted_candidate_never_baseline(tmp_path):
     run_dir = tmp_path / "EXP_001"
@@ -191,3 +213,41 @@ def test_audit_run_folder_parent_comparison_blocks_parent_move_without_promotion
     assert audit["decision"] == "accepted_for_followup"
     assert audit["can_move_parent"] is False
     assert audit["parent_comparison"]["parent_available"] is True
+
+
+
+def test_duplicate_artifact_is_metric_no_effect(tmp_path):
+    parent_dir = tmp_path / "EXP_007"
+    run_dir = tmp_path / "EXP_008"
+    _write_valid_run(parent_dir)
+    _write_valid_run(run_dir)
+
+    audit = audit_run_folder(run_dir, min_trades=10, parent_run_dir=parent_dir)
+
+    assert audit["decision"] == "rejected"
+    assert "duplicate_artifact" in audit["flags"]
+    assert "metric_no_effect" in audit["flags"]
+    assert audit["artifact_hashes"]["duplicate_artifact"] is True
+
+
+def test_metric_no_effect_cannot_be_accepted_for_followup(tmp_path):
+    parent_dir = tmp_path / "EXP_007"
+    run_dir = tmp_path / "EXP_008"
+    _write_valid_run(parent_dir)
+    _write_valid_run(run_dir)
+
+    audit = audit_run_folder(run_dir, min_trades=10, parent_run_dir=parent_dir)
+
+    assert audit["decision"] == "rejected"
+    assert audit["decision"] != "accepted_for_followup"
+
+
+def test_metric_no_effect_cannot_move_parent(tmp_path):
+    parent_dir = tmp_path / "EXP_007"
+    run_dir = tmp_path / "EXP_008"
+    _write_valid_run(parent_dir)
+    _write_valid_run(run_dir)
+
+    audit = audit_run_folder(run_dir, min_trades=10, parent_run_dir=parent_dir)
+
+    assert audit["can_move_parent"] is False

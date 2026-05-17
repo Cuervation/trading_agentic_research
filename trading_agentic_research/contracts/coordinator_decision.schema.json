@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoordinatorDecision",
+  "type": "object",
+  "required": ["decision", "reason", "continue_loop", "manual_review_required"],
+  "properties": {
+    "decision": {"enum": ["refine_current_axis", "mix_with_other_source", "abandon_axis", "search_new_literature", "promote_candidate_for_manual_review", "continue_loop", "reject_duplicate", "reject_metric_no_effect"]},
+    "continue_loop": {"type": "boolean"},
+    "manual_review_required": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

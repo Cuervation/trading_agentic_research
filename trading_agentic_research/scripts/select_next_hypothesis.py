@@ -58,6 +58,7 @@ def choose_next_hypothesis(
     cooldowns: dict,
     rejected_ids: set[str],
     accepted_ids: set[str],
+    current_parent_hypothesis_id: str | None = None,
     parameter_effect_memory: dict | None = None,
     prefer_unseen: bool = True,
 ) -> dict:
@@ -71,6 +72,8 @@ def choose_next_hypothesis(
 
         hypothesis_id = str(hypothesis.get("hypothesis_id"))
         if hypothesis_id in rejected_ids:
+            continue
+        if current_parent_hypothesis_id and hypothesis_id == current_parent_hypothesis_id:
             continue
 
         score = score_hypothesis_against_memory(hypothesis, learning_memory, cooldowns)
@@ -124,6 +127,7 @@ def main() -> int:
 
     learning_memory = read_json(state_dir / "learning_memory.json")
     cooldowns = read_json(state_dir / "subspace_cooldowns.json")
+    current_parent = read_json(state_dir / "current_parent.json")
     parameter_effect_memory = load_parameter_effect_memory(state_dir / "parameter_effect_memory.json")
 
     bank = load_hypothesis_bank(args.hypothesis_bank)
@@ -137,6 +141,7 @@ def main() -> int:
         rejected_ids=rejected_ids,
         accepted_ids=accepted_ids,
         parameter_effect_memory=parameter_effect_memory,
+        current_parent_hypothesis_id=str(current_parent.get("current_parent_strategy_id")) if current_parent.get("current_parent_strategy_id") else None,
         prefer_unseen=bool(args.prefer_unseen),
     )
 

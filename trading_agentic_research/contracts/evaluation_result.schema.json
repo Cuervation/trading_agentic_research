@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvaluationResult",
+  "type": "object",
+  "required": ["hypothesis_id", "decision", "accepted_for_followup", "promoted_to_baseline_candidate", "manual_review_required", "can_move_parent", "can_promote_baseline"],
+  "properties": {
+    "decision": {"enum": ["rejected", "accepted_for_followup", "promoted_candidate"]},
+    "accepted_for_followup": {"type": "boolean"},
+    "promoted_to_baseline_candidate": {"type": "boolean"},
+    "manual_review_required": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

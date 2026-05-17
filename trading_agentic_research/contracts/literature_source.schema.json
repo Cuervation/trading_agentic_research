@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LiteratureSource",
+  "type": "object",
+  "required": ["source_id", "title", "author_or_family", "source_type", "family", "status", "notes"],
+  "properties": {
+    "source_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "author_or_family": {"type": "string"},
+    "source_type": {"enum": ["paper", "book", "whitepaper", "manual_seed", "article"]},
+    "year": {"type": ["integer", "null"]},
+    "family": {"enum": ["momentum", "trend_following", "can_slim", "quality", "low_volatility", "sector_momentum", "regime", "value", "mixed"]},
+    "status": {"enum": ["pending", "extracted", "exhausted"]},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}
