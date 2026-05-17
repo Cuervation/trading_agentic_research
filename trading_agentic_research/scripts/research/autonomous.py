@@ -228,6 +228,8 @@ def build_next_hypothesis(state_dir: str | Path = "state", parent_config: dict |
     memory = read_json(Path(state_dir) / "hypothesis_memory.json", {"hypotheses": [], "events": []})
     cooldowns = read_json(Path(state_dir) / "axis_cooldowns.json", {"axes": {}})
     used_claim_ids = {h.get("claim_id") for h in memory.get("hypotheses", [])}
+    used_claim_ids.update(e.get("claim_id") for e in memory.get("events", []) if e.get("claim_id"))
+    used_hypothesis_ids = {e.get("hypothesis_id") for e in memory.get("events", []) if e.get("can_repeat") is False}
     available = [
         c
         for c in claims_payload.get("claims", [])
@@ -238,7 +240,7 @@ def build_next_hypothesis(state_dir: str | Path = "state", parent_config: dict |
     if available:
         hypothesis = hypothesis_from_claim(available[0], parent_config=parent_config)
         validate_hypothesis(hypothesis)
-        return hypothesis
+        return None if hypothesis["hypothesis_id"] in used_hypothesis_ids else hypothesis
     return build_mixed_hypothesis_from_available(claims_payload, memory, cooldowns)
 
 
@@ -248,6 +250,8 @@ def build_mixed_hypothesis_from_available(claims_payload: dict, memory: dict, co
         for h in memory.get("hypotheses", [])
         if h.get("hypothesis_type") == "mixed"
     }
+    used_pairs.update(tuple(sorted(e.get("source_ids", []))) for e in memory.get("events", []) if len(e.get("source_ids", [])) > 1)
+    used_hypothesis_ids = {e.get("hypothesis_id") for e in memory.get("events", []) if e.get("can_repeat") is False}
     claims = [
         c
         for c in claims_payload.get("claims", [])
@@ -261,6 +265,8 @@ def build_mixed_hypothesis_from_available(claims_payload: dict, memory: dict, co
             if pair in used_pairs or not mechanisms_can_mix(left, right):
                 continue
             hypothesis = mixed_hypothesis_from_claims(left, right)
+            if hypothesis["hypothesis_id"] in used_hypothesis_ids:
+                continue
             validate_mixed_hypothesis(hypothesis)
             return hypothesis
     return None
@@ -386,7 +392,12 @@ def default_materiality_guard() -> dict:
     }
 
 
-def precheck_hypothesis(hypothesis: dict, parent_config: dict, state_dir: str | Path = "state") -> dict:
+def precheck_hypothesis(
+    hypothesis: dict,
+    parent_config: dict,
+    state_dir: str | Path = "state",
+    weekly_file: str | Path | None = None,
+) -> dict:
     validate_hypothesis(hypothesis)
     candidate_config = apply_hypothesis_to_config(parent_config, hypothesis)
     changed = changed_parameters_between(parent_config, candidate_config)
@@ -394,15 +405,80 @@ def precheck_hypothesis(hypothesis: dict, parent_config: dict, state_dir: str | 
     parent_hash = stable_json_hash(canonical_strategy_payload(parent_config))
     duplicate_runs = read_json(Path(state_dir) / "duplicate_runs.json", {"duplicates": []})
     duplicate = next((d for d in duplicate_runs.get("duplicates", []) if d.get("config_hash") == config_hash), None)
+    if not duplicate:
+        memory = read_json(Path(state_dir) / "hypothesis_memory.json", {"events": []})
+        duplicate = next(
+            (
+                {"run_id": e.get("run_id"), "reason": "hypothesis_already_executed"}
+                for e in memory.get("events", [])
+                if e.get("hypothesis_id") == hypothesis.get("hypothesis_id") and e.get("can_repeat") is False
+            ),
+            None,
+        )
     if duplicate:
         return _precheck_result(hypothesis, "duplicate_result", False, changed, config_hash, parent_hash, duplicate.get("run_id"))
     if not changed or config_hash == parent_hash:
         return _precheck_result(hypothesis, "metric_no_effect", False, changed, config_hash, parent_hash)
-    return _precheck_result(hypothesis, "passed", True, changed, config_hash, parent_hash)
+
+    probe = build_materiality_probe(parent_config, candidate_config, weekly_file=weekly_file)
+    if probe.get("available") and probe.get("signal_hash") == probe.get("parent_signal_hash"):
+        result = _precheck_result(hypothesis, "low_materiality", False, changed, config_hash, parent_hash)
+        result.update(probe)
+        return result
+
+    result = _precheck_result(hypothesis, "passed", True, changed, config_hash, parent_hash)
+    result.update(probe)
+    return result
+
+
+def build_materiality_probe(parent_config: dict, candidate_config: dict, weekly_file: str | Path | None = None) -> dict:
+    if not weekly_file:
+        return {"available": False, "reason": "weekly_file_not_provided"}
+    try:
+        import pandas as pd
+        from backtester.signal_builder import build_momentum_trend_signals
+
+        weekly = pd.read_csv(weekly_file, nrows=50000)
+        if "date" not in weekly.columns and "signal_date" in weekly.columns:
+            weekly = weekly.rename(columns={"signal_date": "date"})
+        parent_signals = build_momentum_trend_signals(weekly, parent_config)
+        candidate_signals = build_momentum_trend_signals(weekly, candidate_config)
+        return {
+            "available": True,
+            "parent_signal_hash": dataframe_hash(parent_signals),
+            "signal_hash": dataframe_hash(candidate_signals),
+            "parent_selected_universe_hash": selected_universe_hash(parent_signals),
+            "selected_universe_hash": selected_universe_hash(candidate_signals),
+            "parent_selected_trades_preview_hash": selected_trades_preview_hash(parent_signals),
+            "selected_trades_preview_hash": selected_trades_preview_hash(candidate_signals),
+        }
+    except Exception as exc:
+        return {"available": False, "reason": f"materiality_probe_failed:{exc}"}
+
+
+def dataframe_hash(df) -> str:
+    if df is None or df.empty:
+        return stable_json_hash([])
+    return stable_json_hash(df.astype(str).to_dict(orient="records"))
+
+
+def selected_universe_hash(signals) -> str:
+    if signals is None or signals.empty or "selected_top_n" not in signals.columns:
+        return stable_json_hash([])
+    selected = signals.loc[signals["selected_top_n"].astype(bool), ["signal_date", "ticker"]].astype(str)
+    return stable_json_hash(selected.to_dict(orient="records"))
+
+
+def selected_trades_preview_hash(signals) -> str:
+    if signals is None or signals.empty:
+        return stable_json_hash([])
+    cols = [c for c in ["signal_date", "ticker", "rank", "action_candidate"] if c in signals.columns]
+    selected = signals.loc[signals.get("selected_top_n", False).astype(bool), cols].astype(str) if "selected_top_n" in signals.columns else signals[cols].astype(str)
+    return stable_json_hash(selected.to_dict(orient="records"))
 
 
 def _precheck_result(hypothesis: dict, status: str, run_backtest: bool, changed: list[str], config_hash: str, parent_hash: str, duplicate_of_run_id: str | None = None) -> dict:
-    no_effect = status in {"metric_no_effect", "duplicate_result"}
+    no_effect = status in {"metric_no_effect", "duplicate_result", "low_materiality"}
     return {
         "hypothesis_id": hypothesis.get("hypothesis_id"),
         "status": status,
@@ -518,12 +594,24 @@ def update_memory(state_dir: str | Path, hypothesis: dict, precheck: dict, evalu
     event = {
         "event_id": f"EVT_{len(memory.get('events', [])) + 1:06d}",
         "hypothesis_id": hypothesis["hypothesis_id"],
+        "claim_id": hypothesis.get("claim_id"),
         "source_ids": hypothesis.get("source_ids", []),
         "family": hypothesis.get("family"),
         "axis": hypothesis.get("axis"),
+        "parent_run_id": evaluation.get("parent_run_id"),
         "precheck_status": precheck["status"],
         "decision": evaluation["decision"],
-        "duplicate_of_run_id": precheck.get("duplicate_of_run_id"),
+        "value_delivered": evaluation.get("value_delivered") or value_delivered_for(precheck, evaluation),
+        "learned": evaluation.get("learned") or learning_for(precheck, evaluation),
+        "next_action": evaluation.get("next_action") or next_action_for(precheck, evaluation),
+        "duplicate_of_run_id": evaluation.get("duplicate_of_run_id") or precheck.get("duplicate_of_run_id"),
+        "can_repeat": bool(evaluation.get("can_repeat", False)),
+        "run_id": evaluation.get("run_id"),
+        "execution_mode": evaluation.get("execution_mode", "unknown"),
+        "backtest_real": evaluation.get("evaluation_source") == "real_artifacts",
+        "promoted_to_baseline_candidate": evaluation.get("promoted_to_baseline_candidate", False),
+        "accepted_for_followup": evaluation.get("accepted_for_followup", False),
+        "manual_review_required": evaluation.get("manual_review_required", False),
         "created_at": now_iso(),
     }
     memory.setdefault("events", []).append(event)
@@ -532,21 +620,70 @@ def update_memory(state_dir: str | Path, hypothesis: dict, precheck: dict, evalu
     return event
 
 
+def value_delivered_for(precheck: dict, evaluation: dict) -> str:
+    if precheck.get("status") == "duplicate_result" or evaluation.get("decision") == "duplicate_result":
+        return "duplicate_blocked"
+    if precheck.get("status") in {"metric_no_effect", "low_materiality"}:
+        return "rejected_with_learning"
+    decision = evaluation.get("champion_decision") or evaluation.get("decision")
+    if decision in {"new_champion", "promoted_candidate"}:
+        return "new_champion"
+    if decision in {"secondary_candidate", "accepted_for_followup"}:
+        return "secondary_candidate"
+    if decision == "axis_exhausted":
+        return "axis_exhausted"
+    return "rejected_with_learning"
+
+
+def learning_for(precheck: dict, evaluation: dict) -> str:
+    value = value_delivered_for(precheck, evaluation)
+    if value == "duplicate_blocked":
+        return f"Duplicate artifacts/config detected against {evaluation.get('duplicate_of_run_id') or precheck.get('duplicate_of_run_id')}; do not repeat this hypothesis."
+    if value == "new_champion":
+        return "Candidate delivered champion-level SPY-relative value and requires manual review."
+    if value == "secondary_candidate":
+        return "Candidate improved one research axis but did not safely replace the champion."
+    return f"Rejected with evidence: {evaluation.get('rejection_reason') or evaluation.get('reason') or precheck.get('status')}."
+
+
+def next_action_for(precheck: dict, evaluation: dict) -> str:
+    value = value_delivered_for(precheck, evaluation)
+    if value == "duplicate_blocked":
+        return "change_axis_or_search_new_literature"
+    if value == "new_champion":
+        return "manual_review_then_refine_adjacent_axis"
+    if value == "secondary_candidate":
+        return "refine_different_material_change"
+    return "search_or_mix_new_literature"
+
+
 def update_axis_cooldowns(state_dir: str | Path, memory: dict) -> dict:
     path = Path(state_dir) / "axis_cooldowns.json"
     cooldowns = read_json(path, {"version": 1, "axes": {}, "axis_rejection_threshold": AXIS_REJECTION_THRESHOLD})
     threshold = int(cooldowns.get("axis_rejection_threshold", AXIS_REJECTION_THRESHOLD))
-    counts: dict[str, int] = {}
+    counts: dict[str, dict[str, int]] = {}
+    consecutive: dict[str, int] = {}
     for event in memory.get("events", []):
-        if event.get("decision") == "rejected" or event.get("precheck_status") in {"metric_no_effect", "duplicate_result"}:
-            key = axis_key(event.get("family"), event.get("axis"))
-            counts[key] = counts.get(key, 0) + 1
-    for key, count in counts.items():
-        if count >= threshold:
+        key = axis_key(event.get("family"), event.get("axis"))
+        counts.setdefault(key, {"duplicate_result": 0, "metric_no_effect": 0, "rejected": 0})
+        status = event.get("precheck_status")
+        decision = event.get("decision")
+        if status == "duplicate_result" or decision == "duplicate_result":
+            counts[key]["duplicate_result"] += 1
+        if status == "metric_no_effect":
+            counts[key]["metric_no_effect"] += 1
+        if decision == "rejected":
+            counts[key]["rejected"] += 1
+            consecutive[key] = consecutive.get(key, 0) + 1
+        elif event.get("value_delivered") in {"new_champion", "secondary_candidate"}:
+            consecutive[key] = 0
+    for key, bucket in counts.items():
+        if bucket["duplicate_result"] >= threshold or bucket["metric_no_effect"] >= threshold or consecutive.get(key, 0) >= threshold:
             cooldowns.setdefault("axes", {})[key] = {
                 "status": "axis_exhausted",
-                "rejections": count,
-                "reason": "too_many_rejections_or_duplicates",
+                **bucket,
+                "consecutive_rejected": consecutive.get(key, 0),
+                "reason": "too_many_duplicate_metric_no_effect_or_rejected",
                 "updated_at": now_iso(),
             }
     write_json(path, cooldowns)
@@ -556,12 +693,14 @@ def update_axis_cooldowns(state_dir: str | Path, memory: dict) -> dict:
 def coordinator_decision(state_dir: str | Path, hypothesis: dict | None, precheck: dict | None, evaluation: dict | None) -> dict:
     if hypothesis is None:
         return {"decision": "search_new_literature", "reason": "no_available_hypotheses", "continue_loop": True, "manual_review_required": False}
-    if precheck and precheck["status"] == "metric_no_effect":
-        return {"decision": "reject_metric_no_effect", "reason": "precheck_metric_no_effect", "continue_loop": True, "manual_review_required": False}
+    if precheck and precheck["status"] in {"metric_no_effect", "low_materiality"}:
+        return {"decision": "reject_metric_no_effect", "reason": f"precheck_{precheck['status']}", "continue_loop": True, "manual_review_required": False}
     if precheck and precheck["status"] == "duplicate_result":
         return {"decision": "reject_duplicate", "reason": "duplicate_result", "continue_loop": True, "manual_review_required": False}
-    if evaluation and evaluation.get("promoted_to_baseline_candidate"):
+    if evaluation and evaluation.get("value_delivered") == "new_champion":
         return {"decision": "promote_candidate_for_manual_review", "reason": "candidate_passed_evaluation", "continue_loop": True, "manual_review_required": True}
+    if evaluation and evaluation.get("value_delivered") == "secondary_candidate":
+        return {"decision": "mix_with_other_source", "reason": "secondary_candidate", "continue_loop": True, "manual_review_required": False}
     cooldowns = read_json(Path(state_dir) / "axis_cooldowns.json", {"axes": {}})
     if is_axis_exhausted(cooldowns, hypothesis.get("family"), hypothesis.get("axis")):
         return {"decision": "abandon_axis", "reason": "axis_exhausted", "continue_loop": True, "manual_review_required": False}
@@ -582,10 +721,40 @@ def load_parent_config(path: str | Path = "configs/baseline_momentum_trend_v1.js
     return read_json(path, {})
 
 
-def run_iteration(state_dir: str | Path = "state", parent_config_path: str | Path = "configs/baseline_momentum_trend_v1.json") -> dict:
+def resolve_parent_run_id(state_dir: str | Path = "state", runs_dir: str | Path = "runs", requested_parent_run_id: str | None = None) -> str | None:
+    if requested_parent_run_id:
+        return requested_parent_run_id
+    current = read_json(Path(state_dir) / "current_parent.json", {})
+    parent = current.get("current_parent_run_id")
+    if parent:
+        return parent
+    champions = read_json(Path(state_dir) / "champion_runs.json", {})
+    parent = champions.get("best_champion_run_id")
+    if parent:
+        write_json(Path(state_dir) / "current_parent.json", {"current_parent_run_id": parent, "source": "best_champion_fallback"})
+        return parent
+    existing = [p for p in Path(runs_dir).glob("*_*") if p.is_dir() and (p.name.startswith("EXP_") or p.name.startswith("AUTO_"))]
+    return None if not existing else None
+
+
+def run_iteration(
+    state_dir: str | Path = "state",
+    parent_config_path: str | Path = "configs/baseline_momentum_trend_v1.json",
+    *,
+    mock: bool = False,
+    weekly_file: str | Path | None = None,
+    daily_folder: str | Path | None = None,
+    project_config: str | Path = "configs/project_config.json",
+    runs_dir: str | Path = "runs",
+    parent_run_id: str | None = None,
+    parent_strategy_config: str | Path | None = None,
+    generated_config_dir: str | Path = "configs/generated",
+    runner=None,
+) -> dict:
     seed_literature_sources(state_dir)
     extract_claims_from_sources(state_dir)
-    parent_config = load_parent_config(parent_config_path)
+    parent_run_id = resolve_parent_run_id(state_dir, runs_dir, parent_run_id)
+    parent_config = load_parent_config(parent_strategy_config or parent_config_path)
     hypothesis = build_next_hypothesis(state_dir, parent_config=parent_config)
     if hypothesis is None:
         decision = coordinator_decision(state_dir, None, None, None)
@@ -594,30 +763,159 @@ def run_iteration(state_dir: str | Path = "state", parent_config_path: str | Pat
         literature_search = search_new_literature(state_dir=state_dir)
         write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
         return {"hypothesis": None, "coordinator_decision": decision, "literature_search": literature_search}
-    precheck = precheck_hypothesis(hypothesis, parent_config, state_dir=state_dir)
-    execution_plan = build_execution_plan(hypothesis["hypothesis_id"], mock=True)
-    evaluation = evaluate_result(hypothesis, precheck)
-    evaluation["execution_plan"] = execution_plan
+
+    precheck = precheck_hypothesis(hypothesis, parent_config, state_dir=state_dir, weekly_file=weekly_file)
+    execution_plan = build_execution_plan(hypothesis["hypothesis_id"], mock=mock)
+
+    if not precheck.get("run_backtest"):
+        evaluation = rejected_evaluation(hypothesis, precheck, precheck["status"])
+        evaluation["execution_mode"] = "mock" if mock else "real_precheck_only"
+        event = update_memory(state_dir, hypothesis, precheck, evaluation)
+        decision = coordinator_decision(state_dir, hypothesis, precheck, evaluation)
+        write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
+        return {"hypothesis": hypothesis, "precheck": precheck, "evaluation": evaluation, "execution_plan": execution_plan, "memory_event": event, "coordinator_decision": decision}
+
+    if mock:
+        evaluation = evaluate_result(hypothesis, precheck)
+        evaluation["execution_mode"] = "mock"
+        evaluation["execution_plan"] = execution_plan
+        event = update_memory(state_dir, hypothesis, precheck, evaluation)
+        decision = coordinator_decision(state_dir, hypothesis, precheck, evaluation)
+        write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
+        return {"hypothesis": hypothesis, "precheck": precheck, "evaluation": evaluation, "execution_plan": execution_plan, "memory_event": event, "coordinator_decision": decision}
+
+    if not weekly_file or not daily_folder:
+        raise ValueError("Real autonomous iteration requires --weekly-file and --daily-folder. Use --mock for tests.")
+
+    from scripts.research.candidate_config_writer import write_candidate_config
+    from scripts.research.artifact_index import find_duplicate_artifact, update_artifact_index
+    from scripts.research.champion_governance import update_champion_governance
+    from scripts.research.real_evaluator import evaluate_completed_run
+    from scripts.research.real_executor import run_evaluate_candidate, run_real_backtest_iteration
+
+    config_path = write_candidate_config(parent_config, hypothesis, generated_config_dir)
+    run_id = next_research_run_id(runs_dir)
+    execution = run_real_backtest_iteration(
+        run_id=run_id,
+        strategy_config_path=config_path,
+        weekly_file=weekly_file,
+        daily_folder=daily_folder,
+        project_config=project_config,
+        runs_dir=runs_dir,
+        parent_run_id=parent_run_id,
+        parent_strategy_config=parent_strategy_config or parent_config_path,
+        runner=runner,
+    )
+    parent_run_dir = Path(runs_dir) / parent_run_id if parent_run_id else None
+    audit_execution = run_evaluate_candidate(
+        run_id=run_id,
+        runs_dir=runs_dir,
+        parent_run_id=parent_run_id,
+        hypothesis_id=hypothesis.get("hypothesis_id"),
+        family=hypothesis.get("family"),
+        state_dir=state_dir,
+        runner=runner,
+    )
+    duplicate = find_duplicate_artifact(execution["run_dir"], state_dir)
+    artifact_update = update_artifact_index(execution["run_dir"], state_dir)
+    evaluation = evaluate_completed_run(execution["run_dir"], parent_run_dir=parent_run_dir, hypothesis=hypothesis)
+    if duplicate:
+        evaluation.update(
+            {
+                "decision": "duplicate_result",
+                "accepted_for_followup": False,
+                "promoted_to_baseline_candidate": False,
+                "manual_review_required": False,
+                "can_move_parent": False,
+                "can_promote_baseline": False,
+                "duplicate_of_run_id": duplicate.get("duplicate_of_run_id"),
+                "value_delivered": "duplicate_blocked",
+            }
+        )
+    champion_update = update_champion_governance(execution["run_dir"], state_dir=state_dir, parent_run_id=parent_run_id)
+    if not duplicate:
+        classification = champion_update["classification"]
+        evaluation["champion_decision"] = classification["decision"]
+        evaluation["value_delivered"] = classification["value_delivered"]
+        evaluation["can_move_parent"] = bool(evaluation.get("can_move_parent")) and bool(classification["can_move_parent"])
+        evaluation["promoted_to_baseline_candidate"] = bool(classification["promoted_to_baseline_candidate"])
+        evaluation["manual_review_required"] = bool(classification["manual_review_required"])
+        evaluation["reason"] = classification["reason"]
+        evaluation["next_action"] = next_action_for(precheck, evaluation)
+    evaluation["execution_mode"] = "real"
+    evaluation["parent_run_id"] = parent_run_id
+    evaluation["candidate_config_path"] = str(config_path)
     event = update_memory(state_dir, hypothesis, precheck, evaluation)
+    update_duplicate_memory_from_evaluation(state_dir, precheck, evaluation)
     decision = coordinator_decision(state_dir, hypothesis, precheck, evaluation)
     write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
-    return {"hypothesis": hypothesis, "precheck": precheck, "evaluation": evaluation, "execution_plan": execution_plan, "memory_event": event, "coordinator_decision": decision}
+    return {
+        "hypothesis": hypothesis,
+        "precheck": precheck,
+        "execution": {**execution, "audit": audit_execution},
+        "evaluation": evaluation,
+        "artifact_index": artifact_update,
+        "champion_governance": champion_update,
+        "execution_plan": execution_plan,
+        "memory_event": event,
+        "coordinator_decision": decision,
+    }
+
+
+def next_research_run_id(runs_dir: str | Path = "runs", prefix: str = "AUTO") -> str:
+    path = Path(runs_dir)
+    max_number = 0
+    for run_path in path.glob(f"{prefix}_*"):
+        suffix = run_path.name.removeprefix(f"{prefix}_")
+        if suffix.isdigit():
+            max_number = max(max_number, int(suffix))
+    return f"{prefix}_{max_number + 1:03d}"
+
+
+def update_duplicate_memory_from_evaluation(state_dir: str | Path, precheck: dict, evaluation: dict) -> None:
+    flags = set(evaluation.get("flags", []) or [])
+    artifact_payload = evaluation.get("artifact_hashes", {}) if isinstance(evaluation, dict) else {}
+    if "duplicate_artifact" not in flags and not artifact_payload.get("duplicate_artifact") and evaluation.get("decision") != "duplicate_result":
+        return
+    path = Path(state_dir) / "duplicate_runs.json"
+    payload = read_json(path, {"version": 1, "duplicates": []})
+    payload.setdefault("duplicates", []).append(
+        {
+            "run_id": evaluation.get("run_id"),
+            "duplicate_of_run_id": evaluation.get("duplicate_of_run_id") or artifact_payload.get("duplicate_run_id"),
+            "config_hash": precheck.get("config_hash"),
+            "reason": "duplicate_artifact",
+            "decision": "duplicate_result",
+            "value_delivered": "duplicate_blocked",
+            "created_at": now_iso(),
+        }
+    )
+    write_json(path, payload)
 
 
 def audit_memory(state_dir: str | Path = "state") -> dict:
     memory = read_json(Path(state_dir) / "hypothesis_memory.json", {"hypotheses": [], "events": []})
     cooldowns = read_json(Path(state_dir) / "axis_cooldowns.json", {"axes": {}})
     claims = read_json(Path(state_dir) / "extracted_claims.json", {"claims": []})
+    literature = read_json(Path(state_dir) / "literature_sources.json", {"sources": [], "search_events": []})
+    events = memory.get("events", [])
     return {
         "hypotheses": len(memory.get("hypotheses", [])),
-        "events": len(memory.get("events", [])),
-        "rejected": sum(1 for e in memory.get("events", []) if e.get("decision") == "rejected"),
-        "metric_no_effect": sum(1 for e in memory.get("events", []) if e.get("precheck_status") == "metric_no_effect"),
-        "duplicate_result": sum(1 for e in memory.get("events", []) if e.get("precheck_status") == "duplicate_result"),
+        "events": len(events),
+        "real_hypotheses_run": sum(1 for e in events if e.get("execution_mode") == "real"),
+        "mock_hypotheses_run": sum(1 for e in events if e.get("execution_mode") == "mock"),
+        "backtest_real": sum(1 for e in events if e.get("backtest_real")),
+        "precheck_rejected": sum(1 for e in events if e.get("precheck_status") in {"metric_no_effect", "duplicate_result", "low_materiality"}),
+        "rejected": sum(1 for e in events if e.get("decision") == "rejected"),
+        "metric_no_effect": sum(1 for e in events if e.get("precheck_status") == "metric_no_effect"),
+        "duplicate_result": sum(1 for e in events if e.get("precheck_status") == "duplicate_result"),
         "axis_exhausted": sorted(k for k, v in cooldowns.get("axes", {}).items() if v.get("status") == "axis_exhausted"),
         "available_claims": sum(1 for c in claims.get("claims", []) if c.get("status", "available") == "available"),
-        "literature_sources": len((read_json(Path(state_dir) / "literature_sources.json", {"sources": []}) or {}).get("sources", [])),
-        "literature_search_events": len((read_json(Path(state_dir) / "literature_sources.json", {"search_events": []}) or {}).get("search_events", [])),
+        "literature_sources": len(literature.get("sources", [])),
+        "literature_search_events": len(literature.get("search_events", [])),
+        "new_bibliography_added": sum(len(e.get("added_source_ids", [])) for e in literature.get("search_events", [])),
+        "accepted_for_followup_runs": [e.get("run_id") for e in events if e.get("accepted_for_followup")],
+        "promoted_to_baseline_candidate_pending_review": [e.get("run_id") for e in events if e.get("promoted_to_baseline_candidate")],
     }
 
 

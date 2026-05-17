@@ -1,8 +1,5 @@
 {
-  "current_parent_run_id": "EXP_007",
-  "current_parent_strategy_id": "SP500_MOMENTUM_TREND_CONCENTRATION_V1",
-  "previous_parent_run_id": "EXP_003",
-  "updated_at": "2026-05-17T00:56:29.509345+00:00",
-  "updated_from_audit": true,
-  "reason": "Audit allowed parent move; baseline promotion remains manual."
+  "current_parent_run_id": "AUTO_002",
+  "best_champion_run_id": "AUTO_002",
+  "source": "champion_governance_rebuild"
 }

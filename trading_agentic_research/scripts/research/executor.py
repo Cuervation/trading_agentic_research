@@ -1,6 +1,6 @@
 """Executor planning for autonomous research.
 
-The vertical slice defaults to mocked execution, but the plan is explicit and
+The autonomous loop defaults to real execution, but the plan is explicit and
 keeps the agreed research windows at 4, 8, 24, and 52 weeks.  No 156-week
 window is introduced by default.
 """
@@ -10,7 +10,7 @@ from __future__ import annotations
 DEFAULT_RESEARCH_WINDOWS_WEEKS = (4, 8, 24, 52)
 
 
-def build_execution_plan(hypothesis_id: str, *, windows_weeks: tuple[int, ...] = DEFAULT_RESEARCH_WINDOWS_WEEKS, mock: bool = True) -> dict:
+def build_execution_plan(hypothesis_id: str, *, windows_weeks: tuple[int, ...] = DEFAULT_RESEARCH_WINDOWS_WEEKS, mock: bool = False) -> dict:
     return {
         "hypothesis_id": hypothesis_id,
         "windows_weeks": list(windows_weeks),
@@ -19,4 +19,6 @@ def build_execution_plan(hypothesis_id: str, *, windows_weeks: tuple[int, ...] =
     }
 
 
-__all__ = ["DEFAULT_RESEARCH_WINDOWS_WEEKS", "build_execution_plan"]
+from scripts.research.real_executor import run_evaluate_candidate, run_real_backtest_iteration
+
+__all__ = ["DEFAULT_RESEARCH_WINDOWS_WEEKS", "build_execution_plan", "run_real_backtest_iteration", "run_evaluate_candidate"]
