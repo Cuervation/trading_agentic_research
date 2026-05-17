@@ -4,14 +4,16 @@ import pytest
 
 from scripts.governance import canonical_strategy_payload, stable_json_hash
 from scripts.research.executor import DEFAULT_RESEARCH_WINDOWS_WEEKS, build_execution_plan
-from scripts.research.literature_searcher import search_new_literature
+from scripts.research.literature_searcher import LOCAL_FALLBACK_SOURCES, provider_recently_failed, search_new_literature
 from scripts.research.candidate_config_writer import write_candidate_config
 from scripts.research.real_evaluator import evaluate_completed_run
 from scripts.research.artifact_index import rebuild_artifact_index_from_runs, find_duplicate_artifact
 from scripts.research.champion_governance import classify_candidate, rebuild_champion_state_from_runs
 from scripts.research.autonomous import (
+    build_next_hypothesis,
     coordinator_decision,
     evaluate_result,
+    extract_claims_from_sources,
     precheck_hypothesis,
     run_iteration,
     seed_literature_sources,
@@ -217,6 +219,58 @@ def test_search_new_literature_falls_back_to_crossref(tmp_path):
 
     assert result["added"] == 1
     assert result["sources"][0]["source_id"].startswith("SRC_CR_")
+
+
+def test_search_new_literature_uses_local_fallback_when_providers_fail(tmp_path):
+    seed_literature_sources(tmp_path)
+
+    def failing_fetch(url):
+        raise RuntimeError("network unavailable")
+
+    result = search_new_literature(state_dir=tmp_path, max_results=2, fetch_json=failing_fetch)
+
+    assert result["added"] == 2
+    assert all(source["source_id"].startswith("SRC_LOCAL_") for source in result["sources"])
+    payload = json.loads((tmp_path / "literature_sources.json").read_text(encoding="utf-8"))
+    assert payload["search_events"][-1]["fallback_used"] is True
+
+
+def test_local_fallback_has_broad_seed_frontier():
+    local_sources = [source for source in LOCAL_FALLBACK_SOURCES if source["source_id"].startswith("SRC_LOCAL_")]
+    axes = {source["research_axis"] for source in local_sources}
+
+    assert len(local_sources) >= 20
+    assert len(axes) >= 20
+    assert all(source.get("claim") for source in local_sources)
+    assert all(source.get("strategy_overrides") for source in local_sources)
+
+
+def test_local_fallback_source_becomes_material_hypothesis(tmp_path):
+    seed_literature_sources(tmp_path)
+    (tmp_path / "literature_sources.json").write_text(json.dumps({"version": 1, "sources": []}), encoding="utf-8")
+
+    def failing_fetch(url):
+        raise RuntimeError("network unavailable")
+
+    search_new_literature(state_dir=tmp_path, max_results=1, fetch_json=failing_fetch)
+    extract_claims_from_sources(tmp_path)
+    hypothesis = build_next_hypothesis(tmp_path, _parent_config())
+
+    assert hypothesis is not None
+    assert hypothesis["source_ids"][0].startswith("SRC_LOCAL_")
+    assert hypothesis["implementation_change"]["strategy_overrides"]
+
+
+def test_recent_provider_failure_is_cooled_down(tmp_path):
+    seed_literature_sources(tmp_path)
+    payload = json.loads((tmp_path / "literature_sources.json").read_text(encoding="utf-8"))
+    payload["search_events"] = [
+        {
+            "searched_at": "2026-05-17T12:00:00+00:00",
+            "errors": [{"provider": "semantic_scholar", "query": "same query", "error": "HTTP 429"}],
+        }
+    ]
+    assert provider_recently_failed(payload, provider="semantic_scholar", query="same query", cooldown_hours=99999)
 
 
 def test_run_iteration_searches_literature_when_no_hypothesis(tmp_path, monkeypatch):
