@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
+
+from scripts.governance import artifact_hashes, artifacts_are_duplicate
 
 
 REQUIRED_RUN_FILES = [
@@ -16,6 +19,7 @@ REQUIRED_RUN_FILES = [
     "spy_comparison_monthly.csv",
     "spy_comparison_yearly.csv",
     "spy_comparison_summary.json",
+    "run_manifest.json",
 ]
 
 CRITICAL_WARNING_KEYWORDS = (
@@ -81,17 +85,26 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10, parent_run_dir: 
     drawdown_improved = _drawdown_improved(strategy_dd, spy_dd)
     drawdown_exaggerated_worse = _drawdown_exaggerated_worse(strategy_dd, spy_dd)
 
+    artifact_hash_payload = build_artifact_hash_payload(path, Path(parent_run_dir) if parent_run_dir is not None else None)
+    duplicate_artifact = bool(artifact_hash_payload.get("duplicate_artifact"))
+    if duplicate_artifact:
+        reasons.append(f"Duplicate artifact/no-effect detected against {artifact_hash_payload.get('duplicate_against')}.")
+
     parent_comparison = None
     parent_pass = None
     parent_strong_fail = False
+    parent_metric_no_effect = False
     if parent_run_dir is not None:
         parent_comparison = build_parent_comparison(path, Path(parent_run_dir))
         if not parent_comparison["parent_available"]:
             blocking_issues.append(f"Parent comparison unavailable: {parent_comparison['blocking_issues']}")
         else:
+            parent_metric_no_effect = _parent_comparison_no_effect(parent_comparison)
             parent_pass = _parent_comparison_passes(parent_comparison)
             parent_strong_fail = _parent_comparison_strong_fail(parent_comparison)
-            if parent_strong_fail:
+            if parent_metric_no_effect:
+                reasons.append("Candidate has metric_no_effect versus current parent.")
+            elif parent_strong_fail:
                 reasons.append("Candidate underperforms parent CAGR and worsens drawdown.")
             elif parent_pass:
                 reasons.append("Candidate improves enough versus current parent for follow-up review.")
@@ -127,10 +140,12 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10, parent_run_dir: 
         drawdown_exaggerated_worse=drawdown_exaggerated_worse,
         parent_pass=parent_pass,
         parent_strong_fail=parent_strong_fail,
+        parent_metric_no_effect=parent_metric_no_effect,
+        duplicate_artifact=duplicate_artifact,
     )
 
     recommendation = _recommendation_for(decision)
-    can_move_parent = decision in {"accepted_for_followup", "promoted_candidate"} and parent_pass is not False
+    can_move_parent = decision in {"accepted_for_followup", "promoted_candidate"} and parent_pass is not False and not parent_metric_no_effect and not duplicate_artifact
 
     payload = {
         "audit_status": "completed" if not missing_files else "completed_with_missing_files",
@@ -141,6 +156,8 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10, parent_run_dir: 
         "recommendation": recommendation,
         "can_move_parent": can_move_parent,
         "can_promote_baseline": False,
+        "flags": _audit_flags(duplicate_artifact=duplicate_artifact, parent_metric_no_effect=parent_metric_no_effect),
+        "artifact_hashes": artifact_hash_payload,
     }
     if parent_comparison is not None:
         payload["parent_comparison"] = parent_comparison
@@ -156,7 +173,7 @@ def build_parent_comparison(run_dir: str | Path, parent_run_dir: str | Path) -> 
     if not parent_path.exists() or not parent_path.is_dir():
         return {"parent_available": False, "blocking_issues": [f"Parent folder not found: {parent_path}"]}
 
-    for name in ["metrics.json", "equity_curve.csv"]:
+    for name in ["metrics.json", "equity_curve.csv", "trades.csv"]:
         if not (parent_path / name).exists():
             blocking_issues.append(f"Missing parent file: {name}")
         if not (candidate_path / name).exists():
@@ -168,6 +185,8 @@ def build_parent_comparison(run_dir: str | Path, parent_run_dir: str | Path) -> 
     parent_metrics = _read_json(parent_path / "metrics.json")
     candidate_equity = _read_csv(candidate_path / "equity_curve.csv")
     parent_equity = _read_csv(parent_path / "equity_curve.csv")
+    candidate_trades = _read_csv(candidate_path / "trades.csv")
+    parent_trades = _read_csv(parent_path / "trades.csv")
 
     period_counts = _parent_period_win_counts(candidate_equity, parent_equity)
     strategy_cagr = _as_float(candidate_metrics.get("strategy", {}).get("cagr_pct"), 0.0)
@@ -185,6 +204,7 @@ def build_parent_comparison(run_dir: str | Path, parent_run_dir: str | Path) -> 
         "strategy_max_drawdown_pct": strategy_dd,
         "parent_max_drawdown_pct": parent_dd,
         "drawdown_delta_vs_parent_pct": round(strategy_dd - parent_dd, 6),
+        "trade_count_delta": (len(candidate_trades) if candidate_trades is not None else 0) - (len(parent_trades) if parent_trades is not None else 0),
         **period_counts,
     }
 
@@ -256,8 +276,12 @@ def _decide(
     drawdown_exaggerated_worse: bool,
     parent_pass: bool | None = None,
     parent_strong_fail: bool = False,
+    parent_metric_no_effect: bool = False,
+    duplicate_artifact: bool = False,
 ) -> str:
     if blocking_issues:
+        return "rejected"
+    if duplicate_artifact or parent_metric_no_effect:
         return "rejected"
     if strategy_cagr is None or spy_cagr is None:
         return "rejected"
@@ -279,6 +303,65 @@ def _decide(
         return "promoted_candidate"
 
     return "accepted_for_followup"
+
+
+def build_artifact_hash_payload(run_dir: Path, parent_run_dir: Path | None = None) -> dict:
+    current = artifact_hashes(run_dir)
+    payload = {"current": current, "duplicate_artifact": False}
+
+    comparisons: list[tuple[str, Path]] = []
+    if parent_run_dir is not None:
+        comparisons.append(("parent", parent_run_dir))
+    latest = _latest_previous_run_dir(run_dir)
+    if latest is not None and (parent_run_dir is None or latest.resolve() != parent_run_dir.resolve()):
+        comparisons.append(("last_run", latest))
+
+    for label, other_dir in comparisons:
+        other_hashes = artifact_hashes(other_dir)
+        payload[label] = {"run_id": other_dir.name, "hashes": other_hashes}
+        if artifacts_are_duplicate(current, other_hashes):
+            payload["duplicate_artifact"] = True
+            payload["duplicate_against"] = label
+            payload["duplicate_run_id"] = other_dir.name
+            break
+    return payload
+
+
+def _latest_previous_run_dir(run_dir: Path) -> Path | None:
+    siblings = [p for p in run_dir.parent.glob("EXP_*") if p.is_dir() and p.resolve() != run_dir.resolve()]
+    current_number = _run_number(run_dir.name)
+    numbered = [(num, p) for p in siblings if (num := _run_number(p.name)) is not None]
+    if current_number is not None:
+        prior = [(num, p) for num, p in numbered if num < current_number]
+        if prior:
+            return sorted(prior, key=lambda item: item[0], reverse=True)[0][1]
+    if not siblings:
+        return None
+    return sorted(siblings, key=lambda p: p.stat().st_mtime, reverse=True)[0]
+
+
+def _run_number(name: str) -> int | None:
+    match = re.fullmatch(r"EXP_(\d+)", name)
+    return int(match.group(1)) if match else None
+
+
+def _parent_comparison_no_effect(parent_comparison: dict) -> bool:
+    cagr_delta = float(parent_comparison.get("excess_cagr_vs_parent_pct", 0.0))
+    drawdown_delta = float(parent_comparison.get("drawdown_delta_vs_parent_pct", 0.0))
+    trades_delta = int(parent_comparison.get("trade_count_delta", 0))
+    months_beating = int(parent_comparison.get("months_beating_parent", 0))
+    months_losing = int(parent_comparison.get("months_losing_to_parent", 0))
+    months_tied = int(parent_comparison.get("months_tied_parent", 0))
+    return cagr_delta == 0.0 and drawdown_delta == 0.0 and trades_delta == 0 and months_beating == 0 and months_losing == 0 and months_tied > 0
+
+
+def _audit_flags(*, duplicate_artifact: bool, parent_metric_no_effect: bool) -> list[str]:
+    flags: list[str] = []
+    if duplicate_artifact:
+        flags.extend(["duplicate_artifact", "metric_no_effect"])
+    elif parent_metric_no_effect:
+        flags.append("metric_no_effect")
+    return flags
 
 
 def _parent_comparison_passes(parent_comparison: dict) -> bool:

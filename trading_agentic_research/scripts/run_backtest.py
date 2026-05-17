@@ -20,6 +20,7 @@ from backtester.data_loader import (
 )
 from backtester.execution import run_strategy_backtest
 from backtester.metrics import summarize_performance
+from scripts.governance import build_run_manifest
 from backtester.spy_comparison import (
     build_spy_equity_curve,
     compare_equity_curves,
@@ -36,6 +37,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--strategy-config", required=True, help="Path to strategy config JSON.")
     parser.add_argument("--project-config", required=True, help="Path to project config JSON.")
     parser.add_argument("--run-id", required=True, help="Run identifier, e.g. EXP_001.")
+    parser.add_argument("--parent-run-id", default=None, help="Optional parent run id for manifest lineage.")
+    parser.add_argument("--parent-strategy-config", default=None, help="Optional parent strategy config for manifest changed_parameters.")
     return parser.parse_args()
 
 
@@ -155,6 +158,7 @@ def main() -> int:
 
     strategy_config = load_json(args.strategy_config)
     project_config = load_json(args.project_config)
+    parent_strategy_config = load_json(args.parent_strategy_config) if args.parent_strategy_config else None
 
     weekly_df = load_weekly_feature_store(args.weekly_file)
     daily_df = load_daily_feature_store_folder(args.daily_folder)
@@ -245,6 +249,19 @@ def main() -> int:
         warnings=list(diagnostics.get("warnings", [])),
     )
     (run_dir / "summary.md").write_text(summary_md, encoding="utf-8")
+
+    manifest = build_run_manifest(
+        run_id=args.run_id,
+        parent_run_id=args.parent_run_id,
+        strategy_config=strategy_config,
+        strategy_config_path=args.strategy_config,
+        project_config=project_config,
+        weekly_file=args.weekly_file,
+        daily_folder=args.daily_folder,
+        parent_strategy_config=parent_strategy_config,
+    )
+    with (run_dir / "run_manifest.json").open("w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2, ensure_ascii=False, default=str)
 
     print(f"Run completed: {args.run_id}")
     print(f"Output folder: {run_dir}")

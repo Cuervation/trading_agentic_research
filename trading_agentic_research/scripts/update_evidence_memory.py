@@ -29,6 +29,8 @@ def classify_learning_flags(metrics: dict) -> list[str]:
 
     if bool(metrics.get("metric_no_effect", False)):
         flags.append("metric_no_effect")
+    if bool(metrics.get("duplicate_artifact", False)):
+        flags.append("duplicate_artifact")
     if float(metrics.get("parent_cagr_delta_pct", 0.0)) < 0 and float(metrics.get("parent_drawdown_delta_pct", 0.0)) < 0:
         flags.append("parent_underperformance")
     return flags
@@ -159,6 +161,12 @@ def persist_learning_from_run(
     comparison_summary = _read_json(run_path / "spy_comparison_summary.json")
     yearly_rows = _read_csv_rows(run_path / "spy_comparison_yearly.csv")
     learning_metrics = build_learning_metrics(metrics_payload, comparison_summary, yearly_rows)
+    audit_flags = audit.get("flags", []) if isinstance(audit.get("flags", []), list) else []
+    if "metric_no_effect" in audit_flags:
+        learning_metrics["metric_no_effect"] = True
+    if "duplicate_artifact" in audit_flags:
+        learning_metrics["duplicate_artifact"] = True
+
     parent_comparison = audit.get("parent_comparison")
     if isinstance(parent_comparison, dict) and parent_comparison.get("parent_available"):
         learning_metrics.update(

@@ -13,6 +13,7 @@ from scripts.research_loop import (
     resolve_loop_inputs,
     run_commands,
     update_research_state,
+    validate_candidate_has_real_change,
     validate_candidate_is_justified,
 )
 
@@ -125,3 +126,22 @@ def test_update_research_state_appends_note(tmp_path):
     assert payload["last_run_id"] == "EXP_200"
     assert payload["mode"] == "automatic_loop"
     assert payload["notes"] == ["Loop done."]
+
+
+
+def test_candidate_without_real_change_blocked_preflight():
+    parent = {
+        "strategy_id": "BASE",
+        "hypothesis_id": "H_BASE",
+        "entry_rule": {"top_n": 15},
+        "exit_rule": {"rank_threshold": 30},
+    }
+    candidate = {
+        "strategy_id": "H_NOOP",
+        "hypothesis_id": "H_NOOP",
+        "entry_rule": {"top_n": 15},
+        "exit_rule": {"rank_threshold": 30},
+    }
+
+    with pytest.raises(ValueError, match="blocked_no_op"):
+        validate_candidate_has_real_change(candidate, parent)

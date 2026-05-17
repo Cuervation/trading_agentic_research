@@ -7,7 +7,7 @@ import json
 import subprocess
 import sys
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -170,6 +170,29 @@ def _cooldown_families(cooldowns: dict) -> set[str]:
     return set((cooldowns or {}).get("cooldowns", {}).keys())
 
 
+def add_family_cooldown(
+    *,
+    state_dir: str | Path,
+    family: str,
+    reason: str,
+    hypothesis_id: str | None = None,
+    days: int = 7,
+) -> dict:
+    """Persist a family cooldown after repeat/no-effect governance blocks."""
+    path = Path(state_dir) / "subspace_cooldowns.json"
+    cooldowns = read_json(path) if path.exists() else {"version": 1, "cooldowns": {}, "default_failure_threshold": 3}
+    now = datetime.now(timezone.utc)
+    cooldowns.setdefault("cooldowns", {})[family] = {
+        "reason": reason,
+        "hypothesis_id": hypothesis_id,
+        "cooldown_started_at": now.isoformat(),
+        "cooldown_until": (now + timedelta(days=days)).isoformat(),
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cooldowns, indent=2, ensure_ascii=False), encoding="utf-8")
+    return cooldowns
+
+
 def _repeat_blocked_hypothesis_ids(history: list[dict], max_repeats_per_hypothesis: int) -> set[str]:
     counts = Counter(str(item.get("hypothesis_id")) for item in history if item.get("hypothesis_id"))
     return {hypothesis_id for hypothesis_id, count in counts.items() if count >= max_repeats_per_hypothesis}
@@ -253,6 +276,7 @@ def main() -> int:
     while state["completed"] < args.max_runs:
         learning = read_json(Path(args.state_dir) / "learning_memory.json")
         cooldowns = read_json(Path(args.state_dir) / "subspace_cooldowns.json")
+        current_parent = read_json(Path(args.state_dir) / "current_parent.json")
         parameter_effect_memory = load_parameter_effect_memory(Path(args.state_dir) / "parameter_effect_memory.json")
         rejected_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "rejected_hypotheses.jsonl")}
         accepted_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "accepted_hypotheses.jsonl")}
@@ -279,6 +303,7 @@ def main() -> int:
                     rejected_ids={str(x) for x in rejected_ids if x}.union(repeat_blocked_ids),
                     accepted_ids={str(x) for x in accepted_ids if x},
                     parameter_effect_memory=parameter_effect_memory,
+                    current_parent_hypothesis_id=str(current_parent.get("current_parent_strategy_id")) if current_parent.get("current_parent_strategy_id") else None,
                     prefer_unseen=bool(args.prefer_unseen),
                 )
                 selection_error = None
@@ -307,19 +332,18 @@ def main() -> int:
         hypothesis_id = str(hypothesis.get("hypothesis_id"))
         seen_counts = Counter(item.get("hypothesis_id") for item in state.get("history", []))
         if seen_counts[hypothesis_id] >= args.max_repeats_per_hypothesis:
-            if args.auto_generate_hypotheses_on_block:
-                generated = run_candidate_generation(
-                    family=args.generation_family,
-                    families=str(args.generation_families) if args.generation_families else None,
-                    args=args,
-                    reason=f"max_repeats_reached:{hypothesis_id}",
-                )
-                if generated:
-                    continue
+            family = str(hypothesis.get("family"))
+            reason = f"max_repeats_reached:{hypothesis_id}"
+            add_family_cooldown(
+                state_dir=args.state_dir,
+                family=family,
+                reason=reason,
+                hypothesis_id=hypothesis_id,
+            )
             state["status"] = "stopped"
-            state["stop_reason"] = f"max_repeats_reached:{hypothesis_id}"
+            state["stop_reason"] = reason
             _save_batch_state(args.state_dir, state)
-            print(f"Stopping: hypothesis repeated too many times ({hypothesis_id}).")
+            print(f"Stopping: hypothesis repeated too many times ({hypothesis_id}); family cooldown added: {family}.")
             break
 
         try:
@@ -356,6 +380,8 @@ def main() -> int:
             args.reports_dir,
             "--state-dir",
             args.state_dir,
+            "--strategy-registry",
+            args.strategy_registry,
         ]
         if args.allow_parent_update:
             cmd.append("--allow-parent-update")

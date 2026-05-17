@@ -130,6 +130,178 @@ def build_mutations_for_family(*, family: str) -> list[AxisMutation]:
             )
         ]
 
+    if family == "trend_following":
+        return [
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=20,
+                bibliography_basis=[
+                    {"source_id": "trend_following_general", "principle_id": "trend_following_cut_losers"}
+                ],
+                claim="Use a tighter trend-following exit to cut deterioration earlier.",
+            ),
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=35,
+                bibliography_basis=[
+                    {"source_id": "trend_following_general", "principle_id": "trend_following_cut_losers"}
+                ],
+                claim="Use a looser trend-following exit to let winners run longer.",
+            ),
+            AxisMutation(
+                axis="market_filter",
+                override_path=("market_filter", "require_positive_trend"),
+                value=True,
+                bibliography_basis=[
+                    {"source_id": "trend_following_general", "principle_id": "market_trend_filter"}
+                ],
+                claim="Require positive benchmark trend to stay aligned with market regime.",
+            ),
+        ]
+
+    if family == "can_slim":
+        return [
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=5,
+                bibliography_basis=[
+                    {"source_id": "can_slim_general", "principle_id": "leaders_relative_strength"}
+                ],
+                claim="Concentrate on fewer leaders (top_n=5) to favor strongest names.",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=20,
+                bibliography_basis=[
+                    {"source_id": "can_slim_general", "principle_id": "leaders_relative_strength"}
+                ],
+                claim="Broaden the leaders basket (top_n=20) to reduce idiosyncratic concentration risk.",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=7,
+                bibliography_basis=[
+                    {"source_id": "can_slim_general", "principle_id": "leaders_relative_strength"}
+                ],
+                claim="Test a sharper leaders basket (top_n=7) for stronger concentration in top names.",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=15,
+                bibliography_basis=[
+                    {"source_id": "can_slim_general", "principle_id": "leaders_relative_strength"}
+                ],
+                claim="Test an intermediate leaders basket (top_n=15) between concentration and diversification.",
+            ),
+        ]
+
+    if family == "darvas_box":
+        return [
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=10,
+                bibliography_basis=[
+                    {"source_id": "darvas_box_general", "principle_id": "box_breakout_stop"}
+                ],
+                claim="Use a tighter Darvas-style exit to cut failed breakouts faster.",
+            ),
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=40,
+                bibliography_basis=[
+                    {"source_id": "darvas_box_general", "principle_id": "box_breakout_stop"}
+                ],
+                claim="Use a looser Darvas-style exit to reduce churn and allow breakouts to mature.",
+            ),
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=5,
+                bibliography_basis=[
+                    {"source_id": "darvas_box_general", "principle_id": "box_breakout_stop"}
+                ],
+                claim="Use a very tight Darvas-style exit to rapidly cut failed breakouts.",
+            ),
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=30,
+                bibliography_basis=[
+                    {"source_id": "darvas_box_general", "principle_id": "box_breakout_stop"}
+                ],
+                claim="Use a mid Darvas-style exit to balance churn and trend persistence.",
+            ),
+        ]
+
+    if family == "quality_momentum":
+        basis = [{"source_id": "quality_factor_general", "principle_id": "quality_leadership_filter"}]
+        return [
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=6,
+                bibliography_basis=basis,
+                claim="Test a more selective quality-momentum basket (top_n=6) after top_n=9 became the current parent.",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=7,
+                bibliography_basis=basis,
+                claim="Test a slightly more selective quality-momentum basket (top_n=7).",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=9,
+                bibliography_basis=basis,
+                claim="Test a concentrated quality-momentum basket (top_n=9).",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=12,
+                bibliography_basis=basis,
+                claim="Test a moderately broader quality-momentum basket (top_n=12).",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=15,
+                bibliography_basis=basis,
+                claim="Test a broader quality-momentum basket (top_n=15).",
+            ),
+            AxisMutation(
+                axis="concentration",
+                override_path=("entry_rule", "top_n"),
+                value=18,
+                bibliography_basis=basis,
+                claim="Test a broader quality-momentum basket (top_n=18).",
+            ),
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=20,
+                bibliography_basis=[{"source_id": "trend_following_general", "principle_id": "trend_following_cut_losers"}],
+                claim="Tighten quality-momentum exit threshold (rank_threshold=20) to cut deteriorating names earlier.",
+            ),
+            AxisMutation(
+                axis="exit_threshold",
+                override_path=("exit_rule", "rank_threshold"),
+                value=40,
+                bibliography_basis=[{"source_id": "trend_following_general", "principle_id": "trend_following_cut_losers"}],
+                claim="Loosen quality-momentum exit threshold (rank_threshold=40) to reduce churn.",
+            ),
+        ]
+
     if family == "risk_management":
         return [
             AxisMutation(
@@ -217,4 +389,3 @@ def append_jsonl(path: str | Path, rows: list[dict]) -> None:
             f.write(existing.rstrip("\n") + "\n")
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
-

@@ -2,45 +2,22 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Hypothesis",
   "type": "object",
-  "required": ["hypothesis_id", "family", "claim", "bibliography_basis", "empirical_basis", "status"],
+  "required": ["hypothesis_id", "source_ids", "family", "claim", "causal_mechanism", "implementation_change", "expected_effect", "falsification_rule", "materiality_guard", "bibliography_basis", "empirical_basis", "status"],
   "properties": {
     "hypothesis_id": {"type": "string", "minLength": 1},
+    "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
     "family": {"type": "string", "minLength": 1},
     "claim": {"type": "string", "minLength": 1},
-    "bibliography_basis": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["source_id"],
-        "properties": {
-          "source_id": {"type": "string", "minLength": 1},
-          "principle_id": {"type": "string"}
-        },
-        "additionalProperties": true
-      }
-    },
-    "empirical_basis": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "anyOf": [
-          {"required": ["run_id"]},
-          {"required": ["learning_id"]}
-        ],
-        "properties": {
-          "run_id": {"type": "string"},
-          "learning_id": {"type": "string"}
-        },
-        "additionalProperties": true
-      }
-    },
+    "causal_mechanism": {"type": "string", "minLength": 1},
+    "implementation_change": {"type": "object"},
+    "expected_effect": {"type": "string", "minLength": 1},
+    "falsification_rule": {"type": "string", "minLength": 1},
+    "materiality_guard": {"type": "object"},
+    "bibliography_basis": {"type": "array", "items": {"type": "object", "required": ["source_id"], "additionalProperties": true}},
+    "empirical_basis": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
     "status": {"type": "string"},
     "required_spy_comparison": {"type": "string"},
-    "strategy_overrides": {
-      "type": "object",
-      "description": "Small, auditable override patch to apply to the parent strategy config (no random changes).",
-      "additionalProperties": true
-    }
+    "strategy_overrides": {"type": "object"}
   },
   "additionalProperties": true
 }

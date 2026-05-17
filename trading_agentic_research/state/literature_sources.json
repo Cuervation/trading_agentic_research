@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "source_id": "SRC_CROSS_SECTIONAL_MOMENTUM_SEED",
+      "title": "Cross-sectional momentum",
+      "author_or_family": "Jegadeesh/Titman family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "momentum",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED",
+      "title": "Time-series momentum",
+      "author_or_family": "Moskowitz/Ooi/Pedersen family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "trend_following",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_CAN_SLIM_SEED",
+      "title": "CAN SLIM market direction",
+      "author_or_family": "O'Neil CAN SLIM family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "can_slim",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_FAMA_FRENCH_FACTORS_SEED",
+      "title": "Fama-French factors",
+      "author_or_family": "Fama/French family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "value",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_CARHART_MOMENTUM_SEED",
+      "title": "Carhart momentum factor",
+      "author_or_family": "Carhart family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "momentum",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_QUALITY_INVESTING_SEED",
+      "title": "Quality investing",
+      "author_or_family": "Quality/profitability family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "quality",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_LOW_VOL_BAB_SEED",
+      "title": "Low volatility / betting against beta",
+      "author_or_family": "Frazzini/Pedersen family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "low_volatility",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_SECTOR_MOMENTUM_SEED",
+      "title": "Sector / industry momentum",
+      "author_or_family": "Industry momentum family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "sector_momentum",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_TREND_VOL_TARGET_SEED",
+      "title": "Trend following with volatility targeting",
+      "author_or_family": "Trend/volatility family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "regime",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    },
+    {
+      "source_id": "SRC_ADAPTIVE_MARKETS_REGIME_SEED",
+      "title": "Adaptive markets / regime switching",
+      "author_or_family": "Lo adaptive markets family",
+      "source_type": "manual_seed",
+      "year": null,
+      "family": "regime",
+      "status": "pending",
+      "notes": "Local seed; replace with real bibliography ingestion later."
+    }
+  ]
+}
