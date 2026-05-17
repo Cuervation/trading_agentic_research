@@ -1,5 +1,6 @@
 ﻿{
   "strategy_id": "SP500_MOMENTUM_TREND_CONCENTRATION_V1",
+  "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
   "parent_strategy_id": "SP500_MOMENTUM_TREND_BASELINE_V1",
   "strategy_family": "cross_sectional_momentum",
   "bibliography_basis": [

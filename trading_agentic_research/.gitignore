@@ -1,0 +1,15 @@
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+
+# Local data (do NOT commit)
+sp500_feature_store_*.csv
+runs.7z
+
+# Run artifacts
+runs/EXP_*/
+runs/*/analysis.json
+runs/*/analysis.md
+
+# Auto-generated candidate configs (reproducible from hypotheses)
+configs/generated/

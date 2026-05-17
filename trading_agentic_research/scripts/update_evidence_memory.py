@@ -5,6 +5,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.parameter_effect_memory import (
+    build_parameter_effect_observations,
+    load_parameter_effect_memory,
+    save_parameter_effect_memory,
+    update_parameter_effect_memory,
+)
+
 
 def classify_learning_flags(metrics: dict) -> list[str]:
     """Classify key empirical flags from compact metric deltas."""
@@ -232,12 +239,56 @@ def persist_learning_from_run(
     cooldowns = update_subspace_cooldowns(cooldowns, memory.get("learning_events", []), threshold=threshold)
     cooldowns_path.write_text(json.dumps(cooldowns, indent=2, ensure_ascii=False), encoding="utf-8")
 
+    _persist_parameter_effects(
+        state_path=state_path,
+        run_id=run_id,
+        hypothesis_id=hypothesis_id,
+        decision=audit["decision"],
+        learning_metrics=learning_metrics,
+    )
+
     return {
         "learning_event": event,
         "learning_memory_path": str(learning_memory_path),
         "evidence_memory_path": str(evidence_memory_path),
         "cooldowns_path": str(cooldowns_path),
     }
+
+
+def _persist_parameter_effects(
+    *,
+    state_path: Path,
+    run_id: str,
+    hypothesis_id: str,
+    decision: str,
+    learning_metrics: dict,
+) -> None:
+    hypothesis = _find_hypothesis(hypothesis_id)
+    if not hypothesis or not hypothesis.get("strategy_overrides"):
+        return
+    effects_path = state_path / "parameter_effect_memory.json"
+    effects = load_parameter_effect_memory(effects_path)
+    observations = build_parameter_effect_observations(
+        hypothesis=hypothesis,
+        run_id=run_id,
+        decision=decision,
+        learning_metrics=learning_metrics,
+    )
+    effects = update_parameter_effect_memory(effects, observations)
+    save_parameter_effect_memory(effects_path, effects)
+
+
+def _find_hypothesis(hypothesis_id: str, path: str | Path = "bibliography/hypothesis_bank.jsonl") -> dict | None:
+    p = Path(path)
+    if not p.exists():
+        return None
+    for line in p.read_text(encoding="utf-8-sig").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        if row.get("hypothesis_id") == hypothesis_id:
+            return row
+    return None
 
 
 def _append_unique_jsonl(path: Path, payload: dict, unique_keys: tuple[str, ...]) -> None:

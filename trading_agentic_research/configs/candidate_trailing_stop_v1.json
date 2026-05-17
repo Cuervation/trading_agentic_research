@@ -1,5 +1,6 @@
 ﻿{
   "strategy_id": "SP500_MOMENTUM_TREND_TRAILING_STOP_V1",
+  "hypothesis_id": "HYP_RISK_MANAGEMENT_TRAILING_STOP_V1",
   "parent_strategy_id": "SP500_MOMENTUM_TREND_BASELINE_V1",
   "strategy_family": "risk_management",
   "bibliography_basis": [

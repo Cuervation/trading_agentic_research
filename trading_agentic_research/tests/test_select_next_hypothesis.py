@@ -106,6 +106,47 @@ def test_choose_next_hypothesis_prefers_unseen_when_enabled():
     assert selected["hypothesis_id"] == "H_UNSEEN"
 
 
+def test_choose_next_hypothesis_prefers_better_axis_score_when_seen_equal():
+    bank = [
+        {
+            "hypothesis_id": "H_EXIT",
+            "family": "academic_momentum",
+            "claim": "x",
+            "bibliography_basis": [{"source_id": "s1"}],
+            "empirical_basis": [],
+            "status": "candidate",
+            "required_spy_comparison": "monthly_and_yearly",
+            "strategy_overrides": {"exit_rule": {"rank_threshold": 15}},
+        },
+        {
+            "hypothesis_id": "H_TOPN",
+            "family": "academic_momentum",
+            "claim": "y",
+            "bibliography_basis": [{"source_id": "s2"}],
+            "empirical_basis": [],
+            "status": "candidate",
+            "required_spy_comparison": "monthly_and_yearly",
+            "strategy_overrides": {"entry_rule": {"top_n": 8}},
+        },
+    ]
+    memory = {"family_summaries": {"academic_momentum": {"rejections": 0, "acceptances": 0}}}
+    parameter_effect_memory = {
+        "effects_by_axis": {"concentration": {"score": 2.0}, "exit_threshold": {"score": -1.0}}
+    }
+
+    selected = choose_next_hypothesis(
+        hypothesis_bank=bank,
+        learning_memory=memory,
+        cooldowns={"cooldowns": {}},
+        rejected_ids=set(),
+        accepted_ids=set(),
+        parameter_effect_memory=parameter_effect_memory,
+        prefer_unseen=True,
+    )
+
+    assert selected["hypothesis_id"] == "H_TOPN"
+
+
 def test_choose_next_hypothesis_raises_when_none_eligible():
     bank = [
         {

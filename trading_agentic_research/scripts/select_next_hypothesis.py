@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from scripts.generate_hypotheses_from_bibliography import validate_candidate_basis
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
+from scripts.parameter_effect_memory import load_parameter_effect_memory, score_hypothesis_axis
 
 
 def read_json(path: str | Path) -> dict:
@@ -57,6 +58,7 @@ def choose_next_hypothesis(
     cooldowns: dict,
     rejected_ids: set[str],
     accepted_ids: set[str],
+    parameter_effect_memory: dict | None = None,
     prefer_unseen: bool = True,
 ) -> dict:
     """Choose the best next hypothesis with deterministic rules (no random)."""
@@ -77,6 +79,7 @@ def choose_next_hypothesis(
 
         empirical_count = len(hypothesis.get("empirical_basis", []) or [])
         bibliographic_count = len(hypothesis.get("bibliography_basis", []) or [])
+        axis_score = score_hypothesis_axis(hypothesis, parameter_effect_memory or {})
 
         is_unseen = hypothesis_id not in accepted_ids
 
@@ -90,6 +93,8 @@ def choose_next_hypothesis(
                 score.get("prior_rejections", 0),
                 # Prefer more prior acceptances.
                 -score.get("prior_acceptances", 0),
+                # Prefer empirically useful mutation axes.
+                -axis_score,
                 # Prefer stronger bibliographic grounding.
                 -bibliographic_count,
                 # Stable tie-break.
@@ -119,6 +124,7 @@ def main() -> int:
 
     learning_memory = read_json(state_dir / "learning_memory.json")
     cooldowns = read_json(state_dir / "subspace_cooldowns.json")
+    parameter_effect_memory = load_parameter_effect_memory(state_dir / "parameter_effect_memory.json")
 
     bank = load_hypothesis_bank(args.hypothesis_bank)
     rejected_ids = rejected_hypothesis_ids(state_dir)
@@ -130,6 +136,7 @@ def main() -> int:
         cooldowns=cooldowns,
         rejected_ids=rejected_ids,
         accepted_ids=accepted_ids,
+        parameter_effect_memory=parameter_effect_memory,
         prefer_unseen=bool(args.prefer_unseen),
     )
 

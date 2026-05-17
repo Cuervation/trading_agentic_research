@@ -8,6 +8,7 @@ from scripts.run_research_batch import (
     _cooldown_families,
     _latest_learning_flags,
     _load_batch_state,
+    _repeat_blocked_hypothesis_ids,
     _save_batch_state,
     run_candidate_generation,
     resolve_strategy_config_for_hypothesis,
@@ -52,6 +53,19 @@ def test_resolve_strategy_config_raises_when_no_match(tmp_path):
         resolve_strategy_config_for_hypothesis({"hypothesis_id": "H_X", "family": "x", "bibliography_basis": []}, registry)
 
 
+def test_resolve_strategy_config_does_not_fallback_by_family(tmp_path):
+    cfg = tmp_path / "c.json"
+    _write_json(cfg, {"strategy_family": "cross_sectional_momentum"})  # no hypothesis_id
+    registry = tmp_path / "strategy_registry.json"
+    _write_json(registry, {"strategies": [{"status": "candidate", "config_path": str(cfg)}]})
+
+    with pytest.raises(ValueError):
+        resolve_strategy_config_for_hypothesis(
+            {"hypothesis_id": "H_TARGET", "family": "cross_sectional_momentum", "bibliography_basis": []},
+            registry,
+        )
+
+
 def test_batch_state_roundtrip(tmp_path):
     state = _load_batch_state(tmp_path, max_runs=20)
     assert state["status"] == "initialized"
@@ -85,6 +99,10 @@ def test_latest_learning_flags_and_cooldown_helpers(tmp_path):
 
     cooldowns = {"cooldowns": {"risk_management": {"reason": "repeated_failed_hypotheses"}}}
     assert _cooldown_families(cooldowns) == {"risk_management"}
+    assert _repeat_blocked_hypothesis_ids(
+        [{"hypothesis_id": "H1"}, {"hypothesis_id": "H1"}, {"hypothesis_id": "H2"}],
+        max_repeats_per_hypothesis=2,
+    ) == {"H1"}
 
 
 def test_run_candidate_generation_command_success():
@@ -98,10 +116,12 @@ def test_run_candidate_generation_command_success():
         state_dir="state",
         strategy_registry="configs/strategy_registry.json",
         hypothesis_bank="bibliography/hypothesis_bank.jsonl",
+        parent_strategy_config="configs/baseline_momentum_trend_v1.json",
     )
 
     ok = run_candidate_generation(
         family="cross_sectional_momentum",
+        families="cross_sectional_momentum,risk_management",
         args=args,
         reason="test",
         runner=fake_runner,
@@ -109,3 +129,4 @@ def test_run_candidate_generation_command_success():
 
     assert ok is True
     assert "scripts/generate_candidates_from_parent.py" in " ".join(captured["command"])
+    assert "--families" in captured["command"]

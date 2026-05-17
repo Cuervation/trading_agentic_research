@@ -16,17 +16,21 @@ if str(ROOT) not in sys.path:
 
 from scripts.select_next_hypothesis import choose_next_hypothesis, load_hypothesis_bank, read_json, read_jsonl
 from scripts.generate_strategy_config import generate_strategy_config_from_hypothesis, upsert_strategy_registry
+from scripts.parameter_effect_memory import load_parameter_effect_memory
 
 
 def resolve_strategy_config_for_hypothesis(hypothesis: dict, strategy_registry_path: str | Path) -> str:
-    """Resolve best strategy config path for a selected hypothesis."""
+    """Resolve strategy config path for a selected hypothesis with strict 1:1 mapping.
+
+    Rules:
+    - Must match `config.hypothesis_id == hypothesis.hypothesis_id`.
+    - No fallback by family/bibliography to avoid accidental no-op reruns.
+    """
     registry = read_json(strategy_registry_path)
     strategies = registry.get("strategies", [])
-    family = hypothesis.get("family")
     hypothesis_id = hypothesis.get("hypothesis_id")
-    bib_sources = {item.get("source_id") for item in hypothesis.get("bibliography_basis", []) if isinstance(item, dict)}
 
-    scored: list[tuple[int, str]] = []
+    matches: list[str] = []
     for row in strategies:
         config_path = row.get("config_path")
         if not config_path:
@@ -38,35 +42,14 @@ def resolve_strategy_config_for_hypothesis(hypothesis: dict, strategy_registry_p
             continue
 
         cfg = read_json(p)
-        score = 0
-        if cfg.get("hypothesis_id") == hypothesis_id:
-            score += 100
-        if cfg.get("strategy_family") == family:
-            score += 20
+        if str(cfg.get("hypothesis_id", "")) == str(hypothesis_id):
+            matches.append(str(p))
 
-        cfg_sources = set()
-        for source in cfg.get("bibliography_basis", []) or []:
-            if isinstance(source, str):
-                cfg_sources.add(source)
-            elif isinstance(source, dict) and source.get("source_id"):
-                cfg_sources.add(source["source_id"])
-        score += len(bib_sources.intersection(cfg_sources)) * 5
-
-        status = str(row.get("status", "")).lower()
-        if status == "candidate":
-            score += 5
-        if status == "baseline_candidate":
-            score -= 2
-
-        scored.append((score, str(p)))
-
-    if not scored:
-        raise ValueError("No strategy config available in strategy registry for selected hypothesis.")
-
-    scored.sort(key=lambda x: x[0], reverse=True)
-    if scored[0][0] <= 0:
-        raise ValueError("Could not confidently map hypothesis to a strategy config.")
-    return scored[0][1]
+    if not matches:
+        raise ValueError(f"No strict strategy config mapping found for hypothesis_id={hypothesis_id}.")
+    if len(matches) > 1:
+        raise ValueError(f"Multiple configs mapped to hypothesis_id={hypothesis_id}: {matches}")
+    return matches[0]
 
 
 def generate_missing_strategy_config(
@@ -116,6 +99,7 @@ def _run_generation_command(command: list[str]) -> int:
 def run_candidate_generation(
     *,
     family: str,
+    families: str | None,
     args: argparse.Namespace,
     reason: str,
     runner=_run_generation_command,
@@ -127,6 +111,8 @@ def run_candidate_generation(
         args.state_dir,
         "--strategy-registry",
         args.strategy_registry,
+        "--parent-strategy-config",
+        args.parent_strategy_config,
         "--evidence-memory",
         str(Path(args.state_dir) / "evidence_memory.json"),
         "--hypothesis-bank",
@@ -136,6 +122,8 @@ def run_candidate_generation(
         "--family",
         family,
     ]
+    if families:
+        command.extend(["--families", families])
     code = runner(command)
     if code == 0:
         print(f"Generated new hypotheses for family={family} (reason={reason}).")
@@ -182,6 +170,11 @@ def _cooldown_families(cooldowns: dict) -> set[str]:
     return set((cooldowns or {}).get("cooldowns", {}).keys())
 
 
+def _repeat_blocked_hypothesis_ids(history: list[dict], max_repeats_per_hypothesis: int) -> set[str]:
+    counts = Counter(str(item.get("hypothesis_id")) for item in history if item.get("hypothesis_id"))
+    return {hypothesis_id for hypothesis_id, count in counts.items() if count >= max_repeats_per_hypothesis}
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run a batch of research-loop iterations.")
     parser.add_argument("--max-runs", type=int, default=20)
@@ -225,6 +218,11 @@ def parse_args() -> argparse.Namespace:
         help="Family used by automatic hypothesis generation when blocked.",
     )
     parser.add_argument(
+        "--generation-families",
+        default="",
+        help="Comma-separated families for hypothesis generation (overrides --generation-family when set).",
+    )
+    parser.add_argument(
         "--max-generation-attempts",
         type=int,
         default=1,
@@ -255,8 +253,10 @@ def main() -> int:
     while state["completed"] < args.max_runs:
         learning = read_json(Path(args.state_dir) / "learning_memory.json")
         cooldowns = read_json(Path(args.state_dir) / "subspace_cooldowns.json")
+        parameter_effect_memory = load_parameter_effect_memory(Path(args.state_dir) / "parameter_effect_memory.json")
         rejected_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "rejected_hypotheses.jsonl")}
         accepted_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "accepted_hypotheses.jsonl")}
+        repeat_blocked_ids = _repeat_blocked_hypothesis_ids(state.get("history", []), args.max_repeats_per_hypothesis)
 
         families_in_cooldown = _cooldown_families(cooldowns)
         bank = load_hypothesis_bank(args.hypothesis_bank)
@@ -276,8 +276,9 @@ def main() -> int:
                     hypothesis_bank=bank,
                     learning_memory=learning,
                     cooldowns=cooldowns,
-                    rejected_ids={str(x) for x in rejected_ids if x},
+                    rejected_ids={str(x) for x in rejected_ids if x}.union(repeat_blocked_ids),
                     accepted_ids={str(x) for x in accepted_ids if x},
+                    parameter_effect_memory=parameter_effect_memory,
                     prefer_unseen=bool(args.prefer_unseen),
                 )
                 selection_error = None
@@ -288,6 +289,7 @@ def main() -> int:
                     break
                 generated = run_candidate_generation(
                     family=args.generation_family,
+                    families=str(args.generation_families) if args.generation_families else None,
                     args=args,
                     reason="no_eligible_hypothesis",
                 )
@@ -308,6 +310,7 @@ def main() -> int:
             if args.auto_generate_hypotheses_on_block:
                 generated = run_candidate_generation(
                     family=args.generation_family,
+                    families=str(args.generation_families) if args.generation_families else None,
                     args=args,
                     reason=f"max_repeats_reached:{hypothesis_id}",
                 )
