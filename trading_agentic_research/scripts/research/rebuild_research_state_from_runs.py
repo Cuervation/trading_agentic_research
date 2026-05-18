@@ -1,156 +1,194 @@
-"""Rebuild autonomous research state from historical EXP_* and AUTO_* runs."""
+"""Rebuild continuous-learning state from existing EXP_*/AUTO_* runs.
+
+Run from repo root:
+  python scripts/research/rebuild_research_state_from_runs.py --runs-dir runs --state-dir state --reports-dir reports
+
+It reconstructs:
+- state/artifact_hash_index.json
+- state/duplicate_runs.json
+- state/research_ledger.jsonl
+- state/champion_runs.json
+- state/current_parent.json (optional, conservative default)
+- reports/rebuilt_research_state.md
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
 import sys
-from collections import Counter, defaultdict
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.research.artifact_index import rebuild_artifact_index_from_runs, write_json
-from scripts.research.champion_governance import rebuild_champion_state_from_runs, run_metrics
+from scripts.research.artifact_index import (
+    apply_duplicate_to_audit,
+    build_artifact_signature,
+    iter_run_dirs,
+    rebuild_artifact_index_from_runs,
+    read_json,
+    write_json,
+)
+from scripts.research.champion_governance import update_champion_state, load_champion_state
+from scripts.research.research_ledger import append_run_to_ledger, read_ledger, run_summary
+
+try:
+    from backtester.validation import audit_run_folder
+except Exception:  # pragma: no cover - keep script usable for partial repos
+    audit_run_folder = None
 
 
-def rebuild_research_state_from_runs(runs_dir: str | Path = "runs", state_dir: str | Path = "state", reports_dir: str | Path = "reports") -> dict:
-    runs_path = Path(runs_dir)
-    state_path = Path(state_dir)
-    report_path = Path(reports_dir) / "rebuilt_research_state.md"
-
-    artifact_result = rebuild_artifact_index_from_runs(runs_path, state_path)
-    champion_state = rebuild_champion_state_from_runs(runs_path, state_path)
-    duplicates = artifact_result["duplicates"]
-    run_dirs = sorted([p for p in runs_path.glob("*_*") if p.is_dir() and (p.name.startswith("EXP_") or p.name.startswith("AUTO_"))])
-
-    memory_events = []
-    hypotheses = {}
-    axis_counts = defaultdict(Counter)
-    for run_dir in run_dirs:
-        manifest = _read_json(run_dir / "run_manifest.json", {})
-        audit = _read_json(run_dir / "audit.json", {})
-        duplicate = next((d for d in duplicates if d["run_id"] == run_dir.name), None)
-        family = manifest.get("hypothesis_family", "unknown")
-        axis = manifest.get("axis") or manifest.get("strategy_family") or family
-        decision = "duplicate_result" if duplicate else audit.get("decision", "rebuilt")
-        value = "duplicate_blocked" if duplicate else _value_from_run(run_dir.name, champion_state, decision)
-        event = {
-            "event_id": f"REBUILT_{len(memory_events) + 1:06d}",
-            "run_id": run_dir.name,
-            "hypothesis_id": manifest.get("hypothesis_id") or manifest.get("strategy_id"),
-            "source_ids": [b.get("source_id") for b in manifest.get("bibliography_basis", []) if isinstance(b, dict)],
-            "family": family,
-            "axis": axis,
-            "parent_run_id": manifest.get("parent_run_id"),
-            "precheck_status": "duplicate_result" if duplicate else "unknown_rebuilt",
-            "decision": decision,
-            "value_delivered": value,
-            "learned": _learning_sentence(decision, value, duplicate),
-            "next_action": _next_action(value),
-            "duplicate_of_run_id": duplicate.get("duplicate_of_run_id") if duplicate else None,
-            "can_repeat": False if duplicate else value in {"new_champion", "secondary_candidate"},
-            "execution_mode": "real",
-            "backtest_real": True,
-        }
-        memory_events.append(event)
-        axis_counts[f"{family}:{axis}"][event["precheck_status"]] += 1
-        if event["hypothesis_id"]:
-            hypotheses.setdefault(event["hypothesis_id"], {"hypothesis_id": event["hypothesis_id"], "source_ids": event["source_ids"], "family": family, "axis": axis})
-
-    cooldowns = {"version": 1, "axes": {}, "axis_rejection_threshold": 3}
-    for key, counts in axis_counts.items():
-        if counts["duplicate_result"] >= 3:
-            cooldowns["axes"][key] = {"status": "axis_exhausted", "reason": "three_duplicate_results", "duplicate_result": counts["duplicate_result"]}
-
-    duplicate_payload = {"version": 1, "duplicates": duplicates}
-    memory_payload = {"version": 1, "hypotheses": list(hypotheses.values()), "events": memory_events}
-    write_json(state_path / "duplicate_runs.json", duplicate_payload)
-    write_json(state_path / "hypothesis_memory.json", memory_payload)
-    write_json(state_path / "axis_cooldowns.json", cooldowns)
-
-    report = _build_report(run_dirs, artifact_result, champion_state, cooldowns)
-    report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(report, encoding="utf-8")
-
-    return {
-        "runs": len(run_dirs),
-        "unique_artifact_signatures": len(artifact_result["index"].get("signatures", {})),
-        "duplicates": len(duplicates),
-        "best_champion_run_id": champion_state.get("best_champion_run_id"),
-        "secondary_candidates": champion_state.get("secondary_candidates", []),
-        "aggressive_champion_run_id": champion_state.get("aggressive_champion_run_id"),
-        "report": str(report_path),
-    }
-
-
-def _value_from_run(run_id: str, champion_state: dict, decision: str) -> str:
-    if run_id == champion_state.get("best_champion_run_id"):
-        return "new_champion"
-    if run_id in set(champion_state.get("secondary_candidates", [])):
-        return "secondary_candidate"
-    if decision in {"rejected", "metric_no_effect"}:
-        return "rejected_with_learning"
-    return "rejected_with_learning"
-
-
-def _learning_sentence(decision: str, value: str, duplicate: dict | None) -> str:
-    if duplicate:
-        return f"Artifacts duplicate historical run {duplicate.get('duplicate_of_run_id')}; block repeat."
-    if value == "new_champion":
-        return "Run has the best balance of CAGR, drawdown and years versus SPY."
-    if value == "secondary_candidate":
-        return "Run improved at least one useful axis but did not beat the champion balance."
-    return f"Run rebuilt from artifacts with decision={decision}; keep as learning evidence."
-
-
-def _next_action(value: str) -> str:
-    if value == "duplicate_blocked":
-        return "change_axis_or_literature"
-    if value == "new_champion":
-        return "manual_review_candidate"
-    if value == "secondary_candidate":
-        return "refine_different_axis"
-    return "search_or_mix_new_literature"
-
-
-def _build_report(run_dirs: list[Path], artifact_result: dict, champion_state: dict, cooldowns: dict) -> str:
-    duplicate_count = len(artifact_result["duplicates"])
-    total = len(run_dirs)
-    return "\n".join(
-        [
-            "# Rebuilt Research State",
-            "",
-            f"- Total runs: {total}",
-            f"- Unique artifact signatures: {len(artifact_result['index'].get('signatures', {}))}",
-            f"- Duplicate runs: {duplicate_count}",
-            f"- Duplicate rate: {(duplicate_count / total * 100.0) if total else 0:.2f}%",
-            f"- Recommended best_champion_run_id: {champion_state.get('best_champion_run_id')}",
-            f"- Recommended secondary_candidates: {', '.join(champion_state.get('secondary_candidates', []))}",
-            f"- Recommended aggressive_champion_run_id: {champion_state.get('aggressive_champion_run_id')}",
-            f"- Axes exhausted: {', '.join(cooldowns.get('axes', {}).keys()) or 'none'}",
-            "",
-            "Baseline promotion remains manual-only.",
-        ]
-    )
-
-
-def _read_json(path: Path, default):
-    if not path.exists():
-        return default
-    return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Rebuild research state from EXP_* and AUTO_* runs.")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Rebuild research-learning state from run artifacts.")
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--state-dir", default="state")
     parser.add_argument("--reports-dir", default="reports")
-    args = parser.parse_args()
-    result = rebuild_research_state_from_runs(args.runs_dir, args.state_dir, args.reports_dir)
-    print(json.dumps(result, indent=2))
+    parser.add_argument("--write-audits", action="store_true", help="Write missing/rebuilt audit.json files into run folders.")
+    parser.add_argument("--allow-parent-move", action="store_true", help="Allow clear best champion to update current_parent.json.")
+    return parser.parse_args()
+
+
+def _audit_for_run(run_dir: Path, runs_dir: Path) -> dict[str, Any]:
+    audit_path = run_dir / "audit.json"
+    if audit_path.exists():
+        return read_json(audit_path, {}) or {}
+    if audit_run_folder is None:
+        return {"decision": "review", "reasons": ["audit_missing_and_validation_unavailable"], "flags": []}
+
+    manifest = read_json(run_dir / "run_manifest.json", {}) or {}
+    parent_run_id = manifest.get("parent_run_id")
+    parent_dir = runs_dir / str(parent_run_id) if parent_run_id else None
+    try:
+        return audit_run_folder(run_dir, parent_run_dir=parent_dir if parent_dir and parent_dir.exists() else None)
+    except Exception as exc:
+        return {"decision": "review", "reasons": [f"audit_rebuild_failed:{exc}"], "flags": []}
+
+
+def _reset_state_files(state_dir: Path) -> None:
+    state_dir.mkdir(parents=True, exist_ok=True)
+    # Ledger is append-only normally; for rebuild we intentionally overwrite it.
+    (state_dir / "research_ledger.jsonl").write_text("", encoding="utf-8")
+    write_json(
+        state_dir / "champion_runs.json",
+        {
+            "version": 2,
+            "best_champion_run_id": None,
+            "current_parent_run_id": None,
+            "aggressive_champion_run_id": None,
+            "baseline_candidate_run_id": None,
+            "promotion_candidates": [],
+            "secondary_candidates": [],
+            "defensive_secondary_candidates": [],
+            "champion_runs": [],
+        },
+    )
+
+
+def _index_duplicate_map(state_dir: Path) -> dict[str, dict[str, Any]]:
+    index = read_json(state_dir / "artifact_hash_index.json", {}) or {}
+    return index.get("runs", {}) or {}
+
+
+def _build_report(*, runs: list[Path], state_dir: Path, duplicates: list[dict[str, Any]]) -> str:
+    ledger = read_ledger(state_dir)
+    champion = load_champion_state(state_dir)
+    unique = len({row.get("artifact_signature") for row in ledger if row.get("artifact_signature")})
+    value_counts: dict[str, int] = {}
+    for row in ledger:
+        value_counts[str(row.get("value_delivered"))] = value_counts.get(str(row.get("value_delivered")), 0) + 1
+
+    top_rows = sorted(
+        [row for row in ledger if row.get("metrics")],
+        key=lambda row: float((row.get("metrics") or {}).get("strategy_cagr_pct", 0.0)),
+        reverse=True,
+    )[:15]
+
+    lines = [
+        "# Rebuilt Research State",
+        "",
+        f"- Runs scanned: {len(runs)}",
+        f"- Unique artifact signatures in ledger: {unique}",
+        f"- Duplicate runs detected: {len(duplicates)}",
+        f"- Best champion: `{champion.get('best_champion_run_id')}`",
+        f"- Current parent: `{champion.get('current_parent_run_id')}`",
+        f"- Aggressive champion: `{champion.get('aggressive_champion_run_id')}`",
+        f"- Baseline/promotion candidate: `{champion.get('baseline_candidate_run_id')}`",
+        "",
+        "## Value delivered counts",
+        "",
+    ]
+    for key, count in sorted(value_counts.items()):
+        lines.append(f"- {key}: {count}")
+
+    lines.extend(["", "## Top CAGR runs", "", "| run | value | CAGR | DD | years SPY | months SPY | trades |", "|---|---|---:|---:|---:|---:|---:|"])
+    for row in top_rows:
+        m = row.get("metrics") or {}
+        lines.append(
+            f"| {row.get('run_id')} | {row.get('value_delivered')} | {float(m.get('strategy_cagr_pct', 0.0)):.2f}% | "
+            f"{float(m.get('strategy_max_drawdown_pct', 0.0)):.2f}% | {m.get('years_beating_spy')}/{m.get('years_losing_to_spy')} | "
+            f"{m.get('months_beating_spy')}/{m.get('months_losing_to_spy')} | {m.get('trades')} |"
+        )
+
+    lines.extend(["", "## Duplicate examples", "", "| run | duplicate_of |", "|---|---|"])
+    for row in duplicates[:50]:
+        lines.append(f"| {row.get('run_id')} | {row.get('duplicate_of_run_id')} |")
+    return "\n".join(lines) + "\n"
+
+
+def main() -> int:
+    args = parse_args()
+    runs_dir = Path(args.runs_dir)
+    state_dir = Path(args.state_dir)
+    reports_dir = Path(args.reports_dir)
+    reports_dir.mkdir(parents=True, exist_ok=True)
+
+    runs = iter_run_dirs(runs_dir)
+    _reset_state_files(state_dir)
+
+    rebuild = rebuild_artifact_index_from_runs(runs_dir, state_dir)
+    duplicates = rebuild["duplicates"]
+    duplicate_by_run = _index_duplicate_map(state_dir)
+
+    for run_dir in runs:
+        audit = _audit_for_run(run_dir, runs_dir)
+        duplicate_record = duplicate_by_run.get(run_dir.name, {})
+        duplicate_info = {
+            "is_duplicate": bool(duplicate_record.get("is_duplicate")),
+            "duplicate_of_run_id": duplicate_record.get("duplicate_of_run_id"),
+            "duplicate_signature": duplicate_record.get("artifact_signature"),
+        }
+        if duplicate_info["is_duplicate"]:
+            audit = apply_duplicate_to_audit(audit, duplicate_info)
+        if args.write_audits:
+            write_json(run_dir / "audit.json", audit)
+
+        champion_decision = update_champion_state(
+            run_dir=run_dir,
+            state_dir=state_dir,
+            audit=audit,
+            duplicate_info=duplicate_info,
+            allow_parent_move=bool(args.allow_parent_move),
+        )
+        append_run_to_ledger(
+            run_dir=run_dir,
+            state_dir=state_dir,
+            audit=audit,
+            duplicate_info=duplicate_info,
+            champion_decision=champion_decision,
+        )
+
+    report = _build_report(runs=runs, state_dir=state_dir, duplicates=duplicates)
+    report_path = reports_dir / "rebuilt_research_state.md"
+    report_path.write_text(report, encoding="utf-8")
+
+    print(f"Runs scanned: {len(runs)}")
+    print(f"Duplicates: {len(duplicates)}")
+    print(f"Report: {report_path}")
+    print(f"Artifact index: {state_dir / 'artifact_hash_index.json'}")
+    print(f"Ledger: {state_dir / 'research_ledger.jsonl'}")
     return 0
 
 
