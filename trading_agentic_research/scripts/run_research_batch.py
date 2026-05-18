@@ -17,6 +17,9 @@ if str(ROOT) not in sys.path:
 from scripts.select_next_hypothesis import choose_next_hypothesis, load_hypothesis_bank, read_json, read_jsonl
 from scripts.generate_strategy_config import generate_strategy_config_from_hypothesis, upsert_strategy_registry
 from scripts.parameter_effect_memory import load_parameter_effect_memory
+from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
+from scripts.research.feature_space_expansion_factory import generate_feature_space_hypotheses
+from scripts.research.generation_feedback import maybe_mark_candidate_review_exhausted
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
 
 
@@ -102,6 +105,8 @@ def run_candidate_generation(
     reason: str,
     runner=_run_generation_command,
 ) -> bool:
+    """Run legacy generator and return True only if the bank actually grew."""
+    before_count = len(read_jsonl(args.hypothesis_bank))
     command = [
         sys.executable,
         "scripts/generate_candidates_from_parent.py",
@@ -123,11 +128,32 @@ def run_candidate_generation(
     if families:
         command.extend(["--families", families])
     code = runner(command)
-    if code == 0:
-        print(f"Generated new hypotheses for family={family} (reason={reason}, parent_config={parent_strategy_config}).")
+    after_count = len(read_jsonl(args.hypothesis_bank))
+    if code == 0 and after_count > before_count:
+        print(f"Generated {after_count - before_count} new hypotheses for family={family} (reason={reason}, parent_config={parent_strategy_config}).")
         return True
+    if code == 0:
+        print(f"Hypothesis generator produced no new rows for family={family} (reason={reason}, parent_config={parent_strategy_config}).")
+        return False
     print(f"Hypothesis generation failed for family={family} (reason={reason}, parent_config={parent_strategy_config}).")
     return False
+
+
+def run_feature_space_generation(
+    *,
+    args: argparse.Namespace,
+    parent_strategy_config: str,
+    reason: str,
+) -> bool:
+    result = generate_feature_space_hypotheses(
+        parent_strategy_config_path=parent_strategy_config,
+        hypothesis_bank_path=args.hypothesis_bank,
+        state_dir=args.state_dir,
+        max_new=5,
+        reason=reason,
+    )
+    print(f"In-batch feature-space fallback: {result}")
+    return int(result.get("generated", 0) or 0) > 0
 
 
 def _batch_state_path(state_dir: str | Path) -> Path:
@@ -151,6 +177,7 @@ def _load_batch_state(state_dir: str | Path, max_runs: int) -> dict:
 
 def _save_batch_state(state_dir: str | Path, state: dict) -> None:
     state["last_updated_at"] = datetime.now(timezone.utc).isoformat()
+    _batch_state_path(state_dir).parent.mkdir(parents=True, exist_ok=True)
     _batch_state_path(state_dir).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -254,12 +281,13 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
 
-    # Keep parent/champion state synchronized before any candidate generation.
+    # Never let the inner batch silently promote the best champion. Parent lock
+    # must be enforced both in the autonomous wrapper and here.
     sync_current_parent_state(
         state_dir=args.state_dir,
         strategy_registry_path=args.strategy_registry,
         generated_configs_dir=args.generated_configs_dir,
-        prefer_best_champion=True,
+        prefer_best_champion=False,
         repo_root=ROOT,
     )
 
@@ -281,12 +309,22 @@ def main() -> int:
     _save_batch_state(args.state_dir, state)
 
     while state["completed"] < args.max_runs:
+        # Close exhausted candidate-review state dynamically before every selection.
+        close_result = maybe_mark_candidate_review_exhausted(
+            state_dir=args.state_dir,
+            hypothesis_bank=args.hypothesis_bank,
+            generation_result={"generated": 0, "reason": "batch_selection_preflight"},
+        )
+        if close_result.get("candidate_review_status") == "review_exhausted":
+            print(f"Candidate-under-review exhausted during batch selection: {close_result.get('candidate_review_exhaustion_reason')}")
+
         learning = read_json(Path(args.state_dir) / "learning_memory.json")
         cooldowns = read_json(Path(args.state_dir) / "subspace_cooldowns.json")
         current_parent = read_json(Path(args.state_dir) / "current_parent.json")
         parameter_effect_memory = load_parameter_effect_memory(Path(args.state_dir) / "parameter_effect_memory.json")
         rejected_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "rejected_hypotheses.jsonl")}
         accepted_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "accepted_hypotheses.jsonl")}
+        consumed_ids = consumed_hypothesis_ids(args.state_dir)
         repeat_blocked_ids = _repeat_blocked_hypothesis_ids(state.get("history", []), args.max_repeats_per_hypothesis)
 
         effective_parent_strategy_config = resolve_current_parent_config_path(
@@ -303,11 +341,19 @@ def main() -> int:
         bank = load_hypothesis_bank(args.hypothesis_bank)
         eligible_families = {h.get("family") for h in bank if str(h.get("status", "candidate")) in {"candidate", "seeded"}}
         if eligible_families and eligible_families.issubset(families_in_cooldown):
-            state["status"] = "stopped"
-            state["stop_reason"] = "all_candidate_families_in_cooldown"
-            _save_batch_state(args.state_dir, state)
-            print("Stopping: all candidate families are in cooldown.")
-            break
+            generated = run_feature_space_generation(
+                args=args,
+                parent_strategy_config=effective_parent_strategy_config,
+                reason="all_candidate_families_in_cooldown",
+            )
+            if generated:
+                bank = load_hypothesis_bank(args.hypothesis_bank)
+            else:
+                state["status"] = "stopped"
+                state["stop_reason"] = "all_candidate_families_in_cooldown"
+                _save_batch_state(args.state_dir, state)
+                print("Stopping: all candidate families are in cooldown.")
+                break
 
         hypothesis = None
         selection_error = None
@@ -319,9 +365,11 @@ def main() -> int:
                     cooldowns=cooldowns,
                     rejected_ids={str(x) for x in rejected_ids if x}.union(repeat_blocked_ids),
                     accepted_ids={str(x) for x in accepted_ids if x},
+                    consumed_ids=consumed_ids,
                     parameter_effect_memory=parameter_effect_memory,
                     current_parent_hypothesis_id=str(current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id")) if (current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id")) else None,
                     prefer_unseen=bool(args.prefer_unseen),
+                    state_dir=args.state_dir,
                 )
                 selection_error = None
                 break
@@ -329,6 +377,7 @@ def main() -> int:
                 selection_error = str(exc)
                 if not args.auto_generate_hypotheses_on_block or attempt >= args.max_generation_attempts:
                     break
+
                 generated = run_candidate_generation(
                     family=args.generation_family,
                     families=str(args.generation_families) if args.generation_families else None,
@@ -336,6 +385,12 @@ def main() -> int:
                     parent_strategy_config=effective_parent_strategy_config,
                     reason="no_eligible_hypothesis",
                 )
+                if not generated:
+                    generated = run_feature_space_generation(
+                        args=args,
+                        parent_strategy_config=effective_parent_strategy_config,
+                        reason="no_eligible_hypothesis_after_standard_generation",
+                    )
                 if not generated:
                     break
                 bank = load_hypothesis_bank(args.hypothesis_bank)
@@ -461,6 +516,14 @@ def main() -> int:
                 break
 
         if state["consecutive_rejections"] >= args.stop_after_consecutive_rejections:
+            # Before stopping, try to produce future useful work if possible. The
+            # current batch still stops, but the next autonomous wrapper call has
+            # fresh candidates instead of a dead end.
+            run_feature_space_generation(
+                args=args,
+                parent_strategy_config=effective_parent_strategy_config,
+                reason="consecutive_rejections_pre_stop",
+            )
             state["status"] = "stopped"
             state["stop_reason"] = f"consecutive_rejections:{state['consecutive_rejections']}"
             _save_batch_state(args.state_dir, state)

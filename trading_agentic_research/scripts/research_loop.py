@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.generate_hypotheses_from_bibliography import validate_candidate_basis
 from scripts.governance import changed_parameters_between, has_real_strategy_change
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
+from scripts.research.candidate_review_learning import candidate_review_scope_reason
 
 CommandRunner = Callable[[list[str]], subprocess.CompletedProcess]
 
@@ -32,6 +33,7 @@ class LoopInputs:
     family: str
     parent_run_id: str | None
     allow_parent_update: bool
+    state_dir: str | Path = "state"
     parent_strategy_config_path: Path | None = None
 
 
@@ -40,6 +42,7 @@ def read_json(path: str | Path) -> dict:
 
 
 def write_json(path: str | Path, payload: dict) -> None:
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
     Path(path).write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -97,6 +100,7 @@ def resolve_loop_inputs(args: argparse.Namespace) -> LoopInputs:
         family=str(family),
         parent_run_id=str(parent_run_id) if parent_run_id else None,
         allow_parent_update=bool(args.allow_parent_update),
+        state_dir=args.state_dir,
         parent_strategy_config_path=resolve_parent_strategy_config_path(
             state_dir=args.state_dir,
             strategy_registry_path=getattr(args, "strategy_registry", "configs/strategy_registry.json"),
@@ -175,6 +179,9 @@ def preflight_score(inputs: LoopInputs, state_dir: str | Path = "state") -> dict
     learning_memory = read_json(learning_path) if learning_path.exists() else {"family_summaries": {}}
     cooldowns = read_json(cooldowns_path) if cooldowns_path.exists() else {"cooldowns": {}}
     hypothesis = find_hypothesis(inputs.hypothesis_id) or {"hypothesis_id": inputs.hypothesis_id, "family": inputs.family}
+    scope_reason = candidate_review_scope_reason(hypothesis, state_dir=state_dir)
+    if scope_reason:
+        return {"decision": "rejected", "reason": f"candidate_review_scope:{scope_reason}"}
     return score_hypothesis_against_memory(hypothesis, learning_memory, cooldowns)
 
 
@@ -213,6 +220,8 @@ def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_di
             inputs.hypothesis_id,
             "--family",
             inputs.family,
+            "--state-dir",
+            str(inputs.state_dir),
         ],
         [
             sys.executable,

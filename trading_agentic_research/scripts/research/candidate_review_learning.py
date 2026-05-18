@@ -8,12 +8,14 @@ Important autonomy rule
 -----------------------
 Candidate-review learning is scoped to the active candidate. If the candidate
 changes (for example EXP_044 -> EXP_054), stale exhausted axes from the previous
-candidate must not silently block the new candidate. The reset helper below is
-called by candidate_under_review.refresh_candidate_under_review().
+candidate must not silently block the new candidate. Stale HYP_REVIEW rows from
+older candidates are also blocked by selector scope and cannot contaminate the
+active candidate's learning.
 """
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -65,19 +67,57 @@ def save_candidate_review_learning(state_dir: str | Path, payload: dict[str, Any
     write_json(Path(state_dir) / LEARNING_FILE, payload)
 
 
+def candidate_review_run_id_from_hypothesis_id(hypothesis_id: str | None) -> str | None:
+    """Extract EXP_###/AUTO_### from HYP_REVIEW_EXP_###_* ids."""
+    if not hypothesis_id:
+        return None
+    match = re.match(r"^HYP_REVIEW_((?:EXP|AUTO)_\d+)_", str(hypothesis_id))
+    return match.group(1) if match else None
+
+
+def is_candidate_review_hypothesis(hypothesis: dict[str, Any] | str | None) -> bool:
+    if isinstance(hypothesis, dict):
+        hid = str(hypothesis.get("hypothesis_id") or "")
+        family = str(hypothesis.get("family") or "")
+    else:
+        hid = str(hypothesis or "")
+        family = ""
+    return hid.startswith("HYP_REVIEW_") or family.startswith("candidate_under_review")
+
+
+def candidate_review_scope_reason(hypothesis: dict[str, Any], *, state_dir: str | Path = "state") -> str | None:
+    """Return a block reason when a candidate-review hypothesis is out of scope.
+
+    Rules:
+    - If no active candidate is under review, no HYP_REVIEW_* row is selectable.
+    - If EXP_054 is active, only HYP_REVIEW_EXP_054_* rows are selectable.
+    - Malformed HYP_REVIEW ids are blocked rather than guessed.
+    """
+    if not is_candidate_review_hypothesis(hypothesis):
+        return None
+
+    hid = str(hypothesis.get("hypothesis_id") or "")
+    hypothesis_candidate = candidate_review_run_id_from_hypothesis_id(hid)
+    candidate = read_json(Path(state_dir) / "candidate_under_review.json", {}) or {}
+    active_candidate = candidate.get("candidate_run_id")
+    status = candidate.get("status")
+
+    if status != "active" or not active_candidate:
+        return "no_active_candidate_under_review"
+    if not hypothesis_candidate:
+        return "malformed_candidate_review_hypothesis_id"
+    if str(hypothesis_candidate) != str(active_candidate):
+        return f"stale_candidate_review:{hypothesis_candidate}_not_{active_candidate}"
+    return None
+
+
 def reset_candidate_review_learning_for_candidate(
     *,
     state_dir: str | Path = "state",
     candidate_run_id: str | None,
     official_parent_run_id: str | None = None,
 ) -> dict[str, Any]:
-    """Reset stale candidate-review learning when a new candidate is reviewed.
-
-    The selector uses exhausted_axes from this file. Keeping EXP_044 exhaustion
-    while reviewing EXP_054 can block useful EXP_054 work incorrectly. This
-    helper intentionally keeps the logic simple and safe: learning is reset only
-    when the active candidate id changes.
-    """
+    """Reset stale candidate-review learning when a new candidate is reviewed."""
     if not candidate_run_id:
         return {"reset": False, "reason": "missing_candidate_run_id"}
 
@@ -133,18 +173,14 @@ def infer_candidate_review_axis(hypothesis: dict[str, Any] | str | None) -> str:
 
 def candidate_review_priority(hypothesis: dict[str, Any]) -> int:
     """Lower is better. Prefer TOPN diversification before trailing/exit."""
-    hid = str(hypothesis.get("hypothesis_id") or "")
-    family = str(hypothesis.get("family") or "")
-    if not hid.startswith("HYP_REVIEW_") and not family.startswith("candidate_under_review"):
+    if not is_candidate_review_hypothesis(hypothesis):
         return 50
     axis = infer_candidate_review_axis(hypothesis)
     return {"top_n": 0, "regime": 1, "volatility": 1, "trailing": 2, "exit": 3, "unknown": 4}.get(axis, 4)
 
 
 def is_candidate_review_hypothesis_blocked(hypothesis: dict[str, Any], *, state_dir: str | Path = "state") -> bool:
-    hid = str(hypothesis.get("hypothesis_id") or "")
-    family = str(hypothesis.get("family") or "")
-    if not hid.startswith("HYP_REVIEW_") and not family.startswith("candidate_under_review"):
+    if not is_candidate_review_hypothesis(hypothesis):
         return False
     axis = infer_candidate_review_axis(hypothesis)
     learning = load_candidate_review_learning(state_dir)
@@ -174,12 +210,31 @@ def update_candidate_review_learning_from_run(
     hypothesis_id = str(manifest.get("hypothesis_id") or manifest.get("strategy_id") or "")
     strategy = manifest.get("strategy") if isinstance(manifest.get("strategy"), dict) else {}
     if not hypothesis_id:
-        hypothesis_id = str(strategy.get("hypothesis_id") or strategy.get("strategy_id") or "")
+        hypothesis_id = str(strategy.get("hypothesis_id") or strategy.get("strategy_id") or audit.get("hypothesis_id") or "")
     family = str(manifest.get("family") or strategy.get("strategy_family") or "")
     if not hypothesis_id.startswith("HYP_REVIEW_") and not family.startswith("candidate_under_review"):
         return {"updated": False, "reason": "not_candidate_review_hypothesis", "hypothesis_id": hypothesis_id}
 
     candidate_state = read_json(Path(state_dir) / "candidate_under_review.json", {}) or {}
+    active_candidate = candidate_state.get("candidate_run_id")
+    hypothesis_candidate = candidate_review_run_id_from_hypothesis_id(hypothesis_id)
+
+    if active_candidate and hypothesis_candidate and str(hypothesis_candidate) != str(active_candidate):
+        return {
+            "updated": False,
+            "reason": "stale_candidate_review_hypothesis",
+            "hypothesis_id": hypothesis_id,
+            "hypothesis_candidate_run_id": hypothesis_candidate,
+            "active_candidate_run_id": active_candidate,
+        }
+    if candidate_state.get("status") and candidate_state.get("status") != "active":
+        return {
+            "updated": False,
+            "reason": "candidate_under_review_not_active",
+            "hypothesis_id": hypothesis_id,
+            "candidate_status": candidate_state.get("status"),
+        }
+
     axis = infer_candidate_review_axis({"hypothesis_id": hypothesis_id, "family": family})
     decision = str(audit.get("decision") or "")
     duplicate_of = _duplicate_of_from_audit(audit)
@@ -191,7 +246,6 @@ def update_candidate_review_learning_from_run(
     )
 
     learning = load_candidate_review_learning(state_dir)
-    active_candidate = candidate_state.get("candidate_run_id")
     if active_candidate and learning.get("candidate_run_id") and str(learning.get("candidate_run_id")) != str(active_candidate):
         reset_candidate_review_learning_for_candidate(
             state_dir=state_dir,
@@ -200,7 +254,7 @@ def update_candidate_review_learning_from_run(
         )
         learning = load_candidate_review_learning(state_dir)
 
-    learning["candidate_run_id"] = active_candidate or learning.get("candidate_run_id")
+    learning["candidate_run_id"] = active_candidate or hypothesis_candidate or learning.get("candidate_run_id")
     learning["official_parent_run_id"] = candidate_state.get("official_parent_run_id") or learning.get("official_parent_run_id")
     attempts = [row for row in learning.get("attempts", []) if row.get("run_id") != run_path.name]
     attempts.append({
@@ -244,12 +298,15 @@ def rebuild_candidate_review_learning(*, runs_dir: str | Path = "runs", state_di
         "updated_at": now_iso(),
     })
     count = 0
+    skipped = 0
     for run_dir in sorted(Path(runs_dir).glob("*")):
         if run_dir.is_dir() and (run_dir / "audit.json").exists():
             result = update_candidate_review_learning_from_run(run_dir=run_dir, state_dir=state_dir)
             if result.get("updated"):
                 count += 1
-    return {"rebuilt": count, "path": str(Path(state_dir) / LEARNING_FILE)}
+            else:
+                skipped += 1
+    return {"rebuilt": count, "skipped": skipped, "path": str(Path(state_dir) / LEARNING_FILE)}
 
 
 def write_candidate_review_learning_report(*, state_dir: str | Path = "state", reports_dir: str | Path = "reports") -> dict[str, Any]:

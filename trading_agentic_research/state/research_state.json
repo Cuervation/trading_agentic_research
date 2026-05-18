@@ -1,7 +1,7 @@
 {
   "loop_status": "completed",
   "active_strategy_family": "cross_sectional_momentum",
-  "last_run_id": "EXP_063",
+  "last_run_id": "EXP_065",
   "mode": "automatic_loop",
   "notes": [
     "Loop iteration started.",
@@ -71,6 +71,10 @@
     "Loop iteration completed.",
     "Loop iteration started.",
     "Command failed (1): C:\\Users\\celestinoh\\AppData\\Local\\Programs\\Python\\Python312\\python.exe scripts/run_backtest.py --weekly-file .\\TU_WEEKLY.csv --daily-folder .\\TU_DAILY_FOLDER --strategy-config configs\\generated\\HYP_REFINE_AUTO002_TRAILING_18_V1.json --project-config configs\\project_config.json --run-id EXP_042 --parent-run-id AUTO_002 --parent-strategy-config configs\\generated\\HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+    "Loop iteration started.",
+    "Loop iteration completed.",
+    "Loop iteration started.",
+    "Loop iteration completed.",
     "Loop iteration started.",
     "Loop iteration completed.",
     "Loop iteration started.",

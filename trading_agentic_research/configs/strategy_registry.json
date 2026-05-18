@@ -595,6 +595,28 @@
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
       "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_TSMOM_RET26_CONFIRM_V1."
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_052_EXIT_16_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_052_EXIT_16_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_REVIEW_EXP_052_EXIT_16_V1."
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_052_EXIT_18_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_052_EXIT_18_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_REVIEW_EXP_052_EXIT_18_V1."
     }
   ]
 }

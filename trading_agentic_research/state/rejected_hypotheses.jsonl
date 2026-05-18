@@ -67,3 +67,5 @@
 {"hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1", "family": "paper_time_series_momentum", "run_id": "EXP_061", "learning_id": "LEARN_EXP_061", "decision": "rejected", "flags": ["metric_no_effect", "duplicate_artifact", "parent_underperformance"]}
 {"hypothesis_id": "HYP_LIT_AUTO_002_SMA20_TREND_FAST_CONFIRM_V1", "family": "paper_trend_following", "run_id": "EXP_062", "learning_id": "LEARN_EXP_062", "decision": "rejected", "flags": ["parent_underperformance"]}
 {"hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_CONFIRM_V1", "family": "paper_time_series_momentum", "run_id": "EXP_063", "learning_id": "LEARN_EXP_063", "decision": "rejected", "flags": ["parent_underperformance"]}
+{"hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_16_V1", "family": "candidate_under_review_exit_refinement", "run_id": "EXP_064", "learning_id": "LEARN_EXP_064", "decision": "rejected", "flags": ["metric_no_effect", "duplicate_artifact"]}
+{"hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_18_V1", "family": "candidate_under_review_exit_refinement", "run_id": "EXP_065", "learning_id": "LEARN_EXP_065", "decision": "rejected", "flags": ["metric_no_effect", "duplicate_artifact"]}

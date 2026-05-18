@@ -153,7 +153,117 @@
         "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
         "paper_ideas": "bibliography/paper_ideas.jsonl"
       }
+    },
+    {
+      "timestamp": "2026-05-18T18:06:10.964194+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": true,
+      "eligible_hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_16_V1",
+      "eligible_family": "candidate_under_review_exit_refinement",
+      "reason": "no_new_candidate_under_review_hypotheses",
+      "before_reason": null,
+      "after_reason": "selector_found_eligible_hypothesis",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_candidate_under_review_hypotheses",
+        "candidate_run_id": "EXP_054",
+        "hypotheses": [],
+        "candidate_review_selectable_remaining": [
+          "HYP_REVIEW_EXP_054_EXIT_16_V1",
+          "HYP_REVIEW_EXP_054_EXIT_18_V1",
+          "HYP_REVIEW_EXP_054_EXIT_22_V1"
+        ],
+        "candidate_review_selector_blocked": [
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+            "axis": "top_n",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+            "axis": "top_n",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+            "axis": "trailing",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          }
+        ],
+        "candidate_review_selector_counts": {
+          "rows": 6,
+          "selectable": 3,
+          "blocked": 3,
+          "rejected": 66,
+          "accepted": 22,
+          "consumed": 71,
+          "repeat_blocked": 2
+        },
+        "candidate_review_eligible_remaining": [
+          "HYP_REVIEW_EXP_054_TOPN_6_V1",
+          "HYP_REVIEW_EXP_054_TOPN_10_V1",
+          "HYP_REVIEW_EXP_054_EXIT_16_V1",
+          "HYP_REVIEW_EXP_054_EXIT_18_V1",
+          "HYP_REVIEW_EXP_054_EXIT_22_V1",
+          "HYP_REVIEW_EXP_054_TRAILING_18_V1"
+        ],
+        "candidate_review_blocked": []
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "active",
+          "reason": "candidate_config_recovered",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": true,
+            "initialized": false,
+            "reason": "reset_for_new_candidate_under_review",
+            "previous_candidate_run_id": "EXP_044",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-18T18:06:10.862568+00:00"
+        }
+      },
+      "warning": "candidate_review_generated_zero"
     }
   ],
-  "updated_at": "2026-05-18T16:48:10.680809+00:00"
+  "updated_at": "2026-05-18T18:06:10.964194+00:00"
 }

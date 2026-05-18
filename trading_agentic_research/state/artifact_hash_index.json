@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created_at": "2026-05-18T01:37:19.343065+00:00",
-  "updated_at": "2026-05-18T16:24:58.323548+00:00",
+  "updated_at": "2026-05-18T18:07:24.647571+00:00",
   "artifact_files": [
     "metrics.json",
     "trades.csv",
@@ -1072,11 +1072,16 @@
         "equity_curve.csv": "3c9b57da40932d55e6290efa25b5106ebacb8e37e71d27aa5837ed71571f16e7"
       },
       "runs": [
-        "EXP_052"
+        "EXP_052",
+        "EXP_064",
+        "EXP_065"
       ],
-      "duplicate_run_ids": [],
+      "duplicate_run_ids": [
+        "EXP_064",
+        "EXP_065"
+      ],
       "created_at": "2026-05-18T12:59:13.184003+00:00",
-      "updated_at": "2026-05-18T12:59:13.184003+00:00"
+      "updated_at": "2026-05-18T18:07:24.647571+00:00"
     },
     "142feed2ad060e5adbca101e7e2d543f58423bbefeb75de4bb096d6c38ee9d36": {
       "artifact_signature": "142feed2ad060e5adbca101e7e2d543f58423bbefeb75de4bb096d6c38ee9d36",
@@ -2934,6 +2939,28 @@
       "is_duplicate": false,
       "duplicate_of_run_id": null,
       "updated_at": "2026-05-18T16:24:58.323548+00:00"
+    },
+    "EXP_064": {
+      "run_id": "EXP_064",
+      "artifact_signature": "939d8edceaef5d9503d0d41947df809b3ee7e76a7abd4d82a216490f7e57bc63",
+      "metrics_hash": "87110369051ce8b5be38b788fdb76980230887f86424c76e156254745bf3cb04",
+      "trades_hash": "3690dd4dc4c1aacf56ee227cd0d75d202d2396fa141750760e26ec3971704f66",
+      "equity_hash": "3c9b57da40932d55e6290efa25b5106ebacb8e37e71d27aa5837ed71571f16e7",
+      "first_seen_run_id": "EXP_052",
+      "is_duplicate": true,
+      "duplicate_of_run_id": "EXP_052",
+      "updated_at": "2026-05-18T18:06:43.134656+00:00"
+    },
+    "EXP_065": {
+      "run_id": "EXP_065",
+      "artifact_signature": "939d8edceaef5d9503d0d41947df809b3ee7e76a7abd4d82a216490f7e57bc63",
+      "metrics_hash": "87110369051ce8b5be38b788fdb76980230887f86424c76e156254745bf3cb04",
+      "trades_hash": "3690dd4dc4c1aacf56ee227cd0d75d202d2396fa141750760e26ec3971704f66",
+      "equity_hash": "3c9b57da40932d55e6290efa25b5106ebacb8e37e71d27aa5837ed71571f16e7",
+      "first_seen_run_id": "EXP_052",
+      "is_duplicate": true,
+      "duplicate_of_run_id": "EXP_052",
+      "updated_at": "2026-05-18T18:07:24.647571+00:00"
     }
   }
 }

@@ -5,6 +5,7 @@ Adds:
 - research_ledger.jsonl event per run
 - champion/current-parent governance updates
 - consumed_hypotheses.jsonl so exact hypotheses are not run twice
+- candidate-review learning updates scoped to the active candidate under review
 """
 
 from __future__ import annotations
@@ -28,6 +29,7 @@ from scripts.research.artifact_index import (
 from scripts.research.champion_governance import update_champion_state
 from scripts.research.research_ledger import append_run_to_ledger
 from scripts.research.consumed_hypotheses import append_consumed_hypothesis
+from scripts.research.candidate_review_learning import update_candidate_review_learning_from_run
 
 
 def parse_args() -> argparse.Namespace:
@@ -98,6 +100,12 @@ def main() -> int:
         value_delivered=ledger_event.get("value_delivered"),
     )
 
+    candidate_review_learning = update_candidate_review_learning_from_run(
+        run_dir=run_dir,
+        state_dir=args.state_dir,
+        audit=audit,
+    )
+
     print(f"Audit completed: {args.run_id}")
     print(f"Decision: {audit['decision']}")
     if duplicate_info.get("is_duplicate"):
@@ -111,6 +119,7 @@ def main() -> int:
     print(f"Champion action: {champion_decision.get('champion_action')}")
     print(f"Ledger value: {ledger_event.get('value_delivered')}")
     print(f"Consumed hypothesis: {consumed_result.get('reason') or consumed_result.get('hypothesis_id')}")
+    print(f"Candidate-review learning: {candidate_review_learning.get('reason') or candidate_review_learning.get('exhausted_axes') or candidate_review_learning.get('updated')}")
     print("Baseline promotion: blocked (manual review required)")
     return 0
 

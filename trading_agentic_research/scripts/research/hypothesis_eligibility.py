@@ -53,6 +53,7 @@ def eligible_hypothesis_preflight(
                 current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id") or ""
             ) or None,
             prefer_unseen=prefer_unseen,
+            state_dir=state_path,
         )
         return {
             "eligible": True,

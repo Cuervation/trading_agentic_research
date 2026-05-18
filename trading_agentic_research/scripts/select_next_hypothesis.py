@@ -5,6 +5,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -13,8 +14,10 @@ if str(ROOT) not in sys.path:
 from scripts.generate_hypotheses_from_bibliography import validate_candidate_basis
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
 from scripts.parameter_effect_memory import load_parameter_effect_memory, score_hypothesis_axis
+from scripts.research.autonomous_hypothesis_factory import real_override_signature
 from scripts.research.candidate_review_learning import (
     candidate_review_priority,
+    candidate_review_scope_reason,
     is_candidate_review_hypothesis_blocked,
 )
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
@@ -55,6 +58,21 @@ def accepted_hypothesis_ids(state_dir: str | Path) -> set[str]:
     return {str(row.get("hypothesis_id")) for row in accepted if row.get("hypothesis_id")}
 
 
+def _blocked_override_signatures(hypothesis_bank: list[dict[str, Any]], blocked_ids: set[str]) -> set[str]:
+    """Return real override signatures already consumed/rejected/accepted.
+
+    This catches duplicate hypotheses with new ids before an expensive backtest.
+    Metadata such as strategy_id/hypothesis_id is ignored by real_override_signature.
+    """
+    signatures: set[str] = set()
+    for row in hypothesis_bank:
+        hid = str(row.get("hypothesis_id") or "")
+        overrides = row.get("strategy_overrides")
+        if hid in blocked_ids and isinstance(overrides, dict) and overrides:
+            signatures.add(real_override_signature(overrides))
+    return signatures
+
+
 def choose_next_hypothesis(
     *,
     hypothesis_bank: list[dict],
@@ -72,19 +90,23 @@ def choose_next_hypothesis(
     """Choose the best next hypothesis with deterministic rules.
 
     Production autonomous runs must not execute the same exact hypothesis twice.
-    When prefer_unseen is true, accepted ids are treated as consumed, not merely
-    lower priority. This avoids repeated runs like TOPN_10 -> duplicate_result.
+    Candidate-review rows are scoped to the active candidate under review:
+    EXP_054 active means only HYP_REVIEW_EXP_054_* is eligible. If no active
+    candidate exists, no HYP_REVIEW_* row can be resurrected.
     """
     if consumed_ids is None:
-        # Backward-compatible safety for callers that have not yet been patched
-        # to pass consumed ids explicitly. Most autonomous runs use ./state.
         try:
-            consumed_ids = consumed_hypothesis_ids(ROOT / "state")
+            consumed_ids = consumed_hypothesis_ids(state_dir)
         except Exception:
             consumed_ids = set()
     consumed_ids = {str(x) for x in (consumed_ids or set()) if x}
     rejected_ids = {str(x) for x in (rejected_ids or set()) if x}
     accepted_ids = {str(x) for x in (accepted_ids or set()) if x}
+
+    signature_block_ids = set(rejected_ids).union(consumed_ids)
+    if prefer_unseen and not allow_retry_consumed:
+        signature_block_ids.update(accepted_ids)
+    blocked_signatures = _blocked_override_signatures(hypothesis_bank, signature_block_ids)
 
     candidates = []
     for hypothesis in hypothesis_bank:
@@ -99,12 +121,19 @@ def choose_next_hypothesis(
             continue
         if not allow_retry_consumed and hypothesis_id in consumed_ids:
             continue
-        if is_candidate_review_hypothesis_blocked(hypothesis, state_dir=state_dir):
-            continue
-        # Stronger than the old behavior: if it has already been accepted/run,
-        # don't re-run it during unseen autonomous selection.
         if prefer_unseen and not allow_retry_consumed and hypothesis_id in accepted_ids:
             continue
+
+        scope_reason = candidate_review_scope_reason(hypothesis, state_dir=state_dir)
+        if scope_reason:
+            continue
+        if is_candidate_review_hypothesis_blocked(hypothesis, state_dir=state_dir):
+            continue
+
+        overrides = hypothesis.get("strategy_overrides")
+        if isinstance(overrides, dict) and overrides and hypothesis_id not in signature_block_ids:
+            if real_override_signature(overrides) in blocked_signatures:
+                continue
 
         score = score_hypothesis_against_memory(hypothesis, learning_memory, cooldowns)
         if score.get("decision") == "rejected":
@@ -130,7 +159,7 @@ def choose_next_hypothesis(
         )
 
     if not candidates:
-        raise ValueError("No eligible hypotheses found (all rejected/cooldown/invalid/consumed).")
+        raise ValueError("No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).")
 
     candidates.sort()
     return candidates[0][-1]
