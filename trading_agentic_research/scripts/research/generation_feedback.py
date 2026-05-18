@@ -57,11 +57,12 @@ def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
 def _generated_count(result: dict[str, Any]) -> int:
     if not isinstance(result, dict):
         return 0
-    if "generated" in result:
-        try:
-            return int(result.get("generated") or 0)
-        except (TypeError, ValueError):
-            return 0
+    for key in ("generated", "rows_written"):
+        if key in result:
+            try:
+                return int(result.get(key) or 0)
+            except (TypeError, ValueError):
+                return 0
     nested = result.get("literature_miner") if isinstance(result.get("literature_miner"), dict) else None
     if nested is not None:
         return _generated_count(nested)
@@ -90,6 +91,7 @@ def record_generation_feedback(
         "generated": generated,
         "eligible_after_generation": eligible_after,
         "eligible_hypothesis_id": after.get("hypothesis_id"),
+        "eligible_family": after.get("family"),
         "reason": generation_result.get("reason") if isinstance(generation_result, dict) else None,
         "before_reason": before.get("reason"),
         "after_reason": after.get("reason"),
@@ -98,6 +100,8 @@ def record_generation_feedback(
     }
     if generated > 0 and not eligible_after:
         event["warning"] = "generated_but_no_eligible_hypothesis"
+    if generated == 0 and phase == "candidate_under_review":
+        event["warning"] = event.get("warning") or "candidate_review_generated_zero"
     payload.setdefault("events", []).append(event)
     payload["updated_at"] = now_iso()
     write_json(state_path / FEEDBACK_JSON, payload)
@@ -118,17 +122,16 @@ def maybe_mark_candidate_review_exhausted(
     hypothesis_bank: str | Path = "bibliography/hypothesis_bank.jsonl",
     generation_result: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Mark candidate_under_review as review_exhausted when all its axes are blocked."""
+    """Mark candidate_under_review as review_exhausted when no useful review work remains."""
     state_path = Path(state_dir)
     candidate_path = state_path / "candidate_under_review.json"
     candidate = read_json(candidate_path, {}) or {}
     if candidate.get("status") != "active":
         return generation_result or {"generated": 0, "reason": "candidate_not_active"}
 
+    result = dict(generation_result or {})
     candidate_run_id = candidate.get("candidate_run_id")
     rows = _candidate_review_hypotheses(str(candidate_run_id) if candidate_run_id else None, hypothesis_bank)
-    if not rows:
-        return generation_result or {"generated": 0, "reason": "no_candidate_review_hypotheses"}
 
     learning = load_candidate_review_learning(state_dir)
     exhausted_axes = set(learning.get("exhausted_axes", []) or [])
@@ -157,9 +160,20 @@ def maybe_mark_candidate_review_exhausted(
         blocked.append({"hypothesis_id": hid, "axis": axis, "reason": reason})
 
     if eligible_like:
-        result = dict(generation_result or {})
         result.setdefault("candidate_review_eligible_remaining", eligible_like)
         result.setdefault("candidate_review_blocked", blocked[:20])
+        return result
+
+    # Mark exhausted when either there are existing rows and all are blocked, or
+    # the factory explicitly says there are no new candidates for an active review.
+    reason = str(result.get("reason") or "")
+    generated = _generated_count(result)
+    should_exhaust = bool(rows) or (generated == 0 and reason in {
+        "no_new_candidate_under_review_hypotheses",
+        "candidate_under_review_already_exhausted",
+        "no_candidate_review_hypotheses",
+    })
+    if not should_exhaust:
         return result
 
     candidate["status"] = "review_exhausted"
@@ -168,7 +182,6 @@ def maybe_mark_candidate_review_exhausted(
     candidate["blocked_hypotheses"] = blocked[-50:]
     write_json(candidate_path, candidate)
 
-    result = dict(generation_result or {})
     result["candidate_review_status"] = "review_exhausted"
     result["candidate_review_blocked"] = blocked[:20]
     result.setdefault("reason", "candidate_review_exhausted")
@@ -189,16 +202,17 @@ def write_generation_feedback_report(*, state_dir: str | Path = "state", reports
         "",
         "## Recent events",
         "",
-        "| phase | generated | eligible_after | hypothesis | reason | warning |",
-        "|---|---:|:---:|---|---|---|",
+        "| phase | generated | eligible_after | hypothesis | family | reason | warning |",
+        "|---|---:|:---:|---|---|---|---|",
     ]
     for event in events[-25:]:
         lines.append(
-            "| {phase} | {generated} | {eligible} | {hypothesis} | {reason} | {warning} |".format(
+            "| {phase} | {generated} | {eligible} | {hypothesis} | {family} | {reason} | {warning} |".format(
                 phase=event.get("phase", ""),
                 generated=event.get("generated", 0),
                 eligible="yes" if event.get("eligible_after_generation") else "no",
                 hypothesis=event.get("eligible_hypothesis_id") or "",
+                family=event.get("eligible_family") or "",
                 reason=str(event.get("reason") or event.get("after_reason") or "").replace("|", "/"),
                 warning=event.get("warning", ""),
             )

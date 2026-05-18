@@ -4,9 +4,10 @@ Use this entrypoint for long-running autonomous research. It protects the loop
 from common failure modes and keeps the research direction explicit:
 - data path preflight;
 - central research policy;
-- parent/champion sync;
+- manual parent governance / parent lock;
 - candidate-under-review refinement without moving official parent;
 - consumed-hypothesis avoidance;
+- generation eligibility feedback;
 - literature/paper fallback;
 - post-batch zero-iteration validation.
 """
@@ -29,6 +30,11 @@ from scripts.research.candidate_review_refinement_factory import generate_candid
 from scripts.research.candidate_under_review import refresh_candidate_under_review
 from scripts.research.data_path_resolver import resolve_data_paths
 from scripts.research.data_quality_diagnostics import diagnose_data_quality
+from scripts.research.generation_feedback import (
+    maybe_mark_candidate_review_exhausted,
+    record_generation_feedback,
+    write_generation_feedback_report,
+)
 from scripts.research.hypothesis_eligibility import eligible_hypothesis_preflight
 from scripts.research.literature_hypothesis_miner import mine_literature_hypotheses
 from scripts.research.paper_searcher import generate_paper_ideas
@@ -108,6 +114,35 @@ def _mine_literature(args: argparse.Namespace, parent_config: str) -> dict[str, 
     )
 
 
+def _record_feedback(
+    *,
+    args: argparse.Namespace,
+    phase: str,
+    generation_result: dict[str, Any],
+    eligibility_before: dict[str, Any] | None,
+    eligibility_after: dict[str, Any] | None,
+    context: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    event = record_generation_feedback(
+        state_dir=args.state_dir,
+        reports_dir=args.reports_dir,
+        phase=phase,
+        generation_result=generation_result,
+        eligibility_before=eligibility_before,
+        eligibility_after=eligibility_after,
+        context=context or {},
+    )
+    print(
+        "Generation feedback:",
+        f"phase={phase}",
+        f"generated={event.get('generated')}",
+        f"eligible_after={event.get('eligible_after_generation')}",
+        f"hypothesis={event.get('eligible_hypothesis_id')}",
+        f"warning={event.get('warning', '')}",
+    )
+    return event
+
+
 def main() -> int:
     args = parse_args()
     policy = load_research_policy(args.policy, repo_root=ROOT)
@@ -161,11 +196,14 @@ def main() -> int:
     if dq.get("warnings"):
         print(f"Data quality warnings: {dq.get('warnings')}")
 
+    # Do not let sync silently promote best_champion. parent_state.py also honors
+    # parent_governance_lock.json, but prefer_best_champion=False is the safer
+    # default for long autonomous runs.
     sync_current_parent_state(
         state_dir=args.state_dir,
         strategy_registry_path=args.strategy_registry,
         generated_configs_dir=args.generated_configs_dir,
-        prefer_best_champion=True,
+        prefer_best_champion=False,
         repo_root=ROOT,
     )
     sync_strategy_registry(registry_path=args.strategy_registry, state_dir=args.state_dir, repo_root=ROOT)
@@ -199,15 +237,37 @@ def main() -> int:
         )
         print(f"Candidate-under-review state: {candidate_review.get('status')} {candidate_review.get('candidate_run_id')}")
         write_promotion_candidate_review(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
-        candidate_review_generation = generate_candidate_review_hypotheses(
-            state_dir=args.state_dir,
-            hypothesis_bank_path=args.hypothesis_bank,
-            max_new=args.max_candidate_review_hypotheses,
-        )
-        print(f"Candidate-under-review hypothesis generation: {candidate_review_generation}")
+
+        if candidate_review.get("status") == "review_exhausted":
+            candidate_review_generation = {"generated": 0, "reason": "candidate_under_review_already_exhausted", "candidate_run_id": candidate_review.get("candidate_run_id")}
+            print(f"Candidate-under-review hypothesis generation: {candidate_review_generation}")
+        else:
+            candidate_review_generation = generate_candidate_review_hypotheses(
+                state_dir=args.state_dir,
+                hypothesis_bank_path=args.hypothesis_bank,
+                max_new=args.max_candidate_review_hypotheses,
+            )
+            candidate_review_generation = maybe_mark_candidate_review_exhausted(
+                state_dir=args.state_dir,
+                hypothesis_bank=args.hypothesis_bank,
+                generation_result=candidate_review_generation,
+            )
+            if candidate_review_generation.get("candidate_review_status") == "review_exhausted":
+                candidate_review = read_json(Path(args.state_dir) / "candidate_under_review.json", candidate_review) or candidate_review
+                print(f"Candidate-under-review exhausted: {candidate_review.get('candidate_run_id')}")
+            print(f"Candidate-under-review hypothesis generation: {candidate_review_generation}")
 
     eligibility_before = _eligibility(args)
     print(f"Hypothesis eligibility preflight: {eligibility_before}")
+
+    _record_feedback(
+        args=args,
+        phase="candidate_under_review",
+        generation_result=candidate_review_generation,
+        eligibility_before=None,
+        eligibility_after=eligibility_before,
+        context={"candidate_under_review": candidate_review},
+    )
 
     generated = {"generated": 0, "reason": "not_needed_existing_eligible"}
     literature = {"generated": 0, "reason": "not_needed_existing_eligible"}
@@ -225,6 +285,15 @@ def main() -> int:
 
     eligibility_after_value = _eligibility(args)
     print(f"Eligibility after value fallback: {eligibility_after_value}")
+    if generated.get("reason") != "not_needed_existing_eligible" or int(generated.get("generated", 0) or 0) > 0:
+        _record_feedback(
+            args=args,
+            phase="value_factory",
+            generation_result=generated,
+            eligibility_before=eligibility_before,
+            eligibility_after=eligibility_after_value,
+            context={"parent_config": parent_config},
+        )
 
     if not eligibility_after_value.get("eligible") and not args.no_literature_fallback:
         literature = _mine_literature(args, parent_config)
@@ -232,6 +301,15 @@ def main() -> int:
 
     eligibility_after_literature = _eligibility(args)
     print(f"Eligibility after literature fallback: {eligibility_after_literature}")
+    if literature.get("reason") != "not_needed_existing_eligible" or int(literature.get("generated", 0) or 0) > 0:
+        _record_feedback(
+            args=args,
+            phase="literature_miner",
+            generation_result=literature,
+            eligibility_before=eligibility_after_value,
+            eligibility_after=eligibility_after_literature,
+            context={"parent_config": parent_config, "paper_ideas": args.paper_ideas},
+        )
 
     if (
         not eligibility_after_literature.get("eligible")
@@ -244,12 +322,30 @@ def main() -> int:
             limit=int(args.max_paper_ideas),
         )
         print(f"Paper-searcher fallback: {paper_search}")
+        _record_feedback(
+            args=args,
+            phase="paper_searcher",
+            generation_result=paper_search,
+            eligibility_before=eligibility_after_literature,
+            eligibility_after=eligibility_after_literature,
+            context={"paper_ideas": args.paper_ideas, "online": bool(args.online_paper_search)},
+        )
 
         literature = _mine_literature(args, parent_config)
         print(f"Literature-hypothesis fallback after paper search: {literature}")
+        eligibility_after_literature = _eligibility(args)
+        _record_feedback(
+            args=args,
+            phase="literature_after_paper_search",
+            generation_result=literature,
+            eligibility_before=eligibility_after_literature,
+            eligibility_after=eligibility_after_literature,
+            context={"parent_config": parent_config, "paper_ideas": args.paper_ideas},
+        )
 
     final_eligibility = _eligibility(args)
     print(f"Final hypothesis eligibility preflight: {final_eligibility}")
+    write_generation_feedback_report(state_dir=args.state_dir, reports_dir=args.reports_dir)
 
     if not final_eligibility.get("eligible"):
         write_autonomy_blocker(
@@ -257,7 +353,7 @@ def main() -> int:
             reason="no_eligible_hypotheses_after_fallbacks",
             errors=[str(final_eligibility.get("reason"))],
             warnings=[],
-            next_action="Review state/missing_feature_tasks.jsonl, run feature_engineering_agent.py, add new paper ideas, or broaden literature templates.",
+            next_action="Review reports/generation_feedback.md, state/missing_feature_tasks.jsonl, run feature_engineering_agent.py, add new paper ideas, or broaden literature templates.",
             context={
                 "candidate_under_review": candidate_review,
                 "candidate_review_generation": candidate_review_generation,
@@ -328,8 +424,9 @@ def main() -> int:
             print(f"- {error}")
         return 3
 
-    # Keep review reports fresh after the batch.
+    # Keep review and feedback reports fresh after the batch.
     write_promotion_candidate_review(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
+    write_generation_feedback_report(state_dir=args.state_dir, reports_dir=args.reports_dir)
     clear_autonomy_blocker(state_dir=args.state_dir, reason="batch_completed_with_value")
     return 0
 

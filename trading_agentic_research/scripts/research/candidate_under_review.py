@@ -11,6 +11,12 @@ If state/current_parent.json or state/champion_runs.json contains
 pending_parent_candidate_run_id, that candidate has priority over older
 baseline_candidate_run_id / promotion_candidates. This prevents the system from
 sliding backward to an older candidate after discovering a stronger one.
+
+Exhaustion guard
+----------------
+If the same candidate has already been marked review_exhausted, refreshing the
+state must not silently reactivate it. A different pending candidate can still
+replace it.
 """
 from __future__ import annotations
 
@@ -272,7 +278,6 @@ def _candidate_from_champion_state(state_dir: str | Path) -> str | None:
 
     candidates = champion.get("promotion_candidates", []) or []
     if candidates:
-        # Prefer best scoring / most recent ordering already maintained by governance.
         rid = candidates[0].get("run_id")
         if rid:
             return str(rid)
@@ -289,10 +294,22 @@ def refresh_candidate_under_review(
     hypothesis_bank_path: str | Path = "bibliography/hypothesis_bank.jsonl",
 ) -> dict[str, Any]:
     candidate_run_id = _candidate_from_champion_state(state_dir)
+    candidate_path = Path(state_dir) / "candidate_under_review.json"
+    existing = read_json(candidate_path, {}) or {}
+
     if not candidate_run_id:
         payload = {"status": "none", "reason": "no_promotion_candidate", "updated_at": now_iso()}
-        write_json(Path(state_dir) / "candidate_under_review.json", payload)
+        write_json(candidate_path, payload)
         return payload
+
+    if (
+        existing.get("status") == "review_exhausted"
+        and str(existing.get("candidate_run_id")) == str(candidate_run_id)
+    ):
+        existing["reason"] = existing.get("reason") or "candidate_review_previously_exhausted"
+        existing["updated_at"] = now_iso()
+        write_json(candidate_path, existing)
+        return existing
 
     recovered = recover_candidate_config(
         candidate_run_id=candidate_run_id,
@@ -317,7 +334,7 @@ def refresh_candidate_under_review(
         "official_parent_run_id": (read_json(Path(state_dir) / "current_parent.json", {}) or {}).get("current_parent_run_id"),
         "updated_at": now_iso(),
     }
-    write_json(Path(state_dir) / "candidate_under_review.json", payload)
+    write_json(candidate_path, payload)
     return payload
 
 

@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "timestamp": "2026-05-18T16:48:10.560622+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_candidate_under_review_hypotheses",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_candidate_under_review_hypotheses",
+        "candidate_run_id": "EXP_054",
+        "hypotheses": [],
+        "candidate_review_eligible_remaining": [
+          "HYP_REVIEW_EXP_054_TOPN_6_V1",
+          "HYP_REVIEW_EXP_054_TOPN_10_V1",
+          "HYP_REVIEW_EXP_054_TRAILING_18_V1"
+        ],
+        "candidate_review_blocked": [
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+            "axis": "exit",
+            "reason": "axis_exhausted"
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+            "axis": "exit",
+            "reason": "axis_exhausted"
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+            "axis": "exit",
+            "reason": "axis_exhausted"
+          }
+        ]
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "active",
+          "reason": "candidate_config_recovered",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "updated_at": "2026-05-18T16:48:10.435129+00:00"
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-18T16:48:10.606526+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-18T16:48:10.640446+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "available_feature_count": 188,
+        "skipped_existing": 11,
+        "ideas_seen": 11,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-18T16:48:10.648510+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 5,
+        "online": false
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-18T16:48:10.680809+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "available_feature_count": 188,
+        "skipped_existing": 11,
+        "ideas_seen": 11,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    }
+  ],
+  "updated_at": "2026-05-18T16:48:10.680809+00:00"
+}
