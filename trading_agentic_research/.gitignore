@@ -10,6 +10,3 @@ runs.7z
 runs/EXP_*/
 runs/*/analysis.json
 runs/*/analysis.md
-
-# Auto-generated candidate configs (reproducible from hypotheses)
-configs/generated/
