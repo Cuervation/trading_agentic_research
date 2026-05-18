@@ -129,6 +129,26 @@
       "rejections": 1,
       "acceptances": 0,
       "promoted_candidates": 0
+    },
+    "feature_space_quality_momentum": {
+      "rejections": 1,
+      "acceptances": 1,
+      "promoted_candidates": 0
+    },
+    "feature_space_trend_following": {
+      "rejections": 2,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "feature_space_pullback": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "feature_space_momentum": {
+      "rejections": 2,
+      "acceptances": 0,
+      "promoted_candidates": 0
     }
   },
   "learning_events": [
@@ -1248,6 +1268,96 @@
       "flags": [
         "metric_no_effect",
         "duplicate_artifact"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_066",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+      "family": "feature_space_quality_momentum",
+      "run_id": "EXP_066",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_067",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+      "family": "feature_space_trend_following",
+      "run_id": "EXP_067",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_068",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+      "family": "feature_space_pullback",
+      "run_id": "EXP_068",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_069",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+      "family": "feature_space_quality_momentum",
+      "run_id": "EXP_069",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_070",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+      "family": "feature_space_momentum",
+      "run_id": "EXP_070",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_071",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+      "family": "feature_space_trend_following",
+      "run_id": "EXP_071",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_072",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
+      "family": "feature_space_momentum",
+      "run_id": "EXP_072",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
       ],
       "written_to_learning_memory": true,
       "can_promote_baseline": false

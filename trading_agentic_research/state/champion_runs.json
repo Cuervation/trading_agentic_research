@@ -223,6 +223,21 @@
   ],
   "defensive_secondary_candidates": [
     {
+      "run_id": "EXP_066",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 31.179525339859303,
+      "strategy_max_drawdown_pct": -23.327993051394614,
+      "months_beating_spy": 47,
+      "months_losing_to_spy": 28,
+      "years_beating_spy": 7,
+      "years_losing_to_spy": 0,
+      "trades": 645,
+      "updated_at": "2026-05-18T18:49:31.381825+00:00"
+    },
+    {
       "run_id": "AUTO_076",
       "strategy_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
       "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
@@ -360,7 +375,7 @@
       "updated_at": "2026-05-18T01:37:19.827539+00:00"
     }
   ],
-  "updated_at": "2026-05-18T18:07:24.654807+00:00",
+  "updated_at": "2026-05-18T19:09:28.904256+00:00",
   "parent_promotion_blocked": true,
   "pending_parent_candidate_run_id": "EXP_054",
   "official_parent_run_id": "AUTO_002",

@@ -1,17 +1,123 @@
 {
-  "status": "active",
-  "reason": "candidate_config_recovered",
+  "status": "review_exhausted",
+  "reason": "no_selector_eligible_candidate_review_hypotheses",
   "candidate_run_id": "EXP_054",
   "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
   "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
   "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
   "official_parent_run_id": "AUTO_002",
   "candidate_review_learning": {
-    "reset": true,
-    "initialized": false,
-    "reason": "reset_for_new_candidate_under_review",
-    "previous_candidate_run_id": "EXP_044",
+    "reset": false,
+    "reason": "same_candidate",
     "candidate_run_id": "EXP_054"
   },
-  "updated_at": "2026-05-18T18:06:10.862568+00:00"
+  "updated_at": "2026-05-18T19:08:01.301028+00:00",
+  "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+  "blocked_hypotheses": [
+    {
+      "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+      "axis": "top_n",
+      "reason": "selector_memory_rejected",
+      "score": {
+        "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+        "family": "candidate_under_review_drawdown_refinement",
+        "in_cooldown": true,
+        "prior_rejections": 3,
+        "prior_acceptances": 2,
+        "can_generate_candidate": false,
+        "can_promote_baseline": false,
+        "decision": "rejected",
+        "reason": "repeated_failed_hypotheses"
+      }
+    },
+    {
+      "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+      "axis": "top_n",
+      "reason": "selector_memory_rejected",
+      "score": {
+        "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+        "family": "candidate_under_review_drawdown_refinement",
+        "in_cooldown": true,
+        "prior_rejections": 3,
+        "prior_acceptances": 2,
+        "can_generate_candidate": false,
+        "can_promote_baseline": false,
+        "decision": "rejected",
+        "reason": "repeated_failed_hypotheses"
+      }
+    },
+    {
+      "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+      "axis": "exit",
+      "reason": "selector_memory_rejected",
+      "score": {
+        "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+        "family": "candidate_under_review_exit_refinement",
+        "in_cooldown": true,
+        "prior_rejections": 3,
+        "prior_acceptances": 0,
+        "can_generate_candidate": false,
+        "can_promote_baseline": false,
+        "decision": "rejected",
+        "reason": "repeated_failed_hypotheses"
+      }
+    },
+    {
+      "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+      "axis": "exit",
+      "reason": "selector_memory_rejected",
+      "score": {
+        "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+        "family": "candidate_under_review_exit_refinement",
+        "in_cooldown": true,
+        "prior_rejections": 3,
+        "prior_acceptances": 0,
+        "can_generate_candidate": false,
+        "can_promote_baseline": false,
+        "decision": "rejected",
+        "reason": "repeated_failed_hypotheses"
+      }
+    },
+    {
+      "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+      "axis": "exit",
+      "reason": "selector_memory_rejected",
+      "score": {
+        "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+        "family": "candidate_under_review_exit_refinement",
+        "in_cooldown": true,
+        "prior_rejections": 3,
+        "prior_acceptances": 0,
+        "can_generate_candidate": false,
+        "can_promote_baseline": false,
+        "decision": "rejected",
+        "reason": "repeated_failed_hypotheses"
+      }
+    },
+    {
+      "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+      "axis": "trailing",
+      "reason": "selector_memory_rejected",
+      "score": {
+        "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+        "family": "candidate_under_review_drawdown_refinement",
+        "in_cooldown": true,
+        "prior_rejections": 3,
+        "prior_acceptances": 2,
+        "can_generate_candidate": false,
+        "can_promote_baseline": false,
+        "decision": "rejected",
+        "reason": "repeated_failed_hypotheses"
+      }
+    }
+  ],
+  "selector_counts": {
+    "rows": 6,
+    "selectable": 0,
+    "blocked": 6,
+    "rejected": 68,
+    "accepted": 22,
+    "consumed": 73,
+    "repeat_blocked": 2
+  }
 }

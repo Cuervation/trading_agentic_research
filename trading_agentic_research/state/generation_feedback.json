@@ -263,7 +263,786 @@
         }
       },
       "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-18T18:48:47.558376+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_candidate_under_review_hypotheses",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_candidate_under_review_hypotheses",
+        "candidate_run_id": "EXP_054",
+        "hypotheses": [],
+        "candidate_review_selectable_remaining": [],
+        "candidate_review_selector_blocked": [
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+            "axis": "top_n",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+            "axis": "top_n",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+            "axis": "exit",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "family": "candidate_under_review_exit_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 0,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+            "axis": "exit",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "family": "candidate_under_review_exit_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 0,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+            "axis": "exit",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "family": "candidate_under_review_exit_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 0,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+            "axis": "trailing",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          }
+        ],
+        "candidate_review_selector_counts": {
+          "rows": 6,
+          "selectable": 0,
+          "blocked": 6,
+          "rejected": 68,
+          "accepted": 22,
+          "consumed": 73,
+          "repeat_blocked": 2
+        },
+        "candidate_review_eligible_remaining": [],
+        "candidate_review_blocked": [
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+            "axis": "top_n",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+            "axis": "top_n",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+            "axis": "exit",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "family": "candidate_under_review_exit_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 0,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+            "axis": "exit",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "family": "candidate_under_review_exit_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 0,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+            "axis": "exit",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "family": "candidate_under_review_exit_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 0,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          },
+          {
+            "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+            "axis": "trailing",
+            "reason": "selector_memory_rejected",
+            "score": {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "family": "candidate_under_review_drawdown_refinement",
+              "in_cooldown": true,
+              "prior_rejections": 3,
+              "prior_acceptances": 2,
+              "can_generate_candidate": false,
+              "can_promote_baseline": false,
+              "decision": "rejected",
+              "reason": "repeated_failed_hypotheses"
+            }
+          }
+        ],
+        "candidate_review_status": "review_exhausted",
+        "candidate_review_exhaustion_reason": "no_selector_eligible_candidate_review_hypotheses"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-18T18:48:47.438896+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-18T18:48:47.599470+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-18T18:48:47.631414+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "available_feature_count": 188,
+        "skipped_existing": 11,
+        "ideas_seen": 11,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-18T18:48:47.638790+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 5,
+        "online": false
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-18T18:48:47.667975+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "available_feature_count": 188,
+        "skipped_existing": 11,
+        "ideas_seen": 11,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-18T18:48:47.731576+00:00",
+      "phase": "feature_space_expansion",
+      "generated": 5,
+      "eligible_after_generation": true,
+      "eligible_hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+      "eligible_family": "feature_space_quality_momentum",
+      "reason": "feature_space_hypotheses_generated",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "selector_found_eligible_hypothesis",
+      "generation_result": {
+        "generated": 5,
+        "reason": "feature_space_hypotheses_generated",
+        "hypotheses": [
+          "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+          "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+          "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+          "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+          "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1"
+        ],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "available_feature_count": 188,
+        "available_specs": [
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct",
+          "channel_r2"
+        ],
+        "recently_used_features": [
+          "channel_r2"
+        ],
+        "skipped": []
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "max_new": 5
+      }
+    },
+    {
+      "timestamp": "2026-05-18T18:55:35.568906+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": true,
+      "eligible_hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+      "eligible_family": "feature_space_quality_momentum",
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "selector_found_eligible_hypothesis",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-18T18:55:35.473797+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-18T19:08:01.418641+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": true,
+      "eligible_hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+      "eligible_family": "feature_space_trend_following",
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "selector_found_eligible_hypothesis",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-18T19:08:01.301028+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
     }
   ],
-  "updated_at": "2026-05-18T18:06:10.964194+00:00"
+  "updated_at": "2026-05-18T19:08:01.418641+00:00"
 }

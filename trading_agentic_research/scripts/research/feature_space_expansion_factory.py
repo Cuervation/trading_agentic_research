@@ -1,9 +1,15 @@
-"""Final autonomous fallback: conservative feature-space hypothesis expansion.
+"""Final autonomous fallback: feature-space hypothesis expansion v2.
 
-This factory is used only after candidate-review, value, literature and paper
-fallbacks fail to produce any eligible work. It is intentionally small,
-deterministic and auditable: it creates a few new one-axis or lightly-combined
-hypotheses from features that actually exist in the weekly feature store.
+Used after candidate-review, value, literature and paper fallbacks fail to
+produce eligible work. Version 2 keeps the same safety goals as v1, but it is
+less sterile when simple one-axis ranking hypotheses are exhausted:
+
+- first tries pure ranking hypotheses;
+- then generates *real* composite hypotheses supported by the backtester:
+  ranking + row-level confirmation filters, ranking + market-filter variants,
+  ranking + mild top_n/exit changes;
+- avoids duplicate real override signatures;
+- stays deterministic, auditable, and parent-lock safe.
 
 It does not move the parent and does not promote candidates. It only appends new
 hypothesis cards to the hypothesis bank for the normal selector/backtester.
@@ -40,8 +46,18 @@ class FeatureSpec:
     source_id: str
 
 
+@dataclass(frozen=True)
+class ConfirmSpec:
+    field: str
+    operator: str
+    value: float
+    suffix: str
+    claim_fragment: str
+    mechanism_fragment: str
+
+
 def _slug(text: str) -> str:
-    return re.sub(r"[^A-Za-z0-9]+", "_", text.upper()).strip("_")[:48] or "FEATURE"
+    return re.sub(r"[^A-Za-z0-9]+", "_", text.upper()).strip("_")[:56] or "FEATURE"
 
 
 def _safe_run_id(value: Any) -> str:
@@ -61,7 +77,7 @@ def _recent_text(state_dir: str | Path) -> str:
     pieces: list[str] = []
     for name in ["research_ledger.jsonl", "rejected_hypotheses.jsonl", "accepted_hypotheses.jsonl", "consumed_hypotheses.jsonl"]:
         rows = read_jsonl(Path(state_dir) / name)
-        for row in rows[-80:]:
+        for row in rows[-120:]:
             pieces.append(json.dumps(row, sort_keys=True, ensure_ascii=False))
     return "\n".join(pieces).lower()
 
@@ -80,9 +96,34 @@ def _feature_specs() -> list[FeatureSpec]:
     ]
 
 
+def _confirm_specs() -> list[ConfirmSpec]:
+    return [
+        ConfirmSpec("close_vs_sma20w_pct", ">", 0.0, "SMA20_POS", "20-week trend must be positive", "fast trend confirmation reduces late/weak momentum entries"),
+        ConfirmSpec("close_vs_sma52w_pct", ">", 0.0, "SMA52_POS", "52-week trend must be positive", "long trend confirmation filters structurally weak names"),
+        ConfirmSpec("close_sma_50_slope_5d_pct", ">", 0.0, "SMA50_SLOPE_POS", "short SMA slope must be positive", "recent slope confirmation avoids deteriorating trends"),
+        ConfirmSpec("channel_slope_pct", ">", 0.0, "CHANNEL_SLOPE_POS", "channel slope must be positive", "positive fitted trend reduces noisy counter-trend selections"),
+        ConfirmSpec("channel_r2", ">=", 0.35, "CHANNEL_R2_035", "trend quality must clear a minimum R2", "trend quality confirmation reduces fragile momentum exposure"),
+        ConfirmSpec("ret_13w_pct", ">", 0.0, "RET13_POS", "13-week return must be positive", "near-term confirmation avoids stale long-lookback winners"),
+    ]
+
+
 def _existing_feature_mentions(state_dir: str | Path) -> set[str]:
     text = _recent_text(state_dir)
-    return {spec.field for spec in _feature_specs() if spec.field.lower() in text}
+    names = {spec.field for spec in _feature_specs()}
+    names.update({spec.field for spec in _confirm_specs()})
+    return {name for name in names if name.lower() in text}
+
+
+def _row_family_for_combo(rank_spec: FeatureSpec, suffix: str) -> str:
+    if "CONF" in suffix or "FILTER" in suffix:
+        return "feature_space_composite_confirmation"
+    if "MKT" in suffix or "SPY" in suffix:
+        return "feature_space_regime"
+    if "TOPN" in suffix:
+        return "feature_space_composite_concentration"
+    if "EXIT" in suffix:
+        return "feature_space_composite_exit"
+    return rank_spec.family
 
 
 def _build_row(
@@ -92,22 +133,32 @@ def _build_row(
     parent_run_id: str,
     parent_hypothesis_id: str | None,
     overrides: dict[str, Any],
+    claim: str | None = None,
+    mechanism: str | None = None,
+    family: str | None = None,
+    axis: str | None = None,
+    features_required: list[str] | None = None,
+    source_id: str | None = None,
 ) -> dict[str, Any]:
-    required = [spec.field, "close"]
+    required = sorted(set(features_required or [spec.field, "close"]))
     return {
         "hypothesis_id": hypothesis_id,
-        "family": spec.family,
-        "claim": spec.claim,
-        "causal_mechanism": spec.mechanism,
-        "bibliography_basis": [{"source_id": spec.source_id, "title": "Autonomous feature-space expansion after local/literature exhaustion"}],
+        "family": family or spec.family,
+        "claim": claim or spec.claim,
+        "causal_mechanism": mechanism or spec.mechanism,
+        "bibliography_basis": [{"source_id": source_id or spec.source_id, "title": "Autonomous feature-space expansion after local/literature exhaustion"}],
         "empirical_basis": [{"run_id": parent_run_id, "hypothesis_id": parent_hypothesis_id, "reason": "Generated only after candidate/value/literature/paper fallbacks produced no eligible hypotheses."}],
         "features_required": required,
         "status": "candidate",
         "required_spy_comparison": "monthly_and_yearly",
-        "axis": spec.axis,
+        "axis": axis or spec.axis,
         "falsification_rule": "Reject if it fails to improve CAGR/drawdown/SPY-relative robustness versus AUTO_002 or if it creates duplicate/no-effect artifacts.",
         "strategy_overrides": overrides,
     }
+
+
+def _condition(field: str, operator: str, value: float) -> dict[str, Any]:
+    return {"field": field, "operator": operator, "value": value, "enabled_if_field_exists": True}
 
 
 def generate_feature_space_hypotheses(
@@ -141,23 +192,43 @@ def generate_feature_space_hypotheses(
     recently_used_features = _existing_feature_mentions(state_dir)
     rows: list[dict[str, Any]] = []
     skipped: list[dict[str, Any]] = []
+    layers: list[str] = []
 
-    def add(spec: FeatureSpec, suffix: str, overrides: dict[str, Any]) -> None:
+    available_specs = [s for s in _feature_specs() if s.field in features and s.field != parent_ranking]
+    available_specs.sort(key=lambda s: (s.field in recently_used_features, s.field))
+    confirm_specs = [c for c in _confirm_specs() if c.field in features]
+    confirm_specs.sort(key=lambda c: (c.field in recently_used_features, c.field, c.suffix))
+
+    def add(
+        spec: FeatureSpec,
+        suffix: str,
+        overrides: dict[str, Any],
+        *,
+        layer: str,
+        claim: str | None = None,
+        mechanism: str | None = None,
+        family: str | None = None,
+        axis: str | None = None,
+        features_required: list[str] | None = None,
+        source_id: str | None = None,
+        respect_axis_exhaustion: bool = True,
+    ) -> None:
         if len(rows) >= max_new:
             return
-        if spec.axis in exhausted_axes:
-            skipped.append({"field": spec.field, "reason": "axis_exhausted", "axis": spec.axis})
+        effective_axis = axis or spec.axis
+        if respect_axis_exhaustion and effective_axis in exhausted_axes:
+            skipped.append({"field": spec.field, "reason": "axis_exhausted", "axis": effective_axis, "layer": layer})
             return
         hypothesis_id = f"HYP_FSPACE_{safe_parent}_{suffix}_V1"
         if hypothesis_id in ids:
-            skipped.append({"field": spec.field, "reason": "id_exists", "hypothesis_id": hypothesis_id})
+            skipped.append({"field": spec.field, "reason": "id_exists", "hypothesis_id": hypothesis_id, "layer": layer})
             return
         overrides = dict(overrides)
         overrides["strategy_id"] = hypothesis_id
-        overrides.setdefault("strategy_family", spec.family)
+        overrides.setdefault("strategy_family", family or _row_family_for_combo(spec, suffix))
         sig = real_override_signature(overrides)
         if sig in sigs:
-            skipped.append({"field": spec.field, "reason": "duplicate_override_signature", "hypothesis_id": hypothesis_id})
+            skipped.append({"field": spec.field, "reason": "duplicate_override_signature", "hypothesis_id": hypothesis_id, "layer": layer})
             return
         rows.append(_build_row(
             hypothesis_id=hypothesis_id,
@@ -165,60 +236,163 @@ def generate_feature_space_hypotheses(
             parent_run_id=parent_run_id,
             parent_hypothesis_id=parent_hypothesis_id,
             overrides=overrides,
+            claim=claim,
+            mechanism=mechanism,
+            family=family or _row_family_for_combo(spec, suffix),
+            axis=effective_axis,
+            features_required=features_required,
+            source_id=source_id,
         ))
         ids.add(hypothesis_id)
         sigs.add(sig)
+        layers.append(layer)
 
-    # Prefer unused feature dimensions first; then allow lightly-used dimensions
-    # with a different structural combination.
-    available_specs = [s for s in _feature_specs() if s.field in features and s.field != parent_ranking]
-    available_specs.sort(key=lambda s: (s.field in recently_used_features, s.field))
-
+    # Layer 1: pure ranking, same as v1. It is cheap and still useful when new
+    # feature columns appear.
     for spec in available_specs:
         overrides = {
             "ranking": {"field": spec.field, "order": spec.order},
             "risk_filters": {"require_non_null_fields": [spec.field, "close"]},
-            "changed_parameters": ["ranking.field", "risk_filters.require_non_null_fields"],
+            "changed_parameters": ["ranking.field", "ranking.order", "risk_filters.require_non_null_fields"],
             "expected_effect": "Discover a non-consumed feature dimension while preserving parent governance and SPY comparison.",
             "autonomy_reason": reason,
         }
-        add(spec, f"RANK_{_slug(spec.field)}", overrides)
+        add(spec, f"RANK_{_slug(spec.field)}", overrides, layer="pure_ranking")
 
-    # If pure ranking features are exhausted/duplicated, try a small combined
-    # structure only when the corresponding coarse axis was not exhausted.
-    if len(rows) < max_new and "concentration" not in exhausted_axes:
+    # Layer 2: ranking + confirmation filter. These are real because
+    # backtester.signal_builder now enforces risk_filters.conditions.
+    if len(rows) < max_new:
         for spec in available_specs:
-            for top_n in sorted({max(3, parent_top_n - 2), parent_top_n + 2, 7, 9}):
+            for confirm in confirm_specs:
+                if confirm.field == spec.field:
+                    continue
+                required = [spec.field, confirm.field, "close"]
+                overrides = {
+                    "ranking": {"field": spec.field, "order": spec.order},
+                    "risk_filters": {
+                        "require_non_null_fields": required,
+                        "conditions": [_condition(confirm.field, confirm.operator, confirm.value)],
+                    },
+                    "changed_parameters": ["ranking.field", "ranking.order", "risk_filters.conditions"],
+                    "expected_effect": "Test ranking signal only when an independent trend/quality confirmation is present.",
+                    "autonomy_reason": reason,
+                }
+                claim = f"Ranking by {spec.field} plus confirmation that {confirm.claim_fragment} may reduce duplicate/noisy momentum exposure."
+                mechanism = f"{spec.mechanism} The confirmation layer adds an independent condition: {confirm.mechanism_fragment}."
+                add(
+                    spec,
+                    f"RANK_{_slug(spec.field)}_CONF_{confirm.suffix}",
+                    overrides,
+                    layer="rank_confirmation",
+                    claim=claim,
+                    mechanism=mechanism,
+                    family="feature_space_composite_confirmation",
+                    axis="feature_space_rank_confirm",
+                    features_required=required,
+                    source_id=f"{spec.source_id}__{confirm.suffix.lower()}",
+                    respect_axis_exhaustion=False,
+                )
+                if len(rows) >= max_new:
+                    break
+            if len(rows) >= max_new:
+                break
+
+    # Layer 3: ranking + real market-filter variants. These are useful because
+    # the logs show repeated SPY NaN fallback warnings.
+    if len(rows) < max_new:
+        for spec in available_specs:
+            variants = [
+                ("MKT_STRICT_SPY", {"require_positive_trend": True, "fallback_allow_if_missing_spy_metric": False}, "strict SPY trend filter without NaN fallback"),
+                ("MKT_RELAXED", {"require_positive_trend": False}, "relaxed market filter to measure over-filtering"),
+            ]
+            for suffix, market_filter, label in variants:
+                overrides = {
+                    "ranking": {"field": spec.field, "order": spec.order},
+                    "market_filter": market_filter,
+                    "risk_filters": {"require_non_null_fields": [spec.field, "close"]},
+                    "changed_parameters": ["ranking.field", "ranking.order", "market_filter"],
+                    "expected_effect": f"Test whether {label} changes robustness versus AUTO_002.",
+                    "autonomy_reason": reason,
+                }
+                add(
+                    spec,
+                    f"RANK_{_slug(spec.field)}_{suffix}",
+                    overrides,
+                    layer="rank_market_filter",
+                    claim=f"Ranking by {spec.field} with {label} may reveal whether regime gating is helping or over-filtering.",
+                    mechanism=f"{spec.mechanism} The market regime variant directly changes the live gate used by signal_builder.",
+                    family="feature_space_regime",
+                    axis="feature_space_market_filter",
+                    features_required=[spec.field, "close"],
+                    source_id=f"{spec.source_id}__{suffix.lower()}",
+                    respect_axis_exhaustion=False,
+                )
+                if len(rows) >= max_new:
+                    break
+            if len(rows) >= max_new:
+                break
+
+    # Layer 4: composite concentration. Even when the coarse concentration axis
+    # is exhausted for old families, rank+top_n can be causal for a new feature.
+    if len(rows) < max_new:
+        for spec in available_specs:
+            for top_n in sorted({max(3, parent_top_n - 3), max(3, parent_top_n - 1), parent_top_n + 2, parent_top_n + 4, 5, 7, 9, 11}):
                 if top_n == parent_top_n:
                     continue
                 overrides = {
                     "ranking": {"field": spec.field, "order": spec.order},
                     "entry_rule": {"top_n": int(top_n)},
                     "risk_filters": {"require_non_null_fields": [spec.field, "close"]},
-                    "changed_parameters": ["ranking.field", "entry_rule.top_n"],
-                    "expected_effect": "Test a new ranking feature with a mild concentration adjustment, without changing parent.",
+                    "changed_parameters": ["ranking.field", "ranking.order", "entry_rule.top_n"],
+                    "expected_effect": "Test a feature-specific concentration level without changing official parent governance.",
                     "autonomy_reason": reason,
                 }
-                add(spec, f"RANK_{_slug(spec.field)}_TOPN_{top_n}", overrides)
+                add(
+                    spec,
+                    f"RANK_{_slug(spec.field)}_TOPN_{top_n}",
+                    overrides,
+                    layer="rank_topn",
+                    claim=f"Ranking by {spec.field} with top_n={top_n} may improve the concentration/diversification trade-off for this feature.",
+                    mechanism=f"{spec.mechanism} A feature-specific top_n can change turnover and concentration without changing parent.",
+                    family="feature_space_composite_concentration",
+                    axis="feature_space_rank_topn",
+                    features_required=[spec.field, "close"],
+                    source_id=f"{spec.source_id}__topn",
+                    respect_axis_exhaustion=False,
+                )
                 if len(rows) >= max_new:
                     break
             if len(rows) >= max_new:
                 break
 
-    if len(rows) < max_new and "exit_threshold" not in exhausted_axes:
+    # Layer 5: composite exit threshold. Same idea: rank-specific exit behavior
+    # may be different even if generic exit experiments were exhausted.
+    if len(rows) < max_new:
         for spec in available_specs:
-            for threshold in sorted({max(3, parent_exit - 4), parent_exit + 4}):
+            for threshold in sorted({max(3, parent_exit - 6), max(3, parent_exit - 3), parent_exit + 3, parent_exit + 6, 14, 18, 24, 28}):
                 if threshold == parent_exit:
                     continue
                 overrides = {
                     "ranking": {"field": spec.field, "order": spec.order},
                     "exit_rule": {"rank_threshold": int(threshold)},
                     "risk_filters": {"require_non_null_fields": [spec.field, "close"]},
-                    "changed_parameters": ["ranking.field", "exit_rule.rank_threshold"],
-                    "expected_effect": "Test a new ranking feature with a mild exit adjustment, without changing parent.",
+                    "changed_parameters": ["ranking.field", "ranking.order", "exit_rule.rank_threshold"],
+                    "expected_effect": "Test whether this feature needs a tighter/looser exit rank threshold.",
                     "autonomy_reason": reason,
                 }
-                add(spec, f"RANK_{_slug(spec.field)}_EXIT_{threshold}", overrides)
+                add(
+                    spec,
+                    f"RANK_{_slug(spec.field)}_EXIT_{threshold}",
+                    overrides,
+                    layer="rank_exit",
+                    claim=f"Ranking by {spec.field} with exit threshold={threshold} may cut deterioration differently than the parent.",
+                    mechanism=f"{spec.mechanism} The exit threshold controls when ranked names leave the hold universe.",
+                    family="feature_space_composite_exit",
+                    axis="feature_space_rank_exit",
+                    features_required=[spec.field, "close"],
+                    source_id=f"{spec.source_id}__exit",
+                    respect_axis_exhaustion=False,
+                )
                 if len(rows) >= max_new:
                     break
             if len(rows) >= max_new:
@@ -235,8 +409,10 @@ def generate_feature_space_hypotheses(
         "parent_run_id": parent_run_id,
         "available_feature_count": len(features),
         "available_specs": [s.field for s in available_specs],
+        "available_confirmations": [c.field for c in confirm_specs],
         "recently_used_features": sorted(recently_used_features),
-        "skipped": skipped[:30],
+        "generation_layers": layers,
+        "skipped": skipped[:60],
     }
 
 
