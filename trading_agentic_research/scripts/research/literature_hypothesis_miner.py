@@ -1,7 +1,8 @@
 """Literature-to-hypothesis fallback.
 
 Converts curated paper templates and bibliography/paper_ideas.jsonl into new
-auditable hypothesis cards.
+auditable hypothesis cards. Also deduplicates missing-feature tasks so repeated
+autonomous fallback calls do not grow state/missing_feature_tasks.jsonl endlessly.
 """
 from __future__ import annotations
 
@@ -105,17 +106,67 @@ def _supported(idea: PaperIdea, features: set[str]) -> bool:
 
 
 def _missing_task(parent_run_id: str, parent_hypothesis_id: str | None, idea: PaperIdea, features: set[str]) -> dict[str, Any]:
-    return {"created_at": now_iso(), "parent_run_id": parent_run_id, "parent_hypothesis_id": parent_hypothesis_id, "source_id": idea.source_id, "paper_title": idea.paper_title, "candidate_suffix": idea.suffix, "reason": "missing_required_features_for_literature_hypothesis", "missing_features": sorted(set(idea.required_features).difference(features)), "claim": idea.claim, "next_action": "add_features_to_feature_store_or_skip_this_paper_axis"}
+    return {
+        "created_at": now_iso(),
+        "parent_run_id": parent_run_id,
+        "parent_hypothesis_id": parent_hypothesis_id,
+        "source_id": idea.source_id,
+        "paper_title": idea.paper_title,
+        "candidate_suffix": idea.suffix,
+        "reason": "missing_required_features_for_literature_hypothesis",
+        "missing_features": sorted(set(idea.required_features).difference(features)),
+        "claim": idea.claim,
+        "next_action": "add_features_to_feature_store_or_skip_this_paper_axis",
+    }
+
+
+def _missing_task_key(task: dict[str, Any]) -> str:
+    return "|".join([
+        str(task.get("parent_run_id") or ""),
+        str(task.get("parent_hypothesis_id") or ""),
+        str(task.get("source_id") or ""),
+        str(task.get("candidate_suffix") or ""),
+        ",".join(sorted(str(x) for x in task.get("missing_features", []) or [])),
+    ])
+
+
+def append_missing_tasks_dedup(path: str | Path, tasks: list[dict[str, Any]]) -> int:
+    if not tasks:
+        return 0
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    existing = read_jsonl(p)
+    keys = {_missing_task_key(row) for row in existing}
+    written = 0
+    with p.open("a", encoding="utf-8") as f:
+        for task in tasks:
+            key = _missing_task_key(task)
+            if key in keys:
+                continue
+            keys.add(key)
+            f.write(json.dumps(task, ensure_ascii=False, separators=(",", ":")) + "\n")
+            written += 1
+    return written
 
 
 def _all_ideas(parent: dict[str, Any], paper_ideas_path: str | Path) -> list[PaperIdea]:
-    return [*built_in_literature_templates(parent), *ideas_from_paper_ideas(paper_ideas_path)]
+    # External paper ideas should win over built-in templates because they are
+    # the fresh bibliographic input for the loop.
+    return [*ideas_from_paper_ideas(paper_ideas_path), *built_in_literature_templates(parent)]
 
 
-def mine_literature_hypotheses(*, parent_strategy_config_path: str | Path, hypothesis_bank_path: str | Path = "bibliography/hypothesis_bank.jsonl", state_dir: str | Path = "state", max_new: int = 8, paper_ideas_path: str | Path = "bibliography/paper_ideas.jsonl") -> dict[str, Any]:
+def mine_literature_hypotheses(
+    *,
+    parent_strategy_config_path: str | Path,
+    hypothesis_bank_path: str | Path = "bibliography/hypothesis_bank.jsonl",
+    state_dir: str | Path = "state",
+    max_new: int = 8,
+    paper_ideas_path: str | Path = "bibliography/paper_ideas.jsonl",
+) -> dict[str, Any]:
     parent = read_json(parent_strategy_config_path, {}) or {}
     if not parent:
         return {"generated": 0, "reason": "missing_parent_config", "parent_strategy_config": str(parent_strategy_config_path)}
+
     features = available_weekly_features(state_dir)
     bank = read_jsonl(hypothesis_bank_path)
     ids = existing_ids(bank)
@@ -123,10 +174,12 @@ def mine_literature_hypotheses(*, parent_strategy_config_path: str | Path, hypot
     current = read_json(Path(state_dir) / "current_parent.json", {}) or {}
     parent_run_id = current.get("current_parent_run_id") or "PARENT"
     parent_hypothesis_id = current.get("current_parent_hypothesis_id") or current.get("current_parent_strategy_id")
+
     rows: list[dict[str, Any]] = []
     missing_tasks: list[dict[str, Any]] = []
     skipped_existing = 0
     ideas_seen = 0
+
     for idea in _all_ideas(parent, paper_ideas_path):
         ideas_seen += 1
         if len(rows) >= max_new:
@@ -145,14 +198,39 @@ def mine_literature_hypotheses(*, parent_strategy_config_path: str | Path, hypot
         if sig in sigs:
             skipped_existing += 1
             continue
-        rows.append({"hypothesis_id": hypothesis_id, "family": idea.family, "claim": idea.claim, "causal_mechanism": idea.mechanism, "bibliography_basis": [{"source_id": idea.source_id, "title": idea.paper_title}], "empirical_basis": [{"run_id": parent_run_id, "hypothesis_id": parent_hypothesis_id, "reason": "Generated by literature_hypothesis_miner after local factory exhaustion."}], "features_required": list(idea.required_features), "status": "candidate", "required_spy_comparison": "monthly_and_yearly", "axis": idea.family, "falsification_rule": idea.falsification_rule, "strategy_overrides": overrides})
+        rows.append({
+            "hypothesis_id": hypothesis_id,
+            "family": idea.family,
+            "claim": idea.claim,
+            "causal_mechanism": idea.mechanism,
+            "bibliography_basis": [{"source_id": idea.source_id, "title": idea.paper_title}],
+            "empirical_basis": [{"run_id": parent_run_id, "hypothesis_id": parent_hypothesis_id, "reason": "Generated by literature_hypothesis_miner after local factory exhaustion."}],
+            "features_required": list(idea.required_features),
+            "status": "candidate",
+            "required_spy_comparison": "monthly_and_yearly",
+            "axis": idea.family,
+            "falsification_rule": idea.falsification_rule,
+            "strategy_overrides": overrides,
+        })
         ids.add(hypothesis_id)
         sigs.add(sig)
+
     if rows:
         append_jsonl(hypothesis_bank_path, rows)
-    if missing_tasks:
-        append_jsonl(Path(state_dir) / "missing_feature_tasks.jsonl", missing_tasks)
-    return {"generated": len(rows), "reason": "literature_hypotheses_generated" if rows else "no_supported_literature_hypotheses", "hypotheses": [row["hypothesis_id"] for row in rows], "missing_feature_tasks": len(missing_tasks), "available_feature_count": len(features), "skipped_existing": skipped_existing, "ideas_seen": ideas_seen, "paper_ideas_path": str(paper_ideas_path), "parent_run_id": parent_run_id}
+    missing_written = append_missing_tasks_dedup(Path(state_dir) / "missing_feature_tasks.jsonl", missing_tasks)
+
+    return {
+        "generated": len(rows),
+        "reason": "literature_hypotheses_generated" if rows else "no_supported_literature_hypotheses",
+        "hypotheses": [row["hypothesis_id"] for row in rows],
+        "missing_feature_tasks": missing_written,
+        "missing_feature_tasks_seen": len(missing_tasks),
+        "available_feature_count": len(features),
+        "skipped_existing": skipped_existing,
+        "ideas_seen": ideas_seen,
+        "paper_ideas_path": str(paper_ideas_path),
+        "parent_run_id": parent_run_id,
+    }
 
 
 def main() -> int:
@@ -163,7 +241,18 @@ def main() -> int:
     p.add_argument("--max-new", type=int, default=8)
     p.add_argument("--paper-ideas", default="bibliography/paper_ideas.jsonl")
     args = p.parse_args()
-    print(json.dumps(mine_literature_hypotheses(parent_strategy_config_path=args.parent_strategy_config, hypothesis_bank_path=args.hypothesis_bank, state_dir=args.state_dir, max_new=args.max_new, paper_ideas_path=args.paper_ideas), indent=2, ensure_ascii=False, default=str))
+    print(json.dumps(
+        mine_literature_hypotheses(
+            parent_strategy_config_path=args.parent_strategy_config,
+            hypothesis_bank_path=args.hypothesis_bank,
+            state_dir=args.state_dir,
+            max_new=args.max_new,
+            paper_ideas_path=args.paper_ideas,
+        ),
+        indent=2,
+        ensure_ascii=False,
+        default=str,
+    ))
     return 0
 
 

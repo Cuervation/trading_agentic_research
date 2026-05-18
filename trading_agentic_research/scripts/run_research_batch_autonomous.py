@@ -8,7 +8,8 @@ from common failure modes:
 - local factory exhaustion;
 - unsupported literature ideas due to missing features;
 - silent no-op batches;
-- post-batch zero-iteration false success.
+- post-batch zero-iteration false success;
+- empty paper-idea library when literature fallback is needed.
 
 Exit codes:
 0 = batch launched and completed at least one iteration, or max-runs reached cleanly
@@ -36,6 +37,7 @@ from scripts.research.autonomous_hypothesis_factory import generate_value_hypoth
 from scripts.research.data_path_resolver import resolve_data_paths
 from scripts.research.hypothesis_eligibility import eligible_hypothesis_preflight
 from scripts.research.literature_hypothesis_miner import mine_literature_hypotheses
+from scripts.research.paper_searcher import generate_paper_ideas
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
 from scripts.research.research_policy import load_research_policy, validate_autonomous_launch, validate_post_batch
 from scripts.research.sync_strategy_registry import sync_strategy_registry
@@ -59,6 +61,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--project-config", default="configs/project_config.json")
     p.add_argument("--strategy-registry", default="configs/strategy_registry.json")
     p.add_argument("--hypothesis-bank", default="bibliography/hypothesis_bank.jsonl")
+    p.add_argument("--paper-ideas", default="bibliography/paper_ideas.jsonl")
     p.add_argument("--state-dir", default="state")
     p.add_argument("--runs-dir", default="runs")
     p.add_argument("--reports-dir", default="reports")
@@ -66,9 +69,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--generation-families", default="time_series_momentum_refinement,risk_control_refinement,quality_momentum,trend_following,can_slim,paper_time_series_momentum,paper_quality_momentum,paper_regime_filter")
     p.add_argument("--max-value-hypotheses", type=int, default=8)
     p.add_argument("--max-literature-hypotheses", type=int, default=8)
+    p.add_argument("--max-paper-ideas", type=int, default=5)
     p.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
     p.add_argument("--allow-parent-update", action="store_true")
     p.add_argument("--no-literature-fallback", action="store_true")
+    p.add_argument("--no-paper-searcher-fallback", action="store_true")
+    p.add_argument("--online-paper-search", action="store_true", help="Optional best-effort Semantic Scholar search when offline paper ideas are exhausted.")
     p.add_argument("--policy", default="governance/research_policy.json")
     p.add_argument("--allow-zero-iterations", action="store_true", help="Development-only escape hatch; production autonomous runs should not use this.")
     return p.parse_args()
@@ -93,6 +99,23 @@ def _eligibility(args: argparse.Namespace) -> dict[str, Any]:
 
 def _load_batch_state(state_dir: str | Path) -> dict[str, Any]:
     return read_json(Path(state_dir) / "batch_state.json", {}) or {}
+
+
+def _paper_ideas_nonempty(path: str | Path) -> bool:
+    p = Path(path)
+    if not p.is_absolute():
+        p = ROOT / p
+    return p.exists() and p.stat().st_size > 0
+
+
+def _mine_literature(args: argparse.Namespace, parent_config: str) -> dict[str, Any]:
+    return mine_literature_hypotheses(
+        parent_strategy_config_path=parent_config,
+        hypothesis_bank_path=args.hypothesis_bank,
+        state_dir=args.state_dir,
+        max_new=args.max_literature_hypotheses,
+        paper_ideas_path=args.paper_ideas,
+    )
 
 
 def main() -> int:
@@ -177,6 +200,7 @@ def main() -> int:
 
     generated = {"generated": 0, "reason": "not_needed_existing_eligible"}
     literature = {"generated": 0, "reason": "not_needed_existing_eligible"}
+    paper_search = {"rows_written": 0, "reason": "not_needed_existing_eligible"}
 
     if not eligibility_before.get("eligible"):
         generated = generate_value_hypotheses(
@@ -192,13 +216,26 @@ def main() -> int:
     print(f"Eligibility after value fallback: {eligibility_after_value}")
 
     if not eligibility_after_value.get("eligible") and not args.no_literature_fallback:
-        literature = mine_literature_hypotheses(
-            parent_strategy_config_path=parent_config,
-            hypothesis_bank_path=args.hypothesis_bank,
-            state_dir=args.state_dir,
-            max_new=args.max_literature_hypotheses,
-        )
+        literature = _mine_literature(args, parent_config)
         print(f"Literature-hypothesis fallback preflight: {literature}")
+
+    eligibility_after_literature = _eligibility(args)
+    print(f"Eligibility after literature fallback: {eligibility_after_literature}")
+
+    if (
+        not eligibility_after_literature.get("eligible")
+        and not args.no_literature_fallback
+        and not args.no_paper_searcher_fallback
+    ):
+        paper_search = generate_paper_ideas(
+            output=args.paper_ideas,
+            online=bool(args.online_paper_search),
+            limit=int(args.max_paper_ideas),
+        )
+        print(f"Paper-searcher fallback: {paper_search}")
+
+        literature = _mine_literature(args, parent_config)
+        print(f"Literature-hypothesis fallback after paper search: {literature}")
 
     final_eligibility = _eligibility(args)
     print(f"Final hypothesis eligibility preflight: {final_eligibility}")
@@ -214,7 +251,9 @@ def main() -> int:
                 "eligibility_before": eligibility_before,
                 "value_factory": generated,
                 "literature_miner": literature,
+                "paper_searcher": paper_search,
                 "final_eligibility": final_eligibility,
+                "paper_ideas_nonempty": _paper_ideas_nonempty(args.paper_ideas),
             },
         )
         print("No eligible hypotheses after all fallbacks; no batch will be launched.")
