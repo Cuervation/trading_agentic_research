@@ -1,23 +1,14 @@
 """Autonomous wrapper around run_research_batch.py.
 
 Use this entrypoint for long-running autonomous research. It protects the loop
-from common failure modes:
-- placeholder or missing data paths;
-- missing parent/champion config;
-- exhausted hypothesis bank;
-- local factory exhaustion;
-- unsupported literature ideas due to missing features;
-- silent no-op batches;
-- post-batch zero-iteration false success;
-- empty paper-idea library when literature fallback is needed.
-
-Exit codes:
-0 = batch launched and completed at least one iteration, or max-runs reached cleanly
-2 = data preflight failed
-3 = no eligible hypotheses after all fallbacks, or batch completed zero iterations
-4 = parent config missing/unusable
-5 = batch subprocess failed
-6 = research policy violation / manual review required
+from common failure modes and keeps the research direction explicit:
+- data path preflight;
+- central research policy;
+- parent/champion sync;
+- candidate-under-review refinement without moving official parent;
+- consumed-hypothesis avoidance;
+- literature/paper fallback;
+- post-batch zero-iteration validation.
 """
 from __future__ import annotations
 
@@ -34,11 +25,15 @@ if str(ROOT) not in sys.path:
 
 from scripts.research.autonomy_blocker import clear_autonomy_blocker, write_autonomy_blocker
 from scripts.research.autonomous_hypothesis_factory import generate_value_hypotheses
+from scripts.research.candidate_review_refinement_factory import generate_candidate_review_hypotheses
+from scripts.research.candidate_under_review import refresh_candidate_under_review
 from scripts.research.data_path_resolver import resolve_data_paths
+from scripts.research.data_quality_diagnostics import diagnose_data_quality
 from scripts.research.hypothesis_eligibility import eligible_hypothesis_preflight
 from scripts.research.literature_hypothesis_miner import mine_literature_hypotheses
 from scripts.research.paper_searcher import generate_paper_ideas
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
+from scripts.research.promotion_candidate_review import write_promotion_candidate_review
 from scripts.research.research_policy import load_research_policy, validate_autonomous_launch, validate_post_batch
 from scripts.research.sync_strategy_registry import sync_strategy_registry
 
@@ -66,17 +61,19 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--runs-dir", default="runs")
     p.add_argument("--reports-dir", default="reports")
     p.add_argument("--generated-configs-dir", default="configs/generated")
-    p.add_argument("--generation-families", default="time_series_momentum_refinement,risk_control_refinement,quality_momentum,trend_following,can_slim,paper_time_series_momentum,paper_quality_momentum,paper_regime_filter")
+    p.add_argument("--generation-families", default="candidate_under_review_drawdown_refinement,candidate_under_review_exit_refinement,candidate_under_review_regime_refinement,time_series_momentum_refinement,risk_control_refinement,quality_momentum,trend_following,can_slim,paper_time_series_momentum,paper_quality_momentum,paper_regime_filter")
     p.add_argument("--max-value-hypotheses", type=int, default=8)
+    p.add_argument("--max-candidate-review-hypotheses", type=int, default=8)
     p.add_argument("--max-literature-hypotheses", type=int, default=8)
     p.add_argument("--max-paper-ideas", type=int, default=5)
     p.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
     p.add_argument("--allow-parent-update", action="store_true")
+    p.add_argument("--no-candidate-under-review", action="store_true")
     p.add_argument("--no-literature-fallback", action="store_true")
     p.add_argument("--no-paper-searcher-fallback", action="store_true")
-    p.add_argument("--online-paper-search", action="store_true", help="Optional best-effort Semantic Scholar search when offline paper ideas are exhausted.")
+    p.add_argument("--online-paper-search", action="store_true")
     p.add_argument("--policy", default="governance/research_policy.json")
-    p.add_argument("--allow-zero-iterations", action="store_true", help="Development-only escape hatch; production autonomous runs should not use this.")
+    p.add_argument("--allow-zero-iterations", action="store_true")
     return p.parse_args()
 
 
@@ -99,13 +96,6 @@ def _eligibility(args: argparse.Namespace) -> dict[str, Any]:
 
 def _load_batch_state(state_dir: str | Path) -> dict[str, Any]:
     return read_json(Path(state_dir) / "batch_state.json", {}) or {}
-
-
-def _paper_ideas_nonempty(path: str | Path) -> bool:
-    p = Path(path)
-    if not p.is_absolute():
-        p = ROOT / p
-    return p.exists() and p.stat().st_size > 0
 
 
 def _mine_literature(args: argparse.Namespace, parent_config: str) -> dict[str, Any]:
@@ -167,6 +157,10 @@ def main() -> int:
         )
         return 2
 
+    dq = diagnose_data_quality(weekly_file=data.weekly_file, state_dir=args.state_dir, reports_dir=args.reports_dir)
+    if dq.get("warnings"):
+        print(f"Data quality warnings: {dq.get('warnings')}")
+
     sync_current_parent_state(
         state_dir=args.state_dir,
         strategy_registry_path=args.strategy_registry,
@@ -194,6 +188,23 @@ def main() -> int:
         )
         print(f"Parent config preflight failed: {parent_config}")
         return 4
+
+    candidate_review = {"status": "disabled"}
+    candidate_review_generation = {"generated": 0, "reason": "disabled"}
+    if not args.no_candidate_under_review:
+        candidate_review = refresh_candidate_under_review(
+            state_dir=args.state_dir,
+            runs_dir=args.runs_dir,
+            repo_root=ROOT,
+        )
+        print(f"Candidate-under-review state: {candidate_review.get('status')} {candidate_review.get('candidate_run_id')}")
+        write_promotion_candidate_review(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
+        candidate_review_generation = generate_candidate_review_hypotheses(
+            state_dir=args.state_dir,
+            hypothesis_bank_path=args.hypothesis_bank,
+            max_new=args.max_candidate_review_hypotheses,
+        )
+        print(f"Candidate-under-review hypothesis generation: {candidate_review_generation}")
 
     eligibility_before = _eligibility(args)
     print(f"Hypothesis eligibility preflight: {eligibility_before}")
@@ -248,12 +259,13 @@ def main() -> int:
             warnings=[],
             next_action="Review state/missing_feature_tasks.jsonl, run feature_engineering_agent.py, add new paper ideas, or broaden literature templates.",
             context={
+                "candidate_under_review": candidate_review,
+                "candidate_review_generation": candidate_review_generation,
                 "eligibility_before": eligibility_before,
                 "value_factory": generated,
                 "literature_miner": literature,
                 "paper_searcher": paper_search,
                 "final_eligibility": final_eligibility,
-                "paper_ideas_nonempty": _paper_ideas_nonempty(args.paper_ideas),
             },
         )
         print("No eligible hypotheses after all fallbacks; no batch will be launched.")
@@ -316,6 +328,8 @@ def main() -> int:
             print(f"- {error}")
         return 3
 
+    # Keep review reports fresh after the batch.
+    write_promotion_candidate_review(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
     clear_autonomy_blocker(state_dir=args.state_dir, reason="batch_completed_with_value")
     return 0
 

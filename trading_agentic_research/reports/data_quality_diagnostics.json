@@ -1,0 +1,49 @@
+{
+  "status": "ok",
+  "generated_at": "2026-05-18T03:50:15.482780+00:00",
+  "weekly_file": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\sp500_feature_store_weekly_master_all_260330223625.csv",
+  "rows": 133439,
+  "columns": 188,
+  "has_signal_date": false,
+  "has_date": true,
+  "spy_rows": 327,
+  "watch_columns": [
+    {
+      "column": "spy_close_vs_sma50_pct",
+      "exists": true,
+      "nan_pct": 3.6586,
+      "non_null": 128557
+    },
+    {
+      "column": "spy_channel_r2",
+      "exists": true,
+      "nan_pct": 0.0,
+      "non_null": 133439
+    },
+    {
+      "column": "spy_channel_slope_pct",
+      "exists": true,
+      "nan_pct": 0.0,
+      "non_null": 133439
+    },
+    {
+      "column": "ret_52w_pct",
+      "exists": true,
+      "nan_pct": 0.61,
+      "non_null": 132625
+    },
+    {
+      "column": "close_vs_sma52w_pct",
+      "exists": true,
+      "nan_pct": 0.5958,
+      "non_null": 132644
+    },
+    {
+      "column": "atr_14w_pct",
+      "exists": true,
+      "nan_pct": 0.1364,
+      "non_null": 133257
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-05-18T03:50:16.867285+00:00",
+  "official_parent_run_id": "AUTO_002",
+  "promotion_candidate_run_id": "EXP_044",
+  "parent": {
+    "run_id": "AUTO_002",
+    "cagr_pct": 52.09094654873998,
+    "total_return_pct": 1268.501293245107,
+    "max_drawdown_pct": -23.988221786353048,
+    "months_beating_spy": 45,
+    "months_losing_to_spy": 30,
+    "years_beating_spy": 7,
+    "years_losing_to_spy": 0,
+    "decision": null,
+    "can_move_parent": null,
+    "can_promote_baseline": null,
+    "warnings": [],
+    "parent_comparison": {}
+  },
+  "candidate": {
+    "run_id": "EXP_044",
+    "cagr_pct": 59.708531263634136,
+    "total_return_pct": 1756.429124897747,
+    "max_drawdown_pct": -27.129229626458784,
+    "months_beating_spy": 49,
+    "months_losing_to_spy": 26,
+    "years_beating_spy": 7,
+    "years_losing_to_spy": 0,
+    "decision": "promoted_candidate",
+    "can_move_parent": true,
+    "can_promote_baseline": false,
+    "warnings": [
+      "No daily price date after signal_date=2026-04-03; skipped rebalance."
+    ],
+    "parent_comparison": {
+      "parent_available": true,
+      "blocking_issues": [],
+      "parent_run_id": "AUTO_002",
+      "strategy_cagr_pct": 59.708531263634136,
+      "parent_cagr_pct": 52.09094654873998,
+      "excess_cagr_vs_parent_pct": 7.617585,
+      "strategy_max_drawdown_pct": -27.129229626458784,
+      "parent_max_drawdown_pct": -23.988221786353048,
+      "drawdown_delta_vs_parent_pct": -3.141008,
+      "trade_count_delta": -134,
+      "months_beating_parent": 37,
+      "months_losing_to_parent": 22,
+      "months_tied_parent": 16,
+      "years_beating_parent": 5,
+      "years_losing_to_parent": 2,
+      "years_tied_parent": 0
+    }
+  },
+  "parent_drawdown": {
+    "final_equity": 136850.1293245107,
+    "worst_drawdown_pct": -23.988221786353048,
+    "worst_drawdown_date": "2025-06-13 00:00:00"
+  },
+  "candidate_drawdown": {
+    "final_equity": 185642.9124897747,
+    "worst_drawdown_pct": -27.129229626458795,
+    "worst_drawdown_date": "2025-06-13 00:00:00"
+  },
+  "recommendation": "manual_review_required",
+  "deltas": {
+    "cagr_delta_pct": 7.617584714894157,
+    "drawdown_delta_pct": -3.141007840105736,
+    "months_beating_spy_delta": 4,
+    "years_losing_spy_delta": 0
+  },
+  "review_question": "Is the extra CAGR worth the drawdown degradation, or should we refine candidate_under_review first?"
+}

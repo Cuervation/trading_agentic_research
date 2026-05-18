@@ -1732,6 +1732,28 @@
         "years_losing_to_parent": 6
       },
       "can_promote_baseline": false
+    },
+    "EXP_049": {
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1",
+      "family": "risk_control_refinement",
+      "learning_id": "LEARN_EXP_049",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 15.548274206085399,
+        "max_drawdown_delta_pct": 4.090670479400952,
+        "months_beating_spy": 43,
+        "months_losing_to_spy": 32,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 40.005893603877986,
+        "parent_cagr_delta_pct": -25.288772,
+        "parent_drawdown_delta_pct": -6.025855,
+        "months_beating_parent": 19,
+        "months_losing_to_parent": 40,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -1955,6 +1977,9 @@
     ],
     "HYP_REFINE_AUTO002_TRAILING_22_V1": [
       "EXP_047"
+    ],
+    "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1": [
+      "EXP_049"
     ]
   }
 }

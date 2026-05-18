@@ -52,6 +52,10 @@
     "time_series_momentum_refinement": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "risk_control_refinement": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3

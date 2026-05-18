@@ -1,14 +1,4 @@
-"""Eligibility preflight for autonomous research batches.
-
-This module answers a simple but critical question before the wrapper launches a
-batch: is there at least one hypothesis that the normal selector can pick?
-
-Why this exists:
-- run_research_batch.py can finish with 0 completed iterations when the bank is
-  exhausted.
-- The autonomous wrapper should convert that condition into an explicit blocker
-  instead of launching a no-op batch.
-"""
+"""Eligibility preflight for autonomous research batches."""
 from __future__ import annotations
 
 import json
@@ -23,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from scripts.parameter_effect_memory import load_parameter_effect_memory
 from scripts.select_next_hypothesis import choose_next_hypothesis, load_hypothesis_bank, read_json, read_jsonl
+from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 
 
 def _repeat_blocked_hypothesis_ids(history: list[dict[str, Any]], max_repeats_per_hypothesis: int) -> set[str]:
@@ -37,11 +28,6 @@ def eligible_hypothesis_preflight(
     prefer_unseen: bool = True,
     max_repeats_per_hypothesis: int = 1,
 ) -> dict[str, Any]:
-    """Return selector result without running backtests.
-
-    Mirrors the selection inputs used by scripts/run_research_batch.py closely
-    enough to avoid launching a batch when selection is impossible.
-    """
     state_path = Path(state_dir)
     bank = load_hypothesis_bank(hypothesis_bank)
     learning = read_json(state_path / "learning_memory.json") if (state_path / "learning_memory.json").exists() else {}
@@ -50,6 +36,7 @@ def eligible_hypothesis_preflight(
     parameter_effect_memory = load_parameter_effect_memory(state_path / "parameter_effect_memory.json")
     rejected_ids = {row.get("hypothesis_id") for row in read_jsonl(state_path / "rejected_hypotheses.jsonl")}
     accepted_ids = {row.get("hypothesis_id") for row in read_jsonl(state_path / "accepted_hypotheses.jsonl")}
+    consumed_ids = consumed_hypothesis_ids(state_path)
     batch_state = read_json(state_path / "batch_state.json") if (state_path / "batch_state.json").exists() else {}
     repeat_blocked = _repeat_blocked_hypothesis_ids(batch_state.get("history", []) or [], max_repeats_per_hypothesis)
 
@@ -60,6 +47,7 @@ def eligible_hypothesis_preflight(
             cooldowns=cooldowns,
             rejected_ids={str(x) for x in rejected_ids if x}.union(repeat_blocked),
             accepted_ids={str(x) for x in accepted_ids if x},
+            consumed_ids=consumed_ids,
             parameter_effect_memory=parameter_effect_memory,
             current_parent_hypothesis_id=str(
                 current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id") or ""
@@ -71,14 +59,16 @@ def eligible_hypothesis_preflight(
             "hypothesis_id": hypothesis.get("hypothesis_id"),
             "family": hypothesis.get("family"),
             "reason": "selector_found_eligible_hypothesis",
+            "consumed_count": len(consumed_ids),
         }
-    except Exception as exc:  # ValueError is expected; keep broad to fail safe.
+    except Exception as exc:
         return {
             "eligible": False,
             "reason": str(exc),
             "bank_size": len(bank),
             "rejected_count": len({str(x) for x in rejected_ids if x}),
             "accepted_count": len({str(x) for x in accepted_ids if x}),
+            "consumed_count": len(consumed_ids),
             "repeat_blocked_count": len(repeat_blocked),
         }
 

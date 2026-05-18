@@ -56,3 +56,4 @@
 {"hypothesis_id": "HYP_REFINE_AUTO002_EXIT_24_V1", "family": "time_series_momentum_refinement", "run_id": "EXP_046", "learning_id": "LEARN_EXP_046", "decision": "rejected", "flags": ["metric_no_effect", "duplicate_artifact", "parent_underperformance"]}
 {"hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_22_V1", "family": "risk_control_refinement", "run_id": "EXP_047", "learning_id": "LEARN_EXP_047", "decision": "rejected", "flags": ["parent_underperformance"]}
 {"hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1", "family": "time_series_momentum_refinement", "run_id": "EXP_048", "learning_id": "LEARN_EXP_048", "decision": "rejected", "flags": ["metric_no_effect", "duplicate_artifact"]}
+{"hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1", "family": "risk_control_refinement", "run_id": "EXP_049", "learning_id": "LEARN_EXP_049", "decision": "rejected", "flags": ["parent_underperformance"]}

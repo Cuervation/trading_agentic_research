@@ -1,9 +1,10 @@
-﻿"""Evaluate a completed run folder, write audit.json, and persist learning.
+"""Evaluate a completed run folder, write audit.json, and persist learning.
 
-This replacement keeps the original behavior and adds:
+Adds:
 - global duplicate detection via state/artifact_hash_index.json
 - research_ledger.jsonl event per run
 - champion/current-parent governance updates
+- consumed_hypotheses.jsonl so exact hypotheses are not run twice
 """
 
 from __future__ import annotations
@@ -26,34 +27,19 @@ from scripts.research.artifact_index import (
 )
 from scripts.research.champion_governance import update_champion_state
 from scripts.research.research_ledger import append_run_to_ledger
+from scripts.research.consumed_hypotheses import append_consumed_hypothesis
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Audit a completed strategy run.")
     parser.add_argument("--run-id", required=True, help="Run id under runs/, e.g. EXP_001 or AUTO_001.")
     parser.add_argument("--runs-dir", default="runs", help="Base runs directory.")
-    parser.add_argument(
-        "--parent-run-id",
-        default=None,
-        help="Optional current parent run id. If provided, candidate must also be compared against it.",
-    )
-    parser.add_argument("--min-trades", type=int, default=10, help="Minimum trades required for validation.")
-    parser.add_argument(
-        "--hypothesis-id",
-        default="HYP_BASELINE_MOMENTUM_TREND_V1",
-        help="Hypothesis id to link this run to.",
-    )
-    parser.add_argument(
-        "--family",
-        default="cross_sectional_momentum",
-        help="Hypothesis family to update in learning memory.",
-    )
-    parser.add_argument("--state-dir", default="state", help="State directory for learning/evidence memories.")
-    parser.add_argument(
-        "--allow-parent-update",
-        action="store_true",
-        help="Allow clear best champion to update current_parent.json. Default is conservative/manual.",
-    )
+    parser.add_argument("--parent-run-id", default=None)
+    parser.add_argument("--min-trades", type=int, default=10)
+    parser.add_argument("--hypothesis-id", default="HYP_BASELINE_MOMENTUM_TREND_V1")
+    parser.add_argument("--family", default="cross_sectional_momentum")
+    parser.add_argument("--state-dir", default="state")
+    parser.add_argument("--allow-parent-update", action="store_true")
     return parser.parse_args()
 
 
@@ -69,10 +55,8 @@ def main() -> int:
         raise FileNotFoundError(f"Run folder not found: {run_dir}")
 
     parent_run_dir = Path(args.runs_dir) / args.parent_run_id if args.parent_run_id else None
-
     audit = audit_run_folder(run_dir, min_trades=args.min_trades, parent_run_dir=parent_run_dir)
 
-    # Detect historical duplicates globally, not only parent/last_run.
     duplicate_info = find_duplicate_artifact(run_dir, args.state_dir)
     if duplicate_info.get("is_duplicate"):
         audit = apply_duplicate_to_audit(audit, duplicate_info)
@@ -80,7 +64,6 @@ def main() -> int:
     audit_path = run_dir / "audit.json"
     _write_json(audit_path, audit)
 
-    # Persist original learning memory/evidence outputs.
     learning_result = persist_learning_from_run(
         run_dir=run_dir,
         state_dir=args.state_dir,
@@ -90,10 +73,7 @@ def main() -> int:
         audit=audit,
     )
 
-    # Update artifact index after audit so the current run becomes known.
     index_result = update_artifact_index(run_dir, args.state_dir)
-
-    # Update champion governance and research ledger.
     champion_decision = update_champion_state(
         run_dir=run_dir,
         state_dir=args.state_dir,
@@ -109,6 +89,15 @@ def main() -> int:
         champion_decision=champion_decision,
     )
 
+    consumed_result = append_consumed_hypothesis(
+        state_dir=args.state_dir,
+        run_id=args.run_id,
+        hypothesis_id=args.hypothesis_id,
+        family=args.family,
+        decision=audit.get("decision"),
+        value_delivered=ledger_event.get("value_delivered"),
+    )
+
     print(f"Audit completed: {args.run_id}")
     print(f"Decision: {audit['decision']}")
     if duplicate_info.get("is_duplicate"):
@@ -121,6 +110,7 @@ def main() -> int:
     print(f"Artifact index updated: {index_result.get('index_path')}")
     print(f"Champion action: {champion_decision.get('champion_action')}")
     print(f"Ledger value: {ledger_event.get('value_delivered')}")
+    print(f"Consumed hypothesis: {consumed_result.get('reason') or consumed_result.get('hypothesis_id')}")
     print("Baseline promotion: blocked (manual review required)")
     return 0
 

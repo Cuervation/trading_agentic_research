@@ -1,5 +1,4 @@
-﻿"""Select the next hypothesis to evaluate (non-random, memory-aware)."""
-
+"""Select the next hypothesis to evaluate (non-random, memory-aware)."""
 from __future__ import annotations
 
 import argparse
@@ -14,6 +13,7 @@ if str(ROOT) not in sys.path:
 from scripts.generate_hypotheses_from_bibliography import validate_candidate_basis
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
 from scripts.parameter_effect_memory import load_parameter_effect_memory, score_hypothesis_axis
+from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 
 
 def read_json(path: str | Path) -> dict:
@@ -61,8 +61,25 @@ def choose_next_hypothesis(
     current_parent_hypothesis_id: str | None = None,
     parameter_effect_memory: dict | None = None,
     prefer_unseen: bool = True,
+    consumed_ids: set[str] | None = None,
+    allow_retry_consumed: bool = False,
 ) -> dict:
-    """Choose the best next hypothesis with deterministic rules (no random)."""
+    """Choose the best next hypothesis with deterministic rules.
+
+    Production autonomous runs must not execute the same exact hypothesis twice.
+    When prefer_unseen is true, accepted ids are treated as consumed, not merely
+    lower priority. This avoids repeated runs like TOPN_10 -> duplicate_result.
+    """
+    if consumed_ids is None:
+        # Backward-compatible safety for callers that have not yet been patched
+        # to pass consumed ids explicitly. Most autonomous runs use ./state.
+        try:
+            consumed_ids = consumed_hypothesis_ids(ROOT / "state")
+        except Exception:
+            consumed_ids = set()
+    consumed_ids = {str(x) for x in (consumed_ids or set()) if x}
+    rejected_ids = {str(x) for x in (rejected_ids or set()) if x}
+    accepted_ids = {str(x) for x in (accepted_ids or set()) if x}
 
     candidates = []
     for hypothesis in hypothesis_bank:
@@ -75,6 +92,12 @@ def choose_next_hypothesis(
             continue
         if current_parent_hypothesis_id and hypothesis_id == current_parent_hypothesis_id:
             continue
+        if not allow_retry_consumed and hypothesis_id in consumed_ids:
+            continue
+        # Stronger than the old behavior: if it has already been accepted/run,
+        # don't re-run it during unseen autonomous selection.
+        if prefer_unseen and not allow_retry_consumed and hypothesis_id in accepted_ids:
+            continue
 
         score = score_hypothesis_against_memory(hypothesis, learning_memory, cooldowns)
         if score.get("decision") == "rejected":
@@ -83,31 +106,23 @@ def choose_next_hypothesis(
         empirical_count = len(hypothesis.get("empirical_basis", []) or [])
         bibliographic_count = len(hypothesis.get("bibliography_basis", []) or [])
         axis_score = score_hypothesis_axis(hypothesis, parameter_effect_memory or {})
-
-        is_unseen = hypothesis_id not in accepted_ids
+        is_unseen = hypothesis_id not in accepted_ids and hypothesis_id not in consumed_ids
 
         candidates.append(
             (
-                # Prefer unseen hypotheses first, if enabled.
                 0 if (prefer_unseen and is_unseen) else 1,
-                # Prefer hypotheses with empirical basis.
                 -empirical_count,
-                # Prefer fewer prior rejections in this family.
                 score.get("prior_rejections", 0),
-                # Prefer more prior acceptances.
                 -score.get("prior_acceptances", 0),
-                # Prefer empirically useful mutation axes.
                 -axis_score,
-                # Prefer stronger bibliographic grounding.
                 -bibliographic_count,
-                # Stable tie-break.
                 hypothesis_id,
                 hypothesis,
             )
         )
 
     if not candidates:
-        raise ValueError("No eligible hypotheses found (all rejected/cooldown/invalid).")
+        raise ValueError("No eligible hypotheses found (all rejected/cooldown/invalid/consumed).")
 
     candidates.sort()
     return candidates[0][-1]
@@ -118,6 +133,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--hypothesis-bank", default="bibliography/hypothesis_bank.jsonl")
     p.add_argument("--state-dir", default="state")
     p.add_argument("--prefer-unseen", action="store_true")
+    p.add_argument("--allow-retry-consumed", action="store_true")
     return p.parse_args()
 
 
@@ -133,6 +149,7 @@ def main() -> int:
     bank = load_hypothesis_bank(args.hypothesis_bank)
     rejected_ids = rejected_hypothesis_ids(state_dir)
     accepted_ids = accepted_hypothesis_ids(state_dir)
+    consumed_ids = consumed_hypothesis_ids(state_dir)
 
     selected = choose_next_hypothesis(
         hypothesis_bank=bank,
@@ -140,6 +157,8 @@ def main() -> int:
         cooldowns=cooldowns,
         rejected_ids=rejected_ids,
         accepted_ids=accepted_ids,
+        consumed_ids=consumed_ids,
+        allow_retry_consumed=bool(args.allow_retry_consumed),
         parameter_effect_memory=parameter_effect_memory,
         current_parent_hypothesis_id=str(current_parent.get("current_parent_strategy_id")) if current_parent.get("current_parent_strategy_id") else None,
         prefer_unseen=bool(args.prefer_unseen),

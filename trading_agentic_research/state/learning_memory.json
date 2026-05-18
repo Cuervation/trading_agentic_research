@@ -86,7 +86,7 @@
       "promoted_candidates": 0
     },
     "risk_control_refinement": {
-      "rejections": 2,
+      "rejections": 3,
       "acceptances": 0,
       "promoted_candidates": 0
     },
@@ -1009,6 +1009,18 @@
       "flags": [
         "metric_no_effect",
         "duplicate_artifact"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_049",
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1",
+      "family": "risk_control_refinement",
+      "run_id": "EXP_049",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
       ],
       "written_to_learning_memory": true,
       "can_promote_baseline": false
