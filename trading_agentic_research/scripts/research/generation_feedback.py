@@ -2,17 +2,25 @@
 
 The autonomous loop can produce new hypotheses that are immediately ineligible
 because they are consumed, rejected, accepted, blocked by candidate-review axis
-learning, or duplicate existing signatures. This module records that feedback so
-future decisions distinguish "generated rows" from "generated useful work".
+learning, duplicate existing signatures, or rejected by the selector's memory
+score. This module records that feedback so future decisions distinguish
+"generated rows" from "generated useful work".
 """
 from __future__ import annotations
 
 import json
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from scripts.research.candidate_review_learning import infer_candidate_review_axis, load_candidate_review_learning
+from scripts.parameter_effect_memory import load_parameter_effect_memory
+from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
+from scripts.research.candidate_review_learning import (
+    infer_candidate_review_axis,
+    is_candidate_review_hypothesis_blocked,
+    load_candidate_review_learning,
+)
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 
 FEEDBACK_JSON = "generation_feedback.json"
@@ -116,13 +124,97 @@ def _candidate_review_hypotheses(candidate_run_id: str | None, hypothesis_bank: 
     return [row for row in read_jsonl(hypothesis_bank) if str(row.get("hypothesis_id", "")).startswith(prefix)]
 
 
+def _repeat_blocked_hypothesis_ids(history: list[dict[str, Any]], max_repeats_per_hypothesis: int = 1) -> set[str]:
+    counts = Counter(str(item.get("hypothesis_id")) for item in history if item.get("hypothesis_id"))
+    return {hypothesis_id for hypothesis_id, count in counts.items() if count >= max_repeats_per_hypothesis}
+
+
+def _selector_diagnostics_for_candidate_review(
+    *,
+    state_dir: str | Path,
+    rows: list[dict[str, Any]],
+    max_repeats_per_hypothesis: int = 1,
+) -> dict[str, Any]:
+    """Explain whether candidate-review rows are selectable by selector-equivalent rules.
+
+    This mirrors choose_next_hypothesis filters closely enough for exhaustion
+    decisions, while preserving diagnostics for the feedback report.
+    """
+    state_path = Path(state_dir)
+    learning_memory = read_json(state_path / "learning_memory.json", {}) or {}
+    cooldowns = read_json(state_path / "subspace_cooldowns.json", {}) or {}
+    current_parent = read_json(state_path / "current_parent.json", {}) or {}
+    parameter_effect_memory = load_parameter_effect_memory(state_path / "parameter_effect_memory.json")
+    rejected_ids = {str(row.get("hypothesis_id")) for row in read_jsonl(state_path / "rejected_hypotheses.jsonl") if row.get("hypothesis_id")}
+    accepted_ids = {str(row.get("hypothesis_id")) for row in read_jsonl(state_path / "accepted_hypotheses.jsonl") if row.get("hypothesis_id")}
+    consumed_ids = consumed_hypothesis_ids(state_path)
+    batch_state = read_json(state_path / "batch_state.json", {}) or {}
+    repeat_blocked = _repeat_blocked_hypothesis_ids(batch_state.get("history", []) or [], max_repeats_per_hypothesis)
+    current_parent_hypothesis_id = str(
+        current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id") or ""
+    )
+
+    selectable: list[str] = []
+    blocked: list[dict[str, Any]] = []
+    for row in rows:
+        hid = str(row.get("hypothesis_id") or "")
+        status = str(row.get("status", "candidate"))
+        reason: str | None = None
+        score: dict[str, Any] | None = None
+
+        if status not in {"candidate", "seeded"}:
+            reason = "non_candidate_status"
+        elif hid in rejected_ids:
+            reason = "rejected"
+        elif current_parent_hypothesis_id and hid == current_parent_hypothesis_id:
+            reason = "current_parent_hypothesis"
+        elif hid in consumed_ids:
+            reason = "consumed"
+        elif hid in repeat_blocked:
+            reason = "repeat_blocked"
+        elif is_candidate_review_hypothesis_blocked(row, state_dir=state_path):
+            reason = "candidate_review_axis_exhausted"
+        elif hid in accepted_ids:
+            reason = "accepted_already"
+        else:
+            score = score_hypothesis_against_memory(row, learning_memory, cooldowns)
+            if score.get("decision") == "rejected":
+                reason = "selector_memory_rejected"
+
+        axis = infer_candidate_review_axis(row)
+        if reason:
+            blocked.append({"hypothesis_id": hid, "axis": axis, "reason": reason, "score": score or {}})
+        else:
+            selectable.append(hid)
+
+    return {
+        "selectable_remaining": selectable,
+        "blocked": blocked,
+        "counts": {
+            "rows": len(rows),
+            "selectable": len(selectable),
+            "blocked": len(blocked),
+            "rejected": len(rejected_ids),
+            "accepted": len(accepted_ids),
+            "consumed": len(consumed_ids),
+            "repeat_blocked": len(repeat_blocked),
+        },
+    }
+
+
 def maybe_mark_candidate_review_exhausted(
     *,
     state_dir: str | Path = "state",
     hypothesis_bank: str | Path = "bibliography/hypothesis_bank.jsonl",
     generation_result: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Mark candidate_under_review as review_exhausted when no useful review work remains."""
+    """Mark candidate_under_review as review_exhausted when no useful review work remains.
+
+    Earlier versions only checked if rows looked syntactically candidate-like.
+    That was too optimistic: rows can still be rejected by consumed/rejected/
+    accepted/cooldown/memory selector rules. This version uses selector-equivalent
+    diagnostics before leaving the candidate active.
+    """
     state_path = Path(state_dir)
     candidate_path = state_path / "candidate_under_review.json"
     candidate = read_json(candidate_path, {}) or {}
@@ -159,13 +251,20 @@ def maybe_mark_candidate_review_exhausted(
             continue
         blocked.append({"hypothesis_id": hid, "axis": axis, "reason": reason})
 
-    if eligible_like:
+    selector_diag = _selector_diagnostics_for_candidate_review(state_dir=state_dir, rows=rows)
+    result["candidate_review_selectable_remaining"] = selector_diag["selectable_remaining"]
+    result["candidate_review_selector_blocked"] = selector_diag["blocked"][:50]
+    result["candidate_review_selector_counts"] = selector_diag["counts"]
+
+    if selector_diag["selectable_remaining"]:
+        # Keep previous human-friendly diagnostics, but make selector truth primary.
         result.setdefault("candidate_review_eligible_remaining", eligible_like)
         result.setdefault("candidate_review_blocked", blocked[:20])
         return result
 
-    # Mark exhausted when either there are existing rows and all are blocked, or
-    # the factory explicitly says there are no new candidates for an active review.
+    # Mark exhausted when either there are existing rows and all are blocked by
+    # real selector-equivalent rules, or the factory explicitly says no new work
+    # exists for an active review.
     reason = str(result.get("reason") or "")
     generated = _generated_count(result)
     should_exhaust = bool(rows) or (generated == 0 and reason in {
@@ -177,13 +276,15 @@ def maybe_mark_candidate_review_exhausted(
         return result
 
     candidate["status"] = "review_exhausted"
-    candidate["reason"] = "all_candidate_review_hypotheses_blocked_or_consumed"
+    candidate["reason"] = "no_selector_eligible_candidate_review_hypotheses"
     candidate["review_exhausted_at"] = now_iso()
-    candidate["blocked_hypotheses"] = blocked[-50:]
+    candidate["blocked_hypotheses"] = selector_diag["blocked"][-50:]
+    candidate["selector_counts"] = selector_diag["counts"]
     write_json(candidate_path, candidate)
 
     result["candidate_review_status"] = "review_exhausted"
     result["candidate_review_blocked"] = blocked[:20]
+    result["candidate_review_exhaustion_reason"] = "no_selector_eligible_candidate_review_hypotheses"
     result.setdefault("reason", "candidate_review_exhausted")
     return result
 

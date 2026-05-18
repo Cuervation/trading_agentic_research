@@ -9,6 +9,7 @@ from common failure modes and keeps the research direction explicit:
 - consumed-hypothesis avoidance;
 - generation eligibility feedback;
 - literature/paper fallback;
+- feature-space expansion fallback when every other source is exhausted;
 - post-batch zero-iteration validation.
 """
 from __future__ import annotations
@@ -30,6 +31,7 @@ from scripts.research.candidate_review_refinement_factory import generate_candid
 from scripts.research.candidate_under_review import refresh_candidate_under_review
 from scripts.research.data_path_resolver import resolve_data_paths
 from scripts.research.data_quality_diagnostics import diagnose_data_quality
+from scripts.research.feature_space_expansion_factory import generate_feature_space_hypotheses
 from scripts.research.generation_feedback import (
     maybe_mark_candidate_review_exhausted,
     record_generation_feedback,
@@ -67,16 +69,18 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--runs-dir", default="runs")
     p.add_argument("--reports-dir", default="reports")
     p.add_argument("--generated-configs-dir", default="configs/generated")
-    p.add_argument("--generation-families", default="candidate_under_review_drawdown_refinement,candidate_under_review_exit_refinement,candidate_under_review_regime_refinement,time_series_momentum_refinement,risk_control_refinement,quality_momentum,trend_following,can_slim,paper_time_series_momentum,paper_quality_momentum,paper_regime_filter")
+    p.add_argument("--generation-families", default="candidate_under_review_drawdown_refinement,candidate_under_review_exit_refinement,candidate_under_review_regime_refinement,time_series_momentum_refinement,risk_control_refinement,quality_momentum,trend_following,can_slim,paper_time_series_momentum,paper_quality_momentum,paper_regime_filter,feature_space_momentum,feature_space_trend_following,feature_space_quality_momentum")
     p.add_argument("--max-value-hypotheses", type=int, default=8)
     p.add_argument("--max-candidate-review-hypotheses", type=int, default=8)
     p.add_argument("--max-literature-hypotheses", type=int, default=8)
     p.add_argument("--max-paper-ideas", type=int, default=5)
+    p.add_argument("--max-feature-space-hypotheses", type=int, default=5)
     p.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
     p.add_argument("--allow-parent-update", action="store_true")
     p.add_argument("--no-candidate-under-review", action="store_true")
     p.add_argument("--no-literature-fallback", action="store_true")
     p.add_argument("--no-paper-searcher-fallback", action="store_true")
+    p.add_argument("--no-feature-space-fallback", action="store_true")
     p.add_argument("--online-paper-search", action="store_true")
     p.add_argument("--policy", default="governance/research_policy.json")
     p.add_argument("--allow-zero-iterations", action="store_true")
@@ -272,6 +276,7 @@ def main() -> int:
     generated = {"generated": 0, "reason": "not_needed_existing_eligible"}
     literature = {"generated": 0, "reason": "not_needed_existing_eligible"}
     paper_search = {"rows_written": 0, "reason": "not_needed_existing_eligible"}
+    feature_space = {"generated": 0, "reason": "not_needed_existing_eligible"}
 
     if not eligibility_before.get("eligible"):
         generated = generate_value_hypotheses(
@@ -333,14 +338,36 @@ def main() -> int:
 
         literature = _mine_literature(args, parent_config)
         print(f"Literature-hypothesis fallback after paper search: {literature}")
+        eligibility_after_literature_before_second_report = eligibility_after_literature
         eligibility_after_literature = _eligibility(args)
         _record_feedback(
             args=args,
             phase="literature_after_paper_search",
             generation_result=literature,
-            eligibility_before=eligibility_after_literature,
+            eligibility_before=eligibility_after_literature_before_second_report,
             eligibility_after=eligibility_after_literature,
             context={"parent_config": parent_config, "paper_ideas": args.paper_ideas},
+        )
+
+    eligibility_before_feature_space = _eligibility(args)
+    if not eligibility_before_feature_space.get("eligible") and not args.no_feature_space_fallback:
+        feature_space = generate_feature_space_hypotheses(
+            parent_strategy_config_path=parent_config,
+            hypothesis_bank_path=args.hypothesis_bank,
+            state_dir=args.state_dir,
+            max_new=args.max_feature_space_hypotheses,
+            reason="all_standard_fallbacks_exhausted",
+        )
+        print(f"Feature-space expansion fallback: {feature_space}")
+        eligibility_after_feature_space = _eligibility(args)
+        print(f"Eligibility after feature-space fallback: {eligibility_after_feature_space}")
+        _record_feedback(
+            args=args,
+            phase="feature_space_expansion",
+            generation_result=feature_space,
+            eligibility_before=eligibility_before_feature_space,
+            eligibility_after=eligibility_after_feature_space,
+            context={"parent_config": parent_config, "max_new": args.max_feature_space_hypotheses},
         )
 
     final_eligibility = _eligibility(args)
@@ -353,7 +380,7 @@ def main() -> int:
             reason="no_eligible_hypotheses_after_fallbacks",
             errors=[str(final_eligibility.get("reason"))],
             warnings=[],
-            next_action="Review reports/generation_feedback.md, state/missing_feature_tasks.jsonl, run feature_engineering_agent.py, add new paper ideas, or broaden literature templates.",
+            next_action="Review reports/generation_feedback.md, state/missing_feature_tasks.jsonl, run feature_engineering_agent.py, add new paper ideas, broaden literature templates, or inspect feature_space_expansion skipped reasons.",
             context={
                 "candidate_under_review": candidate_review,
                 "candidate_review_generation": candidate_review_generation,
@@ -361,6 +388,7 @@ def main() -> int:
                 "value_factory": generated,
                 "literature_miner": literature,
                 "paper_searcher": paper_search,
+                "feature_space_expansion": feature_space,
                 "final_eligibility": final_eligibility,
             },
         )

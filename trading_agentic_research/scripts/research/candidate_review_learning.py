@@ -1,7 +1,15 @@
 """Learning helpers for candidate-under-review refinement.
 
-Tracks which EXP_044 refinement sub-axes have already failed/duplicated so the
-selector can switch intelligently instead of stopping or retrying exhausted axes.
+Tracks which candidate-under-review refinement sub-axes have already failed or
+duplicated so the selector can switch intelligently instead of stopping or
+retrying exhausted axes.
+
+Important autonomy rule
+-----------------------
+Candidate-review learning is scoped to the active candidate. If the candidate
+changes (for example EXP_044 -> EXP_054), stale exhausted axes from the previous
+candidate must not silently block the new candidate. The reset helper below is
+called by candidate_under_review.refresh_candidate_under_review().
 """
 from __future__ import annotations
 
@@ -55,6 +63,51 @@ def load_candidate_review_learning(state_dir: str | Path = "state") -> dict[str,
 def save_candidate_review_learning(state_dir: str | Path, payload: dict[str, Any]) -> None:
     payload["updated_at"] = now_iso()
     write_json(Path(state_dir) / LEARNING_FILE, payload)
+
+
+def reset_candidate_review_learning_for_candidate(
+    *,
+    state_dir: str | Path = "state",
+    candidate_run_id: str | None,
+    official_parent_run_id: str | None = None,
+) -> dict[str, Any]:
+    """Reset stale candidate-review learning when a new candidate is reviewed.
+
+    The selector uses exhausted_axes from this file. Keeping EXP_044 exhaustion
+    while reviewing EXP_054 can block useful EXP_054 work incorrectly. This
+    helper intentionally keeps the logic simple and safe: learning is reset only
+    when the active candidate id changes.
+    """
+    if not candidate_run_id:
+        return {"reset": False, "reason": "missing_candidate_run_id"}
+
+    learning = load_candidate_review_learning(state_dir)
+    previous = learning.get("candidate_run_id")
+    if previous and str(previous) == str(candidate_run_id):
+        if official_parent_run_id and learning.get("official_parent_run_id") != official_parent_run_id:
+            learning["official_parent_run_id"] = official_parent_run_id
+            save_candidate_review_learning(state_dir, learning)
+        return {"reset": False, "reason": "same_candidate", "candidate_run_id": str(candidate_run_id)}
+
+    payload = {
+        "version": 1,
+        "candidate_run_id": str(candidate_run_id),
+        "official_parent_run_id": official_parent_run_id,
+        "attempts": [],
+        "axis_stats": {},
+        "exhausted_axes": [],
+        "reason": "reset_for_new_candidate_under_review" if previous else "initialized_for_candidate_under_review",
+        "previous_candidate_run_id": previous,
+        "updated_at": now_iso(),
+    }
+    save_candidate_review_learning(state_dir, payload)
+    return {
+        "reset": bool(previous and str(previous) != str(candidate_run_id)),
+        "initialized": not bool(previous),
+        "reason": payload["reason"],
+        "previous_candidate_run_id": previous,
+        "candidate_run_id": str(candidate_run_id),
+    }
 
 
 def infer_candidate_review_axis(hypothesis: dict[str, Any] | str | None) -> str:
@@ -138,7 +191,16 @@ def update_candidate_review_learning_from_run(
     )
 
     learning = load_candidate_review_learning(state_dir)
-    learning["candidate_run_id"] = candidate_state.get("candidate_run_id") or learning.get("candidate_run_id")
+    active_candidate = candidate_state.get("candidate_run_id")
+    if active_candidate and learning.get("candidate_run_id") and str(learning.get("candidate_run_id")) != str(active_candidate):
+        reset_candidate_review_learning_for_candidate(
+            state_dir=state_dir,
+            candidate_run_id=str(active_candidate),
+            official_parent_run_id=candidate_state.get("official_parent_run_id"),
+        )
+        learning = load_candidate_review_learning(state_dir)
+
+    learning["candidate_run_id"] = active_candidate or learning.get("candidate_run_id")
     learning["official_parent_run_id"] = candidate_state.get("official_parent_run_id") or learning.get("official_parent_run_id")
     attempts = [row for row in learning.get("attempts", []) if row.get("run_id") != run_path.name]
     attempts.append({

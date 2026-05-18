@@ -16,7 +16,7 @@ Exhaustion guard
 ----------------
 If the same candidate has already been marked review_exhausted, refreshing the
 state must not silently reactivate it. A different pending candidate can still
-replace it.
+replace it, and candidate-review learning is reset for the new candidate.
 """
 from __future__ import annotations
 
@@ -33,6 +33,7 @@ if str(ROOT) not in sys.path:
 
 from scripts.generate_strategy_config import generate_strategy_config_from_hypothesis, upsert_strategy_registry
 from scripts.research.champion_governance import load_champion_state
+from scripts.research.candidate_review_learning import reset_candidate_review_learning_for_candidate
 
 
 def now_iso() -> str:
@@ -321,9 +322,19 @@ def refresh_candidate_under_review(
         repo_root=repo_root,
     )
 
+    current_parent = read_json(Path(state_dir) / "current_parent.json", {}) or {}
+    official_parent_run_id = current_parent.get("current_parent_run_id")
     config_path = recovered.get("strategy_config_path")
     status = "active" if config_path else "blocked"
     reason = "candidate_config_recovered" if config_path else "candidate_config_missing"
+    learning_reset = None
+    if status == "active":
+        learning_reset = reset_candidate_review_learning_for_candidate(
+            state_dir=state_dir,
+            candidate_run_id=str(candidate_run_id),
+            official_parent_run_id=official_parent_run_id,
+        )
+
     payload = {
         "status": status,
         "reason": reason,
@@ -331,7 +342,8 @@ def refresh_candidate_under_review(
         "strategy_id": recovered.get("strategy_id"),
         "hypothesis_id": recovered.get("hypothesis_id"),
         "strategy_config_path": config_path,
-        "official_parent_run_id": (read_json(Path(state_dir) / "current_parent.json", {}) or {}).get("current_parent_run_id"),
+        "official_parent_run_id": official_parent_run_id,
+        "candidate_review_learning": learning_reset,
         "updated_at": now_iso(),
     }
     write_json(candidate_path, payload)
