@@ -1,4 +1,4 @@
-﻿"""Run multiple research-loop iterations with safe stop rules."""
+"""Run multiple research-loop iterations with safe stop rules."""
 
 from __future__ import annotations
 
@@ -17,15 +17,11 @@ if str(ROOT) not in sys.path:
 from scripts.select_next_hypothesis import choose_next_hypothesis, load_hypothesis_bank, read_json, read_jsonl
 from scripts.generate_strategy_config import generate_strategy_config_from_hypothesis, upsert_strategy_registry
 from scripts.parameter_effect_memory import load_parameter_effect_memory
+from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
 
 
 def resolve_strategy_config_for_hypothesis(hypothesis: dict, strategy_registry_path: str | Path) -> str:
-    """Resolve strategy config path for a selected hypothesis with strict 1:1 mapping.
-
-    Rules:
-    - Must match `config.hypothesis_id == hypothesis.hypothesis_id`.
-    - No fallback by family/bibliography to avoid accidental no-op reruns.
-    """
+    """Resolve strategy config path for a selected hypothesis with strict 1:1 mapping."""
     registry = read_json(strategy_registry_path)
     strategies = registry.get("strategies", [])
     hypothesis_id = hypothesis.get("hypothesis_id")
@@ -80,6 +76,7 @@ def generate_missing_strategy_config(
 
 def get_latest_run_id(runs_dir: str | Path = "runs") -> str | None:
     run_paths = [p for p in Path(runs_dir).glob("EXP_*") if p.is_dir()]
+    run_paths.extend([p for p in Path(runs_dir).glob("AUTO_*") if p.is_dir()])
     if not run_paths:
         return None
     run_paths.sort(key=lambda p: p.stat().st_mtime, reverse=True)
@@ -101,6 +98,7 @@ def run_candidate_generation(
     family: str,
     families: str | None,
     args: argparse.Namespace,
+    parent_strategy_config: str,
     reason: str,
     runner=_run_generation_command,
 ) -> bool:
@@ -112,7 +110,7 @@ def run_candidate_generation(
         "--strategy-registry",
         args.strategy_registry,
         "--parent-strategy-config",
-        args.parent_strategy_config,
+        parent_strategy_config,
         "--evidence-memory",
         str(Path(args.state_dir) / "evidence_memory.json"),
         "--hypothesis-bank",
@@ -126,9 +124,9 @@ def run_candidate_generation(
         command.extend(["--families", families])
     code = runner(command)
     if code == 0:
-        print(f"Generated new hypotheses for family={family} (reason={reason}).")
+        print(f"Generated new hypotheses for family={family} (reason={reason}, parent_config={parent_strategy_config}).")
         return True
-    print(f"Hypothesis generation failed for family={family} (reason={reason}).")
+    print(f"Hypothesis generation failed for family={family} (reason={reason}, parent_config={parent_strategy_config}).")
     return False
 
 
@@ -178,7 +176,6 @@ def add_family_cooldown(
     hypothesis_id: str | None = None,
     days: int = 7,
 ) -> dict:
-    """Persist a family cooldown after repeat/no-effect governance blocks."""
     path = Path(state_dir) / "subspace_cooldowns.json"
     cooldowns = read_json(path) if path.exists() else {"version": 1, "cooldowns": {}, "default_failure_threshold": 3}
     now = datetime.now(timezone.utc)
@@ -217,8 +214,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
     parser.add_argument(
         "--parent-strategy-config",
-        default="configs/baseline_momentum_trend_v1.json",
-        help="Parent strategy config used when auto-generating a missing candidate config.",
+        default=None,
+        help="Parent strategy config for auto-generated candidates. If omitted, uses state/current_parent.json, then falls back to baseline.",
     )
     parser.add_argument(
         "--auto-generate-missing-configs",
@@ -256,6 +253,16 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+
+    # Keep parent/champion state synchronized before any candidate generation.
+    sync_current_parent_state(
+        state_dir=args.state_dir,
+        strategy_registry_path=args.strategy_registry,
+        generated_configs_dir=args.generated_configs_dir,
+        prefer_best_champion=True,
+        repo_root=ROOT,
+    )
+
     state = _load_batch_state(args.state_dir, args.max_runs)
     if not args.resume:
         state.update(
@@ -282,6 +289,16 @@ def main() -> int:
         accepted_ids = {row.get("hypothesis_id") for row in read_jsonl(Path(args.state_dir) / "accepted_hypotheses.jsonl")}
         repeat_blocked_ids = _repeat_blocked_hypothesis_ids(state.get("history", []), args.max_repeats_per_hypothesis)
 
+        effective_parent_strategy_config = resolve_current_parent_config_path(
+            state_dir=args.state_dir,
+            strategy_registry_path=args.strategy_registry,
+            generated_configs_dir=args.generated_configs_dir,
+            explicit_parent_strategy_config=args.parent_strategy_config,
+            fallback="configs/baseline_momentum_trend_v1.json",
+            repo_root=ROOT,
+        )
+        state["effective_parent_strategy_config"] = effective_parent_strategy_config
+
         families_in_cooldown = _cooldown_families(cooldowns)
         bank = load_hypothesis_bank(args.hypothesis_bank)
         eligible_families = {h.get("family") for h in bank if str(h.get("status", "candidate")) in {"candidate", "seeded"}}
@@ -303,7 +320,7 @@ def main() -> int:
                     rejected_ids={str(x) for x in rejected_ids if x}.union(repeat_blocked_ids),
                     accepted_ids={str(x) for x in accepted_ids if x},
                     parameter_effect_memory=parameter_effect_memory,
-                    current_parent_hypothesis_id=str(current_parent.get("current_parent_strategy_id")) if current_parent.get("current_parent_strategy_id") else None,
+                    current_parent_hypothesis_id=str(current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id")) if (current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id")) else None,
                     prefer_unseen=bool(args.prefer_unseen),
                 )
                 selection_error = None
@@ -316,6 +333,7 @@ def main() -> int:
                     family=args.generation_family,
                     families=str(args.generation_families) if args.generation_families else None,
                     args=args,
+                    parent_strategy_config=effective_parent_strategy_config,
                     reason="no_eligible_hypothesis",
                 )
                 if not generated:
@@ -354,10 +372,10 @@ def main() -> int:
             output_path = Path(args.generated_configs_dir) / f"{hypothesis_id}.json"
             strategy_config = generate_missing_strategy_config(
                 hypothesis=hypothesis,
-                parent_strategy_config_path=args.parent_strategy_config,
+                parent_strategy_config_path=effective_parent_strategy_config,
                 output_config_path=output_path,
                 strategy_registry_path=args.strategy_registry,
-                notes=f"Auto-generated from {Path(args.parent_strategy_config).name} via hypothesis {hypothesis_id}.",
+                notes=f"Auto-generated from {Path(effective_parent_strategy_config).name} via hypothesis {hypothesis_id}.",
             )
         cmd = [
             sys.executable,
@@ -382,11 +400,14 @@ def main() -> int:
             args.state_dir,
             "--strategy-registry",
             args.strategy_registry,
+            "--parent-strategy-config",
+            effective_parent_strategy_config,
         ]
         if args.allow_parent_update:
             cmd.append("--allow-parent-update")
 
         print(f"Batch iteration {state['completed'] + 1}/{args.max_runs}: {hypothesis_id}")
+        print(f"Using parent strategy config: {effective_parent_strategy_config}")
         code = _run_command(cmd)
         if code != 0:
             state["status"] = "failed"
@@ -426,6 +447,7 @@ def main() -> int:
                 "hypothesis_id": hypothesis_id,
                 "family": str(hypothesis.get("family")),
                 "decision": decision,
+                "parent_strategy_config": effective_parent_strategy_config,
             }
         )
 

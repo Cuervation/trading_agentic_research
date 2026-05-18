@@ -1,7 +1,10 @@
 {
   "version": 2,
   "best_champion_run_id": "AUTO_002",
-  "current_parent_run_id": "EXP_001",
+  "current_parent_run_id": "AUTO_002",
+  "current_parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "current_parent_hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "current_parent_config_path": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
   "aggressive_champion_run_id": "EXP_030",
   "baseline_candidate_run_id": "AUTO_092",
   "promotion_candidates": [
@@ -18,7 +21,7 @@
       "years_beating_spy": 6,
       "years_losing_to_spy": 1,
       "trades": 329,
-      "updated_at": "2026-05-18T00:59:55.316064+00:00"
+      "updated_at": "2026-05-18T01:37:25.212378+00:00"
     }
   ],
   "secondary_candidates": [
@@ -35,7 +38,7 @@
       "years_beating_spy": 6,
       "years_losing_to_spy": 1,
       "trades": 267,
-      "updated_at": "2026-05-18T00:59:49.753730+00:00"
+      "updated_at": "2026-05-18T01:37:20.417178+00:00"
     },
     {
       "run_id": "EXP_030",
@@ -50,7 +53,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 189,
-      "updated_at": "2026-05-18T00:59:49.187405+00:00"
+      "updated_at": "2026-05-18T01:37:20.082127+00:00"
     },
     {
       "run_id": "AUTO_065",
@@ -65,7 +68,7 @@
       "years_beating_spy": 6,
       "years_losing_to_spy": 1,
       "trades": 521,
-      "updated_at": "2026-05-18T00:59:54.799710+00:00"
+      "updated_at": "2026-05-18T01:37:24.590330+00:00"
     },
     {
       "run_id": "EXP_039",
@@ -80,7 +83,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 353,
-      "updated_at": "2026-05-18T00:59:49.312142+00:00"
+      "updated_at": "2026-05-18T01:37:20.168673+00:00"
     },
     {
       "run_id": "AUTO_009",
@@ -95,7 +98,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 340,
-      "updated_at": "2026-05-18T00:59:50.515094+00:00"
+      "updated_at": "2026-05-18T01:37:20.822172+00:00"
     },
     {
       "run_id": "EXP_003",
@@ -110,7 +113,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 593,
-      "updated_at": "2026-05-18T00:59:48.781144+00:00"
+      "updated_at": "2026-05-18T01:37:19.834621+00:00"
     },
     {
       "run_id": "AUTO_085",
@@ -125,7 +128,7 @@
       "years_beating_spy": 4,
       "years_losing_to_spy": 3,
       "trades": 528,
-      "updated_at": "2026-05-18T00:59:55.187525+00:00"
+      "updated_at": "2026-05-18T01:37:25.057496+00:00"
     },
     {
       "run_id": "AUTO_075",
@@ -140,7 +143,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 630,
-      "updated_at": "2026-05-18T00:59:55.000871+00:00"
+      "updated_at": "2026-05-18T01:37:24.828566+00:00"
     }
   ],
   "defensive_secondary_candidates": [
@@ -157,7 +160,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 474,
-      "updated_at": "2026-05-18T00:59:55.022012+00:00"
+      "updated_at": "2026-05-18T01:37:24.849949+00:00"
     },
     {
       "run_id": "AUTO_091",
@@ -172,7 +175,7 @@
       "years_beating_spy": 4,
       "years_losing_to_spy": 3,
       "trades": 370,
-      "updated_at": "2026-05-18T00:59:55.298073+00:00"
+      "updated_at": "2026-05-18T01:37:25.189516+00:00"
     },
     {
       "run_id": "AUTO_078",
@@ -187,7 +190,7 @@
       "years_beating_spy": 4,
       "years_losing_to_spy": 3,
       "trades": 526,
-      "updated_at": "2026-05-18T00:59:55.059119+00:00"
+      "updated_at": "2026-05-18T01:37:24.892969+00:00"
     }
   ],
   "champion_runs": [
@@ -204,7 +207,7 @@
       "years_beating_spy": 7,
       "years_losing_to_spy": 0,
       "trades": 391,
-      "updated_at": "2026-05-18T00:59:49.627288+00:00"
+      "updated_at": "2026-05-18T01:37:20.353861+00:00"
     },
     {
       "run_id": "EXP_017",
@@ -219,7 +222,7 @@
       "years_beating_spy": 6,
       "years_losing_to_spy": 1,
       "trades": 307,
-      "updated_at": "2026-05-18T00:59:48.981699+00:00"
+      "updated_at": "2026-05-18T01:37:19.963320+00:00"
     },
     {
       "run_id": "EXP_007",
@@ -234,7 +237,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 392,
-      "updated_at": "2026-05-18T00:59:48.841830+00:00"
+      "updated_at": "2026-05-18T01:37:19.867025+00:00"
     },
     {
       "run_id": "EXP_001",
@@ -249,7 +252,7 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 334,
-      "updated_at": "2026-05-18T00:59:48.758005+00:00"
+      "updated_at": "2026-05-18T01:37:19.819507+00:00"
     },
     {
       "run_id": "EXP_002",
@@ -264,8 +267,8 @@
       "years_beating_spy": 5,
       "years_losing_to_spy": 2,
       "trades": 334,
-      "updated_at": "2026-05-18T00:59:48.768732+00:00"
+      "updated_at": "2026-05-18T01:37:19.827539+00:00"
     }
   ],
-  "updated_at": "2026-05-18T00:59:55.351513+00:00"
+  "updated_at": "2026-05-18T01:37:30.796352+00:00"
 }

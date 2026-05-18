@@ -8,14 +8,13 @@ It reconstructs:
 - state/duplicate_runs.json
 - state/research_ledger.jsonl
 - state/champion_runs.json
-- state/current_parent.json (optional, conservative default)
+- state/current_parent.json
 - reports/rebuilt_research_state.md
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -26,14 +25,14 @@ if str(ROOT) not in sys.path:
 
 from scripts.research.artifact_index import (
     apply_duplicate_to_audit,
-    build_artifact_signature,
     iter_run_dirs,
     rebuild_artifact_index_from_runs,
     read_json,
     write_json,
 )
 from scripts.research.champion_governance import update_champion_state, load_champion_state
-from scripts.research.research_ledger import append_run_to_ledger, read_ledger, run_summary
+from scripts.research.parent_state import sync_current_parent_state
+from scripts.research.research_ledger import append_run_to_ledger, read_ledger
 
 try:
     from backtester.validation import audit_run_folder
@@ -46,8 +45,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--runs-dir", default="runs")
     parser.add_argument("--state-dir", default="state")
     parser.add_argument("--reports-dir", default="reports")
+    parser.add_argument("--strategy-registry", default="configs/strategy_registry.json")
+    parser.add_argument("--generated-configs-dir", default="configs/generated")
     parser.add_argument("--write-audits", action="store_true", help="Write missing/rebuilt audit.json files into run folders.")
-    parser.add_argument("--allow-parent-move", action="store_true", help="Allow clear best champion to update current_parent.json.")
+    parser.add_argument(
+        "--preserve-current-parent",
+        action="store_true",
+        help="Keep existing champion_runs.current_parent_run_id instead of resetting it to best_champion_run_id after rebuild.",
+    )
     return parser.parse_args()
 
 
@@ -69,7 +74,6 @@ def _audit_for_run(run_dir: Path, runs_dir: Path) -> dict[str, Any]:
 
 def _reset_state_files(state_dir: Path) -> None:
     state_dir.mkdir(parents=True, exist_ok=True)
-    # Ledger is append-only normally; for rebuild we intentionally overwrite it.
     (state_dir / "research_ledger.jsonl").write_text("", encoding="utf-8")
     write_json(
         state_dir / "champion_runs.json",
@@ -77,6 +81,9 @@ def _reset_state_files(state_dir: Path) -> None:
             "version": 2,
             "best_champion_run_id": None,
             "current_parent_run_id": None,
+            "current_parent_strategy_id": None,
+            "current_parent_hypothesis_id": None,
+            "current_parent_config_path": None,
             "aggressive_champion_run_id": None,
             "baseline_candidate_run_id": None,
             "promotion_candidates": [],
@@ -95,6 +102,7 @@ def _index_duplicate_map(state_dir: Path) -> dict[str, dict[str, Any]]:
 def _build_report(*, runs: list[Path], state_dir: Path, duplicates: list[dict[str, Any]]) -> str:
     ledger = read_ledger(state_dir)
     champion = load_champion_state(state_dir)
+    current_parent = read_json(state_dir / "current_parent.json", {}) or {}
     unique = len({row.get("artifact_signature") for row in ledger if row.get("artifact_signature")})
     value_counts: dict[str, int] = {}
     for row in ledger:
@@ -114,6 +122,8 @@ def _build_report(*, runs: list[Path], state_dir: Path, duplicates: list[dict[st
         f"- Duplicate runs detected: {len(duplicates)}",
         f"- Best champion: `{champion.get('best_champion_run_id')}`",
         f"- Current parent: `{champion.get('current_parent_run_id')}`",
+        f"- Current parent strategy: `{current_parent.get('current_parent_strategy_id')}`",
+        f"- Current parent config: `{current_parent.get('current_parent_config_path')}`",
         f"- Aggressive champion: `{champion.get('aggressive_champion_run_id')}`",
         f"- Baseline/promotion candidate: `{champion.get('baseline_candidate_run_id')}`",
         "",
@@ -170,7 +180,7 @@ def main() -> int:
             state_dir=state_dir,
             audit=audit,
             duplicate_info=duplicate_info,
-            allow_parent_move=bool(args.allow_parent_move),
+            allow_parent_move=False,
         )
         append_run_to_ledger(
             run_dir=run_dir,
@@ -180,12 +190,22 @@ def main() -> int:
             champion_decision=champion_decision,
         )
 
+    parent_payload = sync_current_parent_state(
+        state_dir=state_dir,
+        strategy_registry_path=args.strategy_registry,
+        generated_configs_dir=args.generated_configs_dir,
+        prefer_best_champion=not bool(args.preserve_current_parent),
+        repo_root=ROOT,
+    )
+
     report = _build_report(runs=runs, state_dir=state_dir, duplicates=duplicates)
     report_path = reports_dir / "rebuilt_research_state.md"
     report_path.write_text(report, encoding="utf-8")
 
     print(f"Runs scanned: {len(runs)}")
     print(f"Duplicates: {len(duplicates)}")
+    print(f"Current parent: {parent_payload.get('current_parent_run_id')}")
+    print(f"Parent config: {parent_payload.get('current_parent_config_path')}")
     print(f"Report: {report_path}")
     print(f"Artifact index: {state_dir / 'artifact_hash_index.json'}")
     print(f"Ledger: {state_dir / 'research_ledger.jsonl'}")

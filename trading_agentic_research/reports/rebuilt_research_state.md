@@ -4,7 +4,9 @@
 - Unique artifact signatures in ledger: 47
 - Duplicate runs detected: 88
 - Best champion: `AUTO_002`
-- Current parent: `EXP_001`
+- Current parent: `AUTO_002`
+- Current parent strategy: `HYP_AUTO_TIME_SERIES_MOMENTUM_SEED`
+- Current parent config: `configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json`
 - Aggressive champion: `EXP_030`
 - Baseline/promotion candidate: `AUTO_092`
 
