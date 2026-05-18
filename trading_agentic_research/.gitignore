@@ -5,8 +5,14 @@ __pycache__/
 # Local data (do NOT commit)
 sp500_feature_store_*.csv
 runs.7z
+configs/local_data_paths.json
+
+# Local/autonomous runtime state (regenerated per machine)
+state/data_paths_resolved.json
+state/autonomy_blocker.json
 
 # Run artifacts
 runs/EXP_*/
+runs/AUTO_*/
 runs/*/analysis.json
 runs/*/analysis.md
