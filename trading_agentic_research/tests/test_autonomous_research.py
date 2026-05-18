@@ -261,6 +261,197 @@ def test_local_fallback_source_becomes_material_hypothesis(tmp_path):
     assert hypothesis["implementation_change"]["strategy_overrides"]
 
 
+def test_mixed_hypothesis_prioritizes_secondary_candidates(tmp_path):
+    seed_literature_sources(tmp_path)
+    sources = {
+        "version": 1,
+        "sources": [
+            next(source for source in LOCAL_FALLBACK_SOURCES if source["source_id"] == "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"),
+            next(source for source in LOCAL_FALLBACK_SOURCES if source["source_id"] == "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"),
+        ],
+    }
+    write_json(tmp_path / "literature_sources.json", sources)
+    extract_claims_from_sources(tmp_path)
+    write_json(
+        tmp_path / "champion_runs.json",
+        {
+            "version": 1,
+            "best_champion_run_id": "AUTO_002",
+            "secondary_candidates": ["AUTO_075", "AUTO_084"],
+            "runs": {},
+        },
+    )
+    write_json(
+        tmp_path / "hypothesis_memory.json",
+        {
+            "version": 1,
+            "hypotheses": [],
+            "events": [
+                {
+                    "run_id": "AUTO_075",
+                    "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+                    "claim_id": "CLAIM_SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+                    "source_ids": ["SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"],
+                    "family": "momentum",
+                    "axis": "near_high_52w_breakout",
+                    "decision": "secondary_candidate",
+                    "value_delivered": "secondary_candidate",
+                },
+                {
+                    "run_id": "AUTO_084",
+                    "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+                    "claim_id": "CLAIM_SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+                    "source_ids": ["SRC_LOCAL_SPY_SMA50_RELAXED_SEED"],
+                    "family": "regime",
+                    "axis": "spy_sma50_relaxed",
+                    "decision": "secondary_candidate",
+                    "value_delivered": "secondary_candidate",
+                },
+            ],
+        },
+    )
+
+    hypothesis = build_next_hypothesis(tmp_path, _parent_config())
+
+    assert hypothesis is not None
+    assert hypothesis["hypothesis_type"] == "mixed"
+    assert set(hypothesis["source_ids"]) == {"SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED", "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"}
+    assert hypothesis["hypothesis_id"].startswith("HYP_MIX_LOCAL_DISTANCE_HIGH_52W_BREAKOUT")
+    assert hypothesis["implementation_change"]["strategy_overrides"]["ranking"]["field"] == "dist_to_high_52w_pct"
+    assert hypothesis["implementation_change"]["strategy_overrides"]["market_filter"]["require_positive_trend"] is False
+
+
+def test_mixed_hypothesis_skips_used_secondary_pair(tmp_path):
+    seed_literature_sources(tmp_path)
+    sources = {
+        "version": 1,
+        "sources": [
+            next(source for source in LOCAL_FALLBACK_SOURCES if source["source_id"] == "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"),
+            next(source for source in LOCAL_FALLBACK_SOURCES if source["source_id"] == "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"),
+        ],
+    }
+    write_json(tmp_path / "literature_sources.json", sources)
+    extract_claims_from_sources(tmp_path)
+    write_json(
+        tmp_path / "champion_runs.json",
+        {
+            "version": 1,
+            "best_champion_run_id": "AUTO_002",
+            "secondary_candidates": ["AUTO_075", "AUTO_084"],
+            "runs": {},
+        },
+    )
+    write_json(
+        tmp_path / "hypothesis_memory.json",
+        {
+            "version": 1,
+            "hypotheses": [],
+            "events": [
+                {
+                    "run_id": "AUTO_075",
+                    "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+                    "claim_id": "CLAIM_SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+                    "source_ids": ["SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"],
+                    "family": "momentum",
+                    "axis": "near_high_52w_breakout",
+                    "decision": "secondary_candidate",
+                    "value_delivered": "secondary_candidate",
+                },
+                {
+                    "run_id": "AUTO_084",
+                    "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+                    "claim_id": "CLAIM_SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+                    "source_ids": ["SRC_LOCAL_SPY_SMA50_RELAXED_SEED"],
+                    "family": "regime",
+                    "axis": "spy_sma50_relaxed",
+                    "decision": "secondary_candidate",
+                    "value_delivered": "secondary_candidate",
+                },
+                {
+                    "run_id": "AUTO_090",
+                    "hypothesis_id": "HYP_MIX_LOCAL_DISTANCE_HIGH_52W_BREAKOUT__LOCAL_SPY_SMA50_RELAXED_V1",
+                    "source_ids": ["SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED", "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"],
+                    "family": "mixed",
+                    "axis": "near_high_52w_breakout+spy_sma50_relaxed",
+                    "decision": "rejected",
+                    "can_repeat": False,
+                },
+            ],
+        },
+    )
+
+    hypothesis = build_next_hypothesis(tmp_path, _parent_config())
+
+    assert hypothesis is None
+
+
+def test_blocklisted_mixed_pair_is_not_reselected(tmp_path):
+    seed_literature_sources(tmp_path)
+    sources = {
+        "version": 1,
+        "sources": [
+            next(source for source in LOCAL_FALLBACK_SOURCES if source["source_id"] == "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"),
+            next(source for source in LOCAL_FALLBACK_SOURCES if source["source_id"] == "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"),
+        ],
+    }
+    write_json(tmp_path / "literature_sources.json", sources)
+    extract_claims_from_sources(tmp_path)
+    write_json(
+        tmp_path / "champion_runs.json",
+        {
+            "version": 1,
+            "best_champion_run_id": "AUTO_002",
+            "secondary_candidates": ["AUTO_075", "AUTO_084"],
+            "runs": {},
+        },
+    )
+    write_json(
+        tmp_path / "hypothesis_memory.json",
+        {
+            "version": 1,
+            "hypotheses": [],
+            "events": [
+                {
+                    "run_id": "AUTO_075",
+                    "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+                    "claim_id": "CLAIM_SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+                    "source_ids": ["SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"],
+                    "family": "momentum",
+                    "axis": "near_high_52w_breakout",
+                    "decision": "secondary_candidate",
+                    "can_repeat": False,
+                },
+                {
+                    "run_id": "AUTO_084",
+                    "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+                    "claim_id": "CLAIM_SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+                    "source_ids": ["SRC_LOCAL_SPY_SMA50_RELAXED_SEED"],
+                    "family": "regime",
+                    "axis": "spy_sma50_relaxed",
+                    "decision": "secondary_candidate",
+                    "can_repeat": False,
+                },
+            ],
+        },
+    )
+    write_json(
+        tmp_path / "hypothesis_blocklist.json",
+        {
+            "version": 1,
+            "hypothesis_ids": [
+                {"hypothesis_id": "HYP_MIX_LOCAL_DISTANCE_HIGH_52W_BREAKOUT__LOCAL_SPY_SMA50_RELAXED_V1"}
+            ],
+            "mixed_pairs": [
+                {"source_ids": ["SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED", "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"]}
+            ],
+        },
+    )
+
+    hypothesis = build_next_hypothesis(tmp_path, _parent_config())
+
+    assert hypothesis is None
+
+
 def test_recent_provider_failure_is_cooled_down(tmp_path):
     seed_literature_sources(tmp_path)
     payload = json.loads((tmp_path / "literature_sources.json").read_text(encoding="utf-8"))
@@ -364,6 +555,31 @@ def test_duplicate_result_does_not_call_real_runner(tmp_path, monkeypatch):
     assert result["evaluation"]["can_move_parent"] is False
 
 
+def test_duplicate_precheck_records_hypothesis_blocklist(tmp_path, monkeypatch):
+    parent = _parent_config()
+    hypothesis = _hypothesis(
+        hypothesis_id="HYP_MIX_TEST_PAIR",
+        source_ids=["SRC_CAN_SLIM_SEED", "SRC_LOCAL_RET_12W_ACCELERATION_SEED"],
+        family="mixed",
+        axis="market_direction_concentration+ret_12w_acceleration",
+    )
+    first = precheck_hypothesis(hypothesis, parent, state_dir=tmp_path)
+    write_json(tmp_path / "duplicate_runs.json", {"version": 1, "duplicates": [{"run_id": "AUTO_090", "config_hash": first["config_hash"]}]})
+    parent_path = tmp_path / "parent.json"
+    parent_path.write_text(json.dumps(parent), encoding="utf-8")
+    seed_literature_sources(tmp_path)
+
+    from scripts.research import autonomous
+
+    monkeypatch.setattr(autonomous, "build_next_hypothesis", lambda *args, **kwargs: hypothesis)
+
+    result = run_iteration(tmp_path, parent_path, weekly_file="weekly.csv", daily_folder="daily", runner=lambda command: None)
+    blocklist = json.loads((tmp_path / "hypothesis_blocklist.json").read_text(encoding="utf-8"))
+
+    assert any(item["hypothesis_id"] == "HYP_MIX_TEST_PAIR" for item in blocklist["hypothesis_ids"])
+    assert any(sorted(item["source_ids"]) == sorted(["SRC_CAN_SLIM_SEED", "SRC_LOCAL_RET_12W_ACCELERATION_SEED"]) for item in blocklist["mixed_pairs"])
+
+
 def test_real_iteration_uses_real_evaluator_not_synthetic(tmp_path, monkeypatch):
     parent_path = tmp_path / "parent.json"
     parent_path.write_text(json.dumps(_parent_config()), encoding="utf-8")
@@ -454,6 +670,15 @@ def test_improves_parent_but_loses_to_champion_is_secondary():
     result = classify_candidate(candidate, champion, parent_run_id="EXP_PARENT")
     assert result["value_delivered"] == "secondary_candidate"
     assert result["can_move_parent"] is False
+
+
+def test_beats_spy_but_materially_loses_to_champion_is_rejected_with_learning():
+    candidate = {"run_id": "AUTO_065", "cagr": 37.26, "spy_cagr": 11.25, "max_drawdown": -23.73, "years_beating_spy": 6, "years_losing_to_spy": 1}
+    champion = {"run_id": "AUTO_002", "cagr": 52.09, "spy_cagr": 11.25, "max_drawdown": -23.98, "years_beating_spy": 7, "years_losing_to_spy": 0}
+    result = classify_candidate(candidate, champion, parent_run_id="AUTO_002")
+    assert result["decision"] == "rejected"
+    assert result["value_delivered"] == "rejected_with_learning"
+    assert result["reason"] == "beats_spy_but_materially_loses_to_best_champion"
 
 
 def test_three_duplicate_same_axis_exhausts_axis(tmp_path):

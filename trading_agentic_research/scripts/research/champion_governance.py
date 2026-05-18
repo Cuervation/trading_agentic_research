@@ -69,14 +69,17 @@ def classify_candidate(candidate: dict, champion: dict | None, parent_run_id: st
     cagr_delta = float(candidate.get("cagr", 0.0)) - float(champion.get("cagr", 0.0))
     dd_delta = float(candidate.get("max_drawdown", 0.0)) - float(champion.get("max_drawdown", 0.0))
     years_delta = int(candidate.get("years_beating_spy", 0)) - int(champion.get("years_beating_spy", 0))
+    beats_spy = float(candidate.get("cagr", 0.0)) > float(candidate.get("spy_cagr", 0.0)) and int(candidate.get("years_beating_spy", 0)) > int(candidate.get("years_losing_to_spy", 0))
 
     if candidate_balance > champion_balance:
         return _classification("new_champion", "dominates_best_champion_balance", True, "new_champion")
     if cagr_delta > 0 and dd_delta < 0:
         return _classification("aggressive_champion", "higher_cagr_worse_drawdown", False, "secondary_candidate")
+    if beats_spy and cagr_delta <= -10.0 and dd_delta < 2.0 and years_delta < 0:
+        return _classification("rejected", "beats_spy_but_materially_loses_to_best_champion", False, "rejected_with_learning")
     if cagr_delta > 0 or dd_delta > 0 or years_delta > 0:
         return _classification("secondary_candidate", "improves_one_axis_but_not_champion", False, "secondary_candidate")
-    if float(candidate.get("cagr", 0.0)) > float(candidate.get("spy_cagr", 0.0)) and int(candidate.get("years_beating_spy", 0)) > int(candidate.get("years_losing_to_spy", 0)):
+    if beats_spy:
         return _classification("secondary_candidate", "beats_spy_but_loses_to_best_champion", False, "secondary_candidate")
     return _classification("rejected", "loses_to_best_champion", False, "rejected_with_learning")
 

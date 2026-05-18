@@ -24,9 +24,9 @@ def iteration_summary(result: dict) -> dict:
         "source_ids": hypothesis.get("source_ids", []),
         "precheck_status": precheck.get("status"),
         "run_id": evaluation.get("run_id") or execution.get("run_id"),
-        "decision": evaluation.get("decision") or decision.get("decision"),
+        "decision": evaluation.get("champion_decision") or evaluation.get("decision") or decision.get("decision"),
         "reason": decision.get("reason") or evaluation.get("rejection_reason"),
-        "next_action": decision.get("decision"),
+        "next_action": evaluation.get("next_action") or decision.get("decision"),
     }
 
 

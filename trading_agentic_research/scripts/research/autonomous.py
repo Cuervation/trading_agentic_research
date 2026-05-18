@@ -153,6 +153,7 @@ def _ensure_initial_state_files(state_dir: str | Path) -> None:
     defaults = {
         "extracted_claims.json": {"version": 1, "claims": []},
         "hypothesis_memory.json": {"version": 1, "hypotheses": [], "events": []},
+        "hypothesis_blocklist.json": {"version": 1, "hypothesis_ids": [], "mixed_pairs": []},
         "axis_cooldowns.json": {"version": 1, "axes": {}, "axis_rejection_threshold": AXIS_REJECTION_THRESHOLD},
         "duplicate_runs.json": {"version": 1, "duplicates": []},
         "champion_runs.json": {"version": 1, "champions": []},
@@ -179,7 +180,22 @@ def extract_claims_from_sources(state_dir: str | Path = "state") -> dict:
         claim_id = f"CLAIM_{source['source_id']}"
         if claim_id in existing_ids:
             continue
-        claim, mechanism, variables, rankings, filters, risks = CLAIM_TEMPLATES.get(source["family"], CLAIM_TEMPLATES["momentum"])
+        template_claim, template_mechanism, template_variables, template_rankings, template_filters, template_risks = CLAIM_TEMPLATES.get(
+            source["family"], CLAIM_TEMPLATES["momentum"]
+        )
+        claim = source.get("claim") or template_claim
+        mechanism = source.get("causal_mechanism") or template_mechanism
+        variables = source.get("suggested_variables") or template_variables
+        rankings = source.get("possible_rankings") or template_rankings
+        filters = source.get("possible_filters") or template_filters
+        risks = source.get("expected_risks") or template_risks
+        implementation_change = None
+        if source.get("strategy_overrides") or source.get("research_axis"):
+            implementation_change = {
+                "axis": source.get("research_axis") or implementation_change_for_family(source["family"])["axis"],
+                "strategy_overrides": source.get("strategy_overrides") or implementation_change_for_family(source["family"])["strategy_overrides"],
+                "features_used": source.get("features_used") or variables,
+            }
         claims.append(
             {
                 "claim_id": claim_id,
@@ -191,7 +207,9 @@ def extract_claims_from_sources(state_dir: str | Path = "state") -> dict:
                 "possible_filters": filters,
                 "possible_rankings": rankings,
                 "expected_risks": risks,
-                "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+                "falsification_rule": source.get("falsification_rule")
+                or "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+                **({"implementation_change": implementation_change} if implementation_change else {}),
                 "status": "available",
                 "extracted_at": now_iso(),
             }
@@ -227,9 +245,11 @@ def build_next_hypothesis(state_dir: str | Path = "state", parent_config: dict |
     claims_payload = extract_claims_from_sources(state_dir)
     memory = read_json(Path(state_dir) / "hypothesis_memory.json", {"hypotheses": [], "events": []})
     cooldowns = read_json(Path(state_dir) / "axis_cooldowns.json", {"axes": {}})
+    blocklist = read_json(Path(state_dir) / "hypothesis_blocklist.json", {"version": 1, "hypothesis_ids": [], "mixed_pairs": []})
     used_claim_ids = {h.get("claim_id") for h in memory.get("hypotheses", [])}
     used_claim_ids.update(e.get("claim_id") for e in memory.get("events", []) if e.get("claim_id"))
     used_hypothesis_ids = {e.get("hypothesis_id") for e in memory.get("events", []) if e.get("can_repeat") is False}
+    used_hypothesis_ids.update(item.get("hypothesis_id") for item in blocklist.get("hypothesis_ids", []) if item.get("hypothesis_id"))
     available = [
         c
         for c in claims_payload.get("claims", [])
@@ -237,14 +257,23 @@ def build_next_hypothesis(state_dir: str | Path = "state", parent_config: dict |
         and c.get("claim_id") not in used_claim_ids
         and not is_axis_exhausted(cooldowns, c.get("family"), implementation_change_for_claim(c)["axis"])
     ]
-    if available:
-        hypothesis = hypothesis_from_claim(available[0], parent_config=parent_config)
+    for claim in available:
+        hypothesis = hypothesis_from_claim(claim, parent_config=parent_config)
+        if hypothesis["hypothesis_id"] in used_hypothesis_ids:
+            continue
         validate_hypothesis(hypothesis)
-        return None if hypothesis["hypothesis_id"] in used_hypothesis_ids else hypothesis
-    return build_mixed_hypothesis_from_available(claims_payload, memory, cooldowns)
+        return hypothesis
+    return build_mixed_hypothesis_from_available(claims_payload, memory, cooldowns, state_dir=state_dir)
 
 
-def build_mixed_hypothesis_from_available(claims_payload: dict, memory: dict, cooldowns: dict) -> dict | None:
+def build_mixed_hypothesis_from_available(
+    claims_payload: dict,
+    memory: dict,
+    cooldowns: dict,
+    *,
+    state_dir: str | Path = "state",
+) -> dict | None:
+    blocklist = read_json(Path(state_dir) / "hypothesis_blocklist.json", {"version": 1, "hypothesis_ids": [], "mixed_pairs": []})
     used_pairs = {
         tuple(sorted(h.get("source_ids", [])))
         for h in memory.get("hypotheses", [])
@@ -252,11 +281,27 @@ def build_mixed_hypothesis_from_available(claims_payload: dict, memory: dict, co
     }
     used_pairs.update(tuple(sorted(e.get("source_ids", []))) for e in memory.get("events", []) if len(e.get("source_ids", [])) > 1)
     used_hypothesis_ids = {e.get("hypothesis_id") for e in memory.get("events", []) if e.get("can_repeat") is False}
+    used_hypothesis_ids.update(item.get("hypothesis_id") for item in blocklist.get("hypothesis_ids", []) if item.get("hypothesis_id"))
+    used_pairs.update(
+        tuple(sorted(item.get("source_ids", [])))
+        for item in blocklist.get("mixed_pairs", [])
+        if len(item.get("source_ids", [])) > 1
+    )
     claims = [
         c
         for c in claims_payload.get("claims", [])
         if not is_axis_exhausted(cooldowns, c.get("family"), implementation_change_for_claim(c)["axis"])
     ]
+    prioritized_pairs = prioritized_mixed_claim_pairs(state_dir, claims_payload, memory, cooldowns)
+    for left, right in prioritized_pairs:
+        pair = tuple(sorted([left["source_id"], right["source_id"]]))
+        if pair in used_pairs:
+            continue
+        hypothesis = mixed_hypothesis_from_claims(left, right)
+        if hypothesis["hypothesis_id"] in used_hypothesis_ids:
+            continue
+        validate_mixed_hypothesis(hypothesis)
+        return hypothesis
     for left in claims:
         for right in claims:
             if left["source_id"] == right["source_id"]:
@@ -272,10 +317,67 @@ def build_mixed_hypothesis_from_available(claims_payload: dict, memory: dict, co
     return None
 
 
+def prioritized_mixed_claim_pairs(state_dir: str | Path, claims_payload: dict, memory: dict, cooldowns: dict) -> list[tuple[dict, dict]]:
+    claims_by_source = {claim.get("source_id"): claim for claim in claims_payload.get("claims", [])}
+    champion_state = read_json(Path(state_dir) / "champion_runs.json", {})
+    secondary_ids = champion_state.get("secondary_candidates", []) or []
+    events_by_run = {event.get("run_id"): event for event in memory.get("events", []) if event.get("run_id")}
+    pairs: list[tuple[dict, dict]] = []
+    seen: set[tuple[str, str]] = set()
+
+    for left_run_id in secondary_ids:
+        left_event = events_by_run.get(left_run_id)
+        left_claim = claim_for_event(left_event, claims_by_source, cooldowns)
+        if not left_claim:
+            continue
+        for right_run_id in secondary_ids:
+            if right_run_id == left_run_id:
+                continue
+            right_event = events_by_run.get(right_run_id)
+            right_claim = claim_for_event(right_event, claims_by_source, cooldowns)
+            if not right_claim or not mechanisms_can_mix(left_claim, right_claim):
+                continue
+            key = tuple(sorted((left_claim["source_id"], right_claim["source_id"])))
+            if key in seen:
+                continue
+            seen.add(key)
+            pairs.append((left_claim, right_claim))
+
+    return sorted(pairs, key=mix_pair_priority, reverse=True)
+
+
+def claim_for_event(event: dict | None, claims_by_source: dict[str, dict], cooldowns: dict) -> dict | None:
+    if not event:
+        return None
+    source_ids = event.get("source_ids") or []
+    if not source_ids:
+        return None
+    claim = claims_by_source.get(source_ids[0])
+    if not claim:
+        return None
+    axis = implementation_change_for_claim(claim)["axis"]
+    if is_axis_exhausted(cooldowns, claim.get("family"), axis):
+        return None
+    return claim
+
+
+def mix_pair_priority(pair: tuple[dict, dict]) -> tuple[int, int, int]:
+    left, right = pair
+    left_change = implementation_change_for_claim(left)
+    right_change = implementation_change_for_claim(right)
+    left_keys = set((left_change.get("strategy_overrides") or {}).keys())
+    right_keys = set((right_change.get("strategy_overrides") or {}).keys())
+    structural_gain = len(left_keys.symmetric_difference(right_keys))
+    filter_gain = int(bool({"market_filter", "risk_filters"} & (left_keys | right_keys)))
+    feature_gain = len(set(left_change.get("features_used") or []).union(right_change.get("features_used") or []))
+    return (filter_gain, structural_gain, feature_gain)
+
+
 def mechanisms_can_mix(left: dict, right: dict) -> bool:
     families = {left.get("family"), right.get("family")}
     supported = [
         {"momentum", "can_slim"},
+        {"momentum", "regime"},
         {"momentum", "quality"},
         {"trend_following", "regime"},
         {"sector_momentum", "regime"},
@@ -307,24 +409,30 @@ def hypothesis_from_claim(claim: dict, parent_config: dict | None = None) -> dic
 
 
 def mixed_hypothesis_from_claims(left: dict, right: dict) -> dict:
-    families = sorted([left["family"], right["family"]])
-    source_ids = sorted([left["source_id"], right["source_id"]])
+    left_change = implementation_change_for_claim(left)
+    right_change = implementation_change_for_claim(right)
+    families = [left["family"], right["family"]]
+    source_ids = [left["source_id"], right["source_id"]]
+    pair_slug = mixed_pair_slug(left, right)
+    merged_overrides = merge_mixed_strategy_overrides(left_change, right_change)
+    features = sorted(set((left_change.get("features_used") or []) + (right_change.get("features_used") or [])))
+    mixed_axis = f"{left_change['axis']}+{right_change['axis']}"
     return {
-        "hypothesis_id": f"HYP_MIX_{families[0].upper()}_{families[1].upper()}_V1",
+        "hypothesis_id": f"HYP_MIX_{pair_slug}_V1",
         "hypothesis_type": "mixed",
         "claim_id": f"MIX_{left['claim_id']}__{right['claim_id']}",
-        "source_ids": source_ids,
+        "source_ids": sorted(source_ids),
         "bibliography_basis": [{"source_id": sid} for sid in source_ids],
         "empirical_basis": [],
         "family": "mixed",
-        "axis": "+".join(families),
+        "axis": mixed_axis,
         "claim": f"Combine {left['claim']} WITH {right['claim']}",
         "causal_mechanism": f"{left['causal_mechanism']} Combined with: {right['causal_mechanism']}",
-        "mixed_mechanism": "Selection edge plus regime/risk control; this is causal stacking, not random parameter search.",
+        "mixed_mechanism": mixed_mechanism_for_claims(left, right, left_change, right_change),
         "implementation_change": {
-            "axis": "+".join(families),
-            "strategy_overrides": {"entry_rule": {"top_n": 10}, "market_filter": {"require_positive_trend": True}},
-            "features_used": ["ret_52w_pct", "spy_close_vs_sma50_pct"],
+            "axis": mixed_axis,
+            "strategy_overrides": merged_overrides,
+            "features_used": features,
         },
         "expected_effect": "Improve 24/52 week stability versus SPY and parent while avoiding duplicate artifacts.",
         "falsification_rule": "Reject if selected universe, trades, or artifacts duplicate parent, or if monthly/yearly SPY comparison does not improve.",
@@ -335,6 +443,8 @@ def mixed_hypothesis_from_claims(left: dict, right: dict) -> dict:
 
 
 def implementation_change_for_claim(claim: dict) -> dict:
+    if isinstance(claim.get("implementation_change"), dict):
+        return claim["implementation_change"]
     family = claim["family"]
     if family in {"momentum", "sector_momentum"}:
         return {
@@ -373,6 +483,10 @@ def implementation_change_for_claim(claim: dict) -> dict:
             "features_used": claim.get("suggested_variables", []),
         }
     return {"axis": "generic_material_change", "strategy_overrides": {"entry_rule": {"top_n": 10}}, "features_used": []}
+
+
+def implementation_change_for_family(family: str) -> dict:
+    return implementation_change_for_claim({"family": family, "suggested_variables": []})
 
 
 def expected_effect_for_family(family: str) -> str:
@@ -614,10 +728,89 @@ def update_memory(state_dir: str | Path, hypothesis: dict, precheck: dict, evalu
         "manual_review_required": evaluation.get("manual_review_required", False),
         "created_at": now_iso(),
     }
+
+
+def mixed_pair_slug(left: dict, right: dict) -> str:
+    def token(value: str) -> str:
+        cleaned = "".join(ch if ch.isalnum() else "_" for ch in value.upper())
+        return "_".join(part for part in cleaned.split("_") if part)
+
+    left_token = token(left["source_id"].removeprefix("SRC_").removesuffix("_SEED"))
+    right_token = token(right["source_id"].removeprefix("SRC_").removesuffix("_SEED"))
+    return f"{left_token}__{right_token}"
+
+
+def merge_mixed_strategy_overrides(left_change: dict, right_change: dict) -> dict:
+    left_overrides = deepcopy(left_change.get("strategy_overrides") or {})
+    right_overrides = deepcopy(right_change.get("strategy_overrides") or {})
+    merged = deep_merge(left_overrides, right_overrides)
+    if left_overrides.get("ranking"):
+        merged["ranking"] = deepcopy(left_overrides["ranking"])
+    if left_overrides.get("entry_rule") or right_overrides.get("entry_rule"):
+        merged["entry_rule"] = deep_merge(left_overrides.get("entry_rule", {}), right_overrides.get("entry_rule", {}))
+        top_n_values = [
+            value
+            for value in [left_overrides.get("entry_rule", {}).get("top_n"), right_overrides.get("entry_rule", {}).get("top_n")]
+            if isinstance(value, (int, float))
+        ]
+        if top_n_values:
+            merged["entry_rule"]["top_n"] = int(min(top_n_values))
+    if left_overrides.get("exit_rule") or right_overrides.get("exit_rule"):
+        merged["exit_rule"] = deep_merge(left_overrides.get("exit_rule", {}), right_overrides.get("exit_rule", {}))
+        thresholds = [
+            value
+            for value in [left_overrides.get("exit_rule", {}).get("rank_threshold"), right_overrides.get("exit_rule", {}).get("rank_threshold")]
+            if isinstance(value, (int, float))
+        ]
+        if thresholds:
+            merged["exit_rule"]["rank_threshold"] = int(min(thresholds))
+    return merged
+
+
+def mixed_mechanism_for_claims(left: dict, right: dict, left_change: dict, right_change: dict) -> str:
+    left_keys = set((left_change.get("strategy_overrides") or {}).keys())
+    right_keys = set((right_change.get("strategy_overrides") or {}).keys())
+    if "ranking" in left_keys and {"market_filter", "risk_filters"} & right_keys:
+        return "Primary selection comes from the first source while the second source adds regime/risk gating to avoid fragile continuation."
+    if "ranking" in right_keys and {"market_filter", "risk_filters"} & left_keys:
+        return "Primary selection comes from the second source while the first source adds regime/risk gating to avoid fragile continuation."
+    return "Stack the first source selection logic with the second source confirmation logic so the mix changes ranking or filters in a materially distinct way."
     memory.setdefault("events", []).append(event)
     write_json(memory_path, memory)
     update_axis_cooldowns(state_dir, memory)
     return event
+
+
+def record_hypothesis_block(state_dir: str | Path, hypothesis: dict, precheck: dict, evaluation: dict) -> None:
+    path = Path(state_dir) / "hypothesis_blocklist.json"
+    payload = read_json(path, {"version": 1, "hypothesis_ids": [], "mixed_pairs": []})
+    hypothesis_id = hypothesis.get("hypothesis_id")
+    if hypothesis_id and not any(item.get("hypothesis_id") == hypothesis_id for item in payload.get("hypothesis_ids", [])):
+        payload.setdefault("hypothesis_ids", []).append(
+            {
+                "hypothesis_id": hypothesis_id,
+                "source_ids": hypothesis.get("source_ids", []),
+                "axis": hypothesis.get("axis"),
+                "decision": evaluation.get("decision"),
+                "precheck_status": precheck.get("status"),
+                "reason": evaluation.get("reason") or evaluation.get("rejection_reason") or precheck.get("status"),
+                "created_at": now_iso(),
+            }
+        )
+    source_ids = sorted(hypothesis.get("source_ids", []))
+    if len(source_ids) > 1 and not any(tuple(sorted(item.get("source_ids", []))) == tuple(source_ids) for item in payload.get("mixed_pairs", [])):
+        payload.setdefault("mixed_pairs", []).append(
+            {
+                "source_ids": source_ids,
+                "hypothesis_id": hypothesis_id,
+                "axis": hypothesis.get("axis"),
+                "decision": evaluation.get("decision"),
+                "precheck_status": precheck.get("status"),
+                "reason": evaluation.get("reason") or evaluation.get("rejection_reason") or precheck.get("status"),
+                "created_at": now_iso(),
+            }
+        )
+    write_json(path, payload)
 
 
 def value_delivered_for(precheck: dict, evaluation: dict) -> str:
@@ -701,6 +894,8 @@ def coordinator_decision(state_dir: str | Path, hypothesis: dict | None, prechec
         return {"decision": "promote_candidate_for_manual_review", "reason": "candidate_passed_evaluation", "continue_loop": True, "manual_review_required": True}
     if evaluation and evaluation.get("value_delivered") == "secondary_candidate":
         return {"decision": "mix_with_other_source", "reason": "secondary_candidate", "continue_loop": True, "manual_review_required": False}
+    if evaluation and evaluation.get("decision") == "rejected" and evaluation.get("reason") == "beats_spy_but_materially_loses_to_best_champion":
+        return {"decision": "abandon_axis", "reason": "loses_to_champion_materially", "continue_loop": True, "manual_review_required": False}
     cooldowns = read_json(Path(state_dir) / "axis_cooldowns.json", {"axes": {}})
     if is_axis_exhausted(cooldowns, hypothesis.get("family"), hypothesis.get("axis")):
         return {"decision": "abandon_axis", "reason": "axis_exhausted", "continue_loop": True, "manual_review_required": False}
@@ -771,6 +966,7 @@ def run_iteration(
         evaluation = rejected_evaluation(hypothesis, precheck, precheck["status"])
         evaluation["execution_mode"] = "mock" if mock else "real_precheck_only"
         event = update_memory(state_dir, hypothesis, precheck, evaluation)
+        record_hypothesis_block(state_dir, hypothesis, precheck, evaluation)
         decision = coordinator_decision(state_dir, hypothesis, precheck, evaluation)
         write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
         return {"hypothesis": hypothesis, "precheck": precheck, "evaluation": evaluation, "execution_plan": execution_plan, "memory_event": event, "coordinator_decision": decision}
@@ -780,6 +976,7 @@ def run_iteration(
         evaluation["execution_mode"] = "mock"
         evaluation["execution_plan"] = execution_plan
         event = update_memory(state_dir, hypothesis, precheck, evaluation)
+        record_hypothesis_block(state_dir, hypothesis, precheck, evaluation)
         decision = coordinator_decision(state_dir, hypothesis, precheck, evaluation)
         write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
         return {"hypothesis": hypothesis, "precheck": precheck, "evaluation": evaluation, "execution_plan": execution_plan, "memory_event": event, "coordinator_decision": decision}
@@ -836,6 +1033,8 @@ def run_iteration(
     if not duplicate:
         classification = champion_update["classification"]
         evaluation["champion_decision"] = classification["decision"]
+        evaluation["audit_decision"] = evaluation.get("decision")
+        evaluation["decision"] = classification["decision"] if classification.get("decision") else evaluation.get("decision")
         evaluation["value_delivered"] = classification["value_delivered"]
         evaluation["can_move_parent"] = bool(evaluation.get("can_move_parent")) and bool(classification["can_move_parent"])
         evaluation["promoted_to_baseline_candidate"] = bool(classification["promoted_to_baseline_candidate"])
@@ -846,6 +1045,7 @@ def run_iteration(
     evaluation["parent_run_id"] = parent_run_id
     evaluation["candidate_config_path"] = str(config_path)
     event = update_memory(state_dir, hypothesis, precheck, evaluation)
+    record_hypothesis_block(state_dir, hypothesis, precheck, evaluation)
     update_duplicate_memory_from_evaluation(state_dir, precheck, evaluation)
     decision = coordinator_decision(state_dir, hypothesis, precheck, evaluation)
     write_json(Path(state_dir) / "last_coordinator_decision.json", decision)
