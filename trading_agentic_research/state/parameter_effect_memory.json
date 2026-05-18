@@ -2,13 +2,13 @@
   "version": 1,
   "effects_by_parameter": {
     "entry_rule.top_n": {
-      "count": 12,
-      "avg_parent_cagr_delta_pct": -4.575798333333333,
-      "avg_parent_drawdown_delta_pct": -3.5159059166666666,
-      "promoted_candidates": 1,
-      "rejections": 9,
+      "count": 15,
+      "avg_parent_cagr_delta_pct": -3.9588936666666665,
+      "avg_parent_drawdown_delta_pct": -2.9459603333333333,
+      "promoted_candidates": 2,
+      "rejections": 10,
       "no_effects": 0,
-      "score": -14.333751291666665
+      "score": -13.431873833333334
     },
     "strategy_family": {
       "count": 22,
@@ -29,13 +29,13 @@
       "score": -14.610883
     },
     "exit_rule.rank_threshold": {
-      "count": 7,
-      "avg_parent_cagr_delta_pct": -8.167154,
-      "avg_parent_drawdown_delta_pct": -2.887458,
+      "count": 9,
+      "avg_parent_cagr_delta_pct": -10.009397777777778,
+      "avg_parent_drawdown_delta_pct": -2.763305777777778,
       "promoted_candidates": 0,
-      "rejections": 7,
+      "rejections": 9,
       "no_effects": 0,
-      "score": -16.610883
+      "score": -20.391050666666665
     },
     "universe.source": {
       "count": 1,
@@ -171,6 +171,15 @@
       "rejections": 1,
       "no_effects": 0,
       "score": -10.610883
+    },
+    "risk_management.trailing_stop_pct": {
+      "count": 2,
+      "avg_parent_cagr_delta_pct": -21.617452999999998,
+      "avg_parent_drawdown_delta_pct": -5.7553895,
+      "promoted_candidates": 0,
+      "rejections": 2,
+      "no_effects": 0,
+      "score": -26.495147749999997
     }
   },
   "observations": [
@@ -1039,17 +1048,115 @@
       "years_beating_parent": 0,
       "years_losing_to_parent": 7,
       "no_effect": false
+    },
+    {
+      "run_id": "EXP_042",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_18_V1",
+      "family": "risk_control_refinement",
+      "parameter": "risk_management.trailing_stop_pct",
+      "axis": "risk_management",
+      "new_value": 18,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -22.807478,
+      "parent_drawdown_delta_pct": -4.892957,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_043",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+      "family": "time_series_momentum_refinement",
+      "parameter": "entry_rule.top_n",
+      "axis": "concentration",
+      "new_value": 10,
+      "decision": "accepted_for_followup",
+      "parent_cagr_delta_pct": -6.045705,
+      "parent_drawdown_delta_pct": 0.571237,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_044",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "family": "time_series_momentum_refinement",
+      "parameter": "entry_rule.top_n",
+      "axis": "concentration",
+      "new_value": 6,
+      "decision": "promoted_candidate",
+      "parent_cagr_delta_pct": 7.617585,
+      "parent_drawdown_delta_pct": -3.141008,
+      "years_beating_parent": 5,
+      "years_losing_to_parent": 2,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_045",
+      "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_18_V1",
+      "family": "time_series_momentum_refinement",
+      "parameter": "exit_rule.rank_threshold",
+      "axis": "exit_threshold",
+      "new_value": 18,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -16.457251,
+      "parent_drawdown_delta_pct": -2.328773,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_046",
+      "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_24_V1",
+      "family": "time_series_momentum_refinement",
+      "parameter": "exit_rule.rank_threshold",
+      "axis": "exit_threshold",
+      "new_value": 24,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -16.457251,
+      "parent_drawdown_delta_pct": -2.328773,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_047",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_22_V1",
+      "family": "risk_control_refinement",
+      "parameter": "risk_management.trailing_stop_pct",
+      "axis": "risk_management",
+      "new_value": 22,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.427428,
+      "parent_drawdown_delta_pct": -6.617822,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_048",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+      "family": "time_series_momentum_refinement",
+      "parameter": "entry_rule.top_n",
+      "axis": "concentration",
+      "new_value": 10,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -6.045705,
+      "parent_drawdown_delta_pct": 0.571237,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
     }
   ],
   "effects_by_axis": {
     "concentration": {
-      "count": 12,
-      "avg_parent_cagr_delta_pct": -4.575798333333333,
-      "avg_parent_drawdown_delta_pct": -3.5159059166666666,
-      "promoted_candidates": 1,
-      "rejections": 9,
+      "count": 15,
+      "avg_parent_cagr_delta_pct": -3.9588936666666665,
+      "avg_parent_drawdown_delta_pct": -2.9459603333333333,
+      "promoted_candidates": 2,
+      "rejections": 10,
       "no_effects": 0,
-      "score": -14.333751291666665
+      "score": -13.431873833333334
     },
     "other": {
       "count": 33,
@@ -1070,13 +1177,13 @@
       "score": -16.610883
     },
     "exit_threshold": {
-      "count": 7,
-      "avg_parent_cagr_delta_pct": -8.167154,
-      "avg_parent_drawdown_delta_pct": -2.887458,
+      "count": 9,
+      "avg_parent_cagr_delta_pct": -10.009397777777778,
+      "avg_parent_drawdown_delta_pct": -2.763305777777778,
       "promoted_candidates": 0,
-      "rejections": 7,
+      "rejections": 9,
       "no_effects": 0,
-      "score": -16.610883
+      "score": -20.391050666666665
     },
     "ranking_horizon": {
       "count": 2,
@@ -1086,6 +1193,15 @@
       "rejections": 2,
       "no_effects": 0,
       "score": -11.610883
+    },
+    "risk_management": {
+      "count": 2,
+      "avg_parent_cagr_delta_pct": -21.617452999999998,
+      "avg_parent_drawdown_delta_pct": -5.7553895,
+      "promoted_candidates": 0,
+      "rejections": 2,
+      "no_effects": 0,
+      "score": -26.495147749999997
     }
   }
 }

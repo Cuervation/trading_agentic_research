@@ -1,6 +1,6 @@
 """Autonomous data-path resolver.
 
-Prevents failures like: FileNotFoundError: .\TU_WEEKLY.csv.
+Prevents failures like: FileNotFoundError: .\\TU_WEEKLY.csv.
 Resolution order:
 1) real CLI paths
 2) environment variables TRADING_WEEKLY_FILE / TRADING_DAILY_FOLDER
@@ -9,6 +9,11 @@ Resolution order:
 5) auto-discovery under repo root
 
 Writes state/data_paths_resolved.json for audit.
+
+Data contract note:
+The backtester loader normalizes `signal_date` to `date`, so the resolver must
+accept both. It also accepts common safe aliases for date/ticker/close to avoid
+blocking valid feature stores before the loader/adapter can normalize them.
 """
 from __future__ import annotations
 
@@ -29,6 +34,16 @@ PLACEHOLDER_TOKENS = (
     "PATH_TO_WEEKLY",
     "PATH_TO_DAILY",
 )
+
+# Canonical contract required downstream by run_backtest.py/data_loader.py.
+# The loader already handles signal_date -> date; the resolver should not reject
+# files that are valid after that deterministic normalization.
+COLUMN_ALIASES: dict[str, tuple[str, ...]] = {
+    "date": ("date", "signal_date", "fecha", "datetime", "timestamp"),
+    "ticker": ("ticker", "symbol", "asset", "instrument"),
+    "close": ("close", "adj_close", "adj close", "close_price", "cierre"),
+}
+REQUIRED_CANONICAL_COLUMNS = ("date", "ticker", "close")
 
 
 @dataclass
@@ -96,8 +111,26 @@ def _header(path: Path) -> list[str]:
         return []
 
 
+def _canonical_presence(header: list[str]) -> dict[str, str | None]:
+    columns = {c.strip().lower(): c.strip() for c in header}
+    presence: dict[str, str | None] = {}
+    for canonical, aliases in COLUMN_ALIASES.items():
+        match = None
+        for alias in aliases:
+            if alias.lower() in columns:
+                match = columns[alias.lower()]
+                break
+        presence[canonical] = match
+    return presence
+
+
+def _missing_required_columns(path: Path) -> list[str]:
+    presence = _canonical_presence(_header(path))
+    return [canonical for canonical in REQUIRED_CANONICAL_COLUMNS if not presence.get(canonical)]
+
+
 def _has_required_columns(path: Path) -> bool:
-    return {"date", "ticker", "close"}.issubset(set(_header(path)))
+    return not _missing_required_columns(path)
 
 
 def _score_weekly(path: Path) -> int:
@@ -131,6 +164,8 @@ def _score_daily_dir(path: Path) -> int:
     if "feature" in name or "store" in name or "data" in name:
         score += 20
     score += 25 * sum(1 for p in csvs[:3] if _has_required_columns(p))
+    # Daily masters may live in the repo root as sp500_feature_store_daily_master_*.csv.
+    score += 30 * sum(1 for p in csvs[:10] if "daily_master" in p.name.lower())
     return score
 
 
@@ -152,6 +187,11 @@ def discover_daily_folder(repo_root: str | Path) -> tuple[Path | None, list[str]
             score = _score_daily_dir(p)
             if score > 40:
                 scored.append((score, p))
+    # Also score repo root itself, because daily master CSVs may be stored there.
+    root = Path(repo_root)
+    root_score = _score_daily_dir(root)
+    if root_score > 40:
+        scored.append((root_score, root))
     scored.sort(key=lambda x: x[0], reverse=True)
     return (scored[0][1] if scored else None, [str(p) for _, p in scored[:10]])
 
@@ -251,8 +291,11 @@ def resolve_data_paths(
 
     if not weekly or not weekly.exists():
         errors.append("Could not resolve weekly feature-store CSV.")
-    elif not _has_required_columns(weekly):
-        errors.append(f"Resolved weekly CSV is missing required date/ticker/close columns: {weekly}")
+    else:
+        missing = _missing_required_columns(weekly)
+        if missing:
+            errors.append(f"Resolved weekly CSV is missing required canonical columns {missing}: {weekly}")
+
     if not daily or not daily.exists() or not daily.is_dir():
         errors.append("Could not resolve daily feature-store folder.")
 

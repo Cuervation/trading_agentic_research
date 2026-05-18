@@ -84,6 +84,16 @@
       "rejections": 1,
       "acceptances": 0,
       "promoted_candidates": 0
+    },
+    "risk_control_refinement": {
+      "rejections": 2,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "time_series_momentum_refinement": {
+      "rejections": 3,
+      "acceptances": 1,
+      "promoted_candidates": 1
     }
   },
   "learning_events": [
@@ -914,6 +924,91 @@
       "decision": "rejected",
       "flags": [
         "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_042",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_18_V1",
+      "family": "risk_control_refinement",
+      "run_id": "EXP_042",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_043",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_043",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_044",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_044",
+      "decision": "promoted_candidate",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_045",
+      "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_18_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_045",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_046",
+      "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_24_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_046",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_047",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_22_V1",
+      "family": "risk_control_refinement",
+      "run_id": "EXP_047",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_048",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_048",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact"
       ],
       "written_to_learning_memory": true,
       "can_promote_baseline": false

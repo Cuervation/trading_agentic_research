@@ -6,8 +6,23 @@
   "current_parent_hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
   "current_parent_config_path": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
   "aggressive_champion_run_id": "EXP_030",
-  "baseline_candidate_run_id": "AUTO_092",
+  "baseline_candidate_run_id": "EXP_044",
   "promotion_candidates": [
+    {
+      "run_id": "EXP_044",
+      "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "promoted_candidate",
+      "strategy_cagr_pct": 59.708531263634136,
+      "strategy_max_drawdown_pct": -27.129229626458784,
+      "months_beating_spy": 49,
+      "months_losing_to_spy": 26,
+      "years_beating_spy": 7,
+      "years_losing_to_spy": 0,
+      "trades": 257,
+      "updated_at": "2026-05-18T03:21:38.936682+00:00"
+    },
     {
       "run_id": "AUTO_092",
       "strategy_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
@@ -39,6 +54,21 @@
       "years_losing_to_spy": 1,
       "trades": 267,
       "updated_at": "2026-05-18T01:37:20.417178+00:00"
+    },
+    {
+      "run_id": "EXP_043",
+      "strategy_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+      "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 46.04524203870748,
+      "strategy_max_drawdown_pct": -23.416985281028467,
+      "months_beating_spy": 45,
+      "months_losing_to_spy": 30,
+      "years_beating_spy": 6,
+      "years_losing_to_spy": 1,
+      "trades": 432,
+      "updated_at": "2026-05-18T03:21:12.463765+00:00"
     },
     {
       "run_id": "EXP_030",
@@ -270,5 +300,5 @@
       "updated_at": "2026-05-18T01:37:19.827539+00:00"
     }
   ],
-  "updated_at": "2026-05-18T01:52:19.872277+00:00"
+  "updated_at": "2026-05-18T03:24:19.804955+00:00"
 }

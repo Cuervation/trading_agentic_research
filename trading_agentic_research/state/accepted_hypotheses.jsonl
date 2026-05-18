@@ -17,3 +17,5 @@
 {"hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED", "family": "momentum", "run_id": "AUTO_085", "learning_id": "LEARN_AUTO_085", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1", "family": "mixed", "run_id": "AUTO_091", "learning_id": "LEARN_AUTO_091", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1", "family": "mixed", "run_id": "AUTO_092", "learning_id": "LEARN_AUTO_092", "decision": "promoted_candidate", "flags": []}
+{"hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1", "family": "time_series_momentum_refinement", "run_id": "EXP_043", "learning_id": "LEARN_EXP_043", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1", "family": "time_series_momentum_refinement", "run_id": "EXP_044", "learning_id": "LEARN_EXP_044", "decision": "promoted_candidate", "flags": []}
