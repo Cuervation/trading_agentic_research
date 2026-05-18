@@ -1,0 +1,63 @@
+{
+  "strategy_id": "HYP_AUTO_FAMA_FRENCH_FACTORS_SEED",
+  "hypothesis_id": "HYP_AUTO_FAMA_FRENCH_FACTORS_SEED",
+  "strategy_family": "value",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_FAMA_FRENCH_FACTORS_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "ret_52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 10,
+    "by": "ret_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 30
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "parent_strategy_id": "SP500_MOMENTUM_TREND_BASELINE_V1",
+  "empirical_basis": [],
+  "claim": "Value/factor context can avoid buying expensive momentum names after overextension.",
+  "causal_mechanism": "Combining factor discipline with momentum may reduce crash exposure and improve stability.",
+  "changed_parameters": [
+    "entry_rule.top_n"
+  ],
+  "expected_effect": "Produce a material trade/ranking change with better SPY-relative evidence.",
+  "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve."
+}

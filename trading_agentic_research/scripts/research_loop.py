@@ -1,4 +1,4 @@
-﻿"""Orchestrate one safe research-loop iteration."""
+"""Orchestrate one safe research-loop iteration."""
 
 from __future__ import annotations
 
@@ -118,6 +118,14 @@ def resolve_parent_strategy_config_path(
         return p if p.exists() else None
 
     parent = current_parent if current_parent is not None else (read_json(Path(state_dir) / "current_parent.json") if (Path(state_dir) / "current_parent.json").exists() else {})
+    direct_path = parent.get("current_parent_config_path")
+    if direct_path:
+        p = Path(direct_path)
+        if not p.is_absolute():
+            p = ROOT / p
+        if p.exists():
+            return p
+
     parent_strategy_id = parent.get("current_parent_strategy_id")
     if not parent_strategy_id or not Path(strategy_registry_path).exists():
         return None
@@ -184,6 +192,8 @@ def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_di
         str(inputs.project_config_path),
         "--run-id",
         inputs.run_id,
+        "--runs-dir",
+        str(runs_dir),
     ]
     if inputs.parent_run_id:
         backtest_command.extend(["--parent-run-id", inputs.parent_run_id])

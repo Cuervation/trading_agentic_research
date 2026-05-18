@@ -1,0 +1,6 @@
+{
+  "data_paths": {
+    "weekly_file_path": "C:/Pythons/ML-Trading/Momentum/data/sp500_feature_store_weekly_master.csv",
+    "daily_folder_path": "C:/Pythons/ML-Trading/Momentum/data/daily_feature_store"
+  }
+}

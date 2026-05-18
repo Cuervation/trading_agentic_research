@@ -1,0 +1,67 @@
+{
+  "strategy_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+  "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+  "strategy_family": "regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "ret_26w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 13,
+    "by": "ret_26w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 28
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": false,
+    "fallback_allow_if_missing_spy_metric": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Relaxing the market filter can improve recovery participation after brief SPY trend gaps.",
+  "causal_mechanism": "Strict market filters can miss rebounds; a relaxed fallback tests whether recovery participation matters.",
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric",
+    "market_filter.require_positive_trend",
+    "ranking.field"
+  ],
+  "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+  "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates."
+}

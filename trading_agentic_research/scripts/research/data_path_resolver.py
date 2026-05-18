@@ -3,8 +3,10 @@
 Prevents failures like: FileNotFoundError: .\TU_WEEKLY.csv.
 Resolution order:
 1) real CLI paths
-2) configs/project_config.json data_paths
-3) auto-discovery under repo root
+2) environment variables TRADING_WEEKLY_FILE / TRADING_DAILY_FOLDER
+3) configs/local_data_paths.json (gitignored/local recommended)
+4) configs/project_config.json data_paths
+5) auto-discovery under repo root
 
 Writes state/data_paths_resolved.json for audit.
 """
@@ -12,11 +14,21 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
 
-PLACEHOLDER_TOKENS = ("TU_WEEKLY", "TU_DAILY", "YOUR_WEEKLY", "YOUR_DAILY", "WEEKLY_FILE", "DAILY_FOLDER")
+PLACEHOLDER_TOKENS = (
+    "TU_WEEKLY",
+    "TU_DAILY",
+    "YOUR_WEEKLY",
+    "YOUR_DAILY",
+    "WEEKLY_FILE",
+    "DAILY_FOLDER",
+    "PATH_TO_WEEKLY",
+    "PATH_TO_DAILY",
+)
 
 
 @dataclass
@@ -68,7 +80,7 @@ def _resolve(value: str | Path | None, repo_root: str | Path) -> Path | None:
 
 
 def _skip(path: Path) -> bool:
-    blocked = {".git", "__pycache__", ".pytest_cache", "node_modules", "runs", "reports"}
+    blocked = {".git", "__pycache__", ".pytest_cache", "node_modules", "runs", "reports", ".venv", "venv"}
     return bool({part.lower() for part in path.parts}.intersection(blocked))
 
 
@@ -91,11 +103,11 @@ def _has_required_columns(path: Path) -> bool:
 def _score_weekly(path: Path) -> int:
     name = path.name.lower()
     score = 0
-    if "weekly" in name or "week" in name:
+    if "weekly" in name or "week" in name or "semanal" in name:
         score += 60
-    if "feature" in name or "master" in name:
+    if "feature" in name or "master" in name or "store" in name:
         score += 25
-    if "daily" in name:
+    if "daily" in name or "diario" in name:
         score -= 100
     if _has_required_columns(path):
         score += 40
@@ -144,11 +156,40 @@ def discover_daily_folder(repo_root: str | Path) -> tuple[Path | None, list[str]
     return (scored[0][1] if scored else None, [str(p) for _, p in scored[:10]])
 
 
+def _warn_placeholder(label: str, value: str | None, warnings: list[str]) -> None:
+    if value and is_placeholder_path(value):
+        warnings.append(f"Ignoring placeholder {label}: {value}")
+
+
+def _try_source(
+    *,
+    value: str | None,
+    root: Path,
+    label: str,
+    expected_dir: bool,
+    warnings: list[str],
+) -> Path | None:
+    _warn_placeholder(label, value, warnings)
+    p = _resolve(value, root)
+    if not p:
+        return None
+    if expected_dir:
+        if p.exists() and p.is_dir():
+            return p
+        warnings.append(f"{label} path does not exist or is not a directory: {value}")
+        return None
+    if p.exists() and p.is_file():
+        return p
+    warnings.append(f"{label} path does not exist or is not a file: {value}")
+    return None
+
+
 def resolve_data_paths(
     *,
     weekly_file: str | None,
     daily_folder: str | None,
     project_config: str | Path = "configs/project_config.json",
+    local_data_paths: str | Path = "configs/local_data_paths.json",
     repo_root: str | Path = ".",
     state_dir: str | Path = "state",
     persist: bool = True,
@@ -161,47 +202,57 @@ def resolve_data_paths(
 
     cfg = read_json(root / project_config, {}) or {}
     data_paths = cfg.get("data_paths", {}) if isinstance(cfg, dict) else {}
+    local_cfg = read_json(root / local_data_paths, {}) or {}
+    local_paths = local_cfg.get("data_paths", local_cfg) if isinstance(local_cfg, dict) else {}
 
-    weekly = _resolve(weekly_file, root)
-    daily = _resolve(daily_folder, root)
-
-    if weekly_file and is_placeholder_path(weekly_file):
-        warnings.append(f"Ignoring placeholder weekly path: {weekly_file}")
-    if daily_folder and is_placeholder_path(daily_folder):
-        warnings.append(f"Ignoring placeholder daily folder: {daily_folder}")
-
-    if weekly and weekly.exists():
+    weekly = _try_source(value=weekly_file, root=root, label="CLI weekly", expected_dir=False, warnings=warnings)
+    if weekly:
         source.append("cli_weekly")
-    else:
-        if weekly_file and weekly and not weekly.exists():
-            warnings.append(f"CLI weekly path does not exist: {weekly_file}")
-        weekly = _resolve(data_paths.get("weekly_file_path"), root)
-        if weekly and weekly.exists():
+    if not weekly:
+        weekly = _try_source(value=os.getenv("TRADING_WEEKLY_FILE"), root=root, label="env TRADING_WEEKLY_FILE", expected_dir=False, warnings=warnings)
+        if weekly:
+            source.append("env_weekly")
+    if not weekly:
+        weekly = _try_source(value=local_paths.get("weekly_file_path"), root=root, label="local_data_paths weekly", expected_dir=False, warnings=warnings)
+        if weekly:
+            source.append("local_config_weekly")
+    if not weekly:
+        weekly = _try_source(value=data_paths.get("weekly_file_path"), root=root, label="project_config weekly", expected_dir=False, warnings=warnings)
+        if weekly:
             source.append("project_config_weekly")
-        else:
-            weekly, found = discover_weekly_file(root)
-            candidates["weekly_files"] = found
-            if weekly:
-                source.append("auto_weekly")
-                warnings.append(f"Auto-discovered weekly feature store: {weekly}")
+    if not weekly:
+        weekly, found = discover_weekly_file(root)
+        candidates["weekly_files"] = found
+        if weekly:
+            source.append("auto_weekly")
+            warnings.append(f"Auto-discovered weekly feature store: {weekly}")
 
-    if daily and daily.exists() and daily.is_dir():
+    daily = _try_source(value=daily_folder, root=root, label="CLI daily folder", expected_dir=True, warnings=warnings)
+    if daily:
         source.append("cli_daily")
-    else:
-        if daily_folder and daily and not daily.exists():
-            warnings.append(f"CLI daily folder does not exist: {daily_folder}")
-        daily = _resolve(data_paths.get("daily_folder_path"), root)
-        if daily and daily.exists() and daily.is_dir():
+    if not daily:
+        daily = _try_source(value=os.getenv("TRADING_DAILY_FOLDER"), root=root, label="env TRADING_DAILY_FOLDER", expected_dir=True, warnings=warnings)
+        if daily:
+            source.append("env_daily")
+    if not daily:
+        daily = _try_source(value=local_paths.get("daily_folder_path"), root=root, label="local_data_paths daily", expected_dir=True, warnings=warnings)
+        if daily:
+            source.append("local_config_daily")
+    if not daily:
+        daily = _try_source(value=data_paths.get("daily_folder_path"), root=root, label="project_config daily", expected_dir=True, warnings=warnings)
+        if daily:
             source.append("project_config_daily")
-        else:
-            daily, found = discover_daily_folder(root)
-            candidates["daily_folders"] = found
-            if daily:
-                source.append("auto_daily")
-                warnings.append(f"Auto-discovered daily feature folder: {daily}")
+    if not daily:
+        daily, found = discover_daily_folder(root)
+        candidates["daily_folders"] = found
+        if daily:
+            source.append("auto_daily")
+            warnings.append(f"Auto-discovered daily feature folder: {daily}")
 
     if not weekly or not weekly.exists():
         errors.append("Could not resolve weekly feature-store CSV.")
+    elif not _has_required_columns(weekly):
+        errors.append(f"Resolved weekly CSV is missing required date/ticker/close columns: {weekly}")
     if not daily or not daily.exists() or not daily.is_dir():
         errors.append("Could not resolve daily feature-store folder.")
 
