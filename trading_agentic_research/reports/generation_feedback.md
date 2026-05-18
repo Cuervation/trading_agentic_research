@@ -1,7 +1,7 @@
 # Generation Eligibility Feedback
 
-- Generated at: 2026-05-18T19:09:30.846148+00:00
-- Events: 14
+- Generated at: 2026-05-18T23:46:27.611928+00:00
+- Events: 17
 
 ## Recent events
 
@@ -21,3 +21,6 @@
 | feature_space_expansion | 5 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1 | feature_space_quality_momentum | feature_space_hypotheses_generated |  |
 | candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1 | feature_space_quality_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
 | candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1 | feature_space_trend_following | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1 | paper_regime_filter | candidate_under_review_already_exhausted | candidate_review_generated_zero |

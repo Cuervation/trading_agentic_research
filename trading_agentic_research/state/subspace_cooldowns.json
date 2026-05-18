@@ -64,6 +64,10 @@
     "candidate_under_review_exit_refinement": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "feature_space_composite_confirmation": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3

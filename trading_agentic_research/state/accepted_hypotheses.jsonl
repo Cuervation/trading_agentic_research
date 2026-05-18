@@ -24,3 +24,5 @@
 {"hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1", "family": "candidate_under_review_drawdown_refinement", "run_id": "EXP_054", "learning_id": "LEARN_EXP_054", "decision": "promoted_candidate", "flags": []}
 {"hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_8_V1", "family": "candidate_under_review_drawdown_refinement", "run_id": "EXP_055", "learning_id": "LEARN_EXP_055", "decision": "promoted_candidate", "flags": []}
 {"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1", "family": "feature_space_quality_momentum", "run_id": "EXP_066", "learning_id": "LEARN_EXP_066", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1", "family": "feature_space_composite_confirmation", "run_id": "EXP_073", "learning_id": "LEARN_EXP_073", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1", "family": "feature_space_composite_confirmation", "run_id": "EXP_076", "learning_id": "LEARN_EXP_076", "decision": "accepted_for_followup", "flags": []}

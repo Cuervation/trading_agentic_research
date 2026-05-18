@@ -1,10 +1,13 @@
 """Safe paper-idea searcher for autonomous research.
 
-Default mode is offline and deterministic. Online mode is optional and best-effort.
+Default mode is offline and deterministic. Online mode is optional and
+best-effort. This module DOES NOT send paper results directly to backtests. It
+only creates bibliography/paper_ideas.jsonl. The literature miner converts
+supported ideas into auditable hypothesis cards with feature checks and
+falsification rules.
 
-This module DOES NOT send paper results directly to backtests. It only creates
-bibliography/paper_ideas.jsonl. The literature miner must then convert supported
-ideas into auditable hypothesis cards with feature checks and falsification rules.
+Version 2 expands the offline seed set so the project can continue with a richer
+bibliography even when the online search is unavailable.
 """
 from __future__ import annotations
 
@@ -32,7 +35,15 @@ DEFAULT_OFFLINE_IDEAS: list[dict[str, Any]] = [
         "query": "multi lookback momentum confirmation equity trend following",
         "claim_seed": "Combining or alternating momentum lookbacks may reduce late entries and improve robustness.",
         "families": ["paper_time_series_momentum"],
-        "required_features_hint": ["ret_26w_pct", "ret_52w_pct", "close"],
+        "required_features_hint": ["ret_26w_pct", "ret_52w_pct", "ret_13w_pct", "close"],
+    },
+    {
+        "source_id": "absolute_momentum_dual_momentum",
+        "title": "Absolute momentum and dual momentum",
+        "query": "absolute momentum dual momentum trend following equity strategy",
+        "claim_seed": "Momentum may be improved by requiring positive absolute trend confirmation before selecting relative winners.",
+        "families": ["paper_time_series_momentum", "paper_regime_filter"],
+        "required_features_hint": ["ret_52w_pct", "ret_13w_pct", "close_vs_sma52w_pct", "close"],
     },
     {
         "source_id": "quality_momentum_trend_stability",
@@ -40,7 +51,15 @@ DEFAULT_OFFLINE_IDEAS: list[dict[str, Any]] = [
         "query": "quality momentum trend stability equity strategy",
         "claim_seed": "Momentum signals may improve when combined with trend quality or stability proxies.",
         "families": ["paper_quality_momentum"],
-        "required_features_hint": ["channel_r2", "close"],
+        "required_features_hint": ["channel_r2", "channel_slope_pct", "close"],
+    },
+    {
+        "source_id": "trend_following_fast_slow_confirmation",
+        "title": "Trend following fast and slow confirmation",
+        "query": "trend following fast slow moving average confirmation equity momentum",
+        "claim_seed": "Fast trend signals may improve timing when confirmed by slower trend direction.",
+        "families": ["paper_trend_following"],
+        "required_features_hint": ["close_vs_sma20w_pct", "close_vs_sma52w_pct", "close"],
     },
     {
         "source_id": "low_volatility_momentum_drawdown_control",
@@ -51,12 +70,28 @@ DEFAULT_OFFLINE_IDEAS: list[dict[str, Any]] = [
         "required_features_hint": ["atr_14w_pct", "ret_52w_pct", "close"],
     },
     {
+        "source_id": "volatility_managed_portfolios",
+        "title": "Volatility managed portfolios",
+        "query": "volatility managed portfolios momentum risk scaling",
+        "claim_seed": "Risk-aware scaling or volatility filters may improve drawdown-adjusted performance.",
+        "families": ["paper_low_vol_momentum", "risk_control_refinement"],
+        "required_features_hint": ["atr_14w_pct", "ret_52w_pct", "close"],
+    },
+    {
         "source_id": "faber_tactical_asset_allocation_regime_filter",
         "title": "Tactical asset allocation / regime filter",
         "query": "tactical asset allocation trend filter SMA equity momentum",
         "claim_seed": "Market trend filters may reduce crash exposure, but overly strict gates can miss recoveries.",
         "families": ["paper_regime_filter"],
         "required_features_hint": ["spy_close_vs_sma50_pct", "close"],
+    },
+    {
+        "source_id": "market_state_and_momentum_crashes",
+        "title": "Market state and momentum crash control",
+        "query": "momentum crashes market state trend filter drawdown control",
+        "claim_seed": "Momentum crash risk may be regime-dependent, so SPY regime handling should be tested explicitly.",
+        "families": ["paper_regime_filter", "paper_time_series_momentum"],
+        "required_features_hint": ["spy_close_vs_sma50_pct", "ret_52w_pct", "close"],
     },
 ]
 

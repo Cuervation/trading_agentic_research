@@ -106,7 +106,7 @@
       "promoted_candidates": 0
     },
     "paper_regime_filter": {
-      "rejections": 1,
+      "rejections": 2,
       "acceptances": 0,
       "promoted_candidates": 0
     },
@@ -116,7 +116,7 @@
       "promoted_candidates": 0
     },
     "paper_quality_momentum": {
-      "rejections": 1,
+      "rejections": 2,
       "acceptances": 0,
       "promoted_candidates": 0
     },
@@ -148,6 +148,11 @@
     "feature_space_momentum": {
       "rejections": 2,
       "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "feature_space_composite_confirmation": {
+      "rejections": 3,
+      "acceptances": 2,
       "promoted_candidates": 0
     }
   },
@@ -1358,6 +1363,88 @@
         "metric_no_effect",
         "duplicate_artifact",
         "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_073",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_073",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_074",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_074",
+      "decision": "rejected",
+      "flags": [
+        "concentration_risk",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_075",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_075",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_076",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_076",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_077",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_077",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_078",
+      "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1",
+      "family": "paper_regime_filter",
+      "run_id": "EXP_078",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_079",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1",
+      "family": "paper_quality_momentum",
+      "run_id": "EXP_079",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact"
       ],
       "written_to_learning_memory": true,
       "can_promote_baseline": false
