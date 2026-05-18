@@ -1,0 +1,59 @@
+{
+  "audit_status": "completed",
+  "decision": "rejected",
+  "reasons": [
+    "Candidate underperforms parent CAGR and worsens drawdown.",
+    "Strategy CAGR beats SPY CAGR.",
+    "Strategy beats SPY in more years than it loses."
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "No daily price date after signal_date=2026-04-03; skipped rebalance."
+  ],
+  "recommendation": "Reject or fix blocking issues before further research.",
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "flags": [],
+  "artifact_hashes": {
+    "current": {
+      "metrics.json": "bf59e137b0f2e76a9e61c4f85f8fbe6bdb48a85b34e4988da94fa669e40775d8",
+      "trades.csv": "e08e355a352f62be844fc54e5c250a3364ef0f034606a563419131c332bc6253",
+      "equity_curve.csv": "86acfa55460fca2a21ef9e24f573c4d12ff2f603a486e474b56a273c1186fe6d"
+    },
+    "duplicate_artifact": false,
+    "parent": {
+      "run_id": "AUTO_002",
+      "hashes": {
+        "metrics.json": "8c63ff6a4341e684b7ba5797826b83f2367c4121f8e9913eb21d21fab756816b",
+        "trades.csv": "82e729539fcc46255a43504938736032c959e69ce390bb0933a98c85b3130d06",
+        "equity_curve.csv": "633f4f48b68698e574a27ffd011c711b3d49b0fdeba781315fc93d42567558ce"
+      }
+    },
+    "last_run": {
+      "run_id": "EXP_041",
+      "hashes": {
+        "metrics.json": "22ca61badbf4c8300473bcfab93d8cb01adf6fc0381038d0905bd4a2a9523fdf",
+        "trades.csv": "0bd2197caee8f6c585d3661b72d4e9997a648e92d99e29b50260a953b7bdf9b6",
+        "equity_curve.csv": "5f6f76209c7a1b384fa0f00709b5eed68836810126ce0272ae10038b82e79716"
+      }
+    }
+  },
+  "parent_comparison": {
+    "parent_available": true,
+    "blocking_issues": [],
+    "parent_run_id": "AUTO_002",
+    "strategy_cagr_pct": 21.550378621838572,
+    "parent_cagr_pct": 52.09094654873998,
+    "excess_cagr_vs_parent_pct": -30.540568,
+    "strategy_max_drawdown_pct": -66.43083304437683,
+    "parent_max_drawdown_pct": -23.988221786353048,
+    "drawdown_delta_vs_parent_pct": -42.442611,
+    "trade_count_delta": -174,
+    "months_beating_parent": 26,
+    "months_losing_to_parent": 33,
+    "months_tied_parent": 16,
+    "years_beating_parent": 1,
+    "years_losing_to_parent": 6,
+    "years_tied_parent": 0
+  }
+}

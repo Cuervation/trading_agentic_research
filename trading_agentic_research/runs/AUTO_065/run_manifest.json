@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_065",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
+  "hypothesis_family": "trend_following",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_TREND_13_52_BLEND_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "91877b0c12c7cd51c760080f28bfd281e47b8ef9c215eb9efa95a5ced0781bf0",
+  "code_hash": "48cbb589f81c0f9080dba5e9f2e3b2c77f8ecd11150b57229e2d3ac431c7edde",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:05:54.507296+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "run_id": "AUTO_088",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+  "hypothesis_family": "can_slim",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric",
+    "ranking.field"
+  ],
+  "config_hash": "aae881a2fcc9dca6bd336e631400ebb6103dc046d8c0daa872373daffb6da7e5",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:46:24.642997+00:00"
+}

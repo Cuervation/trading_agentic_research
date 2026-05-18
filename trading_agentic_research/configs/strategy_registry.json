@@ -1,4 +1,4 @@
-﻿{
+{
   "project_name": "trading_agentic_research",
   "version": 1,
   "strategies": [
@@ -23,6 +23,237 @@
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
       "notes": "More concentrated momentum basket derived from baseline evidence"
+    },
+    {
+      "strategy_id": "HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V1."
+    },
+    {
+      "strategy_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V1."
+    },
+    {
+      "strategy_id": "HYP_CROSS_SECTIONAL_MOMENTUM_EXIT_THRESHOLD_15_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CROSS_SECTIONAL_MOMENTUM_EXIT_THRESHOLD_15_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CROSS_SECTIONAL_MOMENTUM_EXIT_THRESHOLD_15_V1."
+    },
+    {
+      "strategy_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10."
+    },
+    {
+      "strategy_id": "HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V10",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V10.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V10."
+    },
+    {
+      "strategy_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V2",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V2.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V2."
+    },
+    {
+      "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_20_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CAN_SLIM_CONCENTRATION_20_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CAN_SLIM_CONCENTRATION_20_V1."
+    },
+    {
+      "strategy_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V1."
+    },
+    {
+      "strategy_id": "HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1."
+    },
+    {
+      "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_5_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CAN_SLIM_CONCENTRATION_5_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CAN_SLIM_CONCENTRATION_5_V1."
+    },
+    {
+      "strategy_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_40_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DARVAS_BOX_EXIT_THRESHOLD_40_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_DARVAS_BOX_EXIT_THRESHOLD_40_V1."
+    },
+    {
+      "strategy_id": "HYP_TREND_FOLLOWING_EXIT_THRESHOLD_35_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_TREND_FOLLOWING_EXIT_THRESHOLD_35_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_TREND_FOLLOWING_EXIT_THRESHOLD_35_V1."
+    },
+    {
+      "strategy_id": "HYP_TREND_FOLLOWING_MARKET_FILTER_True_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_TREND_FOLLOWING_MARKET_FILTER_True_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_TREND_FOLLOWING_MARKET_FILTER_True_V1."
+    },
+    {
+      "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_20_V2",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CAN_SLIM_CONCENTRATION_20_V2.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CAN_SLIM_CONCENTRATION_20_V2."
+    },
+    {
+      "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_5_V2",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CAN_SLIM_CONCENTRATION_5_V2.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CAN_SLIM_CONCENTRATION_5_V2."
+    },
+    {
+      "strategy_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2."
+    },
+    {
+      "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_20_V3",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_CAN_SLIM_CONCENTRATION_20_V3.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_CAN_SLIM_CONCENTRATION_20_V3."
+    },
+    {
+      "strategy_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_18_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_QUALITY_MOMENTUM_CONCENTRATION_18_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_QUALITY_MOMENTUM_CONCENTRATION_18_V1."
+    },
+    {
+      "strategy_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_9_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_QUALITY_MOMENTUM_CONCENTRATION_9_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_QUALITY_MOMENTUM_CONCENTRATION_9_V1."
+    },
+    {
+      "strategy_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1."
+    },
+    {
+      "strategy_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_15_V1",
+      "strategy_family": "cross_sectional_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_QUALITY_MOMENTUM_CONCENTRATION_15_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from baseline_momentum_trend_v1.json via hypothesis HYP_QUALITY_MOMENTUM_CONCENTRATION_15_V1."
     }
   ]
 }

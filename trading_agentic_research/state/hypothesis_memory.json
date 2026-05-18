@@ -128,6 +128,2020 @@
       "source_ids": [],
       "family": "cross_sectional_momentum",
       "axis": "cross_sectional_momentum"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4554268",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4554268",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_4554268"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_4554268"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "mixed",
+      "axis": "generic_material_change",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "implementation_change": {
+        "axis": "generic_material_change",
+        "strategy_overrides": {
+          "entry_rule": {
+            "top_n": 10
+          }
+        },
+        "features_used": []
+      },
+      "expected_effect": "Produce a material trade/ranking change with better SPY-relative evidence.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:31:20.771785+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_5368339",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_5368339",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_5368339"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_5368339"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "mixed",
+      "axis": "generic_material_change",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "implementation_change": {
+        "axis": "generic_material_change",
+        "strategy_overrides": {
+          "entry_rule": {
+            "top_n": 10
+          }
+        },
+        "features_used": []
+      },
+      "expected_effect": "Produce a material trade/ranking change with better SPY-relative evidence.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:32:52.468455+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4237269",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4237269",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_4237269"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_4237269"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "mixed",
+      "axis": "generic_material_change",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "implementation_change": {
+        "axis": "generic_material_change",
+        "strategy_overrides": {
+          "entry_rule": {
+            "top_n": 10
+          }
+        },
+        "features_used": []
+      },
+      "expected_effect": "Produce a material trade/ranking change with better SPY-relative evidence.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:32:52.625094+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_54097_P2FHXD83",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_54097_P2FHXD83",
+      "source_ids": [
+        "SRC_CR_10_54097_P2FHXD83"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_54097_P2FHXD83"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "ranking_24_52_momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "implementation_change": {
+        "axis": "ranking_24_52_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "ret_26w_pct"
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:32:52.717701+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_58837_CHULA_THE_2015_593",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_58837_CHULA_THE_2015_593",
+      "source_ids": [
+        "SRC_CR_10_58837_CHULA_THE_2015_593"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_58837_CHULA_THE_2015_593"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "ranking_24_52_momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "implementation_change": {
+        "axis": "ranking_24_52_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "ret_26w_pct"
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:34:29.335053+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4196563",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4196563",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_4196563"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_4196563"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "ranking_24_52_momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "implementation_change": {
+        "axis": "ranking_24_52_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "ret_26w_pct"
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:34:29.450077+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6516598",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_6516598"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_6516598"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "low_volatility_filter",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "implementation_change": {
+        "axis": "low_volatility_filter",
+        "strategy_overrides": {
+          "risk_filters": {
+            "max_volatility_26w_pct": 45
+          },
+          "entry_rule": {
+            "top_n": 12
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "volatility_26w_pct",
+          "atr_14_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:34:29.555348+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_3995496",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3995496",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_3995496"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_3995496"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "low_volatility_filter",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "implementation_change": {
+        "axis": "low_volatility_filter",
+        "strategy_overrides": {
+          "risk_filters": {
+            "max_volatility_26w_pct": 45
+          },
+          "entry_rule": {
+            "top_n": 12
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "volatility_26w_pct",
+          "atr_14_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:36:07.505133+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_3300965",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3300965",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_3300965"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_3300965"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "low_volatility_filter",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "implementation_change": {
+        "axis": "low_volatility_filter",
+        "strategy_overrides": {
+          "risk_filters": {
+            "max_volatility_26w_pct": 45
+          },
+          "entry_rule": {
+            "top_n": 12
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "volatility_26w_pct",
+          "atr_14_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:36:07.628506+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_S2_10_54254_2754_1169_2025_LH25691",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_S2_10_54254_2754_1169_2025_LH25691",
+      "source_ids": [
+        "SRC_S2_10_54254_2754_1169_2025_LH25691"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_S2_10_54254_2754_1169_2025_LH25691"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "sector_momentum",
+      "axis": "ranking_24_52_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "implementation_change": {
+        "axis": "ranking_24_52_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "ret_26w_pct"
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:36:07.753257+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_S2_10_38124_IJISRT_25MAY210",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_S2_10_38124_IJISRT_25MAY210",
+      "source_ids": [
+        "SRC_S2_10_38124_IJISRT_25MAY210"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_S2_10_38124_IJISRT_25MAY210"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "sector_momentum",
+      "axis": "ranking_24_52_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "implementation_change": {
+        "axis": "ranking_24_52_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "ret_26w_pct"
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:36:07.874576+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_S2_10_5121_IJDKP_2025_15301",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_S2_10_5121_IJDKP_2025_15301",
+      "source_ids": [
+        "SRC_S2_10_5121_IJDKP_2025_15301"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_S2_10_5121_IJDKP_2025_15301"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "sector_momentum",
+      "axis": "ranking_24_52_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "implementation_change": {
+        "axis": "ranking_24_52_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "ret_26w_pct"
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:36:08.002372+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_PACFIN_2024_102525",
+      "source_ids": [
+        "SRC_CR_10_1016_J_PACFIN_2024_102525"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_1016_J_PACFIN_2024_102525"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "regime_filter",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "implementation_change": {
+        "axis": "regime_filter",
+        "strategy_overrides": {
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "spy_close_vs_sma50_pct",
+          "spy_channel_slope_pct",
+          "volatility_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:36:08.124900+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_3905_JPM_2025_1_764",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_3905_JPM_2025_1_764",
+      "source_ids": [
+        "SRC_CR_10_3905_JPM_2025_1_764"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_3905_JPM_2025_1_764"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "regime_filter",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "implementation_change": {
+        "axis": "regime_filter",
+        "strategy_overrides": {
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "spy_close_vs_sma50_pct",
+          "spy_channel_slope_pct",
+          "volatility_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:37:59.793464+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_3342508",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3342508",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_3342508"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_2139_SSRN_3342508"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "regime_filter",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "implementation_change": {
+        "axis": "regime_filter",
+        "strategy_overrides": {
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "spy_close_vs_sma50_pct",
+          "spy_channel_slope_pct",
+          "volatility_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:37:59.891020+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_14264_223019",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_14264_223019",
+      "source_ids": [
+        "SRC_CR_10_14264_223019"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_14264_223019"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "quality_proxy_ranking",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "implementation_change": {
+        "axis": "quality_proxy_ranking",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "weeks_above_sma26_last13",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "weeks_above_sma26_last13"
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "weeks_above_sma26_last13",
+          "volume_ratio_vs_sma13w"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:37:59.997749+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_1007_978_3_030_19400_0_7",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_1007_978_3_030_19400_0_7",
+      "source_ids": [
+        "SRC_CR_10_1007_978_3_030_19400_0_7"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_1007_978_3_030_19400_0_7"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "quality_proxy_ranking",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "implementation_change": {
+        "axis": "quality_proxy_ranking",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "weeks_above_sma26_last13",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "weeks_above_sma26_last13"
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "weeks_above_sma26_last13",
+          "volume_ratio_vs_sma13w"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T22:39:28.897528+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_CR_10_1016_B978_1_78548_201_4_50016_7",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_CR_10_1016_B978_1_78548_201_4_50016_7",
+      "source_ids": [
+        "SRC_CR_10_1016_B978_1_78548_201_4_50016_7"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_CR_10_1016_B978_1_78548_201_4_50016_7"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "quality_proxy_ranking",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "implementation_change": {
+        "axis": "quality_proxy_ranking",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "weeks_above_sma26_last13",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "weeks_above_sma26_last13"
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "weeks_above_sma26_last13",
+          "volume_ratio_vs_sma13w"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:03:47.420704+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_TREND_13_52_BLEND_SEED",
+      "source_ids": [
+        "SRC_LOCAL_TREND_13_52_BLEND_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_TREND_13_52_BLEND_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "trend_following",
+      "axis": "trend_26w_rotation",
+      "claim": "Intermediate trend strength can catch leadership earlier than pure 52-week ranking while retaining trend persistence.",
+      "causal_mechanism": "A 13/26-week trend proxy reacts faster to leadership rotation while still filtering short-term noise.",
+      "implementation_change": {
+        "axis": "trend_26w_rotation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "close_vs_sma26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 11,
+            "by": "close_vs_sma26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 24
+          }
+        },
+        "features_used": [
+          "close_vs_sma26w_pct",
+          "ret_26w_pct",
+          "close_sma_26w_slope_8w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate the champion or if yearly SPY-relative robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:04:35.667656+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "source_ids": [
+        "SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "atr_guarded_momentum",
+      "claim": "Momentum baskets with lower ATR participation should reduce crash sensitivity while preserving most relative strength edge.",
+      "causal_mechanism": "High volatility winners are more fragile during de-risking; ATR-aware ranking should lower left-tail exposure.",
+      "implementation_change": {
+        "axis": "atr_guarded_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "ret_26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 18
+          },
+          "risk_filters": {
+            "max_volatility_26w_pct": 35
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "atr_14w_pct",
+          "volatility_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if drawdown does not improve or artifacts duplicate existing low-volatility runs.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:05:56.414420+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "volume_confirmed_leadership",
+      "claim": "Momentum confirmed by persistent volume participation should identify stronger institutional leadership.",
+      "causal_mechanism": "Institutional accumulation tends to combine price leadership with sustained relative volume.",
+      "implementation_change": {
+        "axis": "volume_confirmed_leadership",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volume_ratio_vs_sma13w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "volume_ratio_vs_sma13w"
+          },
+          "exit_rule": {
+            "rank_threshold": 22
+          }
+        },
+        "features_used": [
+          "volume_ratio_vs_sma13w",
+          "obv_w_slope_13w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if monthly/yearly SPY comparison worsens or trade list duplicates a prior run.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:07:27.481887+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "channel_quality_trend",
+      "claim": "Higher channel slope quality should favor persistent trends over noisy one-off momentum bursts.",
+      "causal_mechanism": "A cleaner regression channel can proxy smoother institutional demand and lower false breakout risk.",
+      "implementation_change": {
+        "axis": "channel_quality_trend",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "channel_slope_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "channel_slope_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          },
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "channel_slope_pct",
+          "channel_r2",
+          "distance_to_channel_mid_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if it cannot beat SPY in more years or duplicates existing artifacts.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:08:52.766522+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_RET_12W_ACCELERATION_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_RET_12W_ACCELERATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_RET_12W_ACCELERATION_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_RET_12W_ACCELERATION_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "ret_12w_acceleration",
+      "claim": "Recent 12-week acceleration can identify leadership before it appears in slower 52-week ranks.",
+      "causal_mechanism": "Momentum underreaction may first appear in intermediate returns before full-year rankings update.",
+      "implementation_change": {
+        "axis": "ret_12w_acceleration",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_12w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 11,
+            "by": "ret_12w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 23
+          }
+        },
+        "features_used": [
+          "ret_12w_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:10:18.831506+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_RET_8W_ROTATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_RET_8W_ROTATION_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_RET_8W_ROTATION_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "sector_momentum",
+      "axis": "ret_8w_rotation",
+      "claim": "Shorter rotation windows can catch sector leadership transitions faster than annual momentum.",
+      "causal_mechanism": "Capital rotates in waves; an 8-week proxy may catch early flow before long-horizon confirmation.",
+      "implementation_change": {
+        "axis": "ret_8w_rotation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_8w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "ret_8w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 18
+          }
+        },
+        "features_used": [
+          "ret_8w_pct",
+          "ret_26w_pct",
+          "volume_ratio_vs_sma13w"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:11:39.186252+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "source_ids": [
+        "SRC_LOCAL_ROC_26W_PERSISTENCE_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_ROC_26W_PERSISTENCE_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "trend_following",
+      "axis": "roc_26w_persistence",
+      "claim": "26-week ROC should favor persistent trend continuation with less stale signal than 52-week returns.",
+      "causal_mechanism": "Medium-term price persistence captures behavioral anchoring while reducing stale winners.",
+      "implementation_change": {
+        "axis": "roc_26w_persistence",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "roc_26w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "roc_26w"
+          },
+          "exit_rule": {
+            "rank_threshold": 26
+          }
+        },
+        "features_used": [
+          "roc_26w",
+          "close_vs_sma26w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:12:54.932239+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CLOSE_SMA13_TREND_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_CLOSE_SMA13_TREND_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "trend_following",
+      "axis": "close_vs_sma13w_trend",
+      "claim": "Distance above a 13-week average can identify shorter trend strength that complements momentum.",
+      "causal_mechanism": "A positive moving-average spread proxies fresh demand while reducing dependence on one return window.",
+      "implementation_change": {
+        "axis": "close_vs_sma13w_trend",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "close_vs_sma13w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "close_vs_sma13w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 21
+          }
+        },
+        "features_used": [
+          "close_vs_sma13w_pct",
+          "weeks_above_sma13_last8"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:14:01.857305+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "source_ids": [
+        "SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "sma52_slope_stability",
+      "claim": "Long moving-average slope should select structurally persistent trends over noisy spikes.",
+      "causal_mechanism": "Smoother trend slope may reduce false leadership by emphasizing durable uptrends.",
+      "implementation_change": {
+        "axis": "sma52_slope_stability",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "close_sma_52w_slope_8w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "close_sma_52w_slope_8w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 17
+          }
+        },
+        "features_used": [
+          "close_sma_52w_slope_8w_pct",
+          "close_vs_sma52w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:15:21.503162+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_R2_QUALITY_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_CHANNEL_R2_QUALITY_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "channel_r2_quality",
+      "claim": "High channel fit can distinguish smooth institutional accumulation from noisy momentum.",
+      "causal_mechanism": "Better trend fit implies lower path noise and potentially lower crash fragility.",
+      "implementation_change": {
+        "axis": "channel_r2_quality",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "channel_r2",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "channel_r2"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          }
+        },
+        "features_used": [
+          "channel_r2",
+          "channel_slope_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:16:25.551012+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_MIX_REGIME_SECTOR_MOMENTUM_V1",
+      "hypothesis_type": "mixed",
+      "claim_id": "MIX_CLAIM_SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED__CLAIM_SRC_LOCAL_RET_8W_ROTATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+        "SRC_LOCAL_RET_8W_ROTATION_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED"
+        },
+        {
+          "source_id": "SRC_LOCAL_RET_8W_ROTATION_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "mixed",
+      "axis": "regime+sector_momentum",
+      "claim": "Combine Higher channel slope quality should favor persistent trends over noisy one-off momentum bursts. WITH Shorter rotation windows can catch sector leadership transitions faster than annual momentum.",
+      "causal_mechanism": "A cleaner regression channel can proxy smoother institutional demand and lower false breakout risk. Combined with: Capital rotates in waves; an 8-week proxy may catch early flow before long-horizon confirmation.",
+      "mixed_mechanism": "Selection edge plus regime/risk control; this is causal stacking, not random parameter search.",
+      "implementation_change": {
+        "axis": "regime+sector_momentum",
+        "strategy_overrides": {
+          "entry_rule": {
+            "top_n": 10
+          },
+          "market_filter": {
+            "require_positive_trend": true
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "spy_close_vs_sma50_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week stability versus SPY and parent while avoiding duplicate artifacts.",
+      "falsification_rule": "Reject if selected universe, trades, or artifacts duplicate parent, or if monthly/yearly SPY comparison does not improve.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:17:52.117342+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "source_ids": [
+        "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "near_high_52w_breakout",
+      "claim": "Stocks closer to 52-week highs can sustain leadership via anchoring and breakout behavior.",
+      "causal_mechanism": "Price proximity to highs is a simple behavioral anchor that can reinforce continuation.",
+      "implementation_change": {
+        "axis": "near_high_52w_breakout",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "dist_to_high_52w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "dist_to_high_52w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 24
+          }
+        },
+        "features_used": [
+          "dist_to_high_52w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:29:30.634051+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "source_ids": [
+        "SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "shallow_drawdown_13w",
+      "claim": "Leaders with shallow recent drawdowns may preserve momentum while avoiding fragile reversals.",
+      "causal_mechanism": "Lower recent drawdown can proxy resilient demand during pullbacks.",
+      "implementation_change": {
+        "axis": "shallow_drawdown_13w",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "drawdown_from_high_13w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "drawdown_from_high_13w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 19
+          }
+        },
+        "features_used": [
+          "drawdown_from_high_13w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:30:26.937891+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_RSI14_STRENGTH_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_RSI14_STRENGTH_SEED",
+      "source_ids": [
+        "SRC_LOCAL_RSI14_STRENGTH_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_RSI14_STRENGTH_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "rsi14_strength",
+      "claim": "Moderate-to-high RSI leadership may capture persistent demand not fully represented by returns.",
+      "causal_mechanism": "Momentum can manifest as repeated strong closes, captured by RSI-style persistence.",
+      "implementation_change": {
+        "axis": "rsi14_strength",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "rsi_14w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 11,
+            "by": "rsi_14w"
+          },
+          "exit_rule": {
+            "rank_threshold": 22
+          }
+        },
+        "features_used": [
+          "rsi_14w",
+          "ret_12w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:31:24.870836+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "stochastic_confirmation",
+      "claim": "High stochastic positioning can confirm that momentum names are closing near recent highs.",
+      "causal_mechanism": "Consistent closes near range highs can proxy accumulation quality.",
+      "implementation_change": {
+        "axis": "stochastic_confirmation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "stoch_k_14w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "stoch_k_14w"
+          },
+          "exit_rule": {
+            "rank_threshold": 23
+          }
+        },
+        "features_used": [
+          "stoch_k_14w",
+          "weekly_close_location_value"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:32:30.795810+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_OBV_ACCUMULATION_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_OBV_ACCUMULATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_OBV_ACCUMULATION_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_OBV_ACCUMULATION_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "quality",
+      "axis": "obv_accumulation",
+      "claim": "OBV slope can identify price leaders with stronger accumulation support.",
+      "causal_mechanism": "Volume-confirmed trend may reduce false momentum from thin or fragile rallies.",
+      "implementation_change": {
+        "axis": "obv_accumulation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "obv_w_slope_13w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "obv_w_slope_13w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          }
+        },
+        "features_used": [
+          "obv_w_slope_13w_pct",
+          "volume_ratio_vs_sma13w",
+          "ret_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:34:27.962306+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "volume_dryup_momentum",
+      "claim": "Momentum with lower relative volume pressure may avoid crowded exhaustion.",
+      "causal_mechanism": "Volume dry-up can indicate reduced selling pressure before trend continuation.",
+      "implementation_change": {
+        "axis": "volume_dryup_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volume_ratio_4_vs_13w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "volume_ratio_4_vs_13w"
+          },
+          "exit_rule": {
+            "rank_threshold": 18
+          }
+        },
+        "features_used": [
+          "volume_ratio_4_vs_13w",
+          "ret_26w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:36:06.664101+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_ATR4_LOW_NOISE_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_ATR4_LOW_NOISE_SEED",
+      "source_ids": [
+        "SRC_LOCAL_ATR4_LOW_NOISE_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_ATR4_LOW_NOISE_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "atr4_low_noise",
+      "claim": "Lower short-term ATR among leaders may reduce churn and false exits.",
+      "causal_mechanism": "Lower realized noise should improve trade persistence for monthly rebalancing.",
+      "implementation_change": {
+        "axis": "atr4_low_noise",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "atr_4w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 7,
+            "by": "atr_4w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 16
+          },
+          "risk_filters": {
+            "max_volatility_26w_pct": 40
+          }
+        },
+        "features_used": [
+          "atr_4w_pct",
+          "ret_26w_pct",
+          "volatility_8w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:37:49.884248+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "low_volatility",
+      "axis": "vol26_defensive_momentum",
+      "claim": "A lower 26-week volatility proxy can make momentum more defensive during crash regimes.",
+      "causal_mechanism": "Longer realized volatility captures fragile winners before they unwind.",
+      "implementation_change": {
+        "axis": "vol26_defensive_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volatility_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 6,
+            "by": "volatility_26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 14
+          },
+          "risk_filters": {
+            "max_volatility_26w_pct": 30
+          }
+        },
+        "features_used": [
+          "volatility_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:38:58.617600+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "source_ids": [
+        "SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "spy_slope_risk_on",
+      "claim": "Momentum should be more reliable when SPY channel slope confirms a risk-on regime.",
+      "causal_mechanism": "Broad-market slope can suppress momentum crash exposure by avoiding weak participation regimes.",
+      "implementation_change": {
+        "axis": "spy_slope_risk_on",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_52w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "ret_52w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          },
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "spy_channel_slope_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:39:56.700251+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "source_ids": [
+        "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "regime",
+      "axis": "spy_sma50_relaxed",
+      "claim": "Relaxing the market filter can improve recovery participation after brief SPY trend gaps.",
+      "causal_mechanism": "Strict market filters can miss rebounds; a relaxed fallback tests whether recovery participation matters.",
+      "implementation_change": {
+        "axis": "spy_sma50_relaxed",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 13,
+            "by": "ret_26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 28
+          },
+          "market_filter": {
+            "require_positive_trend": false,
+            "fallback_allow_if_missing_spy_metric": true
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "spy_close_vs_sma50_pct"
+        ]
+      },
+      "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:40:58.578577+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "source_ids": [
+        "SRC_LOCAL_PRICE_LOCATION_RANGE_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_PRICE_LOCATION_RANGE_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "weekly_close_location",
+      "claim": "Stocks closing high in their weekly range may reflect persistent buying pressure.",
+      "causal_mechanism": "Close location compresses intraperiod demand into a ranking proxy complementary to returns.",
+      "implementation_change": {
+        "axis": "weekly_close_location",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "weekly_close_location_value",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "weekly_close_location_value"
+          },
+          "exit_rule": {
+            "rank_threshold": 21
+          }
+        },
+        "features_used": [
+          "weekly_close_location_value",
+          "ret_12w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:42:13.544633+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "source_ids": [
+        "SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "momentum",
+      "axis": "up_streak_leadership",
+      "claim": "Sustained up-streaks can capture behavioral herding in emerging leaders.",
+      "causal_mechanism": "Repeated positive weeks may proxy persistent fund flows into leadership names.",
+      "implementation_change": {
+        "axis": "up_streak_leadership",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "up_streak_weeks",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "up_streak_weeks"
+          },
+          "exit_rule": {
+            "rank_threshold": 17
+          }
+        },
+        "features_used": [
+          "up_streak_weeks",
+          "ret_8w_pct",
+          "ret_12w_pct"
+        ]
+      },
+      "expected_effect": "Improve 24/52 week persistence and months beating SPY without duplicate trades.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:43:27.766146+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "source_ids": [
+        "SRC_LOCAL_PULLBACK_TO_SMA26_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_PULLBACK_TO_SMA26_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "value",
+      "axis": "pullback_to_sma26",
+      "claim": "Leaders near their 26-week trend can offer better entry after avoiding overextension.",
+      "causal_mechanism": "Pullbacks toward a rising medium trend may improve entry quality without abandoning momentum.",
+      "implementation_change": {
+        "axis": "pullback_to_sma26",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "distance_to_channel_mid_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "distance_to_channel_mid_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          }
+        },
+        "features_used": [
+          "distance_to_channel_mid_pct",
+          "close_vs_sma26w_pct"
+        ]
+      },
+      "expected_effect": "Produce a material trade/ranking change with better SPY-relative evidence.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:44:34.133211+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "hypothesis_type": "single_source",
+      "claim_id": "CLAIM_SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "source_ids": [
+        "SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED"
+      ],
+      "bibliography_basis": [
+        {
+          "source_id": "SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED"
+        }
+      ],
+      "empirical_basis": [],
+      "family": "can_slim",
+      "axis": "breakout_volume_climax",
+      "claim": "Breakout-style volume climax can identify leadership concentration in risk-on markets.",
+      "causal_mechanism": "CAN SLIM-style institutional demand often appears as price strength plus abnormal volume.",
+      "implementation_change": {
+        "axis": "breakout_volume_climax",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volume_ratio_vs_sma26w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 7,
+            "by": "volume_ratio_vs_sma26w"
+          },
+          "exit_rule": {
+            "rank_threshold": 15
+          },
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": true
+          }
+        },
+        "features_used": [
+          "volume_ratio_vs_sma26w",
+          "ret_26w_pct",
+          "spy_close_vs_sma50_pct"
+        ]
+      },
+      "expected_effect": "Produce a material trade/ranking change with better SPY-relative evidence.",
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "materiality_guard": {
+        "require_config_hash_change": true,
+        "require_signal_or_trade_change_when_data_available": true,
+        "reject_duplicate_result": true,
+        "reject_metric_no_effect": true
+      },
+      "status": "candidate",
+      "created_at": "2026-05-17T23:45:30.726849+00:00"
     }
   ],
   "events": [
@@ -2034,6 +4048,1157 @@
       "can_repeat": false,
       "execution_mode": "real",
       "backtest_real": true
+    },
+    {
+      "event_id": "EVT_000098",
+      "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "claim_id": "CLAIM_SRC_TIME_SERIES_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_TIME_SERIES_MOMENTUM_SEED"
+      ],
+      "family": "trend_following",
+      "axis": "trend_exit",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_057",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:28:23.998354+00:00"
+    },
+    {
+      "event_id": "EVT_000099",
+      "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
+      "claim_id": "CLAIM_SRC_CAN_SLIM_SEED",
+      "source_ids": [
+        "SRC_CAN_SLIM_SEED"
+      ],
+      "family": "can_slim",
+      "axis": "market_direction_concentration",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_003; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_003",
+      "can_repeat": false,
+      "run_id": "AUTO_058",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:29:43.992305+00:00"
+    },
+    {
+      "event_id": "EVT_000100",
+      "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
+      "claim_id": "CLAIM_SRC_TREND_VOL_TARGET_SEED",
+      "source_ids": [
+        "SRC_TREND_VOL_TARGET_SEED"
+      ],
+      "family": "regime",
+      "axis": "regime_filter",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_059",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:31:20.692246+00:00"
+    },
+    {
+      "event_id": "EVT_000101",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4554268",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4554268",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_4554268"
+      ],
+      "family": "mixed",
+      "axis": "generic_material_change",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_004; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_004",
+      "can_repeat": false,
+      "run_id": "AUTO_060",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:32:52.371451+00:00"
+    },
+    {
+      "event_id": "EVT_000102",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_5368339",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_5368339",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_5368339"
+      ],
+      "family": "mixed",
+      "axis": "generic_material_change",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_060; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_060",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:32:52.473536+00:00"
+    },
+    {
+      "event_id": "EVT_000103",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4237269",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4237269",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_4237269"
+      ],
+      "family": "mixed",
+      "axis": "generic_material_change",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_060; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_060",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:32:52.629231+00:00"
+    },
+    {
+      "event_id": "EVT_000104",
+      "hypothesis_id": "HYP_AUTO_CR_10_54097_P2FHXD83",
+      "claim_id": "CLAIM_SRC_CR_10_54097_P2FHXD83",
+      "source_ids": [
+        "SRC_CR_10_54097_P2FHXD83"
+      ],
+      "family": "momentum",
+      "axis": "ranking_24_52_momentum",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_001; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_001",
+      "can_repeat": false,
+      "run_id": "AUTO_061",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:34:29.215974+00:00"
+    },
+    {
+      "event_id": "EVT_000105",
+      "hypothesis_id": "HYP_AUTO_CR_10_58837_CHULA_THE_2015_593",
+      "claim_id": "CLAIM_SRC_CR_10_58837_CHULA_THE_2015_593",
+      "source_ids": [
+        "SRC_CR_10_58837_CHULA_THE_2015_593"
+      ],
+      "family": "momentum",
+      "axis": "ranking_24_52_momentum",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_061; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_061",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:34:29.339119+00:00"
+    },
+    {
+      "event_id": "EVT_000106",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4196563",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4196563",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_4196563"
+      ],
+      "family": "momentum",
+      "axis": "ranking_24_52_momentum",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_061; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_061",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:34:29.454856+00:00"
+    },
+    {
+      "event_id": "EVT_000107",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6516598",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_6516598"
+      ],
+      "family": "low_volatility",
+      "axis": "low_volatility_filter",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_007; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_007",
+      "can_repeat": false,
+      "run_id": "AUTO_062",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:36:07.393225+00:00"
+    },
+    {
+      "event_id": "EVT_000108",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_3995496",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3995496",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_3995496"
+      ],
+      "family": "low_volatility",
+      "axis": "low_volatility_filter",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_062; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_062",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:36:07.511786+00:00"
+    },
+    {
+      "event_id": "EVT_000109",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_3300965",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3300965",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_3300965"
+      ],
+      "family": "low_volatility",
+      "axis": "low_volatility_filter",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_062; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_062",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:36:07.633140+00:00"
+    },
+    {
+      "event_id": "EVT_000110",
+      "hypothesis_id": "HYP_AUTO_S2_10_54254_2754_1169_2025_LH25691",
+      "claim_id": "CLAIM_SRC_S2_10_54254_2754_1169_2025_LH25691",
+      "source_ids": [
+        "SRC_S2_10_54254_2754_1169_2025_LH25691"
+      ],
+      "family": "sector_momentum",
+      "axis": "ranking_24_52_momentum",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_061; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_061",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:36:07.758419+00:00"
+    },
+    {
+      "event_id": "EVT_000111",
+      "hypothesis_id": "HYP_AUTO_S2_10_38124_IJISRT_25MAY210",
+      "claim_id": "CLAIM_SRC_S2_10_38124_IJISRT_25MAY210",
+      "source_ids": [
+        "SRC_S2_10_38124_IJISRT_25MAY210"
+      ],
+      "family": "sector_momentum",
+      "axis": "ranking_24_52_momentum",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_061; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_061",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:36:07.879146+00:00"
+    },
+    {
+      "event_id": "EVT_000112",
+      "hypothesis_id": "HYP_AUTO_S2_10_5121_IJDKP_2025_15301",
+      "claim_id": "CLAIM_SRC_S2_10_5121_IJDKP_2025_15301",
+      "source_ids": [
+        "SRC_S2_10_5121_IJDKP_2025_15301"
+      ],
+      "family": "sector_momentum",
+      "axis": "ranking_24_52_momentum",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_061; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_061",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:36:08.011954+00:00"
+    },
+    {
+      "event_id": "EVT_000113",
+      "hypothesis_id": "HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525",
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_PACFIN_2024_102525",
+      "source_ids": [
+        "SRC_CR_10_1016_J_PACFIN_2024_102525"
+      ],
+      "family": "regime",
+      "axis": "regime_filter",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_059; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_059",
+      "can_repeat": false,
+      "run_id": "AUTO_063",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:37:59.686369+00:00"
+    },
+    {
+      "event_id": "EVT_000114",
+      "hypothesis_id": "HYP_AUTO_CR_10_3905_JPM_2025_1_764",
+      "claim_id": "CLAIM_SRC_CR_10_3905_JPM_2025_1_764",
+      "source_ids": [
+        "SRC_CR_10_3905_JPM_2025_1_764"
+      ],
+      "family": "regime",
+      "axis": "regime_filter",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_063; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_063",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:37:59.797711+00:00"
+    },
+    {
+      "event_id": "EVT_000115",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_3342508",
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3342508",
+      "source_ids": [
+        "SRC_CR_10_2139_SSRN_3342508"
+      ],
+      "family": "regime",
+      "axis": "regime_filter",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_063; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_063",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:37:59.896864+00:00"
+    },
+    {
+      "event_id": "EVT_000116",
+      "hypothesis_id": "HYP_AUTO_CR_10_14264_223019",
+      "claim_id": "CLAIM_SRC_CR_10_14264_223019",
+      "source_ids": [
+        "SRC_CR_10_14264_223019"
+      ],
+      "family": "quality",
+      "axis": "quality_proxy_ranking",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_006; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_006",
+      "can_repeat": false,
+      "run_id": "AUTO_064",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:39:28.791924+00:00"
+    },
+    {
+      "event_id": "EVT_000117",
+      "hypothesis_id": "HYP_AUTO_CR_10_1007_978_3_030_19400_0_7",
+      "claim_id": "CLAIM_SRC_CR_10_1007_978_3_030_19400_0_7",
+      "source_ids": [
+        "SRC_CR_10_1007_978_3_030_19400_0_7"
+      ],
+      "family": "quality",
+      "axis": "quality_proxy_ranking",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_064; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_064",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T22:39:28.903335+00:00"
+    },
+    {
+      "event_id": "EVT_000118",
+      "hypothesis_id": "HYP_AUTO_CR_10_1016_B978_1_78548_201_4_50016_7",
+      "claim_id": "CLAIM_SRC_CR_10_1016_B978_1_78548_201_4_50016_7",
+      "source_ids": [
+        "SRC_CR_10_1016_B978_1_78548_201_4_50016_7"
+      ],
+      "family": "quality",
+      "axis": "quality_proxy_ranking",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_064; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_064",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:03:47.422336+00:00"
+    },
+    {
+      "event_id": "EVT_000119",
+      "hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_TREND_13_52_BLEND_SEED",
+      "source_ids": [
+        "SRC_LOCAL_TREND_13_52_BLEND_SEED"
+      ],
+      "family": "trend_following",
+      "axis": "trend_26w_rotation",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "accepted_for_followup",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_065",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": true,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:05:56.323169+00:00"
+    },
+    {
+      "event_id": "EVT_000120",
+      "hypothesis_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "source_ids": [
+        "SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED"
+      ],
+      "family": "low_volatility",
+      "axis": "atr_guarded_momentum",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_066",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:07:27.372703+00:00"
+    },
+    {
+      "event_id": "EVT_000121",
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED"
+      ],
+      "family": "quality",
+      "axis": "volume_confirmed_leadership",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_067",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:08:52.671266+00:00"
+    },
+    {
+      "event_id": "EVT_000122",
+      "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED"
+      ],
+      "family": "regime",
+      "axis": "channel_quality_trend",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_068",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:10:18.704625+00:00"
+    },
+    {
+      "event_id": "EVT_000123",
+      "hypothesis_id": "HYP_AUTO_LOCAL_RET_12W_ACCELERATION_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_RET_12W_ACCELERATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_RET_12W_ACCELERATION_SEED"
+      ],
+      "family": "momentum",
+      "axis": "ret_12w_acceleration",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_069",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:11:24.528610+00:00"
+    },
+    {
+      "event_id": "EVT_000124",
+      "hypothesis_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_RET_8W_ROTATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_RET_8W_ROTATION_SEED"
+      ],
+      "family": "sector_momentum",
+      "axis": "ret_8w_rotation",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_070",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:12:54.845013+00:00"
+    },
+    {
+      "event_id": "EVT_000125",
+      "hypothesis_id": "HYP_AUTO_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "source_ids": [
+        "SRC_LOCAL_ROC_26W_PERSISTENCE_SEED"
+      ],
+      "family": "trend_following",
+      "axis": "roc_26w_persistence",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_001; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_001",
+      "can_repeat": false,
+      "run_id": "AUTO_071",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:14:01.765510+00:00"
+    },
+    {
+      "event_id": "EVT_000126",
+      "hypothesis_id": "HYP_AUTO_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CLOSE_SMA13_TREND_SEED"
+      ],
+      "family": "trend_following",
+      "axis": "close_vs_sma13w_trend",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_072",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:15:21.403114+00:00"
+    },
+    {
+      "event_id": "EVT_000127",
+      "hypothesis_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "source_ids": [
+        "SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED"
+      ],
+      "family": "regime",
+      "axis": "sma52_slope_stability",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_073",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:16:25.502709+00:00"
+    },
+    {
+      "event_id": "EVT_000128",
+      "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_R2_QUALITY_SEED"
+      ],
+      "family": "quality",
+      "axis": "channel_r2_quality",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_074",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:17:52.015594+00:00"
+    },
+    {
+      "event_id": "EVT_000129",
+      "hypothesis_id": "HYP_MIX_REGIME_SECTOR_MOMENTUM_V1",
+      "claim_id": "MIX_CLAIM_SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED__CLAIM_SRC_LOCAL_RET_8W_ROTATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+        "SRC_LOCAL_RET_8W_ROTATION_SEED"
+      ],
+      "family": "mixed",
+      "axis": "regime+sector_momentum",
+      "parent_run_id": null,
+      "precheck_status": "duplicate_result",
+      "decision": "rejected",
+      "value_delivered": "duplicate_blocked",
+      "learned": "Duplicate artifacts/config detected against AUTO_060; do not repeat this hypothesis.",
+      "next_action": "change_axis_or_search_new_literature",
+      "duplicate_of_run_id": "AUTO_060",
+      "can_repeat": false,
+      "run_id": null,
+      "execution_mode": "real_precheck_only",
+      "backtest_real": false,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:17:52.121873+00:00"
+    },
+    {
+      "event_id": "EVT_000130",
+      "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "source_ids": [
+        "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+      ],
+      "family": "momentum",
+      "axis": "near_high_52w_breakout",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "secondary_candidate",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_075",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": true,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:30:26.820206+00:00"
+    },
+    {
+      "event_id": "EVT_000131",
+      "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "source_ids": [
+        "SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED"
+      ],
+      "family": "low_volatility",
+      "axis": "shallow_drawdown_13w",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "secondary_candidate",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_076",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": true,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:31:24.802390+00:00"
+    },
+    {
+      "event_id": "EVT_000132",
+      "hypothesis_id": "HYP_AUTO_LOCAL_RSI14_STRENGTH_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_RSI14_STRENGTH_SEED",
+      "source_ids": [
+        "SRC_LOCAL_RSI14_STRENGTH_SEED"
+      ],
+      "family": "momentum",
+      "axis": "rsi14_strength",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: beats_spy_but_materially_loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_077",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:32:30.655474+00:00"
+    },
+    {
+      "event_id": "EVT_000133",
+      "hypothesis_id": "HYP_AUTO_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED"
+      ],
+      "family": "quality",
+      "axis": "stochastic_confirmation",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "secondary_candidate",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_078",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": true,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:34:27.889925+00:00"
+    },
+    {
+      "event_id": "EVT_000134",
+      "hypothesis_id": "HYP_AUTO_LOCAL_OBV_ACCUMULATION_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_OBV_ACCUMULATION_SEED",
+      "source_ids": [
+        "SRC_LOCAL_OBV_ACCUMULATION_SEED"
+      ],
+      "family": "quality",
+      "axis": "obv_accumulation",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_079",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:35:53.533060+00:00"
+    },
+    {
+      "event_id": "EVT_000135",
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED"
+      ],
+      "family": "low_volatility",
+      "axis": "volume_dryup_momentum",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: beats_spy_but_materially_loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_080",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:37:49.738955+00:00"
+    },
+    {
+      "event_id": "EVT_000136",
+      "hypothesis_id": "HYP_AUTO_LOCAL_ATR4_LOW_NOISE_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_ATR4_LOW_NOISE_SEED",
+      "source_ids": [
+        "SRC_LOCAL_ATR4_LOW_NOISE_SEED"
+      ],
+      "family": "low_volatility",
+      "axis": "atr4_low_noise",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: beats_spy_but_materially_loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_081",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:38:58.505464+00:00"
+    },
+    {
+      "event_id": "EVT_000137",
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "source_ids": [
+        "SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED"
+      ],
+      "family": "low_volatility",
+      "axis": "vol26_defensive_momentum",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: beats_spy_but_materially_loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_082",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:39:56.627679+00:00"
+    },
+    {
+      "event_id": "EVT_000138",
+      "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "source_ids": [
+        "SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED"
+      ],
+      "family": "regime",
+      "axis": "spy_slope_risk_on",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: beats_spy_but_materially_loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_083",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:40:58.463736+00:00"
+    },
+    {
+      "event_id": "EVT_000139",
+      "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "source_ids": [
+        "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"
+      ],
+      "family": "regime",
+      "axis": "spy_sma50_relaxed",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "secondary_candidate",
+      "value_delivered": "secondary_candidate",
+      "learned": "Candidate improved one research axis but did not safely replace the champion.",
+      "next_action": "refine_different_material_change",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_084",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:42:00.086155+00:00"
+    },
+    {
+      "event_id": "EVT_000140",
+      "hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "source_ids": [
+        "SRC_LOCAL_PRICE_LOCATION_RANGE_SEED"
+      ],
+      "family": "momentum",
+      "axis": "weekly_close_location",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: beats_spy_but_materially_loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_085",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": true,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:43:27.651978+00:00"
+    },
+    {
+      "event_id": "EVT_000141",
+      "hypothesis_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "source_ids": [
+        "SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED"
+      ],
+      "family": "momentum",
+      "axis": "up_streak_leadership",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_086",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:44:34.018792+00:00"
+    },
+    {
+      "event_id": "EVT_000142",
+      "hypothesis_id": "HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "source_ids": [
+        "SRC_LOCAL_PULLBACK_TO_SMA26_SEED"
+      ],
+      "family": "value",
+      "axis": "pullback_to_sma26",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_087",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:45:30.633836+00:00"
+    },
+    {
+      "event_id": "EVT_000143",
+      "hypothesis_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "claim_id": "CLAIM_SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "source_ids": [
+        "SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED"
+      ],
+      "family": "can_slim",
+      "axis": "breakout_volume_climax",
+      "parent_run_id": "AUTO_002",
+      "precheck_status": "passed",
+      "decision": "rejected",
+      "value_delivered": "rejected_with_learning",
+      "learned": "Rejected with evidence: loses_to_best_champion.",
+      "next_action": "search_or_mix_new_literature",
+      "duplicate_of_run_id": null,
+      "can_repeat": false,
+      "run_id": "AUTO_088",
+      "execution_mode": "real",
+      "backtest_real": true,
+      "promoted_to_baseline_candidate": false,
+      "accepted_for_followup": false,
+      "manual_review_required": false,
+      "created_at": "2026-05-17T23:46:25.816868+00:00"
     }
   ]
 }

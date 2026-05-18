@@ -1,0 +1,26 @@
+{
+  "run_id": "AUTO_066",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+  "hypothesis_family": "low_volatility",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field",
+    "risk_filters.max_volatility_26w_pct"
+  ],
+  "config_hash": "bf2cc78ca778cd3fb3720e2aea1d5d29ec4fd80dc7f86ef656494ab1bacbc39b",
+  "code_hash": "48cbb589f81c0f9080dba5e9f2e3b2c77f8ecd11150b57229e2d3ac431c7edde",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:07:25.775162+00:00"
+}

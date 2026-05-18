@@ -7,3 +7,13 @@
 {"hypothesis_id": "HYP_MOMENTUM_TOPN_12_V1", "family": "cross_sectional_momentum", "run_id": "EXP_011", "learning_id": "LEARN_EXP_011", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_MOMENTUM_TOPN_8_V1", "family": "cross_sectional_momentum", "run_id": "EXP_012", "learning_id": "LEARN_EXP_012", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1", "family": "cross_sectional_momentum", "run_id": "EXP_013", "learning_id": "LEARN_EXP_013", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_5_V1", "family": "can_slim", "run_id": "EXP_030", "learning_id": "LEARN_EXP_030", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_5_V2", "family": "can_slim", "run_id": "EXP_035", "learning_id": "LEARN_EXP_035", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_9_V1", "family": "quality_momentum", "run_id": "EXP_039", "learning_id": "LEARN_EXP_039", "decision": "promoted_candidate", "flags": []}
+{"hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED", "family": "trend_following", "run_id": "AUTO_065", "learning_id": "LEARN_AUTO_065", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED", "family": "momentum", "run_id": "AUTO_075", "learning_id": "LEARN_AUTO_075", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED", "family": "low_volatility", "run_id": "AUTO_076", "learning_id": "LEARN_AUTO_076", "decision": "accepted_for_followup", "flags": ["defensive_improvement"]}
+{"hypothesis_id": "HYP_AUTO_LOCAL_STOCHASTIC_CONFIRMATION_SEED", "family": "quality", "run_id": "AUTO_078", "learning_id": "LEARN_AUTO_078", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED", "family": "momentum", "run_id": "AUTO_085", "learning_id": "LEARN_AUTO_085", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1", "family": "mixed", "run_id": "AUTO_091", "learning_id": "LEARN_AUTO_091", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1", "family": "mixed", "run_id": "AUTO_092", "learning_id": "LEARN_AUTO_092", "decision": "promoted_candidate", "flags": []}

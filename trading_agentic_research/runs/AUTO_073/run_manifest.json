@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_073",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+  "hypothesis_family": "regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "b6d678739a39220dff9162d9407d61ecaa209de99f246165410d185d22f3114c",
+  "code_hash": "48cbb589f81c0f9080dba5e9f2e3b2c77f8ecd11150b57229e2d3ac431c7edde",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:16:23.893195+00:00"
+}

@@ -1,0 +1,59 @@
+{
+  "audit_status": "completed",
+  "decision": "accepted_for_followup",
+  "reasons": [
+    "Candidate does not show enough improvement versus current parent.",
+    "Strategy CAGR beats SPY CAGR.",
+    "Strategy beats SPY in more years than it loses."
+  ],
+  "blocking_issues": [],
+  "warnings": [
+    "No daily price date after signal_date=2026-04-03; skipped rebalance."
+  ],
+  "recommendation": "Keep researching; useful signal but not ready for baseline promotion.",
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "flags": [],
+  "artifact_hashes": {
+    "current": {
+      "metrics.json": "e803e25f44d30c10e0b32cd2b20c78446b6bd9c31bea215ef31dbf3d091da0f8",
+      "trades.csv": "7b7cde15f0e61378a787f368ebf13113f052c5a056d88bdc14446d09e461bde1",
+      "equity_curve.csv": "8ebda5229c50660cbbfba968a5fd65e7c32b0d595831279ca4f4ced118373f51"
+    },
+    "duplicate_artifact": false,
+    "parent": {
+      "run_id": "AUTO_002",
+      "hashes": {
+        "metrics.json": "8c63ff6a4341e684b7ba5797826b83f2367c4121f8e9913eb21d21fab756816b",
+        "trades.csv": "82e729539fcc46255a43504938736032c959e69ce390bb0933a98c85b3130d06",
+        "equity_curve.csv": "633f4f48b68698e574a27ffd011c711b3d49b0fdeba781315fc93d42567558ce"
+      }
+    },
+    "last_run": {
+      "run_id": "EXP_041",
+      "hashes": {
+        "metrics.json": "22ca61badbf4c8300473bcfab93d8cb01adf6fc0381038d0905bd4a2a9523fdf",
+        "trades.csv": "0bd2197caee8f6c585d3661b72d4e9997a648e92d99e29b50260a953b7bdf9b6",
+        "equity_curve.csv": "5f6f76209c7a1b384fa0f00709b5eed68836810126ce0272ae10038b82e79716"
+      }
+    }
+  },
+  "parent_comparison": {
+    "parent_available": true,
+    "blocking_issues": [],
+    "parent_run_id": "AUTO_002",
+    "strategy_cagr_pct": 13.843996430361916,
+    "parent_cagr_pct": 52.09094654873998,
+    "excess_cagr_vs_parent_pct": -38.24695,
+    "strategy_max_drawdown_pct": -23.581059606063835,
+    "parent_max_drawdown_pct": -23.988221786353048,
+    "drawdown_delta_vs_parent_pct": 0.407162,
+    "trade_count_delta": 137,
+    "months_beating_parent": 20,
+    "months_losing_to_parent": 39,
+    "months_tied_parent": 16,
+    "years_beating_parent": 1,
+    "years_losing_to_parent": 6,
+    "years_tied_parent": 0
+  }
+}

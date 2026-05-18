@@ -1,0 +1,28 @@
+{
+  "run_id": "AUTO_089",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CAN_SLIM_SEED"
+    },
+    {
+      "source_id": "SRC_LOCAL_RET_12W_ACCELERATION_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "26ad3d7f83705359161794dcad5986d8f6185da348de1c1c7c9e159c80470a25",
+  "code_hash": "622a2f1c525ba097354bdf6a339932d0dc4ce95b2f9ca5f891aa0b414d9c92ec",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-18T00:16:28.396855+00:00"
+}

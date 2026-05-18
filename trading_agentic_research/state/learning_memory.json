@@ -11,12 +11,77 @@
   },
   "family_summaries": {
     "cross_sectional_momentum": {
-      "rejections": 0,
+      "rejections": 3,
       "acceptances": 6,
       "promoted_candidates": 3
     },
     "risk_management": {
       "rejections": 3,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "tactical_asset_allocation": {
+      "rejections": 3,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "academic_momentum": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "can_slim": {
+      "rejections": 5,
+      "acceptances": 2,
+      "promoted_candidates": 0
+    },
+    "darvas_box": {
+      "rejections": 3,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "trend_following": {
+      "rejections": 6,
+      "acceptances": 1,
+      "promoted_candidates": 0
+    },
+    "quality_momentum": {
+      "rejections": 3,
+      "acceptances": 0,
+      "promoted_candidates": 1
+    },
+    "regime": {
+      "rejections": 6,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "mixed": {
+      "rejections": 5,
+      "acceptances": 1,
+      "promoted_candidates": 1
+    },
+    "momentum": {
+      "rejections": 4,
+      "acceptances": 2,
+      "promoted_candidates": 0
+    },
+    "low_volatility": {
+      "rejections": 5,
+      "acceptances": 1,
+      "promoted_candidates": 0
+    },
+    "quality": {
+      "rejections": 4,
+      "acceptances": 1,
+      "promoted_candidates": 0
+    },
+    "sector_momentum": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "value": {
+      "rejections": 1,
       "acceptances": 0,
       "promoted_candidates": 0
     }
@@ -145,6 +210,711 @@
       "run_id": "EXP_013",
       "decision": "accepted_for_followup",
       "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_020",
+      "hypothesis_id": "HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_020",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_021",
+      "hypothesis_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V1",
+      "family": "tactical_asset_allocation",
+      "run_id": "EXP_021",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_022",
+      "hypothesis_id": "HYP_CROSS_SECTIONAL_MOMENTUM_EXIT_THRESHOLD_15_V1",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_022",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_023",
+      "hypothesis_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10",
+      "family": "tactical_asset_allocation",
+      "run_id": "EXP_023",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_024",
+      "hypothesis_id": "HYP_CROSS_SECTIONAL_MOMENTUM_CONCENTRATION_12_V10",
+      "family": "cross_sectional_momentum",
+      "run_id": "EXP_024",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_025",
+      "hypothesis_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V2",
+      "family": "tactical_asset_allocation",
+      "run_id": "EXP_025",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_026",
+      "hypothesis_id": "HYP_BASELINE_MOMENTUM_TREND_V1",
+      "family": "academic_momentum",
+      "run_id": "EXP_026",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_027",
+      "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_20_V1",
+      "family": "can_slim",
+      "run_id": "EXP_027",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_028",
+      "hypothesis_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V1",
+      "family": "darvas_box",
+      "run_id": "EXP_028",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_029",
+      "hypothesis_id": "HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1",
+      "family": "trend_following",
+      "run_id": "EXP_029",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_030",
+      "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_5_V1",
+      "family": "can_slim",
+      "run_id": "EXP_030",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_031",
+      "hypothesis_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_40_V1",
+      "family": "darvas_box",
+      "run_id": "EXP_031",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_032",
+      "hypothesis_id": "HYP_TREND_FOLLOWING_EXIT_THRESHOLD_35_V1",
+      "family": "trend_following",
+      "run_id": "EXP_032",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_033",
+      "hypothesis_id": "HYP_TREND_FOLLOWING_MARKET_FILTER_True_V1",
+      "family": "trend_following",
+      "run_id": "EXP_033",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_034",
+      "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_20_V2",
+      "family": "can_slim",
+      "run_id": "EXP_034",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_035",
+      "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_5_V2",
+      "family": "can_slim",
+      "run_id": "EXP_035",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_036",
+      "hypothesis_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2",
+      "family": "darvas_box",
+      "run_id": "EXP_036",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_037",
+      "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_20_V3",
+      "family": "can_slim",
+      "run_id": "EXP_037",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_038",
+      "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_18_V1",
+      "family": "quality_momentum",
+      "run_id": "EXP_038",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_039",
+      "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_9_V1",
+      "family": "quality_momentum",
+      "run_id": "EXP_039",
+      "decision": "promoted_candidate",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_040",
+      "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1",
+      "family": "quality_momentum",
+      "run_id": "EXP_040",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_041",
+      "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_15_V1",
+      "family": "quality_momentum",
+      "run_id": "EXP_041",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_057",
+      "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "family": "trend_following",
+      "run_id": "AUTO_057",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_058",
+      "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
+      "family": "can_slim",
+      "run_id": "AUTO_058",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_059",
+      "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
+      "family": "regime",
+      "run_id": "AUTO_059",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_060",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4554268",
+      "family": "mixed",
+      "run_id": "AUTO_060",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_061",
+      "hypothesis_id": "HYP_AUTO_CR_10_54097_P2FHXD83",
+      "family": "momentum",
+      "run_id": "AUTO_061",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_062",
+      "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
+      "family": "low_volatility",
+      "run_id": "AUTO_062",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_063",
+      "hypothesis_id": "HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525",
+      "family": "regime",
+      "run_id": "AUTO_063",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_064",
+      "hypothesis_id": "HYP_AUTO_CR_10_14264_223019",
+      "family": "quality",
+      "run_id": "AUTO_064",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_065",
+      "hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
+      "family": "trend_following",
+      "run_id": "AUTO_065",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_066",
+      "hypothesis_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "family": "low_volatility",
+      "run_id": "AUTO_066",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_067",
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "family": "quality",
+      "run_id": "AUTO_067",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_068",
+      "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "family": "regime",
+      "run_id": "AUTO_068",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_069",
+      "hypothesis_id": "HYP_AUTO_LOCAL_RET_12W_ACCELERATION_SEED",
+      "family": "momentum",
+      "run_id": "AUTO_069",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_070",
+      "hypothesis_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
+      "family": "sector_momentum",
+      "run_id": "AUTO_070",
+      "decision": "rejected",
+      "flags": [
+        "riskier_candidate",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_071",
+      "hypothesis_id": "HYP_AUTO_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "family": "trend_following",
+      "run_id": "AUTO_071",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_072",
+      "hypothesis_id": "HYP_AUTO_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "family": "trend_following",
+      "run_id": "AUTO_072",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_073",
+      "hypothesis_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "family": "regime",
+      "run_id": "AUTO_073",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_074",
+      "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "family": "quality",
+      "run_id": "AUTO_074",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_075",
+      "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "family": "momentum",
+      "run_id": "AUTO_075",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_076",
+      "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "family": "low_volatility",
+      "run_id": "AUTO_076",
+      "decision": "accepted_for_followup",
+      "flags": [
+        "defensive_improvement"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_077",
+      "hypothesis_id": "HYP_AUTO_LOCAL_RSI14_STRENGTH_SEED",
+      "family": "momentum",
+      "run_id": "AUTO_077",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_078",
+      "hypothesis_id": "HYP_AUTO_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "family": "quality",
+      "run_id": "AUTO_078",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_079",
+      "hypothesis_id": "HYP_AUTO_LOCAL_OBV_ACCUMULATION_SEED",
+      "family": "quality",
+      "run_id": "AUTO_079",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_080",
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "family": "low_volatility",
+      "run_id": "AUTO_080",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_081",
+      "hypothesis_id": "HYP_AUTO_LOCAL_ATR4_LOW_NOISE_SEED",
+      "family": "low_volatility",
+      "run_id": "AUTO_081",
+      "decision": "rejected",
+      "flags": [
+        "riskier_candidate",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_082",
+      "hypothesis_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "family": "low_volatility",
+      "run_id": "AUTO_082",
+      "decision": "rejected",
+      "flags": [
+        "riskier_candidate",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_083",
+      "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "family": "regime",
+      "run_id": "AUTO_083",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_084",
+      "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "family": "regime",
+      "run_id": "AUTO_084",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_085",
+      "hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "family": "momentum",
+      "run_id": "AUTO_085",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_086",
+      "hypothesis_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "family": "momentum",
+      "run_id": "AUTO_086",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_087",
+      "hypothesis_id": "HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "family": "value",
+      "run_id": "AUTO_087",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_088",
+      "hypothesis_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "family": "can_slim",
+      "run_id": "AUTO_088",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_089",
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+      "family": "mixed",
+      "run_id": "AUTO_089",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_090",
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+      "family": "mixed",
+      "run_id": "AUTO_090",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_091",
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+      "family": "mixed",
+      "run_id": "AUTO_091",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_092",
+      "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
+      "family": "mixed",
+      "run_id": "AUTO_092",
+      "decision": "promoted_candidate",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_093",
+      "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
+      "family": "mixed",
+      "run_id": "AUTO_093",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_AUTO_094",
+      "hypothesis_id": "HYP_MIX_LOCAL_TREND_13_52_BLEND__LOCAL_CHANNEL_QUALITY_TREND_V1",
+      "family": "mixed",
+      "run_id": "AUTO_094",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
       "written_to_learning_memory": true,
       "can_promote_baseline": false
     }

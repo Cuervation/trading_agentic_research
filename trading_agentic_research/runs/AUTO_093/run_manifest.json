@@ -1,0 +1,30 @@
+{
+  "run_id": "AUTO_093",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"
+    },
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric",
+    "market_filter.require_positive_trend",
+    "ranking.field"
+  ],
+  "config_hash": "290336e17c9137950a7f7d7c5ba714d28c5c953fd251402864cf83191b6da8e3",
+  "code_hash": "a1f7d3bf3d6ba6c923d4160b5f067cd03daf573a8c2f2282a6718cca62cb4bc2",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-18T00:26:46.914848+00:00"
+}

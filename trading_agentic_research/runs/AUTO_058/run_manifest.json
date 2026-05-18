@@ -1,0 +1,22 @@
+{
+  "run_id": "AUTO_058",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_CAN_SLIM_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
+  "hypothesis_family": "can_slim",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CAN_SLIM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n"
+  ],
+  "config_hash": "6710b2668dd8117e8746af2ae1a79447fe1670c88d18a26fb87714b36599c362",
+  "code_hash": "5e27e581b1798138b2b97742f5cdbde71c60d1e7f674c60dc029ff3b11d01ceb",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T22:29:42.290063+00:00"
+}

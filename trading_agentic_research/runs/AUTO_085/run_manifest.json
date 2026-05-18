@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_085",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
+  "hypothesis_family": "momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_PRICE_LOCATION_RANGE_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "cc325f9a38d6bb543392ec64c1536bd076106b059bea981f2c2e0498bacf23b6",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:43:25.400176+00:00"
+}

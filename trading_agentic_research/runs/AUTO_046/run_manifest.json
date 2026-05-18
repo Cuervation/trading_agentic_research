@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_046",
+  "parent_run_id": null,
+  "strategy_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_ADAPTIVE_MARKETS_REGIME_SEED"
+    },
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n"
+  ],
+  "config_hash": "17ef354e0b13864284cc44d2bf6e9d7f696453dc822e9247b7f0473e20420860",
+  "code_hash": "6533ee37a51862200691b9475a058f7a3fd996c0a1e19ae037830fc846334741",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T19:12:35.673459+00:00"
+}

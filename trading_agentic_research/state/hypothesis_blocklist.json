@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "hypothesis_ids": [
+    {
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+      "source_ids": [
+        "SRC_CAN_SLIM_SEED",
+        "SRC_LOCAL_RET_12W_ACCELERATION_SEED"
+      ],
+      "axis": "market_direction_concentration+ret_12w_acceleration",
+      "decision": "rejected",
+      "precheck_status": "duplicate_result",
+      "reason": "duplicate_result",
+      "created_at": "2026-05-18T00:23:40.897926+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+      "source_ids": [
+        "SRC_CAN_SLIM_SEED",
+        "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+      ],
+      "axis": "market_direction_concentration+near_high_52w_breakout",
+      "decision": "secondary_candidate",
+      "precheck_status": "passed",
+      "reason": "improves_one_axis_but_not_champion",
+      "created_at": "2026-05-18T00:24:50.324550+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+        "SRC_TIME_SERIES_MOMENTUM_SEED"
+      ],
+      "axis": "trend_exit+channel_quality_trend",
+      "decision": "aggressive_champion",
+      "precheck_status": "passed",
+      "reason": "higher_cagr_worse_drawdown",
+      "created_at": "2026-05-18T00:25:47.013551+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
+      "source_ids": [
+        "SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+        "SRC_TIME_SERIES_MOMENTUM_SEED"
+      ],
+      "axis": "trend_exit+spy_sma50_relaxed",
+      "decision": "secondary_candidate",
+      "precheck_status": "passed",
+      "reason": "beats_spy_but_loses_to_best_champion",
+      "created_at": "2026-05-18T00:26:48.459100+00:00"
+    },
+    {
+      "hypothesis_id": "HYP_MIX_LOCAL_TREND_13_52_BLEND__LOCAL_CHANNEL_QUALITY_TREND_V1",
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+        "SRC_LOCAL_TREND_13_52_BLEND_SEED"
+      ],
+      "axis": "trend_26w_rotation+channel_quality_trend",
+      "decision": "secondary_candidate",
+      "precheck_status": "passed",
+      "reason": "beats_spy_but_loses_to_best_champion",
+      "created_at": "2026-05-18T00:27:54.300435+00:00"
+    }
+  ],
+  "mixed_pairs": [
+    {
+      "source_ids": [
+        "SRC_CAN_SLIM_SEED",
+        "SRC_LOCAL_RET_12W_ACCELERATION_SEED"
+      ],
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+      "axis": "market_direction_concentration+ret_12w_acceleration",
+      "decision": "rejected",
+      "precheck_status": "duplicate_result",
+      "reason": "duplicate_result",
+      "created_at": "2026-05-18T00:23:40.897926+00:00"
+    },
+    {
+      "source_ids": [
+        "SRC_CAN_SLIM_SEED",
+        "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+      ],
+      "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+      "axis": "market_direction_concentration+near_high_52w_breakout",
+      "decision": "secondary_candidate",
+      "precheck_status": "passed",
+      "reason": "improves_one_axis_but_not_champion",
+      "created_at": "2026-05-18T00:24:50.324550+00:00"
+    },
+    {
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+        "SRC_TIME_SERIES_MOMENTUM_SEED"
+      ],
+      "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
+      "axis": "trend_exit+channel_quality_trend",
+      "decision": "aggressive_champion",
+      "precheck_status": "passed",
+      "reason": "higher_cagr_worse_drawdown",
+      "created_at": "2026-05-18T00:25:47.013551+00:00"
+    },
+    {
+      "source_ids": [
+        "SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+        "SRC_TIME_SERIES_MOMENTUM_SEED"
+      ],
+      "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
+      "axis": "trend_exit+spy_sma50_relaxed",
+      "decision": "secondary_candidate",
+      "precheck_status": "passed",
+      "reason": "beats_spy_but_loses_to_best_champion",
+      "created_at": "2026-05-18T00:26:48.459100+00:00"
+    },
+    {
+      "source_ids": [
+        "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+        "SRC_LOCAL_TREND_13_52_BLEND_SEED"
+      ],
+      "hypothesis_id": "HYP_MIX_LOCAL_TREND_13_52_BLEND__LOCAL_CHANNEL_QUALITY_TREND_V1",
+      "axis": "trend_26w_rotation+channel_quality_trend",
+      "decision": "secondary_candidate",
+      "precheck_status": "passed",
+      "reason": "beats_spy_but_loses_to_best_champion",
+      "created_at": "2026-05-18T00:27:54.300435+00:00"
+    }
+  ]
+}

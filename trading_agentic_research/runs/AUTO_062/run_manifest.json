@@ -1,0 +1,23 @@
+{
+  "run_id": "AUTO_062",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
+  "hypothesis_family": "low_volatility",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CR_10_2139_SSRN_6516598"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n",
+    "risk_filters.max_volatility_26w_pct"
+  ],
+  "config_hash": "58a6779fadf110051fd07395e1602750088ccdd6da3c449b65e87f31ed6c1216",
+  "code_hash": "5e27e581b1798138b2b97742f5cdbde71c60d1e7f674c60dc029ff3b11d01ceb",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T22:36:04.660966+00:00"
+}

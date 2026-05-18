@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_067",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+  "hypothesis_family": "quality",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "a435e04976f36b0a26b5fd63400fdf35c5275821e6aeb610f08a402ec3167dec",
+  "code_hash": "48cbb589f81c0f9080dba5e9f2e3b2c77f8ecd11150b57229e2d3ac431c7edde",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:08:50.640400+00:00"
+}

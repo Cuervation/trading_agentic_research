@@ -1,0 +1,24 @@
+{
+  "run_id": "AUTO_064",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_CR_10_14264_223019",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_CR_10_14264_223019",
+  "hypothesis_family": "quality",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CR_10_14264_223019"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "ranking.field"
+  ],
+  "config_hash": "c6d80fca36ed965dd0b2d2e43030f7ead2544b78398ee1efefbb99984523b68f",
+  "code_hash": "5e27e581b1798138b2b97742f5cdbde71c60d1e7f674c60dc029ff3b11d01ceb",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T22:39:27.259606+00:00"
+}

@@ -560,6 +560,78 @@
       "signature": "7eb40c09fec844bb446cb596012c976c1912ad48303ad6f8be53caa93ce659e6",
       "decision": "duplicate_result",
       "value_delivered": "duplicate_blocked"
+    },
+    {
+      "run_id": "AUTO_058",
+      "duplicate_of_run_id": "AUTO_003",
+      "config_hash": "113e986438a188d90e663a6f3dfc5ee273db61ee480ad4def5766a853cf2d17c",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T22:29:44.009757+00:00"
+    },
+    {
+      "run_id": "AUTO_060",
+      "duplicate_of_run_id": "AUTO_004",
+      "config_hash": "39a05d02f89053ca6f555ffb31ae0f19f8775c344ec2847b8c4477d82b30bef7",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T22:32:52.385970+00:00"
+    },
+    {
+      "run_id": "AUTO_061",
+      "duplicate_of_run_id": "AUTO_001",
+      "config_hash": "3bdef90ab926871743b85fe6d69e69267502c932fd53e5c6d810fe9c0bab7ef7",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T22:34:29.239158+00:00"
+    },
+    {
+      "run_id": "AUTO_062",
+      "duplicate_of_run_id": "AUTO_007",
+      "config_hash": "01736cfed1ec5389f7704b26d77776993145a016620b3b333368cdca404fe524",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T22:36:07.410141+00:00"
+    },
+    {
+      "run_id": "AUTO_063",
+      "duplicate_of_run_id": "AUTO_059",
+      "config_hash": "a289d0480c47a528424a07a2a3b9a027291bd0f617b61b03f1fdf924ae823329",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T22:37:59.701158+00:00"
+    },
+    {
+      "run_id": "AUTO_064",
+      "duplicate_of_run_id": "AUTO_006",
+      "config_hash": "106642c0b722f346273290f6df5d9a6c89f32c8e15b8829288e9b3a5bd854153",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T22:39:28.812694+00:00"
+    },
+    {
+      "run_id": "AUTO_071",
+      "duplicate_of_run_id": "AUTO_001",
+      "config_hash": "ef2886cfb3a857399e3959b839d58856bf16e867e4648fd7bc90354cd01623fe",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-17T23:14:01.779401+00:00"
+    },
+    {
+      "run_id": "AUTO_090",
+      "duplicate_of_run_id": "AUTO_089",
+      "config_hash": "5724a74e660f7a169cc05caf9eedf67002865b70a82b60cff5bbe697b9c921bb",
+      "reason": "duplicate_artifact",
+      "decision": "duplicate_result",
+      "value_delivered": "duplicate_blocked",
+      "created_at": "2026-05-18T00:17:31.065986+00:00"
     }
   ]
 }

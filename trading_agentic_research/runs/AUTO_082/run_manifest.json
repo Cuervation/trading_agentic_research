@@ -1,0 +1,26 @@
+{
+  "run_id": "AUTO_082",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+  "hypothesis_family": "low_volatility",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field",
+    "risk_filters.max_volatility_26w_pct"
+  ],
+  "config_hash": "dd34265680126a4052f7a7bd3daf9f0316162cc86faeffdd8de9ac51e52e232f",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:39:55.535199+00:00"
+}
