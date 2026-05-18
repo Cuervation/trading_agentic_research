@@ -4,6 +4,50 @@
     "risk_management": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "cross_sectional_momentum": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "tactical_asset_allocation": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "trend_following": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "darvas_box": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "can_slim": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "quality_momentum": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "regime": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "quality": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "momentum": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "low_volatility": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "mixed": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3

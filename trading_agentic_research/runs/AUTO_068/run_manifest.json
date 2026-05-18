@@ -1,0 +1,26 @@
+{
+  "run_id": "AUTO_068",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+  "hypothesis_family": "regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric",
+    "ranking.field"
+  ],
+  "config_hash": "35acb080c3ff459ee3492fc0c550f2514196b10651fb97bf8b8ae4064d11b276",
+  "code_hash": "48cbb589f81c0f9080dba5e9f2e3b2c77f8ecd11150b57229e2d3ac431c7edde",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:10:15.921241+00:00"
+}

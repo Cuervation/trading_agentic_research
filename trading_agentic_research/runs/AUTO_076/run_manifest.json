@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_076",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+  "hypothesis_family": "low_volatility",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "d7fa7b3e457cf5226c2366890adcf269cd62adeceddd96c30f1e5f5fe4461429",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:31:23.717977+00:00"
+}

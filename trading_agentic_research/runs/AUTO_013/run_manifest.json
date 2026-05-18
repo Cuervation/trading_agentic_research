@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_013",
+  "parent_run_id": "EXP_039",
+  "strategy_id": "HYP_MIX_LOW_VOLATILITY_MOMENTUM_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_LOW_VOLATILITY_MOMENTUM_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CROSS_SECTIONAL_MOMENTUM_SEED"
+    },
+    {
+      "source_id": "SRC_LOW_VOL_BAB_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n"
+  ],
+  "config_hash": "d3f534670a5c2a9f316e5d9a9bef3d0049dcc230e80697684f066bd2b9da06d1",
+  "code_hash": "6533ee37a51862200691b9475a058f7a3fd996c0a1e19ae037830fc846334741",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T18:35:12.223292+00:00"
+}

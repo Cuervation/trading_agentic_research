@@ -1,0 +1,27 @@
+{
+  "run_id": "AUTO_084",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+  "hypothesis_family": "regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_SPY_SMA50_RELAXED_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric",
+    "market_filter.require_positive_trend",
+    "ranking.field"
+  ],
+  "config_hash": "27bcd77f95c6af59f61224ae288fbeeef6d25313dfc0c7f8fb919166cec9a3e5",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:41:58.631743+00:00"
+}

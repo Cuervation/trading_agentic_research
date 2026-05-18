@@ -3,13 +3,75 @@
   "axes": {
     "mixed:mixed": {
       "status": "axis_exhausted",
-      "reason": "three_duplicate_results",
-      "duplicate_result": 46
+      "duplicate_result": 46,
+      "metric_no_effect": 0,
+      "rejected": 0,
+      "consecutive_rejected": 0,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
     },
     "unknown:unknown": {
       "status": "axis_exhausted",
-      "reason": "three_duplicate_results",
-      "duplicate_result": 29
+      "duplicate_result": 29,
+      "metric_no_effect": 0,
+      "rejected": 4,
+      "consecutive_rejected": 4,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
+    },
+    "mixed:generic_material_change": {
+      "status": "axis_exhausted",
+      "duplicate_result": 3,
+      "metric_no_effect": 0,
+      "rejected": 2,
+      "consecutive_rejected": 2,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
+    },
+    "momentum:ranking_24_52_momentum": {
+      "status": "axis_exhausted",
+      "duplicate_result": 3,
+      "metric_no_effect": 0,
+      "rejected": 2,
+      "consecutive_rejected": 2,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
+    },
+    "low_volatility:low_volatility_filter": {
+      "status": "axis_exhausted",
+      "duplicate_result": 3,
+      "metric_no_effect": 0,
+      "rejected": 2,
+      "consecutive_rejected": 2,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
+    },
+    "sector_momentum:ranking_24_52_momentum": {
+      "status": "axis_exhausted",
+      "duplicate_result": 3,
+      "metric_no_effect": 0,
+      "rejected": 3,
+      "consecutive_rejected": 3,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
+    },
+    "regime:regime_filter": {
+      "status": "axis_exhausted",
+      "duplicate_result": 3,
+      "metric_no_effect": 0,
+      "rejected": 3,
+      "consecutive_rejected": 3,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
+    },
+    "quality:quality_proxy_ranking": {
+      "status": "axis_exhausted",
+      "duplicate_result": 3,
+      "metric_no_effect": 0,
+      "rejected": 2,
+      "consecutive_rejected": 2,
+      "reason": "too_many_duplicate_metric_no_effect_or_rejected",
+      "updated_at": "2026-05-17T23:46:25.832561+00:00"
     }
   },
   "axis_rejection_threshold": 3

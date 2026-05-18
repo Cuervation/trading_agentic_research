@@ -1,0 +1,24 @@
+{
+  "run_id": "AUTO_008",
+  "parent_run_id": "EXP_039",
+  "strategy_id": "HYP_AUTO_SECTOR_MOMENTUM_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_SECTOR_MOMENTUM_SEED",
+  "hypothesis_family": "sector_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_SECTOR_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "ranking.field"
+  ],
+  "config_hash": "8016d928b2b2b6d9f5c389a67ba18a41f6ee48f8f039f493b42e2424c7ddab73",
+  "code_hash": "6533ee37a51862200691b9475a058f7a3fd996c0a1e19ae037830fc846334741",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T18:32:14.744599+00:00"
+}

@@ -1,0 +1,29 @@
+{
+  "strategy": {
+    "total_return_pct": 590.491293208898,
+    "cagr_pct": 36.298138103424705,
+    "max_drawdown_pct": -29.245705897813757,
+    "start_date": "2020-01-02 00:00:00",
+    "end_date": "2026-03-30 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 94.53011364597089,
+    "cagr_pct": 11.25390024859323,
+    "max_drawdown_pct": -34.104746893243956,
+    "start_date": "2020-01-02 00:00:00",
+    "end_date": "2026-03-30 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 75,
+    "number_of_trades": 378,
+    "start_date": "2020-01-02 00:00:00",
+    "end_date": "2026-03-30 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-04-03; skipped rebalance."
+    ]
+  },
+  "costs": {
+    "applied": true,
+    "cost_per_side_pct": 0.24
+  }
+}

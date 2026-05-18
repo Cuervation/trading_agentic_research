@@ -1,4 +1,3997 @@
 {
   "version": 1,
-  "claims": []
+  "claims": [
+    {
+      "claim_id": "CLAIM_SRC_CROSS_SECTIONAL_MOMENTUM_SEED",
+      "source_id": "SRC_CROSS_SECTIONAL_MOMENTUM_SEED",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_TIME_SERIES_MOMENTUM_SEED",
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED",
+      "family": "trend_following",
+      "claim": "Assets with positive medium-term trend should be favored and weak trends should be cut earlier.",
+      "causal_mechanism": "Trend persistence and behavioral anchoring can create continuation across 24/52 week windows.",
+      "suggested_variables": [
+        "close_vs_sma26w_pct",
+        "close_vs_sma52w_pct",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "positive_trend",
+        "rank_exit"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct",
+        "close_vs_sma52w_pct"
+      ],
+      "expected_risks": [
+        "whipsaw",
+        "late_exit"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CAN_SLIM_SEED",
+      "source_id": "SRC_CAN_SLIM_SEED",
+      "family": "can_slim",
+      "claim": "Market direction and leadership concentration should matter more than broad diversification.",
+      "causal_mechanism": "Leadership baskets can compound when market regime supports risk-on participation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "spy_close_vs_sma50_pct"
+      ],
+      "possible_filters": [
+        "market_direction",
+        "top_leaders"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "concentration",
+        "market_filter_false_positive"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_FAMA_FRENCH_FACTORS_SEED",
+      "source_id": "SRC_FAMA_FRENCH_FACTORS_SEED",
+      "family": "value",
+      "claim": "Value/factor context can avoid buying expensive momentum names after overextension.",
+      "causal_mechanism": "Combining factor discipline with momentum may reduce crash exposure and improve stability.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "drawdown_from_high_52w_pct"
+      ],
+      "possible_filters": [
+        "avoid_extreme_overextension"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "value_trap_proxy",
+        "feature_proxy_noise"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CARHART_MOMENTUM_SEED",
+      "source_id": "SRC_CARHART_MOMENTUM_SEED",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_QUALITY_INVESTING_SEED",
+      "source_id": "SRC_QUALITY_INVESTING_SEED",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOW_VOL_BAB_SEED",
+      "source_id": "SRC_LOW_VOL_BAB_SEED",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_SECTOR_MOMENTUM_SEED",
+      "source_id": "SRC_SECTOR_MOMENTUM_SEED",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_TREND_VOL_TARGET_SEED",
+      "source_id": "SRC_TREND_VOL_TARGET_SEED",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_ADAPTIVE_MARKETS_REGIME_SEED",
+      "source_id": "SRC_ADAPTIVE_MARKETS_REGIME_SEED",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T18:27:02.831382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4554268",
+      "source_id": "SRC_CR_10_2139_SSRN_4554268",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:40.978606+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_5368339",
+      "source_id": "SRC_CR_10_2139_SSRN_5368339",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:40.978606+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4237269",
+      "source_id": "SRC_CR_10_2139_SSRN_4237269",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:40.978606+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1007_SPRINGERREFERENCE_65305",
+      "source_id": "SRC_CR_10_1007_SPRINGERREFERENCE_65305",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:40.978606+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1787_888933198959",
+      "source_id": "SRC_CR_10_1787_888933198959",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:40.978606+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A39_1746",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A39_1746",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:44.093197+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A43_1197",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A43_1197",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:44.093197+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A67_319",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A67_319",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:44.093197+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A36_1487",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A36_1487",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:44.093197+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A53_1038",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A53_1038",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:44.093197+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_54097_P2FHXD83",
+      "source_id": "SRC_CR_10_54097_P2FHXD83",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:48.092223+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_58837_CHULA_THE_2015_593",
+      "source_id": "SRC_CR_10_58837_CHULA_THE_2015_593",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:48.092223+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4196563",
+      "source_id": "SRC_CR_10_2139_SSRN_4196563",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:48.092223+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_1087391",
+      "source_id": "SRC_CR_10_2139_SSRN_1087391",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:48.092223+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4925973",
+      "source_id": "SRC_CR_10_2139_SSRN_4925973",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:48.092223+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6516598",
+      "source_id": "SRC_CR_10_2139_SSRN_6516598",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:55.040880+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3995496",
+      "source_id": "SRC_CR_10_2139_SSRN_3995496",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:55.040880+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3300965",
+      "source_id": "SRC_CR_10_2139_SSRN_3300965",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:55.040880+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3227047",
+      "source_id": "SRC_CR_10_2139_SSRN_3227047",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:55.040880+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_5130179",
+      "source_id": "SRC_CR_10_2139_SSRN_5130179",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:52:55.040880+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_54254_2754_1169_2025_LH25691",
+      "source_id": "SRC_S2_10_54254_2754_1169_2025_LH25691",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:01.350382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_38124_IJISRT_25MAY210",
+      "source_id": "SRC_S2_10_38124_IJISRT_25MAY210",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:01.350382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_5121_IJDKP_2025_15301",
+      "source_id": "SRC_S2_10_5121_IJDKP_2025_15301",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:01.350382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_54254_2754_1169_2025_LH25120",
+      "source_id": "SRC_S2_10_54254_2754_1169_2025_LH25120",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:01.350382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3390_ECONOMIES12040077",
+      "source_id": "SRC_S2_10_3390_ECONOMIES12040077",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:01.350382+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A28_704",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A28_704",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:10.050152+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_4495435",
+      "source_id": "SRC_CR_10_2139_SSRN_4495435",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:10.050152+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2469_DIG_V44_N6_11",
+      "source_id": "SRC_CR_10_2469_DIG_V44_N6_11",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:10.050152+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_JBANKFIN_2014_01_041",
+      "source_id": "SRC_CR_10_1016_J_JBANKFIN_2014_01_041",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:10.050152+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_1929158",
+      "source_id": "SRC_CR_10_2139_SSRN_1929158",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:10.050152+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_0A963D638CBBBB3F15278147FA966C251912FA71",
+      "source_id": "SRC_S2_0A963D638CBBBB3F15278147FA966C251912FA71",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:11.581704+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_4447C1D4DA6AC2E52AAFCD04EC3DB9D60C9AAD9B",
+      "source_id": "SRC_S2_4447C1D4DA6AC2E52AAFCD04EC3DB9D60C9AAD9B",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:11.581704+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_37394_23207_2026_23_34",
+      "source_id": "SRC_S2_10_37394_23207_2026_23_34",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:11.581704+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_6291_AIAPM_2008_03_08",
+      "source_id": "SRC_S2_10_6291_AIAPM_2008_03_08",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:11.581704+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_20472_IAC_2016_022_009",
+      "source_id": "SRC_S2_10_20472_IAC_2016_022_009",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:11.581704+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1163_1874_6772_SEG_A43_1198",
+      "source_id": "SRC_CR_10_1163_1874_6772_SEG_A43_1198",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:22.958755+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_1868443",
+      "source_id": "SRC_CR_10_2139_SSRN_1868443",
+      "family": "sector_momentum",
+      "claim": "Industry and sector leadership can persist beyond individual stock noise.",
+      "causal_mechanism": "Capital flows often rotate by industry groups, creating cluster persistence.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "leadership_persistence"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "missing_sector_field",
+        "overconcentration"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:22.958755+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_PACFIN_2024_102525",
+      "source_id": "SRC_CR_10_1016_J_PACFIN_2024_102525",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:22.958755+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_3905_JPM_2025_1_764",
+      "source_id": "SRC_CR_10_3905_JPM_2025_1_764",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:22.958755+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_3342508",
+      "source_id": "SRC_CR_10_2139_SSRN_3342508",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:22.958755+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1002_9781119202257_CH3",
+      "source_id": "SRC_CR_10_1002_9781119202257_CH3",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:37.231835+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_3905_JFDS_2023_1_120",
+      "source_id": "SRC_CR_10_3905_JFDS_2023_1_120",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:37.231835+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_14264_223019",
+      "source_id": "SRC_CR_10_14264_223019",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:37.231835+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1007_978_3_030_19400_0_7",
+      "source_id": "SRC_CR_10_1007_978_3_030_19400_0_7",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:37.231835+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_B978_1_78548_201_4_50016_7",
+      "source_id": "SRC_CR_10_1016_B978_1_78548_201_4_50016_7",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:37.231835+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_22495_BPRV1I1P3",
+      "source_id": "SRC_CR_10_22495_BPRV1I1P3",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:52.611155+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_3905_JOI_2004_412307",
+      "source_id": "SRC_CR_10_3905_JOI_2004_412307",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:52.611155+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1002_FUT_20520",
+      "source_id": "SRC_CR_10_1002_FUT_20520",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:52.611155+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_3905_JFDS_2021_1_072",
+      "source_id": "SRC_CR_10_3905_JFDS_2021_1_072",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:52.611155+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_ESR_2024_101591",
+      "source_id": "SRC_CR_10_1016_J_ESR_2024_101591",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:53:52.611155+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6224058",
+      "source_id": "SRC_CR_10_2139_SSRN_6224058",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:54:07.640150+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6289958",
+      "source_id": "SRC_CR_10_2139_SSRN_6289958",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:54:07.640150+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6333378",
+      "source_id": "SRC_CR_10_2139_SSRN_6333378",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:54:36.564171+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1145_3533271_3561666",
+      "source_id": "SRC_S2_10_1145_3533271_3561666",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:06.766051+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1002_JCAF_22699",
+      "source_id": "SRC_S2_10_1002_JCAF_22699",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:10.828791+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1093_HUMREP_DEAB130_790",
+      "source_id": "SRC_S2_10_1093_HUMREP_DEAB130_790",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:10.828791+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1182_BLOOD_2025_648",
+      "source_id": "SRC_S2_10_1182_BLOOD_2025_648",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:10.828791+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1016_J_JPAIN_2024_104718",
+      "source_id": "SRC_S2_10_1016_J_JPAIN_2024_104718",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:10.828791+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1097_HCO_0000000000001081",
+      "source_id": "SRC_S2_10_1097_HCO_0000000000001081",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:10.828791+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_52783_JIER_V5I1_2121",
+      "source_id": "SRC_S2_10_52783_JIER_V5I1_2121",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:26.124534+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_22495_BPRV1I1P3",
+      "source_id": "SRC_S2_10_22495_BPRV1I1P3",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:26.124534+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_54097_1NEJXS42",
+      "source_id": "SRC_S2_10_54097_1NEJXS42",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:26.124534+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_2139_SSRN_4741820",
+      "source_id": "SRC_S2_10_2139_SSRN_4741820",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:57.391947+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1111_JOFI_12513",
+      "source_id": "SRC_S2_10_1111_JOFI_12513",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:57.391947+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3905_JPM_2014_40_4_089",
+      "source_id": "SRC_S2_10_3905_JPM_2014_40_4_089",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:57.391947+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1111_JOFI_12383",
+      "source_id": "SRC_S2_10_1111_JOFI_12383",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:57.391947+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1108_MF_09_2021_0415",
+      "source_id": "SRC_S2_10_1108_MF_09_2021_0415",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:55:57.391947+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3390_JRFM18100549",
+      "source_id": "SRC_S2_10_3390_JRFM18100549",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:57:19.088861+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1007_S12597_024_00888_5",
+      "source_id": "SRC_S2_10_1007_S12597_024_00888_5",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:57:19.088861+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3905_JFDS_2021_1_072",
+      "source_id": "SRC_S2_10_3905_JFDS_2021_1_072",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:57:19.088861+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1057_S41260_024_00372_1",
+      "source_id": "SRC_S2_10_1057_S41260_024_00372_1",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:57:19.088861+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3905_JPM_2024_1_649",
+      "source_id": "SRC_S2_10_3905_JPM_2024_1_649",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:57:19.088861+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3905_JPM_2025_1_764",
+      "source_id": "SRC_S2_10_3905_JPM_2025_1_764",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:58:23.561266+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_1016_J_PACFIN_2024_102525",
+      "source_id": "SRC_S2_10_1016_J_PACFIN_2024_102525",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:58:23.561266+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_3905_JFDS_2023_1_120",
+      "source_id": "SRC_S2_10_3905_JFDS_2023_1_120",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:58:23.561266+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_FB2310D3E78812EC1C3136072E9F3889F8C5BAA6",
+      "source_id": "SRC_S2_FB2310D3E78812EC1C3136072E9F3889F8C5BAA6",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:58:23.561266+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_S2_10_2139_SSRN_3342508",
+      "source_id": "SRC_S2_10_2139_SSRN_3342508",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T19:58:23.561266+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1177_1741134314553444",
+      "source_id": "SRC_CR_10_1177_1741134314553444",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:50.928865+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_14264_3571176",
+      "source_id": "SRC_CR_10_14264_3571176",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:50.928865+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1201_9781420013115_CH10",
+      "source_id": "SRC_CR_10_1201_9781420013115_CH10",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:50.928865+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1007_978_1_0716_0421_2_730",
+      "source_id": "SRC_CR_10_1007_978_1_0716_0421_2_730",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:50.928865+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_IRFA_2018_03_012",
+      "source_id": "SRC_CR_10_1016_J_IRFA_2018_03_012",
+      "family": "mixed",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:50.928865+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_21023_JMF_30_1_2",
+      "source_id": "SRC_CR_10_21023_JMF_30_1_2",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:56.316609+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_58837_CHULA_IS_2023_358",
+      "source_id": "SRC_CR_10_58837_CHULA_IS_2023_358",
+      "family": "momentum",
+      "claim": "Longer-horizon winners should keep outperforming losers after short-term noise is ignored.",
+      "causal_mechanism": "Investor underreaction and slow information diffusion can make 24/52 week relative strength persistent.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "exclude_benchmark",
+        "monthly_rebalance"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "momentum_crash",
+        "crowding",
+        "turnover"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:56.316609+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_ENECO_2021_105756",
+      "source_id": "SRC_CR_10_1016_J_ENECO_2021_105756",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:56.316609+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_2801534",
+      "source_id": "SRC_CR_10_2139_SSRN_2801534",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:56.316609+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_51244_IJRSI_2026_1303000043",
+      "source_id": "SRC_CR_10_51244_IJRSI_2026_1303000043",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:03:56.316609+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1021_ACS_EST_0C00632_S001",
+      "source_id": "SRC_CR_10_1021_ACS_EST_0C00632_S001",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:04.285973+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_3905_JPM_2021_1_293",
+      "source_id": "SRC_CR_10_3905_JPM_2021_1_293",
+      "family": "low_volatility",
+      "claim": "Lower volatility momentum can reduce crash sensitivity while preserving participation.",
+      "causal_mechanism": "Betting-against-beta and low-vol effects may improve risk-adjusted continuation.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "volatility_26w_pct",
+        "atr_14_pct"
+      ],
+      "possible_filters": [
+        "low_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:04.285973+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6621520",
+      "source_id": "SRC_CR_10_2139_SSRN_6621520",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:04.285973+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6235138",
+      "source_id": "SRC_CR_10_2139_SSRN_6235138",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:04.285973+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_32920_RYERSON_14651955_V1",
+      "source_id": "SRC_CR_10_32920_RYERSON_14651955_V1",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:04.285973+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_32920_RYERSON_14651955",
+      "source_id": "SRC_CR_10_32920_RYERSON_14651955",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:11.740589+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_6238919",
+      "source_id": "SRC_CR_10_2139_SSRN_6238919",
+      "family": "regime",
+      "claim": "Regime-aware trend rules should avoid weak market conditions and reduce drawdown.",
+      "causal_mechanism": "Adaptive markets imply strategy edge changes by volatility and trend regime.",
+      "suggested_variables": [
+        "spy_close_vs_sma50_pct",
+        "spy_channel_slope_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "regime_filter",
+        "volatility_targeting"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "overfiltering",
+        "missed_rebound"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:11.740589+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_2139_SSRN_407680",
+      "source_id": "SRC_CR_10_2139_SSRN_407680",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:11.740589+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1016_J_JFINECO_2004_11_002",
+      "source_id": "SRC_CR_10_1016_J_JFINECO_2004_11_002",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:11.740589+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1080_14783363_2010_487680",
+      "source_id": "SRC_CR_10_1080_14783363_2010_487680",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:11.740589+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1007_978_981_99_5628_9_8",
+      "source_id": "SRC_CR_10_1007_978_981_99_5628_9_8",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:23.755447+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_CR_10_1186_S12955_014_0110_7",
+      "source_id": "SRC_CR_10_1186_S12955_014_0110_7",
+      "family": "quality",
+      "claim": "Quality leaders with persistent momentum should outperform lower-quality high-momentum names.",
+      "causal_mechanism": "Durable profitability/quality proxies can make momentum less fragile across 24/52 week windows.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "quality_proxy",
+        "trend_consistency"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct",
+        "weeks_above_sma26_last13"
+      ],
+      "expected_risks": [
+        "proxy_quality_not_fundamental",
+        "crowding"
+      ],
+      "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:23.755447+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_TREND_13_52_BLEND_SEED",
+      "source_id": "SRC_LOCAL_TREND_13_52_BLEND_SEED",
+      "family": "trend_following",
+      "claim": "Intermediate trend strength can catch leadership earlier than pure 52-week ranking while retaining trend persistence.",
+      "causal_mechanism": "A 13/26-week trend proxy reacts faster to leadership rotation while still filtering short-term noise.",
+      "suggested_variables": [
+        "close_vs_sma26w_pct",
+        "ret_26w_pct",
+        "close_sma_26w_slope_8w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "drop_below_rank"
+      ],
+      "possible_rankings": [
+        "close_vs_sma26w_pct"
+      ],
+      "expected_risks": [
+        "whipsaw",
+        "overreacting_to_short_trend"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate the champion or if yearly SPY-relative robustness deteriorates.",
+      "implementation_change": {
+        "axis": "trend_26w_rotation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "close_vs_sma26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 11,
+            "by": "close_vs_sma26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 24
+          }
+        },
+        "features_used": [
+          "close_vs_sma26w_pct",
+          "ret_26w_pct",
+          "close_sma_26w_slope_8w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:35.592995+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "source_id": "SRC_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+      "family": "low_volatility",
+      "claim": "Momentum baskets with lower ATR participation should reduce crash sensitivity while preserving most relative strength edge.",
+      "causal_mechanism": "High volatility winners are more fragile during de-risking; ATR-aware ranking should lower left-tail exposure.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "atr_14w_pct",
+        "volatility_26w_pct"
+      ],
+      "possible_filters": [
+        "max_volatility_proxy"
+      ],
+      "possible_rankings": [
+        "atr_14w_pct",
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "underparticipation",
+        "defensive_lag"
+      ],
+      "falsification_rule": "Reject if drawdown does not improve or artifacts duplicate existing low-volatility runs.",
+      "implementation_change": {
+        "axis": "atr_guarded_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "ret_26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 18
+          },
+          "risk_filters": {
+            "max_volatility_26w_pct": 35
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "atr_14w_pct",
+          "volatility_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:35.592995+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "source_id": "SRC_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+      "family": "quality",
+      "claim": "Momentum confirmed by persistent volume participation should identify stronger institutional leadership.",
+      "causal_mechanism": "Institutional accumulation tends to combine price leadership with sustained relative volume.",
+      "suggested_variables": [
+        "volume_ratio_vs_sma13w",
+        "obv_w_slope_13w_pct",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "liquidity_confirmation"
+      ],
+      "possible_rankings": [
+        "volume_ratio_vs_sma13w"
+      ],
+      "expected_risks": [
+        "volume_spikes_not_accumulation",
+        "late_leadership"
+      ],
+      "falsification_rule": "Reject if monthly/yearly SPY comparison worsens or trade list duplicates a prior run.",
+      "implementation_change": {
+        "axis": "volume_confirmed_leadership",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volume_ratio_vs_sma13w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "volume_ratio_vs_sma13w"
+          },
+          "exit_rule": {
+            "rank_threshold": 22
+          }
+        },
+        "features_used": [
+          "volume_ratio_vs_sma13w",
+          "obv_w_slope_13w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:35.592995+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "source_id": "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+      "family": "regime",
+      "claim": "Higher channel slope quality should favor persistent trends over noisy one-off momentum bursts.",
+      "causal_mechanism": "A cleaner regression channel can proxy smoother institutional demand and lower false breakout risk.",
+      "suggested_variables": [
+        "channel_slope_pct",
+        "channel_r2",
+        "distance_to_channel_mid_pct"
+      ],
+      "possible_filters": [
+        "regression_channel_quality"
+      ],
+      "possible_rankings": [
+        "channel_slope_pct"
+      ],
+      "expected_risks": [
+        "overfitting_channel_shape",
+        "slow_to_rotation"
+      ],
+      "falsification_rule": "Reject if it cannot beat SPY in more years or duplicates existing artifacts.",
+      "implementation_change": {
+        "axis": "channel_quality_trend",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "channel_slope_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "channel_slope_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          },
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "channel_slope_pct",
+          "channel_r2",
+          "distance_to_channel_mid_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:35.592995+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_RET_12W_ACCELERATION_SEED",
+      "source_id": "SRC_LOCAL_RET_12W_ACCELERATION_SEED",
+      "family": "momentum",
+      "claim": "Recent 12-week acceleration can identify leadership before it appears in slower 52-week ranks.",
+      "causal_mechanism": "Momentum underreaction may first appear in intermediate returns before full-year rankings update.",
+      "suggested_variables": [
+        "ret_12w_pct",
+        "ret_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "ret_12w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "ret_12w_acceleration",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_12w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 11,
+            "by": "ret_12w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 23
+          }
+        },
+        "features_used": [
+          "ret_12w_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:04:35.592995+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_RET_8W_ROTATION_SEED",
+      "source_id": "SRC_LOCAL_RET_8W_ROTATION_SEED",
+      "family": "sector_momentum",
+      "claim": "Shorter rotation windows can catch sector leadership transitions faster than annual momentum.",
+      "causal_mechanism": "Capital rotates in waves; an 8-week proxy may catch early flow before long-horizon confirmation.",
+      "suggested_variables": [
+        "ret_8w_pct",
+        "ret_26w_pct",
+        "volume_ratio_vs_sma13w"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "ret_8w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "ret_8w_rotation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_8w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "ret_8w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 18
+          }
+        },
+        "features_used": [
+          "ret_8w_pct",
+          "ret_26w_pct",
+          "volume_ratio_vs_sma13w"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:11:39.137804+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "source_id": "SRC_LOCAL_ROC_26W_PERSISTENCE_SEED",
+      "family": "trend_following",
+      "claim": "26-week ROC should favor persistent trend continuation with less stale signal than 52-week returns.",
+      "causal_mechanism": "Medium-term price persistence captures behavioral anchoring while reducing stale winners.",
+      "suggested_variables": [
+        "roc_26w",
+        "close_vs_sma26w_pct",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "roc_26w"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "roc_26w_persistence",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "roc_26w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "roc_26w"
+          },
+          "exit_rule": {
+            "rank_threshold": 26
+          }
+        },
+        "features_used": [
+          "roc_26w",
+          "close_vs_sma26w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:11:39.137804+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "source_id": "SRC_LOCAL_CLOSE_SMA13_TREND_SEED",
+      "family": "trend_following",
+      "claim": "Distance above a 13-week average can identify shorter trend strength that complements momentum.",
+      "causal_mechanism": "A positive moving-average spread proxies fresh demand while reducing dependence on one return window.",
+      "suggested_variables": [
+        "close_vs_sma13w_pct",
+        "weeks_above_sma13_last8"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "close_vs_sma13w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "close_vs_sma13w_trend",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "close_vs_sma13w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "close_vs_sma13w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 21
+          }
+        },
+        "features_used": [
+          "close_vs_sma13w_pct",
+          "weeks_above_sma13_last8"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:11:39.137804+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "source_id": "SRC_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+      "family": "regime",
+      "claim": "Long moving-average slope should select structurally persistent trends over noisy spikes.",
+      "causal_mechanism": "Smoother trend slope may reduce false leadership by emphasizing durable uptrends.",
+      "suggested_variables": [
+        "close_sma_52w_slope_8w_pct",
+        "close_vs_sma52w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "close_sma_52w_slope_8w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "sma52_slope_stability",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "close_sma_52w_slope_8w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "close_sma_52w_slope_8w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 17
+          }
+        },
+        "features_used": [
+          "close_sma_52w_slope_8w_pct",
+          "close_vs_sma52w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:11:39.137804+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "source_id": "SRC_LOCAL_CHANNEL_R2_QUALITY_SEED",
+      "family": "quality",
+      "claim": "High channel fit can distinguish smooth institutional accumulation from noisy momentum.",
+      "causal_mechanism": "Better trend fit implies lower path noise and potentially lower crash fragility.",
+      "suggested_variables": [
+        "channel_r2",
+        "channel_slope_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "channel_r2"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "channel_r2_quality",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "channel_r2",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "channel_r2"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          }
+        },
+        "features_used": [
+          "channel_r2",
+          "channel_slope_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:11:39.137804+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "source_id": "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+      "family": "momentum",
+      "claim": "Stocks closer to 52-week highs can sustain leadership via anchoring and breakout behavior.",
+      "causal_mechanism": "Price proximity to highs is a simple behavioral anchor that can reinforce continuation.",
+      "suggested_variables": [
+        "dist_to_high_52w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "dist_to_high_52w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "near_high_52w_breakout",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "dist_to_high_52w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 12,
+            "by": "dist_to_high_52w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 24
+          }
+        },
+        "features_used": [
+          "dist_to_high_52w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:29:30.608999+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "source_id": "SRC_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+      "family": "low_volatility",
+      "claim": "Leaders with shallow recent drawdowns may preserve momentum while avoiding fragile reversals.",
+      "causal_mechanism": "Lower recent drawdown can proxy resilient demand during pullbacks.",
+      "suggested_variables": [
+        "drawdown_from_high_13w_pct",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "drawdown_from_high_13w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "shallow_drawdown_13w",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "drawdown_from_high_13w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "drawdown_from_high_13w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 19
+          }
+        },
+        "features_used": [
+          "drawdown_from_high_13w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:29:30.608999+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_RSI14_STRENGTH_SEED",
+      "source_id": "SRC_LOCAL_RSI14_STRENGTH_SEED",
+      "family": "momentum",
+      "claim": "Moderate-to-high RSI leadership may capture persistent demand not fully represented by returns.",
+      "causal_mechanism": "Momentum can manifest as repeated strong closes, captured by RSI-style persistence.",
+      "suggested_variables": [
+        "rsi_14w",
+        "ret_12w_pct",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "rsi_14w"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "rsi14_strength",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "rsi_14w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 11,
+            "by": "rsi_14w"
+          },
+          "exit_rule": {
+            "rank_threshold": 22
+          }
+        },
+        "features_used": [
+          "rsi_14w",
+          "ret_12w_pct",
+          "ret_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:29:30.608999+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "source_id": "SRC_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+      "family": "quality",
+      "claim": "High stochastic positioning can confirm that momentum names are closing near recent highs.",
+      "causal_mechanism": "Consistent closes near range highs can proxy accumulation quality.",
+      "suggested_variables": [
+        "stoch_k_14w",
+        "weekly_close_location_value"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "stoch_k_14w"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "stochastic_confirmation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "stoch_k_14w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "stoch_k_14w"
+          },
+          "exit_rule": {
+            "rank_threshold": 23
+          }
+        },
+        "features_used": [
+          "stoch_k_14w",
+          "weekly_close_location_value"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:29:30.608999+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_OBV_ACCUMULATION_SEED",
+      "source_id": "SRC_LOCAL_OBV_ACCUMULATION_SEED",
+      "family": "quality",
+      "claim": "OBV slope can identify price leaders with stronger accumulation support.",
+      "causal_mechanism": "Volume-confirmed trend may reduce false momentum from thin or fragile rallies.",
+      "suggested_variables": [
+        "obv_w_slope_13w_pct",
+        "volume_ratio_vs_sma13w",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "obv_w_slope_13w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "obv_accumulation",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "obv_w_slope_13w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "obv_w_slope_13w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          }
+        },
+        "features_used": [
+          "obv_w_slope_13w_pct",
+          "volume_ratio_vs_sma13w",
+          "ret_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:29:30.608999+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "source_id": "SRC_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+      "family": "low_volatility",
+      "claim": "Momentum with lower relative volume pressure may avoid crowded exhaustion.",
+      "causal_mechanism": "Volume dry-up can indicate reduced selling pressure before trend continuation.",
+      "suggested_variables": [
+        "volume_ratio_4_vs_13w",
+        "ret_26w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "volume_ratio_4_vs_13w"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "volume_dryup_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volume_ratio_4_vs_13w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "volume_ratio_4_vs_13w"
+          },
+          "exit_rule": {
+            "rank_threshold": 18
+          }
+        },
+        "features_used": [
+          "volume_ratio_4_vs_13w",
+          "ret_26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:36:06.625075+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_ATR4_LOW_NOISE_SEED",
+      "source_id": "SRC_LOCAL_ATR4_LOW_NOISE_SEED",
+      "family": "low_volatility",
+      "claim": "Lower short-term ATR among leaders may reduce churn and false exits.",
+      "causal_mechanism": "Lower realized noise should improve trade persistence for monthly rebalancing.",
+      "suggested_variables": [
+        "atr_4w_pct",
+        "ret_26w_pct",
+        "volatility_8w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "atr_4w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "atr4_low_noise",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "atr_4w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 7,
+            "by": "atr_4w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 16
+          },
+          "risk_filters": {
+            "max_volatility_26w_pct": 40
+          }
+        },
+        "features_used": [
+          "atr_4w_pct",
+          "ret_26w_pct",
+          "volatility_8w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:36:06.625075+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "source_id": "SRC_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+      "family": "low_volatility",
+      "claim": "A lower 26-week volatility proxy can make momentum more defensive during crash regimes.",
+      "causal_mechanism": "Longer realized volatility captures fragile winners before they unwind.",
+      "suggested_variables": [
+        "volatility_26w_pct",
+        "ret_52w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "volatility_26w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "vol26_defensive_momentum",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volatility_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 6,
+            "by": "volatility_26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 14
+          },
+          "risk_filters": {
+            "max_volatility_26w_pct": 30
+          }
+        },
+        "features_used": [
+          "volatility_26w_pct",
+          "ret_52w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:36:06.625075+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "source_id": "SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+      "family": "regime",
+      "claim": "Momentum should be more reliable when SPY channel slope confirms a risk-on regime.",
+      "causal_mechanism": "Broad-market slope can suppress momentum crash exposure by avoiding weak participation regimes.",
+      "suggested_variables": [
+        "ret_52w_pct",
+        "spy_channel_slope_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "ret_52w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "spy_slope_risk_on",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_52w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "ret_52w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          },
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": false
+          }
+        },
+        "features_used": [
+          "ret_52w_pct",
+          "spy_channel_slope_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:36:06.625075+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "source_id": "SRC_LOCAL_SPY_SMA50_RELAXED_SEED",
+      "family": "regime",
+      "claim": "Relaxing the market filter can improve recovery participation after brief SPY trend gaps.",
+      "causal_mechanism": "Strict market filters can miss rebounds; a relaxed fallback tests whether recovery participation matters.",
+      "suggested_variables": [
+        "ret_26w_pct",
+        "spy_close_vs_sma50_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "ret_26w_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "spy_sma50_relaxed",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "ret_26w_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 13,
+            "by": "ret_26w_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 28
+          },
+          "market_filter": {
+            "require_positive_trend": false,
+            "fallback_allow_if_missing_spy_metric": true
+          }
+        },
+        "features_used": [
+          "ret_26w_pct",
+          "spy_close_vs_sma50_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:36:06.625075+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "source_id": "SRC_LOCAL_PRICE_LOCATION_RANGE_SEED",
+      "family": "momentum",
+      "claim": "Stocks closing high in their weekly range may reflect persistent buying pressure.",
+      "causal_mechanism": "Close location compresses intraperiod demand into a ranking proxy complementary to returns.",
+      "suggested_variables": [
+        "weekly_close_location_value",
+        "ret_12w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "weekly_close_location_value"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "weekly_close_location",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "weekly_close_location_value",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 10,
+            "by": "weekly_close_location_value"
+          },
+          "exit_rule": {
+            "rank_threshold": 21
+          }
+        },
+        "features_used": [
+          "weekly_close_location_value",
+          "ret_12w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:42:13.450199+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "source_id": "SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+      "family": "momentum",
+      "claim": "Sustained up-streaks can capture behavioral herding in emerging leaders.",
+      "causal_mechanism": "Repeated positive weeks may proxy persistent fund flows into leadership names.",
+      "suggested_variables": [
+        "up_streak_weeks",
+        "ret_8w_pct",
+        "ret_12w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "up_streak_weeks"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "up_streak_leadership",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "up_streak_weeks",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 8,
+            "by": "up_streak_weeks"
+          },
+          "exit_rule": {
+            "rank_threshold": 17
+          }
+        },
+        "features_used": [
+          "up_streak_weeks",
+          "ret_8w_pct",
+          "ret_12w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:42:13.450199+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "source_id": "SRC_LOCAL_PULLBACK_TO_SMA26_SEED",
+      "family": "value",
+      "claim": "Leaders near their 26-week trend can offer better entry after avoiding overextension.",
+      "causal_mechanism": "Pullbacks toward a rising medium trend may improve entry quality without abandoning momentum.",
+      "suggested_variables": [
+        "distance_to_channel_mid_pct",
+        "close_vs_sma26w_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "distance_to_channel_mid_pct"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "pullback_to_sma26",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "distance_to_channel_mid_pct",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 9,
+            "by": "distance_to_channel_mid_pct"
+          },
+          "exit_rule": {
+            "rank_threshold": 20
+          }
+        },
+        "features_used": [
+          "distance_to_channel_mid_pct",
+          "close_vs_sma26w_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:42:13.450199+00:00"
+    },
+    {
+      "claim_id": "CLAIM_SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "source_id": "SRC_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+      "family": "can_slim",
+      "claim": "Breakout-style volume climax can identify leadership concentration in risk-on markets.",
+      "causal_mechanism": "CAN SLIM-style institutional demand often appears as price strength plus abnormal volume.",
+      "suggested_variables": [
+        "volume_ratio_vs_sma26w",
+        "ret_26w_pct",
+        "spy_close_vs_sma50_pct"
+      ],
+      "possible_filters": [
+        "monthly_rebalance",
+        "materiality_probe"
+      ],
+      "possible_rankings": [
+        "volume_ratio_vs_sma26w"
+      ],
+      "expected_risks": [
+        "duplicate_artifact",
+        "overfit_proxy",
+        "regime_specific_edge"
+      ],
+      "falsification_rule": "Reject if signal/trades duplicate historical artifacts or if SPY-relative yearly robustness deteriorates.",
+      "implementation_change": {
+        "axis": "breakout_volume_climax",
+        "strategy_overrides": {
+          "ranking": {
+            "field": "volume_ratio_vs_sma26w",
+            "order": "desc"
+          },
+          "entry_rule": {
+            "top_n": 7,
+            "by": "volume_ratio_vs_sma26w"
+          },
+          "exit_rule": {
+            "rank_threshold": 15
+          },
+          "market_filter": {
+            "require_positive_trend": true,
+            "fallback_allow_if_missing_spy_metric": true
+          }
+        },
+        "features_used": [
+          "volume_ratio_vs_sma26w",
+          "ret_26w_pct",
+          "spy_close_vs_sma50_pct"
+        ]
+      },
+      "status": "available",
+      "extracted_at": "2026-05-17T23:42:13.450199+00:00"
+    }
+  ]
 }

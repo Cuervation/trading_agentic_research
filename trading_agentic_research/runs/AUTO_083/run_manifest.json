@@ -1,0 +1,24 @@
+{
+  "run_id": "AUTO_083",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+  "hypothesis_family": "regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_SPY_SLOPE_RISK_ON_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric"
+  ],
+  "config_hash": "9c89aac96b71df144a563117edafe58bc2cb5771f25e05ddf9af0d9172a44d4e",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:40:56.882654+00:00"
+}

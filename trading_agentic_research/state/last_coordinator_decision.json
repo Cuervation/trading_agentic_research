@@ -1,0 +1,6 @@
+{
+  "decision": "mix_with_other_source",
+  "reason": "secondary_candidate",
+  "continue_loop": true,
+  "manual_review_required": false
+}

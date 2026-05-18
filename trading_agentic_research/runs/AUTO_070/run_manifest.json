@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_070",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
+  "hypothesis_family": "sector_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_RET_8W_ROTATION_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "d2f62c495f18b38ba737a60e4216fd9b01b29d6ff5f95a85e9b23449fec32bf4",
+  "code_hash": "48cbb589f81c0f9080dba5e9f2e3b2c77f8ecd11150b57229e2d3ac431c7edde",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:12:53.455809+00:00"
+}

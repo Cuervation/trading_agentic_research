@@ -1,0 +1,23 @@
+{
+  "run_id": "AUTO_057",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "hypothesis_family": "trend_following",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "8d6fd31770e0ea078bdbb7b934bf8550d6e7f1c1fef16e9bb32a17812702072f",
+  "code_hash": "5e27e581b1798138b2b97742f5cdbde71c60d1e7f674c60dc029ff3b11d01ceb",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T22:28:21.921663+00:00"
+}

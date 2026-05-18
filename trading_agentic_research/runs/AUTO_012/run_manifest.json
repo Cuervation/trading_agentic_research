@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_012",
+  "parent_run_id": "EXP_039",
+  "strategy_id": "HYP_MIX_MOMENTUM_QUALITY_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_MOMENTUM_QUALITY_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CROSS_SECTIONAL_MOMENTUM_SEED"
+    },
+    {
+      "source_id": "SRC_QUALITY_INVESTING_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n"
+  ],
+  "config_hash": "bf1f820b07ef8205825e14794d9f8e98280f06a8934d4423024da6b628f18a0e",
+  "code_hash": "6533ee37a51862200691b9475a058f7a3fd996c0a1e19ae037830fc846334741",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T18:34:34.782880+00:00"
+}

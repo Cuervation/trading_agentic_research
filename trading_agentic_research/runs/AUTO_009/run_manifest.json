@@ -1,0 +1,22 @@
+{
+  "run_id": "AUTO_009",
+  "parent_run_id": "EXP_039",
+  "strategy_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
+  "hypothesis_family": "regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TREND_VOL_TARGET_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "market_filter.fallback_allow_if_missing_spy_metric"
+  ],
+  "config_hash": "6dda73d5573140da3e50191d1b7615e1ab78b204308145ae926253aaaecf14fd",
+  "code_hash": "6533ee37a51862200691b9475a058f7a3fd996c0a1e19ae037830fc846334741",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T18:32:49.156704+00:00"
+}

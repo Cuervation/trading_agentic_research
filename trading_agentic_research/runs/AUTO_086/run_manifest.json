@@ -1,0 +1,25 @@
+{
+  "run_id": "AUTO_086",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+  "hypothesis_family": "momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_GREEN_STREAK_LEADERSHIP_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "bace95814c1eb3cc5f206214c56e8bfbcf724e2eac2f82f2a9c9cad84765c678",
+  "code_hash": "2ef827d1cb6192e15ba765eaeb2ee5b50637975bb531942c91829bd7c8833238",
+  "data_hash": "731001cc9601cde84b24ccfa3a6d5fd3a9f7822c21bd69d7056c83f5b795a9b2",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-17T23:44:32.962864+00:00"
+}
