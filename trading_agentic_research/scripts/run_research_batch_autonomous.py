@@ -7,18 +7,21 @@ from common failure modes:
 - exhausted hypothesis bank;
 - local factory exhaustion;
 - unsupported literature ideas due to missing features;
-- silent no-op batches.
+- silent no-op batches;
+- post-batch zero-iteration false success.
 
 Exit codes:
-0 = batch launched and finished according to run_research_batch.py
+0 = batch launched and completed at least one iteration, or max-runs reached cleanly
 2 = data preflight failed
-3 = no eligible hypotheses after all fallbacks
+3 = no eligible hypotheses after all fallbacks, or batch completed zero iterations
 4 = parent config missing/unusable
 5 = batch subprocess failed
+6 = research policy violation / manual review required
 """
 from __future__ import annotations
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -34,7 +37,18 @@ from scripts.research.data_path_resolver import resolve_data_paths
 from scripts.research.hypothesis_eligibility import eligible_hypothesis_preflight
 from scripts.research.literature_hypothesis_miner import mine_literature_hypotheses
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
+from scripts.research.research_policy import load_research_policy, validate_autonomous_launch, validate_post_batch
 from scripts.research.sync_strategy_registry import sync_strategy_registry
+
+
+def read_json(path: str | Path, default: Any = None) -> Any:
+    p = Path(path)
+    if not p.exists():
+        return default
+    try:
+        return json.loads(p.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError:
+        return default
 
 
 def parse_args() -> argparse.Namespace:
@@ -55,6 +69,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
     p.add_argument("--allow-parent-update", action="store_true")
     p.add_argument("--no-literature-fallback", action="store_true")
+    p.add_argument("--policy", default="governance/research_policy.json")
+    p.add_argument("--allow-zero-iterations", action="store_true", help="Development-only escape hatch; production autonomous runs should not use this.")
     return p.parse_args()
 
 
@@ -75,8 +91,32 @@ def _eligibility(args: argparse.Namespace) -> dict[str, Any]:
     )
 
 
+def _load_batch_state(state_dir: str | Path) -> dict[str, Any]:
+    return read_json(Path(state_dir) / "batch_state.json", {}) or {}
+
+
 def main() -> int:
     args = parse_args()
+    policy = load_research_policy(args.policy, repo_root=ROOT)
+
+    launch_policy = validate_autonomous_launch(
+        policy=policy,
+        allow_parent_update=bool(args.allow_parent_update),
+        max_runs=int(args.max_runs),
+    )
+    if not launch_policy["ok"]:
+        write_autonomy_blocker(
+            state_dir=args.state_dir,
+            reason="research_policy_violation",
+            errors=launch_policy["errors"],
+            warnings=launch_policy.get("warnings", []),
+            next_action=launch_policy.get("next_action", "Review governance/research_policy.json or run with a safer configuration."),
+            context=launch_policy,
+        )
+        print("Research policy blocked autonomous launch:")
+        for error in launch_policy["errors"]:
+            print(f"- {error}")
+        return 6
 
     data = resolve_data_paths(
         weekly_file=args.weekly_file,
@@ -169,7 +209,7 @@ def main() -> int:
             reason="no_eligible_hypotheses_after_fallbacks",
             errors=[str(final_eligibility.get("reason"))],
             warnings=[],
-            next_action="Review state/missing_feature_tasks.jsonl, add new feature engineering tasks, or broaden literature templates.",
+            next_action="Review state/missing_feature_tasks.jsonl, run feature_engineering_agent.py, add new paper ideas, or broaden literature templates.",
             context={
                 "eligibility_before": eligibility_before,
                 "value_factory": generated,
@@ -215,7 +255,29 @@ def main() -> int:
             context={"command": cmd, "returncode": result.returncode},
         )
         return 5
-    clear_autonomy_blocker(state_dir=args.state_dir, reason="batch_completed_or_stopped_cleanly")
+
+    batch_state = _load_batch_state(args.state_dir)
+    post = validate_post_batch(
+        policy=policy,
+        batch_state=batch_state,
+        allow_zero_iterations=bool(args.allow_zero_iterations),
+        requested_max_runs=int(args.max_runs),
+    )
+    if not post["ok"]:
+        write_autonomy_blocker(
+            state_dir=args.state_dir,
+            reason=post.get("reason", "post_batch_validation_failed"),
+            errors=post.get("errors", []),
+            warnings=post.get("warnings", []),
+            next_action=post.get("next_action", "Inspect state/batch_state.json and hypothesis eligibility."),
+            context={"batch_state": batch_state, "post_batch_validation": post},
+        )
+        print("Post-batch validation failed:")
+        for error in post.get("errors", []):
+            print(f"- {error}")
+        return 3
+
+    clear_autonomy_blocker(state_dir=args.state_dir, reason="batch_completed_with_value")
     return 0
 
 
