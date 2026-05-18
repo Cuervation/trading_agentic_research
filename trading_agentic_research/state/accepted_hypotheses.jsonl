@@ -19,3 +19,7 @@
 {"hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1", "family": "mixed", "run_id": "AUTO_092", "learning_id": "LEARN_AUTO_092", "decision": "promoted_candidate", "flags": []}
 {"hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1", "family": "time_series_momentum_refinement", "run_id": "EXP_043", "learning_id": "LEARN_EXP_043", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1", "family": "time_series_momentum_refinement", "run_id": "EXP_044", "learning_id": "LEARN_EXP_044", "decision": "promoted_candidate", "flags": []}
+{"hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_22_V1", "family": "candidate_under_review_drawdown_refinement", "run_id": "EXP_052", "learning_id": "LEARN_EXP_052", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_5_V1", "family": "candidate_under_review_drawdown_refinement", "run_id": "EXP_053", "learning_id": "LEARN_EXP_053", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1", "family": "candidate_under_review_drawdown_refinement", "run_id": "EXP_054", "learning_id": "LEARN_EXP_054", "decision": "promoted_candidate", "flags": []}
+{"hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_8_V1", "family": "candidate_under_review_drawdown_refinement", "run_id": "EXP_055", "learning_id": "LEARN_EXP_055", "decision": "promoted_candidate", "flags": []}

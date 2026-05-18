@@ -56,6 +56,10 @@
     "risk_control_refinement": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "candidate_under_review_drawdown_refinement": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3

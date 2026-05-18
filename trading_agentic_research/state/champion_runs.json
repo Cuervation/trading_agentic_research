@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "best_champion_run_id": "AUTO_002",
+  "best_champion_run_id": "EXP_054",
   "current_parent_run_id": "AUTO_002",
   "current_parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
   "current_parent_hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
   "current_parent_config_path": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
-  "aggressive_champion_run_id": "EXP_030",
-  "baseline_candidate_run_id": "EXP_044",
+  "aggressive_champion_run_id": "EXP_053",
+  "baseline_candidate_run_id": "EXP_052",
   "promotion_candidates": [
     {
       "run_id": "EXP_044",
@@ -22,6 +22,21 @@
       "years_losing_to_spy": 0,
       "trades": 257,
       "updated_at": "2026-05-18T03:21:38.936682+00:00"
+    },
+    {
+      "run_id": "EXP_052",
+      "strategy_id": "HYP_REVIEW_EXP_044_TRAILING_22_V1",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_22_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 53.26347602581898,
+      "strategy_max_drawdown_pct": -27.26808288099667,
+      "months_beating_spy": 46,
+      "months_losing_to_spy": 29,
+      "years_beating_spy": 7,
+      "years_losing_to_spy": 0,
+      "trades": 260,
+      "updated_at": "2026-05-18T12:59:13.188549+00:00"
     },
     {
       "run_id": "AUTO_092",
@@ -40,6 +55,36 @@
     }
   ],
   "secondary_candidates": [
+    {
+      "run_id": "EXP_055",
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_8_V1",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_8_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "promoted_candidate",
+      "strategy_cagr_pct": 54.38646887151562,
+      "strategy_max_drawdown_pct": -25.223218228543654,
+      "months_beating_spy": 46,
+      "months_losing_to_spy": 29,
+      "years_beating_spy": 7,
+      "years_losing_to_spy": 0,
+      "trades": 341,
+      "updated_at": "2026-05-18T13:01:33.034595+00:00"
+    },
+    {
+      "run_id": "EXP_053",
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_5_V1",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_5_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 57.40163184000282,
+      "strategy_max_drawdown_pct": -30.47263281986552,
+      "months_beating_spy": 45,
+      "months_losing_to_spy": 30,
+      "years_beating_spy": 6,
+      "years_losing_to_spy": 1,
+      "trades": 212,
+      "updated_at": "2026-05-18T13:00:04.388958+00:00"
+    },
     {
       "run_id": "AUTO_003",
       "strategy_id": "HYP_AUTO_CAN_SLIM_SEED",
@@ -225,6 +270,21 @@
   ],
   "champion_runs": [
     {
+      "run_id": "EXP_054",
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "promoted_candidate",
+      "strategy_cagr_pct": 58.11350234606898,
+      "strategy_max_drawdown_pct": -26.703876748816757,
+      "months_beating_spy": 49,
+      "months_losing_to_spy": 26,
+      "years_beating_spy": 7,
+      "years_losing_to_spy": 0,
+      "trades": 296,
+      "updated_at": "2026-05-18T13:00:49.817769+00:00"
+    },
+    {
       "run_id": "AUTO_002",
       "strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
@@ -300,5 +360,9 @@
       "updated_at": "2026-05-18T01:37:19.827539+00:00"
     }
   ],
-  "updated_at": "2026-05-18T12:57:50.218052+00:00"
+  "updated_at": "2026-05-18T16:11:32.286641+00:00",
+  "parent_promotion_blocked": true,
+  "pending_parent_candidate_run_id": "EXP_054",
+  "official_parent_run_id": "AUTO_002",
+  "parent_updates_require_manual_approval": true
 }

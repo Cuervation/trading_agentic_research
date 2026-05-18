@@ -467,13 +467,112 @@
     {
       "strategy_id": "HYP_REVIEW_EXP_044_TRAILING_22_V1",
       "strategy_family": "candidate_under_review_drawdown_refinement",
-      "status": "candidate",
+      "status": "promotion_candidate",
       "benchmark_ticker": "SPY",
       "config_path": "configs/generated/HYP_REVIEW_EXP_044_TRAILING_22_V1.json",
       "signal_frequency": "weekly",
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
-      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_REVIEW_EXP_044_TRAILING_22_V1."
+      "notes": "Synced from champion governance bucket promotion_candidates; run EXP_052"
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_5_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "secondary_candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_5_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Synced from champion governance bucket secondary_candidates; run EXP_053"
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "champion_history",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Synced from champion governance bucket champion_runs; run EXP_054"
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_8_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "secondary_candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_8_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Synced from champion governance bucket secondary_candidates; run EXP_055"
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_044_TOPN_9_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_9_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_REVIEW_EXP_044_TOPN_9_V1."
+    },
+    {
+      "strategy_id": "HYP_REVIEW_EXP_052_TOPN_5_V1",
+      "strategy_family": "candidate_under_review_drawdown_refinement",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_REVIEW_EXP_052_TOPN_5_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_REVIEW_EXP_044_TOPN_7_V1.json via hypothesis HYP_REVIEW_EXP_052_TOPN_5_V1."
+    },
+    {
+      "strategy_id": "HYP_LIT_AUTO_002_SPY_REGIME_RELAXED_V1",
+      "strategy_family": "paper_regime_filter",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LIT_AUTO_002_SPY_REGIME_RELAXED_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_SPY_REGIME_RELAXED_V1."
+    },
+    {
+      "strategy_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMENTUM_CRASH_CO_VOL_FILTER_V1",
+      "strategy_family": "paper_low_vol_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMENTUM_CRASH_CO_VOL_FILTER_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMENTUM_CRASH_CO_VOL_FILTER_V1."
+    },
+    {
+      "strategy_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_V1",
+      "strategy_family": "paper_quality_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_V1."
+    },
+    {
+      "strategy_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1",
+      "strategy_family": "paper_time_series_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1."
     }
   ]
 }

@@ -3,9 +3,12 @@
   "current_parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
   "current_parent_hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
   "current_parent_config_path": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
-  "best_champion_run_id": "AUTO_002",
-  "baseline_candidate_run_id": "EXP_044",
-  "aggressive_champion_run_id": "EXP_030",
-  "source": "sync_current_parent_state",
-  "updated_at": "2026-05-18T12:57:50.218052+00:00"
+  "best_champion_run_id": "EXP_054",
+  "baseline_candidate_run_id": "EXP_052",
+  "aggressive_champion_run_id": "EXP_053",
+  "pending_parent_candidate_run_id": "EXP_054",
+  "parent_promotion_blocked": true,
+  "parent_updates_require_manual_approval": true,
+  "source": "sync_current_parent_state:manual_parent_lock",
+  "updated_at": "2026-05-18T16:10:05.575563+00:00"
 }

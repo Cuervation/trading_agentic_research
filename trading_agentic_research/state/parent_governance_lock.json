@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "parent_updates_require_manual_approval": true,
+  "official_parent_run_id": "AUTO_002",
+  "pending_parent_candidate_run_id": "EXP_054",
+  "reason": "manual_parent_governance_enforced",
+  "updated_at": "2026-05-18T16:09:20.387052+00:00"
+}
