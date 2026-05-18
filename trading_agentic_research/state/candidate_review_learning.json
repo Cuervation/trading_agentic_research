@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "candidate_run_id": "EXP_044",
+  "official_parent_run_id": "AUTO_002",
+  "attempts": [
+    {
+      "run_id": "EXP_050",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_18_V1",
+      "family": "",
+      "axis": "trailing",
+      "decision": "rejected",
+      "duplicate": false,
+      "duplicate_of_run_id": null,
+      "updated_at": "2026-05-18T12:57:10.689428+00:00"
+    },
+    {
+      "run_id": "EXP_051",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_EXIT_16_V1",
+      "family": "",
+      "axis": "exit",
+      "decision": "rejected",
+      "duplicate": true,
+      "duplicate_of_run_id": "EXP_044",
+      "updated_at": "2026-05-18T12:57:10.691788+00:00"
+    }
+  ],
+  "axis_stats": {
+    "trailing": {
+      "attempts": 1,
+      "rejections": 1,
+      "duplicates": 0,
+      "successes": 0,
+      "last_run_id": "EXP_050"
+    },
+    "exit": {
+      "attempts": 1,
+      "rejections": 1,
+      "duplicates": 1,
+      "successes": 0,
+      "last_run_id": "EXP_051"
+    }
+  },
+  "exhausted_axes": [
+    "exit"
+  ],
+  "updated_at": "2026-05-18T12:57:10.691788+00:00"
+}

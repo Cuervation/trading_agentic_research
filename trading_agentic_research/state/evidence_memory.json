@@ -1754,6 +1754,52 @@
         "years_losing_to_parent": 7
       },
       "can_promote_baseline": false
+    },
+    "EXP_050": {
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_18_V1",
+      "family": "candidate_under_review_drawdown_refinement",
+      "learning_id": "LEARN_EXP_050",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 39.60898530825419,
+        "max_drawdown_delta_pct": 5.521432712338129,
+        "months_beating_spy": 48,
+        "months_losing_to_spy": 27,
+        "years_beating_spy": 7,
+        "years_losing_to_spy": 0,
+        "best_year_contribution_pct": 34.12569656702954,
+        "parent_cagr_delta_pct": -1.228061,
+        "parent_drawdown_delta_pct": -4.595092,
+        "months_beating_parent": 29,
+        "months_losing_to_parent": 29,
+        "years_beating_parent": 4,
+        "years_losing_to_parent": 3
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_051": {
+      "hypothesis_id": "HYP_REVIEW_EXP_044_EXIT_16_V1",
+      "family": "candidate_under_review_exit_refinement",
+      "learning_id": "LEARN_EXP_051",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 48.4546310150409,
+        "max_drawdown_delta_pct": 6.975517266785172,
+        "months_beating_spy": 49,
+        "months_losing_to_spy": 26,
+        "years_beating_spy": 7,
+        "years_losing_to_spy": 0,
+        "best_year_contribution_pct": 37.401170746890635,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": 7.617585,
+        "parent_drawdown_delta_pct": -3.141008,
+        "months_beating_parent": 37,
+        "months_losing_to_parent": 22,
+        "years_beating_parent": 5,
+        "years_losing_to_parent": 2
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -1980,6 +2026,12 @@
     ],
     "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1": [
       "EXP_049"
+    ],
+    "HYP_REVIEW_EXP_044_TRAILING_18_V1": [
+      "EXP_050"
+    ],
+    "HYP_REVIEW_EXP_044_EXIT_16_V1": [
+      "EXP_051"
     ]
   }
 }

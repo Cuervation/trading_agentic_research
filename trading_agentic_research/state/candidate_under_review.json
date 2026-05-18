@@ -1,7 +1,10 @@
 {
-  "status": "blocked",
-  "reason": "candidate_config_missing",
+  "status": "active",
+  "reason": "candidate_config_recovered",
   "candidate_run_id": "EXP_044",
-  "strategy_config_path": null,
-  "updated_at": "2026-05-18T03:49:52.484656+00:00"
+  "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+  "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+  "strategy_config_path": "configs/generated/HYP_REFINE_AUTO002_TOPN_6_V1.json",
+  "official_parent_run_id": "AUTO_002",
+  "updated_at": "2026-05-18T12:57:49.707555+00:00"
 }

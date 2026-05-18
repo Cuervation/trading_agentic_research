@@ -13,6 +13,10 @@ if str(ROOT) not in sys.path:
 from scripts.generate_hypotheses_from_bibliography import validate_candidate_basis
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
 from scripts.parameter_effect_memory import load_parameter_effect_memory, score_hypothesis_axis
+from scripts.research.candidate_review_learning import (
+    candidate_review_priority,
+    is_candidate_review_hypothesis_blocked,
+)
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 
 
@@ -61,6 +65,7 @@ def choose_next_hypothesis(
     current_parent_hypothesis_id: str | None = None,
     parameter_effect_memory: dict | None = None,
     prefer_unseen: bool = True,
+    state_dir: str | Path = "state",
     consumed_ids: set[str] | None = None,
     allow_retry_consumed: bool = False,
 ) -> dict:
@@ -94,6 +99,8 @@ def choose_next_hypothesis(
             continue
         if not allow_retry_consumed and hypothesis_id in consumed_ids:
             continue
+        if is_candidate_review_hypothesis_blocked(hypothesis, state_dir=state_dir):
+            continue
         # Stronger than the old behavior: if it has already been accepted/run,
         # don't re-run it during unseen autonomous selection.
         if prefer_unseen and not allow_retry_consumed and hypothesis_id in accepted_ids:
@@ -110,6 +117,7 @@ def choose_next_hypothesis(
 
         candidates.append(
             (
+                candidate_review_priority(hypothesis),
                 0 if (prefer_unseen and is_unseen) else 1,
                 -empirical_count,
                 score.get("prior_rejections", 0),
@@ -162,6 +170,7 @@ def main() -> int:
         parameter_effect_memory=parameter_effect_memory,
         current_parent_hypothesis_id=str(current_parent.get("current_parent_strategy_id")) if current_parent.get("current_parent_strategy_id") else None,
         prefer_unseen=bool(args.prefer_unseen),
+        state_dir=state_dir,
     )
 
     print(json.dumps(selected, ensure_ascii=False))

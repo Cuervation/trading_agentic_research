@@ -94,6 +94,16 @@
       "rejections": 3,
       "acceptances": 1,
       "promoted_candidates": 1
+    },
+    "candidate_under_review_drawdown_refinement": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "candidate_under_review_exit_refinement": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
     }
   },
   "learning_events": [
@@ -1021,6 +1031,31 @@
       "decision": "rejected",
       "flags": [
         "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_050",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_18_V1",
+      "family": "candidate_under_review_drawdown_refinement",
+      "run_id": "EXP_050",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_051",
+      "hypothesis_id": "HYP_REVIEW_EXP_044_EXIT_16_V1",
+      "family": "candidate_under_review_exit_refinement",
+      "run_id": "EXP_051",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact"
       ],
       "written_to_learning_memory": true,
       "can_promote_baseline": false
