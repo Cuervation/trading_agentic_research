@@ -106,7 +106,7 @@
       "promoted_candidates": 0
     },
     "paper_regime_filter": {
-      "rejections": 2,
+      "rejections": 3,
       "acceptances": 0,
       "promoted_candidates": 0
     },
@@ -116,12 +116,12 @@
       "promoted_candidates": 0
     },
     "paper_quality_momentum": {
-      "rejections": 2,
+      "rejections": 3,
       "acceptances": 0,
       "promoted_candidates": 0
     },
     "paper_time_series_momentum": {
-      "rejections": 2,
+      "rejections": 3,
       "acceptances": 0,
       "promoted_candidates": 0
     },
@@ -158,6 +158,16 @@
     "feature_space_regime": {
       "rejections": 3,
       "acceptances": 1,
+      "promoted_candidates": 0
+    },
+    "feature_space_composite_concentration": {
+      "rejections": 3,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "feature_space_composite_exit": {
+      "rejections": 2,
+      "acceptances": 0,
       "promoted_candidates": 0
     }
   },
@@ -1521,6 +1531,110 @@
       "run_id": "EXP_085",
       "decision": "rejected",
       "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_086",
+      "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1",
+      "family": "paper_regime_filter",
+      "run_id": "EXP_086",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_087",
+      "hypothesis_id": "HYP_LIT_AUTO_002_QUALITY_SLOPE_R2_CONFIRM_V1",
+      "family": "paper_quality_momentum",
+      "run_id": "EXP_087",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_088",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_088",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_089",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
+      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_089",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_090",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
+      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_090",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_091",
+      "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_SMA20_CONFIRM_V1",
+      "family": "paper_time_series_momentum",
+      "run_id": "EXP_091",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_092",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
+      "family": "feature_space_composite_exit",
+      "run_id": "EXP_092",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_093",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
+      "family": "feature_space_composite_exit",
+      "run_id": "EXP_093",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
         "parent_underperformance"
       ],
       "written_to_learning_memory": true,

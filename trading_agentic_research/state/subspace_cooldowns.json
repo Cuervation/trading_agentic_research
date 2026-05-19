@@ -72,6 +72,22 @@
     "feature_space_regime": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "paper_regime_filter": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "paper_quality_momentum": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "feature_space_composite_concentration": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "paper_time_series_momentum": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3

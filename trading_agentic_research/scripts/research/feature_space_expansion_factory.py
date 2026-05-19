@@ -9,6 +9,7 @@ less sterile when simple one-axis ranking hypotheses are exhausted:
   ranking + row-level confirmation filters, ranking + market-filter variants,
   ranking + mild top_n/exit changes;
 - avoids duplicate real override signatures;
+- skips families that are already in subspace cooldowns;
 - stays deterministic, auditable, and parent-lock safe.
 
 It does not move the parent and does not promote candidates. It only appends new
@@ -20,6 +21,7 @@ import argparse
 import json
 import re
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -80,6 +82,40 @@ def _recent_text(state_dir: str | Path) -> str:
         for row in rows[-120:]:
             pieces.append(json.dumps(row, sort_keys=True, ensure_ascii=False))
     return "\n".join(pieces).lower()
+
+
+def _parse_dt(value: Any) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def active_cooldown_families(state_dir: str | Path) -> set[str]:
+    """Return families currently blocked by subspace cooldowns.
+
+    Existing cooldown entries without ``cooldown_until`` are treated as active,
+    matching score_hypothesis_against_memory.is_cooldown_active(). This is
+    intentional: if the selector will reject a family, the generator should not
+    keep producing more rows in that family.
+    """
+    payload = read_json(Path(state_dir) / "subspace_cooldowns.json", {}) or {}
+    cooldowns = payload.get("cooldowns", {}) if isinstance(payload, dict) else {}
+    if not isinstance(cooldowns, dict):
+        return set()
+    now = datetime.now(timezone.utc)
+    active: set[str] = set()
+    for family, entry in cooldowns.items():
+        if not isinstance(entry, dict):
+            active.add(str(family))
+            continue
+        until = entry.get("cooldown_until")
+        parsed = _parse_dt(until)
+        if not until or parsed is None or parsed > now:
+            active.add(str(family))
+    return active
 
 
 def _feature_specs() -> list[FeatureSpec]:
@@ -189,6 +225,7 @@ def generate_feature_space_hypotheses(
     parent_exit = int(_deep_get(parent, ("exit_rule", "rank_threshold"), 20) or 20)
 
     exhausted_axes = exhausted_axes_from_ledger(state_dir)
+    cooldowned_families = active_cooldown_families(state_dir)
     recently_used_features = _existing_feature_mentions(state_dir)
     rows: list[dict[str, Any]] = []
     skipped: list[dict[str, Any]] = []
@@ -215,7 +252,17 @@ def generate_feature_space_hypotheses(
     ) -> None:
         if len(rows) >= max_new:
             return
+        effective_family = family or _row_family_for_combo(spec, suffix)
         effective_axis = axis or spec.axis
+        if effective_family in cooldowned_families:
+            skipped.append({
+                "field": spec.field,
+                "reason": "family_cooldown",
+                "family": effective_family,
+                "hypothesis_id": f"HYP_FSPACE_{safe_parent}_{suffix}_V1",
+                "layer": layer,
+            })
+            return
         if respect_axis_exhaustion and effective_axis in exhausted_axes:
             skipped.append({"field": spec.field, "reason": "axis_exhausted", "axis": effective_axis, "layer": layer})
             return
@@ -225,7 +272,7 @@ def generate_feature_space_hypotheses(
             return
         overrides = dict(overrides)
         overrides["strategy_id"] = hypothesis_id
-        overrides.setdefault("strategy_family", family or _row_family_for_combo(spec, suffix))
+        overrides.setdefault("strategy_family", effective_family)
         sig = real_override_signature(overrides)
         if sig in sigs:
             skipped.append({"field": spec.field, "reason": "duplicate_override_signature", "hypothesis_id": hypothesis_id, "layer": layer})
@@ -238,7 +285,7 @@ def generate_feature_space_hypotheses(
             overrides=overrides,
             claim=claim,
             mechanism=mechanism,
-            family=family or _row_family_for_combo(spec, suffix),
+            family=effective_family,
             axis=effective_axis,
             features_required=features_required,
             source_id=source_id,
@@ -410,9 +457,10 @@ def generate_feature_space_hypotheses(
         "available_feature_count": len(features),
         "available_specs": [s.field for s in available_specs],
         "available_confirmations": [c.field for c in confirm_specs],
+        "cooldowned_families": sorted(cooldowned_families),
         "recently_used_features": sorted(recently_used_features),
         "generation_layers": layers,
-        "skipped": skipped[:60],
+        "skipped": skipped[:80],
     }
 
 

@@ -149,7 +149,115 @@
       "context": {
         "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
       }
+    },
+    {
+      "timestamp": "2026-05-19T00:21:42.159678+00:00",
+      "phase": "feature_space:consecutive_rejections_pre_stop",
+      "generated": 5,
+      "generation_reason": "feature_space_hypotheses_generated",
+      "hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1"
+      ],
+      "selectable_count": 5,
+      "selectable": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1"
+      ],
+      "blocked_count": 0,
+      "summary_by_reason": {},
+      "blocked": [],
+      "context": {
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-19T00:23:06.336304+00:00",
+      "phase": "feature_space:consecutive_rejections_pre_stop",
+      "generated": 5,
+      "generation_reason": "feature_space_hypotheses_generated",
+      "hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_5_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_7_V1"
+      ],
+      "selectable_count": 5,
+      "selectable": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_5_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_7_V1"
+      ],
+      "blocked_count": 0,
+      "summary_by_reason": {},
+      "blocked": [],
+      "context": {
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-19T00:25:04.788768+00:00",
+      "phase": "feature_space:consecutive_rejections_pre_stop",
+      "generated": 5,
+      "generation_reason": "feature_space_hypotheses_generated",
+      "hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1"
+      ],
+      "selectable_count": 5,
+      "selectable": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1"
+      ],
+      "blocked_count": 0,
+      "summary_by_reason": {},
+      "blocked": [],
+      "context": {
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-19T00:27:06.622837+00:00",
+      "phase": "feature_space:consecutive_rejections_pre_stop",
+      "generated": 5,
+      "generation_reason": "feature_space_hypotheses_generated",
+      "hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_28_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_18_V1"
+      ],
+      "selectable_count": 5,
+      "selectable": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_28_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_18_V1"
+      ],
+      "blocked_count": 0,
+      "summary_by_reason": {},
+      "blocked": [],
+      "context": {
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
     }
   ],
-  "updated_at": "2026-05-19T00:03:31.594488+00:00"
+  "updated_at": "2026-05-19T00:27:06.622837+00:00"
 }
