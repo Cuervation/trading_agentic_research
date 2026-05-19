@@ -35,6 +35,7 @@ from scripts.research.autonomous_hypothesis_factory import (
     real_override_signature,
 )
 from scripts.research.literature_hypothesis_miner import available_weekly_features
+from scripts.research.cooldown_governance import hard_active_cooldown_families
 
 
 @dataclass(frozen=True)
@@ -94,28 +95,16 @@ def _parse_dt(value: Any) -> datetime | None:
 
 
 def active_cooldown_families(state_dir: str | Path) -> set[str]:
-    """Return families currently blocked by subspace cooldowns.
+    """Return families blocked by *hard* active cooldowns only.
 
-    Existing cooldown entries without ``cooldown_until`` are treated as active,
-    matching score_hypothesis_against_memory.is_cooldown_active(). This is
-    intentional: if the selector will reject a family, the generator should not
-    keep producing more rows in that family.
+    Cooldown governance v2 treats legacy entries without cooldown_until as
+    soft/advisory. The generator must not block those families, otherwise the
+    autonomous loop gets stuck with generated=0 even though the selector allows
+    soft cooldowns. This compatibility wrapper keeps the existing call sites but
+    delegates to scripts.research.cooldown_governance as the single source of
+    truth.
     """
-    payload = read_json(Path(state_dir) / "subspace_cooldowns.json", {}) or {}
-    cooldowns = payload.get("cooldowns", {}) if isinstance(payload, dict) else {}
-    if not isinstance(cooldowns, dict):
-        return set()
-    now = datetime.now(timezone.utc)
-    active: set[str] = set()
-    for family, entry in cooldowns.items():
-        if not isinstance(entry, dict):
-            active.add(str(family))
-            continue
-        until = entry.get("cooldown_until")
-        parsed = _parse_dt(until)
-        if not until or parsed is None or parsed > now:
-            active.add(str(family))
-    return active
+    return hard_active_cooldown_families(state_dir)
 
 
 def _feature_specs() -> list[FeatureSpec]:

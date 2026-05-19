@@ -26,6 +26,7 @@ from scripts.research.generation_selection_feedback import (
     record_generation_selection_feedback,
 )
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
+from scripts.research.cooldown_governance import hard_active_cooldown_families
 
 
 def resolve_strategy_config_for_hypothesis(hypothesis: dict, strategy_registry_path: str | Path) -> str:
@@ -253,7 +254,13 @@ def _latest_learning_flags(state_dir: str | Path) -> list[str]:
 
 
 def _cooldown_families(cooldowns: dict) -> set[str]:
-    return set((cooldowns or {}).get("cooldowns", {}).keys())
+    """Return only hard-active cooldown families.
+
+    Soft/legacy cooldowns are advisory. They should influence diagnostics and
+    learning, but they must not make the batch think every candidate family is
+    blocked.
+    """
+    return hard_active_cooldown_families(cooldowns)
 
 
 def add_family_cooldown(
