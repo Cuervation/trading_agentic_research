@@ -2846,6 +2846,52 @@
         "years_losing_to_parent": 7
       },
       "can_promote_baseline": false
+    },
+    "EXP_098": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+      "family": "feature_space_regime",
+      "learning_id": "LEARN_EXP_098",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 9.303306627590025,
+        "max_drawdown_delta_pct": -4.63750203757175,
+        "months_beating_spy": 42,
+        "months_losing_to_spy": 33,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 22.779143110258047,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -31.53374,
+        "parent_drawdown_delta_pct": -14.754027,
+        "months_beating_parent": 23,
+        "months_losing_to_parent": 36,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_099": {
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_26_V1",
+      "family": "risk_control_refinement",
+      "learning_id": "LEARN_EXP_099",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 20.955289225328297,
+        "max_drawdown_delta_pct": 4.4194316666815645,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 36.50681285987553,
+        "parent_cagr_delta_pct": -19.881757,
+        "parent_drawdown_delta_pct": -5.697093,
+        "months_beating_parent": 17,
+        "months_losing_to_parent": 42,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -3216,6 +3262,12 @@
     ],
     "HYP_AUTOREFINE_AUTO_002_TOPN_11_V1": [
       "EXP_097"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1": [
+      "EXP_098"
+    ],
+    "HYP_AUTOREFINE_AUTO_002_TRAILING_26_V1": [
+      "EXP_099"
     ]
   }
 }

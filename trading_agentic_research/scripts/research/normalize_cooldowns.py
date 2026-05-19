@@ -1,9 +1,7 @@
-"""Normalize legacy subspace cooldowns."""
+"""Normalize cooldown state for cooldown governance v2."""
 from __future__ import annotations
 
 import argparse
-import json
-import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,58 +18,44 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def normalize_cooldowns(
-    *,
-    state_dir: str | Path = "state",
-    mode: str = "convert-legacy-to-soft",
-    prune_expired: bool = False,
-    backup: bool = True,
-) -> dict[str, Any]:
+def normalize_cooldowns(*, state_dir: str | Path = "state", mode: str = "convert-legacy-to-soft") -> dict[str, Any]:
     path = Path(state_dir) / "subspace_cooldowns.json"
-    payload = read_json(path, {"version": 2, "cooldowns": {}}) or {"version": 2, "cooldowns": {}}
+    payload = read_json(path, {}) or {}
+    payload.setdefault("version", 2)
     cooldowns = payload.setdefault("cooldowns", {})
     if not isinstance(cooldowns, dict):
-        raise ValueError("subspace_cooldowns.json has invalid 'cooldowns' payload")
+        cooldowns = {}
+        payload["cooldowns"] = cooldowns
 
-    backup_path = None
-    if backup and path.exists():
-        backup_path = path.with_suffix(f".backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
-        shutil.copy2(path, backup_path)
-
-    converted, pruned, kept_hard, kept_soft = [], [], [], []
-    now = datetime.now(timezone.utc)
-    for family in list(cooldowns.keys()):
-        entry = cooldowns.get(family)
+    changed = []
+    unchanged = []
+    for family, entry in list(cooldowns.items()):
         if not isinstance(entry, dict):
             cooldowns[family] = {
-                "reason": "legacy_non_object_cooldown",
-                "severity": "soft",
-                "legacy_normalized_at": now_iso(),
-                "legacy_original_value": entry,
+                "mode": "hard",
+                "reason": "malformed_legacy_cooldown_entry",
+                "original_entry": str(entry),
+                "normalized_at": now_iso(),
             }
-            converted.append(family)
+            changed.append({"family": family, "action": "malformed_to_hard"})
             continue
 
-        status = cooldown_entry_status(entry, now=now)
-        if prune_expired and status == "expired":
-            del cooldowns[family]
-            pruned.append(family)
-            continue
-
+        status_before = cooldown_entry_status(entry, family=str(family))
         has_until = bool(entry.get("cooldown_until"))
-        has_kind = any(entry.get(k) for k in ("severity", "cooldown_type", "mode", "level", "type", "hard", "soft", "permanent"))
-        if mode == "convert-legacy-to-soft" and not has_until and not has_kind:
-            entry["severity"] = "soft"
-            entry["legacy_permanent_converted"] = True
-            entry["legacy_normalized_at"] = now_iso()
-            entry.setdefault("selection_policy", "advisory_not_blocking")
-            converted.append(family)
-        elif status == "hard_active":
-            kept_hard.append(family)
-        elif status == "soft_active":
-            kept_soft.append(family)
+        has_mode = bool(entry.get("mode") or entry.get("cooldown_type"))
+        explicit_hard = bool(entry.get("hard") or entry.get("blocks_selection") or entry.get("blocks_generation") or entry.get("force_block"))
 
-    payload["version"] = max(int(payload.get("version", 1) or 1), 2)
+        if mode == "convert-legacy-to-soft" and not has_until and not has_mode and not explicit_hard:
+            entry["mode"] = "soft"
+            entry["legacy_without_until"] = True
+            entry["blocks_selection"] = False
+            entry["blocks_generation"] = False
+            entry["normalized_at"] = now_iso()
+            changed.append({"family": family, "action": "legacy_to_soft", "previous_status": status_before.status})
+        else:
+            unchanged.append({"family": family, "status": status_before.status})
+
+    payload["version"] = 2
     payload["updated_at"] = now_iso()
     payload["normalization_policy"] = {
         "mode": mode,
@@ -82,12 +66,10 @@ def normalize_cooldowns(
     return {
         "status": "ok",
         "path": str(path),
-        "backup_path": str(backup_path) if backup_path else None,
-        "converted_to_soft": converted,
-        "pruned_expired": pruned,
-        "kept_hard": kept_hard,
-        "kept_soft": kept_soft,
-        "cooldown_count": len(cooldowns),
+        "changed_count": len(changed),
+        "unchanged_count": len(unchanged),
+        "changed": changed,
+        "unchanged_sample": unchanged[:20],
     }
 
 
@@ -95,15 +77,9 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--state-dir", default="state")
     p.add_argument("--mode", default="convert-legacy-to-soft", choices=["convert-legacy-to-soft"])
-    p.add_argument("--prune-expired", action="store_true")
-    p.add_argument("--no-backup", action="store_true")
     args = p.parse_args()
-    print(json.dumps(normalize_cooldowns(
-        state_dir=args.state_dir,
-        mode=args.mode,
-        prune_expired=bool(args.prune_expired),
-        backup=not bool(args.no_backup),
-    ), indent=2, ensure_ascii=False))
+    import json
+    print(json.dumps(normalize_cooldowns(state_dir=args.state_dir, mode=args.mode), indent=2, ensure_ascii=False))
     return 0
 
 
