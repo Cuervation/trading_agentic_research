@@ -518,7 +518,26 @@ def effective_hypothesis_status(
                     "family_stall": fam_stall,
                 }
         else:
-            exact = {"checked": False, "reason": "config_not_resolved"}
+            # WIRE_SYNTHETIC_CONFIG_PREFLIGHT_DIRECT_PATCH_V5B
+            exact = synthetic_duplicate_status(
+                hypothesis=hypothesis,
+                state_dir=state_dir,
+                runs_dir=runs_dir,
+                strategy_registry_path=strategy_registry_path,
+                repo_root=repo_root,
+            )
+            if exact.get("blocked"):
+                return {
+                    "blocked": True,
+                    "reason": str(exact.get("reason") or "duplicate_strategy_effect_signature_synthetic_config"),
+                    "detail": exact.get("duplicate_of_run_id"),
+                    "hypothesis_id": hid,
+                    "family": family,
+                    "semantic": semantic,
+                    "exact_duplicate": exact,
+                    "feature_space_stall": feature_stall,
+                    "family_stall": fam_stall,
+                }
 
     return {
         "blocked": False,
