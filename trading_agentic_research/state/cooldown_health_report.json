@@ -1,0 +1,273 @@
+{
+  "generated_at": "2026-05-19T01:19:07.239924+00:00",
+  "counts": {
+    "hard_active": 0,
+    "soft_active": 24,
+    "expired": 0,
+    "inactive": 0
+  },
+  "families": [
+    {
+      "family": "can_slim",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "candidate_under_review_drawdown_refinement",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "candidate_under_review_exit_refinement",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "cross_sectional_momentum",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "darvas_box",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "feature_space_composite_concentration",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "feature_space_composite_confirmation",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "feature_space_composite_exit",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "feature_space_regime",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "low_volatility",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "mixed",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "momentum",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "paper_quality_momentum",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "paper_regime_filter",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "paper_time_series_momentum",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "paper_trend_following",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "quality",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "quality_momentum",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "regime",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "risk_control_refinement",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "risk_management",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "tactical_asset_allocation",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "time_series_momentum_refinement",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    },
+    {
+      "family": "trend_following",
+      "status": "soft_active",
+      "reason": "repeated_failed_hypotheses",
+      "severity": "soft",
+      "cooldown_until": null,
+      "legacy_without_until": true
+    }
+  ],
+  "hard_active": [],
+  "soft_active": [
+    "can_slim",
+    "candidate_under_review_drawdown_refinement",
+    "candidate_under_review_exit_refinement",
+    "cross_sectional_momentum",
+    "darvas_box",
+    "feature_space_composite_concentration",
+    "feature_space_composite_confirmation",
+    "feature_space_composite_exit",
+    "feature_space_regime",
+    "low_volatility",
+    "mixed",
+    "momentum",
+    "paper_quality_momentum",
+    "paper_regime_filter",
+    "paper_time_series_momentum",
+    "paper_trend_following",
+    "quality",
+    "quality_momentum",
+    "regime",
+    "risk_control_refinement",
+    "risk_management",
+    "tactical_asset_allocation",
+    "time_series_momentum_refinement",
+    "trend_following"
+  ],
+  "expired": [],
+  "critical_hard": [],
+  "critical_soft": [
+    "candidate_under_review_drawdown_refinement",
+    "candidate_under_review_exit_refinement",
+    "feature_space_composite_concentration",
+    "feature_space_composite_confirmation",
+    "feature_space_composite_exit",
+    "feature_space_regime",
+    "paper_quality_momentum",
+    "paper_regime_filter",
+    "paper_time_series_momentum",
+    "paper_trend_following"
+  ],
+  "legacy_soft": [
+    "can_slim",
+    "candidate_under_review_drawdown_refinement",
+    "candidate_under_review_exit_refinement",
+    "cross_sectional_momentum",
+    "darvas_box",
+    "feature_space_composite_concentration",
+    "feature_space_composite_confirmation",
+    "feature_space_composite_exit",
+    "feature_space_regime",
+    "low_volatility",
+    "mixed",
+    "momentum",
+    "paper_quality_momentum",
+    "paper_regime_filter",
+    "paper_time_series_momentum",
+    "paper_trend_following",
+    "quality",
+    "quality_momentum",
+    "regime",
+    "risk_control_refinement",
+    "risk_management",
+    "tactical_asset_allocation",
+    "time_series_momentum_refinement",
+    "trend_following"
+  ],
+  "recommendations": [
+    "Legacy cooldowns are advisory. If a family keeps producing duplicates, set severity='hard' with cooldown_until."
+  ]
+}

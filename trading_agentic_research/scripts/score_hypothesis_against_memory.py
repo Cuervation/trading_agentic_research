@@ -2,7 +2,13 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime
+
+from scripts.research.cooldown_governance import (
+    cooldown_reason,
+    is_hard_cooldown_active,
+    is_soft_cooldown_active,
+)
 
 
 def metric_no_effect_rejected(metric_deltas: dict, tolerance: float = 0.001, min_trade_delta: float = 1.0) -> dict:
@@ -32,50 +38,38 @@ def metric_no_effect_rejected(metric_deltas: dict, tolerance: float = 0.001, min
 
 
 def is_cooldown_active(cooldowns: dict, family: str, now: datetime | None = None) -> bool:
-    """Return True when a family has active cooldown."""
-    family_payload = (cooldowns or {}).get("cooldowns", {}).get(family)
-    if not family_payload:
-        return False
-
-    until = family_payload.get("cooldown_until")
-    if not until:
-        return True
-
-    now = now or datetime.now(timezone.utc)
-    try:
-        cooldown_until = datetime.fromisoformat(str(until).replace("Z", "+00:00"))
-    except ValueError:
-        return True
-    return cooldown_until > now
-
-
-def cooldown_reason(cooldowns: dict, family: str) -> str | None:
-    family_payload = (cooldowns or {}).get("cooldowns", {}).get(family)
-    if not family_payload:
-        return None
-    return str(family_payload.get("reason", "family_cooldown"))
+    """Backward-compatible helper: only hard cooldowns block selection in v2."""
+    return is_hard_cooldown_active(cooldowns, family, now=now)
 
 
 def score_hypothesis_against_memory(hypothesis: dict, learning_memory: dict, cooldowns: dict | None = None) -> dict:
-    """Return a compact score without generating random variants."""
+    """Return selector score.
+
+    Hard cooldowns reject. Soft/legacy cooldowns are advisory and do not reject
+    by themselves, which prevents old permanent cooldown entries from suffocating
+    autonomous research.
+    """
     family = hypothesis.get("family")
     cooldowns = cooldowns or {}
-    in_cooldown = is_cooldown_active(cooldowns, family)
-    family_summary = learning_memory.get("family_summaries", {}).get(family, {})
+    hard_cooldown = is_hard_cooldown_active(cooldowns, str(family or ""))
+    soft_cooldown = is_soft_cooldown_active(cooldowns, str(family or ""))
+    family_summary = learning_memory.get("family_summaries", {}).get(family, {}) if isinstance(learning_memory, dict) else {}
 
     score = {
         "hypothesis_id": hypothesis.get("hypothesis_id"),
         "family": family,
-        "in_cooldown": in_cooldown,
+        "in_cooldown": hard_cooldown,
+        "in_hard_cooldown": hard_cooldown,
+        "in_soft_cooldown": soft_cooldown,
         "prior_rejections": int(family_summary.get("rejections", 0)),
         "prior_acceptances": int(family_summary.get("acceptances", 0)),
-        "can_generate_candidate": not in_cooldown,
+        "can_generate_candidate": not hard_cooldown,
         "can_promote_baseline": False,
     }
 
-    if in_cooldown:
+    if hard_cooldown:
         score["decision"] = "rejected"
-        score["reason"] = cooldown_reason(cooldowns, family) or "family_cooldown"
+        score["reason"] = cooldown_reason(cooldowns, str(family or "")) or "hard_family_cooldown"
         return score
 
     metric_deltas = hypothesis.get("metric_deltas")
@@ -88,5 +82,5 @@ def score_hypothesis_against_memory(hypothesis: dict, learning_memory: dict, coo
             return score
 
     score["decision"] = "review"
-    score["reason"] = "passes_initial_memory_checks"
+    score["reason"] = "soft_cooldown_review_allowed" if soft_cooldown else "passes_initial_memory_checks"
     return score

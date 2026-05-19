@@ -2802,6 +2802,50 @@
         "years_losing_to_parent": 7
       },
       "can_promote_baseline": false
+    },
+    "EXP_096": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "learning_id": "LEARN_EXP_096",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 18.396814983080855,
+        "max_drawdown_delta_pct": 10.069929076707254,
+        "months_beating_spy": 47,
+        "months_losing_to_spy": 28,
+        "years_beating_spy": 7,
+        "years_losing_to_spy": 0,
+        "best_year_contribution_pct": 33.934601675333575,
+        "parent_cagr_delta_pct": -22.440231,
+        "parent_drawdown_delta_pct": -0.046596,
+        "months_beating_parent": 20,
+        "months_losing_to_parent": 39,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_097": {
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_11_V1",
+      "family": "time_series_momentum_refinement",
+      "learning_id": "LEARN_EXP_097",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 30.193471408583708,
+        "max_drawdown_delta_pct": 10.056748359158064,
+        "months_beating_spy": 44,
+        "months_losing_to_spy": 31,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 31.523555165942323,
+        "parent_cagr_delta_pct": -10.643575,
+        "parent_drawdown_delta_pct": -0.059777,
+        "months_beating_parent": 17,
+        "months_losing_to_parent": 42,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -3166,6 +3210,12 @@
     ],
     "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2": [
       "EXP_095"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1": [
+      "EXP_096"
+    ],
+    "HYP_AUTOREFINE_AUTO_002_TOPN_11_V1": [
+      "EXP_097"
     ]
   }
 }

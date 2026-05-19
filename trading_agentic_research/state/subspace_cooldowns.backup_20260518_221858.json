@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 1,
   "cooldowns": {
     "risk_management": {
       "reason": "repeated_failed_hypotheses",
@@ -98,11 +98,5 @@
       "failure_threshold": 3
     }
   },
-  "default_failure_threshold": 3,
-  "updated_at": "2026-05-19T01:18:58.811615+00:00",
-  "normalization_policy": {
-    "mode": "convert-legacy-to-soft",
-    "legacy_without_until": "soft_not_blocking",
-    "dated_or_explicit_hard": "hard_blocking"
-  }
+  "default_failure_threshold": 3
 }

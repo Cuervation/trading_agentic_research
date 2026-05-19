@@ -91,7 +91,7 @@
       "promoted_candidates": 0
     },
     "time_series_momentum_refinement": {
-      "rejections": 3,
+      "rejections": 4,
       "acceptances": 1,
       "promoted_candidates": 1
     },
@@ -151,7 +151,7 @@
       "promoted_candidates": 0
     },
     "feature_space_composite_confirmation": {
-      "rejections": 3,
+      "rejections": 4,
       "acceptances": 2,
       "promoted_candidates": 0
     },
@@ -1663,6 +1663,30 @@
       "flags": [
         "metric_no_effect",
         "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_096",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_096",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_097",
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_11_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_097",
+      "decision": "rejected",
+      "flags": [
         "parent_underperformance"
       ],
       "written_to_learning_memory": true,
