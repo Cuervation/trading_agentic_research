@@ -27,8 +27,8 @@ from scripts.research.candidate_review_learning import (
 )
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 from scripts.research.semantic_branch_guard import semantic_branch_preflight
-from scripts.research.pre_run_duplicate_guard import check_pre_run_duplicate
-from scripts.research.strategy_effect_signature import read_json
+from scripts.research.pre_run_duplicate_guard import check_pre_run_duplicate, load_index, rebuild_strategy_effect_index
+from scripts.research.strategy_effect_signature import read_json, strategy_effect_signature, canonical_strategy_effect_payload
 
 BAD_VALUES = {
     "duplicate_blocked",
@@ -242,6 +242,148 @@ def family_stall_status(
         "recent_good": good,
         "recent_count": len(recent),
         "recent_events": recent[-5:],
+    }
+
+
+
+# SYNTHETIC_CONFIG_PREFLIGHT_DIRECT_PATCH_V5
+
+def _deep_merge_dict(base: dict[str, Any], overrides: dict[str, Any]) -> dict[str, Any]:
+    merged: dict[str, Any] = {}
+    for key, value in (base or {}).items():
+        if isinstance(value, dict):
+            merged[key] = _deep_merge_dict(value, {})
+        elif isinstance(value, list):
+            merged[key] = list(value)
+        else:
+            merged[key] = value
+
+    for key, value in (overrides or {}).items():
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key] = _deep_merge_dict(merged[key], value)
+        elif isinstance(value, list):
+            merged[key] = list(value)
+        else:
+            merged[key] = value
+    return merged
+
+
+def _resolve_parent_config_for_synthetic(
+    *,
+    state_dir: str | Path,
+    repo_root: str | Path,
+) -> Path | None:
+    root = Path(repo_root)
+    state_path = Path(state_dir)
+    if not state_path.is_absolute():
+        state_path = root / state_path
+
+    current_parent = read_json(state_path / "current_parent.json", {}) or {}
+
+    candidates: list[Path] = []
+    for value in (
+        current_parent.get("current_parent_config_path"),
+        "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "configs/baseline_momentum_trend_v1.json",
+    ):
+        if not value:
+            continue
+        p = Path(str(value))
+        if not p.is_absolute():
+            p = root / p
+        candidates.append(p)
+
+    seen: set[str] = set()
+    for candidate in candidates:
+        key = str(candidate)
+        if key in seen:
+            continue
+        seen.add(key)
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def _synthetic_strategy_config_from_hypothesis(
+    *,
+    hypothesis: dict[str, Any],
+    state_dir: str | Path,
+    repo_root: str | Path,
+) -> dict[str, Any] | None:
+    overrides = hypothesis.get("strategy_overrides")
+    if not isinstance(overrides, dict) or not overrides:
+        return None
+
+    parent_path = _resolve_parent_config_for_synthetic(state_dir=state_dir, repo_root=repo_root)
+    if parent_path is None:
+        return None
+
+    parent_cfg = read_json(parent_path, {}) or {}
+    if not isinstance(parent_cfg, dict) or not parent_cfg:
+        return None
+
+    generated = _deep_merge_dict(parent_cfg, overrides)
+    generated["parent_strategy_id"] = str(parent_cfg.get("strategy_id"))
+    if "strategy_id" not in overrides:
+        generated["strategy_id"] = str(hypothesis.get("hypothesis_id"))
+    generated.setdefault("strategy_family", parent_cfg.get("strategy_family") or hypothesis.get("family"))
+    generated["hypothesis_id"] = str(hypothesis.get("hypothesis_id"))
+    generated.setdefault("bibliography_basis", [])
+    generated.setdefault("empirical_basis", [])
+    return generated
+
+
+def synthetic_duplicate_status(
+    *,
+    hypothesis: dict[str, Any],
+    state_dir: str | Path,
+    runs_dir: str | Path,
+    strategy_registry_path: str | Path,
+    repo_root: str | Path,
+) -> dict[str, Any]:
+    # Check duplicate strategy effect before a config file exists.
+    generated = _synthetic_strategy_config_from_hypothesis(
+        hypothesis=hypothesis,
+        state_dir=state_dir,
+        repo_root=repo_root,
+    )
+    if generated is None:
+        return {"checked": False, "synthetic": True, "reason": "synthetic_config_unavailable"}
+
+    sig = strategy_effect_signature(generated)
+    index = load_index(state_dir)
+    if not index.get("runs"):
+        index = rebuild_strategy_effect_index(
+            state_dir=state_dir,
+            runs_dir=runs_dir,
+            strategy_registry_path=strategy_registry_path,
+            repo_root=repo_root,
+        )
+
+    sig_entry = (index.get("signatures") or {}).get(sig)
+    if sig_entry and sig_entry.get("runs"):
+        return {
+            "checked": True,
+            "synthetic": True,
+            "blocked": True,
+            "reason": "duplicate_strategy_effect_signature_synthetic_config",
+            "duplicate_of_run_id": sig_entry.get("first_seen_run_id") or sig_entry.get("runs", [None])[0],
+            "existing_runs": sig_entry.get("runs", []),
+            "strategy_effect_signature": sig,
+            "canonical_payload": canonical_strategy_effect_payload(generated),
+            "hypothesis_id": hypothesis.get("hypothesis_id"),
+            "family": hypothesis.get("family"),
+        }
+
+    return {
+        "checked": True,
+        "synthetic": True,
+        "blocked": False,
+        "reason": "synthetic_config_unique",
+        "strategy_effect_signature": sig,
+        "canonical_payload": canonical_strategy_effect_payload(generated),
+        "hypothesis_id": hypothesis.get("hypothesis_id"),
+        "family": hypothesis.get("family"),
     }
 
 
