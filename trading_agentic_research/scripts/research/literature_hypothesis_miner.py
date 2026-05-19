@@ -1,21 +1,19 @@
-"""Literature-to-hypothesis fallback v3.
+"""Literature-to-hypothesis fallback v4.
 
 This module converts curated paper templates and bibliography/paper_ideas.jsonl
 into auditable hypothesis cards.
 
-v3 fixes the common exhaustion mode seen in autonomous runs:
-- v1/v2 often created a single hypothesis per paper idea;
-- when those ids/signatures already existed, the miner returned generated=0;
-- v3 expands each paper idea into multiple *causal variants* that are real
-  strategy changes supported by signal_builder.py:
-    ranking variants,
-    ranking + confirmation conditions,
-    market-filter variants,
-    quality/trend confirmation variants,
-    missing-feature tasks for unsupported paper axes.
+v4 goals:
+- stay parent-lock safe: append hypotheses only; never promote or move parent;
+- be cooldown-aware: avoid generating hypotheses in families already cooled down;
+- use papers as a research engine, not only as a variant generator;
+- create missing-feature tasks when a paper requires unavailable features;
+- prioritize ideas that can open *new* research subspaces while avoiding duplicate
+  override signatures.
 
-It stays parent-lock safe: this script only appends hypotheses to the hypothesis
-bank. It never updates the official parent and never promotes a baseline.
+Compatible public API:
+    available_weekly_features(state_dir)
+    mine_literature_hypotheses(...)
 """
 from __future__ import annotations
 
@@ -68,6 +66,12 @@ def available_weekly_features(state_dir: str | Path = "state") -> set[str]:
     return _header(resolved.get("weekly_file"))
 
 
+def cooldowned_families(state_dir: str | Path = "state") -> set[str]:
+    payload = read_json(Path(state_dir) / "subspace_cooldowns.json", {}) or {}
+    cooldowns = payload.get("cooldowns", {}) if isinstance(payload, dict) else {}
+    return {str(k) for k in cooldowns.keys()}
+
+
 @dataclass(frozen=True)
 class PaperIdea:
     suffix: str
@@ -80,23 +84,16 @@ class PaperIdea:
     overrides: dict[str, Any]
     falsification_rule: str
     axis: str | None = None
+    priority: int = 100
 
 
 def _condition(field: str, operator: str, value: float) -> dict[str, Any]:
-    return {
-        "field": field,
-        "operator": operator,
-        "value": value,
-        "enabled_if_field_exists": True,
-    }
+    return {"field": field, "operator": operator, "value": value, "enabled_if_field_exists": True}
 
 
 def _rank_override(field: str, *, order: str = "desc", required: list[str] | None = None) -> dict[str, Any]:
     required_fields = required or [field, "close"]
-    return {
-        "ranking": {"field": field, "order": order},
-        "risk_filters": {"require_non_null_fields": required_fields},
-    }
+    return {"ranking": {"field": field, "order": order}, "risk_filters": {"require_non_null_fields": required_fields}}
 
 
 def _rank_confirm_override(
@@ -117,21 +114,11 @@ def _rank_confirm_override(
 
 
 def _market_override(*, require_positive_trend: bool, fallback_allow: bool | None = None, threshold: float | None = None) -> dict[str, Any]:
-    cfg: dict[str, Any] = {
-        "benchmark": "SPY",
-        "require_positive_trend": bool(require_positive_trend),
-    }
+    cfg: dict[str, Any] = {"benchmark": "SPY", "require_positive_trend": bool(require_positive_trend)}
     if fallback_allow is not None:
         cfg["fallback_allow_if_missing_spy_metric"] = bool(fallback_allow)
     if threshold is not None:
-        cfg["condition_any"] = [
-            {
-                "field": "spy_close_vs_sma50_pct",
-                "operator": ">",
-                "value": float(threshold),
-                "enabled_if_field_exists": True,
-            }
-        ]
+        cfg["condition_any"] = [{"field": "spy_close_vs_sma50_pct", "operator": ">", "value": float(threshold), "enabled_if_field_exists": True}]
     return {"market_filter": cfg}
 
 
@@ -146,6 +133,7 @@ def _idea(
     overrides: dict[str, Any],
     falsification_rule: str,
     axis: str | None = None,
+    priority: int = 100,
 ) -> PaperIdea:
     return PaperIdea(
         suffix=suffix,
@@ -158,15 +146,15 @@ def _idea(
         overrides=overrides,
         falsification_rule=falsification_rule,
         axis=axis or family,
+        priority=priority,
     )
 
 
 def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
-    """Return expanded, deterministic paper-inspired hypothesis variants."""
+    """Return expanded deterministic paper-inspired hypothesis variants."""
     return [
-        # Time-series / cross-sectional momentum variants
         _idea(
-            "TSMOM_RET52_RANK_V2",
+            "TSMOM_RET52_RANK_V4",
             "paper_time_series_momentum",
             "moskowitz_ooi_pedersen_time_series_momentum",
             "Time Series Momentum",
@@ -176,9 +164,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_override("ret_52w_pct"),
             "Reject if it fails to improve CAGR/drawdown or duplicates historical artifacts versus the champion.",
             "paper_tsmom_rank",
+            40,
         ),
         _idea(
-            "TSMOM_RET52_RET13_CONFIRM_V1",
+            "TSMOM_RET52_RET13_CONFIRM_V4",
             "paper_time_series_momentum",
             "multi_lookback_momentum_confirmation",
             "Multi-lookback momentum confirmation",
@@ -188,33 +177,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_confirm_override("ret_52w_pct", "ret_13w_pct", value=0.0),
             "Reject if confirmation reduces CAGR without improving drawdown or yearly SPY comparison.",
             "paper_tsmom_confirm",
+            35,
         ),
         _idea(
-            "TSMOM_RET52_SMA20_CONFIRM_V1",
-            "paper_time_series_momentum",
-            "trend_following_fast_slow_confirmation",
-            "Fast/slow trend confirmation",
-            "52-week momentum with positive 20-week SMA distance may reduce late entries.",
-            "Fast trend confirmation can remove long-lookback winners that lost local trend support.",
-            ("ret_52w_pct", "close_vs_sma20w_pct", "close"),
-            _rank_confirm_override("ret_52w_pct", "close_vs_sma20w_pct", value=0.0),
-            "Reject if whipsaw increases or SPY-relative robustness worsens.",
-            "paper_tsmom_confirm",
-        ),
-        _idea(
-            "TSMOM_RET26_RANK_V2",
-            "paper_time_series_momentum",
-            "multi_lookback_momentum_confirmation",
-            "Intermediate momentum",
-            "26-week momentum may react faster than the official long trend proxy.",
-            "Intermediate momentum can reduce late entries after trend exhaustion.",
-            ("ret_26w_pct", "close"),
-            _rank_override("ret_26w_pct"),
-            "Reject if monthly/yearly SPY-relative robustness does not improve or duplicates prior artifacts.",
-            "paper_tsmom_rank",
-        ),
-        _idea(
-            "TSMOM_RET26_SMA20_CONFIRM_V1",
+            "TSMOM_RET26_SMA20_CONFIRM_V4",
             "paper_time_series_momentum",
             "multi_lookback_momentum_confirmation",
             "Intermediate momentum with fast confirmation",
@@ -224,22 +190,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_confirm_override("ret_26w_pct", "close_vs_sma20w_pct", value=0.0),
             "Reject if turnover/whipsaw reduces CAGR and drawdown does not improve.",
             "paper_tsmom_confirm",
-        ),
-        # Quality / trend stability variants
-        _idea(
-            "QUALITY_CHANNEL_R2_RANK_V2",
-            "paper_quality_momentum",
-            "quality_momentum_trend_stability",
-            "Quality momentum / trend stability proxy",
-            "Ranking by channel_r2 may prefer cleaner trends over noisy winners.",
-            "Persistent and well-fit trends may be less prone to reversal than noisy momentum winners.",
-            ("channel_r2", "close"),
-            _rank_override("channel_r2"),
-            "Reject if CAGR deteriorates materially without a compensating drawdown improvement versus the champion.",
-            "paper_quality_rank",
+            30,
         ),
         _idea(
-            "QUALITY_R2_CHANNEL_SLOPE_CONFIRM_V1",
+            "QUALITY_R2_CHANNEL_SLOPE_CONFIRM_V4",
             "paper_quality_momentum",
             "quality_momentum_trend_stability",
             "Quality momentum with positive slope",
@@ -249,9 +203,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_confirm_override("channel_r2", "channel_slope_pct", value=0.0),
             "Reject if the slope confirmation does not improve drawdown-adjusted SPY-relative robustness.",
             "paper_quality_confirm",
+            32,
         ),
         _idea(
-            "QUALITY_SLOPE_R2_CONFIRM_V1",
+            "QUALITY_SLOPE_R2_CONFIRM_V4",
             "paper_quality_momentum",
             "quality_momentum_trend_stability",
             "Trend slope with quality confirmation",
@@ -261,22 +216,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_confirm_override("channel_slope_pct", "channel_r2", operator=">=", value=0.35),
             "Reject if the quality confirmation does not reduce fragile momentum exposure.",
             "paper_quality_confirm",
-        ),
-        # Trend following variants
-        _idea(
-            "FAST_TREND_SMA20_RANK_V2",
-            "paper_trend_following",
-            "trend_following_fast_slow_confirmation",
-            "Trend following fast/slow confirmation",
-            "Ranking by distance to the 20-week SMA can capture faster trend confirmation.",
-            "Shorter trend signals may cut deteriorating names faster but risk more churn.",
-            ("close_vs_sma20w_pct", "close"),
-            _rank_override("close_vs_sma20w_pct"),
-            "Reject if turnover/whipsaw reduces CAGR and does not improve drawdown/years versus SPY.",
-            "paper_trend_fast",
+            32,
         ),
         _idea(
-            "FAST_TREND_SMA20_RET13_CONFIRM_V1",
+            "FAST_TREND_SMA20_RET13_CONFIRM_V4",
             "paper_trend_following",
             "trend_following_fast_slow_confirmation",
             "Fast trend with near-term momentum confirmation",
@@ -286,10 +229,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_confirm_override("close_vs_sma20w_pct", "ret_13w_pct", value=0.0),
             "Reject if it reduces CAGR without improving drawdown or SPY comparison.",
             "paper_trend_fast_confirm",
+            36,
         ),
-        # Regime variants. These matter because logs repeatedly show SPY NaN fallback warnings.
         _idea(
-            "REGIME_SPY_STRICT_NO_FALLBACK_V1",
+            "REGIME_SPY_STRICT_NO_FALLBACK_V4",
             "paper_regime_filter",
             "faber_tactical_asset_allocation",
             "Tactical asset allocation / regime filter",
@@ -299,21 +242,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _market_override(require_positive_trend=True, fallback_allow=False),
             "Reject if strict SPY gate reduces CAGR without a meaningful drawdown improvement.",
             "paper_regime_strict",
+            90,
         ),
         _idea(
-            "REGIME_SPY_RELAXED_MINUS_2_5_V2",
-            "paper_regime_filter",
-            "faber_tactical_asset_allocation",
-            "Tactical asset allocation / relaxed regime filter",
-            "A relaxed SPY SMA50 regime gate may avoid over-filtering while preserving market-direction discipline.",
-            "Slightly negative benchmark distance can allow early recoveries while still filtering deep bear phases.",
-            ("spy_close_vs_sma50_pct", "close"),
-            _market_override(require_positive_trend=False, threshold=-2.5),
-            "Reject if it increases drawdown or worsens yearly SPY comparison versus the champion.",
-            "paper_regime_relaxed",
-        ),
-        _idea(
-            "REGIME_DISABLED_MEASURE_OVERFILTER_V1",
+            "REGIME_DISABLED_MEASURE_OVERFILTER_V4",
             "paper_regime_filter",
             "faber_tactical_asset_allocation",
             "Market regime ablation",
@@ -323,10 +255,10 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _market_override(require_positive_trend=False),
             "Reject if drawdown worsens materially or yearly SPY-relative robustness deteriorates.",
             "paper_regime_ablation",
+            95,
         ),
-        # Volatility-aware variants. Some will create missing-feature tasks if atr_14w_pct is absent.
         _idea(
-            "VOL_FILTER_ATR14_RET52_V2",
+            "VOL_FILTER_ATR14_RET52_V4",
             "paper_low_vol_momentum",
             "low_volatility_anomaly_bab",
             "Low volatility anomaly / Betting Against Beta",
@@ -336,18 +268,72 @@ def built_in_literature_templates(parent: dict[str, Any]) -> list[PaperIdea]:
             _rank_override("ret_52w_pct", required=["atr_14w_pct", "ret_52w_pct", "close"]),
             "Reject if drawdown does not improve or CAGR falls more than the defensive threshold.",
             "paper_low_volatility",
+            55,
         ),
         _idea(
-            "VOL_MANAGED_RET26_ATR14_V1",
+            "VOL_MANAGED_RET26_REALIZED_VOL13_V4",
             "paper_low_vol_momentum",
             "volatility_managed_portfolios",
             "Volatility managed portfolios",
-            "26-week momentum with ATR availability may support volatility-managed follow-up experiments.",
+            "26-week momentum with realized-volatility availability may support volatility-managed follow-up experiments.",
             "Volatility scaling/filters can reduce crash risk in momentum strategies.",
-            ("atr_14w_pct", "ret_26w_pct", "close"),
-            _rank_override("ret_26w_pct", required=["atr_14w_pct", "ret_26w_pct", "close"]),
+            ("realized_vol_13w_pct", "ret_26w_pct", "close"),
+            _rank_override("ret_26w_pct", required=["realized_vol_13w_pct", "ret_26w_pct", "close"]),
             "Reject if volatility-aware variant does not improve drawdown or stability.",
             "paper_low_volatility",
+            20,
+        ),
+        _idea(
+            "RESIDUAL_MOMENTUM_RET26_V4",
+            "paper_residual_momentum",
+            "idiosyncratic_momentum_residual_returns",
+            "Residual / idiosyncratic momentum",
+            "Ranking by residual_ret_26w_pct may isolate stock-specific momentum after broad/sector effects.",
+            "Residual momentum can reduce hidden exposure to market or sector moves.",
+            ("residual_ret_26w_pct", "close"),
+            _rank_override("residual_ret_26w_pct"),
+            "Reject if residual momentum does not improve yearly SPY comparison or duplicates prior artifacts.",
+            "paper_residual_momentum",
+            15,
+        ),
+        _idea(
+            "SECTOR_REL_STRENGTH_RET26_V4",
+            "paper_sector_momentum",
+            "sector_industry_relative_momentum",
+            "Sector and industry relative strength",
+            "Ranking by ret_vs_sector_26w_pct may favor stocks outperforming their own sector.",
+            "Sector-relative momentum can separate true stock leadership from sector beta.",
+            ("ret_vs_sector_26w_pct", "close"),
+            _rank_override("ret_vs_sector_26w_pct"),
+            "Reject if sector-relative ranking fails to improve robustness or is too sparse.",
+            "paper_sector_relative_strength",
+            15,
+        ),
+        _idea(
+            "DRAWDOWN_AWARE_RET52_MAXDD26_V4",
+            "paper_downside_risk_momentum",
+            "drawdown_aware_momentum",
+            "Drawdown-aware momentum",
+            "52-week momentum requiring max_drawdown_26w_pct availability opens a drawdown-control research axis.",
+            "Recent severe drawdowns can indicate fragile momentum despite high trailing return.",
+            ("max_drawdown_26w_pct", "ret_52w_pct", "close"),
+            _rank_override("ret_52w_pct", required=["max_drawdown_26w_pct", "ret_52w_pct", "close"]),
+            "Reject if drawdown-aware variant does not reduce downside or harms SPY-relative CAGR too much.",
+            "paper_downside_risk_momentum",
+            18,
+        ),
+        _idea(
+            "BREADTH_REGIME_RET52_V4",
+            "paper_breadth_regime",
+            "market_breadth_momentum_regime",
+            "Market breadth as momentum regime filter",
+            "52-week momentum with market-breadth availability opens a breadth-aware regime axis.",
+            "Broad participation can distinguish healthy trends from narrow leadership.",
+            ("market_breadth_above_sma50_pct", "ret_52w_pct", "close"),
+            _rank_override("ret_52w_pct", required=["market_breadth_above_sma50_pct", "ret_52w_pct", "close"]),
+            "Reject if breadth-aware variant does not improve drawdown/yearly SPY comparison.",
+            "paper_breadth_regime",
+            18,
         ),
     ]
 
@@ -364,20 +350,58 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
     source_id = str(row.get("source_id") or f"paper_idea_{idx}")
     claim = str(row.get("claim_seed") or row.get("abstract") or title)
     families = [str(x) for x in row.get("families", [])] or []
-    text = " ".join(
-        [
+    text = " ".join([title, claim, str(row.get("query") or row.get("query_seed") or ""), " ".join(families)]).lower()
+    stem = _slug(title, 32)
+
+    if "residual" in text or "idiosyncratic" in text:
+        return [_idea(
+            f"PAPER_{stem}_RESIDUAL_RET26_V4",
+            "paper_residual_momentum",
+            source_id,
             title,
             claim,
-            str(row.get("query") or row.get("query_seed") or ""),
-            " ".join(families),
-        ]
-    ).lower()
-    stem = _slug(title, 32)
+            "Paper idea suggests residual returns may isolate stock-specific momentum.",
+            ("residual_ret_26w_pct", "close"),
+            _rank_override("residual_ret_26w_pct"),
+            "Reject if residual momentum fails to improve robustness or is unavailable.",
+            "paper_residual_momentum",
+            15,
+        )]
+
+    if "sector" in text or "industry" in text:
+        return [_idea(
+            f"PAPER_{stem}_SECTOR_REL_RET26_V4",
+            "paper_sector_momentum",
+            source_id,
+            title,
+            claim,
+            "Paper idea suggests sector-relative leadership may be more robust than raw momentum.",
+            ("ret_vs_sector_26w_pct", "close"),
+            _rank_override("ret_vs_sector_26w_pct"),
+            "Reject if sector-relative momentum fails to improve SPY-relative robustness.",
+            "paper_sector_relative_strength",
+            15,
+        )]
+
+    if "breadth" in text:
+        return [_idea(
+            f"PAPER_{stem}_BREADTH_REGIME_V4",
+            "paper_breadth_regime",
+            source_id,
+            title,
+            claim,
+            "Paper idea suggests market breadth may be useful for regime confirmation.",
+            ("market_breadth_above_sma50_pct", "ret_52w_pct", "close"),
+            _rank_override("ret_52w_pct", required=["market_breadth_above_sma50_pct", "ret_52w_pct", "close"]),
+            "Reject if breadth-aware momentum fails to improve drawdown or yearly SPY comparison.",
+            "paper_breadth_regime",
+            18,
+        )]
 
     if "quality" in text or "stability" in text or "channel" in text:
         return [
             _idea(
-                f"PAPER_{stem}_QUALITY_R2_RANK_V2",
+                f"PAPER_{stem}_QUALITY_R2_RANK_V4",
                 "paper_quality_momentum",
                 source_id,
                 title,
@@ -387,9 +411,10 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
                 _rank_override("channel_r2"),
                 "Reject if trend-quality ranking does not improve drawdown-adjusted SPY-relative robustness.",
                 "paper_quality_rank",
+                40,
             ),
             _idea(
-                f"PAPER_{stem}_QUALITY_R2_SLOPE_CONFIRM_V1",
+                f"PAPER_{stem}_QUALITY_R2_SLOPE_CONFIRM_V4",
                 "paper_quality_momentum",
                 source_id,
                 title,
@@ -399,13 +424,14 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
                 _rank_confirm_override("channel_r2", "channel_slope_pct", value=0.0),
                 "Reject if confirmation fails to improve stability versus the champion.",
                 "paper_quality_confirm",
+                35,
             ),
         ]
 
     if "vol" in text or "beta" in text or "drawdown" in text or "crash" in text:
         return [
             _idea(
-                f"PAPER_{stem}_VOL_ATR14_RET52_V2",
+                f"PAPER_{stem}_VOL_ATR14_RET52_V4",
                 "paper_low_vol_momentum",
                 source_id,
                 title,
@@ -415,13 +441,27 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
                 _rank_override("ret_52w_pct", required=["atr_14w_pct", "ret_52w_pct", "close"]),
                 "Reject if volatility-aware filter fails to improve drawdown or materially reduces CAGR.",
                 "paper_low_volatility",
-            )
+                45,
+            ),
+            _idea(
+                f"PAPER_{stem}_DOWNSIDE_VOL13_RET26_V4",
+                "paper_downside_risk_momentum",
+                source_id,
+                title,
+                claim,
+                "Paper idea suggests downside-risk filters may reduce fragile momentum.",
+                ("downside_vol_13w_pct", "ret_26w_pct", "close"),
+                _rank_override("ret_26w_pct", required=["downside_vol_13w_pct", "ret_26w_pct", "close"]),
+                "Reject if downside-risk variant does not improve drawdown or stability.",
+                "paper_downside_risk_momentum",
+                18,
+            ),
         ]
 
     if "regime" in text or "tactical" in text or "asset allocation" in text or "sma" in text:
         return [
             _idea(
-                f"PAPER_{stem}_REGIME_STRICT_V1",
+                f"PAPER_{stem}_REGIME_STRICT_V4",
                 "paper_regime_filter",
                 source_id,
                 title,
@@ -431,9 +471,10 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
                 _market_override(require_positive_trend=True, fallback_allow=False),
                 "Reject if strict regime gate worsens CAGR without improving drawdown.",
                 "paper_regime_strict",
+                90,
             ),
             _idea(
-                f"PAPER_{stem}_REGIME_RELAXED_V2",
+                f"PAPER_{stem}_REGIME_RELAXED_V4",
                 "paper_regime_filter",
                 source_id,
                 title,
@@ -443,12 +484,13 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
                 _market_override(require_positive_trend=False, threshold=-2.5),
                 "Reject if relaxed regime gate worsens drawdown/yearly SPY comparison.",
                 "paper_regime_relaxed",
+                90,
             ),
         ]
 
     return [
         _idea(
-            f"PAPER_{stem}_RET52_RANK_V2",
+            f"PAPER_{stem}_RET52_RANK_V4",
             "paper_time_series_momentum",
             source_id,
             title,
@@ -458,9 +500,10 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
             _rank_override("ret_52w_pct"),
             "Reject if paper-derived 52w momentum idea fails to beat champion or duplicates historical artifacts.",
             "paper_tsmom_rank",
+            40,
         ),
         _idea(
-            f"PAPER_{stem}_RET52_RET13_CONFIRM_V1",
+            f"PAPER_{stem}_RET52_RET13_CONFIRM_V4",
             "paper_time_series_momentum",
             source_id,
             title,
@@ -470,6 +513,7 @@ def _variants_from_external_paper(row: dict[str, Any], idx: int) -> list[PaperId
             _rank_confirm_override("ret_52w_pct", "ret_13w_pct", value=0.0),
             "Reject if confirmation fails to improve robustness versus the champion.",
             "paper_tsmom_confirm",
+            35,
         ),
     ]
 
@@ -496,10 +540,40 @@ def _missing_task(parent_run_id: str, parent_hypothesis_id: str | None, idea: Pa
                 "suggested_implementation": "rolling 14-week average true range percentage using weekly high/low/close or daily OHLC resampled to weekly",
                 "priority": "high",
             })
-        elif feature.startswith("realized_vol"):
+        elif feature == "realized_vol_13w_pct":
             suggested.append({
                 "feature": feature,
-                "suggested_implementation": "rolling standard deviation of weekly returns",
+                "suggested_implementation": "rolling 13-week standard deviation of weekly returns",
+                "priority": "high",
+            })
+        elif feature == "downside_vol_13w_pct":
+            suggested.append({
+                "feature": feature,
+                "suggested_implementation": "rolling 13-week standard deviation of negative weekly returns only",
+                "priority": "high",
+            })
+        elif feature == "max_drawdown_26w_pct":
+            suggested.append({
+                "feature": feature,
+                "suggested_implementation": "rolling 26-week maximum drawdown percentage from weekly closes",
+                "priority": "high",
+            })
+        elif feature == "residual_ret_26w_pct":
+            suggested.append({
+                "feature": feature,
+                "suggested_implementation": "26-week return residualized against SPY and/or sector return using rolling regression or simple subtraction baseline",
+                "priority": "medium",
+            })
+        elif feature in {"sector_ret_26w_pct", "ret_vs_sector_26w_pct"}:
+            suggested.append({
+                "feature": feature,
+                "suggested_implementation": "add sector metadata and compute sector 26-week return plus stock minus sector relative return",
+                "priority": "medium",
+            })
+        elif feature == "market_breadth_above_sma50_pct":
+            suggested.append({
+                "feature": feature,
+                "suggested_implementation": "weekly percentage of universe constituents trading above 50-day/10-week SMA",
                 "priority": "medium",
             })
         else:
@@ -515,24 +589,24 @@ def _missing_task(parent_run_id: str, parent_hypothesis_id: str | None, idea: Pa
         "source_id": idea.source_id,
         "paper_title": idea.paper_title,
         "candidate_suffix": idea.suffix,
+        "family": idea.family,
+        "axis": idea.axis,
         "reason": "missing_required_features_for_literature_hypothesis",
         "missing_features": missing,
         "suggested_feature_tasks": suggested,
         "claim": idea.claim,
-        "next_action": "add_features_to_feature_store_or skip_this_paper_axis",
+        "next_action": "add_features_to_feature_store_or_skip_this_paper_axis",
     }
 
 
 def _missing_task_key(task: dict[str, Any]) -> str:
-    return "|".join(
-        [
-            str(task.get("parent_run_id") or ""),
-            str(task.get("parent_hypothesis_id") or ""),
-            str(task.get("source_id") or ""),
-            str(task.get("candidate_suffix") or ""),
-            ",".join(sorted(str(x) for x in task.get("missing_features", []) or [])),
-        ]
-    )
+    return "|".join([
+        str(task.get("parent_run_id") or ""),
+        str(task.get("parent_hypothesis_id") or ""),
+        str(task.get("source_id") or ""),
+        str(task.get("candidate_suffix") or ""),
+        ",".join(sorted(str(x) for x in task.get("missing_features", []) or [])),
+    ])
 
 
 def append_missing_tasks_dedup(path: str | Path, tasks: list[dict[str, Any]]) -> int:
@@ -555,7 +629,6 @@ def append_missing_tasks_dedup(path: str | Path, tasks: list[dict[str, Any]]) ->
 
 
 def _all_ideas(parent: dict[str, Any], paper_ideas_path: str | Path) -> list[PaperIdea]:
-    # External paper ideas first, then built-in templates.
     ideas = [*ideas_from_paper_ideas(paper_ideas_path), *built_in_literature_templates(parent)]
     seen: set[tuple[str, str]] = set()
     out: list[PaperIdea] = []
@@ -565,6 +638,7 @@ def _all_ideas(parent: dict[str, Any], paper_ideas_path: str | Path) -> list[Pap
             continue
         seen.add(key)
         out.append(idea)
+    out.sort(key=lambda x: x.priority)
     return out
 
 
@@ -578,11 +652,7 @@ def mine_literature_hypotheses(
 ) -> dict[str, Any]:
     parent = read_json(parent_strategy_config_path, {}) or {}
     if not parent:
-        return {
-            "generated": 0,
-            "reason": "missing_parent_config",
-            "parent_strategy_config": str(parent_strategy_config_path),
-        }
+        return {"generated": 0, "reason": "missing_parent_config", "parent_strategy_config": str(parent_strategy_config_path)}
 
     features = available_weekly_features(state_dir)
     bank = read_jsonl(hypothesis_bank_path)
@@ -591,24 +661,40 @@ def mine_literature_hypotheses(
     current = read_json(Path(state_dir) / "current_parent.json", {}) or {}
     parent_run_id = current.get("current_parent_run_id") or "PARENT"
     parent_hypothesis_id = current.get("current_parent_hypothesis_id") or current.get("current_parent_strategy_id")
+    cooldowns = cooldowned_families(state_dir)
 
     rows: list[dict[str, Any]] = []
     missing_tasks: list[dict[str, Any]] = []
     skipped_existing = 0
     skipped_duplicate_signature = 0
+    skipped_family_cooldown = 0
     ideas_seen = 0
     supported_seen = 0
+    missing_seen = 0
 
     for idea in _all_ideas(parent, paper_ideas_path):
         ideas_seen += 1
         if len(rows) >= max_new:
             break
+
+        if idea.family in cooldowns:
+            skipped_family_cooldown += 1
+            # Still record missing feature tasks for new feature discovery if the
+            # feature axis is unavailable; this keeps papers useful even when a
+            # family is temporarily cooled down.
+            if not _supported(idea, features):
+                missing_tasks.append(_missing_task(str(parent_run_id), parent_hypothesis_id, idea, features))
+                missing_seen += 1
+            continue
+
         hypothesis_id = f"HYP_LIT_{parent_run_id}_{idea.suffix}"
         if hypothesis_id in ids:
             skipped_existing += 1
             continue
+
         if not _supported(idea, features):
             missing_tasks.append(_missing_task(str(parent_run_id), parent_hypothesis_id, idea, features))
+            missing_seen += 1
             continue
 
         supported_seen += 1
@@ -617,7 +703,7 @@ def mine_literature_hypotheses(
         overrides.setdefault("strategy_family", idea.family)
         overrides.setdefault("changed_parameters", sorted(overrides.keys()))
         overrides.setdefault("expected_effect", "Paper-derived causal variant to improve SPY-relative robustness.")
-        overrides.setdefault("autonomy_reason", "literature_hypothesis_miner_v3")
+        overrides.setdefault("autonomy_reason", "literature_hypothesis_miner_v4")
 
         sig = real_override_signature(overrides)
         if sig in sigs:
@@ -635,7 +721,7 @@ def mine_literature_hypotheses(
                     {
                         "run_id": parent_run_id,
                         "hypothesis_id": parent_hypothesis_id,
-                        "reason": "Generated by literature_hypothesis_miner v3 after local/feature-space exhaustion or paper fallback.",
+                        "reason": "Generated by literature_hypothesis_miner v4 after local/feature-space exhaustion or paper fallback.",
                     }
                 ],
                 "features_required": list(idea.required_features),
@@ -659,13 +745,17 @@ def mine_literature_hypotheses(
         "hypotheses": [row["hypothesis_id"] for row in rows],
         "missing_feature_tasks": missing_written,
         "missing_feature_tasks_seen": len(missing_tasks),
+        "missing_feature_axes_seen": missing_seen,
         "available_feature_count": len(features),
+        "cooldowned_families": sorted(cooldowns),
         "skipped_existing": skipped_existing,
         "skipped_duplicate_signature": skipped_duplicate_signature,
+        "skipped_family_cooldown": skipped_family_cooldown,
         "ideas_seen": ideas_seen,
         "supported_seen": supported_seen,
         "paper_ideas_path": str(paper_ideas_path),
         "parent_run_id": parent_run_id,
+        "version": "v4",
     }
 
 

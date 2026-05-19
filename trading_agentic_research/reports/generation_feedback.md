@@ -1,7 +1,7 @@
 # Generation Eligibility Feedback
 
-- Generated at: 2026-05-19T00:27:06.751373+00:00
-- Events: 19
+- Generated at: 2026-05-19T00:50:53.075695+00:00
+- Events: 20
 
 ## Recent events
 
@@ -26,3 +26,4 @@
 | candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1 | paper_regime_filter | candidate_under_review_already_exhausted | candidate_review_generated_zero |
 | candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SMA20_FAST_SMA52_CONFIRM_V1 | paper_trend_following | candidate_under_review_already_exhausted | candidate_review_generated_zero |
 | candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1 | paper_regime_filter | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1 | feature_space_composite_exit | candidate_under_review_already_exhausted | candidate_review_generated_zero |

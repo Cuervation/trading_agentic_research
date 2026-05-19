@@ -6,8 +6,19 @@ only creates bibliography/paper_ideas.jsonl. The literature miner converts
 supported ideas into auditable hypothesis cards with feature checks and
 falsification rules.
 
-Version 2 expands the offline seed set so the project can continue with a richer
-bibliography even when the online search is unavailable.
+v4 expands offline coverage beyond basic momentum/regime:
+- cross-sectional and time-series momentum;
+- dual/absolute momentum;
+- quality/trend stability;
+- low-volatility and volatility-managed portfolios;
+- residual/idiosyncratic momentum;
+- sector/industry relative strength;
+- downside-risk and drawdown-aware momentum;
+- breadth/regime/momentum crash papers.
+
+The goal is to keep the system autonomous when local feature-space variants are
+exhausted, while still only creating *ideas*. Missing features are handled by
+literature_hypothesis_miner.py as backlog tasks.
 """
 from __future__ import annotations
 
@@ -28,6 +39,14 @@ DEFAULT_OFFLINE_IDEAS: list[dict[str, Any]] = [
         "claim_seed": "Trend persistence over intermediate horizons may be exploitable with robust risk controls.",
         "families": ["paper_time_series_momentum", "trend_following"],
         "required_features_hint": ["ret_52w_pct", "close"],
+    },
+    {
+        "source_id": "cross_sectional_momentum_jegadeesh_titman",
+        "title": "Cross-sectional momentum",
+        "query": "Jegadeesh Titman cross sectional momentum equities",
+        "claim_seed": "Relative winners can continue to outperform losers over intermediate horizons.",
+        "families": ["paper_time_series_momentum", "cross_sectional_momentum"],
+        "required_features_hint": ["ret_26w_pct", "ret_52w_pct", "close"],
     },
     {
         "source_id": "multi_lookback_momentum_confirmation",
@@ -75,7 +94,39 @@ DEFAULT_OFFLINE_IDEAS: list[dict[str, Any]] = [
         "query": "volatility managed portfolios momentum risk scaling",
         "claim_seed": "Risk-aware scaling or volatility filters may improve drawdown-adjusted performance.",
         "families": ["paper_low_vol_momentum", "risk_control_refinement"],
-        "required_features_hint": ["atr_14w_pct", "ret_52w_pct", "close"],
+        "required_features_hint": ["realized_vol_13w_pct", "ret_52w_pct", "close"],
+    },
+    {
+        "source_id": "idiosyncratic_momentum_residual_returns",
+        "title": "Residual / idiosyncratic momentum",
+        "query": "residual momentum idiosyncratic momentum equity strategy",
+        "claim_seed": "Removing market or sector effects from returns may isolate cleaner stock-specific momentum.",
+        "families": ["paper_residual_momentum", "paper_quality_momentum"],
+        "required_features_hint": ["residual_ret_26w_pct", "ret_26w_pct", "close"],
+    },
+    {
+        "source_id": "sector_industry_relative_momentum",
+        "title": "Sector and industry relative strength",
+        "query": "industry momentum sector relative strength equity strategy",
+        "claim_seed": "Momentum may be more robust when a stock also leads its sector or industry peer group.",
+        "families": ["paper_sector_momentum", "paper_time_series_momentum"],
+        "required_features_hint": ["sector_ret_26w_pct", "ret_vs_sector_26w_pct", "ret_26w_pct", "close"],
+    },
+    {
+        "source_id": "drawdown_aware_momentum",
+        "title": "Drawdown-aware momentum",
+        "query": "momentum strategy drawdown control downside risk equity",
+        "claim_seed": "Momentum portfolios may improve risk-adjusted performance by avoiding names with recent severe drawdowns.",
+        "families": ["paper_downside_risk_momentum", "risk_control_refinement"],
+        "required_features_hint": ["max_drawdown_26w_pct", "ret_52w_pct", "close"],
+    },
+    {
+        "source_id": "downside_volatility_momentum",
+        "title": "Downside-volatility momentum",
+        "query": "downside volatility momentum strategy equity risk control",
+        "claim_seed": "Downside risk can be more relevant than total volatility for momentum crash control.",
+        "families": ["paper_downside_risk_momentum", "paper_low_vol_momentum"],
+        "required_features_hint": ["downside_vol_13w_pct", "ret_26w_pct", "close"],
     },
     {
         "source_id": "faber_tactical_asset_allocation_regime_filter",
@@ -92,6 +143,14 @@ DEFAULT_OFFLINE_IDEAS: list[dict[str, Any]] = [
         "claim_seed": "Momentum crash risk may be regime-dependent, so SPY regime handling should be tested explicitly.",
         "families": ["paper_regime_filter", "paper_time_series_momentum"],
         "required_features_hint": ["spy_close_vs_sma50_pct", "ret_52w_pct", "close"],
+    },
+    {
+        "source_id": "market_breadth_momentum_regime",
+        "title": "Market breadth as momentum regime filter",
+        "query": "market breadth regime filter momentum strategy",
+        "claim_seed": "Market breadth can distinguish broad recoveries from narrow leadership and may improve regime gating.",
+        "families": ["paper_breadth_regime", "paper_regime_filter"],
+        "required_features_hint": ["market_breadth_above_sma50_pct", "ret_52w_pct", "close"],
     },
 ]
 
@@ -165,7 +224,7 @@ def generate_paper_ideas(*, output: str | Path = "bibliography/paper_ideas.jsonl
     rows: list[dict[str, Any]] = []
     for idea in DEFAULT_OFFLINE_IDEAS:
         row = dict(idea)
-        row["mode"] = "offline_seed"
+        row["mode"] = "offline_seed_v4"
         row["created_at"] = now_iso()
         rows.append(row)
         if online:
@@ -183,7 +242,13 @@ def generate_paper_ideas(*, output: str | Path = "bibliography/paper_ideas.jsonl
             except Exception as exc:
                 rows.append({"mode": "online_search_error", "query_seed": idea["query"], "error": str(exc), "created_at": now_iso()})
     written = append_jsonl_unique(output, rows)
-    return {"output": str(output), "rows_written": written, "candidate_rows": len(rows), "online": online}
+    return {
+        "output": str(output),
+        "rows_written": written,
+        "candidate_rows": len(rows),
+        "online": online,
+        "offline_seed_version": "v4",
+    }
 
 
 def main() -> int:

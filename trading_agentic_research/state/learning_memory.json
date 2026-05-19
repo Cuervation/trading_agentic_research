@@ -126,7 +126,7 @@
       "promoted_candidates": 0
     },
     "paper_trend_following": {
-      "rejections": 2,
+      "rejections": 3,
       "acceptances": 0,
       "promoted_candidates": 0
     },
@@ -166,7 +166,7 @@
       "promoted_candidates": 0
     },
     "feature_space_composite_exit": {
-      "rejections": 2,
+      "rejections": 3,
       "acceptances": 0,
       "promoted_candidates": 0
     }
@@ -1631,6 +1631,34 @@
       "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
       "family": "feature_space_composite_exit",
       "run_id": "EXP_093",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "run_id": "EXP_094",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "run_id": "EXP_095",
       "decision": "rejected",
       "flags": [
         "metric_no_effect",

@@ -11,13 +11,13 @@
       "score": -21.946919910714286
     },
     "strategy_family": {
-      "count": 67,
-      "avg_parent_cagr_delta_pct": -15.712176104477614,
-      "avg_parent_drawdown_delta_pct": -4.038487701492537,
+      "count": 69,
+      "avg_parent_cagr_delta_pct": -16.087920086956522,
+      "avg_parent_drawdown_delta_pct": -4.025861449275363,
       "promoted_candidates": 3,
-      "rejections": 56,
+      "rejections": 58,
       "no_effects": 1,
-      "score": -71.23141995522388
+      "score": -73.6008508115942
     },
     "market_filter.require_positive_trend": {
       "count": 22,
@@ -29,13 +29,13 @@
       "score": -24.26407606818182
     },
     "exit_rule.rank_threshold": {
-      "count": 21,
-      "avg_parent_cagr_delta_pct": -6.835926761904762,
-      "avg_parent_drawdown_delta_pct": -3.0099931904761905,
+      "count": 22,
+      "avg_parent_cagr_delta_pct": -8.072378181818182,
+      "avg_parent_drawdown_delta_pct": -3.0398205909090907,
       "promoted_candidates": 2,
-      "rejections": 17,
+      "rejections": 18,
       "no_effects": 1,
-      "score": -23.840923357142856
+      "score": -26.092288477272728
     },
     "universe.source": {
       "count": 11,
@@ -74,22 +74,22 @@
       "score": -6.455355045454546
     },
     "ranking.field": {
-      "count": 42,
-      "avg_parent_cagr_delta_pct": -20.849910857142856,
-      "avg_parent_drawdown_delta_pct": -4.136101261904762,
+      "count": 44,
+      "avg_parent_cagr_delta_pct": -21.20561234090909,
+      "avg_parent_drawdown_delta_pct": -4.111864022727273,
       "promoted_candidates": 2,
-      "rejections": 34,
+      "rejections": 36,
       "no_effects": 1,
-      "score": -55.41796148809524
+      "score": -57.76154435227273
     },
     "ranking.order": {
-      "count": 42,
-      "avg_parent_cagr_delta_pct": -20.849910857142856,
-      "avg_parent_drawdown_delta_pct": -4.136101261904762,
+      "count": 44,
+      "avg_parent_cagr_delta_pct": -21.20561234090909,
+      "avg_parent_drawdown_delta_pct": -4.111864022727273,
       "promoted_candidates": 2,
-      "rejections": 34,
+      "rejections": 36,
       "no_effects": 1,
-      "score": -55.41796148809524
+      "score": -57.76154435227273
     },
     "rebalance_frequency": {
       "count": 11,
@@ -146,13 +146,13 @@
       "score": -8.0484535
     },
     "risk_filters.require_non_null_fields": {
-      "count": 42,
-      "avg_parent_cagr_delta_pct": -20.849910857142856,
-      "avg_parent_drawdown_delta_pct": -4.136101261904762,
+      "count": 44,
+      "avg_parent_cagr_delta_pct": -21.20561234090909,
+      "avg_parent_drawdown_delta_pct": -4.111864022727273,
       "promoted_candidates": 2,
-      "rejections": 34,
+      "rejections": 36,
       "no_effects": 1,
-      "score": -55.41796148809524
+      "score": -57.76154435227273
     },
     "costs.entry_cost_pct": {
       "count": 11,
@@ -218,22 +218,22 @@
       "score": -4.58980225
     },
     "changed_parameters": {
-      "count": 32,
-      "avg_parent_cagr_delta_pct": -19.78487046875,
-      "avg_parent_drawdown_delta_pct": -4.44251215625,
+      "count": 34,
+      "avg_parent_cagr_delta_pct": -20.307839470588235,
+      "avg_parent_drawdown_delta_pct": -4.393122147058824,
       "promoted_candidates": 2,
-      "rejections": 24,
+      "rejections": 26,
       "no_effects": 1,
-      "score": -44.506126546875
+      "score": -47.004400544117644
     },
     "expected_effect": {
-      "count": 32,
-      "avg_parent_cagr_delta_pct": -19.78487046875,
-      "avg_parent_drawdown_delta_pct": -4.44251215625,
+      "count": 34,
+      "avg_parent_cagr_delta_pct": -20.307839470588235,
+      "avg_parent_drawdown_delta_pct": -4.393122147058824,
       "promoted_candidates": 2,
-      "rejections": 24,
+      "rejections": 26,
       "no_effects": 1,
-      "score": -44.506126546875
+      "score": -47.004400544117644
     },
     "falsification_rule": {
       "count": 10,
@@ -263,13 +263,13 @@
       "score": -4.58980225
     },
     "autonomy_reason": {
-      "count": 22,
-      "avg_parent_cagr_delta_pct": -29.441894954545454,
-      "avg_parent_drawdown_delta_pct": -5.052394363636363,
+      "count": 24,
+      "avg_parent_cagr_delta_pct": -29.378015666666666,
+      "avg_parent_drawdown_delta_pct": -4.931601666666666,
       "promoted_candidates": 0,
-      "rejections": 18,
+      "rejections": 20,
       "no_effects": 0,
-      "score": -49.96809213636364
+      "score": -51.8438165
     },
     "risk_filters.conditions": {
       "count": 9,
@@ -8812,6 +8812,231 @@
       "years_beating_parent": 0,
       "years_losing_to_parent": 7,
       "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "ranking.field",
+      "axis": "ranking_horizon",
+      "new_value": "channel_r2",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "ranking.order",
+      "axis": "ranking_horizon",
+      "new_value": "desc",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "exit_rule.rank_threshold",
+      "axis": "exit_threshold",
+      "new_value": 18,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "risk_filters.require_non_null_fields",
+      "axis": "other",
+      "new_value": [
+        "channel_r2",
+        "close"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "changed_parameters",
+      "axis": "other",
+      "new_value": [
+        "ranking.field",
+        "ranking.order",
+        "exit_rule.rank_threshold"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "expected_effect",
+      "axis": "other",
+      "new_value": "Test whether this feature needs a tighter/looser exit rank threshold.",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "autonomy_reason",
+      "axis": "other",
+      "new_value": "consecutive_rejections_pre_stop",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
+      "parameter": "strategy_family",
+      "axis": "other",
+      "new_value": "feature_space_composite_exit",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -34.037858,
+      "parent_drawdown_delta_pct": -3.666196,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "ranking.field",
+      "axis": "ranking_horizon",
+      "new_value": "close_vs_sma20w_pct",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "ranking.order",
+      "axis": "ranking_horizon",
+      "new_value": "desc",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "risk_filters.require_non_null_fields",
+      "axis": "other",
+      "new_value": [
+        "close_vs_sma20w_pct",
+        "close"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "strategy_family",
+      "axis": "other",
+      "new_value": "paper_trend_following",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "changed_parameters",
+      "axis": "other",
+      "new_value": [
+        "ranking",
+        "risk_filters",
+        "strategy_family",
+        "strategy_id"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "expected_effect",
+      "axis": "other",
+      "new_value": "Paper-derived causal variant to improve SPY-relative robustness.",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
+      "parameter": "autonomy_reason",
+      "axis": "other",
+      "new_value": "literature_hypothesis_miner_v3",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -23.312829,
+      "parent_drawdown_delta_pct": -3.539568,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
     }
   ],
   "effects_by_axis": {
@@ -8825,13 +9050,13 @@
       "score": -21.946919910714286
     },
     "other": {
-      "count": 384,
-      "avg_parent_cagr_delta_pct": -10.2839104609375,
-      "avg_parent_drawdown_delta_pct": -3.6559087890625004,
+      "count": 394,
+      "avg_parent_cagr_delta_pct": -10.750698101522843,
+      "avg_parent_drawdown_delta_pct": -3.6545629314720816,
       "promoted_candidates": 43,
-      "rejections": 275,
+      "rejections": 285,
       "no_effects": 21,
-      "score": -254.61186485546875
+      "score": -265.0779795672589
     },
     "market_filter": {
       "count": 51,
@@ -8843,22 +9068,22 @@
       "score": -39.04004487254902
     },
     "exit_threshold": {
-      "count": 21,
-      "avg_parent_cagr_delta_pct": -6.835926761904762,
-      "avg_parent_drawdown_delta_pct": -3.0099931904761905,
+      "count": 22,
+      "avg_parent_cagr_delta_pct": -8.072378181818182,
+      "avg_parent_drawdown_delta_pct": -3.0398205909090907,
       "promoted_candidates": 2,
-      "rejections": 17,
+      "rejections": 18,
       "no_effects": 1,
-      "score": -23.840923357142856
+      "score": -26.092288477272728
     },
     "ranking_horizon": {
-      "count": 84,
-      "avg_parent_cagr_delta_pct": -20.849910857142856,
-      "avg_parent_drawdown_delta_pct": -4.136101261904762,
+      "count": 88,
+      "avg_parent_cagr_delta_pct": -21.20561234090909,
+      "avg_parent_drawdown_delta_pct": -4.111864022727273,
       "promoted_candidates": 4,
-      "rejections": 68,
+      "rejections": 72,
       "no_effects": 2,
-      "score": -87.91796148809524
+      "score": -92.26154435227272
     },
     "risk_management": {
       "count": 8,

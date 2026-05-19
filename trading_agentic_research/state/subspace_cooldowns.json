@@ -88,6 +88,14 @@
     "paper_time_series_momentum": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "feature_space_composite_exit": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
+    },
+    "paper_trend_following": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3

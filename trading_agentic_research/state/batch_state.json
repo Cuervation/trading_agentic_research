@@ -2,144 +2,29 @@
   "version": 1,
   "status": "stopped",
   "max_runs": 20,
-  "completed": 8,
+  "completed": 2,
   "consecutive_rejections": 2,
   "history": [
     {
       "iteration": 1,
-      "run_id": "EXP_086",
-      "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1",
-      "family": "paper_regime_filter",
+      "run_id": "EXP_094",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+      "family": "feature_space_composite_exit",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     },
     {
       "iteration": 2,
-      "run_id": "EXP_087",
-      "hypothesis_id": "HYP_LIT_AUTO_002_QUALITY_SLOPE_R2_CONFIRM_V1",
-      "family": "paper_quality_momentum",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 3,
-      "run_id": "EXP_088",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
-      "family": "feature_space_composite_concentration",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 4,
-      "run_id": "EXP_089",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
-      "family": "feature_space_composite_concentration",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 5,
-      "run_id": "EXP_090",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
-      "family": "feature_space_composite_concentration",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 6,
-      "run_id": "EXP_091",
-      "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_SMA20_CONFIRM_V1",
-      "family": "paper_time_series_momentum",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 7,
-      "run_id": "EXP_092",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
-      "family": "feature_space_composite_exit",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 8,
-      "run_id": "EXP_093",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
-      "family": "feature_space_composite_exit",
+      "run_id": "EXP_095",
+      "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+      "family": "paper_trend_following",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     }
   ],
-  "last_updated_at": "2026-05-19T00:27:06.655773+00:00",
-  "stop_reason": "consecutive_rejections:2:max_recovery_cycles_reached",
+  "last_updated_at": "2026-05-19T00:50:52.970215+00:00",
+  "stop_reason": "consecutive_rejections:2",
   "effective_parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
-  "recovery_cycles": 3,
-  "recovery_history": [
-    {
-      "cycle": 1,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 2,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1"
-      ],
-      "timestamp": "2026-05-19T00:21:42.178304+00:00"
-    },
-    {
-      "cycle": 2,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 4,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_5_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_7_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_5_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_7_V1"
-      ],
-      "timestamp": "2026-05-19T00:23:06.355119+00:00"
-    },
-    {
-      "cycle": 3,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 6,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
-        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1"
-      ],
-      "timestamp": "2026-05-19T00:25:04.842664+00:00"
-    }
-  ]
+  "recovery_cycles": 0,
+  "recovery_history": []
 }

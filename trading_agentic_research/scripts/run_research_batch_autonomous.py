@@ -11,6 +11,11 @@ from common failure modes and keeps the research direction explicit:
 - literature/paper fallback;
 - feature-space expansion fallback when every other source is exhausted;
 - post-batch zero-iteration validation.
+
+v4 operational addition:
+- exposes --max-recovery-cycles and --no-continue-after-recovery-generation
+  from the autonomous wrapper, so long-run behavior can be tuned without
+  editing run_research_batch.py directly.
 """
 from __future__ import annotations
 
@@ -76,6 +81,26 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max-paper-ideas", type=int, default=5)
     p.add_argument("--max-feature-space-hypotheses", type=int, default=5)
     p.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
+
+    # Long-run recovery controls passed through to run_research_batch.py.
+    p.add_argument(
+        "--max-recovery-cycles",
+        type=int,
+        default=3,
+        help="Maximum times the inner batch may continue after consecutive rejections if recovery generation creates selectable work.",
+    )
+    p.add_argument(
+        "--no-continue-after-recovery-generation",
+        action="store_true",
+        help="Disable recovery continuation after consecutive rejections generate selectable hypotheses.",
+    )
+    p.add_argument(
+        "--stop-after-consecutive-rejections",
+        type=int,
+        default=2,
+        help="Pass-through stop rule for the inner batch.",
+    )
+
     p.add_argument("--allow-parent-update", action="store_true")
     p.add_argument("--no-candidate-under-review", action="store_true")
     p.add_argument("--no-literature-fallback", action="store_true")
@@ -200,9 +225,6 @@ def main() -> int:
     if dq.get("warnings"):
         print(f"Data quality warnings: {dq.get('warnings')}")
 
-    # Do not let sync silently promote best_champion. parent_state.py also honors
-    # parent_governance_lock.json, but prefer_best_champion=False is the safer
-    # default for long autonomous runs.
     sync_current_parent_state(
         state_dir=args.state_dir,
         strategy_registry_path=args.strategy_registry,
@@ -415,8 +437,12 @@ def main() -> int:
         "--generation-families", args.generation_families,
         "--max-generation-attempts", "3",
         "--max-repeats-per-hypothesis", str(args.max_repeats_per_hypothesis),
+        "--stop-after-consecutive-rejections", str(args.stop_after_consecutive_rejections),
+        "--max-recovery-cycles", str(args.max_recovery_cycles),
         "--parent-strategy-config", parent_config,
     ]
+    if args.no_continue_after_recovery_generation:
+        cmd.append("--no-continue-after-recovery-generation")
     if args.allow_parent_update:
         cmd.append("--allow-parent-update")
     print("Launching:", " ".join(cmd))
@@ -452,7 +478,6 @@ def main() -> int:
             print(f"- {error}")
         return 3
 
-    # Keep review and feedback reports fresh after the batch.
     write_promotion_candidate_review(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
     write_generation_feedback_report(state_dir=args.state_dir, reports_dir=args.reports_dir)
     clear_autonomy_blocker(state_dir=args.state_dir, reason="batch_completed_with_value")
