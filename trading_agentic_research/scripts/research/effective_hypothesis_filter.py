@@ -1,22 +1,26 @@
-"""Effective hypothesis filter v3.
+"""Effective hypothesis filter v4.
 
 Selector-level gate that prevents the autonomous loop from treating
 "an unconsumed row in the hypothesis bank" as "valuable executable work".
 
-v3 fixes the diagnostic contradiction where choose_next_hypothesis found no
-eligible hypotheses but summarize_effective_hypotheses still reported many
-"executable" rows. The summary now applies selector-equivalent filters:
-consumed/rejected/accepted/repeat/candidate-review/memory-score/effective gate.
+v4 fixes the remaining diagnostic mismatch:
+- choose_next_hypothesis was blocking duplicate override signatures;
+- summarize_effective_hypotheses was not;
+- ledger rows sometimes have family="", so family stall detection missed
+  rejected families such as risk_management unless family could be inferred
+  from the hypothesis_id.
 """
 from __future__ import annotations
 
 import json
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 from scripts.parameter_effect_memory import load_parameter_effect_memory
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
+from scripts.research.autonomous_hypothesis_factory import real_override_signature
 from scripts.research.candidate_review_learning import (
     candidate_review_scope_reason,
     is_candidate_review_hypothesis_blocked,
@@ -64,8 +68,53 @@ def _repeat_blocked_hypothesis_ids(history: list[dict[str, Any]], max_repeats_pe
     return {hypothesis_id for hypothesis_id, count in counts.items() if count >= max_repeats_per_hypothesis}
 
 
-def is_feature_space_family(family: str | None, hypothesis_id: str | None = None) -> bool:
+def infer_family_from_hypothesis_id(hypothesis_id: str | None) -> str:
+    """Infer coarse family when historical rows did not persist family.
+
+    This is intentionally conservative and only maps prefixes used by the
+    current hypothesis generators. It improves family-stall diagnostics without
+    changing persisted history.
+    """
+    hid = str(hypothesis_id or "")
+    if hid.startswith("HYP_FSPACE_"):
+        if "_EXIT_" in hid:
+            return "feature_space_composite_exit"
+        if "_CONF_" in hid:
+            return "feature_space_composite_confirmation"
+        if "_MKT_" in hid:
+            return "feature_space_composite_market_filter"
+        if "_TOPN_" in hid:
+            return "feature_space_composite_concentration"
+        return "feature_space"
+    if hid.startswith("HYP_RISK_MANAGEMENT_"):
+        return "risk_management"
+    if hid.startswith("HYP_CROSS_SECTIONAL_MOMENTUM_"):
+        return "cross_sectional_momentum"
+    if hid.startswith("HYP_TACTICAL_ASSET_ALLOCATION_"):
+        return "tactical_asset_allocation"
+    if hid.startswith("HYP_QUALITY_MOMENTUM_"):
+        return "quality_momentum"
+    if hid.startswith("HYP_TIME_SERIES_MOMENTUM_") or "TSMOM" in hid:
+        return "time_series_momentum"
+    if hid.startswith("HYP_CAN_SLIM_"):
+        return "can_slim"
+    if hid.startswith("HYP_LIT_"):
+        m = re.search(r"HYP_LIT_[^_]+_(PAPER_[A-Z0-9_]+?)_", hid)
+        if m:
+            return m.group(1).lower()
+        return "literature"
+    if hid.startswith("HYP_REVIEW_"):
+        return "candidate_under_review_refinement"
+    return ""
+
+
+def normalize_family(family: str | None, hypothesis_id: str | None = None) -> str:
     fam = str(family or "")
+    return fam or infer_family_from_hypothesis_id(str(hypothesis_id or ""))
+
+
+def is_feature_space_family(family: str | None, hypothesis_id: str | None = None) -> bool:
+    fam = normalize_family(family, hypothesis_id)
     hid = str(hypothesis_id or "")
     return fam.startswith("feature_space") or hid.startswith("HYP_FSPACE_")
 
@@ -96,7 +145,7 @@ def _family_events(*, state_dir: str | Path, family: str | None = None, feature_
 
     for row in rows:
         hid = str(row.get("hypothesis_id") or "")
-        fam = str(row.get("family") or "")
+        fam = normalize_family(str(row.get("family") or ""), hid)
         if feature_space_only:
             include = is_feature_space_family(fam, hid)
         elif target_family:
@@ -116,7 +165,7 @@ def _family_events(*, state_dir: str | Path, family: str | None = None, feature_
 
     for row in blocks:
         hid = str(row.get("hypothesis_id") or "")
-        fam = str(row.get("family") or "")
+        fam = normalize_family(str(row.get("family") or ""), hid)
         if feature_space_only:
             include = is_feature_space_family(fam, hid)
         elif target_family:
@@ -177,7 +226,7 @@ def family_stall_status(
     if not fam:
         return {"stalled": False, "reason": "missing_family", "family": fam}
 
-    if fam.startswith("paper_"):
+    if fam.startswith("paper_") or fam == "literature":
         return {"stalled": False, "reason": "paper_family_advisory", "family": fam}
 
     events = _family_events(state_dir=state_dir, family=fam)
@@ -252,7 +301,7 @@ def effective_hypothesis_status(
     block_family_stall: bool = True,
 ) -> dict[str, Any]:
     hid = str(hypothesis.get("hypothesis_id") or "")
-    family = str(hypothesis.get("family") or "")
+    family = normalize_family(str(hypothesis.get("family") or ""), hid)
 
     semantic = semantic_branch_preflight(
         state_dir=state_dir,
@@ -341,9 +390,22 @@ def effective_hypothesis_status(
     }
 
 
+def _blocked_override_signatures(hypothesis_bank: list[dict[str, Any]], blocked_ids: set[str]) -> set[str]:
+    signatures: set[str] = set()
+    for row in hypothesis_bank:
+        hid = str(row.get("hypothesis_id") or "")
+        overrides = row.get("strategy_overrides")
+        if hid in blocked_ids and isinstance(overrides, dict) and overrides:
+            signatures.add(real_override_signature(overrides))
+    return signatures
+
+
 def _selector_equivalent_block_reason(
     *,
     hypothesis: dict[str, Any],
+    hypothesis_bank: list[dict[str, Any]],
+    blocked_signatures: set[str],
+    signature_block_ids: set[str],
     state_dir: Path,
     rejected_ids: set[str],
     accepted_ids: set[str],
@@ -377,6 +439,11 @@ def _selector_equivalent_block_reason(
         return f"candidate_review_scope:{scope_reason}"
     if is_candidate_review_hypothesis_blocked(hypothesis, state_dir=state_dir):
         return "candidate_review_axis_exhausted"
+
+    overrides = hypothesis.get("strategy_overrides")
+    if isinstance(overrides, dict) and overrides and hid not in signature_block_ids:
+        if real_override_signature(overrides) in blocked_signatures:
+            return "duplicate_override_signature"
 
     effective = effective_hypothesis_status(
         hypothesis=hypothesis,
@@ -420,6 +487,9 @@ def summarize_effective_hypotheses(
         current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id") or ""
     ) or None
 
+    signature_block_ids = set(rejected_ids).union(consumed_ids).union(accepted_ids)
+    blocked_signatures = _blocked_override_signatures(hypothesis_bank, signature_block_ids)
+
     counts: Counter[str] = Counter()
     examples: dict[str, list[str]] = {}
     executable: list[str] = []
@@ -432,6 +502,9 @@ def summarize_effective_hypotheses(
         hid = str(hypothesis.get("hypothesis_id") or "")
         reason = _selector_equivalent_block_reason(
             hypothesis=hypothesis,
+            hypothesis_bank=hypothesis_bank,
+            blocked_signatures=blocked_signatures,
+            signature_block_ids=signature_block_ids,
             state_dir=state_path,
             rejected_ids=rejected_ids,
             accepted_ids=accepted_ids,
@@ -459,6 +532,7 @@ def summarize_effective_hypotheses(
         or blocked_counts.get("semantic_branch_exhausted")
         or blocked_counts.get("feature_space_stalled_literature_mode")
         or blocked_counts.get("family_stalled_literature_mode")
+        or blocked_counts.get("duplicate_override_signature")
     ):
         mode = "literature_or_new_family"
     else:
@@ -473,4 +547,5 @@ def summarize_effective_hypotheses(
         "feature_space_stall": feature_stall,
         "recommended_mode": mode,
         "selector_equivalent": True,
+        "duplicate_override_signature_count": blocked_counts.get("duplicate_override_signature", 0),
     }
