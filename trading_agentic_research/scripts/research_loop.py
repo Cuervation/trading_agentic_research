@@ -18,6 +18,7 @@ from scripts.generate_hypotheses_from_bibliography import validate_candidate_bas
 from scripts.governance import changed_parameters_between, has_real_strategy_change
 from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
 from scripts.research.candidate_review_learning import candidate_review_scope_reason
+from scripts.research.pre_run_duplicate_guard import check_pre_run_duplicate, write_blocked_duplicate_run
 
 CommandRunner = Callable[[list[str]], subprocess.CompletedProcess]
 
@@ -314,6 +315,44 @@ def main() -> int:
         update_research_state(args.state_dir, inputs.run_id, "blocked", f"Preflight rejected: {score.get('reason')}")
         print(f"Research loop blocked before backtest: {score.get('reason')}")
         return 2
+
+    # AUTONOMY_DIRECT_PATCH_PRE_RUN_DUPLICATE_GUARD
+    guard = check_pre_run_duplicate(
+        strategy_config_path=inputs.strategy_config_path,
+        state_dir=args.state_dir,
+        runs_dir=args.runs_dir,
+        strategy_registry_path=args.strategy_registry,
+        repo_root=ROOT,
+        run_id=inputs.run_id,
+        hypothesis_id=inputs.hypothesis_id,
+        family=inputs.family,
+    )
+    if guard.get("blocked"):
+        event = write_blocked_duplicate_run(
+            guard_result=guard,
+            run_id=inputs.run_id,
+            runs_dir=args.runs_dir,
+            state_dir=args.state_dir,
+            strategy_config_path=inputs.strategy_config_path,
+            project_config_path=inputs.project_config_path,
+            weekly_file=inputs.weekly_file,
+            daily_folder=inputs.daily_folder,
+            parent_run_id=inputs.parent_run_id,
+            hypothesis_id=inputs.hypothesis_id,
+            family=inputs.family,
+        )
+        update_research_state(
+            args.state_dir,
+            inputs.run_id,
+            "pre_run_duplicate_blocked",
+            str(guard.get("reason")),
+        )
+        print(
+            f"Pre-run duplicate guard blocked {inputs.run_id}: "
+            f"{guard.get('reason')} duplicate_of={guard.get('duplicate_of_run_id')}"
+        )
+        print(f"Pre-run duplicate event: {event}")
+        return 0
 
     commands = build_commands(inputs, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
     print(f"Research loop plan for {inputs.run_id}: {len(commands)} commands")

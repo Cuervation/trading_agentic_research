@@ -146,6 +146,7 @@ def _get_ranking_ascending(strategy_config: dict) -> bool:
 
 
 def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, benchmark_ticker: str) -> bool:
+    # AUTONOMY_DIRECT_PATCH_SPY_MARKET_FILTER
     market_filter_cfg = strategy_config.get("market_filter", {})
     require_positive_trend = bool(market_filter_cfg.get("require_positive_trend", True))
     fallback_if_missing = bool(
@@ -158,27 +159,30 @@ def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, bench
     spy_rows = snapshot[snapshot["ticker"] == benchmark_ticker]
     if spy_rows.empty:
         warnings.warn(
-            f"Market filter could not find {benchmark_ticker} row on signal date; using fallback.",
+            f"critical: SPY market filter could not find {benchmark_ticker} row on signal date; using fallback={fallback_if_missing}.",
             UserWarning,
         )
         return fallback_if_missing
 
-    if "spy_close_vs_sma50_pct" not in spy_rows.columns:
-        warnings.warn(
-            "Column spy_close_vs_sma50_pct not found; using market filter fallback.",
-            UserWarning,
-        )
-        return fallback_if_missing
+    row = spy_rows.iloc[0]
+    metric_candidates = [
+        "spy_close_vs_sma50_pct",
+        "close_vs_sma50_pct",
+        "close_vs_sma52w_pct",
+    ]
 
-    value = pd.to_numeric(spy_rows.iloc[0]["spy_close_vs_sma50_pct"], errors="coerce")
-    if pd.isna(value):
-        warnings.warn(
-            "spy_close_vs_sma50_pct is NaN; using market filter fallback.",
-            UserWarning,
-        )
-        return fallback_if_missing
+    for col in metric_candidates:
+        if col not in spy_rows.columns:
+            continue
+        value = pd.to_numeric(row[col], errors="coerce")
+        if not pd.isna(value):
+            return bool(value > 0)
 
-    return bool(value > 0)
+    warnings.warn(
+        f"critical: SPY market filter metrics unavailable/NaN (tried={metric_candidates}); using fallback={fallback_if_missing}.",
+        UserWarning,
+    )
+    return fallback_if_missing
 
 
 def _apply_risk_filters(operable: pd.DataFrame, strategy_config: dict[str, Any]) -> pd.DataFrame:
