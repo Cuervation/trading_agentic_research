@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "timestamp": "2026-05-19T00:00:34.753759+00:00",
+      "phase": "feature_space:consecutive_rejections_pre_stop",
+      "generated": 5,
+      "generation_reason": "feature_space_hypotheses_generated",
+      "hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1"
+      ],
+      "selectable_count": 4,
+      "selectable": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1"
+      ],
+      "blocked_count": 1,
+      "summary_by_reason": {
+        "selector_memory_rejected": 1
+      },
+      "blocked": [
+        {
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "reason": "selector_memory_rejected",
+          "score": {
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+            "family": "feature_space_composite_confirmation",
+            "in_cooldown": true,
+            "prior_rejections": 3,
+            "prior_acceptances": 2,
+            "can_generate_candidate": false,
+            "can_promote_baseline": false,
+            "decision": "rejected",
+            "reason": "repeated_failed_hypotheses"
+          }
+        }
+      ],
+      "context": {
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-19T00:03:31.594488+00:00",
+      "phase": "feature_space:consecutive_rejections_pre_stop",
+      "generated": 5,
+      "generation_reason": "feature_space_hypotheses_generated",
+      "hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1"
+      ],
+      "selectable_count": 0,
+      "selectable": [],
+      "blocked_count": 5,
+      "summary_by_reason": {
+        "selector_memory_rejected": 5
+      },
+      "blocked": [
+        {
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "reason": "selector_memory_rejected",
+          "score": {
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+            "family": "feature_space_regime",
+            "in_cooldown": true,
+            "prior_rejections": 3,
+            "prior_acceptances": 1,
+            "can_generate_candidate": false,
+            "can_promote_baseline": false,
+            "decision": "rejected",
+            "reason": "repeated_failed_hypotheses"
+          }
+        },
+        {
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "reason": "selector_memory_rejected",
+          "score": {
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+            "family": "feature_space_regime",
+            "in_cooldown": true,
+            "prior_rejections": 3,
+            "prior_acceptances": 1,
+            "can_generate_candidate": false,
+            "can_promote_baseline": false,
+            "decision": "rejected",
+            "reason": "repeated_failed_hypotheses"
+          }
+        },
+        {
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "reason": "selector_memory_rejected",
+          "score": {
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+            "family": "feature_space_regime",
+            "in_cooldown": true,
+            "prior_rejections": 3,
+            "prior_acceptances": 1,
+            "can_generate_candidate": false,
+            "can_promote_baseline": false,
+            "decision": "rejected",
+            "reason": "repeated_failed_hypotheses"
+          }
+        },
+        {
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "reason": "selector_memory_rejected",
+          "score": {
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+            "family": "feature_space_regime",
+            "in_cooldown": true,
+            "prior_rejections": 3,
+            "prior_acceptances": 1,
+            "can_generate_candidate": false,
+            "can_promote_baseline": false,
+            "decision": "rejected",
+            "reason": "repeated_failed_hypotheses"
+          }
+        },
+        {
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "reason": "selector_memory_rejected",
+          "score": {
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+            "family": "feature_space_regime",
+            "in_cooldown": true,
+            "prior_rejections": 3,
+            "prior_acceptances": 1,
+            "can_generate_candidate": false,
+            "can_promote_baseline": false,
+            "decision": "rejected",
+            "reason": "repeated_failed_hypotheses"
+          }
+        }
+      ],
+      "context": {
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    }
+  ],
+  "updated_at": "2026-05-19T00:03:31.594488+00:00"
+}

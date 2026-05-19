@@ -9,6 +9,7 @@ import sys
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -20,6 +21,10 @@ from scripts.parameter_effect_memory import load_parameter_effect_memory
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 from scripts.research.feature_space_expansion_factory import generate_feature_space_hypotheses
 from scripts.research.generation_feedback import maybe_mark_candidate_review_exhausted
+from scripts.research.generation_selection_feedback import (
+    diagnose_generated_hypotheses,
+    record_generation_selection_feedback,
+)
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
 
 
@@ -96,6 +101,20 @@ def _run_generation_command(command: list[str]) -> int:
     return int(result.returncode)
 
 
+def _generated_count(result: dict[str, Any] | bool | None) -> int:
+    if isinstance(result, bool):
+        return 1 if result else 0
+    if not isinstance(result, dict):
+        return 0
+    for key in ("generated", "rows_written"):
+        if key in result:
+            try:
+                return int(result.get(key) or 0)
+            except (TypeError, ValueError):
+                return 0
+    return 0
+
+
 def run_candidate_generation(
     *,
     family: str,
@@ -144,7 +163,7 @@ def run_feature_space_generation(
     args: argparse.Namespace,
     parent_strategy_config: str,
     reason: str,
-) -> bool:
+) -> dict[str, Any]:
     result = generate_feature_space_hypotheses(
         parent_strategy_config_path=parent_strategy_config,
         hypothesis_bank_path=args.hypothesis_bank,
@@ -153,7 +172,47 @@ def run_feature_space_generation(
         reason=reason,
     )
     print(f"In-batch feature-space fallback: {result}")
-    return int(result.get("generated", 0) or 0) > 0
+    _record_generation_selection_feedback_if_any(
+        args=args,
+        phase=f"feature_space:{reason}",
+        generation_result=result,
+        context={"parent_strategy_config": parent_strategy_config},
+    )
+    return result
+
+
+def _record_generation_selection_feedback_if_any(
+    *,
+    args: argparse.Namespace,
+    phase: str,
+    generation_result: dict[str, Any],
+    context: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    ids = [str(x) for x in (generation_result.get("hypotheses") or []) if x]
+    if not ids:
+        return None
+    diagnosis = diagnose_generated_hypotheses(
+        hypothesis_bank_path=args.hypothesis_bank,
+        state_dir=args.state_dir,
+        hypothesis_ids=ids,
+        max_repeats_per_hypothesis=args.max_repeats_per_hypothesis,
+    )
+    event = record_generation_selection_feedback(
+        state_dir=args.state_dir,
+        reports_dir=args.reports_dir,
+        phase=phase,
+        generation_result=generation_result,
+        diagnosis=diagnosis,
+        context=context or {},
+    )
+    print(
+        "Generation-selection feedback:",
+        f"phase={phase}",
+        f"generated={event.get('generated')}",
+        f"selectable={event.get('selectable_count')}",
+        f"reasons={event.get('summary_by_reason')}",
+    )
+    return event
 
 
 def _batch_state_path(state_dir: str | Path) -> Path:
@@ -170,6 +229,8 @@ def _load_batch_state(state_dir: str | Path, max_runs: int) -> dict:
             "completed": 0,
             "consecutive_rejections": 0,
             "history": [],
+            "recovery_cycles": 0,
+            "recovery_history": [],
             "last_updated_at": datetime.now(timezone.utc).isoformat(),
         }
     return read_json(path)
@@ -275,6 +336,17 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Maximum generation retries per blocked selection point.",
     )
+    parser.add_argument(
+        "--no-continue-after-recovery-generation",
+        action="store_true",
+        help="Disable long-run recovery continuation after consecutive rejections generate selectable hypotheses.",
+    )
+    parser.add_argument(
+        "--max-recovery-cycles",
+        type=int,
+        default=3,
+        help="Maximum times a batch may continue after consecutive rejections if recovery generation creates selectable work.",
+    )
     return parser.parse_args()
 
 
@@ -300,11 +372,15 @@ def main() -> int:
                 "completed": 0,
                 "consecutive_rejections": 0,
                 "history": [],
+                "recovery_cycles": 0,
+                "recovery_history": [],
                 "stop_reason": None,
             }
         )
     else:
         state["status"] = "running"
+        state.setdefault("recovery_cycles", 0)
+        state.setdefault("recovery_history", [])
 
     _save_batch_state(args.state_dir, state)
 
@@ -341,12 +417,12 @@ def main() -> int:
         bank = load_hypothesis_bank(args.hypothesis_bank)
         eligible_families = {h.get("family") for h in bank if str(h.get("status", "candidate")) in {"candidate", "seeded"}}
         if eligible_families and eligible_families.issubset(families_in_cooldown):
-            generated = run_feature_space_generation(
+            generation_result = run_feature_space_generation(
                 args=args,
                 parent_strategy_config=effective_parent_strategy_config,
                 reason="all_candidate_families_in_cooldown",
             )
-            if generated:
+            if _generated_count(generation_result) > 0:
                 bank = load_hypothesis_bank(args.hypothesis_bank)
             else:
                 state["status"] = "stopped"
@@ -386,11 +462,12 @@ def main() -> int:
                     reason="no_eligible_hypothesis",
                 )
                 if not generated:
-                    generated = run_feature_space_generation(
+                    generation_result = run_feature_space_generation(
                         args=args,
                         parent_strategy_config=effective_parent_strategy_config,
                         reason="no_eligible_hypothesis_after_standard_generation",
                     )
+                    generated = _generated_count(generation_result) > 0
                 if not generated:
                     break
                 bank = load_hypothesis_bank(args.hypothesis_bank)
@@ -516,18 +593,59 @@ def main() -> int:
                 break
 
         if state["consecutive_rejections"] >= args.stop_after_consecutive_rejections:
-            # Before stopping, try to produce future useful work if possible. The
-            # current batch still stops, but the next autonomous wrapper call has
-            # fresh candidates instead of a dead end.
-            run_feature_space_generation(
+            generation_result = run_feature_space_generation(
                 args=args,
                 parent_strategy_config=effective_parent_strategy_config,
                 reason="consecutive_rejections_pre_stop",
             )
+            generated_ids = [str(x) for x in (generation_result.get("hypotheses") or []) if x]
+            diagnosis = None
+            selectable_count = 0
+            if generated_ids:
+                diagnosis = diagnose_generated_hypotheses(
+                    hypothesis_bank_path=args.hypothesis_bank,
+                    state_dir=args.state_dir,
+                    hypothesis_ids=generated_ids,
+                    max_repeats_per_hypothesis=args.max_repeats_per_hypothesis,
+                )
+                selectable_count = int(diagnosis.get("selectable_count", 0) or 0)
+
+            can_recover = (
+                not bool(args.no_continue_after_recovery_generation)
+                and int(state.get("recovery_cycles", 0) or 0) < int(args.max_recovery_cycles)
+                and _generated_count(generation_result) > 0
+                and selectable_count > 0
+            )
+            if can_recover:
+                state["recovery_cycles"] = int(state.get("recovery_cycles", 0) or 0) + 1
+                state["consecutive_rejections"] = 0
+                state.setdefault("recovery_history", []).append({
+                    "cycle": state["recovery_cycles"],
+                    "trigger": "consecutive_rejections",
+                    "after_iteration": state["completed"],
+                    "generated": _generated_count(generation_result),
+                    "selectable": selectable_count,
+                    "selectable_hypotheses": (diagnosis or {}).get("selectable", []),
+                    "generated_hypotheses": generated_ids,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                })
+                _save_batch_state(args.state_dir, state)
+                print(
+                    "Continuing after recovery generation:",
+                    f"cycle={state['recovery_cycles']}/{args.max_recovery_cycles}",
+                    f"generated={_generated_count(generation_result)}",
+                    f"selectable={selectable_count}",
+                )
+                continue
+
             state["status"] = "stopped"
             state["stop_reason"] = f"consecutive_rejections:{state['consecutive_rejections']}"
+            if _generated_count(generation_result) > 0 and selectable_count == 0:
+                state["stop_reason"] += ":recovery_generated_but_not_selectable"
+            elif int(state.get("recovery_cycles", 0) or 0) >= int(args.max_recovery_cycles):
+                state["stop_reason"] += ":max_recovery_cycles_reached"
             _save_batch_state(args.state_dir, state)
-            print(f"Stopping: {state['consecutive_rejections']} consecutive rejections.")
+            print(f"Stopping: {state['stop_reason']}")
             break
 
         _save_batch_state(args.state_dir, state)

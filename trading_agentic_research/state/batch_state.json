@@ -1,28 +1,84 @@
 {
   "version": 1,
   "status": "stopped",
-  "max_runs": 10,
-  "completed": 2,
+  "max_runs": 15,
+  "completed": 6,
   "consecutive_rejections": 2,
   "history": [
     {
       "iteration": 1,
-      "run_id": "EXP_078",
-      "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1",
-      "family": "paper_regime_filter",
+      "run_id": "EXP_080",
+      "hypothesis_id": "HYP_LIT_AUTO_002_SMA20_FAST_SMA52_CONFIRM_V1",
+      "family": "paper_trend_following",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     },
     {
       "iteration": 2,
-      "run_id": "EXP_079",
-      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1",
-      "family": "paper_quality_momentum",
+      "run_id": "EXP_081",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V2",
+      "family": "paper_low_vol_momentum",
+      "decision": "rejected",
+      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+    },
+    {
+      "iteration": 3,
+      "run_id": "EXP_082",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+      "family": "feature_space_regime",
+      "decision": "rejected",
+      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+    },
+    {
+      "iteration": 4,
+      "run_id": "EXP_083",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+      "family": "feature_space_regime",
+      "decision": "accepted_for_followup",
+      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+    },
+    {
+      "iteration": 5,
+      "run_id": "EXP_084",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+      "family": "feature_space_regime",
+      "decision": "rejected",
+      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+    },
+    {
+      "iteration": 6,
+      "run_id": "EXP_085",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
+      "family": "feature_space_regime",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     }
   ],
-  "last_updated_at": "2026-05-18T23:46:27.546094+00:00",
-  "stop_reason": "consecutive_rejections:2",
-  "effective_parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+  "last_updated_at": "2026-05-19T00:03:31.618028+00:00",
+  "stop_reason": "consecutive_rejections:2:recovery_generated_but_not_selectable",
+  "effective_parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+  "recovery_cycles": 1,
+  "recovery_history": [
+    {
+      "cycle": 1,
+      "trigger": "consecutive_rejections",
+      "after_iteration": 2,
+      "generated": 5,
+      "selectable": 4,
+      "selectable_hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1"
+      ],
+      "generated_hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+        "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1"
+      ],
+      "timestamp": "2026-05-19T00:00:34.775189+00:00"
+    }
+  ]
 }

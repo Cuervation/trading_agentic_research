@@ -238,6 +238,21 @@
       "updated_at": "2026-05-18T18:49:31.381825+00:00"
     },
     {
+      "run_id": "EXP_083",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+      "parent_run_id": "AUTO_002",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 29.832941284089532,
+      "strategy_max_drawdown_pct": -23.327993051394667,
+      "months_beating_spy": 47,
+      "months_losing_to_spy": 28,
+      "years_beating_spy": 6,
+      "years_losing_to_spy": 1,
+      "trades": 622,
+      "updated_at": "2026-05-19T00:01:59.121979+00:00"
+    },
+    {
       "run_id": "EXP_076",
       "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
       "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
@@ -405,7 +420,7 @@
       "updated_at": "2026-05-18T01:37:19.827539+00:00"
     }
   ],
-  "updated_at": "2026-05-18T23:46:25.658623+00:00",
+  "updated_at": "2026-05-19T00:03:30.456755+00:00",
   "parent_promotion_blocked": true,
   "pending_parent_candidate_run_id": "EXP_054",
   "official_parent_run_id": "AUTO_002",
