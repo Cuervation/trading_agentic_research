@@ -394,6 +394,9 @@ def main() -> int:
 
     final_eligibility = _eligibility(args)
     print(f"Final hypothesis eligibility preflight: {final_eligibility}")
+    # AUTONOMOUS_RESEARCH_MODE_DIRECT_PATCH
+    if final_eligibility.get("recommended_mode"):
+        print(f"Research mode recommendation: {final_eligibility.get('recommended_mode')}")
     write_generation_feedback_report(state_dir=args.state_dir, reports_dir=args.reports_dir)
 
     if not final_eligibility.get("eligible"):

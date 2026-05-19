@@ -21,6 +21,7 @@ from scripts.research.candidate_review_learning import (
     is_candidate_review_hypothesis_blocked,
 )
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
+from scripts.research.effective_hypothesis_filter import effective_hypothesis_status
 
 
 def read_json(path: str | Path) -> dict:
@@ -86,6 +87,8 @@ def choose_next_hypothesis(
     state_dir: str | Path = "state",
     consumed_ids: set[str] | None = None,
     allow_retry_consumed: bool = False,
+    strategy_registry_path: str | Path = "configs/strategy_registry.json",
+    runs_dir: str | Path = "runs",
 ) -> dict:
     """Choose the best next hypothesis with deterministic rules.
 
@@ -134,6 +137,19 @@ def choose_next_hypothesis(
         if isinstance(overrides, dict) and overrides and hypothesis_id not in signature_block_ids:
             if real_override_signature(overrides) in blocked_signatures:
                 continue
+
+        # EFFECTIVE_HYPOTHESIS_FILTER_DIRECT_PATCH
+        effective = effective_hypothesis_status(
+            hypothesis=hypothesis,
+            state_dir=state_dir,
+            runs_dir=runs_dir,
+            strategy_registry_path=strategy_registry_path,
+            repo_root=ROOT,
+            check_exact_duplicate=True,
+            block_feature_space_stall=True,
+        )
+        if effective.get("blocked"):
+            continue
 
         score = score_hypothesis_against_memory(hypothesis, learning_memory, cooldowns)
         if score.get("decision") == "rejected":

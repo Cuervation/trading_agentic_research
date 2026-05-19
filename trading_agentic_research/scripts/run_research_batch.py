@@ -689,8 +689,13 @@ def main() -> int:
 
             state["status"] = "stopped"
             state["stop_reason"] = f"consecutive_rejections:{state['consecutive_rejections']}"
-            if _generated_count(generation_result) > 0 and selectable_count == 0:
+            # FEATURE_SPACE_EXHAUSTED_MODE_DIRECT_PATCH
+            generated_n = _generated_count(generation_result)
+            if generated_n > 0 and selectable_count == 0:
                 state["stop_reason"] += ":recovery_generated_but_not_selectable"
+            elif generated_n == 0 and str((generation_result or {}).get("reason")) == "no_new_feature_space_hypotheses":
+                state["stop_reason"] += ":feature_space_exhausted_needs_literature_mode"
+                state["recommended_mode"] = "literature_or_new_family"
             elif int(state.get("recovery_cycles", 0) or 0) >= int(args.max_recovery_cycles):
                 state["stop_reason"] += ":max_recovery_cycles_reached"
             _save_batch_state(args.state_dir, state)

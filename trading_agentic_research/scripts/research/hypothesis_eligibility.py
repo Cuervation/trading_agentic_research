@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 from scripts.parameter_effect_memory import load_parameter_effect_memory
 from scripts.select_next_hypothesis import choose_next_hypothesis, load_hypothesis_bank, read_json, read_jsonl
 from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
+from scripts.research.effective_hypothesis_filter import summarize_effective_hypotheses
 
 
 def _repeat_blocked_hypothesis_ids(history: list[dict[str, Any]], max_repeats_per_hypothesis: int) -> set[str]:
@@ -63,6 +64,14 @@ def eligible_hypothesis_preflight(
             "consumed_count": len(consumed_ids),
         }
     except Exception as exc:
+        # EFFECTIVE_ELIGIBILITY_SUMMARY_DIRECT_PATCH
+        effective_summary = summarize_effective_hypotheses(
+            hypothesis_bank=bank,
+            state_dir=state_path,
+            runs_dir="runs",
+            strategy_registry_path="configs/strategy_registry.json",
+            repo_root=ROOT,
+        )
         return {
             "eligible": False,
             "reason": str(exc),
@@ -71,6 +80,9 @@ def eligible_hypothesis_preflight(
             "accepted_count": len({str(x) for x in accepted_ids if x}),
             "consumed_count": len(consumed_ids),
             "repeat_blocked_count": len(repeat_blocked),
+            "effective_summary": effective_summary,
+            "recommended_mode": effective_summary.get("recommended_mode"),
+            "blocked_counts": effective_summary.get("blocked_counts"),
         }
 
 
