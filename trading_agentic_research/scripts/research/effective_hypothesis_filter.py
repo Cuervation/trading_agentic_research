@@ -1,7 +1,11 @@
-"""Effective hypothesis filter.
+"""Effective hypothesis filter v2.
 
 Selector-level gate that prevents the autonomous loop from treating
 "an unconsumed row in the hypothesis bank" as "valuable executable work".
+
+v2 adds generic family-stall detection, not only feature-space stall. This is
+needed when the selector correctly exits feature-space but drains another
+family such as risk_management with repeated no-value runs.
 """
 from __future__ import annotations
 
@@ -57,67 +61,80 @@ def _ledger_value(row: dict[str, Any]) -> str:
     return str(row.get("value_delivered") or row.get("champion_action") or row.get("decision") or "")
 
 
+def _is_good_value(value: str) -> bool:
+    return bool(value in GOOD_VALUES or "champion" in value or "candidate" in value)
+
+
+def _is_bad_value(value: str) -> bool:
+    return bool(
+        value in BAD_VALUES
+        or "duplicate" in value
+        or "rejected" in value
+        or "blocked" in value
+    )
+
+
+def _family_events(*, state_dir: str | Path, family: str | None = None, feature_space_only: bool = False) -> list[dict[str, Any]]:
+    rows = read_jsonl(Path(state_dir) / "research_ledger.jsonl")
+    blocks = read_jsonl(Path(state_dir) / "pre_run_duplicate_blocks.jsonl")
+    out: list[dict[str, Any]] = []
+    target_family = str(family or "")
+
+    for row in rows:
+        hid = str(row.get("hypothesis_id") or "")
+        fam = str(row.get("family") or "")
+        if feature_space_only:
+            include = is_feature_space_family(fam, hid)
+        elif target_family:
+            include = fam == target_family
+        else:
+            include = True
+        if include:
+            out.append({
+                "source": "ledger",
+                "run_id": row.get("run_id"),
+                "hypothesis_id": hid,
+                "family": fam,
+                "value": _ledger_value(row),
+            })
+
+    for row in blocks:
+        hid = str(row.get("hypothesis_id") or "")
+        fam = str(row.get("family") or "")
+        if feature_space_only:
+            include = is_feature_space_family(fam, hid)
+        elif target_family:
+            include = fam == target_family
+        else:
+            include = True
+        if include:
+            out.append({
+                "source": "pre_run_block",
+                "run_id": row.get("run_id"),
+                "hypothesis_id": hid,
+                "family": fam,
+                "value": "duplicate_preflight_blocked",
+                "reason": row.get("reason"),
+            })
+    return out
+
+
 def feature_space_stall_status(
     *,
     state_dir: str | Path = "state",
     recent_window: int = 10,
     min_bad: int = 4,
 ) -> dict[str, Any]:
-    rows = read_jsonl(Path(state_dir) / "research_ledger.jsonl")
+    events = _family_events(state_dir=state_dir, feature_space_only=True)
     consumed = read_jsonl(Path(state_dir) / "consumed_hypotheses.jsonl")
-    blocks = read_jsonl(Path(state_dir) / "pre_run_duplicate_blocks.jsonl")
-
-    events: list[dict[str, Any]] = []
-    for row in rows:
-        hid = str(row.get("hypothesis_id") or "")
-        fam = str(row.get("family") or "")
-        if is_feature_space_family(fam, hid):
-            events.append(
-                {
-                    "source": "ledger",
-                    "run_id": row.get("run_id"),
-                    "hypothesis_id": hid,
-                    "family": fam,
-                    "value": _ledger_value(row),
-                }
-            )
-
-    for row in blocks:
-        hid = str(row.get("hypothesis_id") or "")
-        fam = str(row.get("family") or "")
-        if is_feature_space_family(fam, hid):
-            events.append(
-                {
-                    "source": "pre_run_block",
-                    "run_id": row.get("run_id"),
-                    "hypothesis_id": hid,
-                    "family": fam,
-                    "value": "duplicate_preflight_blocked",
-                    "reason": row.get("reason"),
-                }
-            )
-
     consumed_feature_space = sum(
         1
         for row in consumed
         if is_feature_space_family(str(row.get("family") or ""), str(row.get("hypothesis_id") or ""))
     )
-
     recent = events[-recent_window:]
-    bad = 0
-    good = 0
-    for ev in recent:
-        value = str(ev.get("value") or "")
-        if value in GOOD_VALUES or "champion" in value or "candidate" in value:
-            good += 1
-        if (
-            value in BAD_VALUES
-            or "duplicate" in value
-            or "rejected" in value
-            or "blocked" in value
-        ):
-            bad += 1
-
+    bad = sum(1 for ev in recent if _is_bad_value(str(ev.get("value") or "")))
+    good = sum(1 for ev in recent if _is_good_value(str(ev.get("value") or "")))
     stalled = bool(len(recent) >= min_bad and bad >= min_bad and good == 0)
     return {
         "stalled": stalled,
@@ -127,6 +144,40 @@ def feature_space_stall_status(
         "recent_count": len(recent),
         "consumed_feature_space": consumed_feature_space,
         "recent_events": recent[-8:],
+    }
+
+
+def family_stall_status(
+    *,
+    state_dir: str | Path = "state",
+    family: str | None,
+    recent_window: int = 5,
+    min_bad: int = 2,
+) -> dict[str, Any]:
+    """Detect a family that is currently being drained without value.
+
+    This is a selector-level pause that pushes the autonomous wrapper toward
+    literature/new-family recovery, not a permanent baseline/cooldown change.
+    """
+    fam = str(family or "")
+    if not fam:
+        return {"stalled": False, "reason": "missing_family", "family": fam}
+    if fam.startswith("paper_"):
+        return {"stalled": False, "reason": "paper_family_advisory", "family": fam}
+
+    events = _family_events(state_dir=state_dir, family=fam)
+    recent = events[-recent_window:]
+    bad = sum(1 for ev in recent if _is_bad_value(str(ev.get("value") or "")))
+    good = sum(1 for ev in recent if _is_good_value(str(ev.get("value") or "")))
+    stalled = bool(len(recent) >= min_bad and bad >= min_bad and good == 0)
+    return {
+        "stalled": stalled,
+        "reason": f"family_recent_bad:{bad}_good:{good}_window:{len(recent)}" if stalled else "family_not_stalled",
+        "family": fam,
+        "recent_bad": bad,
+        "recent_good": good,
+        "recent_count": len(recent),
+        "recent_events": recent[-5:],
     }
 
 
@@ -183,6 +234,7 @@ def effective_hypothesis_status(
     repo_root: str | Path = ".",
     check_exact_duplicate: bool = True,
     block_feature_space_stall: bool = True,
+    block_family_stall: bool = True,
 ) -> dict[str, Any]:
     hid = str(hypothesis.get("hypothesis_id") or "")
     family = str(hypothesis.get("family") or "")
@@ -203,16 +255,29 @@ def effective_hypothesis_status(
             "semantic": semantic,
         }
 
-    stall = feature_space_stall_status(state_dir=state_dir)
-    if block_feature_space_stall and is_feature_space_family(family, hid) and stall.get("stalled"):
+    feature_stall = feature_space_stall_status(state_dir=state_dir)
+    if block_feature_space_stall and is_feature_space_family(family, hid) and feature_stall.get("stalled"):
         return {
             "blocked": True,
             "reason": "feature_space_stalled_literature_mode",
-            "detail": stall.get("reason"),
+            "detail": feature_stall.get("reason"),
             "hypothesis_id": hid,
             "family": family,
             "semantic": semantic,
-            "feature_space_stall": stall,
+            "feature_space_stall": feature_stall,
+        }
+
+    fam_stall = family_stall_status(state_dir=state_dir, family=family)
+    if block_family_stall and not is_feature_space_family(family, hid) and fam_stall.get("stalled"):
+        return {
+            "blocked": True,
+            "reason": "family_stalled_literature_mode",
+            "detail": fam_stall.get("reason"),
+            "hypothesis_id": hid,
+            "family": family,
+            "semantic": semantic,
+            "family_stall": fam_stall,
+            "feature_space_stall": feature_stall,
         }
 
     exact = {"checked": False}
@@ -243,7 +308,8 @@ def effective_hypothesis_status(
                     "family": family,
                     "semantic": semantic,
                     "exact_duplicate": exact,
-                    "feature_space_stall": stall,
+                    "feature_space_stall": feature_stall,
+                    "family_stall": fam_stall,
                 }
         else:
             exact = {"checked": False, "reason": "config_not_resolved"}
@@ -255,7 +321,8 @@ def effective_hypothesis_status(
         "family": family,
         "semantic": semantic,
         "exact_duplicate": exact,
-        "feature_space_stall": stall,
+        "feature_space_stall": feature_stall,
+        "family_stall": fam_stall,
     }
 
 
@@ -266,7 +333,7 @@ def summarize_effective_hypotheses(
     runs_dir: str | Path = "runs",
     strategy_registry_path: str | Path = "configs/strategy_registry.json",
     repo_root: str | Path = ".",
-    limit: int = 200,
+    limit: int = 300,
 ) -> dict[str, Any]:
     counts: Counter[str] = Counter()
     examples: dict[str, list[str]] = {}
@@ -295,12 +362,12 @@ def summarize_effective_hypotheses(
         else:
             executable.append(str(hypothesis.get("hypothesis_id") or ""))
 
-    stall = feature_space_stall_status(state_dir=state_dir)
+    feature_stall = feature_space_stall_status(state_dir=state_dir)
     if executable:
         mode = "normal"
-    elif stall.get("stalled"):
+    elif feature_stall.get("stalled"):
         mode = "literature_or_new_family"
-    elif counts.get("semantic_branch_exhausted") or counts.get("feature_space_stalled_literature_mode"):
+    elif counts.get("semantic_branch_exhausted") or counts.get("feature_space_stalled_literature_mode") or counts.get("family_stalled_literature_mode"):
         mode = "literature_or_new_family"
     else:
         mode = "generate_more_hypotheses"
@@ -311,6 +378,6 @@ def summarize_effective_hypotheses(
         "executable_sample": executable[:20],
         "blocked_counts": dict(counts),
         "blocked_examples": {k: v[:10] for k, v in examples.items()},
-        "feature_space_stall": stall,
+        "feature_space_stall": feature_stall,
         "recommended_mode": mode,
     }
