@@ -1,191 +1,30 @@
 {
   "version": 1,
   "status": "stopped",
-  "max_runs": 20,
-  "completed": 11,
+  "max_runs": 5,
+  "completed": 2,
   "consecutive_rejections": 2,
   "history": [
     {
       "iteration": 1,
-      "run_id": "EXP_129",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
-      "family": "feature_space_regime",
+      "run_id": "EXP_145",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_19_V1",
+      "family": "feature_space_composite_concentration",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     },
     {
       "iteration": 2,
-      "run_id": "EXP_130",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_14_V1",
-      "family": "feature_space_composite_exit",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 3,
-      "run_id": "EXP_131",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
-      "family": "feature_space_composite_concentration",
-      "decision": "accepted_for_followup",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 4,
-      "run_id": "EXP_132",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1",
-      "family": "feature_space_composite_concentration",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 5,
-      "run_id": "EXP_133",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
-      "family": "feature_space_composite_confirmation",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 6,
-      "run_id": "EXP_134",
-      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
-      "family": "time_series_momentum_refinement",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 7,
-      "run_id": "EXP_135",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_12_V1",
-      "family": "feature_space_composite_concentration",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 8,
-      "run_id": "EXP_136",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
-      "family": "feature_space_regime",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 9,
-      "run_id": "EXP_137",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_17_V1",
-      "family": "feature_space_composite_exit",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 10,
-      "run_id": "EXP_138",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
-      "family": "feature_space_composite_confirmation",
-      "decision": "rejected",
-      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
-    },
-    {
-      "iteration": 11,
-      "run_id": "EXP_139",
-      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1",
+      "run_id": "EXP_146",
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_52W_PCT_V1",
       "family": "time_series_momentum_refinement",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     }
   ],
-  "last_updated_at": "2026-05-19T13:01:44.334014+00:00",
+  "last_updated_at": "2026-05-19T16:43:01.790168+00:00",
   "stop_reason": "consecutive_rejections:2",
   "effective_parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
-  "recovery_cycles": 4,
-  "recovery_history": [
-    {
-      "cycle": 1,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 2,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_23_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_24_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_26_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_23_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_24_V1",
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_26_V1"
-      ],
-      "timestamp": "2026-05-19T12:55:01.396745+00:00"
-    },
-    {
-      "cycle": 2,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 5,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_28_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_23_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_EXIT_28_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_17_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_23_V1"
-      ],
-      "timestamp": "2026-05-19T12:57:16.829838+00:00"
-    },
-    {
-      "cycle": 3,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 7,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_24_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_26_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_28_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_17_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_24_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_26_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_EXIT_28_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_14_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_17_V1"
-      ],
-      "timestamp": "2026-05-19T12:58:41.007626+00:00"
-    },
-    {
-      "cycle": 4,
-      "trigger": "consecutive_rejections",
-      "after_iteration": 9,
-      "generated": 5,
-      "selectable": 5,
-      "selectable_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_23_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_24_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_26_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_28_V1"
-      ],
-      "generated_hypotheses": [
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_18_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_23_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_24_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_26_V1",
-        "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_EXIT_28_V1"
-      ],
-      "timestamp": "2026-05-19T13:00:08.797555+00:00"
-    }
-  ]
+  "recovery_cycles": 0,
+  "recovery_history": []
 }
