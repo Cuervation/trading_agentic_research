@@ -91,7 +91,7 @@
       "promoted_candidates": 0
     },
     "time_series_momentum_refinement": {
-      "rejections": 8,
+      "rejections": 10,
       "acceptances": 1,
       "promoted_candidates": 1
     },
@@ -151,22 +151,22 @@
       "promoted_candidates": 0
     },
     "feature_space_composite_confirmation": {
-      "rejections": 8,
+      "rejections": 10,
       "acceptances": 3,
       "promoted_candidates": 0
     },
     "feature_space_regime": {
-      "rejections": 7,
+      "rejections": 9,
       "acceptances": 1,
       "promoted_candidates": 0
     },
     "feature_space_composite_concentration": {
-      "rejections": 7,
-      "acceptances": 0,
+      "rejections": 9,
+      "acceptances": 1,
       "promoted_candidates": 0
     },
     "feature_space_composite_exit": {
-      "rejections": 7,
+      "rejections": 9,
       "acceptances": 0,
       "promoted_candidates": 0
     }
@@ -2075,6 +2075,140 @@
       "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_21_V1",
       "family": "time_series_momentum_refinement",
       "run_id": "EXP_128",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_129",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
+      "family": "feature_space_regime",
+      "run_id": "EXP_129",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_130",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_14_V1",
+      "family": "feature_space_composite_exit",
+      "run_id": "EXP_130",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_131",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_131",
+      "decision": "accepted_for_followup",
+      "flags": [],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_132",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1",
+      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_132",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_133",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_133",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_134",
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_134",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_135",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_12_V1",
+      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_135",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_136",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+      "family": "feature_space_regime",
+      "run_id": "EXP_136",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_137",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_17_V1",
+      "family": "feature_space_composite_exit",
+      "run_id": "EXP_137",
+      "decision": "rejected",
+      "flags": [
+        "metric_no_effect",
+        "duplicate_artifact"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_138",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
+      "family": "feature_space_composite_confirmation",
+      "run_id": "EXP_138",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_139",
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1",
+      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_139",
       "decision": "rejected",
       "flags": [
         "parent_underperformance"

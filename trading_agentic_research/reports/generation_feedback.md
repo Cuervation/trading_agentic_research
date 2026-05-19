@@ -1,13 +1,12 @@
 # Generation Eligibility Feedback
 
-- Generated at: 2026-05-19T02:58:28.206224+00:00
-- Events: 25
+- Generated at: 2026-05-19T13:01:44.393094+00:00
+- Events: 26
 
 ## Recent events
 
 | phase | generated | eligible_after | hypothesis | family | reason | warning |
 |---|---:|:---:|---|---|---|---|
-| candidate_under_review | 0 | no |  |  | no_new_candidate_under_review_hypotheses | candidate_review_generated_zero |
 | value_factory | 0 | no |  |  | no_new_value_hypotheses |  |
 | literature_miner | 0 | no |  |  | no_supported_literature_hypotheses |  |
 | paper_searcher | 0 | no |  |  | No eligible hypotheses found (all rejected/cooldown/invalid/consumed). |  |
@@ -32,3 +31,4 @@
 | candidate_under_review | 0 | yes | HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1 | quality_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
 | candidate_under_review | 0 | yes | HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1 | quality_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
 | candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1 | feature_space_regime | candidate_under_review_already_exhausted | candidate_review_generated_zero |
