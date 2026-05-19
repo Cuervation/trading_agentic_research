@@ -1,11 +1,12 @@
-"""Effective hypothesis filter v2.
+"""Effective hypothesis filter v3.
 
 Selector-level gate that prevents the autonomous loop from treating
 "an unconsumed row in the hypothesis bank" as "valuable executable work".
 
-v2 adds generic family-stall detection, not only feature-space stall. This is
-needed when the selector correctly exits feature-space but drains another
-family such as risk_management with repeated no-value runs.
+v3 fixes the diagnostic contradiction where choose_next_hypothesis found no
+eligible hypotheses but summarize_effective_hypotheses still reported many
+"executable" rows. The summary now applies selector-equivalent filters:
+consumed/rejected/accepted/repeat/candidate-review/memory-score/effective gate.
 """
 from __future__ import annotations
 
@@ -14,6 +15,13 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from scripts.parameter_effect_memory import load_parameter_effect_memory
+from scripts.score_hypothesis_against_memory import score_hypothesis_against_memory
+from scripts.research.candidate_review_learning import (
+    candidate_review_scope_reason,
+    is_candidate_review_hypothesis_blocked,
+)
+from scripts.research.consumed_hypotheses import consumed_hypothesis_ids
 from scripts.research.semantic_branch_guard import semantic_branch_preflight
 from scripts.research.pre_run_duplicate_guard import check_pre_run_duplicate
 from scripts.research.strategy_effect_signature import read_json
@@ -51,6 +59,11 @@ def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _repeat_blocked_hypothesis_ids(history: list[dict[str, Any]], max_repeats_per_hypothesis: int = 1) -> set[str]:
+    counts = Counter(str(item.get("hypothesis_id")) for item in history if item.get("hypothesis_id"))
+    return {hypothesis_id for hypothesis_id, count in counts.items() if count >= max_repeats_per_hypothesis}
+
+
 def is_feature_space_family(family: str | None, hypothesis_id: str | None = None) -> bool:
     fam = str(family or "")
     hid = str(hypothesis_id or "")
@@ -78,6 +91,7 @@ def _family_events(*, state_dir: str | Path, family: str | None = None, feature_
     rows = read_jsonl(Path(state_dir) / "research_ledger.jsonl")
     blocks = read_jsonl(Path(state_dir) / "pre_run_duplicate_blocks.jsonl")
     out: list[dict[str, Any]] = []
+
     target_family = str(family or "")
 
     for row in rows:
@@ -90,13 +104,15 @@ def _family_events(*, state_dir: str | Path, family: str | None = None, feature_
         else:
             include = True
         if include:
-            out.append({
-                "source": "ledger",
-                "run_id": row.get("run_id"),
-                "hypothesis_id": hid,
-                "family": fam,
-                "value": _ledger_value(row),
-            })
+            out.append(
+                {
+                    "source": "ledger",
+                    "run_id": row.get("run_id"),
+                    "hypothesis_id": hid,
+                    "family": fam,
+                    "value": _ledger_value(row),
+                }
+            )
 
     for row in blocks:
         hid = str(row.get("hypothesis_id") or "")
@@ -108,14 +124,16 @@ def _family_events(*, state_dir: str | Path, family: str | None = None, feature_
         else:
             include = True
         if include:
-            out.append({
-                "source": "pre_run_block",
-                "run_id": row.get("run_id"),
-                "hypothesis_id": hid,
-                "family": fam,
-                "value": "duplicate_preflight_blocked",
-                "reason": row.get("reason"),
-            })
+            out.append(
+                {
+                    "source": "pre_run_block",
+                    "run_id": row.get("run_id"),
+                    "hypothesis_id": hid,
+                    "family": fam,
+                    "value": "duplicate_preflight_blocked",
+                    "reason": row.get("reason"),
+                }
+            )
     return out
 
 
@@ -132,6 +150,7 @@ def feature_space_stall_status(
         for row in consumed
         if is_feature_space_family(str(row.get("family") or ""), str(row.get("hypothesis_id") or ""))
     )
+
     recent = events[-recent_window:]
     bad = sum(1 for ev in recent if _is_bad_value(str(ev.get("value") or "")))
     good = sum(1 for ev in recent if _is_good_value(str(ev.get("value") or "")))
@@ -154,14 +173,10 @@ def family_stall_status(
     recent_window: int = 5,
     min_bad: int = 2,
 ) -> dict[str, Any]:
-    """Detect a family that is currently being drained without value.
-
-    This is a selector-level pause that pushes the autonomous wrapper toward
-    literature/new-family recovery, not a permanent baseline/cooldown change.
-    """
     fam = str(family or "")
     if not fam:
         return {"stalled": False, "reason": "missing_family", "family": fam}
+
     if fam.startswith("paper_"):
         return {"stalled": False, "reason": "paper_family_advisory", "family": fam}
 
@@ -326,6 +341,63 @@ def effective_hypothesis_status(
     }
 
 
+def _selector_equivalent_block_reason(
+    *,
+    hypothesis: dict[str, Any],
+    state_dir: Path,
+    rejected_ids: set[str],
+    accepted_ids: set[str],
+    consumed_ids: set[str],
+    repeat_blocked_ids: set[str],
+    current_parent_hypothesis_id: str | None,
+    learning_memory: dict[str, Any],
+    cooldowns: dict[str, Any],
+    strategy_registry_path: str | Path,
+    runs_dir: str | Path,
+    repo_root: str | Path,
+) -> str | None:
+    status = str(hypothesis.get("status", "candidate"))
+    hid = str(hypothesis.get("hypothesis_id") or "")
+
+    if status not in {"candidate", "seeded"}:
+        return "non_candidate_status"
+    if hid in rejected_ids:
+        return "rejected"
+    if current_parent_hypothesis_id and hid == current_parent_hypothesis_id:
+        return "current_parent_hypothesis"
+    if hid in consumed_ids:
+        return "consumed"
+    if hid in repeat_blocked_ids:
+        return "repeat_blocked"
+    if hid in accepted_ids:
+        return "accepted_already"
+
+    scope_reason = candidate_review_scope_reason(hypothesis, state_dir=state_dir)
+    if scope_reason:
+        return f"candidate_review_scope:{scope_reason}"
+    if is_candidate_review_hypothesis_blocked(hypothesis, state_dir=state_dir):
+        return "candidate_review_axis_exhausted"
+
+    effective = effective_hypothesis_status(
+        hypothesis=hypothesis,
+        state_dir=state_dir,
+        runs_dir=runs_dir,
+        strategy_registry_path=strategy_registry_path,
+        repo_root=repo_root,
+        check_exact_duplicate=False,
+        block_feature_space_stall=True,
+        block_family_stall=True,
+    )
+    if effective.get("blocked"):
+        return str(effective.get("reason") or "effective_blocked")
+
+    score = score_hypothesis_against_memory(hypothesis, learning_memory, cooldowns)
+    if score.get("decision") == "rejected":
+        return "selector_memory_rejected"
+
+    return None
+
+
 def summarize_effective_hypotheses(
     *,
     hypothesis_bank: list[dict[str, Any]],
@@ -333,8 +405,21 @@ def summarize_effective_hypotheses(
     runs_dir: str | Path = "runs",
     strategy_registry_path: str | Path = "configs/strategy_registry.json",
     repo_root: str | Path = ".",
-    limit: int = 300,
+    limit: int = 500,
 ) -> dict[str, Any]:
+    state_path = Path(state_dir)
+    learning_memory = read_json(state_path / "learning_memory.json", {}) or {}
+    cooldowns = read_json(state_path / "subspace_cooldowns.json", {}) or {}
+    current_parent = read_json(state_path / "current_parent.json", {}) or {}
+    batch_state = read_json(state_path / "batch_state.json", {}) or {}
+    rejected_ids = {str(row.get("hypothesis_id")) for row in read_jsonl(state_path / "rejected_hypotheses.jsonl") if row.get("hypothesis_id")}
+    accepted_ids = {str(row.get("hypothesis_id")) for row in read_jsonl(state_path / "accepted_hypotheses.jsonl") if row.get("hypothesis_id")}
+    consumed_ids = consumed_hypothesis_ids(state_path)
+    repeat_blocked_ids = _repeat_blocked_hypothesis_ids(batch_state.get("history", []) or [], 1)
+    current_parent_hypothesis_id = str(
+        current_parent.get("current_parent_hypothesis_id") or current_parent.get("current_parent_strategy_id") or ""
+    ) or None
+
     counts: Counter[str] = Counter()
     examples: dict[str, list[str]] = {}
     executable: list[str] = []
@@ -343,31 +428,38 @@ def summarize_effective_hypotheses(
     for hypothesis in hypothesis_bank:
         if checked >= limit:
             break
-        status = str(hypothesis.get("status", "candidate"))
-        if status not in {"candidate", "seeded"}:
-            continue
         checked += 1
-        result = effective_hypothesis_status(
+        hid = str(hypothesis.get("hypothesis_id") or "")
+        reason = _selector_equivalent_block_reason(
             hypothesis=hypothesis,
-            state_dir=state_dir,
-            runs_dir=runs_dir,
+            state_dir=state_path,
+            rejected_ids=rejected_ids,
+            accepted_ids=accepted_ids,
+            consumed_ids=consumed_ids,
+            repeat_blocked_ids=repeat_blocked_ids,
+            current_parent_hypothesis_id=current_parent_hypothesis_id,
+            learning_memory=learning_memory,
+            cooldowns=cooldowns,
             strategy_registry_path=strategy_registry_path,
+            runs_dir=runs_dir,
             repo_root=repo_root,
-            check_exact_duplicate=False,
         )
-        reason = str(result.get("reason") or "unknown")
-        if result.get("blocked"):
+        if reason:
             counts[reason] += 1
-            examples.setdefault(reason, []).append(str(hypothesis.get("hypothesis_id") or ""))
+            examples.setdefault(reason, []).append(hid)
         else:
-            executable.append(str(hypothesis.get("hypothesis_id") or ""))
+            executable.append(hid)
 
     feature_stall = feature_space_stall_status(state_dir=state_dir)
+    blocked_counts = dict(counts)
     if executable:
         mode = "normal"
-    elif feature_stall.get("stalled"):
-        mode = "literature_or_new_family"
-    elif counts.get("semantic_branch_exhausted") or counts.get("feature_space_stalled_literature_mode") or counts.get("family_stalled_literature_mode"):
+    elif (
+        feature_stall.get("stalled")
+        or blocked_counts.get("semantic_branch_exhausted")
+        or blocked_counts.get("feature_space_stalled_literature_mode")
+        or blocked_counts.get("family_stalled_literature_mode")
+    ):
         mode = "literature_or_new_family"
     else:
         mode = "generate_more_hypotheses"
@@ -376,8 +468,9 @@ def summarize_effective_hypotheses(
         "checked": checked,
         "executable_count": len(executable),
         "executable_sample": executable[:20],
-        "blocked_counts": dict(counts),
+        "blocked_counts": blocked_counts,
         "blocked_examples": {k: v[:10] for k, v in examples.items()},
         "feature_space_stall": feature_stall,
         "recommended_mode": mode,
+        "selector_equivalent": True,
     }
