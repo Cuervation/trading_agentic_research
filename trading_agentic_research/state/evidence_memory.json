@@ -2892,6 +2892,328 @@
         "years_losing_to_parent": 7
       },
       "can_promote_baseline": false
+    },
+    "EXP_100": {
+      "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1",
+      "family": "quality_momentum",
+      "learning_id": "LEARN_EXP_100",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 46.859602097475744,
+        "max_drawdown_delta_pct": 7.4008701444271985,
+        "months_beating_spy": 49,
+        "months_losing_to_spy": 26,
+        "years_beating_spy": 7,
+        "years_losing_to_spy": 0,
+        "best_year_contribution_pct": 34.03992278431297,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": 6.022556,
+        "parent_drawdown_delta_pct": -2.715655,
+        "months_beating_parent": 33,
+        "months_losing_to_parent": 26,
+        "years_beating_parent": 5,
+        "years_losing_to_parent": 2
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_101": {
+      "hypothesis_id": "HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1",
+      "family": "paper_regime_filter",
+      "learning_id": "LEARN_EXP_101",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 23.500413546045973,
+        "max_drawdown_delta_pct": 7.7877523661564325,
+        "months_beating_spy": 46,
+        "months_losing_to_spy": 29,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 37.608315943631055,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -17.336633,
+        "parent_drawdown_delta_pct": -2.328773,
+        "months_beating_parent": 21,
+        "months_losing_to_parent": 38,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_102": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
+      "family": "feature_space_composite_concentration",
+      "learning_id": "LEARN_EXP_102",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 4.296753545325327,
+        "max_drawdown_delta_pct": 2.1250217157901794,
+        "months_beating_spy": 43,
+        "months_losing_to_spy": 32,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 33.49566141628305,
+        "parent_cagr_delta_pct": -36.540293,
+        "parent_drawdown_delta_pct": -7.991503,
+        "months_beating_parent": 21,
+        "months_losing_to_parent": 38,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_103": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
+      "family": "feature_space_composite_exit",
+      "learning_id": "LEARN_EXP_103",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 6.79918849577399,
+        "max_drawdown_delta_pct": 6.4503289533159105,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 36.03659929544149,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -34.037858,
+        "parent_drawdown_delta_pct": -3.666196,
+        "months_beating_parent": 21,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_104": {
+      "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET52_CHANNEL_QUALITY_V1",
+      "family": "paper_time_series_momentum",
+      "learning_id": "LEARN_EXP_104",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 11.71165924664179,
+        "max_drawdown_delta_pct": -3.8035635821174196,
+        "months_beating_spy": 46,
+        "months_losing_to_spy": 29,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 34.17523688578202,
+        "parent_cagr_delta_pct": -29.125387,
+        "parent_drawdown_delta_pct": -13.920089,
+        "months_beating_parent": 14,
+        "months_losing_to_parent": 45,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_105": {
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_RANK_V2",
+      "family": "paper_quality_momentum",
+      "learning_id": "LEARN_EXP_105",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 6.79918849577399,
+        "max_drawdown_delta_pct": 6.4503289533159105,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 36.03659929544149,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -34.037858,
+        "parent_drawdown_delta_pct": -3.666196,
+        "months_beating_parent": 21,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_106": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "learning_id": "LEARN_EXP_106",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 15.616545568996319,
+        "max_drawdown_delta_pct": 6.242178094528786,
+        "months_beating_spy": 44,
+        "months_losing_to_spy": 31,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 37.17490807423564,
+        "parent_cagr_delta_pct": -25.220501,
+        "parent_drawdown_delta_pct": -3.874347,
+        "months_beating_parent": 21,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_107": {
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_13_V1",
+      "family": "time_series_momentum_refinement",
+      "learning_id": "LEARN_EXP_107",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 25.057141664520177,
+        "max_drawdown_delta_pct": 8.008105022307777,
+        "months_beating_spy": 47,
+        "months_losing_to_spy": 28,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 32.63068165523746,
+        "parent_cagr_delta_pct": -15.779905,
+        "parent_drawdown_delta_pct": -2.10842,
+        "months_beating_parent": 19,
+        "months_losing_to_parent": 40,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_108": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+      "family": "feature_space_regime",
+      "learning_id": "LEARN_EXP_108",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 15.528051828300814,
+        "max_drawdown_delta_pct": 6.57695686564335,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 23.760431043673243,
+        "parent_cagr_delta_pct": -25.308994,
+        "parent_drawdown_delta_pct": -3.539568,
+        "months_beating_parent": 22,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_109": {
+      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_30_V1",
+      "family": "risk_control_refinement",
+      "learning_id": "LEARN_EXP_109",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 21.310373133871405,
+        "max_drawdown_delta_pct": 4.944559150974882,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 35.68257164516125,
+        "parent_cagr_delta_pct": -19.526673,
+        "parent_drawdown_delta_pct": -5.171966,
+        "months_beating_parent": 17,
+        "months_losing_to_parent": 42,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_110": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
+      "family": "feature_space_composite_concentration",
+      "learning_id": "LEARN_EXP_110",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 4.181128126660983,
+        "max_drawdown_delta_pct": 2.648055559078525,
+        "months_beating_spy": 44,
+        "months_losing_to_spy": 31,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 37.56132702308604,
+        "parent_cagr_delta_pct": -36.655918,
+        "parent_drawdown_delta_pct": -7.46847,
+        "months_beating_parent": 22,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_111": {
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1",
+      "family": "feature_space_composite_exit",
+      "learning_id": "LEARN_EXP_111",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 6.79918849577399,
+        "max_drawdown_delta_pct": 6.4503289533159105,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 36.03659929544149,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -34.037858,
+        "parent_drawdown_delta_pct": -3.666196,
+        "months_beating_parent": 21,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_112": {
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2",
+      "family": "paper_time_series_momentum",
+      "learning_id": "LEARN_EXP_112",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 17.93466584228245,
+        "max_drawdown_delta_pct": 1.97158348250354,
+        "months_beating_spy": 47,
+        "months_losing_to_spy": 28,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 39.99456805488584,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -22.90238,
+        "parent_drawdown_delta_pct": -8.144942,
+        "months_beating_parent": 24,
+        "months_losing_to_parent": 35,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_113": {
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_SLOPE_CONFIRM_V1",
+      "family": "paper_quality_momentum",
+      "learning_id": "LEARN_EXP_113",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 5.902377675404868,
+        "max_drawdown_delta_pct": 11.937822413815958,
+        "months_beating_spy": 46,
+        "months_losing_to_spy": 29,
+        "years_beating_spy": 4,
+        "years_losing_to_spy": 3,
+        "best_year_contribution_pct": 46.131947500143625,
+        "metric_no_effect": true,
+        "duplicate_artifact": true,
+        "parent_cagr_delta_pct": -34.934669,
+        "parent_drawdown_delta_pct": 1.821297,
+        "months_beating_parent": 24,
+        "months_losing_to_parent": 35,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -3268,6 +3590,48 @@
     ],
     "HYP_AUTOREFINE_AUTO_002_TRAILING_26_V1": [
       "EXP_099"
+    ],
+    "HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1": [
+      "EXP_100"
+    ],
+    "HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1": [
+      "EXP_101"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1": [
+      "EXP_102"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1": [
+      "EXP_103"
+    ],
+    "HYP_LIT_AUTO_002_TSMOM_RET52_CHANNEL_QUALITY_V1": [
+      "EXP_104"
+    ],
+    "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_RANK_V2": [
+      "EXP_105"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1": [
+      "EXP_106"
+    ],
+    "HYP_AUTOREFINE_AUTO_002_TOPN_13_V1": [
+      "EXP_107"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1": [
+      "EXP_108"
+    ],
+    "HYP_AUTOREFINE_AUTO_002_TRAILING_30_V1": [
+      "EXP_109"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1": [
+      "EXP_110"
+    ],
+    "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1": [
+      "EXP_111"
+    ],
+    "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2": [
+      "EXP_112"
+    ],
+    "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_SLOPE_CONFIRM_V1": [
+      "EXP_113"
     ]
   }
 }

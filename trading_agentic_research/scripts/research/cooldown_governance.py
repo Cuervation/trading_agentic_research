@@ -137,6 +137,7 @@ def cooldown_reason(cooldowns_payload: dict[str, Any] | None, family: str) -> st
 
 
 def hard_active_cooldown_family_names(cooldowns_payload: dict[str, Any] | None, *, now: datetime | None = None) -> set[str]:
+    """Return hard-active cooldown family names from an already-loaded cooldown payload."""
     out: set[str] = set()
     for family, entry in cooldown_map(cooldowns_payload).items():
         status = cooldown_entry_status(entry, family=str(family), now=now)
@@ -154,8 +155,22 @@ def soft_cooldown_family_names(cooldowns_payload: dict[str, Any] | None, *, now:
     return out
 
 
-def hard_active_cooldown_families(state_dir: str | Path = "state", *, now: datetime | None = None) -> set[str]:
-    return hard_active_cooldown_family_names(read_json(Path(state_dir) / "subspace_cooldowns.json", {}) or {}, now=now)
+def hard_active_cooldown_families(state_dir: str | Path | dict[str, Any] = "state", *, now: datetime | None = None) -> set[str]:
+    """Return hard-active cooldown families.
+
+    Compatibility behavior:
+    - if a cooldown payload/dict is passed, classify it directly;
+    - if a path/state_dir is passed, read state_dir/subspace_cooldowns.json.
+
+    This prevents old call sites from crashing while keeping the preferred
+    state_dir-based API available.
+    """
+    if isinstance(state_dir, dict):
+        return hard_active_cooldown_family_names(state_dir, now=now)
+    return hard_active_cooldown_family_names(
+        read_json(Path(state_dir) / "subspace_cooldowns.json", {}) or {},
+        now=now,
+    )
 
 
 def cooldown_inventory(state_dir: str | Path = "state", *, now: datetime | None = None) -> dict[str, Any]:
