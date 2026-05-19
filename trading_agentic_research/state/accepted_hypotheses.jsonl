@@ -27,3 +27,4 @@
 {"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1", "family": "feature_space_composite_confirmation", "run_id": "EXP_073", "learning_id": "LEARN_EXP_073", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1", "family": "feature_space_composite_confirmation", "run_id": "EXP_076", "learning_id": "LEARN_EXP_076", "decision": "accepted_for_followup", "flags": []}
 {"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1", "family": "feature_space_regime", "run_id": "EXP_083", "learning_id": "LEARN_EXP_083", "decision": "accepted_for_followup", "flags": []}
+{"hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1", "family": "feature_space_composite_confirmation", "run_id": "EXP_114", "learning_id": "LEARN_EXP_114", "decision": "accepted_for_followup", "flags": []}

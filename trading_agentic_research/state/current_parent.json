@@ -10,5 +10,5 @@
   "parent_promotion_blocked": true,
   "parent_updates_require_manual_approval": true,
   "source": "sync_current_parent_state:manual_parent_lock",
-  "updated_at": "2026-05-19T02:20:42.037961+00:00"
+  "updated_at": "2026-05-19T02:47:36.156414+00:00"
 }
