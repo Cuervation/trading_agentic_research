@@ -1,10 +1,4 @@
-"""Canonical strategy-effect signatures for autonomous research.
-
-The goal is to identify strategy configs that are materially the same even when
-metadata differs (strategy_id, hypothesis_id, claims, bibliography, etc.).  This
-is intentionally stricter than a raw config hash and looser than artifact hashes:
-it catches many duplicate/no-effect candidates before the expensive backtest.
-"""
+"""Canonical strategy-effect signatures for pre-run duplicate protection."""
 from __future__ import annotations
 
 import hashlib
@@ -12,38 +6,21 @@ import json
 from pathlib import Path
 from typing import Any
 
-
-METADATA_KEYS = {
-    "strategy_id",
-    "strategy_version",
-    "hypothesis_id",
-    "parent_strategy_id",
-    "strategy_family",
-    "family",
-    "bibliography_basis",
-    "empirical_basis",
-    "changed_parameters",
-    "claim",
-    "causal_mechanism",
-    "expected_effect",
-    "falsification_rule",
-    "notes",
-    "generated_at",
-    "created_at",
-    "updated_at",
-    "autonomy_reason",
+METADATA_CONFIG_KEYS = {
+    "strategy_id", "strategy_version", "hypothesis_id", "parent_strategy_id",
+    "strategy_family", "bibliography_basis", "empirical_basis",
+    "changed_parameters", "claim", "causal_mechanism", "expected_effect",
+    "falsification_rule", "notes", "generated_at", "created_at",
+    "updated_at", "autonomy_reason",
 }
 
-FUTURE_REAL_KNOBS = (
-    "position_sizing",
-    "rebalance",
-    "execution",
-    "constraints",
-    "sector_filters",
-    "volatility_targeting",
-    "regime_switching",
-    "portfolio_filters",
-)
+BEHAVIOR_KEYS_PREFERRED = {
+    "ranking", "ranking_column", "entry_rule", "exit_rule", "market_filter",
+    "risk_filters", "risk_management", "position_sizing", "rebalance",
+    "rebalance_frequency", "holding_period", "max_positions",
+    "benchmark_ticker", "trade_management", "universe_filter",
+    "sector_filter", "volatility_filter",
+}
 
 
 def read_json(path: str | Path, default: Any = None) -> Any:
@@ -64,111 +41,66 @@ def stable_hash(payload: Any) -> str:
     return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
 
 
-def _clean(value: Any) -> Any:
+def _strip_metadata(value: Any) -> Any:
     if isinstance(value, dict):
-        return {str(k): _clean(v) for k, v in sorted(value.items()) if k not in METADATA_KEYS and v is not None}
+        return {
+            str(k): _strip_metadata(v)
+            for k, v in sorted(value.items(), key=lambda kv: str(kv[0]))
+            if str(k) not in METADATA_CONFIG_KEYS
+        }
     if isinstance(value, list):
-        cleaned = [_clean(v) for v in value if v is not None]
-        # Lists of scalar fields/conditions should be order-insensitive where possible.
-        try:
-            return sorted(cleaned, key=lambda x: stable_json(x))
-        except TypeError:
-            return cleaned
+        return [_strip_metadata(v) for v in value]
     return value
 
 
-def _ranking_payload(config: dict[str, Any]) -> dict[str, Any]:
-    ranking = config.get("ranking", {}) if isinstance(config.get("ranking"), dict) else {}
-    field = config.get("ranking_column") or ranking.get("field") or "ret_52w_pct"
-    order = str(ranking.get("order") or "desc").lower()
-    if order in {"descending"}:
-        order = "desc"
-    if order in {"ascending"}:
-        order = "asc"
-    return {"field": str(field), "order": order}
-
-
-def _entry_payload(config: dict[str, Any]) -> dict[str, Any]:
-    entry = config.get("entry_rule", {}) if isinstance(config.get("entry_rule"), dict) else {}
-    out: dict[str, Any] = {"top_n": int(entry.get("top_n", 15) or 15)}
-    for k, v in sorted(entry.items()):
-        if k != "top_n" and v is not None:
-            out[str(k)] = _clean(v)
-    return out
-
-
-def _exit_payload(config: dict[str, Any]) -> dict[str, Any]:
-    exit_rule = config.get("exit_rule", {}) if isinstance(config.get("exit_rule"), dict) else {}
-    out: dict[str, Any] = {"rank_threshold": int(exit_rule.get("rank_threshold", 30) or 30)}
-    for k, v in sorted(exit_rule.items()):
-        if k != "rank_threshold" and v is not None:
-            out[str(k)] = _clean(v)
-    return out
-
-
-def _market_filter_payload(config: dict[str, Any]) -> dict[str, Any]:
-    market = config.get("market_filter", {}) if isinstance(config.get("market_filter"), dict) else {}
-    out = {
-        "require_positive_trend": bool(market.get("require_positive_trend", True)),
-        "fallback_allow_if_missing_spy_metric": bool(market.get("fallback_allow_if_missing_spy_metric", True)),
-    }
-    for k, v in sorted(market.items()):
-        if k not in out and v is not None:
-            out[str(k)] = _clean(v)
-    return out
-
-
-def canonical_strategy_effect(config: dict[str, Any]) -> dict[str, Any]:
-    """Return only the real knobs that should affect backtest behavior."""
-    config = config or {}
-    payload: dict[str, Any] = {
-        "benchmark_ticker": str(config.get("benchmark_ticker") or "SPY"),
-        "ranking": _ranking_payload(config),
-        "entry_rule": _entry_payload(config),
-        "exit_rule": _exit_payload(config),
-        "market_filter": _market_filter_payload(config),
-    }
-
-    risk_filters = config.get("risk_filters")
-    if isinstance(risk_filters, dict) and risk_filters:
-        payload["risk_filters"] = _clean(risk_filters)
-
-    risk_management = config.get("risk_management")
-    if isinstance(risk_management, dict) and risk_management:
-        payload["risk_management"] = _clean(risk_management)
-
-    for key in FUTURE_REAL_KNOBS:
-        value = config.get(key)
-        if isinstance(value, dict) and value:
-            payload[key] = _clean(value)
-        elif value not in (None, "", [], {}):
-            payload[key] = _clean(value)
-
+def canonical_strategy_payload(config: dict[str, Any]) -> dict[str, Any]:
+    if not isinstance(config, dict):
+        return {}
+    clean = _strip_metadata(config)
+    preferred = {k: clean.get(k) for k in sorted(BEHAVIOR_KEYS_PREFERRED) if k in clean}
+    unknown = {k: v for k, v in clean.items() if k not in METADATA_CONFIG_KEYS and k not in preferred}
+    payload = dict(preferred)
+    for key in sorted(unknown):
+        payload[key] = unknown[key]
     return payload
 
 
 def strategy_effect_signature(config: dict[str, Any]) -> str:
-    return stable_hash(canonical_strategy_effect(config))
+    return stable_hash(canonical_strategy_payload(config))
 
 
-def strategy_effect_signature_from_path(path: str | Path) -> dict[str, Any]:
-    cfg = read_json(path, {}) or {}
-    canonical = canonical_strategy_effect(cfg)
+def strategy_effect_summary(config: dict[str, Any]) -> dict[str, Any]:
+    payload = canonical_strategy_payload(config)
+    ranking = payload.get("ranking", {}) if isinstance(payload.get("ranking"), dict) else {}
+    entry = payload.get("entry_rule", {}) if isinstance(payload.get("entry_rule"), dict) else {}
+    exit_rule = payload.get("exit_rule", {}) if isinstance(payload.get("exit_rule"), dict) else {}
     return {
-        "config_path": str(path),
-        "strategy_id": cfg.get("strategy_id"),
-        "hypothesis_id": cfg.get("hypothesis_id") or cfg.get("strategy_id"),
-        "family": cfg.get("strategy_family"),
-        "strategy_effect_signature": stable_hash(canonical),
-        "canonical_effect": canonical,
+        "signature": strategy_effect_signature(config),
+        "ranking_field": ranking.get("field") or payload.get("ranking_column"),
+        "ranking_order": ranking.get("order"),
+        "top_n": entry.get("top_n"),
+        "rank_threshold": exit_rule.get("rank_threshold"),
+        "has_market_filter": bool(payload.get("market_filter")),
+        "has_risk_filters": bool(payload.get("risk_filters")),
+        "payload_keys": sorted(payload.keys()),
     }
 
 
-__all__ = [
-    "canonical_strategy_effect",
-    "strategy_effect_signature",
-    "strategy_effect_signature_from_path",
-    "stable_hash",
-    "stable_json",
-    "read_json",
-]
+def branch_key_from_config(config: dict[str, Any], family: str | None = None) -> str:
+    payload = canonical_strategy_payload(config)
+    ranking = payload.get("ranking", {}) if isinstance(payload.get("ranking"), dict) else {}
+    entry = payload.get("entry_rule", {}) if isinstance(payload.get("entry_rule"), dict) else {}
+    exit_rule = payload.get("exit_rule", {}) if isinstance(payload.get("exit_rule"), dict) else {}
+    rank_field = str(ranking.get("field") or payload.get("ranking_column") or "unknown_rank")
+    if payload.get("market_filter"):
+        axis = "market_filter"
+    elif payload.get("risk_filters"):
+        axis = "rank_confirm"
+    elif entry.get("top_n") is not None:
+        axis = "rank_topn"
+    elif exit_rule.get("rank_threshold") is not None:
+        axis = "rank_exit"
+    else:
+        axis = "rank"
+    fam = str(family or config.get("strategy_family") or "unknown_family")
+    return f"{fam}/{rank_field}/{axis}"
