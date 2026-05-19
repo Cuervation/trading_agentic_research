@@ -283,6 +283,23 @@ def semantic_branch_preflight(
         family=family,
         refresh=True,
     )
+
+    # UNKNOWN_BRANCH_ADVISORY_DIRECT_PATCH
+    # Unknown branches are too coarse to block safely. Examples:
+    # paper_time_series_momentum/unknown_field/unknown_layer
+    # cross_sectional_momentum/unknown_field/unknown_layer
+    # Those should inform generation/analysis, but must not block all future
+    # paper/literature/non-feature hypotheses. Only precise branches should
+    # trigger a pre-run block.
+    branch_key = str(status.get("branch_key") or "")
+    if "unknown_field" in branch_key or "unknown_layer" in branch_key:
+        return {
+            "blocked": False,
+            "advisory": True,
+            "reason": f"semantic_branch_advisory_unknown:{branch_key}:{status.get('reason')}",
+            **status,
+        }
+
     if not status.get("exhausted"):
         return {"blocked": False, **status}
 
