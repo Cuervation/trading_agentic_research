@@ -83,43 +83,59 @@ def _candidate_config_paths(repo_root: Path, manifest: dict[str, Any], strategy_
     return out
 
 def _add_signature_entry(index: dict[str, Any], *, run_id: str, info: dict[str, Any], audit: dict[str, Any] | None = None) -> None:
-    audit=audit or {}
-    # SEMANTIC_BRANCH_GUARD_DIRECT_PATCH
-    semantic = semantic_branch_preflight(
-        state_dir=state_dir,
-        runs_dir=runs_dir,
-        hypothesis_id=hypothesis_id or info.get("hypothesis_id"),
-        family=family or info.get("strategy_family"),
-    )
-    if semantic.get("blocked"):
-        return {
-            "blocked": True,
-            "reason": semantic.get("reason") or "semantic_branch_exhausted",
-            "duplicate_of_run_id": semantic.get("duplicate_of_run_id"),
-            "semantic_branch": semantic,
-            "candidate": info,
-            "hypothesis_id": hypothesis_id,
-            "family": family,
-        }
+    audit = audit or {}
+    sig = info.get("strategy_effect_signature")
+    cfg_hash = info.get("config_hash")
+    flags = audit.get("flags") or []
+    value = "duplicate_blocked" if (
+        audit.get("duplicate_result")
+        or "duplicate_result" in flags
+        or "duplicate_artifact" in flags
+    ) else audit.get("decision")
 
-    sig=info.get("strategy_effect_signature"); cfg_hash=info.get("config_hash")
-    flags=audit.get("flags") or []
-    value = "duplicate_blocked" if (audit.get("duplicate_result") or "duplicate_result" in flags or "duplicate_artifact" in flags) else audit.get("decision")
     index.setdefault("runs", {})[run_id] = {
-        "run_id": run_id, "strategy_effect_signature": sig, "config_hash": cfg_hash,
-        "strategy_id": info.get("strategy_id"), "hypothesis_id": info.get("hypothesis_id"),
-        "strategy_family": info.get("strategy_family"), "config_path": info.get("config_path"),
-        "decision": audit.get("decision"), "value_delivered": value, "duplicate_of_run_id": audit.get("duplicate_of_run_id"),
+        "run_id": run_id,
+        "strategy_effect_signature": sig,
+        "config_hash": cfg_hash,
+        "strategy_id": info.get("strategy_id"),
+        "hypothesis_id": info.get("hypothesis_id"),
+        "strategy_family": info.get("strategy_family"),
+        "config_path": info.get("config_path"),
+        "decision": audit.get("decision"),
+        "value_delivered": value,
+        "duplicate_of_run_id": audit.get("duplicate_of_run_id"),
         "updated_at": now_iso(),
     }
+
     if sig:
-        e=index.setdefault("signatures", {}).setdefault(sig, {"strategy_effect_signature": sig, "first_seen_run_id": run_id, "runs": [], "created_at": now_iso(), "canonical_payload": info.get("canonical_payload")})
-        if run_id not in e["runs"]: e["runs"].append(run_id)
-        e["updated_at"]=now_iso()
+        e = index.setdefault("signatures", {}).setdefault(
+            sig,
+            {
+                "strategy_effect_signature": sig,
+                "first_seen_run_id": run_id,
+                "runs": [],
+                "created_at": now_iso(),
+                "canonical_payload": info.get("canonical_payload"),
+            },
+        )
+        if run_id not in e["runs"]:
+            e["runs"].append(run_id)
+        e["updated_at"] = now_iso()
+
     if cfg_hash:
-        e=index.setdefault("config_hashes", {}).setdefault(cfg_hash, {"config_hash": cfg_hash, "first_seen_run_id": run_id, "runs": [], "created_at": now_iso()})
-        if run_id not in e["runs"]: e["runs"].append(run_id)
-        e["updated_at"]=now_iso()
+        e = index.setdefault("config_hashes", {}).setdefault(
+            cfg_hash,
+            {
+                "config_hash": cfg_hash,
+                "first_seen_run_id": run_id,
+                "runs": [],
+                "created_at": now_iso(),
+            },
+        )
+        if run_id not in e["runs"]:
+            e["runs"].append(run_id)
+        e["updated_at"] = now_iso()
+
 
 def rebuild_strategy_effect_index(*, state_dir: str | Path="state", runs_dir: str | Path="runs", strategy_registry_path: str | Path="configs/strategy_registry.json", repo_root: str | Path=".") -> dict[str, Any]:
     root=Path(repo_root); index=empty_index()
