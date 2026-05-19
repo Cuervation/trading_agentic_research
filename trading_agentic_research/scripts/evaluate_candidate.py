@@ -30,6 +30,7 @@ from scripts.research.champion_governance import update_champion_state
 from scripts.research.research_ledger import append_run_to_ledger
 from scripts.research.consumed_hypotheses import append_consumed_hypothesis
 from scripts.research.candidate_review_learning import update_candidate_review_learning_from_run
+from scripts.research.semantic_branch_guard import refresh_semantic_branch_state
 
 
 def parse_args() -> argparse.Namespace:
@@ -106,6 +107,12 @@ def main() -> int:
         audit=audit,
     )
 
+    # SEMANTIC_BRANCH_REFRESH_DIRECT_PATCH
+    semantic_branch_state = refresh_semantic_branch_state(
+        state_dir=args.state_dir,
+        runs_dir=args.runs_dir,
+    )
+
     print(f"Audit completed: {args.run_id}")
     print(f"Decision: {audit['decision']}")
     if duplicate_info.get("is_duplicate"):
@@ -120,6 +127,7 @@ def main() -> int:
     print(f"Ledger value: {ledger_event.get('value_delivered')}")
     print(f"Consumed hypothesis: {consumed_result.get('reason') or consumed_result.get('hypothesis_id')}")
     print(f"Candidate-review learning: {candidate_review_learning.get('reason') or candidate_review_learning.get('exhausted_axes') or candidate_review_learning.get('updated')}")
+    print(f"Semantic branch exhausted: {sum(1 for b in (semantic_branch_state.get('branches') or {}).values() if b.get('status') == 'exhausted')}")
     print("Baseline promotion: blocked (manual review required)")
     return 0
 

@@ -36,6 +36,7 @@ from scripts.research.autonomous_hypothesis_factory import (
 )
 from scripts.research.literature_hypothesis_miner import available_weekly_features
 from scripts.research.cooldown_governance import hard_active_cooldown_families
+from scripts.research.semantic_branch_guard import is_semantic_branch_exhausted
 
 
 @dataclass(frozen=True)
@@ -256,6 +257,23 @@ def generate_feature_space_hypotheses(
             skipped.append({"field": spec.field, "reason": "axis_exhausted", "axis": effective_axis, "layer": layer})
             return
         hypothesis_id = f"HYP_FSPACE_{safe_parent}_{suffix}_V1"
+        # SEMANTIC_BRANCH_SKIP_DIRECT_PATCH
+        semantic = is_semantic_branch_exhausted(
+            state_dir=state_dir,
+            runs_dir="runs",
+            hypothesis_id=hypothesis_id,
+            family=effective_family,
+        )
+        if semantic.get("exhausted"):
+            skipped.append({
+                "field": spec.field,
+                "reason": "semantic_branch_exhausted",
+                "hypothesis_id": hypothesis_id,
+                "layer": layer,
+                "branch_key": semantic.get("branch_key"),
+                "semantic_reason": semantic.get("reason"),
+            })
+            return
         if hypothesis_id in ids:
             skipped.append({"field": spec.field, "reason": "id_exists", "hypothesis_id": hypothesis_id, "layer": layer})
             return

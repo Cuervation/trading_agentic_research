@@ -7,6 +7,7 @@ from typing import Any
 
 from scripts.research.consumed_hypotheses import append_consumed_hypothesis
 from scripts.research.strategy_effect_signature import read_json, strategy_effect_signature_from_path
+from scripts.research.semantic_branch_guard import semantic_branch_preflight
 
 INDEX_FILE = "strategy_effect_index.json"
 BLOCKS_FILE = "pre_run_duplicate_blocks.jsonl"
@@ -83,6 +84,24 @@ def _candidate_config_paths(repo_root: Path, manifest: dict[str, Any], strategy_
 
 def _add_signature_entry(index: dict[str, Any], *, run_id: str, info: dict[str, Any], audit: dict[str, Any] | None = None) -> None:
     audit=audit or {}
+    # SEMANTIC_BRANCH_GUARD_DIRECT_PATCH
+    semantic = semantic_branch_preflight(
+        state_dir=state_dir,
+        runs_dir=runs_dir,
+        hypothesis_id=hypothesis_id or info.get("hypothesis_id"),
+        family=family or info.get("strategy_family"),
+    )
+    if semantic.get("blocked"):
+        return {
+            "blocked": True,
+            "reason": semantic.get("reason") or "semantic_branch_exhausted",
+            "duplicate_of_run_id": semantic.get("duplicate_of_run_id"),
+            "semantic_branch": semantic,
+            "candidate": info,
+            "hypothesis_id": hypothesis_id,
+            "family": family,
+        }
+
     sig=info.get("strategy_effect_signature"); cfg_hash=info.get("config_hash")
     flags=audit.get("flags") or []
     value = "duplicate_blocked" if (audit.get("duplicate_result") or "duplicate_result" in flags or "duplicate_artifact" in flags) else audit.get("decision")
@@ -131,6 +150,24 @@ def _ensure_index(**kwargs) -> dict[str, Any]:
 def check_pre_run_duplicate(*, strategy_config_path: str | Path, state_dir: str | Path="state", runs_dir: str | Path="runs", strategy_registry_path: str | Path="configs/strategy_registry.json", repo_root: str | Path=".", run_id: str | None=None, hypothesis_id: str | None=None, family: str | None=None) -> dict[str, Any]:
     info=strategy_effect_signature_from_path(strategy_config_path)
     index=_ensure_index(state_dir=state_dir, runs_dir=runs_dir, strategy_registry_path=strategy_registry_path, repo_root=repo_root)
+    # SEMANTIC_BRANCH_GUARD_DIRECT_PATCH
+    semantic = semantic_branch_preflight(
+        state_dir=state_dir,
+        runs_dir=runs_dir,
+        hypothesis_id=hypothesis_id or info.get("hypothesis_id"),
+        family=family or info.get("strategy_family"),
+    )
+    if semantic.get("blocked"):
+        return {
+            "blocked": True,
+            "reason": semantic.get("reason") or "semantic_branch_exhausted",
+            "duplicate_of_run_id": semantic.get("duplicate_of_run_id"),
+            "semantic_branch": semantic,
+            "candidate": info,
+            "hypothesis_id": hypothesis_id,
+            "family": family,
+        }
+
     sig=info.get("strategy_effect_signature"); cfg_hash=info.get("config_hash")
     sig_entry=index.get("signatures", {}).get(sig) if sig else None
     hash_entry=index.get("config_hashes", {}).get(cfg_hash) if cfg_hash else None
