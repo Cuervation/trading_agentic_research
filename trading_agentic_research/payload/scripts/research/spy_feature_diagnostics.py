@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Any
 import pandas as pd
 
-
 def diagnose_spy_features(weekly_file: str | Path, benchmark_ticker: str = "SPY") -> dict[str, Any]:
     df = pd.read_csv(weekly_file)
     if "ticker" not in df.columns:
@@ -23,7 +22,6 @@ def diagnose_spy_features(weekly_file: str | Path, benchmark_ticker: str = "SPY"
     out["recommended_market_filter_metric_order"] = ["spy_close_vs_sma50_pct", "close_vs_sma50_pct", "close_vs_sma52w_pct"]
     return out
 
-
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--weekly-file", required=True)
@@ -37,7 +35,6 @@ def main() -> int:
     print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
     print(f"Output: {out}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

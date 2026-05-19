@@ -7,7 +7,6 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-
 def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
     p = Path(path)
     if not p.exists():
@@ -22,7 +21,6 @@ def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
             continue
     return rows
 
-
 def build_report(state_dir: str | Path = "state", reports_dir: str | Path = "reports", last_n: int = 40) -> str:
     ledger = read_jsonl(Path(state_dir) / "research_ledger.jsonl")[-last_n:]
     guard = read_jsonl(Path(state_dir) / "pre_run_guard_events.jsonl")[-last_n:]
@@ -34,7 +32,6 @@ def build_report(state_dir: str | Path = "state", reports_dir: str | Path = "rep
     lines += [f"- {k}: {v}" for k, v in guard_reasons.most_common()] or ["- none"]
     lines += ["", "## Reading", "- A high duplicate_blocked count means generation/selection is too close to prior experiments.", "- Pre-run guard blocks are good when they replace expensive duplicate backtests.", "- Repeated SPY fallback warnings should be treated as a data-quality issue before market-filter research."]
     return "\n".join(lines) + "\n"
-
 
 def main() -> int:
     p = argparse.ArgumentParser()
@@ -49,7 +46,6 @@ def main() -> int:
     print(report)
     print(f"Output: {out}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

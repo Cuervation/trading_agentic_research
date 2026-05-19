@@ -14,16 +14,13 @@ from scripts.research.branch_exhaustion import is_branch_exhausted, rebuild_bran
 
 INDEX_FILE = "strategy_effect_index.json"
 
-
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
-
 
 def write_json(path: str | Path, payload: Any) -> None:
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(payload, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
-
 
 def sha256_file(path: str | Path) -> str:
     h = hashlib.sha256()
@@ -32,32 +29,27 @@ def sha256_file(path: str | Path) -> str:
             h.update(chunk)
     return h.hexdigest()
 
-
 def index_path(state_dir: str | Path = "state") -> Path:
     return Path(state_dir) / INDEX_FILE
 
-
 def load_index(state_dir: str | Path = "state") -> dict[str, Any]:
     return read_json(index_path(state_dir), {"version": 1, "signatures": {}}) or {"version": 1, "signatures": {}}
-
 
 def save_index(state_dir: str | Path, index: dict[str, Any]) -> None:
     index["updated_at"] = now_iso()
     write_json(index_path(state_dir), index)
 
-
 def _config_by_hash() -> dict[str, Path]:
     out: dict[str, Path] = {}
-    for root in [Path("configs")]:
-        if not root.exists():
+    root = Path("configs")
+    if not root.exists():
+        return out
+    for path in root.rglob("*.json"):
+        try:
+            out[sha256_file(path)] = path
+        except OSError:
             continue
-        for path in root.rglob("*.json"):
-            try:
-                out[sha256_file(path)] = path
-            except OSError:
-                continue
     return out
-
 
 def rebuild_strategy_effect_index(*, state_dir: str | Path = "state", runs_dir: str | Path = "runs") -> dict[str, Any]:
     by_hash = _config_by_hash()
@@ -90,14 +82,21 @@ def rebuild_strategy_effect_index(*, state_dir: str | Path = "state", runs_dir: 
     save_index(state_dir, index)
     return {"path": str(index_path(state_dir)), "signatures": len(signatures)}
 
-
 def _append_guard_event(*, state_dir: str | Path, run_id: str, hypothesis_id: str | None, family: str | None, reason: str, signature: str | None = None, branch: str | None = None) -> None:
     path = Path(state_dir) / "pre_run_guard_events.jsonl"
     path.parent.mkdir(parents=True, exist_ok=True)
-    row = {"created_at": now_iso(), "run_id": run_id, "hypothesis_id": hypothesis_id, "family": family, "reason": reason, "signature": signature, "branch": branch, "value_delivered": "pre_run_guard_blocked"}
+    row = {
+        "created_at": now_iso(),
+        "run_id": run_id,
+        "hypothesis_id": hypothesis_id,
+        "family": family,
+        "reason": reason,
+        "signature": signature,
+        "branch": branch,
+        "value_delivered": "pre_run_guard_blocked",
+    }
     with path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":"), default=str) + "\n")
-
 
 def check_pre_run_duplicate_guard(*, run_id: str, strategy_config_path: str | Path, state_dir: str | Path = "state", runs_dir: str | Path = "runs", hypothesis_id: str | None = None, family: str | None = None, rebuild_index: bool = True, consume_on_block: bool = True) -> dict[str, Any]:
     cfg = read_json(strategy_config_path, {}) or {}
@@ -126,7 +125,6 @@ def check_pre_run_duplicate_guard(*, run_id: str, strategy_config_path: str | Pa
         return {"blocked": True, "reason": reason, "signature": sig, "branch": branch}
     return {"blocked": False, "reason": "new_strategy_signature", "signature": sig, "summary": strategy_effect_summary(cfg)}
 
-
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--run-id", required=True)
@@ -139,7 +137,6 @@ def main() -> int:
     result = check_pre_run_duplicate_guard(run_id=args.run_id, strategy_config_path=args.strategy_config, state_dir=args.state_dir, runs_dir=args.runs_dir, hypothesis_id=args.hypothesis_id, family=args.family)
     print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
     return 3 if result.get("blocked") else 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

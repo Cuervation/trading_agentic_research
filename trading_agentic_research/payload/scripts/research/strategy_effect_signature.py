@@ -22,7 +22,6 @@ BEHAVIOR_KEYS_PREFERRED = {
     "sector_filter", "volatility_filter",
 }
 
-
 def read_json(path: str | Path, default: Any = None) -> Any:
     p = Path(path)
     if not p.exists():
@@ -32,14 +31,11 @@ def read_json(path: str | Path, default: Any = None) -> Any:
     except json.JSONDecodeError:
         return default
 
-
 def stable_json(payload: Any) -> str:
     return json.dumps(payload, sort_keys=True, ensure_ascii=False, separators=(",", ":"), default=str)
 
-
 def stable_hash(payload: Any) -> str:
     return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
-
 
 def _strip_metadata(value: Any) -> Any:
     if isinstance(value, dict):
@@ -52,7 +48,6 @@ def _strip_metadata(value: Any) -> Any:
         return [_strip_metadata(v) for v in value]
     return value
 
-
 def canonical_strategy_payload(config: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(config, dict):
         return {}
@@ -64,10 +59,8 @@ def canonical_strategy_payload(config: dict[str, Any]) -> dict[str, Any]:
         payload[key] = unknown[key]
     return payload
 
-
 def strategy_effect_signature(config: dict[str, Any]) -> str:
     return stable_hash(canonical_strategy_payload(config))
-
 
 def strategy_effect_summary(config: dict[str, Any]) -> dict[str, Any]:
     payload = canonical_strategy_payload(config)
@@ -84,7 +77,6 @@ def strategy_effect_summary(config: dict[str, Any]) -> dict[str, Any]:
         "has_risk_filters": bool(payload.get("risk_filters")),
         "payload_keys": sorted(payload.keys()),
     }
-
 
 def branch_key_from_config(config: dict[str, Any], family: str | None = None) -> str:
     payload = canonical_strategy_payload(config)
