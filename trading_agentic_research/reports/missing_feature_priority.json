@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T01:26:46.310933+00:00",
+  "generated_at": "2026-05-20T14:47:39.899587+00:00",
   "state_dir": "state",
   "reports_dir": "reports",
   "task_count": 25,
@@ -52,6 +52,9 @@
         "close"
       ],
       "base_columns_missing": [],
+      "external_requirements_missing": [
+        "sector_or_industry_classification"
+      ],
       "nearby_existing_columns": [
         "close_above_sma26w",
         "close_ema_26w",
@@ -66,7 +69,7 @@
         "ret_2w_pct",
         "ret_52w_pct"
       ],
-      "calculable_from_current_data": true,
+      "calculable_from_current_data": false,
       "implementation_cost": "high",
       "opens_non_exhausted_family": true,
       "semantic_exhausted_families": [],

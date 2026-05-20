@@ -209,6 +209,21 @@
       "rejections": 1,
       "acceptances": 0,
       "promoted_candidates": 0
+    },
+    "paper_breadth_quality_trend": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "paper_residual_breadth_momentum": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "paper_residual_low_vol_momentum": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
     }
   },
   "learning_events": [
@@ -2558,6 +2573,42 @@
       "flags": [
         "metric_no_effect",
         "duplicate_artifact",
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "run_id": "EXP_172",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "run_id": "EXP_173",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "run_id": "EXP_174",
+      "decision": "rejected",
+      "flags": [
         "parent_underperformance"
       ],
       "written_to_learning_memory": true,

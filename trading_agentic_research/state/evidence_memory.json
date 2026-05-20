@@ -4356,6 +4356,72 @@
         "years_losing_to_parent": 6
       },
       "can_promote_baseline": false
+    },
+    "EXP_172": {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "learning_id": "LEARN_EXP_172",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 14.068317428202715,
+        "max_drawdown_delta_pct": 0.6248368161022029,
+        "months_beating_spy": 45,
+        "months_losing_to_spy": 30,
+        "years_beating_spy": 5,
+        "years_losing_to_spy": 2,
+        "best_year_contribution_pct": 41.461521877479754,
+        "parent_cagr_delta_pct": -26.768729,
+        "parent_drawdown_delta_pct": -9.491688,
+        "months_beating_parent": 32,
+        "months_losing_to_parent": 38,
+        "years_beating_parent": 3,
+        "years_losing_to_parent": 4
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_173": {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "learning_id": "LEARN_EXP_173",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 20.036886605973425,
+        "max_drawdown_delta_pct": 6.3132494351130575,
+        "months_beating_spy": 42,
+        "months_losing_to_spy": 33,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 30.186447702407893,
+        "parent_cagr_delta_pct": -20.80016,
+        "parent_drawdown_delta_pct": -3.803276,
+        "months_beating_parent": 26,
+        "months_losing_to_parent": 39,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_174": {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "learning_id": "LEARN_EXP_174",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 12.45797506569646,
+        "max_drawdown_delta_pct": 5.538818279708249,
+        "months_beating_spy": 43,
+        "months_losing_to_spy": 32,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 29.771340504304465,
+        "parent_cagr_delta_pct": -28.379071,
+        "parent_drawdown_delta_pct": -4.577707,
+        "months_beating_parent": 20,
+        "months_losing_to_parent": 37,
+        "years_beating_parent": 0,
+        "years_losing_to_parent": 7
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -4927,6 +4993,15 @@
     ],
     "HYP_LIT_AUTO_002_VOL_MANAGED_RET26_REALIZED_VOL13_V4": [
       "EXP_171"
+    ],
+    "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1": [
+      "EXP_172"
+    ],
+    "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1": [
+      "EXP_173"
+    ],
+    "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1": [
+      "EXP_174"
     ]
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created_at": "2026-05-18T01:37:19.343065+00:00",
-  "updated_at": "2026-05-20T01:15:41.298217+00:00",
+  "updated_at": "2026-05-20T14:09:15.713789+00:00",
   "artifact_files": [
     "metrics.json",
     "trades.csv",
@@ -2385,6 +2385,54 @@
       "duplicate_run_ids": [],
       "created_at": "2026-05-20T01:13:05.612587+00:00",
       "updated_at": "2026-05-20T01:13:05.612587+00:00"
+    },
+    "d4034a5fb618886a9a19ae87c93ed144430d70fda98fd503d719fd7f490d4d0f": {
+      "artifact_signature": "d4034a5fb618886a9a19ae87c93ed144430d70fda98fd503d719fd7f490d4d0f",
+      "first_seen_run_id": "EXP_172",
+      "first_seen_run_dir": "runs\\EXP_172",
+      "hashes": {
+        "metrics.json": "1bb0ffca690005ff79c89b53461de5bfc9f4af0ca240edc14c62d9e4b1bcb805",
+        "trades.csv": "640b3d5d521b954dad8f1f07dd130f281951dc44078ccc7478604d9275ab88e1",
+        "equity_curve.csv": "9e2b9ab0b4d1865d8885502de1ee920ff4941d6d3d37f72ec65a77f7e2467245"
+      },
+      "runs": [
+        "EXP_172"
+      ],
+      "duplicate_run_ids": [],
+      "created_at": "2026-05-20T13:58:50.160221+00:00",
+      "updated_at": "2026-05-20T13:58:50.160221+00:00"
+    },
+    "00107a1792b31b20ceb001eca3ebc92d72e7e6b82e1d1c5c2f2e7fef6ef78eff": {
+      "artifact_signature": "00107a1792b31b20ceb001eca3ebc92d72e7e6b82e1d1c5c2f2e7fef6ef78eff",
+      "first_seen_run_id": "EXP_173",
+      "first_seen_run_dir": "runs\\EXP_173",
+      "hashes": {
+        "metrics.json": "7fe66c78a4f21c4d0adfdf85e88765ab58debca502580ed7a83d31e36416a60b",
+        "trades.csv": "31b40ca5a3ed87da1b48920590addf1b06fc3927ef904e7c6f7d76277d19a8f8",
+        "equity_curve.csv": "434639b54c2d738149786189763bc734aa0812c9d22634507cce204084c96b6b"
+      },
+      "runs": [
+        "EXP_173"
+      ],
+      "duplicate_run_ids": [],
+      "created_at": "2026-05-20T14:00:32.996583+00:00",
+      "updated_at": "2026-05-20T14:00:32.996583+00:00"
+    },
+    "7498659c6a40fcfcb249d5123c4925852d3bf3a7de2d8688f8279acea412cc84": {
+      "artifact_signature": "7498659c6a40fcfcb249d5123c4925852d3bf3a7de2d8688f8279acea412cc84",
+      "first_seen_run_id": "EXP_174",
+      "first_seen_run_dir": "runs\\EXP_174",
+      "hashes": {
+        "metrics.json": "da22fbce1c178ff7226e82c0837b52961d68a16ff6a7529b64de20a92068f48d",
+        "trades.csv": "18e5bb92ec21b846ed498d0c970d2cbbc6d073bdb7ef7641923ef5b6c891799d",
+        "equity_curve.csv": "347fb968f3a3385fbc5f5e9eb67db67d476e8ff409e5b8c2cfe17fe62f960a56"
+      },
+      "runs": [
+        "EXP_174"
+      ],
+      "duplicate_run_ids": [],
+      "created_at": "2026-05-20T14:09:15.713789+00:00",
+      "updated_at": "2026-05-20T14:09:15.713789+00:00"
     }
   },
   "runs": {
@@ -5225,6 +5273,39 @@
       "is_duplicate": true,
       "duplicate_of_run_id": "EXP_168",
       "updated_at": "2026-05-20T01:15:41.298217+00:00"
+    },
+    "EXP_172": {
+      "run_id": "EXP_172",
+      "artifact_signature": "d4034a5fb618886a9a19ae87c93ed144430d70fda98fd503d719fd7f490d4d0f",
+      "metrics_hash": "1bb0ffca690005ff79c89b53461de5bfc9f4af0ca240edc14c62d9e4b1bcb805",
+      "trades_hash": "640b3d5d521b954dad8f1f07dd130f281951dc44078ccc7478604d9275ab88e1",
+      "equity_hash": "9e2b9ab0b4d1865d8885502de1ee920ff4941d6d3d37f72ec65a77f7e2467245",
+      "first_seen_run_id": "EXP_172",
+      "is_duplicate": false,
+      "duplicate_of_run_id": null,
+      "updated_at": "2026-05-20T13:58:50.160221+00:00"
+    },
+    "EXP_173": {
+      "run_id": "EXP_173",
+      "artifact_signature": "00107a1792b31b20ceb001eca3ebc92d72e7e6b82e1d1c5c2f2e7fef6ef78eff",
+      "metrics_hash": "7fe66c78a4f21c4d0adfdf85e88765ab58debca502580ed7a83d31e36416a60b",
+      "trades_hash": "31b40ca5a3ed87da1b48920590addf1b06fc3927ef904e7c6f7d76277d19a8f8",
+      "equity_hash": "434639b54c2d738149786189763bc734aa0812c9d22634507cce204084c96b6b",
+      "first_seen_run_id": "EXP_173",
+      "is_duplicate": false,
+      "duplicate_of_run_id": null,
+      "updated_at": "2026-05-20T14:00:32.996583+00:00"
+    },
+    "EXP_174": {
+      "run_id": "EXP_174",
+      "artifact_signature": "7498659c6a40fcfcb249d5123c4925852d3bf3a7de2d8688f8279acea412cc84",
+      "metrics_hash": "da22fbce1c178ff7226e82c0837b52961d68a16ff6a7529b64de20a92068f48d",
+      "trades_hash": "18e5bb92ec21b846ed498d0c970d2cbbc6d073bdb7ef7641923ef5b6c891799d",
+      "equity_hash": "347fb968f3a3385fbc5f5e9eb67db67d476e8ff409e5b8c2cfe17fe62f960a56",
+      "first_seen_run_id": "EXP_174",
+      "is_duplicate": false,
+      "duplicate_of_run_id": null,
+      "updated_at": "2026-05-20T14:09:15.713789+00:00"
     }
   }
 }

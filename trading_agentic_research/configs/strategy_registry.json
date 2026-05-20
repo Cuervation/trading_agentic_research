@@ -1783,6 +1783,39 @@
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
       "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_VOL_MANAGED_RET26_REALIZED_VOL13_V4."
+    },
+    {
+      "strategy_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "strategy_family": "paper_breadth_quality_trend",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1."
+    },
+    {
+      "strategy_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "strategy_family": "paper_residual_breadth_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1."
+    },
+    {
+      "strategy_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "strategy_family": "paper_residual_low_vol_momentum",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1."
     }
   ]
 }

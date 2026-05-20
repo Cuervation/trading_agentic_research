@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-20T01:26:46.340436+00:00",
+  "generated_at": "2026-05-20T14:47:39.934022+00:00",
   "parent": {
     "run_id": "AUTO_002",
     "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
@@ -11,17 +11,17 @@
   "final_eligibility": {
     "eligible": false,
     "reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
-    "bank_size": 356,
-    "rejected_count": 160,
+    "bank_size": 359,
+    "rejected_count": 163,
     "accepted_count": 29,
-    "consumed_count": 179,
-    "repeat_blocked_count": 3,
+    "consumed_count": 182,
+    "repeat_blocked_count": 1,
     "effective_summary": {
-      "checked": 356,
+      "checked": 359,
       "executable_count": 0,
       "executable_sample": [],
       "blocked_counts": {
-        "rejected": 130,
+        "rejected": 133,
         "accepted_already": 8,
         "duplicate_override_signature": 69,
         "consumed": 19,
@@ -185,7 +185,7 @@
     },
     "recommended_mode": "literature_or_new_family",
     "blocked_counts": {
-      "rejected": 130,
+      "rejected": 133,
       "accepted_already": 8,
       "duplicate_override_signature": 69,
       "consumed": 19,
@@ -197,15 +197,54 @@
   "why_no_executable": [
     "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
     "Selector-equivalent executable_count=0.",
-    "Top blockers: rejected=130, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.",
+    "Top blockers: rejected=133, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.",
     "Feature-space stall is active: feature_space_recent_bad:10_good:0_window:10.",
     "Literature mining produced no supported executable hypotheses.",
     "Feature-space expansion produced no new rows; current combinations are exhausted or duplicate."
   ],
   "generation_feedback": {
-    "event_count": 71,
-    "updated_at": "2026-05-20T01:26:46.257597+00:00",
+    "event_count": 98,
+    "updated_at": "2026-05-20T14:45:14.532455+00:00",
     "recent_events": [
+      {
+        "phase": "candidate_under_review",
+        "generated": 0,
+        "eligible_after_generation": false,
+        "reason": "candidate_under_review_already_exhausted",
+        "warning": "candidate_review_generated_zero",
+        "missing_feature_tasks_seen": null,
+        "skipped_family_cooldown": null,
+        "skipped_duplicate_signature": null,
+        "rows_written": null,
+        "ideas_seen": null,
+        "supported_seen": null
+      },
+      {
+        "phase": "value_factory",
+        "generated": 0,
+        "eligible_after_generation": false,
+        "reason": "no_new_value_hypotheses",
+        "warning": null,
+        "missing_feature_tasks_seen": null,
+        "skipped_family_cooldown": null,
+        "skipped_duplicate_signature": null,
+        "rows_written": null,
+        "ideas_seen": null,
+        "supported_seen": null
+      },
+      {
+        "phase": "literature_miner",
+        "generated": 0,
+        "eligible_after_generation": false,
+        "reason": "no_supported_literature_hypotheses",
+        "warning": null,
+        "missing_feature_tasks_seen": 2,
+        "skipped_family_cooldown": 28,
+        "skipped_duplicate_signature": 7,
+        "rows_written": null,
+        "ideas_seen": 41,
+        "supported_seen": 7
+      },
       {
         "phase": "paper_searcher",
         "generated": 0,
@@ -225,51 +264,12 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 20,
-        "skipped_family_cooldown": 20,
-        "skipped_duplicate_signature": 6,
+        "missing_feature_tasks_seen": 2,
+        "skipped_family_cooldown": 28,
+        "skipped_duplicate_signature": 7,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 6
-      },
-      {
-        "phase": "candidate_under_review",
-        "generated": 0,
-        "eligible_after_generation": true,
-        "reason": "candidate_under_review_already_exhausted",
-        "warning": "candidate_review_generated_zero",
-        "missing_feature_tasks_seen": null,
-        "skipped_family_cooldown": null,
-        "skipped_duplicate_signature": null,
-        "rows_written": null,
-        "ideas_seen": null,
-        "supported_seen": null
-      },
-      {
-        "phase": "candidate_under_review",
-        "generated": 0,
-        "eligible_after_generation": true,
-        "reason": "candidate_under_review_already_exhausted",
-        "warning": "candidate_review_generated_zero",
-        "missing_feature_tasks_seen": null,
-        "skipped_family_cooldown": null,
-        "skipped_duplicate_signature": null,
-        "rows_written": null,
-        "ideas_seen": null,
-        "supported_seen": null
-      },
-      {
-        "phase": "candidate_under_review",
-        "generated": 0,
-        "eligible_after_generation": true,
-        "reason": "candidate_under_review_already_exhausted",
-        "warning": "candidate_review_generated_zero",
-        "missing_feature_tasks_seen": null,
-        "skipped_family_cooldown": null,
-        "skipped_duplicate_signature": null,
-        "rows_written": null,
-        "ideas_seen": null,
-        "supported_seen": null
+        "supported_seen": 7
       },
       {
         "phase": "candidate_under_review",
@@ -438,16 +438,16 @@
       }
     },
     "totals": {
-      "missing_feature_tasks_seen": 166,
-      "skipped_family_cooldown": 224,
-      "skipped_duplicate_signature": 60,
-      "ideas_seen": 461,
-      "supported_seen": 61
+      "missing_feature_tasks_seen": 186,
+      "skipped_family_cooldown": 504,
+      "skipped_duplicate_signature": 130,
+      "ideas_seen": 871,
+      "supported_seen": 131
     }
   },
   "families": {
     "semantic_exhaustion": {
-      "branch_count": 60,
+      "branch_count": 63,
       "exhausted_branch_count": 13,
       "exhausted_branches": [
         {
@@ -791,8 +791,8 @@
       "hard_cooldown_families": []
     },
     "hypothesis_bank": {
-      "row_count": 356,
-      "family_count": 33,
+      "row_count": 359,
+      "family_count": 36,
       "families": [
         {
           "family": "feature_space_composite_concentration",
@@ -977,6 +977,13 @@
           }
         },
         {
+          "family": "paper_breadth_quality_trend",
+          "total": 1,
+          "statuses": {
+            "candidate": 1
+          }
+        },
+        {
           "family": "paper_breadth_regime",
           "total": 1,
           "statuses": {
@@ -1012,6 +1019,20 @@
           }
         },
         {
+          "family": "paper_residual_breadth_momentum",
+          "total": 1,
+          "statuses": {
+            "candidate": 1
+          }
+        },
+        {
+          "family": "paper_residual_low_vol_momentum",
+          "total": 1,
+          "statuses": {
+            "candidate": 1
+          }
+        },
+        {
           "family": "paper_residual_momentum",
           "total": 1,
           "statuses": {
@@ -1029,14 +1050,14 @@
       "top_required_features": [
         [
           "close",
-          217
-        ],
-        [
-          "ret_52w_pct",
-          37
+          220
         ],
         [
           "channel_r2",
+          38
+        ],
+        [
+          "ret_52w_pct",
           37
         ],
         [
@@ -1045,7 +1066,7 @@
         ],
         [
           "channel_slope_pct",
-          33
+          34
         ],
         [
           "ret_26w_pct",
@@ -1057,7 +1078,7 @@
         ],
         [
           "ret_13w_pct",
-          28
+          29
         ],
         [
           "distance_to_channel_lower_pct",
@@ -1076,7 +1097,23 @@
           3
         ],
         [
+          "residual_ret_26w_pct",
+          3
+        ],
+        [
+          "market_breadth_above_sma50_pct",
+          3
+        ],
+        [
           "drawdown_from_high_26w_pct",
+          2
+        ],
+        [
+          "max_drawdown_26w_pct",
+          2
+        ],
+        [
+          "realized_vol_13w_pct",
           2
         ],
         [
@@ -1089,22 +1126,6 @@
         ],
         [
           "spy_close_sma_50_slope_5d_pct",
-          1
-        ],
-        [
-          "downside_vol_13w_pct",
-          1
-        ],
-        [
-          "max_drawdown_26w_pct",
-          1
-        ],
-        [
-          "residual_ret_26w_pct",
-          1
-        ],
-        [
-          "market_breadth_above_sma50_pct",
           1
         ]
       ]
@@ -3026,7 +3047,7 @@
     }
   },
   "missing_feature_priority": {
-    "generated_at": "2026-05-20T01:26:46.310933+00:00",
+    "generated_at": "2026-05-20T14:47:39.899587+00:00",
     "state_dir": "state",
     "reports_dir": "reports",
     "task_count": 25,
@@ -3079,6 +3100,9 @@
           "close"
         ],
         "base_columns_missing": [],
+        "external_requirements_missing": [
+          "sector_or_industry_classification"
+        ],
         "nearby_existing_columns": [
           "close_above_sma26w",
           "close_ema_26w",
@@ -3093,7 +3117,7 @@
           "ret_2w_pct",
           "ret_52w_pct"
         ],
-        "calculable_from_current_data": true,
+        "calculable_from_current_data": false,
         "implementation_cost": "high",
         "opens_non_exhausted_family": true,
         "semantic_exhausted_families": [],
@@ -3237,6 +3261,78 @@
         "features_required": [
           "channel_r2",
           "drawdown_from_high_26w_pct",
+          "close"
+        ],
+        "missing_features": [],
+        "mechanism_is_clearly_new": true,
+        "duplicate_override_signature": true,
+        "advisory_cooldown": false,
+        "effective_status": {},
+        "blocked_reasons": [
+          "id_exists",
+          "duplicate_override_signature"
+        ],
+        "would_write": false
+      },
+      {
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+        "family": "paper_residual_breadth_momentum",
+        "axis": "paper_residual_breadth_drawdown_filter",
+        "source_id": "residual_momentum_breadth_existing_features",
+        "paper_title": "Residual momentum with breadth and drawdown controls",
+        "claim": "26-week residual momentum gated by market breadth and recent drawdown may avoid beta-driven and fragile winners.",
+        "features_required": [
+          "residual_ret_26w_pct",
+          "market_breadth_above_sma50_pct",
+          "max_drawdown_26w_pct",
+          "close"
+        ],
+        "missing_features": [],
+        "mechanism_is_clearly_new": true,
+        "duplicate_override_signature": true,
+        "advisory_cooldown": false,
+        "effective_status": {},
+        "blocked_reasons": [
+          "id_exists",
+          "duplicate_override_signature"
+        ],
+        "would_write": false
+      },
+      {
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+        "family": "paper_residual_low_vol_momentum",
+        "axis": "paper_residual_lowvol_confirmation",
+        "source_id": "residual_low_vol_confirmation_existing_features",
+        "paper_title": "Residual momentum with low-volatility confirmation",
+        "claim": "Residual momentum confirmed by positive 13-week return and low realized volatility may reduce crash-prone momentum exposure.",
+        "features_required": [
+          "residual_ret_26w_pct",
+          "realized_vol_13w_pct",
+          "ret_13w_pct",
+          "close"
+        ],
+        "missing_features": [],
+        "mechanism_is_clearly_new": true,
+        "duplicate_override_signature": true,
+        "advisory_cooldown": false,
+        "effective_status": {},
+        "blocked_reasons": [
+          "id_exists",
+          "duplicate_override_signature"
+        ],
+        "would_write": false
+      },
+      {
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+        "family": "paper_breadth_quality_trend",
+        "axis": "paper_breadth_quality_filter",
+        "source_id": "breadth_quality_trend_existing_features",
+        "paper_title": "Breadth-gated trend quality",
+        "claim": "Clean trend quality under positive market breadth may be more robust than raw return momentum.",
+        "features_required": [
+          "channel_r2",
+          "channel_slope_pct",
+          "market_breadth_above_sma50_pct",
           "close"
         ],
         "missing_features": [],

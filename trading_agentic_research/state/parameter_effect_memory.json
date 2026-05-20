@@ -2,22 +2,22 @@
   "version": 1,
   "effects_by_parameter": {
     "entry_rule.top_n": {
-      "count": 45,
-      "avg_parent_cagr_delta_pct": -10.921727533333334,
-      "avg_parent_drawdown_delta_pct": -2.7085109999999997,
+      "count": 48,
+      "avg_parent_cagr_delta_pct": -11.821368729166666,
+      "avg_parent_drawdown_delta_pct": -2.9115763749999997,
       "promoted_candidates": 4,
-      "rejections": 34,
+      "rejections": 37,
       "no_effects": 1,
-      "score": -42.77598303333333
+      "score": -46.77715691666667
     },
     "strategy_family": {
-      "count": 138,
-      "avg_parent_cagr_delta_pct": -20.93001213768116,
-      "avg_parent_drawdown_delta_pct": -4.788603543478261,
+      "count": 141,
+      "avg_parent_cagr_delta_pct": -21.02333074468085,
+      "avg_parent_drawdown_delta_pct": -4.8134748936170215,
       "promoted_candidates": 3,
-      "rejections": 124,
+      "rejections": 127,
       "no_effects": 1,
-      "score": -144.82431390942028
+      "score": -147.93006819148937
     },
     "market_filter.require_positive_trend": {
       "count": 32,
@@ -74,22 +74,22 @@
       "score": -6.455355045454546
     },
     "ranking.field": {
-      "count": 102,
-      "avg_parent_cagr_delta_pct": -24.710047039215688,
-      "avg_parent_drawdown_delta_pct": -5.152935813725491,
+      "count": 105,
+      "avg_parent_cagr_delta_pct": -24.7273596,
+      "avg_parent_drawdown_delta_pct": -5.17592499047619,
       "promoted_candidates": 2,
-      "rejections": 91,
+      "rejections": 94,
       "no_effects": 1,
-      "score": -116.78651494607843
+      "score": -119.81532209523809
     },
     "ranking.order": {
-      "count": 100,
-      "avg_parent_cagr_delta_pct": -24.73927014,
-      "avg_parent_drawdown_delta_pct": -5.228572840000001,
+      "count": 103,
+      "avg_parent_cagr_delta_pct": -24.756067708737863,
+      "avg_parent_drawdown_delta_pct": -5.249805388349515,
       "promoted_candidates": 2,
-      "rejections": 89,
+      "rejections": 92,
       "no_effects": 1,
-      "score": -114.85355656
+      "score": -117.88097040291262
     },
     "rebalance_frequency": {
       "count": 11,
@@ -101,22 +101,22 @@
       "score": -6.455355045454546
     },
     "entry_rule.type": {
-      "count": 11,
-      "avg_parent_cagr_delta_pct": 0.5853345454545454,
-      "avg_parent_drawdown_delta_pct": -3.0813791818181815,
+      "count": 14,
+      "avg_parent_cagr_delta_pct": -4.964948571428572,
+      "avg_parent_drawdown_delta_pct": -3.697703,
       "promoted_candidates": 2,
-      "rejections": 7,
+      "rejections": 10,
       "no_effects": 1,
-      "score": -6.455355045454546
+      "score": -15.313800071428572
     },
     "entry_rule.by": {
-      "count": 11,
-      "avg_parent_cagr_delta_pct": 0.5853345454545454,
-      "avg_parent_drawdown_delta_pct": -3.0813791818181815,
+      "count": 14,
+      "avg_parent_cagr_delta_pct": -4.964948571428572,
+      "avg_parent_drawdown_delta_pct": -3.697703,
       "promoted_candidates": 2,
-      "rejections": 7,
+      "rejections": 10,
       "no_effects": 1,
-      "score": -6.455355045454546
+      "score": -15.313800071428572
     },
     "exit_rule.type": {
       "count": 11,
@@ -146,13 +146,13 @@
       "score": -8.0484535
     },
     "risk_filters.require_non_null_fields": {
-      "count": 100,
-      "avg_parent_cagr_delta_pct": -24.73927014,
-      "avg_parent_drawdown_delta_pct": -5.228572840000001,
+      "count": 103,
+      "avg_parent_cagr_delta_pct": -24.756067708737863,
+      "avg_parent_drawdown_delta_pct": -5.249805388349515,
       "promoted_candidates": 2,
-      "rejections": 89,
+      "rejections": 92,
       "no_effects": 1,
-      "score": -114.85355656
+      "score": -117.88097040291262
     },
     "costs.entry_cost_pct": {
       "count": 11,
@@ -218,22 +218,22 @@
       "score": -4.58980225
     },
     "changed_parameters": {
-      "count": 90,
-      "avg_parent_cagr_delta_pct": -24.66175398888889,
-      "avg_parent_drawdown_delta_pct": -5.330112266666666,
+      "count": 93,
+      "avg_parent_cagr_delta_pct": -24.682858268817203,
+      "avg_parent_drawdown_delta_pct": -5.350352419354839,
       "promoted_candidates": 2,
-      "rejections": 79,
+      "rejections": 82,
       "no_effects": 1,
-      "score": -104.82681012222223
+      "score": -107.85803447849463
     },
     "expected_effect": {
-      "count": 90,
-      "avg_parent_cagr_delta_pct": -24.66175398888889,
-      "avg_parent_drawdown_delta_pct": -5.330112266666666,
+      "count": 93,
+      "avg_parent_cagr_delta_pct": -24.682858268817203,
+      "avg_parent_drawdown_delta_pct": -5.350352419354839,
       "promoted_candidates": 2,
-      "rejections": 79,
+      "rejections": 82,
       "no_effects": 1,
-      "score": -104.82681012222223
+      "score": -107.85803447849463
     },
     "falsification_rule": {
       "count": 10,
@@ -263,22 +263,22 @@
       "score": -4.58980225
     },
     "autonomy_reason": {
-      "count": 80,
-      "avg_parent_cagr_delta_pct": -27.927046162499998,
-      "avg_parent_drawdown_delta_pct": -5.608779887500001,
+      "count": 83,
+      "avg_parent_cagr_delta_pct": -27.832670518072288,
+      "avg_parent_drawdown_delta_pct": -5.621386289156627,
       "promoted_candidates": 0,
-      "rejections": 73,
+      "rejections": 76,
       "no_effects": 0,
-      "score": -103.73143610625
+      "score": -106.6433636626506
     },
     "risk_filters.conditions": {
-      "count": 28,
-      "avg_parent_cagr_delta_pct": -29.791889357142857,
-      "avg_parent_drawdown_delta_pct": -5.08808825,
+      "count": 31,
+      "avg_parent_cagr_delta_pct": -29.358737483870968,
+      "avg_parent_drawdown_delta_pct": -5.172230387096774,
       "promoted_candidates": 0,
-      "rejections": 25,
+      "rejections": 28,
       "no_effects": 0,
-      "score": -57.335933482142856
+      "score": -59.944852677419355
     },
     "market_filter.fallback_allow_if_missing_spy_metric": {
       "count": 9,
@@ -16212,26 +16212,557 @@
       "years_beating_parent": 1,
       "years_losing_to_parent": 6,
       "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "ranking.field",
+      "axis": "ranking_horizon",
+      "new_value": "channel_r2",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "ranking.order",
+      "axis": "ranking_horizon",
+      "new_value": "desc",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "entry_rule.type",
+      "axis": "other",
+      "new_value": "top_n",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "entry_rule.top_n",
+      "axis": "concentration",
+      "new_value": 9,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "entry_rule.by",
+      "axis": "other",
+      "new_value": "channel_r2",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "risk_filters.require_non_null_fields",
+      "axis": "other",
+      "new_value": [
+        "channel_r2",
+        "channel_slope_pct",
+        "market_breadth_above_sma50_pct",
+        "close"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "risk_filters.conditions",
+      "axis": "other",
+      "new_value": [
+        {
+          "field": "channel_slope_pct",
+          "operator": ">",
+          "value": 0.0,
+          "enabled_if_field_exists": true
+        },
+        {
+          "field": "market_breadth_above_sma50_pct",
+          "operator": ">",
+          "value": 50.0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "changed_parameters",
+      "axis": "other",
+      "new_value": [
+        "ranking.field",
+        "entry_rule.by",
+        "entry_rule.top_n",
+        "risk_filters.conditions"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "expected_effect",
+      "axis": "other",
+      "new_value": "Test smooth trend quality only when broad participation is positive.",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "autonomy_reason",
+      "axis": "other",
+      "new_value": "literature_template_expander_v2",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_172",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
+      "family": "paper_breadth_quality_trend",
+      "parameter": "strategy_family",
+      "axis": "other",
+      "new_value": "paper_breadth_quality_trend",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -26.768729,
+      "parent_drawdown_delta_pct": -9.491688,
+      "years_beating_parent": 3,
+      "years_losing_to_parent": 4,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "ranking.field",
+      "axis": "ranking_horizon",
+      "new_value": "residual_ret_26w_pct",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "ranking.order",
+      "axis": "ranking_horizon",
+      "new_value": "desc",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "entry_rule.type",
+      "axis": "other",
+      "new_value": "top_n",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "entry_rule.top_n",
+      "axis": "concentration",
+      "new_value": 10,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "entry_rule.by",
+      "axis": "other",
+      "new_value": "residual_ret_26w_pct",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "risk_filters.require_non_null_fields",
+      "axis": "other",
+      "new_value": [
+        "residual_ret_26w_pct",
+        "market_breadth_above_sma50_pct",
+        "max_drawdown_26w_pct",
+        "close"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "risk_filters.conditions",
+      "axis": "other",
+      "new_value": [
+        {
+          "field": "market_breadth_above_sma50_pct",
+          "operator": ">",
+          "value": 45.0,
+          "enabled_if_field_exists": true
+        },
+        {
+          "field": "max_drawdown_26w_pct",
+          "operator": ">",
+          "value": -22.0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "changed_parameters",
+      "axis": "other",
+      "new_value": [
+        "ranking.field",
+        "entry_rule.by",
+        "entry_rule.top_n",
+        "risk_filters.conditions"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "expected_effect",
+      "axis": "other",
+      "new_value": "Test idiosyncratic momentum only when breadth is healthy and recent drawdown is controlled.",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "autonomy_reason",
+      "axis": "other",
+      "new_value": "literature_template_expander_v2",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_173",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
+      "family": "paper_residual_breadth_momentum",
+      "parameter": "strategy_family",
+      "axis": "other",
+      "new_value": "paper_residual_breadth_momentum",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -20.80016,
+      "parent_drawdown_delta_pct": -3.803276,
+      "years_beating_parent": 1,
+      "years_losing_to_parent": 6,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "ranking.field",
+      "axis": "ranking_horizon",
+      "new_value": "residual_ret_26w_pct",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "ranking.order",
+      "axis": "ranking_horizon",
+      "new_value": "desc",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "entry_rule.type",
+      "axis": "other",
+      "new_value": "top_n",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "entry_rule.top_n",
+      "axis": "concentration",
+      "new_value": 8,
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "entry_rule.by",
+      "axis": "other",
+      "new_value": "residual_ret_26w_pct",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "risk_filters.require_non_null_fields",
+      "axis": "other",
+      "new_value": [
+        "residual_ret_26w_pct",
+        "realized_vol_13w_pct",
+        "ret_13w_pct",
+        "close"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "risk_filters.conditions",
+      "axis": "other",
+      "new_value": [
+        {
+          "field": "realized_vol_13w_pct",
+          "operator": "<",
+          "value": 10.0,
+          "enabled_if_field_exists": true
+        },
+        {
+          "field": "ret_13w_pct",
+          "operator": ">",
+          "value": 0.0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "changed_parameters",
+      "axis": "other",
+      "new_value": [
+        "ranking.field",
+        "entry_rule.by",
+        "entry_rule.top_n",
+        "risk_filters.conditions"
+      ],
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "expected_effect",
+      "axis": "other",
+      "new_value": "Combine idiosyncratic momentum with low recent volatility and positive near-term confirmation.",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "autonomy_reason",
+      "axis": "other",
+      "new_value": "literature_template_expander_v2",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
+    },
+    {
+      "run_id": "EXP_174",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
+      "family": "paper_residual_low_vol_momentum",
+      "parameter": "strategy_family",
+      "axis": "other",
+      "new_value": "paper_residual_low_vol_momentum",
+      "decision": "rejected",
+      "parent_cagr_delta_pct": -28.379071,
+      "parent_drawdown_delta_pct": -4.577707,
+      "years_beating_parent": 0,
+      "years_losing_to_parent": 7,
+      "no_effect": false
     }
   ],
   "effects_by_axis": {
     "concentration": {
-      "count": 45,
-      "avg_parent_cagr_delta_pct": -10.921727533333334,
-      "avg_parent_drawdown_delta_pct": -2.7085109999999997,
+      "count": 48,
+      "avg_parent_cagr_delta_pct": -11.821368729166666,
+      "avg_parent_drawdown_delta_pct": -2.9115763749999997,
       "promoted_candidates": 4,
-      "rejections": 34,
+      "rejections": 37,
       "no_effects": 1,
-      "score": -42.77598303333333
+      "score": -46.77715691666667
     },
     "other": {
-      "count": 706,
-      "avg_parent_cagr_delta_pct": -17.993050090651558,
-      "avg_parent_drawdown_delta_pct": -4.660452328611898,
+      "count": 730,
+      "avg_parent_cagr_delta_pct": -18.233804169863014,
+      "avg_parent_drawdown_delta_pct": -4.703096865753425,
       "promoted_candidates": 43,
-      "rejections": 581,
+      "rejections": 605,
       "no_effects": 21,
-      "score": -568.8232762549575
+      "score": -593.0853526027397
     },
     "market_filter": {
       "count": 68,
@@ -16252,13 +16783,13 @@
       "score": -41.438051516129036
     },
     "ranking_horizon": {
-      "count": 202,
-      "avg_parent_cagr_delta_pct": -24.724513920792077,
-      "avg_parent_drawdown_delta_pct": -5.190379886138614,
+      "count": 208,
+      "avg_parent_cagr_delta_pct": -24.741575634615383,
+      "avg_parent_drawdown_delta_pct": -5.212509995192307,
       "promoted_candidates": 4,
-      "rejections": 180,
+      "rejections": 186,
       "no_effects": 2,
-      "score": -204.31970386386138
+      "score": -210.34783063221153
     },
     "risk_management": {
       "count": 12,

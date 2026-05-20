@@ -195,6 +195,20 @@ def _base_columns_available(recipe: dict[str, Any], weekly: set[str], daily: set
     return present, missing
 
 
+def _has_sector_metadata(weekly: set[str], daily: set[str]) -> bool:
+    sector_columns = {
+        "sector",
+        "gics_sector",
+        "industry",
+        "gics_industry",
+        "sector_name",
+        "industry_group",
+        "group",
+    }
+    existing = {str(col).lower() for col in weekly.union(daily)}
+    return bool(sector_columns.intersection(existing))
+
+
 def _priority(score: int, unlocks: int, cost: str) -> str:
     if score >= 11 or (unlocks >= 4 and cost in {"low", "medium"}):
         return "high"
@@ -266,6 +280,9 @@ def prioritize_missing_feature_tasks(
             "note": "No canned recipe yet; add one before implementing.",
         }))
         present_base, missing_base = _base_columns_available(recipe, weekly_features, daily_features)
+        external_missing: list[str] = []
+        if "metadata" in str(recipe.get("calculable_from") or "").lower() and not _has_sector_metadata(weekly_features, daily_features):
+            external_missing.append("sector_or_industry_classification")
         near = _nearby_columns(feature, weekly_features, daily_features)
         hard_cooldown_families = [fam for fam in families if cooldowns.get(fam, {}).get("hard")]
         advisory_cooldown_families = [fam for fam in families if fam in cooldowns and fam not in hard_cooldown_families]
@@ -275,7 +292,7 @@ def prioritize_missing_feature_tasks(
         unlock_count = len(source_ids)
         score = 0
         score += min(6, unlock_count * 2)
-        score += 3 if not missing_base and recipe.get("calculable_from") in {"weekly", "weekly/daily"} else 0
+        score += 3 if not missing_base and not external_missing and recipe.get("calculable_from") in {"weekly", "weekly/daily"} else 0
         score += 2 if near else 0
         score += {"low": 3, "medium": 2, "high": 0}.get(str(recipe.get("cost")), 1)
         score += 2 if opens_non_exhausted else 0
@@ -296,8 +313,9 @@ def prioritize_missing_feature_tasks(
             "recipe": recipe,
             "base_columns_available": present_base,
             "base_columns_missing": missing_base,
+            "external_requirements_missing": external_missing,
             "nearby_existing_columns": near,
-            "calculable_from_current_data": not missing_base and recipe.get("calculable_from") != "unknown",
+            "calculable_from_current_data": not missing_base and not external_missing and recipe.get("calculable_from") != "unknown",
             "implementation_cost": recipe.get("cost"),
             "opens_non_exhausted_family": opens_non_exhausted,
             "semantic_exhausted_families": sem_exhausted,
@@ -378,6 +396,7 @@ def _write_markdown_report(path: str | Path, payload: dict[str, Any]) -> None:
             f"- Formula: {recipe.get('formula')}",
             f"- Base columns available: {', '.join(item.get('base_columns_available') or []) or '-'}",
             f"- Base columns missing: {', '.join(item.get('base_columns_missing') or []) or '-'}",
+            f"- External requirements missing: {', '.join(item.get('external_requirements_missing') or []) or '-'}",
             f"- Families: {', '.join(item.get('families') or []) or '-'}",
             f"- Nearby columns: {', '.join(item.get('nearby_existing_columns') or []) or '-'}",
             f"- Note: {recipe.get('note')}",

@@ -31,6 +31,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.research.autonomy_blocker import clear_autonomy_blocker, write_autonomy_blocker
+from scripts.research.autonomy_orchestrator import orchestrate
 from scripts.research.autonomous_hypothesis_factory import generate_value_hypotheses
 from scripts.research.candidate_review_refinement_factory import generate_candidate_review_hypotheses
 from scripts.research.candidate_under_review import refresh_candidate_under_review
@@ -60,6 +61,24 @@ def read_json(path: str | Path, default: Any = None) -> Any:
         return json.loads(p.read_text(encoding="utf-8-sig"))
     except json.JSONDecodeError:
         return default
+
+
+def _autonomy_repair_next_action(repair: dict[str, Any]) -> str:
+    details = repair.get("details") if isinstance(repair.get("details"), dict) else {}
+    return str(details.get("next_action") or "No safe automatic research-expansion action remains.")
+
+
+def _autonomy_repair_blocker_reason(repair: dict[str, Any]) -> str:
+    if repair.get("status") == "MANUAL_REVIEW_REQUIRED":
+        return "manual_review_required"
+    details = repair.get("details") if isinstance(repair.get("details"), dict) else {}
+    nested = details.get("details") if isinstance(details.get("details"), dict) else {}
+    executor = nested.get("executor") if isinstance(nested.get("executor"), dict) else {}
+    for source in (executor, nested, details):
+        blocker_type = source.get("blocker_type") if isinstance(source, dict) else None
+        if blocker_type:
+            return str(blocker_type)
+    return "no_safe_autonomy_action"
 
 
 def parse_args() -> argparse.Namespace:
@@ -110,6 +129,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--online-paper-search", action="store_true")
     p.add_argument("--policy", default="governance/research_policy.json")
     p.add_argument("--allow-zero-iterations", action="store_true")
+    p.add_argument("--enable-autonomy-orchestrator", action="store_true")
+    p.add_argument("--max-autonomy-repair-cycles", type=int, default=5)
+    p.add_argument("--max-expansion-cycles", type=int, default=3)
     return p.parse_args()
 
 
@@ -272,6 +294,73 @@ def main() -> int:
         max_runs=int(args.max_runs),
     )
     if not launch_policy["ok"]:
+        if args.enable_autonomy_orchestrator:
+            write_autonomy_blocker(
+                state_dir=args.state_dir,
+                reason="research_policy_violation",
+                errors=launch_policy["errors"],
+                warnings=launch_policy.get("warnings", []),
+                next_action=launch_policy.get("next_action", "Review governance/research_policy.json or run with a safer configuration."),
+                context=launch_policy,
+            )
+            repair = orchestrate(
+                state_dir=args.state_dir,
+                runs_dir=args.runs_dir,
+                reports_dir=args.reports_dir,
+                hypothesis_bank=args.hypothesis_bank,
+                paper_ideas=args.paper_ideas,
+                args=args,
+                max_cycles=int(args.max_autonomy_repair_cycles),
+            )
+            if repair.get("status") == "READY_TO_RUN":
+                handler_details = (repair.get("details", {}) or {}).get("details", {}) or {}
+                repaired_max_runs = int(handler_details.get("adjusted_max_runs") or min(int(args.max_runs), int((policy.get("autonomous_controls", {}) or {}).get("max_runs_without_manual_review", 20) or 20)))
+                if repaired_max_runs != int(args.max_runs):
+                    print(f"Autonomy orchestrator reduced max_runs to {repaired_max_runs} under policy.")
+                args.max_runs = repaired_max_runs
+                launch_policy = validate_autonomous_launch(
+                    policy=policy,
+                    allow_parent_update=bool(args.allow_parent_update),
+                    max_runs=int(args.max_runs),
+                )
+                if launch_policy["ok"]:
+                    print(f"Autonomy orchestrator ready: {repair.get('handler')} -> {repair.get('details', {}).get('next_action', 'retry')}")
+                else:
+                    write_autonomy_blocker(
+                        state_dir=args.state_dir,
+                        reason="research_policy_violation",
+                        errors=launch_policy["errors"],
+                        warnings=launch_policy.get("warnings", []),
+                        next_action=launch_policy.get("next_action", "Review governance/research_policy.json or run with a safer configuration."),
+                        context=launch_policy,
+                    )
+                    print("Research policy blocked autonomous launch:")
+                    for error in launch_policy["errors"]:
+                        print(f"- {error}")
+                    return 6
+            elif repair.get("status") == "MANUAL_REVIEW_REQUIRED":
+                write_autonomy_blocker(
+                    state_dir=args.state_dir,
+                    reason="manual_review_required",
+                    errors=[],
+                    warnings=[],
+                    next_action=str(repair.get("details", {}).get("next_action") or "Manual review required."),
+                    context=repair,
+                )
+                print("Autonomy orchestrator requires manual review:")
+                print(repair.get("details", {}).get("next_action"))
+                return 7
+            else:
+                write_autonomy_blocker(
+                    state_dir=args.state_dir,
+                    reason=_autonomy_repair_blocker_reason(repair),
+                    errors=[],
+                    warnings=[],
+                    next_action=_autonomy_repair_next_action(repair),
+                    context=repair,
+                )
+                print("Autonomy orchestrator found no safe automatic action.")
+                return 8
         write_autonomy_blocker(
             state_dir=args.state_dir,
             reason="research_policy_violation",
@@ -462,6 +551,55 @@ def main() -> int:
         )
 
     if _research_expansion_needed(eligibility_after_literature, literature):
+        if args.enable_autonomy_orchestrator:
+            write_autonomy_blocker(
+                state_dir=args.state_dir,
+                reason="research_space_exhausted",
+                errors=[str(eligibility_after_literature.get("reason"))],
+                next_action="Autonomy orchestrator will attempt registered safe handlers.",
+                context={"final_eligibility": eligibility_after_literature, "literature_miner": literature},
+            )
+            repair = orchestrate(
+                state_dir=args.state_dir,
+                runs_dir=args.runs_dir,
+                reports_dir=args.reports_dir,
+                hypothesis_bank=args.hypothesis_bank,
+                paper_ideas=args.paper_ideas,
+                args=args,
+                max_cycles=int(args.max_autonomy_repair_cycles),
+            )
+            eligibility_after_literature = _eligibility(args)
+            if repair.get("status") == "READY_TO_RUN" and eligibility_after_literature.get("eligible"):
+                print(f"Autonomy orchestrator repaired research-space blocker via {repair.get('handler')}; continuing.")
+            else:
+                next_action = _autonomy_repair_next_action(repair)
+                write_autonomy_blocker(
+                    state_dir=args.state_dir,
+                    reason=_autonomy_repair_blocker_reason(repair),
+                    errors=[str(eligibility_after_literature.get("reason"))],
+                    warnings=[],
+                    next_action=next_action,
+                    context=repair,
+                )
+                print(f"Autonomy orchestrator status: {repair.get('status')} via {repair.get('handler')}")
+                print(f"Next action: {next_action}")
+                return 7 if repair.get("status") == "MANUAL_REVIEW_REQUIRED" else 3
+        if eligibility_after_literature.get("eligible"):
+            pass
+        else:
+            return _write_research_expansion_blocker(
+                args=args,
+                candidate_review=candidate_review,
+                candidate_review_generation=candidate_review_generation,
+                eligibility_before=eligibility_before,
+                generated=generated,
+                literature=literature,
+                paper_search=paper_search,
+                feature_space=feature_space,
+                final_eligibility=eligibility_after_literature,
+            )
+
+    if not eligibility_after_literature.get("eligible") and _research_expansion_needed(eligibility_after_literature, literature):
         return _write_research_expansion_blocker(
             args=args,
             candidate_review=candidate_review,
@@ -506,17 +644,55 @@ def main() -> int:
         effective_summary = final_eligibility.get("effective_summary") if isinstance(final_eligibility.get("effective_summary"), dict) else {}
         recommended_mode = final_eligibility.get("recommended_mode") or effective_summary.get("recommended_mode")
         if recommended_mode == "literature_or_new_family":
-            return _write_research_expansion_blocker(
-                args=args,
-                candidate_review=candidate_review,
-                candidate_review_generation=candidate_review_generation,
-                eligibility_before=eligibility_before,
-                generated=generated,
-                literature=literature,
-                paper_search=paper_search,
-                feature_space=feature_space,
-                final_eligibility=final_eligibility,
-            )
+            if args.enable_autonomy_orchestrator:
+                write_autonomy_blocker(
+                    state_dir=args.state_dir,
+                    reason="research_space_exhausted",
+                    errors=[str(final_eligibility.get("reason"))],
+                    next_action="Autonomy orchestrator will attempt registered safe handlers.",
+                    context={"final_eligibility": final_eligibility},
+                )
+                repair = orchestrate(
+                    state_dir=args.state_dir,
+                    runs_dir=args.runs_dir,
+                    reports_dir=args.reports_dir,
+                    hypothesis_bank=args.hypothesis_bank,
+                    paper_ideas=args.paper_ideas,
+                    args=args,
+                    max_cycles=int(args.max_autonomy_repair_cycles),
+                )
+                if repair.get("status") == "READY_TO_RUN":
+                    final_eligibility = _eligibility(args)
+                    if final_eligibility.get("eligible"):
+                        print(f"Autonomy orchestrator repaired blocker via {repair.get('handler')}; continuing to batch launch.")
+                    else:
+                        print(f"Autonomy orchestrator tried {repair.get('handler')} but eligibility is still false.")
+                else:
+                    print(f"Autonomy orchestrator status: {repair.get('status')} via {repair.get('handler')}")
+                    next_action = _autonomy_repair_next_action(repair)
+                    write_autonomy_blocker(
+                        state_dir=args.state_dir,
+                        reason=_autonomy_repair_blocker_reason(repair),
+                        errors=[str(final_eligibility.get("reason"))],
+                        warnings=[],
+                        next_action=next_action,
+                        context=repair,
+                    )
+                    return 7 if repair.get("status") == "MANUAL_REVIEW_REQUIRED" else 3
+            if final_eligibility.get("eligible"):
+                pass
+            else:
+                return _write_research_expansion_blocker(
+                    args=args,
+                    candidate_review=candidate_review,
+                    candidate_review_generation=candidate_review_generation,
+                    eligibility_before=eligibility_before,
+                    generated=generated,
+                    literature=literature,
+                    paper_search=paper_search,
+                    feature_space=feature_space,
+                    final_eligibility=final_eligibility,
+                )
 
         write_autonomy_blocker(
             state_dir=args.state_dir,
@@ -586,6 +762,48 @@ def main() -> int:
         requested_max_runs=int(args.max_runs),
     )
     if not post["ok"]:
+        if args.enable_autonomy_orchestrator:
+            write_autonomy_blocker(
+                state_dir=args.state_dir,
+                reason=post.get("reason", "post_batch_validation_failed"),
+                errors=post.get("errors", []),
+                warnings=post.get("warnings", []),
+                next_action=post.get("next_action", "Autonomy orchestrator will attempt registered safe handlers."),
+                context={"batch_state": batch_state, "post_batch_validation": post},
+            )
+            repair = orchestrate(
+                state_dir=args.state_dir,
+                runs_dir=args.runs_dir,
+                reports_dir=args.reports_dir,
+                hypothesis_bank=args.hypothesis_bank,
+                paper_ideas=args.paper_ideas,
+                args=args,
+                max_cycles=int(args.max_autonomy_repair_cycles),
+            )
+            if repair.get("status") == "READY_TO_RUN":
+                print(f"Autonomy orchestrator repaired post-batch blocker via {repair.get('handler')}; retrying batch once.")
+                retry = subprocess.run(cmd, cwd=ROOT, check=False)
+                if retry.returncode != 0:
+                    write_autonomy_blocker(
+                        state_dir=args.state_dir,
+                        reason="research_batch_failed_after_autonomy_retry",
+                        errors=[f"run_research_batch.py exited with code {retry.returncode}"],
+                        next_action="Inspect latest run logs and autonomy handler output.",
+                        context={"command": cmd, "returncode": retry.returncode, "repair": repair},
+                    )
+                    return 5
+                batch_state = _load_batch_state(args.state_dir)
+                post = validate_post_batch(
+                    policy=policy,
+                    batch_state=batch_state,
+                    allow_zero_iterations=bool(args.allow_zero_iterations),
+                    requested_max_runs=int(args.max_runs),
+                )
+                if post["ok"]:
+                    write_promotion_candidate_review(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
+                    write_generation_feedback_report(state_dir=args.state_dir, reports_dir=args.reports_dir)
+                    clear_autonomy_blocker(state_dir=args.state_dir, reason="batch_completed_with_value_after_autonomy_retry")
+                    return 0
         write_autonomy_blocker(
             state_dir=args.state_dir,
             reason=post.get("reason", "post_batch_validation_failed"),

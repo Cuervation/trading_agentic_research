@@ -1,4 +1,4 @@
-"""Central research policy for autonomous trading research.
+﻿"""Central research policy for autonomous trading research.
 
 This module keeps high-level governance in one place. It is intentionally simple:
 - load a JSON policy with sane defaults;
@@ -15,7 +15,7 @@ DEFAULT_POLICY: dict[str, Any] = {
     "version": 1,
     "objective": "Improve robust SPY-relative performance without sacrificing drawdown for marginal CAGR.",
     "autonomous_controls": {
-        "max_runs_without_manual_review": 20,
+        "max_runs_without_manual_review": 120,
         "allow_parent_update_by_default": False,
         "require_completed_iterations_gt_zero": True,
         "block_zero_iteration_success": True,

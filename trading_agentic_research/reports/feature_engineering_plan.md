@@ -1,6 +1,6 @@
 # Feature Engineering Plan
 
-Generated at: `2026-05-20T01:04:49.850495+00:00`
+Generated at: `2026-05-20T14:50:07.317505+00:00`
 Missing-feature tasks: **25**
 
 | feature | requests | known recipe | blocked | missing base columns |

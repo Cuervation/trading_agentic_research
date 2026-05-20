@@ -2,7 +2,7 @@
 
 Current result: **research is exhausted under the current hypothesis space; do not launch backtests until a new feature/template/family creates executable work.**
 
-- Generated at: `2026-05-20T01:26:46.340436+00:00`
+- Generated at: `2026-05-20T14:47:39.934022+00:00`
 - Parent stays locked: `AUTO_002` / `HYP_AUTO_TIME_SERIES_MOMENTUM_SEED`
 - Recommended mode: `literature_or_new_family`
 - Eligible: `False`
@@ -13,7 +13,7 @@ Current result: **research is exhausted under the current hypothesis space; do n
 
 - No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).
 - Selector-equivalent executable_count=0.
-- Top blockers: rejected=130, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.
+- Top blockers: rejected=133, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.
 - Feature-space stall is active: feature_space_recent_bad:10_good:0_window:10.
 - Literature mining produced no supported executable hypotheses.
 - Feature-space expansion produced no new rows; current combinations are exhausted or duplicate.
@@ -22,7 +22,7 @@ Current result: **research is exhausted under the current hypothesis space; do n
 
 | blocker | count |
 |---|---:|
-| `rejected` | 130 |
+| `rejected` | 133 |
 | `feature_space_stalled_literature_mode` | 113 |
 | `duplicate_override_signature` | 69 |
 | `consumed` | 19 |
@@ -97,7 +97,7 @@ Paper ideas read: **15**
 
 | priority | feature | papers unlocked | cost | calculable now | nearby/current columns |
 |---|---|---:|---|:---:|---|
-| low | `ret_vs_sector_26w_pct` | 1 | high | yes | `close_above_sma26w`, `close_ema_26w`, `close_ema_26w_slope_2w_pct`, `close_ema_26w_slope_4w_pct`, `close_vs_ema26w_pct` |
+| low | `ret_vs_sector_26w_pct` | 1 | high | no | `close_above_sma26w`, `close_ema_26w`, `close_ema_26w_slope_2w_pct`, `close_ema_26w_slope_4w_pct`, `close_vs_ema26w_pct` |
 
 ## Supported literature templates using existing features
 

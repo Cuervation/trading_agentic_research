@@ -1,17 +1,22 @@
-"""Autonomy readiness score for the trading research loop.
+"""Autonomy readiness checks for the trading research loop.
 
-All repository-relative paths are resolved from repo_root, so this command can be
-run from any working directory without false negatives.
+This preserves the original score-style readiness function and adds stricter
+continuation checks used by autonomy_orchestrator.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.research.hypothesis_eligibility import eligible_hypothesis_preflight
+from scripts.research.research_policy import load_research_policy
 
 
 def read_json(path: str | Path, default: Any = None) -> Any:
@@ -28,13 +33,14 @@ def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
     p = Path(path)
     if not p.exists():
         return []
-    rows = []
+    rows: list[dict[str, Any]] = []
     for line in p.read_text(encoding="utf-8-sig").splitlines():
-        if line.strip():
-            try:
-                rows.append(json.loads(line))
-            except json.JSONDecodeError:
-                pass
+        if not line.strip():
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            pass
     return rows
 
 
@@ -115,18 +121,54 @@ def compute_readiness(
     }
 
 
-def main() -> int:
+def validate_autonomy_readiness(
+    *,
+    state_dir: str | Path,
+    runs_dir: str | Path,
+    reports_dir: str | Path,
+    hypothesis_bank: str | Path,
+    final_eligibility: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    state = Path(state_dir)
+    parent = read_json(state / "current_parent.json", {}) or {}
+    candidate = read_json(state / "candidate_under_review.json", {}) or {}
+    blocker = read_json(state / "autonomy_blocker.json", {}) or {}
+    plan = read_json(state / "research_expansion_plan.json", {}) or {}
+    missing = read_json(state / "missing_feature_priority.json", {}) or {}
+    policy = load_research_policy()
+    eligibility = final_eligibility or eligible_hypothesis_preflight(hypothesis_bank=hypothesis_bank, state_dir=state_dir)
+    effective = eligibility.get("effective_summary") if isinstance(eligibility.get("effective_summary"), dict) else {}
+    executable_sample = effective.get("executable_sample") or []
+    checks = {
+        "parent_locked": parent.get("current_parent_run_id") == "AUTO_002" and bool(parent.get("parent_promotion_blocked")),
+        "candidate_consistent": candidate.get("status") in {"review_exhausted", "active", "disabled", None},
+        "baseline_manual": bool(policy.get("promotion_policy", {}).get("baseline_promotion_requires_manual_review", True)),
+        "no_auto_move_parent": bool(parent.get("parent_updates_require_manual_approval", True)),
+        "has_plan_when_blocked": bool(plan) if blocker.get("status") == "blocked" else True,
+        "has_missing_feature_priorities_or_no_tasks": bool(missing.get("priorities")) or not (state / "missing_feature_tasks.jsonl").exists(),
+        "ready_only_if_selector_eligible": not eligibility.get("eligible") or eligibility.get("reason") == "selector_found_eligible_hypothesis",
+        "no_exhausted_fspace_eligible": not any(str(x).startswith("HYP_FSPACE") for x in executable_sample),
+    }
+    return {"ok": all(checks.values()), "checks": checks, "eligibility": eligibility, "blocker": blocker, "parent": parent, "candidate": candidate}
+
+
+def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--state-dir", default="state")
+    p.add_argument("--runs-dir", default="runs")
+    p.add_argument("--reports-dir", default="reports")
+    p.add_argument("--hypothesis-bank", default="bibliography/hypothesis_bank.jsonl")
     p.add_argument("--registry", default="configs/strategy_registry.json")
     p.add_argument("--repo-root", default=str(ROOT))
-    args = p.parse_args()
-    print(json.dumps(
-        compute_readiness(state_dir=args.state_dir, registry_path=args.registry, repo_root=args.repo_root),
-        indent=2,
-        ensure_ascii=False,
-    ))
-    return 0
+    return p.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    result = validate_autonomy_readiness(state_dir=args.state_dir, runs_dir=args.runs_dir, reports_dir=args.reports_dir, hypothesis_bank=args.hypothesis_bank)
+    result["scorecard"] = compute_readiness(state_dir=args.state_dir, registry_path=args.registry, repo_root=args.repo_root)
+    print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
+    return 0 if result["ok"] else 3
 
 
 if __name__ == "__main__":
