@@ -7,17 +7,22 @@ import pandas as pd
 
 def read_feature_csv(path: str) -> pd.DataFrame:
     # Auto-detect delimiter so both comma and semicolon exports work.
-    return pd.read_csv(path, sep=None, engine="python")
+    return pd.read_csv(path, sep=None, engine="python", encoding="utf-8-sig")
 
 
 def add_supported_features(df: pd.DataFrame) -> pd.DataFrame:
-    missing = {"ticker", "date", "close"}.difference(df.columns)
+    date_col = "date" if "date" in df.columns else "signal_date" if "signal_date" in df.columns else None
+    missing = {"ticker", "close"}.difference(df.columns)
+    if date_col is None:
+        missing.add("date or signal_date")
     if missing:
         raise ValueError(f"Missing required columns: {sorted(missing)}")
     out = df.copy()
-    out["date"] = pd.to_datetime(out["date"])
-    out = out.sort_values(["ticker", "date"])
+    out["_feature_sort_date"] = pd.to_datetime(out[date_col])
+    out = out.sort_values(["ticker", "_feature_sort_date"])
     g = out.groupby("ticker", group_keys=False)
+    if "ret_13w_pct" not in out.columns:
+        out["ret_13w_pct"] = g["close"].pct_change(13) * 100
     if "ret_26w_pct" not in out.columns:
         out["ret_26w_pct"] = g["close"].pct_change(26) * 100
     if "ret_52w_pct" not in out.columns:
@@ -47,12 +52,50 @@ def add_supported_features(df: pd.DataFrame) -> pd.DataFrame:
             (out["low"]-prev_close).abs(),
         ], axis=1).max(axis=1)
         out["atr_14w_pct"] = tr.groupby(out["ticker"]).transform(lambda s: s.rolling(14, min_periods=14).mean()) / out["close"] * 100
+    if "downside_vol_13w_pct" not in out.columns:
+        weekly_ret = g["close"].pct_change() * 100
+        downside_squared = weekly_ret.where(weekly_ret < 0, 0.0).pow(2)
+        out["downside_vol_13w_pct"] = downside_squared.groupby(out["ticker"]).transform(
+            lambda s: np.sqrt(s.rolling(13, min_periods=8).mean())
+        )
+    if "realized_vol_13w_pct" not in out.columns:
+        weekly_ret = g["close"].pct_change() * 100
+        out["realized_vol_13w_pct"] = weekly_ret.groupby(out["ticker"]).transform(
+            lambda s: s.rolling(13, min_periods=8).std()
+        )
+    if "residual_ret_26w_pct" not in out.columns and "ret_26w_pct" in out.columns:
+        spy_ret = out[out["ticker"].astype(str).str.upper()=="SPY"][["_feature_sort_date", "ret_26w_pct"]].rename(
+            columns={"ret_26w_pct": "_spy_ret_26w_pct"}
+        )
+        if not spy_ret.empty:
+            out = out.merge(spy_ret, on="_feature_sort_date", how="left")
+            out["residual_ret_26w_pct"] = out["ret_26w_pct"] - out["_spy_ret_26w_pct"]
+            out = out.drop(columns=["_spy_ret_26w_pct"])
+    if "market_breadth_above_sma50_pct" not in out.columns:
+        if "close_vs_sma50_pct" in out.columns:
+            breadth = out.assign(_above_sma50=out["close_vs_sma50_pct"] > 0).groupby("_feature_sort_date")["_above_sma50"].mean() * 100
+            out["market_breadth_above_sma50_pct"] = out["_feature_sort_date"].map(breadth)
+        elif "close_above_sma50" in out.columns:
+            breadth = out.groupby("_feature_sort_date")["close_above_sma50"].mean() * 100
+            out["market_breadth_above_sma50_pct"] = out["_feature_sort_date"].map(breadth)
+    if "max_drawdown_26w_pct" not in out.columns:
+        def rolling_max_drawdown(close: pd.Series, window: int = 26) -> pd.Series:
+            def calc(arr):
+                arr = np.asarray(arr, dtype=float)
+                if np.isnan(arr).any():
+                    return np.nan
+                peak = np.maximum.accumulate(arr)
+                drawdowns = arr / peak - 1.0
+                return float(drawdowns.min() * 100)
+            return close.astype(float).rolling(window, min_periods=window).apply(calc, raw=True)
+        out["max_drawdown_26w_pct"] = g["close"].transform(rolling_max_drawdown)
     if "spy_close_vs_sma50_pct" not in out.columns:
-        spy = out[out["ticker"].astype(str).str.upper()=="SPY"][["date", "close"]].copy()
+        spy = out[out["ticker"].astype(str).str.upper()=="SPY"][["_feature_sort_date", "close"]].copy()
         if not spy.empty:
-            spy = spy.sort_values("date")
+            spy = spy.sort_values("_feature_sort_date")
             spy["spy_close_vs_sma50_pct"] = (spy["close"] / spy["close"].rolling(50, min_periods=50).mean() - 1) * 100
-            out = out.merge(spy[["date", "spy_close_vs_sma50_pct"]], on="date", how="left")
+            out = out.merge(spy[["_feature_sort_date", "spy_close_vs_sma50_pct"]], on="_feature_sort_date", how="left")
+    out = out.drop(columns=["_feature_sort_date"])
     return out
 
 
