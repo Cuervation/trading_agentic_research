@@ -1,0 +1,686 @@
+{
+  "generated_at": "2026-05-20T00:21:52.749372+00:00",
+  "state_dir": "state",
+  "reports_dir": "reports",
+  "task_count": 25,
+  "missing_feature_count": 7,
+  "already_available_task_features": [],
+  "weekly_feature_count": 188,
+  "daily_feature_count": 169,
+  "priorities": [
+    {
+      "feature": "ret_13w_pct",
+      "priority": "high",
+      "score": 16,
+      "paper_ideas_unlocked": 4,
+      "source_ids": [
+        "cross_sectional_momentum_jegadeesh_titman",
+        "multi_lookback_momentum_confirmation",
+        "time_series_momentum_moskowitz_ooi_pedersen",
+        "trend_following_fast_slow_confirmation"
+      ],
+      "paper_titles": [
+        "Cross-sectional momentum",
+        "Fast trend with near-term momentum confirmation",
+        "Multi-lookback momentum confirmation",
+        "Time Series Momentum",
+        "Trend following fast and slow confirmation"
+      ],
+      "families": [
+        "paper_time_series_momentum",
+        "paper_trend_following"
+      ],
+      "axes": [
+        "paper_trend_fast_confirm",
+        "paper_tsmom_confirm"
+      ],
+      "candidate_suffixes": [
+        "FAST_TREND_SMA20_RET13_CONFIRM_V1",
+        "FAST_TREND_SMA20_RET13_CONFIRM_V4",
+        "PAPER_CROSS_SECTIONAL_MOMENTUM_RET52_RET13_CONFIRM_V4",
+        "PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMATION_RET52_RET13_CONFIRM_V1",
+        "PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMA_RET52_RET13_CONFIRM_V1",
+        "PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMA_RET52_RET13_CONFIRM_V4",
+        "PAPER_TIME_SERIES_MOMENTUM_RET52_RET13_CONFIRM_V1",
+        "PAPER_TIME_SERIES_MOMENTUM_RET52_RET13_CONFIRM_V4",
+        "PAPER_TREND_FOLLOWING_FAST_AND_SLOW_CO_RET52_RET13_CONFIRM_V4",
+        "TSMOM_RET52_RET13_CONFIRM_V1",
+        "TSMOM_RET52_RET13_CONFIRM_V4"
+      ],
+      "recipe": {
+        "source": "weekly close",
+        "formula": "group by ticker; pct_change(13) * 100",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "low",
+        "calculable_from": "weekly",
+        "note": "ret_12w_pct already exists, but ret_13w_pct is a distinct template dependency."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma13w",
+        "close_ema_13w",
+        "close_ema_13w_slope_2w_pct",
+        "close_ema_13w_slope_4w_pct",
+        "ret_12w_pct",
+        "ret_1d_pct",
+        "ret_1w_pct",
+        "ret_2w_pct",
+        "ret_3d_pct",
+        "ret_4w_pct",
+        "ret_52w_pct",
+        "ret_8w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "low",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [
+        "paper_time_series_momentum"
+      ],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [
+        "paper_time_series_momentum",
+        "paper_trend_following"
+      ],
+      "example_tasks": [
+        {
+          "source_id": "time_series_momentum_moskowitz_ooi_pedersen",
+          "paper_title": "Time Series Momentum",
+          "candidate_suffix": "PAPER_TIME_SERIES_MOMENTUM_RET52_RET13_CONFIRM_V1",
+          "family": null,
+          "claim": "Trend persistence over intermediate horizons may be exploitable with robust risk controls.",
+          "paper_idea_hint": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "multi_lookback_momentum_confirmation",
+          "paper_title": "Multi-lookback momentum confirmation",
+          "candidate_suffix": "PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMATION_RET52_RET13_CONFIRM_V1",
+          "family": null,
+          "claim": "Combining or alternating momentum lookbacks may reduce late entries and improve robustness.",
+          "paper_idea_hint": [
+            "ret_26w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "multi_lookback_momentum_confirmation",
+          "paper_title": "Multi-lookback momentum confirmation",
+          "candidate_suffix": "TSMOM_RET52_RET13_CONFIRM_V1",
+          "family": null,
+          "claim": "52-week momentum confirmed by positive 13-week momentum may avoid stale long-lookback winners.",
+          "paper_idea_hint": [
+            "ret_26w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "multi_lookback_momentum_confirmation",
+          "paper_title": "Multi-lookback momentum confirmation",
+          "candidate_suffix": "PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMA_RET52_RET13_CONFIRM_V1",
+          "family": null,
+          "claim": "Combining or alternating momentum lookbacks may reduce late entries and improve robustness.",
+          "paper_idea_hint": [
+            "ret_26w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "trend_following_fast_slow_confirmation",
+          "paper_title": "Fast trend with near-term momentum confirmation",
+          "candidate_suffix": "FAST_TREND_SMA20_RET13_CONFIRM_V1",
+          "family": null,
+          "claim": "SMA20 distance with positive 13-week return may reduce weak fast-trend artifacts.",
+          "paper_idea_hint": [
+            "close_vs_sma20w_pct",
+            "close_vs_sma52w_pct",
+            "close"
+          ]
+        }
+      ]
+    },
+    {
+      "feature": "downside_vol_13w_pct",
+      "priority": "high",
+      "score": 15,
+      "paper_ideas_unlocked": 6,
+      "source_ids": [
+        "downside_volatility_momentum",
+        "drawdown_aware_momentum",
+        "faber_tactical_asset_allocation_regime_filter",
+        "low_volatility_momentum_drawdown_control",
+        "market_state_and_momentum_crashes",
+        "volatility_managed_portfolios"
+      ],
+      "paper_titles": [
+        "Downside-volatility momentum",
+        "Drawdown-aware momentum",
+        "Low volatility anomaly and momentum crash control",
+        "Market state and momentum crash control",
+        "Tactical asset allocation / regime filter",
+        "Volatility managed portfolios"
+      ],
+      "families": [
+        "paper_downside_risk_momentum"
+      ],
+      "axes": [
+        "paper_downside_risk_momentum"
+      ],
+      "candidate_suffixes": [
+        "PAPER_DOWNSIDE_VOLATILITY_MOMENTUM_DOWNSIDE_VOL13_RET26_V4",
+        "PAPER_DRAWDOWN_AWARE_MOMENTUM_DOWNSIDE_VOL13_RET26_V4",
+        "PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_DOWNSIDE_VOL13_RET26_V4",
+        "PAPER_MARKET_STATE_AND_MOMENTUM_CRASH__DOWNSIDE_VOL13_RET26_V4",
+        "PAPER_TACTICAL_ASSET_ALLOCATION_REGIME_DOWNSIDE_VOL13_RET26_V4",
+        "PAPER_VOLATILITY_MANAGED_PORTFOLIOS_DOWNSIDE_VOL13_RET26_V4"
+      ],
+      "recipe": {
+        "source": "weekly close or weekly returns",
+        "formula": "rolling 13-week std using only negative weekly returns",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "medium",
+        "calculable_from": "weekly",
+        "note": "Use the same return convention as realized_vol_13w_pct."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma13w",
+        "close_ema_13w",
+        "close_ema_13w_slope_2w_pct",
+        "close_ema_13w_slope_4w_pct",
+        "close_vs_ema13w_pct",
+        "close_vs_ema8w_pct",
+        "close_vs_sma10_pct",
+        "close_vs_sma13w_pct",
+        "close_vs_sma4w_pct",
+        "close_vs_sma8w_pct",
+        "dist_to_high_13w_pct",
+        "drawdown_from_high_13w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "medium",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "low_volatility_momentum_drawdown_control",
+          "paper_title": "Low volatility anomaly and momentum crash control",
+          "candidate_suffix": "PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_DOWNSIDE_VOL13_RET26_V4",
+          "family": "paper_downside_risk_momentum",
+          "claim": "Volatility-aware momentum may reduce drawdown at the cost of some CAGR.",
+          "paper_idea_hint": [
+            "atr_14w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "faber_tactical_asset_allocation_regime_filter",
+          "paper_title": "Tactical asset allocation / regime filter",
+          "candidate_suffix": "PAPER_TACTICAL_ASSET_ALLOCATION_REGIME_DOWNSIDE_VOL13_RET26_V4",
+          "family": "paper_downside_risk_momentum",
+          "claim": "Market trend filters may reduce crash exposure, but overly strict gates can miss recoveries.",
+          "paper_idea_hint": [
+            "spy_close_vs_sma50_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "volatility_managed_portfolios",
+          "paper_title": "Volatility managed portfolios",
+          "candidate_suffix": "PAPER_VOLATILITY_MANAGED_PORTFOLIOS_DOWNSIDE_VOL13_RET26_V4",
+          "family": "paper_downside_risk_momentum",
+          "claim": "Risk-aware scaling or volatility filters may improve drawdown-adjusted performance.",
+          "paper_idea_hint": [
+            "realized_vol_13w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "drawdown_aware_momentum",
+          "paper_title": "Drawdown-aware momentum",
+          "candidate_suffix": "PAPER_DRAWDOWN_AWARE_MOMENTUM_DOWNSIDE_VOL13_RET26_V4",
+          "family": "paper_downside_risk_momentum",
+          "claim": "Momentum portfolios may improve risk-adjusted performance by avoiding names with recent severe drawdowns.",
+          "paper_idea_hint": [
+            "max_drawdown_26w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "downside_volatility_momentum",
+          "paper_title": "Downside-volatility momentum",
+          "candidate_suffix": "PAPER_DOWNSIDE_VOLATILITY_MOMENTUM_DOWNSIDE_VOL13_RET26_V4",
+          "family": "paper_downside_risk_momentum",
+          "claim": "Downside risk can be more relevant than total volatility for momentum crash control.",
+          "paper_idea_hint": [
+            "downside_vol_13w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        }
+      ]
+    },
+    {
+      "feature": "max_drawdown_26w_pct",
+      "priority": "high",
+      "score": 12,
+      "paper_ideas_unlocked": 1,
+      "source_ids": [
+        "drawdown_aware_momentum"
+      ],
+      "paper_titles": [
+        "Drawdown-aware momentum"
+      ],
+      "families": [
+        "paper_downside_risk_momentum"
+      ],
+      "axes": [
+        "paper_downside_risk_momentum"
+      ],
+      "candidate_suffixes": [
+        "DRAWDOWN_AWARE_RET52_MAXDD26_V4"
+      ],
+      "recipe": {
+        "source": "weekly close",
+        "formula": "rolling 26-week max drawdown from rolling peak close",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "low",
+        "calculable_from": "weekly",
+        "note": "drawdown_from_high_26w_pct exists as a near proxy; decide whether the exact max-drawdown definition is needed."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma26w",
+        "close_ema_26w",
+        "close_ema_26w_slope_2w_pct",
+        "close_ema_26w_slope_4w_pct",
+        "drawdown_from_high_10_pct",
+        "drawdown_from_high_13w_pct",
+        "drawdown_from_high_200_pct",
+        "drawdown_from_high_20_pct",
+        "drawdown_from_high_26w_pct",
+        "drawdown_from_high_50_pct",
+        "drawdown_from_high_52w_pct",
+        "ret_26w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "low",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "drawdown_aware_momentum",
+          "paper_title": "Drawdown-aware momentum",
+          "candidate_suffix": "DRAWDOWN_AWARE_RET52_MAXDD26_V4",
+          "family": "paper_downside_risk_momentum",
+          "claim": "52-week momentum requiring max_drawdown_26w_pct availability opens a drawdown-control research axis.",
+          "paper_idea_hint": [
+            "max_drawdown_26w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      ]
+    },
+    {
+      "feature": "market_breadth_above_sma50_pct",
+      "priority": "high",
+      "score": 11,
+      "paper_ideas_unlocked": 1,
+      "source_ids": [
+        "market_breadth_momentum_regime"
+      ],
+      "paper_titles": [
+        "Market breadth as momentum regime filter"
+      ],
+      "families": [
+        "paper_breadth_regime"
+      ],
+      "axes": [
+        "paper_breadth_regime"
+      ],
+      "candidate_suffixes": [
+        "BREADTH_REGIME_RET52_V4",
+        "PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4"
+      ],
+      "recipe": {
+        "source": "weekly or daily universe prices",
+        "formula": "percentage of active universe above 50-day or 10-week SMA by date",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "medium",
+        "calculable_from": "weekly/daily",
+        "note": "No external feature is needed if the weekly universe is representative, but membership survivorship must be documented."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma13w",
+        "close_above_sma20",
+        "close_above_sma200",
+        "close_above_sma26w",
+        "close_above_sma50",
+        "close_above_sma52w",
+        "close_vs_sma50_pct",
+        "days_above_sma20_last10",
+        "days_above_sma50_last20",
+        "spy_close_vs_sma50_pct",
+        "volume_ratio_vs_sma50",
+        "weeks_above_sma13_last8"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "medium",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "market_breadth_momentum_regime",
+          "paper_title": "Market breadth as momentum regime filter",
+          "candidate_suffix": "BREADTH_REGIME_RET52_V4",
+          "family": "paper_breadth_regime",
+          "claim": "52-week momentum with market-breadth availability opens a breadth-aware regime axis.",
+          "paper_idea_hint": [
+            "market_breadth_above_sma50_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "market_breadth_momentum_regime",
+          "paper_title": "Market breadth as momentum regime filter",
+          "candidate_suffix": "PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4",
+          "family": "paper_breadth_regime",
+          "claim": "Market breadth can distinguish broad recoveries from narrow leadership and may improve regime gating.",
+          "paper_idea_hint": [
+            "market_breadth_above_sma50_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      ]
+    },
+    {
+      "feature": "residual_ret_26w_pct",
+      "priority": "high",
+      "score": 11,
+      "paper_ideas_unlocked": 1,
+      "source_ids": [
+        "idiosyncratic_momentum_residual_returns"
+      ],
+      "paper_titles": [
+        "Residual / idiosyncratic momentum"
+      ],
+      "families": [
+        "paper_residual_momentum"
+      ],
+      "axes": [
+        "paper_residual_momentum"
+      ],
+      "candidate_suffixes": [
+        "PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4",
+        "RESIDUAL_MOMENTUM_RET26_V4"
+      ],
+      "recipe": {
+        "source": "weekly stock returns plus SPY/market return",
+        "formula": "26-week stock return residualized against SPY return via rolling beta or simple market subtraction baseline",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "medium",
+        "calculable_from": "weekly",
+        "note": "Can start with market-residual before sector residual; document the model."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma26w",
+        "close_ema_26w",
+        "close_ema_26w_slope_2w_pct",
+        "close_ema_26w_slope_4w_pct",
+        "ret_12w_pct",
+        "ret_1w_pct",
+        "ret_26w_pct",
+        "ret_2d_pct",
+        "ret_2w_pct",
+        "ret_4w_pct",
+        "ret_52w_pct",
+        "ret_8w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "medium",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "idiosyncratic_momentum_residual_returns",
+          "paper_title": "Residual / idiosyncratic momentum",
+          "candidate_suffix": "RESIDUAL_MOMENTUM_RET26_V4",
+          "family": "paper_residual_momentum",
+          "claim": "Ranking by residual_ret_26w_pct may isolate stock-specific momentum after broad/sector effects.",
+          "paper_idea_hint": [
+            "residual_ret_26w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "idiosyncratic_momentum_residual_returns",
+          "paper_title": "Residual / idiosyncratic momentum",
+          "candidate_suffix": "PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4",
+          "family": "paper_residual_momentum",
+          "claim": "Removing market or sector effects from returns may isolate cleaner stock-specific momentum.",
+          "paper_idea_hint": [
+            "residual_ret_26w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        }
+      ]
+    },
+    {
+      "feature": "realized_vol_13w_pct",
+      "priority": "medium",
+      "score": 9,
+      "paper_ideas_unlocked": 1,
+      "source_ids": [
+        "volatility_managed_portfolios"
+      ],
+      "paper_titles": [
+        "Volatility managed portfolios"
+      ],
+      "families": [
+        "paper_low_vol_momentum"
+      ],
+      "axes": [
+        "paper_low_volatility"
+      ],
+      "candidate_suffixes": [
+        "VOL_MANAGED_RET26_REALIZED_VOL13_V4"
+      ],
+      "recipe": {
+        "source": "weekly close or weekly returns",
+        "formula": "rolling 13-week std of weekly returns, annualization optional but must be documented",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "low",
+        "calculable_from": "weekly",
+        "note": "volatility_12w_pct exists and can be used to validate scale/shape."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma13w",
+        "close_ema_13w",
+        "close_ema_13w_slope_2w_pct",
+        "close_ema_13w_slope_4w_pct",
+        "close_ema_13w_slope_8w_pct",
+        "close_sma_13w",
+        "close_sma_13w_slope_2w_pct",
+        "close_vs_ema13w_pct",
+        "close_vs_sma13w_pct",
+        "dist_to_low_13w_pct",
+        "ret_12w_pct",
+        "ret_1w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "low",
+      "opens_non_exhausted_family": false,
+      "semantic_exhausted_families": [
+        "paper_low_vol_momentum"
+      ],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "volatility_managed_portfolios",
+          "paper_title": "Volatility managed portfolios",
+          "candidate_suffix": "VOL_MANAGED_RET26_REALIZED_VOL13_V4",
+          "family": "paper_low_vol_momentum",
+          "claim": "26-week momentum with realized-volatility availability may support volatility-managed follow-up experiments.",
+          "paper_idea_hint": [
+            "realized_vol_13w_pct",
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      ]
+    },
+    {
+      "feature": "ret_vs_sector_26w_pct",
+      "priority": "low",
+      "score": 6,
+      "paper_ideas_unlocked": 1,
+      "source_ids": [
+        "sector_industry_relative_momentum"
+      ],
+      "paper_titles": [
+        "Sector and industry relative strength"
+      ],
+      "families": [
+        "paper_sector_momentum"
+      ],
+      "axes": [
+        "paper_sector_relative_strength"
+      ],
+      "candidate_suffixes": [
+        "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+        "SECTOR_REL_STRENGTH_RET26_V4"
+      ],
+      "recipe": {
+        "source": "weekly returns plus sector metadata",
+        "formula": "stock ret_26w_pct minus sector aggregate ret_26w_pct",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "high",
+        "calculable_from": "weekly+metadata",
+        "note": "Requires sector/industry mapping; none is assumed from price columns alone."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma26w",
+        "close_ema_26w",
+        "close_ema_26w_slope_2w_pct",
+        "close_ema_26w_slope_4w_pct",
+        "close_vs_ema26w_pct",
+        "close_vs_sma26w_pct",
+        "close_vs_sma52w_pct",
+        "dist_to_low_26w_pct",
+        "ret_12w_pct",
+        "ret_26w_pct",
+        "ret_2w_pct",
+        "ret_52w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "high",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "sector_industry_relative_momentum",
+          "paper_title": "Sector and industry relative strength",
+          "candidate_suffix": "SECTOR_REL_STRENGTH_RET26_V4",
+          "family": "paper_sector_momentum",
+          "claim": "Ranking by ret_vs_sector_26w_pct may favor stocks outperforming their own sector.",
+          "paper_idea_hint": [
+            "sector_ret_26w_pct",
+            "ret_vs_sector_26w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "sector_industry_relative_momentum",
+          "paper_title": "Sector and industry relative strength",
+          "candidate_suffix": "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+          "family": "paper_sector_momentum",
+          "claim": "Momentum may be more robust when a stock also leads its sector or industry peer group.",
+          "paper_idea_hint": [
+            "sector_ret_26w_pct",
+            "ret_vs_sector_26w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        }
+      ]
+    }
+  ],
+  "next_action": "Implement the highest-priority feature(s) in the feature store or add supported templates that use existing proxy columns; then rerun literature mining before any backtest."
+}
