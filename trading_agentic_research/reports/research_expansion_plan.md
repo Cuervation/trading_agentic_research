@@ -1,23 +1,34 @@
 # Research Expansion Plan
 
-Current result: **executable research work is available; run the autonomous wrapper before expanding capabilities further.**
+Current result: **research is exhausted under the current hypothesis space; do not launch backtests until a new feature/template/family creates executable work.**
 
-- Generated at: `2026-05-20T00:21:52.783149+00:00`
+- Generated at: `2026-05-20T01:26:46.340436+00:00`
 - Parent stays locked: `AUTO_002` / `HYP_AUTO_TIME_SERIES_MOMENTUM_SEED`
-- Recommended mode: `None`
-- Eligible: `True`
-- Executable count: `None`
-- Feature-space stall: `None` (None)
+- Recommended mode: `literature_or_new_family`
+- Eligible: `False`
+- Executable count: `0`
+- Feature-space stall: `True` (feature_space_recent_bad:10_good:0_window:10)
 
-## Current executable work
+## Why no hypotheses are executable
 
-- Selector found executable work: HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1 (paper_volatility_proxy_momentum). Run the autonomous wrapper before doing more expansion work.
+- No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).
+- Selector-equivalent executable_count=0.
+- Top blockers: rejected=130, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.
+- Feature-space stall is active: feature_space_recent_bad:10_good:0_window:10.
+- Literature mining produced no supported executable hypotheses.
+- Feature-space expansion produced no new rows; current combinations are exhausted or duplicate.
 
 ### Blocker counts
 
 | blocker | count |
 |---|---:|
-| - | 0 |
+| `rejected` | 130 |
+| `feature_space_stalled_literature_mode` | 113 |
+| `duplicate_override_signature` | 69 |
+| `consumed` | 19 |
+| `candidate_review_scope:no_active_candidate_under_review` | 12 |
+| `accepted_already` | 8 |
+| `semantic_branch_exhausted` | 5 |
 
 ## Exhausted and cooldown families
 
@@ -32,7 +43,7 @@ Current result: **executable research work is available; run the autonomous wrap
 | `feature_space_composite_exit` | `feature_space_composite_exit/channel_r2/rank_exit` | duplicate_threshold_reached:7 | 7 |
 | `feature_space_composite_exit` | `feature_space_composite_exit/channel_slope_pct/rank_exit` | duplicate_threshold_reached:7 | 7 |
 | `feature_space_composite_exit` | `feature_space_composite_exit/close_sma_50_slope_5d_pct/rank_exit` | duplicate_threshold_reached:2 | 2 |
-| `paper_low_vol_momentum` | `paper_low_vol_momentum/unknown_field/unknown_layer` | duplicate_threshold_reached:3 | 3 |
+| `paper_low_vol_momentum` | `paper_low_vol_momentum/unknown_field/unknown_layer` | duplicate_threshold_reached:4 | 4 |
 | `paper_quality_momentum` | `paper_quality_momentum/unknown_field/unknown_layer` | duplicate_threshold_reached:3 | 4 |
 | `paper_regime_filter` | `paper_regime_filter/unknown_field/rank_market_filter` | duplicate_threshold_reached:2 | 4 |
 | `paper_time_series_momentum` | `paper_time_series_momentum/unknown_field/unknown_layer` | bad_threshold_reached:5 | 5 |
@@ -66,19 +77,19 @@ Paper ideas read: **15**
 
 | source | title | blockers | missing features | generated hypotheses |
 |---|---|---|---|---:|
-| `multi_lookback_momentum_confirmation` | Multi-lookback momentum confirmation | missing_required_features, family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | `ret_13w_pct` | 3 |
-| `trend_following_fast_slow_confirmation` | Trend following fast and slow confirmation | missing_required_features, family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | `ret_13w_pct` | 4 |
-| `drawdown_aware_momentum` | Drawdown-aware momentum | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `downside_vol_13w_pct` | 0 |
-| `idiosyncratic_momentum_residual_returns` | Residual / idiosyncratic momentum | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `residual_ret_26w_pct` | 0 |
-| `market_breadth_momentum_regime` | Market breadth as momentum regime filter | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `market_breadth_above_sma50_pct` | 0 |
 | `sector_industry_relative_momentum` | Sector and industry relative strength | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `ret_vs_sector_26w_pct` | 0 |
-| `time_series_momentum_moskowitz_ooi_pedersen` | Time Series Momentum | missing_required_features, family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | `ret_13w_pct` | 2 |
-| `volatility_managed_portfolios` | Volatility managed portfolios | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `downside_vol_13w_pct` | 0 |
-| `cross_sectional_momentum_jegadeesh_titman` | Cross-sectional momentum | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `ret_13w_pct` | 0 |
-| `downside_volatility_momentum` | Downside-volatility momentum | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `downside_vol_13w_pct` | 0 |
-| `faber_tactical_asset_allocation_regime_filter` | Tactical asset allocation / regime filter | missing_required_features, family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | `downside_vol_13w_pct` | 2 |
-| `low_volatility_momentum_drawdown_control` | Low volatility anomaly and momentum crash control | missing_required_features, family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | `downside_vol_13w_pct` | 3 |
-| `market_state_and_momentum_crashes` | Market state and momentum crash control | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `downside_vol_13w_pct` | 0 |
+| `multi_lookback_momentum_confirmation` | Multi-lookback momentum confirmation | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 3 |
+| `trend_following_fast_slow_confirmation` | Trend following fast and slow confirmation | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 4 |
+| `drawdown_aware_momentum` | Drawdown-aware momentum | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
+| `idiosyncratic_momentum_residual_returns` | Residual / idiosyncratic momentum | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
+| `market_breadth_momentum_regime` | Market breadth as momentum regime filter | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
+| `time_series_momentum_moskowitz_ooi_pedersen` | Time Series Momentum | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 2 |
+| `volatility_managed_portfolios` | Volatility managed portfolios | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
+| `cross_sectional_momentum_jegadeesh_titman` | Cross-sectional momentum | family_cooldown_or_exhausted, missing_feature_task_exists, supported_template_not_materialized | - | 0 |
+| `downside_volatility_momentum` | Downside-volatility momentum | family_cooldown_or_exhausted, missing_feature_task_exists, supported_template_not_materialized | - | 0 |
+| `faber_tactical_asset_allocation_regime_filter` | Tactical asset allocation / regime filter | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 2 |
+| `low_volatility_momentum_drawdown_control` | Low volatility anomaly and momentum crash control | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 4 |
+| `market_state_and_momentum_crashes` | Market state and momentum crash control | family_cooldown_or_exhausted, missing_feature_task_exists, supported_template_not_materialized | - | 0 |
 | `absolute_momentum_dual_momentum` | Absolute momentum and dual momentum | family_cooldown_or_exhausted, supported_template_not_materialized | - | 0 |
 | `quality_momentum_trend_stability` | Quality momentum and trend stability | family_cooldown_or_exhausted, converted_but_currently_not_executable | - | 6 |
 
@@ -86,12 +97,6 @@ Paper ideas read: **15**
 
 | priority | feature | papers unlocked | cost | calculable now | nearby/current columns |
 |---|---|---:|---|:---:|---|
-| high | `ret_13w_pct` | 4 | low | yes | `close_above_sma13w`, `close_ema_13w`, `close_ema_13w_slope_2w_pct`, `close_ema_13w_slope_4w_pct`, `ret_12w_pct` |
-| high | `downside_vol_13w_pct` | 6 | medium | yes | `close_above_sma13w`, `close_ema_13w`, `close_ema_13w_slope_2w_pct`, `close_ema_13w_slope_4w_pct`, `close_vs_ema13w_pct` |
-| high | `max_drawdown_26w_pct` | 1 | low | yes | `close_above_sma26w`, `close_ema_26w`, `close_ema_26w_slope_2w_pct`, `close_ema_26w_slope_4w_pct`, `drawdown_from_high_10_pct` |
-| high | `market_breadth_above_sma50_pct` | 1 | medium | yes | `close_above_sma13w`, `close_above_sma20`, `close_above_sma200`, `close_above_sma26w`, `close_above_sma50` |
-| high | `residual_ret_26w_pct` | 1 | medium | yes | `close_above_sma26w`, `close_ema_26w`, `close_ema_26w_slope_2w_pct`, `close_ema_26w_slope_4w_pct`, `ret_12w_pct` |
-| medium | `realized_vol_13w_pct` | 1 | low | yes | `close_above_sma13w`, `close_ema_13w`, `close_ema_13w_slope_2w_pct`, `close_ema_13w_slope_4w_pct`, `close_ema_13w_slope_8w_pct` |
 | low | `ret_vs_sector_26w_pct` | 1 | high | yes | `close_above_sma26w`, `close_ema_26w`, `close_ema_26w_slope_2w_pct`, `close_ema_26w_slope_4w_pct`, `close_vs_ema26w_pct` |
 
 ## Supported literature templates using existing features
@@ -106,22 +111,6 @@ These are proposals only. They are not written to the hypothesis bank by this pl
 
 | hypothesis | unlocked by | source | priority |
 |---|---|---|---|
-| `HYP_LIT_AUTO_002_FAST_TREND_SMA20_RET13_CONFIRM_V1` | `ret_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_FAST_TREND_SMA20_RET13_CONFIRM_V4` | `ret_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_CROSS_SECTIONAL_MOMENTUM_RET52_RET13_CONFIRM_V4` | `ret_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMATION_RET52_RET13_CONFIRM_V1` | `ret_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_MULTI_LOOKBACK_MOMENTUM_CONFIRMA_RET52_RET13_CONFIRM_V1` | `ret_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_DOWNSIDE_VOLATILITY_MOMENTUM_DOWNSIDE_VOL13_RET26_V4` | `downside_vol_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_DRAWDOWN_AWARE_MOMENTUM_DOWNSIDE_VOL13_RET26_V4` | `downside_vol_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_DOWNSIDE_VOL13_RET26_V4` | `downside_vol_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_MARKET_STATE_AND_MOMENTUM_CRASH__DOWNSIDE_VOL13_RET26_V4` | `downside_vol_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_TACTICAL_ASSET_ALLOCATION_REGIME_DOWNSIDE_VOL13_RET26_V4` | `downside_vol_13w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_DRAWDOWN_AWARE_RET52_MAXDD26_V4` | `max_drawdown_26w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_BREADTH_REGIME_RET52_V4` | `market_breadth_above_sma50_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4` | `market_breadth_above_sma50_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4` | `residual_ret_26w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_RESIDUAL_MOMENTUM_RET26_V4` | `residual_ret_26w_pct` | missing_feature_task | high |
-| `HYP_LIT_AUTO_002_VOL_MANAGED_RET26_REALIZED_VOL13_V4` | `realized_vol_13w_pct` | missing_feature_task | medium |
 | `HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4` | `ret_vs_sector_26w_pct` | missing_feature_task | low |
 | `HYP_LIT_AUTO_002_SECTOR_REL_STRENGTH_RET26_V4` | `ret_vs_sector_26w_pct` | missing_feature_task | low |
 
@@ -145,10 +134,7 @@ These are proposals only. They are not written to the hypothesis bank by this pl
 
 ### High
 
-- Add or intentionally proxy `ret_13w_pct`: unlocks 4 paper idea(s), cost=low, calculable_now=True.
-- Add or intentionally proxy `downside_vol_13w_pct`: unlocks 6 paper idea(s), cost=medium, calculable_now=True.
-- Add or intentionally proxy `max_drawdown_26w_pct`: unlocks 1 paper idea(s), cost=low, calculable_now=True.
-- Add or intentionally proxy `market_breadth_above_sma50_pct`: unlocks 1 paper idea(s), cost=medium, calculable_now=True.
+- Create a genuinely new family/template before backtesting again; current space is exhausted.
 
 ### Medium
 
