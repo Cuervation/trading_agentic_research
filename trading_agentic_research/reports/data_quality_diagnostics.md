@@ -1,7 +1,7 @@
 # Data Quality Diagnostics
 
-Generated at: `2026-05-20T14:37:08.404943+00:00`
-Weekly file: `C:\Pythons\ML-Trading\Momentum\trading_agentic_research\sp500_feature_store_weekly_master_all_260330223625_research_expanded.csv`
+Generated at: `2026-05-20T20:11:27.855310+00:00`
+Weekly file: `C:\Pythons\ML-Trading\Momentum\trading_agentic_research\sp500_feature_store_weekly_master_all_260330223625_research_expanded_research_expanded.csv`
 Rows: **133439**
 SPY rows: **327**
 

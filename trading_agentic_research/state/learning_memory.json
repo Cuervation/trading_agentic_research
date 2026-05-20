@@ -224,6 +224,16 @@
       "rejections": 1,
       "acceptances": 0,
       "promoted_candidates": 0
+    },
+    "paper_sector_relative_momentum": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
+    },
+    "paper_sector_momentum": {
+      "rejections": 1,
+      "acceptances": 0,
+      "promoted_candidates": 0
     }
   },
   "learning_events": [
@@ -2607,6 +2617,30 @@
       "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
       "family": "paper_residual_low_vol_momentum",
       "run_id": "EXP_174",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_175",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+      "family": "paper_sector_relative_momentum",
+      "run_id": "EXP_175",
+      "decision": "rejected",
+      "flags": [
+        "parent_underperformance"
+      ],
+      "written_to_learning_memory": true,
+      "can_promote_baseline": false
+    },
+    {
+      "learning_id": "LEARN_EXP_176",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+      "family": "paper_sector_momentum",
+      "run_id": "EXP_176",
       "decision": "rejected",
       "flags": [
         "parent_underperformance"

@@ -164,3 +164,5 @@
 {"hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1", "family": "paper_breadth_quality_trend", "run_id": "EXP_172", "learning_id": "LEARN_EXP_172", "decision": "rejected", "flags": ["parent_underperformance"]}
 {"hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1", "family": "paper_residual_breadth_momentum", "run_id": "EXP_173", "learning_id": "LEARN_EXP_173", "decision": "rejected", "flags": ["parent_underperformance"]}
 {"hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1", "family": "paper_residual_low_vol_momentum", "run_id": "EXP_174", "learning_id": "LEARN_EXP_174", "decision": "rejected", "flags": ["parent_underperformance"]}
+{"hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1", "family": "paper_sector_relative_momentum", "run_id": "EXP_175", "learning_id": "LEARN_EXP_175", "decision": "rejected", "flags": ["parent_underperformance"]}
+{"hypothesis_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4", "family": "paper_sector_momentum", "run_id": "EXP_176", "learning_id": "LEARN_EXP_176", "decision": "rejected", "flags": ["parent_underperformance"]}

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-20T14:50:07.317505+00:00",
+  "generated_at": "2026-05-20T20:30:57.238792+00:00",
   "task_count": 25,
-  "existing_weekly_feature_count": 194,
+  "existing_weekly_feature_count": 195,
   "existing_weekly_features_sample": [
     "adj_close",
     "atr_14_pct",
@@ -54,36 +54,7 @@
     "close_sma_20w_slope_8w_pct",
     "close_sma_26w"
   ],
-  "features_to_add": [
-    {
-      "feature": "ret_vs_sector_26w_pct",
-      "request_count": 2,
-      "known_recipe": false,
-      "recipe": {
-        "source": "unknown",
-        "formula": "TBD",
-        "required_base_columns": [],
-        "implementation_hint": "Define formula before implementation."
-      },
-      "base_columns_available": [],
-      "base_columns_missing": [],
-      "blocked": false,
-      "examples": [
-        {
-          "source_id": "sector_industry_relative_momentum",
-          "paper_title": "Sector and industry relative strength",
-          "claim": "Ranking by ret_vs_sector_26w_pct may favor stocks outperforming their own sector.",
-          "candidate_suffix": "SECTOR_REL_STRENGTH_RET26_V4"
-        },
-        {
-          "source_id": "sector_industry_relative_momentum",
-          "paper_title": "Sector and industry relative strength",
-          "claim": "Momentum may be more robust when a stock also leads its sector or industry peer group.",
-          "candidate_suffix": "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4"
-        }
-      ]
-    }
-  ],
+  "features_to_add": [],
   "candidate_script": "scripts/generated/feature_engineering_candidate.py",
   "candidate_test": "tests/generated/test_feature_engineering_candidate.py",
   "next_action": "Review generated candidate script, run tests, then regenerate feature store to a NEW output file."

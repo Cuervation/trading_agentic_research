@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-20T16:17:55.708394+00:00",
+  "generated_at": "2026-05-20T20:26:01.967031+00:00",
   "parent": {
     "run_id": "AUTO_002",
     "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
@@ -203,9 +203,22 @@
     "Feature-space expansion produced no new rows; current combinations are exhausted or duplicate."
   ],
   "generation_feedback": {
-    "event_count": 105,
-    "updated_at": "2026-05-20T16:14:49.545332+00:00",
+    "event_count": 128,
+    "updated_at": "2026-05-20T20:24:23.810886+00:00",
     "recent_events": [
+      {
+        "phase": "feature_space_expansion",
+        "generated": 0,
+        "eligible_after_generation": false,
+        "reason": "no_new_feature_space_hypotheses",
+        "warning": null,
+        "missing_feature_tasks_seen": null,
+        "skipped_family_cooldown": null,
+        "skipped_duplicate_signature": null,
+        "rows_written": null,
+        "ideas_seen": null,
+        "supported_seen": null
+      },
       {
         "phase": "candidate_under_review",
         "generated": 0,
@@ -238,12 +251,12 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 2,
+        "missing_feature_tasks_seen": 0,
         "skipped_family_cooldown": 28,
-        "skipped_duplicate_signature": 7,
+        "skipped_duplicate_signature": 8,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 7
+        "supported_seen": 8
       },
       {
         "phase": "paper_searcher",
@@ -264,25 +277,12 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 2,
+        "missing_feature_tasks_seen": 0,
         "skipped_family_cooldown": 28,
-        "skipped_duplicate_signature": 7,
+        "skipped_duplicate_signature": 8,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 7
-      },
-      {
-        "phase": "candidate_under_review",
-        "generated": 0,
-        "eligible_after_generation": true,
-        "reason": "candidate_under_review_already_exhausted",
-        "warning": "candidate_review_generated_zero",
-        "missing_feature_tasks_seen": null,
-        "skipped_family_cooldown": null,
-        "skipped_duplicate_signature": null,
-        "rows_written": null,
-        "ideas_seen": null,
-        "supported_seen": null
+        "supported_seen": 8
       },
       {
         "phase": "candidate_under_review",
@@ -439,10 +439,10 @@
     },
     "totals": {
       "missing_feature_tasks_seen": 186,
-      "skipped_family_cooldown": 560,
-      "skipped_duplicate_signature": 146,
-      "ideas_seen": 953,
-      "supported_seen": 147
+      "skipped_family_cooldown": 784,
+      "skipped_duplicate_signature": 210,
+      "ideas_seen": 1281,
+      "supported_seen": 211
     }
   },
   "families": {
@@ -3063,7 +3063,7 @@
     }
   },
   "missing_feature_priority": {
-    "generated_at": "2026-05-20T16:17:55.636417+00:00",
+    "generated_at": "2026-05-20T20:26:01.920813+00:00",
     "state_dir": "state",
     "reports_dir": "reports",
     "task_count": 25,

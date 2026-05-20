@@ -2,7 +2,7 @@
 
 Actionable backlog for converting paper ideas into real hypotheses. This report is planning-only; it does not mutate feature stores or hypothesis history.
 
-- Generated at: `2026-05-20T16:17:55.636417+00:00`
+- Generated at: `2026-05-20T20:26:01.920813+00:00`
 - Missing-feature tasks read: **25**
 - Distinct missing features: **0**
 

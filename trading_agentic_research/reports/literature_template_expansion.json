@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-20T14:50:07.293696+00:00",
+  "generated_at": "2026-05-20T20:30:57.216214+00:00",
   "mode": "write",
-  "available_feature_count": 194,
+  "available_feature_count": 195,
   "proposals": [],
   "blocked": [
     {
@@ -178,6 +178,29 @@
         "channel_r2",
         "channel_slope_pct",
         "market_breadth_above_sma50_pct",
+        "close"
+      ],
+      "missing_features": [],
+      "mechanism_is_clearly_new": true,
+      "duplicate_override_signature": true,
+      "advisory_cooldown": false,
+      "effective_status": {},
+      "blocked_reasons": [
+        "id_exists",
+        "duplicate_override_signature"
+      ],
+      "would_write": false
+    },
+    {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+      "family": "paper_sector_relative_momentum",
+      "axis": "paper_sector_relative_strength_filter",
+      "source_id": "sector_industry_relative_momentum",
+      "paper_title": "Sector-relative strength momentum",
+      "claim": "Stocks outperforming their own sector on 26-week return may represent idiosyncratic strength rather than sector beta alone.",
+      "features_required": [
+        "ret_vs_sector_26w_pct",
+        "max_drawdown_26w_pct",
         "close"
       ],
       "missing_features": [],

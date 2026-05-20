@@ -11,8 +11,9 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.research.autonomy_handlers import collect_state, classify_blocker, choose_handler, run_handler
+from scripts.research.autonomy_handlers import collect_state, classify_blocker, run_handler
 from scripts.research.autonomy_readiness import validate_autonomy_readiness
+from scripts.research.autonomy_recovery_policy import get_recovery_policy
 
 TERMINAL_STATUSES = {"READY_TO_RUN", "NO_SAFE_ACTION", "MANUAL_REVIEW_REQUIRED", "CANDIDATE_FOUND", "RESEARCH_EXHAUSTED"}
 
@@ -25,14 +26,38 @@ def _material_files_changed(files: list[str] | None) -> bool:
         "configs/generated/",
         "configs/local_data_paths.json",
         "data/",
+        "runs/",
         "scripts/generated/",
     )
-    material_exact = {"state/data_paths_resolved.json"}
+    material_exact = {
+        "state/artifact_hash_index.json",
+        "state/data_paths_resolved.json",
+        "state/semantic_branch_exhaustion.json",
+        "state/strategy_effect_index.json",
+        "state/research_ledger.jsonl",
+    }
     for item in files:
         path = str(item).replace("\\", "/")
         if path in material_exact or path.startswith(material_prefixes):
             return True
     return False
+
+
+def _no_safe_specificity(item: dict[str, Any]) -> int:
+    """Prefer actionable NO_SAFE_ACTION details over a generic final eligibility pass."""
+    score = 0
+    next_action = str(item.get("next_action") or "").lower()
+    nested = item.get("details") if isinstance(item.get("details"), dict) else {}
+    executor = nested.get("executor") if isinstance(nested.get("executor"), dict) else {}
+    if executor.get("blocker_type") or nested.get("blocker_type"):
+        score += 5
+    if any(token in next_action for token in ("new non-duplicate", "source", "feature", "template", "external data")):
+        score += 3
+    if "no eligible hypotheses found" in next_action:
+        score -= 3
+    if item.get("handler") == "hypothesis_eligibility":
+        score -= 1
+    return score
 
 
 def orchestrate(
@@ -46,44 +71,147 @@ def orchestrate(
     max_cycles: int = 5,
 ) -> dict[str, Any]:
     history: list[dict[str, Any]] = []
-    last_signature: tuple[str, str, str] | None = None
+    attempts: dict[tuple[str, str], int] = {}
+    repeated_blockers: dict[tuple[str, str], int] = {}
+    last_item: dict[str, Any] = {}
+    best_no_safe_item: dict[str, Any] = {}
+    last_no_material_blocker: str | None = None
+
     for cycle in range(1, max_cycles + 1):
         state = collect_state(state_dir=state_dir, runs_dir=runs_dir, reports_dir=reports_dir, hypothesis_bank=hypothesis_bank, paper_ideas=paper_ideas)
         classification = classify_blocker(state)
-        handler_name = choose_handler(classification)
-        handler_result = run_handler(handler_name, state, args)
-        validation = validate_autonomy_readiness(
-            state_dir=state_dir,
-            runs_dir=runs_dir,
-            reports_dir=reports_dir,
-            hypothesis_bank=hypothesis_bank,
-            final_eligibility=handler_result.eligibility_after,
-        )
-        item = {
-            "cycle": cycle,
-            "blocker_type": classification.get("blocker_type"),
-            "reason": classification.get("reason"),
-            "handler": handler_name,
-            **handler_result.to_dict(),
-            "validation_ok": validation.get("ok"),
-            "validation_checks": validation.get("checks"),
-        }
-        history.append(item)
-        signature = (str(item.get("blocker_type")), str(item.get("status")), str(item.get("next_action")))
-        if item["status"] in {"READY_TO_RUN", "MANUAL_REVIEW_REQUIRED", "CANDIDATE_FOUND"}:
-            return {"status": item["status"], "handler": handler_name, "history": history, "details": item}
-        if item["status"] == "NO_SAFE_ACTION":
-            material_change = _material_files_changed(item.get("files_changed") or [])
-            has_registered_handler = bool(handler_name and handler_name != "unknown")
-            source_action = "source" in str(item.get("next_action") or "").lower()
-            if cycle < max_cycles and has_registered_handler and (material_change or source_action) and signature != last_signature:
-                last_signature = signature
+        blocker_type = str(classification.get("blocker_type") or "unknown_blocker")
+        policy = get_recovery_policy(blocker_type)
+        handlers = list(policy.get("handlers_ordered") or [])
+        max_attempts = int(policy.get("max_attempts") or 1)
+        material_this_cycle = False
+        ran_handler = False
+        exhausted_handlers: list[str] = []
+
+        if not handlers:
+            handlers = ["hypothesis_eligibility"]
+
+        if (
+            last_no_material_blocker == blocker_type
+            and all(attempts.get((blocker_type, handler), 0) >= 1 for handler in handlers)
+        ):
+            return {
+                "status": "NO_SAFE_ACTION",
+                "handler": (best_no_safe_item or last_item).get("handler") if (best_no_safe_item or last_item) else None,
+                "history": history,
+                "details": {
+                    **(best_no_safe_item or last_item or {}),
+                    "loop_guard": "same_blocker_reobserved_after_all_handlers_without_material_mutation",
+                    "repeat_count": 2,
+                    "terminal_only_if": policy.get("terminal_only_if"),
+                },
+            }
+
+        for handler_name in handlers:
+            key = (blocker_type, handler_name)
+            if attempts.get(key, 0) >= max_attempts:
+                exhausted_handlers.append(handler_name)
                 continue
-            return {"status": item["status"], "handler": handler_name, "history": history, "details": item}
-        if signature == last_signature:
-            return {"status": "NO_SAFE_ACTION", "handler": handler_name, "history": history, "details": {**item, "loop_guard": "same_handler_same_result"}}
-        last_signature = signature
-    return {"status": "NO_SAFE_ACTION", "handler": history[-1]["handler"] if history else None, "history": history, "details": history[-1] if history else {}}
+            attempts[key] = attempts.get(key, 0) + 1
+            ran_handler = True
+
+            state_before = state
+            before_type = blocker_type
+            handler_result = run_handler(handler_name, state_before, args)
+            validation = validate_autonomy_readiness(
+                state_dir=state_dir,
+                runs_dir=runs_dir,
+                reports_dir=reports_dir,
+                hypothesis_bank=hypothesis_bank,
+                final_eligibility=handler_result.eligibility_after,
+            )
+            state_after = collect_state(state_dir=state_dir, runs_dir=runs_dir, reports_dir=reports_dir, hypothesis_bank=hypothesis_bank, paper_ideas=paper_ideas)
+            classification_after = classify_blocker(state_after)
+            after_type = str(classification_after.get("blocker_type") or "unknown_blocker")
+            blocker_changed = after_type != before_type
+            material_change = _material_files_changed(handler_result.files_changed) or blocker_changed
+            material_this_cycle = material_this_cycle or material_change
+
+            item = {
+                "cycle": cycle,
+                "attempt": attempts[key],
+                "blocker_type": blocker_type,
+                "reason": classification.get("reason"),
+                "handler": handler_name,
+                "policy": policy,
+                **handler_result.to_dict(),
+                "material_mutation": material_change,
+                "blocker_changed_to": after_type if blocker_changed else None,
+                "validation_ok": validation.get("ok"),
+                "validation_checks": validation.get("checks"),
+            }
+            history.append(item)
+            last_item = item
+            if item.get("status") == "NO_SAFE_ACTION" and (
+                not best_no_safe_item or _no_safe_specificity(item) >= _no_safe_specificity(best_no_safe_item)
+            ):
+                best_no_safe_item = item
+
+            if item["status"] in {"READY_TO_RUN", "MANUAL_REVIEW_REQUIRED", "CANDIDATE_FOUND"}:
+                return {"status": item["status"], "handler": handler_name, "history": history, "details": item}
+
+            if blocker_changed:
+                # Re-observe before choosing the next policy.  This is what lets a
+                # generic blocker become a specific external-data/governance/etc.
+                break
+
+            state = state_after
+
+        if not ran_handler:
+            return {
+                "status": "NO_SAFE_ACTION",
+                "handler": (best_no_safe_item or last_item).get("handler") if (best_no_safe_item or last_item) else None,
+                "history": history,
+                "details": {
+                    **(best_no_safe_item or last_item or {}),
+                    "loop_guard": "all_policy_handlers_exhausted",
+                    "exhausted_handlers": exhausted_handlers,
+                    "terminal_only_if": policy.get("terminal_only_if"),
+                },
+            }
+
+        next_action = str((last_item or {}).get("next_action") or "")
+        repeat_key = (blocker_type, next_action)
+        repeated_blockers[repeat_key] = repeated_blockers.get(repeat_key, 0) + 1
+        remaining_safe_handlers = any(
+            attempts.get((blocker_type, handler), 0) < max_attempts
+            for handler in handlers
+        )
+
+        if material_this_cycle and cycle < max_cycles:
+            last_no_material_blocker = None
+            continue
+        if not material_this_cycle:
+            last_no_material_blocker = blocker_type
+
+        if not remaining_safe_handlers or repeated_blockers[repeat_key] >= 2:
+            return {
+                "status": "NO_SAFE_ACTION",
+                "handler": (best_no_safe_item or last_item).get("handler") if (best_no_safe_item or last_item) else None,
+                "history": history,
+                "details": {
+                    **(best_no_safe_item or last_item or {}),
+                    "loop_guard": "safe_handlers_exhausted_or_repeated_blocker",
+                    "remaining_safe_handlers": remaining_safe_handlers,
+                    "repeat_count": repeated_blockers[repeat_key],
+                    "terminal_only_if": policy.get("terminal_only_if"),
+                },
+            }
+
+    return {
+        "status": "NO_SAFE_ACTION",
+        "handler": (best_no_safe_item or last_item).get("handler") if (best_no_safe_item or last_item) else None,
+        "history": history,
+        "details": {
+            **(best_no_safe_item or last_item or {}),
+            "loop_guard": "max_cycles_exhausted",
+        },
+    }
 
 
 def parse_args() -> argparse.Namespace:

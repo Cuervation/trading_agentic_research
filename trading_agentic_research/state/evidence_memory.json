@@ -4422,6 +4422,50 @@
         "years_losing_to_parent": 7
       },
       "can_promote_baseline": false
+    },
+    "EXP_175": {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+      "family": "paper_sector_relative_momentum",
+      "learning_id": "LEARN_EXP_175",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 12.75178084158053,
+        "max_drawdown_delta_pct": 8.245231019657588,
+        "months_beating_spy": 43,
+        "months_losing_to_spy": 32,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 31.341170533360962,
+        "parent_cagr_delta_pct": -28.085265,
+        "parent_drawdown_delta_pct": -1.871294,
+        "months_beating_parent": 17,
+        "months_losing_to_parent": 42,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
+    },
+    "EXP_176": {
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+      "family": "paper_sector_momentum",
+      "learning_id": "LEARN_EXP_176",
+      "decision": "rejected",
+      "metrics": {
+        "cagr_delta_pct": 16.38288955134941,
+        "max_drawdown_delta_pct": 10.02715586200679,
+        "months_beating_spy": 43,
+        "months_losing_to_spy": 32,
+        "years_beating_spy": 6,
+        "years_losing_to_spy": 1,
+        "best_year_contribution_pct": 26.309488110512724,
+        "parent_cagr_delta_pct": -24.454157,
+        "parent_drawdown_delta_pct": -0.089369,
+        "months_beating_parent": 18,
+        "months_losing_to_parent": 41,
+        "years_beating_parent": 1,
+        "years_losing_to_parent": 6
+      },
+      "can_promote_baseline": false
     }
   },
   "hypothesis_evidence": {
@@ -5002,6 +5046,12 @@
     ],
     "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1": [
       "EXP_174"
+    ],
+    "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1": [
+      "EXP_175"
+    ],
+    "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4": [
+      "EXP_176"
     ]
   }
 }

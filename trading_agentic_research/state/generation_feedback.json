@@ -9974,7 +9974,3910 @@
         "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
         "paper_ideas": "bibliography/paper_ideas.jsonl"
       }
+    },
+    {
+      "timestamp": "2026-05-20T15:40:57.174707+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": true,
+      "eligible_hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+      "eligible_family": "paper_sector_relative_momentum",
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "selector_found_eligible_hypothesis",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-20T15:39:49.480959+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-20T16:03:34.913955+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-20T16:01:56.333282+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-20T16:05:05.913441+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "ranking_field",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T16:07:21.196967+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T16:07:21.263560+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 15,
+        "online": false,
+        "offline_seed_version": "v4"
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-20T16:09:01.746631+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T16:14:49.545332+00:00",
+      "phase": "feature_space_expansion",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_feature_space_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_feature_space_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "available_feature_count": 195,
+        "available_specs": [
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "available_confirmations": [
+          "close_vs_sma52w_pct",
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct"
+        ],
+        "cooldowned_families": [],
+        "recently_used_features": [
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "generation_layers": [],
+        "skipped": [
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_12_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_14_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_17_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_19_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
+            "layer": "rank_topn"
+          }
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "max_new": 5
+      }
+    },
+    {
+      "timestamp": "2026-05-20T17:53:32.274802+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-20T17:51:47.868617+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-20T17:55:15.920521+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "ranking_field",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T17:56:59.562930+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T17:56:59.595332+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 15,
+        "online": false,
+        "offline_seed_version": "v4"
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-20T17:58:35.002449+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T18:03:21.946726+00:00",
+      "phase": "feature_space_expansion",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_feature_space_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_feature_space_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "available_feature_count": 195,
+        "available_specs": [
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "available_confirmations": [
+          "close_vs_sma52w_pct",
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct"
+        ],
+        "cooldowned_families": [],
+        "recently_used_features": [
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "generation_layers": [],
+        "skipped": [
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_12_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_14_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_17_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_19_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
+            "layer": "rank_topn"
+          }
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "max_new": 5
+      }
+    },
+    {
+      "timestamp": "2026-05-20T18:32:38.154307+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-20T18:30:59.326721+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-20T18:33:55.836114+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "ranking_field",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T18:35:23.805346+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T18:35:23.839589+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 15,
+        "online": false,
+        "offline_seed_version": "v4"
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-20T18:37:13.815898+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T18:42:41.977964+00:00",
+      "phase": "feature_space_expansion",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_feature_space_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_feature_space_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "available_feature_count": 195,
+        "available_specs": [
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "available_confirmations": [
+          "close_vs_sma52w_pct",
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct"
+        ],
+        "cooldowned_families": [],
+        "recently_used_features": [
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "generation_layers": [],
+        "skipped": [
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_12_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_14_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_17_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_19_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
+            "layer": "rank_topn"
+          }
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "max_new": 5
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:02:43.977854+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-20T20:00:59.875057+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-20T20:04:32.504338+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "ranking_field",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:06:14.590848+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:06:14.652084+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 15,
+        "online": false,
+        "offline_seed_version": "v4"
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:07:56.170615+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:13:12.606018+00:00",
+      "phase": "candidate_under_review",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "candidate_under_review_already_exhausted",
+      "before_reason": null,
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "candidate_under_review_already_exhausted",
+        "candidate_run_id": "EXP_054"
+      },
+      "context": {
+        "candidate_under_review": {
+          "status": "review_exhausted",
+          "reason": "no_selector_eligible_candidate_review_hypotheses",
+          "candidate_run_id": "EXP_054",
+          "strategy_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "strategy_config_path": "configs/generated/HYP_REVIEW_EXP_044_TOPN_7_V1.json",
+          "official_parent_run_id": "AUTO_002",
+          "candidate_review_learning": {
+            "reset": false,
+            "reason": "same_candidate",
+            "candidate_run_id": "EXP_054"
+          },
+          "updated_at": "2026-05-20T20:11:28.034524+00:00",
+          "review_exhausted_at": "2026-05-18T18:48:47.538209+00:00",
+          "blocked_hypotheses": [
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_6_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+              "axis": "top_n",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TOPN_10_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_16_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_18_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+              "axis": "exit",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_EXIT_22_V1",
+                "family": "candidate_under_review_exit_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 0,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            },
+            {
+              "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+              "axis": "trailing",
+              "reason": "selector_memory_rejected",
+              "score": {
+                "hypothesis_id": "HYP_REVIEW_EXP_054_TRAILING_18_V1",
+                "family": "candidate_under_review_drawdown_refinement",
+                "in_cooldown": true,
+                "prior_rejections": 3,
+                "prior_acceptances": 2,
+                "can_generate_candidate": false,
+                "can_promote_baseline": false,
+                "decision": "rejected",
+                "reason": "repeated_failed_hypotheses"
+              }
+            }
+          ],
+          "selector_counts": {
+            "rows": 6,
+            "selectable": 0,
+            "blocked": 6,
+            "rejected": 68,
+            "accepted": 22,
+            "consumed": 73,
+            "repeat_blocked": 2
+          }
+        }
+      },
+      "warning": "candidate_review_generated_zero"
+    },
+    {
+      "timestamp": "2026-05-20T20:15:07.602841+00:00",
+      "phase": "value_factory",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_value_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_value_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "skipped_exhausted_axes": [
+          "concentration",
+          "exit_threshold",
+          "ranking_field",
+          "risk_management"
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:16:42.993622+00:00",
+      "phase": "literature_miner",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:16:43.071034+00:00",
+      "phase": "paper_searcher",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": null,
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "output": "bibliography/paper_ideas.jsonl",
+        "rows_written": 0,
+        "candidate_rows": 15,
+        "online": false,
+        "offline_seed_version": "v4"
+      },
+      "context": {
+        "paper_ideas": "bibliography/paper_ideas.jsonl",
+        "online": false
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:18:19.924414+00:00",
+      "phase": "literature_after_paper_search",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_supported_literature_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_supported_literature_hypotheses",
+        "hypotheses": [],
+        "missing_feature_tasks": 0,
+        "missing_feature_tasks_seen": 0,
+        "missing_feature_axes_seen": 0,
+        "available_feature_count": 195,
+        "cooldowned_families": [
+          "can_slim",
+          "candidate_under_review_drawdown_refinement",
+          "candidate_under_review_exit_refinement",
+          "cross_sectional_momentum",
+          "darvas_box",
+          "feature_space_composite_concentration",
+          "feature_space_composite_confirmation",
+          "feature_space_composite_exit",
+          "feature_space_regime",
+          "low_volatility",
+          "mixed",
+          "momentum",
+          "paper_low_vol_momentum",
+          "paper_quality_momentum",
+          "paper_regime_filter",
+          "paper_time_series_momentum",
+          "paper_trend_following",
+          "quality",
+          "quality_momentum",
+          "regime",
+          "risk_control_refinement",
+          "risk_management",
+          "tactical_asset_allocation",
+          "time_series_momentum_refinement",
+          "trend_following"
+        ],
+        "skipped_existing": 5,
+        "skipped_duplicate_signature": 8,
+        "skipped_family_cooldown": 28,
+        "ideas_seen": 41,
+        "supported_seen": 8,
+        "paper_ideas_path": "bibliography/paper_ideas.jsonl",
+        "parent_run_id": "AUTO_002",
+        "version": "v4"
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "paper_ideas": "bibliography/paper_ideas.jsonl"
+      }
+    },
+    {
+      "timestamp": "2026-05-20T20:24:23.810886+00:00",
+      "phase": "feature_space_expansion",
+      "generated": 0,
+      "eligible_after_generation": false,
+      "eligible_hypothesis_id": null,
+      "eligible_family": null,
+      "reason": "no_new_feature_space_hypotheses",
+      "before_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "after_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+      "generation_result": {
+        "generated": 0,
+        "reason": "no_new_feature_space_hypotheses",
+        "hypotheses": [],
+        "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "parent_run_id": "AUTO_002",
+        "available_feature_count": 195,
+        "available_specs": [
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "available_confirmations": [
+          "close_vs_sma52w_pct",
+          "ret_13w_pct",
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct"
+        ],
+        "cooldowned_families": [],
+        "recently_used_features": [
+          "channel_r2",
+          "channel_slope_pct",
+          "close_sma_50_slope_5d_pct",
+          "close_vs_sma20w_pct",
+          "distance_to_channel_lower_pct",
+          "ret_26w_pct",
+          "ret_52w_pct"
+        ],
+        "generation_layers": [],
+        "skipped": [
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
+            "layer": "pure_ranking"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "semantic_branch_exhausted",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation",
+            "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+            "semantic_reason": "bad_threshold_reached:4"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA52_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_RET13_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_R2_035_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA50_SLOPE_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_CONF_SMA20_POS_V1",
+            "layer": "rank_confirmation"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "channel_slope_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_sma_50_slope_5d_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "close_vs_sma20w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "distance_to_channel_lower_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_26w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_52w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_RELAXED_V1",
+            "layer": "rank_market_filter"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_12_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_14_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_17_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "ret_13w_pct",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_19_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+            "layer": "rank_topn"
+          },
+          {
+            "field": "channel_r2",
+            "reason": "id_exists",
+            "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
+            "layer": "rank_topn"
+          }
+        ]
+      },
+      "context": {
+        "parent_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
+        "max_new": 5
+      }
     }
   ],
-  "updated_at": "2026-05-20T14:45:14.532455+00:00"
+  "updated_at": "2026-05-20T20:24:23.810886+00:00"
 }

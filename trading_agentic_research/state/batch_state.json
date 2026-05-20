@@ -2,20 +2,28 @@
   "version": 1,
   "status": "stopped",
   "max_runs": 120,
-  "completed": 1,
-  "consecutive_rejections": 1,
+  "completed": 2,
+  "consecutive_rejections": 2,
   "history": [
     {
       "iteration": 1,
-      "run_id": "EXP_174",
-      "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
-      "family": "paper_residual_low_vol_momentum",
+      "run_id": "EXP_175",
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+      "family": "paper_sector_relative_momentum",
+      "decision": "rejected",
+      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+    },
+    {
+      "iteration": 2,
+      "run_id": "EXP_176",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+      "family": "paper_sector_momentum",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     }
   ],
-  "last_updated_at": "2026-05-20T14:11:37.439445+00:00",
-  "stop_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
+  "last_updated_at": "2026-05-20T15:51:24.681909+00:00",
+  "stop_reason": "consecutive_rejections:2:feature_space_exhausted_needs_literature_mode",
   "effective_parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
   "recovery_cycles": 0,
   "recovery_history": [],

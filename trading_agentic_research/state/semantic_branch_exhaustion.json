@@ -6,7 +6,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.320241+00:00",
+          "created_at": "2026-05-20T20:35:36.970161+00:00",
           "run_id": "AUTO_001",
           "hypothesis_id": "HYP_AUTO_CROSS_SECTIONAL_MOMENTUM_SEED",
           "family": "momentum",
@@ -18,7 +18,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.323764+00:00",
+          "created_at": "2026-05-20T20:35:36.973868+00:00",
           "run_id": "AUTO_005",
           "hypothesis_id": "HYP_AUTO_CARHART_MOMENTUM_SEED",
           "family": "momentum",
@@ -30,7 +30,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.371472+00:00",
+          "created_at": "2026-05-20T20:35:37.017152+00:00",
           "run_id": "AUTO_061",
           "hypothesis_id": "HYP_AUTO_CR_10_54097_P2FHXD83",
           "family": "momentum",
@@ -42,7 +42,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.385111+00:00",
+          "created_at": "2026-05-20T20:35:37.024429+00:00",
           "run_id": "AUTO_069",
           "hypothesis_id": "HYP_AUTO_LOCAL_RET_12W_ACCELERATION_SEED",
           "family": "momentum",
@@ -54,7 +54,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.392216+00:00",
+          "created_at": "2026-05-20T20:35:37.029134+00:00",
           "run_id": "AUTO_075",
           "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
           "family": "momentum",
@@ -66,7 +66,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.396207+00:00",
+          "created_at": "2026-05-20T20:35:37.030910+00:00",
           "run_id": "AUTO_077",
           "hypothesis_id": "HYP_AUTO_LOCAL_RSI14_STRENGTH_SEED",
           "family": "momentum",
@@ -78,7 +78,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.411955+00:00",
+          "created_at": "2026-05-20T20:35:37.037854+00:00",
           "run_id": "AUTO_085",
           "hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
           "family": "momentum",
@@ -90,7 +90,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.413487+00:00",
+          "created_at": "2026-05-20T20:35:37.037854+00:00",
           "run_id": "AUTO_086",
           "hypothesis_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
           "family": "momentum",
@@ -105,7 +105,7 @@
       "duplicate_count": 2,
       "bad_count": 6,
       "good_count": 2,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "has_good_recent_event"
     },
     "trend_following/unknown_field/unknown_layer": {
@@ -113,7 +113,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.320241+00:00",
+          "created_at": "2026-05-20T20:35:36.970161+00:00",
           "run_id": "AUTO_002",
           "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
           "family": "trend_following",
@@ -125,7 +125,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.363872+00:00",
+          "created_at": "2026-05-20T20:35:37.013764+00:00",
           "run_id": "AUTO_057",
           "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
           "family": "trend_following",
@@ -137,7 +137,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.378660+00:00",
+          "created_at": "2026-05-20T20:35:37.021310+00:00",
           "run_id": "AUTO_065",
           "hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
           "family": "trend_following",
@@ -149,7 +149,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.386635+00:00",
+          "created_at": "2026-05-20T20:35:37.026000+00:00",
           "run_id": "AUTO_071",
           "hypothesis_id": "HYP_AUTO_LOCAL_ROC_26W_PERSISTENCE_SEED",
           "family": "trend_following",
@@ -161,7 +161,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.387744+00:00",
+          "created_at": "2026-05-20T20:35:37.027034+00:00",
           "run_id": "AUTO_072",
           "hypothesis_id": "HYP_AUTO_LOCAL_CLOSE_SMA13_TREND_SEED",
           "family": "trend_following",
@@ -173,7 +173,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.457557+00:00",
+          "created_at": "2026-05-20T20:35:37.066267+00:00",
           "run_id": "EXP_042",
           "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_18_V1",
           "family": "trend_following",
@@ -185,7 +185,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.468210+00:00",
+          "created_at": "2026-05-20T20:35:37.071425+00:00",
           "run_id": "EXP_047",
           "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_22_V1",
           "family": "trend_following",
@@ -197,7 +197,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.472880+00:00",
+          "created_at": "2026-05-20T20:35:37.072473+00:00",
           "run_id": "EXP_049",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1",
           "family": "trend_following",
@@ -209,7 +209,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.583778+00:00",
+          "created_at": "2026-05-20T20:35:37.128724+00:00",
           "run_id": "EXP_099",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_26_V1",
           "family": "trend_following",
@@ -221,7 +221,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.620889+00:00",
+          "created_at": "2026-05-20T20:35:37.140586+00:00",
           "run_id": "EXP_109",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_30_V1",
           "family": "trend_following",
@@ -236,7 +236,7 @@
       "duplicate_count": 1,
       "bad_count": 8,
       "good_count": 2,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "has_good_recent_event"
     },
     "can_slim/unknown_field/unknown_layer": {
@@ -244,7 +244,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.321710+00:00",
+          "created_at": "2026-05-20T20:35:36.971189+00:00",
           "run_id": "AUTO_003",
           "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
           "family": "can_slim",
@@ -256,7 +256,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.365388+00:00",
+          "created_at": "2026-05-20T20:35:37.014295+00:00",
           "run_id": "AUTO_058",
           "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
           "family": "can_slim",
@@ -268,7 +268,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.417557+00:00",
+          "created_at": "2026-05-20T20:35:37.040749+00:00",
           "run_id": "AUTO_088",
           "hypothesis_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
           "family": "can_slim",
@@ -283,7 +283,7 @@
       "duplicate_count": 1,
       "bad_count": 2,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "has_good_recent_event"
     },
     "value/unknown_field/unknown_layer": {
@@ -291,7 +291,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.323244+00:00",
+          "created_at": "2026-05-20T20:35:36.972733+00:00",
           "run_id": "AUTO_004",
           "hypothesis_id": "HYP_AUTO_FAMA_FRENCH_FACTORS_SEED",
           "family": "value",
@@ -303,7 +303,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.416034+00:00",
+          "created_at": "2026-05-20T20:35:37.039633+00:00",
           "run_id": "AUTO_087",
           "hypothesis_id": "HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED",
           "family": "value",
@@ -318,7 +318,7 @@
       "duplicate_count": 1,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "below_threshold"
     },
     "quality/unknown_field/unknown_layer": {
@@ -326,7 +326,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.324770+00:00",
+          "created_at": "2026-05-20T20:35:36.975524+00:00",
           "run_id": "AUTO_006",
           "hypothesis_id": "HYP_AUTO_QUALITY_INVESTING_SEED",
           "family": "quality",
@@ -338,7 +338,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.376278+00:00",
+          "created_at": "2026-05-20T20:35:37.020779+00:00",
           "run_id": "AUTO_064",
           "hypothesis_id": "HYP_AUTO_CR_10_14264_223019",
           "family": "quality",
@@ -350,7 +350,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.382057+00:00",
+          "created_at": "2026-05-20T20:35:37.022868+00:00",
           "run_id": "AUTO_067",
           "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
           "family": "quality",
@@ -362,7 +362,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.391168+00:00",
+          "created_at": "2026-05-20T20:35:37.028598+00:00",
           "run_id": "AUTO_074",
           "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_R2_QUALITY_SEED",
           "family": "quality",
@@ -374,7 +374,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.398268+00:00",
+          "created_at": "2026-05-20T20:35:37.030910+00:00",
           "run_id": "AUTO_078",
           "hypothesis_id": "HYP_AUTO_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
           "family": "quality",
@@ -386,7 +386,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.399783+00:00",
+          "created_at": "2026-05-20T20:35:37.032032+00:00",
           "run_id": "AUTO_079",
           "hypothesis_id": "HYP_AUTO_LOCAL_OBV_ACCUMULATION_SEED",
           "family": "quality",
@@ -401,7 +401,7 @@
       "duplicate_count": 1,
       "bad_count": 5,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "has_good_recent_event"
     },
     "low_volatility/unknown_field/unknown_layer": {
@@ -409,7 +409,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.324770+00:00",
+          "created_at": "2026-05-20T20:35:36.976142+00:00",
           "run_id": "AUTO_007",
           "hypothesis_id": "HYP_AUTO_LOW_VOL_BAB_SEED",
           "family": "low_volatility",
@@ -421,7 +421,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.373526+00:00",
+          "created_at": "2026-05-20T20:35:37.018178+00:00",
           "run_id": "AUTO_062",
           "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
           "family": "low_volatility",
@@ -433,7 +433,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.380856+00:00",
+          "created_at": "2026-05-20T20:35:37.022348+00:00",
           "run_id": "AUTO_066",
           "hypothesis_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
           "family": "low_volatility",
@@ -445,7 +445,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.394491+00:00",
+          "created_at": "2026-05-20T20:35:37.029134+00:00",
           "run_id": "AUTO_076",
           "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
           "family": "low_volatility",
@@ -457,7 +457,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.401814+00:00",
+          "created_at": "2026-05-20T20:35:37.032654+00:00",
           "run_id": "AUTO_080",
           "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
           "family": "low_volatility",
@@ -469,7 +469,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.403329+00:00",
+          "created_at": "2026-05-20T20:35:37.034303+00:00",
           "run_id": "AUTO_081",
           "hypothesis_id": "HYP_AUTO_LOCAL_ATR4_LOW_NOISE_SEED",
           "family": "low_volatility",
@@ -481,7 +481,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.405506+00:00",
+          "created_at": "2026-05-20T20:35:37.034303+00:00",
           "run_id": "AUTO_082",
           "hypothesis_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
           "family": "low_volatility",
@@ -496,7 +496,7 @@
       "duplicate_count": 2,
       "bad_count": 6,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "has_good_recent_event"
     },
     "sector_momentum/unknown_field/unknown_layer": {
@@ -504,7 +504,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.325816+00:00",
+          "created_at": "2026-05-20T20:35:36.977300+00:00",
           "run_id": "AUTO_008",
           "hypothesis_id": "HYP_AUTO_SECTOR_MOMENTUM_SEED",
           "family": "sector_momentum",
@@ -516,7 +516,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.385622+00:00",
+          "created_at": "2026-05-20T20:35:37.025464+00:00",
           "run_id": "AUTO_070",
           "hypothesis_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
           "family": "sector_momentum",
@@ -531,7 +531,7 @@
       "duplicate_count": 1,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "below_threshold"
     },
     "regime/unknown_field/unknown_layer": {
@@ -539,7 +539,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.325816+00:00",
+          "created_at": "2026-05-20T20:35:36.977920+00:00",
           "run_id": "AUTO_009",
           "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
           "family": "regime",
@@ -551,7 +551,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.326846+00:00",
+          "created_at": "2026-05-20T20:35:36.979045+00:00",
           "run_id": "AUTO_010",
           "hypothesis_id": "HYP_AUTO_ADAPTIVE_MARKETS_REGIME_SEED",
           "family": "regime",
@@ -563,7 +563,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.367919+00:00",
+          "created_at": "2026-05-20T20:35:37.015407+00:00",
           "run_id": "AUTO_059",
           "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
           "family": "regime",
@@ -575,7 +575,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.375201+00:00",
+          "created_at": "2026-05-20T20:35:37.019735+00:00",
           "run_id": "AUTO_063",
           "hypothesis_id": "HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525",
           "family": "regime",
@@ -587,7 +587,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.384097+00:00",
+          "created_at": "2026-05-20T20:35:37.023892+00:00",
           "run_id": "AUTO_068",
           "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
           "family": "regime",
@@ -599,7 +599,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.388754+00:00",
+          "created_at": "2026-05-20T20:35:37.027568+00:00",
           "run_id": "AUTO_073",
           "hypothesis_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
           "family": "regime",
@@ -614,7 +614,7 @@
       "duplicate_count": 2,
       "bad_count": 5,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246186+00:00",
       "reason": "has_good_recent_event"
     },
     "mixed/unknown_field/unknown_layer": {
@@ -622,7 +622,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.352297+00:00",
+          "created_at": "2026-05-20T20:35:37.005692+00:00",
           "run_id": "AUTO_047",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -634,7 +634,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.353324+00:00",
+          "created_at": "2026-05-20T20:35:37.005692+00:00",
           "run_id": "AUTO_048",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -646,7 +646,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.353852+00:00",
+          "created_at": "2026-05-20T20:35:37.006810+00:00",
           "run_id": "AUTO_049",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -658,7 +658,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.353852+00:00",
+          "created_at": "2026-05-20T20:35:37.007431+00:00",
           "run_id": "AUTO_050",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -670,7 +670,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.356113+00:00",
+          "created_at": "2026-05-20T20:35:37.008543+00:00",
           "run_id": "AUTO_051",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -682,7 +682,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.357648+00:00",
+          "created_at": "2026-05-20T20:35:37.009167+00:00",
           "run_id": "AUTO_052",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -694,7 +694,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.358799+00:00",
+          "created_at": "2026-05-20T20:35:37.010284+00:00",
           "run_id": "AUTO_053",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -706,7 +706,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.359814+00:00",
+          "created_at": "2026-05-20T20:35:37.010909+00:00",
           "run_id": "AUTO_054",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -718,7 +718,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.361332+00:00",
+          "created_at": "2026-05-20T20:35:37.010909+00:00",
           "run_id": "AUTO_055",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -730,7 +730,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.361841+00:00",
+          "created_at": "2026-05-20T20:35:37.012647+00:00",
           "run_id": "AUTO_056",
           "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
           "family": "mixed",
@@ -742,7 +742,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.369949+00:00",
+          "created_at": "2026-05-20T20:35:37.016043+00:00",
           "run_id": "AUTO_060",
           "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4554268",
           "family": "mixed",
@@ -754,7 +754,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.419595+00:00",
+          "created_at": "2026-05-20T20:35:37.041415+00:00",
           "run_id": "AUTO_089",
           "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
           "family": "mixed",
@@ -766,7 +766,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.421634+00:00",
+          "created_at": "2026-05-20T20:35:37.042532+00:00",
           "run_id": "AUTO_090",
           "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
           "family": "mixed",
@@ -778,7 +778,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.423158+00:00",
+          "created_at": "2026-05-20T20:35:37.043147+00:00",
           "run_id": "AUTO_091",
           "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
           "family": "mixed",
@@ -790,7 +790,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.424487+00:00",
+          "created_at": "2026-05-20T20:35:37.044265+00:00",
           "run_id": "AUTO_092",
           "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
           "family": "mixed",
@@ -802,7 +802,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.427066+00:00",
+          "created_at": "2026-05-20T20:35:37.045995+00:00",
           "run_id": "AUTO_094",
           "hypothesis_id": "HYP_MIX_LOCAL_TREND_13_52_BLEND__LOCAL_CHANNEL_QUALITY_TREND_V1",
           "family": "mixed",
@@ -817,7 +817,7 @@
       "duplicate_count": 12,
       "bad_count": 14,
       "good_count": 2,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "regime/unknown_field/rank_market_filter": {
@@ -825,7 +825,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.407609+00:00",
+          "created_at": "2026-05-20T20:35:37.036066+00:00",
           "run_id": "AUTO_083",
           "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
           "family": "regime",
@@ -837,7 +837,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.409649+00:00",
+          "created_at": "2026-05-20T20:35:37.037224+00:00",
           "run_id": "AUTO_084",
           "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
           "family": "regime",
@@ -852,7 +852,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "mixed/unknown_field/rank_market_filter": {
@@ -860,7 +860,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.425497+00:00",
+          "created_at": "2026-05-20T20:35:37.044884+00:00",
           "run_id": "AUTO_093",
           "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
           "family": "mixed",
@@ -875,7 +875,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "cross_sectional_momentum/unknown_field/unknown_layer": {
@@ -883,7 +883,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.453674+00:00",
+          "created_at": "2026-05-20T20:35:37.064705+00:00",
           "run_id": "EXP_040",
           "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1",
           "family": "cross_sectional_momentum",
@@ -895,7 +895,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.456035+00:00",
+          "created_at": "2026-05-20T20:35:37.065239+00:00",
           "run_id": "EXP_041",
           "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_15_V1",
           "family": "cross_sectional_momentum",
@@ -907,7 +907,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.593929+00:00",
+          "created_at": "2026-05-20T20:35:37.130279+00:00",
           "run_id": "EXP_100",
           "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1",
           "family": "cross_sectional_momentum",
@@ -919,7 +919,7 @@
           "duplicate_of_run_id": "EXP_054"
         },
         {
-          "created_at": "2026-05-20T14:55:25.737830+00:00",
+          "created_at": "2026-05-20T20:35:37.223694+00:00",
           "run_id": "EXP_159",
           "hypothesis_id": "HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_15_V1",
           "family": "cross_sectional_momentum",
@@ -931,7 +931,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.739383+00:00",
+          "created_at": "2026-05-20T20:35:37.225410+00:00",
           "run_id": "EXP_160",
           "hypothesis_id": "HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_25_V1",
           "family": "cross_sectional_momentum",
@@ -946,7 +946,7 @@
       "duplicate_count": 3,
       "bad_count": 5,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:3"
     },
     "trend_following/unknown_field/rank_topn": {
@@ -954,7 +954,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.459082+00:00",
+          "created_at": "2026-05-20T20:35:37.066800+00:00",
           "run_id": "EXP_043",
           "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
           "family": "trend_following",
@@ -966,7 +966,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.459591+00:00",
+          "created_at": "2026-05-20T20:35:37.067830+00:00",
           "run_id": "EXP_044",
           "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
           "family": "trend_following",
@@ -978,7 +978,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.469333+00:00",
+          "created_at": "2026-05-20T20:35:37.071952+00:00",
           "run_id": "EXP_048",
           "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
           "family": "trend_following",
@@ -990,7 +990,7 @@
           "duplicate_of_run_id": "EXP_043"
         },
         {
-          "created_at": "2026-05-20T14:55:25.579715+00:00",
+          "created_at": "2026-05-20T20:35:37.127169+00:00",
           "run_id": "EXP_097",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_11_V1",
           "family": "trend_following",
@@ -1002,7 +1002,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.615808+00:00",
+          "created_at": "2026-05-20T20:35:37.139032+00:00",
           "run_id": "EXP_107",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_13_V1",
           "family": "trend_following",
@@ -1014,7 +1014,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.645492+00:00",
+          "created_at": "2026-05-20T20:35:37.149885+00:00",
           "run_id": "EXP_116",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_17_V1",
           "family": "trend_following",
@@ -1026,7 +1026,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.658002+00:00",
+          "created_at": "2026-05-20T20:35:37.159174+00:00",
           "run_id": "EXP_122",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_19_V1",
           "family": "trend_following",
@@ -1038,7 +1038,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.671823+00:00",
+          "created_at": "2026-05-20T20:35:37.166430+00:00",
           "run_id": "EXP_128",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_21_V1",
           "family": "trend_following",
@@ -1053,7 +1053,7 @@
       "duplicate_count": 1,
       "bad_count": 6,
       "good_count": 2,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "trend_following/unknown_field/rank_exit": {
@@ -1061,7 +1061,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.464155+00:00",
+          "created_at": "2026-05-20T20:35:37.068844+00:00",
           "run_id": "EXP_045",
           "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_18_V1",
           "family": "trend_following",
@@ -1073,7 +1073,7 @@
           "duplicate_of_run_id": "AUTO_057"
         },
         {
-          "created_at": "2026-05-20T14:55:25.466692+00:00",
+          "created_at": "2026-05-20T20:35:37.070398+00:00",
           "run_id": "EXP_046",
           "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_24_V1",
           "family": "trend_following",
@@ -1088,7 +1088,7 @@
       "duplicate_count": 2,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:2"
     },
     "candidate_under_review_drawdown_refinement/unknown_field/unknown_layer": {
@@ -1096,7 +1096,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.474399+00:00",
+          "created_at": "2026-05-20T20:35:37.074029+00:00",
           "run_id": "EXP_050",
           "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_18_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1108,7 +1108,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.476932+00:00",
+          "created_at": "2026-05-20T20:35:37.075586+00:00",
           "run_id": "EXP_052",
           "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_22_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1123,7 +1123,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "candidate_under_review_drawdown_refinement/unknown_field/rank_exit": {
@@ -1131,7 +1131,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.475415+00:00",
+          "created_at": "2026-05-20T20:35:37.074029+00:00",
           "run_id": "EXP_051",
           "hypothesis_id": "HYP_REVIEW_EXP_044_EXIT_16_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1143,7 +1143,7 @@
           "duplicate_of_run_id": "EXP_044"
         },
         {
-          "created_at": "2026-05-20T14:55:25.495793+00:00",
+          "created_at": "2026-05-20T20:35:37.086965+00:00",
           "run_id": "EXP_064",
           "hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_16_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1155,7 +1155,7 @@
           "duplicate_of_run_id": "EXP_052"
         },
         {
-          "created_at": "2026-05-20T14:55:25.496807+00:00",
+          "created_at": "2026-05-20T20:35:37.087992+00:00",
           "run_id": "EXP_065",
           "hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_18_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1170,7 +1170,7 @@
       "duplicate_count": 3,
       "bad_count": 3,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:3"
     },
     "candidate_under_review_drawdown_refinement/unknown_field/rank_topn": {
@@ -1178,7 +1178,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.478451+00:00",
+          "created_at": "2026-05-20T20:35:37.075586+00:00",
           "run_id": "EXP_053",
           "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_5_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1190,7 +1190,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.479971+00:00",
+          "created_at": "2026-05-20T20:35:37.076614+00:00",
           "run_id": "EXP_054",
           "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1202,7 +1202,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.480980+00:00",
+          "created_at": "2026-05-20T20:35:37.077141+00:00",
           "run_id": "EXP_055",
           "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_8_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1214,7 +1214,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.481489+00:00",
+          "created_at": "2026-05-20T20:35:37.078165+00:00",
           "run_id": "EXP_056",
           "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_9_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1226,7 +1226,7 @@
           "duplicate_of_run_id": "AUTO_002"
         },
         {
-          "created_at": "2026-05-20T14:55:25.483008+00:00",
+          "created_at": "2026-05-20T20:35:37.078694+00:00",
           "run_id": "EXP_057",
           "hypothesis_id": "HYP_REVIEW_EXP_052_TOPN_5_V1",
           "family": "candidate_under_review_drawdown_refinement",
@@ -1241,7 +1241,7 @@
       "duplicate_count": 1,
       "bad_count": 2,
       "good_count": 3,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "paper_regime_filter/unknown_field/rank_market_filter": {
@@ -1249,7 +1249,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.484018+00:00",
+          "created_at": "2026-05-20T20:35:37.080233+00:00",
           "run_id": "EXP_058",
           "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_RELAXED_V1",
           "family": "paper_regime_filter",
@@ -1261,7 +1261,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.531481+00:00",
+          "created_at": "2026-05-20T20:35:37.100691+00:00",
           "run_id": "EXP_078",
           "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1",
           "family": "paper_regime_filter",
@@ -1273,7 +1273,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.546879+00:00",
+          "created_at": "2026-05-20T20:35:37.110523+00:00",
           "run_id": "EXP_086",
           "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1",
           "family": "paper_regime_filter",
@@ -1285,7 +1285,7 @@
           "duplicate_of_run_id": "EXP_058"
         },
         {
-          "created_at": "2026-05-20T14:55:25.596971+00:00",
+          "created_at": "2026-05-20T20:35:37.131306+00:00",
           "run_id": "EXP_101",
           "hypothesis_id": "HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1",
           "family": "paper_regime_filter",
@@ -1300,7 +1300,7 @@
       "duplicate_count": 2,
       "bad_count": 4,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:2"
     },
     "paper_low_vol_momentum/unknown_field/unknown_layer": {
@@ -1308,7 +1308,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.484018+00:00",
+          "created_at": "2026-05-20T20:35:37.081787+00:00",
           "run_id": "EXP_059",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMENTUM_CRASH_CO_VOL_FILTER_V1",
           "family": "paper_low_vol_momentum",
@@ -1320,7 +1320,7 @@
           "duplicate_of_run_id": "EXP_014"
         },
         {
-          "created_at": "2026-05-20T14:55:25.537068+00:00",
+          "created_at": "2026-05-20T20:35:37.104294+00:00",
           "run_id": "EXP_081",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V2",
           "family": "paper_low_vol_momentum",
@@ -1332,7 +1332,7 @@
           "duplicate_of_run_id": "EXP_014"
         },
         {
-          "created_at": "2026-05-20T14:55:25.741952+00:00",
+          "created_at": "2026-05-20T20:35:37.226034+00:00",
           "run_id": "EXP_161",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4",
           "family": "paper_low_vol_momentum",
@@ -1344,7 +1344,7 @@
           "duplicate_of_run_id": "EXP_059"
         },
         {
-          "created_at": "2026-05-20T14:55:25.758487+00:00",
+          "created_at": "2026-05-20T20:35:37.241022+00:00",
           "run_id": "EXP_171",
           "hypothesis_id": "HYP_LIT_AUTO_002_VOL_MANAGED_RET26_REALIZED_VOL13_V4",
           "family": "paper_low_vol_momentum",
@@ -1359,7 +1359,7 @@
       "duplicate_count": 4,
       "bad_count": 4,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:4"
     },
     "paper_quality_momentum/unknown_field/unknown_layer": {
@@ -1367,7 +1367,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.485136+00:00",
+          "created_at": "2026-05-20T20:35:37.082314+00:00",
           "run_id": "EXP_060",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_V1",
           "family": "paper_quality_momentum",
@@ -1379,7 +1379,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.533515+00:00",
+          "created_at": "2026-05-20T20:35:37.101706+00:00",
           "run_id": "EXP_079",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1",
           "family": "paper_quality_momentum",
@@ -1391,7 +1391,7 @@
           "duplicate_of_run_id": "EXP_073"
         },
         {
-          "created_at": "2026-05-20T14:55:25.548927+00:00",
+          "created_at": "2026-05-20T20:35:37.111558+00:00",
           "run_id": "EXP_087",
           "hypothesis_id": "HYP_LIT_AUTO_002_QUALITY_SLOPE_R2_CONFIRM_V1",
           "family": "paper_quality_momentum",
@@ -1403,7 +1403,7 @@
           "duplicate_of_run_id": "EXP_077"
         },
         {
-          "created_at": "2026-05-20T14:55:25.630245+00:00",
+          "created_at": "2026-05-20T20:35:37.146793+00:00",
           "run_id": "EXP_113",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_SLOPE_CONFIRM_V1",
           "family": "paper_quality_momentum",
@@ -1418,7 +1418,7 @@
       "duplicate_count": 3,
       "bad_count": 4,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:3"
     },
     "paper_time_series_momentum/unknown_field/unknown_layer": {
@@ -1426,7 +1426,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.490724+00:00",
+          "created_at": "2026-05-20T20:35:37.083869+00:00",
           "run_id": "EXP_061",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1",
           "family": "paper_time_series_momentum",
@@ -1438,7 +1438,7 @@
           "duplicate_of_run_id": "EXP_014"
         },
         {
-          "created_at": "2026-05-20T14:55:25.494273+00:00",
+          "created_at": "2026-05-20T20:35:37.086438+00:00",
           "run_id": "EXP_063",
           "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_CONFIRM_V1",
           "family": "paper_time_series_momentum",
@@ -1450,7 +1450,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.563171+00:00",
+          "created_at": "2026-05-20T20:35:37.116767+00:00",
           "run_id": "EXP_091",
           "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_SMA20_CONFIRM_V1",
           "family": "paper_time_series_momentum",
@@ -1462,7 +1462,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.603670+00:00",
+          "created_at": "2026-05-20T20:35:37.133863+00:00",
           "run_id": "EXP_104",
           "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET52_CHANNEL_QUALITY_V1",
           "family": "paper_time_series_momentum",
@@ -1474,7 +1474,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.667758+00:00",
+          "created_at": "2026-05-20T20:35:37.163852+00:00",
           "run_id": "EXP_126",
           "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET52_SMA20_CONFIRM_V1",
           "family": "paper_time_series_momentum",
@@ -1489,7 +1489,7 @@
       "duplicate_count": 1,
       "bad_count": 5,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "bad_threshold_reached:5"
     },
     "paper_trend_following/unknown_field/unknown_layer": {
@@ -1497,7 +1497,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.492751+00:00",
+          "created_at": "2026-05-20T20:35:37.084883+00:00",
           "run_id": "EXP_062",
           "hypothesis_id": "HYP_LIT_AUTO_002_SMA20_TREND_FAST_CONFIRM_V1",
           "family": "paper_trend_following",
@@ -1509,7 +1509,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.535038+00:00",
+          "created_at": "2026-05-20T20:35:37.103263+00:00",
           "run_id": "EXP_080",
           "hypothesis_id": "HYP_LIT_AUTO_002_SMA20_FAST_SMA52_CONFIRM_V1",
           "family": "paper_trend_following",
@@ -1524,7 +1524,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_quality_momentum/channel_slope_pct/pure_ranking": {
@@ -1532,7 +1532,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.498327+00:00",
+          "created_at": "2026-05-20T20:35:37.088519+00:00",
           "run_id": "EXP_066",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
           "family": "feature_space_quality_momentum",
@@ -1547,7 +1547,7 @@
       "duplicate_count": 0,
       "bad_count": 0,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "feature_space_trend_following/close_sma_50_slope_5d_pct/pure_ranking": {
@@ -1555,7 +1555,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.499633+00:00",
+          "created_at": "2026-05-20T20:35:37.089545+00:00",
           "run_id": "EXP_067",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
           "family": "feature_space_trend_following",
@@ -1570,7 +1570,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_pullback/distance_to_channel_lower_pct/pure_ranking": {
@@ -1578,7 +1578,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.500643+00:00",
+          "created_at": "2026-05-20T20:35:37.090845+00:00",
           "run_id": "EXP_068",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
           "family": "feature_space_pullback",
@@ -1593,7 +1593,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_quality_momentum/channel_r2/pure_ranking": {
@@ -1601,7 +1601,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.507045+00:00",
+          "created_at": "2026-05-20T20:35:37.091877+00:00",
           "run_id": "EXP_069",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
           "family": "feature_space_quality_momentum",
@@ -1616,7 +1616,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_momentum/ret_26w_pct/pure_ranking": {
@@ -1624,7 +1624,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.510628+00:00",
+          "created_at": "2026-05-20T20:35:37.092404+00:00",
           "run_id": "EXP_070",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
           "family": "feature_space_momentum",
@@ -1639,7 +1639,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_trend_following/close_vs_sma20w_pct/pure_ranking": {
@@ -1647,7 +1647,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.512149+00:00",
+          "created_at": "2026-05-20T20:35:37.093430+00:00",
           "run_id": "EXP_071",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
           "family": "feature_space_trend_following",
@@ -1662,7 +1662,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_momentum/ret_52w_pct/pure_ranking": {
@@ -1670,7 +1670,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.515707+00:00",
+          "created_at": "2026-05-20T20:35:37.093959+00:00",
           "run_id": "EXP_072",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
           "family": "feature_space_momentum",
@@ -1685,7 +1685,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_composite_confirmation/channel_r2/rank_confirmation": {
@@ -1693,7 +1693,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.519256+00:00",
+          "created_at": "2026-05-20T20:35:37.094986+00:00",
           "run_id": "EXP_073",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1705,7 +1705,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.526392+00:00",
+          "created_at": "2026-05-20T20:35:37.096038+00:00",
           "run_id": "EXP_074",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1717,7 +1717,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.526903+00:00",
+          "created_at": "2026-05-20T20:35:37.097598+00:00",
           "run_id": "EXP_075",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1729,7 +1729,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.528432+00:00",
+          "created_at": "2026-05-20T20:35:37.097598+00:00",
           "run_id": "EXP_076",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1744,7 +1744,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 2,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "feature_space_composite_confirmation/channel_slope_pct/rank_confirmation": {
@@ -1752,7 +1752,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.529957+00:00",
+          "created_at": "2026-05-20T20:35:37.099138+00:00",
           "run_id": "EXP_077",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
           "family": "feature_space_composite_confirmation",
@@ -1764,7 +1764,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.577676+00:00",
+          "created_at": "2026-05-20T20:35:37.125103+00:00",
           "run_id": "EXP_096",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1776,7 +1776,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.606726+00:00",
+          "created_at": "2026-05-20T20:35:37.137476+00:00",
           "run_id": "EXP_106",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1788,7 +1788,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.640761+00:00",
+          "created_at": "2026-05-20T20:35:37.146793+00:00",
           "run_id": "EXP_114",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -1803,7 +1803,7 @@
       "duplicate_count": 0,
       "bad_count": 3,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "feature_space_regime/channel_r2/rank_market_filter": {
@@ -1811,7 +1811,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.541673+00:00",
+          "created_at": "2026-05-20T20:35:37.105320+00:00",
           "run_id": "EXP_082",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -1823,7 +1823,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.543832+00:00",
+          "created_at": "2026-05-20T20:35:37.107401+00:00",
           "run_id": "EXP_084",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
           "family": "feature_space_regime",
@@ -1838,7 +1838,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_regime/channel_slope_pct/rank_market_filter": {
@@ -1846,7 +1846,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.542687+00:00",
+          "created_at": "2026-05-20T20:35:37.105846+00:00",
           "run_id": "EXP_083",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -1858,7 +1858,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.545356+00:00",
+          "created_at": "2026-05-20T20:35:37.108430+00:00",
           "run_id": "EXP_085",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
           "family": "feature_space_regime",
@@ -1873,7 +1873,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "feature_space_composite_concentration/channel_r2/rank_topn": {
@@ -1881,7 +1881,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.554010+00:00",
+          "created_at": "2026-05-20T20:35:37.112087+00:00",
           "run_id": "EXP_088",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
           "family": "feature_space_composite_concentration",
@@ -1893,7 +1893,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.560118+00:00",
+          "created_at": "2026-05-20T20:35:37.113645+00:00",
           "run_id": "EXP_089",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
           "family": "feature_space_composite_concentration",
@@ -1905,7 +1905,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.561646+00:00",
+          "created_at": "2026-05-20T20:35:37.115201+00:00",
           "run_id": "EXP_090",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
           "family": "feature_space_composite_concentration",
@@ -1917,7 +1917,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.599097+00:00",
+          "created_at": "2026-05-20T20:35:37.132331+00:00",
           "run_id": "EXP_102",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
           "family": "feature_space_composite_concentration",
@@ -1929,7 +1929,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.623137+00:00",
+          "created_at": "2026-05-20T20:35:37.142636+00:00",
           "run_id": "EXP_110",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
           "family": "feature_space_composite_concentration",
@@ -1941,7 +1941,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.651590+00:00",
+          "created_at": "2026-05-20T20:35:37.155026+00:00",
           "run_id": "EXP_119",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
           "family": "feature_space_composite_concentration",
@@ -1953,7 +1953,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.665732+00:00",
+          "created_at": "2026-05-20T20:35:37.163325+00:00",
           "run_id": "EXP_125",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
           "family": "feature_space_composite_concentration",
@@ -1965,7 +1965,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.680938+00:00",
+          "created_at": "2026-05-20T20:35:37.170021+00:00",
           "run_id": "EXP_131",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
           "family": "feature_space_composite_concentration",
@@ -1980,7 +1980,7 @@
       "duplicate_count": 0,
       "bad_count": 7,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "feature_space_composite_exit/channel_r2/rank_exit": {
@@ -1988,7 +1988,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.565210+00:00",
+          "created_at": "2026-05-20T20:35:37.119401+00:00",
           "run_id": "EXP_092",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
           "family": "feature_space_composite_exit",
@@ -2000,7 +2000,7 @@
           "duplicate_of_run_id": "EXP_060"
         },
         {
-          "created_at": "2026-05-20T14:55:25.567579+00:00",
+          "created_at": "2026-05-20T20:35:37.120952+00:00",
           "run_id": "EXP_093",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
           "family": "feature_space_composite_exit",
@@ -2012,7 +2012,7 @@
           "duplicate_of_run_id": "EXP_060"
         },
         {
-          "created_at": "2026-05-20T14:55:25.569108+00:00",
+          "created_at": "2026-05-20T20:35:37.122514+00:00",
           "run_id": "EXP_094",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
           "family": "feature_space_composite_exit",
@@ -2024,7 +2024,7 @@
           "duplicate_of_run_id": "EXP_060"
         },
         {
-          "created_at": "2026-05-20T14:55:25.601640+00:00",
+          "created_at": "2026-05-20T20:35:37.133353+00:00",
           "run_id": "EXP_103",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
           "family": "feature_space_composite_exit",
@@ -2036,7 +2036,7 @@
           "duplicate_of_run_id": "EXP_060"
         },
         {
-          "created_at": "2026-05-20T14:55:25.625162+00:00",
+          "created_at": "2026-05-20T20:35:37.144171+00:00",
           "run_id": "EXP_111",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1",
           "family": "feature_space_composite_exit",
@@ -2048,7 +2048,7 @@
           "duplicate_of_run_id": "EXP_060"
         },
         {
-          "created_at": "2026-05-20T14:55:25.648031+00:00",
+          "created_at": "2026-05-20T20:35:37.153478+00:00",
           "run_id": "EXP_118",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1",
           "family": "feature_space_composite_exit",
@@ -2060,7 +2060,7 @@
           "duplicate_of_run_id": "EXP_060"
         },
         {
-          "created_at": "2026-05-20T14:55:25.662692+00:00",
+          "created_at": "2026-05-20T20:35:37.162297+00:00",
           "run_id": "EXP_124",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_28_V1",
           "family": "feature_space_composite_exit",
@@ -2075,7 +2075,7 @@
       "duplicate_count": 7,
       "bad_count": 7,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:7"
     },
     "paper_trend_following/v2/pure_ranking": {
@@ -2083,7 +2083,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.573536+00:00",
+          "created_at": "2026-05-20T20:35:37.123543+00:00",
           "run_id": "EXP_095",
           "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
           "family": "paper_trend_following",
@@ -2098,7 +2098,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_regime/close_sma_50_slope_5d_pct/rank_market_filter": {
@@ -2106,7 +2106,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.581744+00:00",
+          "created_at": "2026-05-20T20:35:37.128196+00:00",
           "run_id": "EXP_098",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -2118,7 +2118,7 @@
           "duplicate_of_run_id": "EXP_067"
         },
         {
-          "created_at": "2026-05-20T14:55:25.696217+00:00",
+          "created_at": "2026-05-20T20:35:37.176770+00:00",
           "run_id": "EXP_136",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
           "family": "feature_space_regime",
@@ -2133,7 +2133,7 @@
       "duplicate_count": 1,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_quality_momentum/v2/pure_ranking": {
@@ -2141,7 +2141,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.605198+00:00",
+          "created_at": "2026-05-20T20:35:37.135939+00:00",
           "run_id": "EXP_105",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_RANK_V2",
           "family": "paper_quality_momentum",
@@ -2156,7 +2156,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.763043+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_regime/close_vs_sma20w_pct/rank_market_filter": {
@@ -2164,7 +2164,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.618862+00:00",
+          "created_at": "2026-05-20T20:35:37.140058+00:00",
           "run_id": "EXP_108",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -2176,7 +2176,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.708128+00:00",
+          "created_at": "2026-05-20T20:35:37.184025+00:00",
           "run_id": "EXP_142",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
           "family": "feature_space_regime",
@@ -2191,7 +2191,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_time_series_momentum/v2/pure_ranking": {
@@ -2199,7 +2199,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.627193+00:00",
+          "created_at": "2026-05-20T20:35:37.145712+00:00",
           "run_id": "EXP_112",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2",
           "family": "paper_time_series_momentum",
@@ -2211,7 +2211,7 @@
           "duplicate_of_run_id": "EXP_014"
         },
         {
-          "created_at": "2026-05-20T14:55:25.653762+00:00",
+          "created_at": "2026-05-20T20:35:37.156581+00:00",
           "run_id": "EXP_120",
           "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_RANK_V2",
           "family": "paper_time_series_momentum",
@@ -2226,7 +2226,7 @@
       "duplicate_count": 2,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:2"
     },
     "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation": {
@@ -2234,7 +2234,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.643327+00:00",
+          "created_at": "2026-05-20T20:35:37.148329+00:00",
           "run_id": "EXP_115",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1",
           "family": "feature_space_composite_confirmation",
@@ -2246,7 +2246,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.655953+00:00",
+          "created_at": "2026-05-20T20:35:37.157637+00:00",
           "run_id": "EXP_121",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -2258,7 +2258,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.669791+00:00",
+          "created_at": "2026-05-20T20:35:37.165403+00:00",
           "run_id": "EXP_127",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -2270,7 +2270,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.686546+00:00",
+          "created_at": "2026-05-20T20:35:37.172629+00:00",
           "run_id": "EXP_133",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -2285,7 +2285,7 @@
       "duplicate_count": 0,
       "bad_count": 4,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "bad_threshold_reached:4"
     },
     "feature_space_regime/distance_to_channel_lower_pct/rank_market_filter": {
@@ -2293,7 +2293,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.646505+00:00",
+          "created_at": "2026-05-20T20:35:37.150913+00:00",
           "run_id": "EXP_117",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -2305,7 +2305,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.717763+00:00",
+          "created_at": "2026-05-20T20:35:37.195903+00:00",
           "run_id": "EXP_147",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1",
           "family": "feature_space_regime",
@@ -2320,7 +2320,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_regime/ret_26w_pct/rank_market_filter": {
@@ -2328,7 +2328,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.660548+00:00",
+          "created_at": "2026-05-20T20:35:37.160202+00:00",
           "run_id": "EXP_123",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -2340,7 +2340,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.731798+00:00",
+          "created_at": "2026-05-20T20:35:37.210759+00:00",
           "run_id": "EXP_155",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
           "family": "feature_space_regime",
@@ -2355,7 +2355,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_regime/ret_52w_pct/rank_market_filter": {
@@ -2363,7 +2363,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.675137+00:00",
+          "created_at": "2026-05-20T20:35:37.166957+00:00",
           "run_id": "EXP_129",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
           "family": "feature_space_regime",
@@ -2378,7 +2378,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_composite_exit/channel_slope_pct/rank_exit": {
@@ -2386,7 +2386,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.677390+00:00",
+          "created_at": "2026-05-20T20:35:37.167992+00:00",
           "run_id": "EXP_130",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_14_V1",
           "family": "feature_space_composite_exit",
@@ -2398,7 +2398,7 @@
           "duplicate_of_run_id": "EXP_066"
         },
         {
-          "created_at": "2026-05-20T14:55:25.698756+00:00",
+          "created_at": "2026-05-20T20:35:37.178320+00:00",
           "run_id": "EXP_137",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_17_V1",
           "family": "feature_space_composite_exit",
@@ -2410,7 +2410,7 @@
           "duplicate_of_run_id": "EXP_066"
         },
         {
-          "created_at": "2026-05-20T14:55:25.709651+00:00",
+          "created_at": "2026-05-20T20:35:37.186069+00:00",
           "run_id": "EXP_143",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_18_V1",
           "family": "feature_space_composite_exit",
@@ -2422,7 +2422,7 @@
           "duplicate_of_run_id": "EXP_066"
         },
         {
-          "created_at": "2026-05-20T14:55:25.719831+00:00",
+          "created_at": "2026-05-20T20:35:37.197459+00:00",
           "run_id": "EXP_148",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
           "family": "feature_space_composite_exit",
@@ -2434,7 +2434,7 @@
           "duplicate_of_run_id": "EXP_066"
         },
         {
-          "created_at": "2026-05-20T14:55:25.721383+00:00",
+          "created_at": "2026-05-20T20:35:37.199024+00:00",
           "run_id": "EXP_149",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
           "family": "feature_space_composite_exit",
@@ -2446,7 +2446,7 @@
           "duplicate_of_run_id": "EXP_066"
         },
         {
-          "created_at": "2026-05-20T14:55:25.723979+00:00",
+          "created_at": "2026-05-20T20:35:37.200573+00:00",
           "run_id": "EXP_150",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
           "family": "feature_space_composite_exit",
@@ -2458,7 +2458,7 @@
           "duplicate_of_run_id": "EXP_066"
         },
         {
-          "created_at": "2026-05-20T14:55:25.727661+00:00",
+          "created_at": "2026-05-20T20:35:37.203135+00:00",
           "run_id": "EXP_151",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
           "family": "feature_space_composite_exit",
@@ -2473,7 +2473,7 @@
       "duplicate_count": 7,
       "bad_count": 7,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:7"
     },
     "feature_space_composite_concentration/channel_slope_pct/rank_topn": {
@@ -2481,7 +2481,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.685017+00:00",
+          "created_at": "2026-05-20T20:35:37.171573+00:00",
           "run_id": "EXP_132",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1",
           "family": "feature_space_composite_concentration",
@@ -2493,7 +2493,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.694692+00:00",
+          "created_at": "2026-05-20T20:35:37.175743+00:00",
           "run_id": "EXP_135",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_12_V1",
           "family": "feature_space_composite_concentration",
@@ -2505,7 +2505,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.703839+00:00",
+          "created_at": "2026-05-20T20:35:37.181950+00:00",
           "run_id": "EXP_140",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_14_V1",
           "family": "feature_space_composite_concentration",
@@ -2517,7 +2517,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.706073+00:00",
+          "created_at": "2026-05-20T20:35:37.183504+00:00",
           "run_id": "EXP_141",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_17_V1",
           "family": "feature_space_composite_concentration",
@@ -2529,7 +2529,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.712689+00:00",
+          "created_at": "2026-05-20T20:35:37.190715+00:00",
           "run_id": "EXP_145",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_19_V1",
           "family": "feature_space_composite_concentration",
@@ -2541,7 +2541,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.730780+00:00",
+          "created_at": "2026-05-20T20:35:37.209016+00:00",
           "run_id": "EXP_154",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_5_V1",
           "family": "feature_space_composite_concentration",
@@ -2556,7 +2556,7 @@
       "duplicate_count": 0,
       "bad_count": 5,
       "good_count": 1,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "has_good_recent_event"
     },
     "trend_following/close_vs_sma20w_pct/pure_ranking": {
@@ -2564,7 +2564,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.689608+00:00",
+          "created_at": "2026-05-20T20:35:37.174187+00:00",
           "run_id": "EXP_134",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
           "family": "trend_following",
@@ -2579,7 +2579,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation": {
@@ -2587,7 +2587,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.700788+00:00",
+          "created_at": "2026-05-20T20:35:37.178847+00:00",
           "run_id": "EXP_138",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
           "family": "feature_space_composite_confirmation",
@@ -2599,7 +2599,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.711170+00:00",
+          "created_at": "2026-05-20T20:35:37.188132+00:00",
           "run_id": "EXP_144",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -2611,7 +2611,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.729223+00:00",
+          "created_at": "2026-05-20T20:35:37.207449+00:00",
           "run_id": "EXP_153",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA50_SLOPE_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -2623,7 +2623,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.734642+00:00",
+          "created_at": "2026-05-20T20:35:37.219153+00:00",
           "run_id": "EXP_157",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
           "family": "feature_space_composite_confirmation",
@@ -2638,7 +2638,7 @@
       "duplicate_count": 1,
       "bad_count": 4,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "bad_threshold_reached:4"
     },
     "trend_following/ret_26w_pct/pure_ranking": {
@@ -2646,7 +2646,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.702312+00:00",
+          "created_at": "2026-05-20T20:35:37.180409+00:00",
           "run_id": "EXP_139",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1",
           "family": "trend_following",
@@ -2661,7 +2661,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "time_series_momentum_refinement/ret_52w_pct/pure_ranking": {
@@ -2669,7 +2669,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.714718+00:00",
+          "created_at": "2026-05-20T20:35:37.192804+00:00",
           "run_id": "EXP_146",
           "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_52W_PCT_V1",
           "family": "time_series_momentum_refinement",
@@ -2684,7 +2684,7 @@
       "duplicate_count": 1,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "feature_space_composite_exit/close_sma_50_slope_5d_pct/rank_exit": {
@@ -2692,7 +2692,7 @@
       "status": "exhausted",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.728689+00:00",
+          "created_at": "2026-05-20T20:35:37.205348+00:00",
           "run_id": "EXP_152",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_14_V1",
           "family": "feature_space_composite_exit",
@@ -2704,7 +2704,7 @@
           "duplicate_of_run_id": "EXP_067"
         },
         {
-          "created_at": "2026-05-20T14:55:25.733075+00:00",
+          "created_at": "2026-05-20T20:35:37.215122+00:00",
           "run_id": "EXP_156",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
           "family": "feature_space_composite_exit",
@@ -2719,7 +2719,7 @@
       "duplicate_count": 2,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "duplicate_threshold_reached:2"
     },
     "feature_space_composite_confirmation/distance_to_channel_lower_pct/rank_confirmation": {
@@ -2727,7 +2727,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.735658+00:00",
+          "created_at": "2026-05-20T20:35:37.221942+00:00",
           "run_id": "EXP_158",
           "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
           "family": "feature_space_composite_confirmation",
@@ -2742,7 +2742,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_quality_pullback_momentum/unknown_field/unknown_layer": {
@@ -2750,7 +2750,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.743497+00:00",
+          "created_at": "2026-05-20T20:35:37.227146+00:00",
           "run_id": "EXP_162",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1",
           "family": "paper_quality_pullback_momentum",
@@ -2765,7 +2765,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_drawdown_proxy_momentum/unknown_field/unknown_layer": {
@@ -2773,7 +2773,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.745036+00:00",
+          "created_at": "2026-05-20T20:35:37.227766+00:00",
           "run_id": "EXP_163",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_DRAWDOWN26_PROXY_V1",
           "family": "paper_drawdown_proxy_momentum",
@@ -2788,7 +2788,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_near_horizon_confirmation/unknown_field/unknown_layer": {
@@ -2796,7 +2796,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.746065+00:00",
+          "created_at": "2026-05-20T20:35:37.229497+00:00",
           "run_id": "EXP_164",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1",
           "family": "paper_near_horizon_confirmation",
@@ -2811,7 +2811,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_regime_slope_filter/unknown_field/rank_market_filter": {
@@ -2819,7 +2819,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.747291+00:00",
+          "created_at": "2026-05-20T20:35:37.230612+00:00",
           "run_id": "EXP_165",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
           "family": "paper_regime_slope_filter",
@@ -2834,7 +2834,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_volatility_proxy_momentum/unknown_field/unknown_layer": {
@@ -2842,7 +2842,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.749331+00:00",
+          "created_at": "2026-05-20T20:35:37.232267+00:00",
           "run_id": "EXP_166",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1",
           "family": "paper_volatility_proxy_momentum",
@@ -2857,7 +2857,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_downside_risk_momentum/unknown_field/unknown_layer": {
@@ -2865,7 +2865,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.750345+00:00",
+          "created_at": "2026-05-20T20:35:37.232891+00:00",
           "run_id": "EXP_167",
           "hypothesis_id": "HYP_LIT_AUTO_002_DRAWDOWN_AWARE_RET52_MAXDD26_V4",
           "family": "paper_downside_risk_momentum",
@@ -2877,7 +2877,7 @@
           "duplicate_of_run_id": null
         },
         {
-          "created_at": "2026-05-20T14:55:25.750858+00:00",
+          "created_at": "2026-05-20T20:35:37.234032+00:00",
           "run_id": "EXP_168",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_DOWNSIDE_VOL13_RET26_V4",
           "family": "paper_downside_risk_momentum",
@@ -2892,7 +2892,7 @@
       "duplicate_count": 0,
       "bad_count": 2,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_breadth_regime/unknown_field/unknown_layer": {
@@ -2900,7 +2900,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.752898+00:00",
+          "created_at": "2026-05-20T20:35:37.237530+00:00",
           "run_id": "EXP_169",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4",
           "family": "paper_breadth_regime",
@@ -2915,7 +2915,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_residual_momentum/unknown_field/unknown_layer": {
@@ -2923,7 +2923,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.754418+00:00",
+          "created_at": "2026-05-20T20:35:37.239282+00:00",
           "run_id": "EXP_170",
           "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4",
           "family": "paper_residual_momentum",
@@ -2938,7 +2938,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_breadth_quality_trend/unknown_field/unknown_layer": {
@@ -2946,7 +2946,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.759500+00:00",
+          "created_at": "2026-05-20T20:35:37.241645+00:00",
           "run_id": "EXP_172",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_BREADTH_TREND_QUALITY_V1",
           "family": "paper_breadth_quality_trend",
@@ -2961,7 +2961,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_residual_breadth_momentum/unknown_field/unknown_layer": {
@@ -2969,7 +2969,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.761956+00:00",
+          "created_at": "2026-05-20T20:35:37.243376+00:00",
           "run_id": "EXP_173",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1",
           "family": "paper_residual_breadth_momentum",
@@ -2984,7 +2984,7 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     },
     "paper_residual_low_vol_momentum/unknown_field/unknown_layer": {
@@ -2992,7 +2992,7 @@
       "status": "active",
       "events": [
         {
-          "created_at": "2026-05-20T14:55:25.763043+00:00",
+          "created_at": "2026-05-20T20:35:37.244487+00:00",
           "run_id": "EXP_174",
           "hypothesis_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1",
           "family": "paper_residual_low_vol_momentum",
@@ -3007,9 +3007,55 @@
       "duplicate_count": 0,
       "bad_count": 1,
       "good_count": 0,
-      "last_updated_at": "2026-05-20T14:55:25.764060+00:00",
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_sector_relative_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_sector_relative_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T20:35:37.245110+00:00",
+          "run_id": "EXP_175",
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+          "family": "paper_sector_relative_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_sector_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_sector_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T20:35:37.246186+00:00",
+          "run_id": "EXP_176",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+          "family": "paper_sector_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T20:35:37.246843+00:00",
       "reason": "below_threshold"
     }
   },
-  "updated_at": "2026-05-20T14:55:25.765075+00:00"
+  "updated_at": "2026-05-20T20:35:37.248560+00:00"
 }
