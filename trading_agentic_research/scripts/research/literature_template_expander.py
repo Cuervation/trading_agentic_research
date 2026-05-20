@@ -280,6 +280,29 @@ def _base_templates(parent_run_id: str) -> list[dict[str, Any]]:
             },
             "mechanism_is_clearly_new": True,
         },
+        {
+            "hypothesis_id": f"{prefix}_SECTOR_REL26_LOWDD_V1",
+            "family": "paper_sector_relative_momentum",
+            "axis": "paper_sector_relative_strength_filter",
+            "source_id": "sector_industry_relative_momentum",
+            "paper_title": "Sector-relative strength momentum",
+            "claim": "Stocks outperforming their own sector on 26-week return may represent idiosyncratic strength rather than sector beta alone.",
+            "mechanism": "Sector-relative return subtracts the contemporaneous sector median return by date, then filters recent drawdown to avoid fragile sector leaders.",
+            "features_required": ["ret_vs_sector_26w_pct", "max_drawdown_26w_pct", "close"],
+            "falsification_rule": "Reject if sector-relative strength does not improve yearly robustness or drawdown versus AUTO_002.",
+            "overrides": {
+                "ranking": {"field": "ret_vs_sector_26w_pct", "order": "desc"},
+                "entry_rule": {"type": "top_n", "top_n": 10, "by": "ret_vs_sector_26w_pct"},
+                "risk_filters": {
+                    "require_non_null_fields": ["ret_vs_sector_26w_pct", "max_drawdown_26w_pct", "close"],
+                    "conditions": [_condition("max_drawdown_26w_pct", ">", -24.0)],
+                },
+                "changed_parameters": ["ranking.field", "entry_rule.by", "entry_rule.top_n", "risk_filters.conditions"],
+                "expected_effect": "Test stock-specific sector leadership after acquiring validated sector metadata.",
+                "autonomy_reason": "literature_template_expander_v3_external_sector_metadata",
+            },
+            "mechanism_is_clearly_new": True,
+        },
     ]
 
 

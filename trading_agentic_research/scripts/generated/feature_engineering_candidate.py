@@ -1,6 +1,7 @@
 """Generated candidate feature engineering script. Writes a new output CSV."""
 from __future__ import annotations
 import argparse
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
@@ -10,7 +11,30 @@ def read_feature_csv(path: str) -> pd.DataFrame:
     return pd.read_csv(path, sep=None, engine="python", encoding="utf-8-sig")
 
 
-def add_supported_features(df: pd.DataFrame) -> pd.DataFrame:
+def normalize_ticker(symbol) -> str:
+    return str(symbol).strip().upper().replace("/", "-").replace(" ", "").replace(".", "-")
+
+
+def read_sector_metadata(path: str | None) -> pd.DataFrame:
+    if not path:
+        path = "data/sp500_sector_metadata.csv"
+    p = Path(path)
+    if not p.exists():
+        return pd.DataFrame(columns=["ticker", "sector", "industry"])
+    meta = pd.read_csv(p, sep=None, engine="python", encoding="utf-8-sig")
+    required = {"ticker", "sector"}.difference(meta.columns)
+    if required:
+        raise ValueError(f"Sector metadata missing columns: {sorted(required)}")
+    out = meta.copy()
+    out["_ticker_norm"] = out["ticker"].map(normalize_ticker)
+    out["sector"] = out["sector"].astype(str).str.strip()
+    if "industry" not in out.columns:
+        out["industry"] = ""
+    out = out[(out["_ticker_norm"] != "") & (out["sector"] != "")]
+    return out.drop_duplicates("_ticker_norm", keep="first")[["_ticker_norm", "sector", "industry"]]
+
+
+def add_supported_features(df: pd.DataFrame, sector_metadata_path: str | None = None) -> pd.DataFrame:
     date_col = "date" if "date" in df.columns else "signal_date" if "signal_date" in df.columns else None
     missing = {"ticker", "close"}.difference(df.columns)
     if date_col is None:
@@ -25,6 +49,14 @@ def add_supported_features(df: pd.DataFrame) -> pd.DataFrame:
         out["ret_13w_pct"] = g["close"].pct_change(13) * 100
     if "ret_26w_pct" not in out.columns:
         out["ret_26w_pct"] = g["close"].pct_change(26) * 100
+    if "ret_vs_sector_26w_pct" not in out.columns and "ret_26w_pct" in out.columns:
+        meta = read_sector_metadata(sector_metadata_path)
+        if not meta.empty:
+            out["_ticker_norm"] = out["ticker"].map(normalize_ticker)
+            out = out.merge(meta, on="_ticker_norm", how="left")
+            sector_ret = out.groupby(["_feature_sort_date", "sector"])["ret_26w_pct"].transform("median")
+            out["ret_vs_sector_26w_pct"] = out["ret_26w_pct"] - sector_ret
+            out = out.drop(columns=["_ticker_norm", "sector", "industry"])
     if "ret_52w_pct" not in out.columns:
         out["ret_52w_pct"] = g["close"].pct_change(52) * 100
     if "close_vs_sma20w_pct" not in out.columns:
@@ -103,8 +135,9 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--input", required=True)
     p.add_argument("--output", required=True)
+    p.add_argument("--sector-metadata", default="data/sp500_sector_metadata.csv")
     args = p.parse_args()
-    out = add_supported_features(read_feature_csv(args.input))
+    out = add_supported_features(read_feature_csv(args.input), sector_metadata_path=args.sector_metadata)
     out.to_csv(args.output, index=False)
     print({"input": args.input, "output": args.output, "rows": len(out), "columns": list(out.columns)})
     return 0

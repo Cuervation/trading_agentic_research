@@ -135,6 +135,7 @@ def validate_autonomy_readiness(
     blocker = read_json(state / "autonomy_blocker.json", {}) or {}
     plan = read_json(state / "research_expansion_plan.json", {}) or {}
     missing = read_json(state / "missing_feature_priority.json", {}) or {}
+    feature_plan = Path(reports_dir) / "feature_engineering_plan.md"
     policy = load_research_policy()
     eligibility = final_eligibility or eligible_hypothesis_preflight(hypothesis_bank=hypothesis_bank, state_dir=state_dir)
     effective = eligibility.get("effective_summary") if isinstance(eligibility.get("effective_summary"), dict) else {}
@@ -145,7 +146,11 @@ def validate_autonomy_readiness(
         "baseline_manual": bool(policy.get("promotion_policy", {}).get("baseline_promotion_requires_manual_review", True)),
         "no_auto_move_parent": bool(parent.get("parent_updates_require_manual_approval", True)),
         "has_plan_when_blocked": bool(plan) if blocker.get("status") == "blocked" else True,
-        "has_missing_feature_priorities_or_no_tasks": bool(missing.get("priorities")) or not (state / "missing_feature_tasks.jsonl").exists(),
+        "has_missing_feature_priorities_or_no_tasks": (
+            bool(missing.get("priorities"))
+            or feature_plan.exists()
+            or not (state / "missing_feature_tasks.jsonl").exists()
+        ),
         "ready_only_if_selector_eligible": not eligibility.get("eligible") or eligibility.get("reason") == "selector_found_eligible_hypothesis",
         "no_exhausted_fspace_eligible": not any(str(x).startswith("HYP_FSPACE") for x in executable_sample),
     }

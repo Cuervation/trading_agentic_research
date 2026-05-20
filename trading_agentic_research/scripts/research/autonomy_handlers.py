@@ -137,7 +137,9 @@ def classify_blocker(state: dict[str, Any]) -> dict[str, Any]:
     batch_state = state.get("batch_state") or {}
     stop_reason = str(batch_state.get("stop_reason") or "")
     text = f"{reason} {stop_reason}".lower()
-    if "policy" in text:
+    if reason == "missing_sector_classification_source":
+        blocker_type = "missing_sector_classification_source"
+    elif "policy" in text:
         blocker_type = "policy_blocked"
     elif reason in {"research_space_exhausted", "no_eligible_hypotheses", "no_eligible_hypotheses_after_fallbacks"} or "no eligible hypotheses" in text:
         blocker_type = "research_space_exhausted"
@@ -291,6 +293,27 @@ def _handler_feature_missing(state: dict[str, Any], args: Any) -> HandlerResult:
     )
 
 
+def _handler_missing_sector_classification_source(state: dict[str, Any], args: Any) -> HandlerResult:
+    executor = execute_research_expansion(
+        state_dir=args.state_dir,
+        reports_dir=args.reports_dir,
+        hypothesis_bank=args.hypothesis_bank,
+        paper_ideas=args.paper_ideas,
+        project_config=getattr(args, "project_config", "configs/project_config.json"),
+        max_new=getattr(args, "max_literature_hypotheses", 8),
+    )
+    after = executor.get("eligibility_after") if isinstance(executor.get("eligibility_after"), dict) else _eligibility(args)
+    return HandlerResult(
+        status=_status_from_eligibility(after),
+        action_taken="external_sector_metadata_then_feature_expansion",
+        next_action=executor.get("next_action") or "Provide data/sp500_sector_metadata.csv or restore internet access.",
+        eligibility_after=after,
+        files_changed=executor.get("files_changed", []),
+        safety_checks=_safety(state),
+        details=executor,
+    )
+
+
 def _handler_template_missing(state: dict[str, Any], args: Any) -> HandlerResult:
     templates = propose_literature_templates(state_dir=args.state_dir, reports_dir=args.reports_dir, hypothesis_bank=args.hypothesis_bank, paper_ideas=args.paper_ideas, write=True)
     after = _eligibility(args)
@@ -325,6 +348,7 @@ HANDLERS: dict[str, Callable[[dict[str, Any], Any], HandlerResult]] = {
     "runtime_error": _handler_runtime_error,
     "data_path_error": _handler_data_path_error,
     "feature_missing": _handler_feature_missing,
+    "missing_sector_classification_source": _handler_missing_sector_classification_source,
     "template_missing": _handler_template_missing,
     "governance_risk": _handler_governance_risk,
 }

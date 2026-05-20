@@ -17,6 +17,24 @@ from scripts.research.autonomy_readiness import validate_autonomy_readiness
 TERMINAL_STATUSES = {"READY_TO_RUN", "NO_SAFE_ACTION", "MANUAL_REVIEW_REQUIRED", "CANDIDATE_FOUND", "RESEARCH_EXHAUSTED"}
 
 
+def _material_files_changed(files: list[str] | None) -> bool:
+    if not files:
+        return False
+    material_prefixes = (
+        "bibliography/",
+        "configs/generated/",
+        "configs/local_data_paths.json",
+        "data/",
+        "scripts/generated/",
+    )
+    material_exact = {"state/data_paths_resolved.json"}
+    for item in files:
+        path = str(item).replace("\\", "/")
+        if path in material_exact or path.startswith(material_prefixes):
+            return True
+    return False
+
+
 def orchestrate(
     *,
     state_dir: str | Path,
@@ -52,7 +70,15 @@ def orchestrate(
         }
         history.append(item)
         signature = (str(item.get("blocker_type")), str(item.get("status")), str(item.get("next_action")))
-        if item["status"] in {"READY_TO_RUN", "NO_SAFE_ACTION", "MANUAL_REVIEW_REQUIRED", "CANDIDATE_FOUND"}:
+        if item["status"] in {"READY_TO_RUN", "MANUAL_REVIEW_REQUIRED", "CANDIDATE_FOUND"}:
+            return {"status": item["status"], "handler": handler_name, "history": history, "details": item}
+        if item["status"] == "NO_SAFE_ACTION":
+            material_change = _material_files_changed(item.get("files_changed") or [])
+            has_registered_handler = bool(handler_name and handler_name != "unknown")
+            source_action = "source" in str(item.get("next_action") or "").lower()
+            if cycle < max_cycles and has_registered_handler and (material_change or source_action) and signature != last_signature:
+                last_signature = signature
+                continue
             return {"status": item["status"], "handler": handler_name, "history": history, "details": item}
         if signature == last_signature:
             return {"status": "NO_SAFE_ACTION", "handler": handler_name, "history": history, "details": {**item, "loop_guard": "same_handler_same_result"}}

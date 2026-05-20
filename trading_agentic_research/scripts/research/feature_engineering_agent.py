@@ -26,6 +26,13 @@ KNOWN_FEATURE_RECIPES: dict[str, dict[str, Any]] = {
     "max_drawdown_26w_pct": {"source": "weekly close", "formula": "rolling 26-week maximum drawdown percentage", "required_base_columns": ["ticker", "close"], "implementation_hint": "group by ticker; rolling window max drawdown from closes"},
     "realized_vol_13w_pct": {"source": "weekly close", "formula": "rolling 13-week standard deviation of weekly returns", "required_base_columns": ["ticker", "close"], "implementation_hint": "group by ticker; pct_change weekly returns; rolling std(13)"},
     "residual_ret_26w_pct": {"source": "weekly close plus SPY", "formula": "stock ret_26w_pct minus SPY ret_26w_pct by week", "required_base_columns": ["ticker", "close"], "implementation_hint": "compute ret_26w_pct first, then subtract SPY ret_26w_pct by date"},
+    "ret_vs_sector_26w_pct": {
+        "source": "weekly close plus cached sector metadata",
+        "formula": "stock ret_26w_pct minus median sector ret_26w_pct by date",
+        "required_base_columns": ["ticker", "close"],
+        "required_external_files": ["data/sp500_sector_metadata.csv"],
+        "implementation_hint": "compute ret_26w_pct by ticker, merge sector metadata, then subtract per-date sector median without lookahead",
+    },
     "market_breadth_above_sma50_pct": {"source": "weekly/daily SMA feature", "formula": "percentage of universe above 50-day SMA by week", "required_base_columns": ["ticker", "close_vs_sma50_pct"], "implementation_hint": "per week mean(close_vs_sma50_pct > 0)*100"},
     "spy_close_vs_sma50_pct": {"source": "SPY close", "formula": "SPY close/SMA50 - 1", "required_base_columns": ["ticker", "date", "close"], "implementation_hint": "compute on SPY and merge by date"},
 }
@@ -33,6 +40,7 @@ KNOWN_FEATURE_RECIPES: dict[str, dict[str, Any]] = {
 GENERATED_SCRIPT = """\"\"\"Generated candidate feature engineering script. Writes a new output CSV.\"\"\"
 from __future__ import annotations
 import argparse
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
@@ -42,7 +50,30 @@ def read_feature_csv(path: str) -> pd.DataFrame:
     return pd.read_csv(path, sep=None, engine="python", encoding="utf-8-sig")
 
 
-def add_supported_features(df: pd.DataFrame) -> pd.DataFrame:
+def normalize_ticker(symbol) -> str:
+    return str(symbol).strip().upper().replace("/", "-").replace(" ", "").replace(".", "-")
+
+
+def read_sector_metadata(path: str | None) -> pd.DataFrame:
+    if not path:
+        path = "data/sp500_sector_metadata.csv"
+    p = Path(path)
+    if not p.exists():
+        return pd.DataFrame(columns=["ticker", "sector", "industry"])
+    meta = pd.read_csv(p, sep=None, engine="python", encoding="utf-8-sig")
+    required = {"ticker", "sector"}.difference(meta.columns)
+    if required:
+        raise ValueError(f"Sector metadata missing columns: {sorted(required)}")
+    out = meta.copy()
+    out["_ticker_norm"] = out["ticker"].map(normalize_ticker)
+    out["sector"] = out["sector"].astype(str).str.strip()
+    if "industry" not in out.columns:
+        out["industry"] = ""
+    out = out[(out["_ticker_norm"] != "") & (out["sector"] != "")]
+    return out.drop_duplicates("_ticker_norm", keep="first")[["_ticker_norm", "sector", "industry"]]
+
+
+def add_supported_features(df: pd.DataFrame, sector_metadata_path: str | None = None) -> pd.DataFrame:
     date_col = "date" if "date" in df.columns else "signal_date" if "signal_date" in df.columns else None
     missing = {"ticker", "close"}.difference(df.columns)
     if date_col is None:
@@ -57,6 +88,14 @@ def add_supported_features(df: pd.DataFrame) -> pd.DataFrame:
         out["ret_13w_pct"] = g["close"].pct_change(13) * 100
     if "ret_26w_pct" not in out.columns:
         out["ret_26w_pct"] = g["close"].pct_change(26) * 100
+    if "ret_vs_sector_26w_pct" not in out.columns and "ret_26w_pct" in out.columns:
+        meta = read_sector_metadata(sector_metadata_path)
+        if not meta.empty:
+            out["_ticker_norm"] = out["ticker"].map(normalize_ticker)
+            out = out.merge(meta, on="_ticker_norm", how="left")
+            sector_ret = out.groupby(["_feature_sort_date", "sector"])["ret_26w_pct"].transform("median")
+            out["ret_vs_sector_26w_pct"] = out["ret_26w_pct"] - sector_ret
+            out = out.drop(columns=["_ticker_norm", "sector", "industry"])
     if "ret_52w_pct" not in out.columns:
         out["ret_52w_pct"] = g["close"].pct_change(52) * 100
     if "close_vs_sma20w_pct" not in out.columns:
@@ -135,8 +174,9 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--input", required=True)
     p.add_argument("--output", required=True)
+    p.add_argument("--sector-metadata", default="data/sp500_sector_metadata.csv")
     args = p.parse_args()
-    out = add_supported_features(read_feature_csv(args.input))
+    out = add_supported_features(read_feature_csv(args.input), sector_metadata_path=args.sector_metadata)
     out.to_csv(args.output, index=False)
     print({"input": args.input, "output": args.output, "rows": len(out), "columns": list(out.columns)})
     return 0
@@ -274,6 +314,10 @@ def build_feature_plan(*, state_dir: str | Path = "state", reports_dir: str | Pa
         })
         base = set(recipe.get("required_base_columns", []))
         base_missing = sorted(base.difference(existing_features))
+        external_missing = [
+            path for path in recipe.get("required_external_files", [])
+            if not Path(path).exists()
+        ]
         items.append({
             "feature": feature,
             "request_count": count,
@@ -281,7 +325,8 @@ def build_feature_plan(*, state_dir: str | Path = "state", reports_dir: str | Pa
             "recipe": recipe,
             "base_columns_available": sorted(base.intersection(existing_features)),
             "base_columns_missing": base_missing,
-            "blocked": bool(base_missing),
+            "external_requirements_missing": external_missing,
+            "blocked": bool(base_missing or external_missing),
             "examples": examples.get(feature, []),
         })
 
@@ -304,11 +349,15 @@ def build_feature_plan(*, state_dir: str | Path = "state", reports_dir: str | Pa
         f"Generated at: `{payload['generated_at']}`",
         f"Missing-feature tasks: **{payload['task_count']}**",
         "",
-        "| feature | requests | known recipe | blocked | missing base columns |",
-        "|---|---:|:---:|:---:|---|",
+        "| feature | requests | known recipe | blocked | missing base columns | missing external files |",
+        "|---|---:|:---:|:---:|---|---|",
     ]
     for item in items:
-        md.append(f"| `{item['feature']}` | {item['request_count']} | {str(item['known_recipe']).lower()} | {str(item['blocked']).lower()} | {', '.join(item['base_columns_missing']) or '-'} |")
+        md.append(
+            f"| `{item['feature']}` | {item['request_count']} | {str(item['known_recipe']).lower()} | "
+            f"{str(item['blocked']).lower()} | {', '.join(item['base_columns_missing']) or '-'} | "
+            f"{', '.join(item.get('external_requirements_missing') or []) or '-'} |"
+        )
     md.extend(["", "## Next action", "", payload["next_action"], ""])
     (reports / "feature_engineering_plan.md").write_text("\n".join(md), encoding="utf-8")
 

@@ -19,6 +19,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.research.data_path_resolver import resolve_data_paths
+from scripts.research.external_data_acquisition import acquire_sector_metadata
 from scripts.research.feature_engineering_agent import build_feature_plan
 from scripts.research.hypothesis_eligibility import eligible_hypothesis_preflight
 from scripts.research.literature_hypothesis_miner import mine_literature_hypotheses
@@ -73,6 +74,11 @@ def _next_action_from_priority(state_dir: str | Path) -> tuple[str, str]:
     feature = str(top.get("feature") or "unknown_feature")
     missing_external = set(top.get("external_requirements_missing") or [])
     if "sector_or_industry_classification" in missing_external:
+        if (ROOT / "data" / "sp500_sector_metadata.csv").exists():
+            return (
+                "sector_relative_template_exhausted",
+                "Sector metadata is cached, but no eligible sector-relative hypothesis remains; add a genuinely new non-duplicate literature family.",
+            )
         return (
             "missing_sector_classification_source",
             "Provide a ticker->sector/industry classification source to compute "
@@ -84,6 +90,20 @@ def _next_action_from_priority(state_dir: str | Path) -> tuple[str, str]:
         "missing_feature_data_or_template",
         f"Implement missing feature `{feature}` only if data source is available; otherwise add a genuinely new non-duplicate literature family.",
     )
+
+
+def _needs_sector_metadata(state_dir: str | Path) -> bool:
+    blocker = read_json(Path(state_dir) / "autonomy_blocker.json", {}) or {}
+    if blocker.get("reason") == "missing_sector_classification_source":
+        return True
+    blocker_context = blocker.get("context") if isinstance(blocker.get("context"), dict) else {}
+    if blocker_context.get("blocker_type") == "missing_sector_classification_source":
+        return True
+    priority = read_json(Path(state_dir) / "missing_feature_priority.json", {}) or {}
+    for item in priority.get("priorities") or []:
+        if item.get("feature") == "ret_vs_sector_26w_pct":
+            return True
+    return False
 
 
 def _parent_config(state_dir: str | Path) -> str:
@@ -134,7 +154,16 @@ def _run_feature_engineering_if_safe(*, state_dir: str | Path, reports_dir: str 
         return {"action": "feature_engineering_skipped", "reason": f"weekly_file_missing:{source_csv}", "files_changed": []}
 
     expanded_csv = ROOT / f"{source_csv.stem}_research_expanded.csv"
-    cmd = [sys.executable, "scripts/generated/feature_engineering_candidate.py", "--input", str(source_csv), "--output", str(expanded_csv)]
+    cmd = [
+        sys.executable,
+        "scripts/generated/feature_engineering_candidate.py",
+        "--input",
+        str(source_csv),
+        "--output",
+        str(expanded_csv),
+        "--sector-metadata",
+        str(ROOT / "data" / "sp500_sector_metadata.csv"),
+    ]
     result = subprocess.run(cmd, cwd=ROOT, check=False, text=True, capture_output=True)
     if result.returncode != 0 or not expanded_csv.exists():
         return {
@@ -200,6 +229,18 @@ def execute_research_expansion(
             "actions": actions,
         })
 
+    if _needs_sector_metadata(state_dir):
+        resolved = read_json(Path(state_dir) / "data_paths_resolved.json", {}) or {}
+        weekly_file = resolved.get("weekly_file")
+        if weekly_file:
+            sector_result = acquire_sector_metadata(weekly_file=weekly_file, reports_dir=reports_dir, state_dir=state_dir)
+            actions.append({"action": "external_data_acquisition.acquire_sector_metadata", **sector_result})
+            files_changed.extend(["reports/sector_metadata_validation.md", "state/sector_metadata_validation.json"])
+            if sector_result.get("status") == "valid":
+                files_changed.append("data/sp500_sector_metadata.csv")
+        else:
+            actions.append({"action": "external_data_acquisition.skipped", "reason": "missing_weekly_file"})
+
     feature_result = _run_feature_engineering_if_safe(state_dir=state_dir, reports_dir=reports_dir, project_config=project_config)
     actions.append(feature_result)
     files_changed.extend(feature_result.get("files_changed", []))
@@ -215,6 +256,17 @@ def execute_research_expansion(
         actions.append({"action": "literature_hypothesis_miner_after_features", **mined})
         if mined.get("generated"):
             files_changed.append("bibliography/hypothesis_bank.jsonl")
+        post_feature_templates = propose_literature_templates(
+            state_dir=state_dir,
+            reports_dir=reports_dir,
+            hypothesis_bank=hypothesis_bank,
+            paper_ideas=paper_ideas,
+            write=True,
+            record_missing_tasks=True,
+        )
+        actions.append({"action": "literature_template_expander_after_features", "written": post_feature_templates.get("written", [])})
+        if post_feature_templates.get("written"):
+            files_changed.extend(["bibliography/hypothesis_bank.jsonl", "reports/literature_template_expansion.md", "state/literature_template_expansion.json"])
 
     # Re-run selector only after a material action that can change eligibility.
     # Report-only planning must not pay for another full selector pass.
