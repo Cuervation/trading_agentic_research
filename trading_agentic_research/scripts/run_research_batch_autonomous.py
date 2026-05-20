@@ -48,6 +48,7 @@ from scripts.research.paper_searcher import generate_paper_ideas
 from scripts.research.parent_state import resolve_current_parent_config_path, sync_current_parent_state
 from scripts.research.promotion_candidate_review import write_promotion_candidate_review
 from scripts.research.research_policy import load_research_policy, validate_autonomous_launch, validate_post_batch
+from scripts.research.research_expansion_planner import build_research_expansion_plan
 from scripts.research.sync_strategy_registry import sync_strategy_registry
 
 
@@ -170,6 +171,95 @@ def _record_feedback(
         f"warning={event.get('warning', '')}",
     )
     return event
+
+
+def _research_expansion_needed(eligibility: dict[str, Any], literature_result: dict[str, Any]) -> bool:
+    if eligibility.get("eligible"):
+        return False
+    effective_summary = eligibility.get("effective_summary") if isinstance(eligibility.get("effective_summary"), dict) else {}
+    recommended_mode = eligibility.get("recommended_mode") or effective_summary.get("recommended_mode")
+    feature_space_stall = effective_summary.get("feature_space_stall") if isinstance(effective_summary.get("feature_space_stall"), dict) else {}
+    if recommended_mode != "literature_or_new_family":
+        return False
+    if literature_result.get("reason") != "no_supported_literature_hypotheses":
+        return False
+    missing_seen = int(literature_result.get("missing_feature_tasks_seen", 0) or 0)
+    skipped_cooldown = int(literature_result.get("skipped_family_cooldown", 0) or 0)
+    skipped_duplicate = int(literature_result.get("skipped_duplicate_signature", 0) or 0)
+    return bool(feature_space_stall.get("stalled")) and missing_seen > 0 and (skipped_cooldown > 0 or skipped_duplicate > 0)
+
+
+def _write_research_expansion_blocker(
+    *,
+    args: argparse.Namespace,
+    candidate_review: dict[str, Any],
+    candidate_review_generation: dict[str, Any],
+    eligibility_before: dict[str, Any],
+    generated: dict[str, Any],
+    literature: dict[str, Any],
+    paper_search: dict[str, Any],
+    feature_space: dict[str, Any],
+    final_eligibility: dict[str, Any],
+) -> int:
+    try:
+        expansion_plan = build_research_expansion_plan(
+            state_dir=args.state_dir,
+            reports_dir=args.reports_dir,
+            hypothesis_bank=args.hypothesis_bank,
+            paper_ideas=args.paper_ideas,
+            final_eligibility=final_eligibility,
+        )
+    except Exception as exc:
+        write_autonomy_blocker(
+            state_dir=args.state_dir,
+            reason="research_expansion_planner_failed",
+            errors=[f"research_expansion_planner failed: {exc}"],
+            warnings=[],
+            next_action="Fix scripts/research/research_expansion_planner.py, then rerun the autonomous wrapper before any backtest.",
+            context={
+                "candidate_under_review": candidate_review,
+                "candidate_review_generation": candidate_review_generation,
+                "eligibility_before": eligibility_before,
+                "value_factory": generated,
+                "literature_miner": literature,
+                "paper_searcher": paper_search,
+                "feature_space_expansion": feature_space,
+                "final_eligibility": final_eligibility,
+            },
+        )
+        print(f"Research expansion planner failed: {exc}")
+        return 5
+
+    next_action = str(expansion_plan.get("next_action") or "Review reports/research_expansion_plan.md before launching more backtests.")
+    write_autonomy_blocker(
+        state_dir=args.state_dir,
+        reason="research_space_exhausted",
+        errors=[str(final_eligibility.get("reason"))],
+        warnings=[
+            "No batch was launched because the current hypothesis space is exhausted.",
+            "Expansion planning completed without moving parent/current_parent or promoting a baseline.",
+        ],
+        next_action=f"{next_action}. See reports/research_expansion_plan.md.",
+        context={
+            "candidate_under_review": candidate_review,
+            "candidate_review_generation": candidate_review_generation,
+            "eligibility_before": eligibility_before,
+            "value_factory": generated,
+            "literature_miner": literature,
+            "paper_searcher": paper_search,
+            "feature_space_expansion": feature_space,
+            "final_eligibility": final_eligibility,
+            "research_expansion_plan": {
+                "report": expansion_plan.get("outputs", {}).get("report"),
+                "state": expansion_plan.get("outputs", {}).get("state"),
+                "next_action": expansion_plan.get("next_action"),
+                "high_priority": (expansion_plan.get("priority_actions", {}) or {}).get("high", [])[:5],
+            },
+        },
+    )
+    print("Research exhausted under current hypothesis space.")
+    print("Expansion plan written to reports/research_expansion_plan.md")
+    return 3
 
 
 def main() -> int:
@@ -371,6 +461,19 @@ def main() -> int:
             context={"parent_config": parent_config, "paper_ideas": args.paper_ideas},
         )
 
+    if _research_expansion_needed(eligibility_after_literature, literature):
+        return _write_research_expansion_blocker(
+            args=args,
+            candidate_review=candidate_review,
+            candidate_review_generation=candidate_review_generation,
+            eligibility_before=eligibility_before,
+            generated=generated,
+            literature=literature,
+            paper_search=paper_search,
+            feature_space=feature_space,
+            final_eligibility=eligibility_after_literature,
+        )
+
     eligibility_before_feature_space = _eligibility(args)
     if not eligibility_before_feature_space.get("eligible") and not args.no_feature_space_fallback:
         feature_space = generate_feature_space_hypotheses(
@@ -400,6 +503,21 @@ def main() -> int:
     write_generation_feedback_report(state_dir=args.state_dir, reports_dir=args.reports_dir)
 
     if not final_eligibility.get("eligible"):
+        effective_summary = final_eligibility.get("effective_summary") if isinstance(final_eligibility.get("effective_summary"), dict) else {}
+        recommended_mode = final_eligibility.get("recommended_mode") or effective_summary.get("recommended_mode")
+        if recommended_mode == "literature_or_new_family":
+            return _write_research_expansion_blocker(
+                args=args,
+                candidate_review=candidate_review,
+                candidate_review_generation=candidate_review_generation,
+                eligibility_before=eligibility_before,
+                generated=generated,
+                literature=literature,
+                paper_search=paper_search,
+                feature_space=feature_space,
+                final_eligibility=final_eligibility,
+            )
+
         write_autonomy_blocker(
             state_dir=args.state_dir,
             reason="no_eligible_hypotheses_after_fallbacks",
