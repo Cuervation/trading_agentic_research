@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-05-20T01:26:46.310933+00:00",
+  "state_dir": "state",
+  "reports_dir": "reports",
+  "task_count": 25,
+  "missing_feature_count": 1,
+  "already_available_task_features": [
+    "downside_vol_13w_pct",
+    "market_breadth_above_sma50_pct",
+    "max_drawdown_26w_pct",
+    "realized_vol_13w_pct",
+    "residual_ret_26w_pct",
+    "ret_13w_pct"
+  ],
+  "weekly_feature_count": 194,
+  "daily_feature_count": 169,
+  "priorities": [
+    {
+      "feature": "ret_vs_sector_26w_pct",
+      "priority": "low",
+      "score": 6,
+      "paper_ideas_unlocked": 1,
+      "source_ids": [
+        "sector_industry_relative_momentum"
+      ],
+      "paper_titles": [
+        "Sector and industry relative strength"
+      ],
+      "families": [
+        "paper_sector_momentum"
+      ],
+      "axes": [
+        "paper_sector_relative_strength"
+      ],
+      "candidate_suffixes": [
+        "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+        "SECTOR_REL_STRENGTH_RET26_V4"
+      ],
+      "recipe": {
+        "source": "weekly returns plus sector metadata",
+        "formula": "stock ret_26w_pct minus sector aggregate ret_26w_pct",
+        "base_columns": [
+          "ticker",
+          "close"
+        ],
+        "cost": "high",
+        "calculable_from": "weekly+metadata",
+        "note": "Requires sector/industry mapping; none is assumed from price columns alone."
+      },
+      "base_columns_available": [
+        "ticker",
+        "close"
+      ],
+      "base_columns_missing": [],
+      "nearby_existing_columns": [
+        "close_above_sma26w",
+        "close_ema_26w",
+        "close_ema_26w_slope_2w_pct",
+        "close_ema_26w_slope_4w_pct",
+        "close_vs_ema26w_pct",
+        "close_vs_sma26w_pct",
+        "close_vs_sma52w_pct",
+        "dist_to_low_26w_pct",
+        "ret_12w_pct",
+        "ret_26w_pct",
+        "ret_2w_pct",
+        "ret_52w_pct"
+      ],
+      "calculable_from_current_data": true,
+      "implementation_cost": "high",
+      "opens_non_exhausted_family": true,
+      "semantic_exhausted_families": [],
+      "hard_cooldown_families": [],
+      "advisory_cooldown_families": [],
+      "example_tasks": [
+        {
+          "source_id": "sector_industry_relative_momentum",
+          "paper_title": "Sector and industry relative strength",
+          "candidate_suffix": "SECTOR_REL_STRENGTH_RET26_V4",
+          "family": "paper_sector_momentum",
+          "claim": "Ranking by ret_vs_sector_26w_pct may favor stocks outperforming their own sector.",
+          "paper_idea_hint": [
+            "sector_ret_26w_pct",
+            "ret_vs_sector_26w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        },
+        {
+          "source_id": "sector_industry_relative_momentum",
+          "paper_title": "Sector and industry relative strength",
+          "candidate_suffix": "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+          "family": "paper_sector_momentum",
+          "claim": "Momentum may be more robust when a stock also leads its sector or industry peer group.",
+          "paper_idea_hint": [
+            "sector_ret_26w_pct",
+            "ret_vs_sector_26w_pct",
+            "ret_26w_pct",
+            "close"
+          ]
+        }
+      ]
+    }
+  ],
+  "next_action": "Implement the highest-priority feature(s) in the feature store or add supported templates that use existing proxy columns; then rerun literature mining before any backtest."
+}

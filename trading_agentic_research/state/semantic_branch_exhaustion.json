@@ -1,0 +1,2946 @@
+{
+  "version": 1,
+  "branches": {
+    "momentum/unknown_field/unknown_layer": {
+      "branch_key": "momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.931984+00:00",
+          "run_id": "AUTO_001",
+          "hypothesis_id": "HYP_AUTO_CROSS_SECTIONAL_MOMENTUM_SEED",
+          "family": "momentum",
+          "decision": "",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.935685+00:00",
+          "run_id": "AUTO_005",
+          "hypothesis_id": "HYP_AUTO_CARHART_MOMENTUM_SEED",
+          "family": "momentum",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.978020+00:00",
+          "run_id": "AUTO_061",
+          "hypothesis_id": "HYP_AUTO_CR_10_54097_P2FHXD83",
+          "family": "momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.990106+00:00",
+          "run_id": "AUTO_069",
+          "hypothesis_id": "HYP_AUTO_LOCAL_RET_12W_ACCELERATION_SEED",
+          "family": "momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.997074+00:00",
+          "run_id": "AUTO_075",
+          "hypothesis_id": "HYP_AUTO_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED",
+          "family": "momentum",
+          "decision": "accepted_for_followup",
+          "ledger_value": "secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.999926+00:00",
+          "run_id": "AUTO_077",
+          "hypothesis_id": "HYP_AUTO_LOCAL_RSI14_STRENGTH_SEED",
+          "family": "momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.012654+00:00",
+          "run_id": "AUTO_085",
+          "hypothesis_id": "HYP_AUTO_LOCAL_PRICE_LOCATION_RANGE_SEED",
+          "family": "momentum",
+          "decision": "accepted_for_followup",
+          "ledger_value": "secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.014167+00:00",
+          "run_id": "AUTO_086",
+          "hypothesis_id": "HYP_AUTO_LOCAL_GREEN_STREAK_LEADERSHIP_SEED",
+          "family": "momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 6,
+      "good_count": 2,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "trend_following/unknown_field/unknown_layer": {
+      "branch_key": "trend_following/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.933259+00:00",
+          "run_id": "AUTO_002",
+          "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+          "family": "trend_following",
+          "decision": "",
+          "ledger_value": "new_champion",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.968607+00:00",
+          "run_id": "AUTO_057",
+          "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.983319+00:00",
+          "run_id": "AUTO_065",
+          "hypothesis_id": "HYP_AUTO_LOCAL_TREND_13_52_BLEND_SEED",
+          "family": "trend_following",
+          "decision": "accepted_for_followup",
+          "ledger_value": "secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.993581+00:00",
+          "run_id": "AUTO_071",
+          "hypothesis_id": "HYP_AUTO_LOCAL_ROC_26W_PERSISTENCE_SEED",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.994206+00:00",
+          "run_id": "AUTO_072",
+          "hypothesis_id": "HYP_AUTO_LOCAL_CLOSE_SMA13_TREND_SEED",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.062093+00:00",
+          "run_id": "EXP_042",
+          "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_18_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.070185+00:00",
+          "run_id": "EXP_047",
+          "hypothesis_id": "HYP_REFINE_AUTO002_TRAILING_22_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.073615+00:00",
+          "run_id": "EXP_049",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_14_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.121573+00:00",
+          "run_id": "EXP_099",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_26_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.133334+00:00",
+          "run_id": "EXP_109",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TRAILING_30_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 8,
+      "good_count": 2,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "can_slim/unknown_field/unknown_layer": {
+      "branch_key": "can_slim/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.934382+00:00",
+          "run_id": "AUTO_003",
+          "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
+          "family": "can_slim",
+          "decision": "",
+          "ledger_value": "promotion_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.970920+00:00",
+          "run_id": "AUTO_058",
+          "hypothesis_id": "HYP_AUTO_CAN_SLIM_SEED",
+          "family": "can_slim",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.016293+00:00",
+          "run_id": "AUTO_088",
+          "hypothesis_id": "HYP_AUTO_LOCAL_BREAKOUT_VOLUME_CLIMAX_SEED",
+          "family": "can_slim",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 2,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "value/unknown_field/unknown_layer": {
+      "branch_key": "value/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.934382+00:00",
+          "run_id": "AUTO_004",
+          "hypothesis_id": "HYP_AUTO_FAMA_FRENCH_FACTORS_SEED",
+          "family": "value",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.014670+00:00",
+          "run_id": "AUTO_087",
+          "hypothesis_id": "HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED",
+          "family": "value",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "quality/unknown_field/unknown_layer": {
+      "branch_key": "quality/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.935685+00:00",
+          "run_id": "AUTO_006",
+          "hypothesis_id": "HYP_AUTO_QUALITY_INVESTING_SEED",
+          "family": "quality",
+          "decision": "",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.981791+00:00",
+          "run_id": "AUTO_064",
+          "hypothesis_id": "HYP_AUTO_CR_10_14264_223019",
+          "family": "quality",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.987589+00:00",
+          "run_id": "AUTO_067",
+          "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_CONFIRMATION_MOMENTUM_SEED",
+          "family": "quality",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.995957+00:00",
+          "run_id": "AUTO_074",
+          "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_R2_QUALITY_SEED",
+          "family": "quality",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.000942+00:00",
+          "run_id": "AUTO_078",
+          "hypothesis_id": "HYP_AUTO_LOCAL_STOCHASTIC_CONFIRMATION_SEED",
+          "family": "quality",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.002480+00:00",
+          "run_id": "AUTO_079",
+          "hypothesis_id": "HYP_AUTO_LOCAL_OBV_ACCUMULATION_SEED",
+          "family": "quality",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 5,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "low_volatility/unknown_field/unknown_layer": {
+      "branch_key": "low_volatility/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.935685+00:00",
+          "run_id": "AUTO_007",
+          "hypothesis_id": "HYP_AUTO_LOW_VOL_BAB_SEED",
+          "family": "low_volatility",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.979024+00:00",
+          "run_id": "AUTO_062",
+          "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_6516598",
+          "family": "low_volatility",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.984328+00:00",
+          "run_id": "AUTO_066",
+          "hypothesis_id": "HYP_AUTO_LOCAL_LOW_VOL_MOMENTUM_ATR_SEED",
+          "family": "low_volatility",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.998714+00:00",
+          "run_id": "AUTO_076",
+          "hypothesis_id": "HYP_AUTO_LOCAL_DRAWDOWN_13W_RECOVERY_SEED",
+          "family": "low_volatility",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.003600+00:00",
+          "run_id": "AUTO_080",
+          "hypothesis_id": "HYP_AUTO_LOCAL_VOLUME_DRYUP_MOMENTUM_SEED",
+          "family": "low_volatility",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.004870+00:00",
+          "run_id": "AUTO_081",
+          "hypothesis_id": "HYP_AUTO_LOCAL_ATR4_LOW_NOISE_SEED",
+          "family": "low_volatility",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.007696+00:00",
+          "run_id": "AUTO_082",
+          "hypothesis_id": "HYP_AUTO_LOCAL_VOL26_DEFENSIVE_MOMENTUM_SEED",
+          "family": "low_volatility",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 6,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "sector_momentum/unknown_field/unknown_layer": {
+      "branch_key": "sector_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.936795+00:00",
+          "run_id": "AUTO_008",
+          "hypothesis_id": "HYP_AUTO_SECTOR_MOMENTUM_SEED",
+          "family": "sector_momentum",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.991805+00:00",
+          "run_id": "AUTO_070",
+          "hypothesis_id": "HYP_AUTO_LOCAL_RET_8W_ROTATION_SEED",
+          "family": "sector_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "regime/unknown_field/unknown_layer": {
+      "branch_key": "regime/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.937424+00:00",
+          "run_id": "AUTO_009",
+          "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
+          "family": "regime",
+          "decision": "",
+          "ledger_value": "secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.938462+00:00",
+          "run_id": "AUTO_010",
+          "hypothesis_id": "HYP_AUTO_ADAPTIVE_MARKETS_REGIME_SEED",
+          "family": "regime",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.972953+00:00",
+          "run_id": "AUTO_059",
+          "hypothesis_id": "HYP_AUTO_TREND_VOL_TARGET_SEED",
+          "family": "regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.980036+00:00",
+          "run_id": "AUTO_063",
+          "hypothesis_id": "HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525",
+          "family": "regime",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.989099+00:00",
+          "run_id": "AUTO_068",
+          "hypothesis_id": "HYP_AUTO_LOCAL_CHANNEL_QUALITY_TREND_SEED",
+          "family": "regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.995328+00:00",
+          "run_id": "AUTO_073",
+          "hypothesis_id": "HYP_AUTO_LOCAL_SMA52_SLOPE_STABILITY_SEED",
+          "family": "regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 5,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "mixed/unknown_field/unknown_layer": {
+      "branch_key": "mixed/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:45.961824+00:00",
+          "run_id": "AUTO_047",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.962939+00:00",
+          "run_id": "AUTO_048",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.962939+00:00",
+          "run_id": "AUTO_049",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.963573+00:00",
+          "run_id": "AUTO_050",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.963573+00:00",
+          "run_id": "AUTO_051",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.964689+00:00",
+          "run_id": "AUTO_052",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.965264+00:00",
+          "run_id": "AUTO_053",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.966787+00:00",
+          "run_id": "AUTO_054",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.967490+00:00",
+          "run_id": "AUTO_055",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.967490+00:00",
+          "run_id": "AUTO_056",
+          "hypothesis_id": "HYP_MIX_REGIME_TREND_FOLLOWING_V1",
+          "family": "mixed",
+          "decision": "",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:45.976001+00:00",
+          "run_id": "AUTO_060",
+          "hypothesis_id": "HYP_AUTO_CR_10_2139_SSRN_4554268",
+          "family": "mixed",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.017300+00:00",
+          "run_id": "AUTO_089",
+          "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+          "family": "mixed",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.017922+00:00",
+          "run_id": "AUTO_090",
+          "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_RET_12W_ACCELERATION_V1",
+          "family": "mixed",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.019051+00:00",
+          "run_id": "AUTO_091",
+          "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+          "family": "mixed",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.019051+00:00",
+          "run_id": "AUTO_092",
+          "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
+          "family": "mixed",
+          "decision": "promoted_candidate",
+          "ledger_value": "promotion_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.022372+00:00",
+          "run_id": "AUTO_094",
+          "hypothesis_id": "HYP_MIX_LOCAL_TREND_13_52_BLEND__LOCAL_CHANNEL_QUALITY_TREND_V1",
+          "family": "mixed",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 12,
+      "bad_count": 14,
+      "good_count": 2,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "regime/unknown_field/rank_market_filter": {
+      "branch_key": "regime/unknown_field/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.010068+00:00",
+          "run_id": "AUTO_083",
+          "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SLOPE_RISK_ON_SEED",
+          "family": "regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.012147+00:00",
+          "run_id": "AUTO_084",
+          "hypothesis_id": "HYP_AUTO_LOCAL_SPY_SMA50_RELAXED_SEED",
+          "family": "regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "mixed/unknown_field/rank_market_filter": {
+      "branch_key": "mixed/unknown_field/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.020634+00:00",
+          "run_id": "AUTO_093",
+          "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1",
+          "family": "mixed",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "cross_sectional_momentum/unknown_field/unknown_layer": {
+      "branch_key": "cross_sectional_momentum/unknown_field/unknown_layer",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.058562+00:00",
+          "run_id": "EXP_040",
+          "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1",
+          "family": "cross_sectional_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.060583+00:00",
+          "run_id": "EXP_041",
+          "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_15_V1",
+          "family": "cross_sectional_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.124112+00:00",
+          "run_id": "EXP_100",
+          "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1",
+          "family": "cross_sectional_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_054"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.206088+00:00",
+          "run_id": "EXP_159",
+          "hypothesis_id": "HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_15_V1",
+          "family": "cross_sectional_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.206699+00:00",
+          "run_id": "EXP_160",
+          "hypothesis_id": "HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_25_V1",
+          "family": "cross_sectional_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 3,
+      "bad_count": 5,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "duplicate_threshold_reached:3"
+    },
+    "trend_following/unknown_field/rank_topn": {
+      "branch_key": "trend_following/unknown_field/rank_topn",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.064112+00:00",
+          "run_id": "EXP_043",
+          "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+          "family": "trend_following",
+          "decision": "accepted_for_followup",
+          "ledger_value": "secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.065119+00:00",
+          "run_id": "EXP_044",
+          "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+          "family": "trend_following",
+          "decision": "promoted_candidate",
+          "ledger_value": "promotion_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.072491+00:00",
+          "run_id": "EXP_048",
+          "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_10_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_043"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.118995+00:00",
+          "run_id": "EXP_097",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_11_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.131773+00:00",
+          "run_id": "EXP_107",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_13_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.139509+00:00",
+          "run_id": "EXP_116",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_17_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.144324+00:00",
+          "run_id": "EXP_122",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_19_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.155173+00:00",
+          "run_id": "EXP_128",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_21_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 6,
+      "good_count": 2,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "trend_following/unknown_field/rank_exit": {
+      "branch_key": "trend_following/unknown_field/rank_exit",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.067640+00:00",
+          "run_id": "EXP_045",
+          "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_18_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "AUTO_057"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.069662+00:00",
+          "run_id": "EXP_046",
+          "hypothesis_id": "HYP_REFINE_AUTO002_EXIT_24_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "AUTO_057"
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "duplicate_threshold_reached:2"
+    },
+    "candidate_under_review_drawdown_refinement/unknown_field/unknown_layer": {
+      "branch_key": "candidate_under_review_drawdown_refinement/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.074223+00:00",
+          "run_id": "EXP_050",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_18_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.076020+00:00",
+          "run_id": "EXP_052",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TRAILING_22_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "accepted_for_followup",
+          "ledger_value": "promotion_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "candidate_under_review_drawdown_refinement/unknown_field/rank_exit": {
+      "branch_key": "candidate_under_review_drawdown_refinement/unknown_field/rank_exit",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.075339+00:00",
+          "run_id": "EXP_051",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_EXIT_16_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_044"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.086634+00:00",
+          "run_id": "EXP_064",
+          "hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_16_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_052"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.088664+00:00",
+          "run_id": "EXP_065",
+          "hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_18_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_052"
+        }
+      ],
+      "duplicate_count": 3,
+      "bad_count": 3,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "duplicate_threshold_reached:3"
+    },
+    "candidate_under_review_drawdown_refinement/unknown_field/rank_topn": {
+      "branch_key": "candidate_under_review_drawdown_refinement/unknown_field/rank_topn",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.077132+00:00",
+          "run_id": "EXP_053",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_5_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "accepted_for_followup",
+          "ledger_value": "aggressive_champion",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.077747+00:00",
+          "run_id": "EXP_054",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_7_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "promoted_candidate",
+          "ledger_value": "new_champion",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.078802+00:00",
+          "run_id": "EXP_055",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_8_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "promoted_candidate",
+          "ledger_value": "promotion_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.079964+00:00",
+          "run_id": "EXP_056",
+          "hypothesis_id": "HYP_REVIEW_EXP_044_TOPN_9_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "AUTO_002"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.079964+00:00",
+          "run_id": "EXP_057",
+          "hypothesis_id": "HYP_REVIEW_EXP_052_TOPN_5_V1",
+          "family": "candidate_under_review_drawdown_refinement",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 2,
+      "good_count": 3,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "paper_regime_filter/unknown_field/rank_market_filter": {
+      "branch_key": "paper_regime_filter/unknown_field/rank_market_filter",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.081080+00:00",
+          "run_id": "EXP_058",
+          "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_RELAXED_V1",
+          "family": "paper_regime_filter",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.100479+00:00",
+          "run_id": "EXP_078",
+          "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1",
+          "family": "paper_regime_filter",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.109210+00:00",
+          "run_id": "EXP_086",
+          "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1",
+          "family": "paper_regime_filter",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_058"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.125631+00:00",
+          "run_id": "EXP_101",
+          "hypothesis_id": "HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1",
+          "family": "paper_regime_filter",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_078"
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 4,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "duplicate_threshold_reached:2"
+    },
+    "paper_low_vol_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_low_vol_momentum/unknown_field/unknown_layer",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.081636+00:00",
+          "run_id": "EXP_059",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMENTUM_CRASH_CO_VOL_FILTER_V1",
+          "family": "paper_low_vol_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_014"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.104645+00:00",
+          "run_id": "EXP_081",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V2",
+          "family": "paper_low_vol_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_014"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.208461+00:00",
+          "run_id": "EXP_161",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4",
+          "family": "paper_low_vol_momentum",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_059"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.221228+00:00",
+          "run_id": "EXP_171",
+          "hypothesis_id": "HYP_LIT_AUTO_002_VOL_MANAGED_RET26_REALIZED_VOL13_V4",
+          "family": "paper_low_vol_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_168"
+        }
+      ],
+      "duplicate_count": 4,
+      "bad_count": 4,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "duplicate_threshold_reached:4"
+    },
+    "paper_quality_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_quality_momentum/unknown_field/unknown_layer",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.083160+00:00",
+          "run_id": "EXP_060",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_V1",
+          "family": "paper_quality_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.102129+00:00",
+          "run_id": "EXP_079",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1",
+          "family": "paper_quality_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_073"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.109821+00:00",
+          "run_id": "EXP_087",
+          "hypothesis_id": "HYP_LIT_AUTO_002_QUALITY_SLOPE_R2_CONFIRM_V1",
+          "family": "paper_quality_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_077"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.137757+00:00",
+          "run_id": "EXP_113",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_SLOPE_CONFIRM_V1",
+          "family": "paper_quality_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_073"
+        }
+      ],
+      "duplicate_count": 3,
+      "bad_count": 4,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "duplicate_threshold_reached:3"
+    },
+    "paper_time_series_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_time_series_momentum/unknown_field/unknown_layer",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.084289+00:00",
+          "run_id": "EXP_061",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_014"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.086021+00:00",
+          "run_id": "EXP_063",
+          "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_CONFIRM_V1",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.113212+00:00",
+          "run_id": "EXP_091",
+          "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_SMA20_CONFIRM_V1",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.128690+00:00",
+          "run_id": "EXP_104",
+          "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET52_CHANNEL_QUALITY_V1",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.150378+00:00",
+          "run_id": "EXP_126",
+          "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET52_SMA20_CONFIRM_V1",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 5,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "bad_threshold_reached:5"
+    },
+    "paper_trend_following/unknown_field/unknown_layer": {
+      "branch_key": "paper_trend_following/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.084908+00:00",
+          "run_id": "EXP_062",
+          "hypothesis_id": "HYP_LIT_AUTO_002_SMA20_TREND_FAST_CONFIRM_V1",
+          "family": "paper_trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.103215+00:00",
+          "run_id": "EXP_080",
+          "hypothesis_id": "HYP_LIT_AUTO_002_SMA20_FAST_SMA52_CONFIRM_V1",
+          "family": "paper_trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_quality_momentum/channel_slope_pct/pure_ranking": {
+      "branch_key": "feature_space_quality_momentum/channel_slope_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.089673+00:00",
+          "run_id": "EXP_066",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1",
+          "family": "feature_space_quality_momentum",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 0,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "feature_space_trend_following/close_sma_50_slope_5d_pct/pure_ranking": {
+      "branch_key": "feature_space_trend_following/close_sma_50_slope_5d_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.090182+00:00",
+          "run_id": "EXP_067",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1",
+          "family": "feature_space_trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_pullback/distance_to_channel_lower_pct/pure_ranking": {
+      "branch_key": "feature_space_pullback/distance_to_channel_lower_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.090810+00:00",
+          "run_id": "EXP_068",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1",
+          "family": "feature_space_pullback",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_quality_momentum/channel_r2/pure_ranking": {
+      "branch_key": "feature_space_quality_momentum/channel_r2/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.091954+00:00",
+          "run_id": "EXP_069",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1",
+          "family": "feature_space_quality_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_momentum/ret_26w_pct/pure_ranking": {
+      "branch_key": "feature_space_momentum/ret_26w_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.092582+00:00",
+          "run_id": "EXP_070",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+          "family": "feature_space_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_063"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_trend_following/close_vs_sma20w_pct/pure_ranking": {
+      "branch_key": "feature_space_trend_following/close_vs_sma20w_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.092582+00:00",
+          "run_id": "EXP_071",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+          "family": "feature_space_trend_following",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_062"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_momentum/ret_52w_pct/pure_ranking": {
+      "branch_key": "feature_space_momentum/ret_52w_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.093701+00:00",
+          "run_id": "EXP_072",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_V1",
+          "family": "feature_space_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_014"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_composite_confirmation/channel_r2/rank_confirmation": {
+      "branch_key": "feature_space_composite_confirmation/channel_r2/rank_confirmation",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.094333+00:00",
+          "run_id": "EXP_073",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.095854+00:00",
+          "run_id": "EXP_074",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.096363+00:00",
+          "run_id": "EXP_075",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA50_SLOPE_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.097381+00:00",
+          "run_id": "EXP_076",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 2,
+      "last_updated_at": "2026-05-20T01:26:46.221734+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "feature_space_composite_confirmation/channel_slope_pct/rank_confirmation": {
+      "branch_key": "feature_space_composite_confirmation/channel_slope_pct/rank_confirmation",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.098406+00:00",
+          "run_id": "EXP_077",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_CHANNEL_R2_035_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.117471+00:00",
+          "run_id": "EXP_096",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.131213+00:00",
+          "run_id": "EXP_106",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA50_SLOPE_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.138388+00:00",
+          "run_id": "EXP_114",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 3,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "feature_space_regime/channel_r2/rank_market_filter": {
+      "branch_key": "feature_space_regime/channel_r2/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.105756+00:00",
+          "run_id": "EXP_082",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.107488+00:00",
+          "run_id": "EXP_084",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_regime/channel_slope_pct/rank_market_filter": {
+      "branch_key": "feature_space_regime/channel_slope_pct/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.106372+00:00",
+          "run_id": "EXP_083",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.108102+00:00",
+          "run_id": "EXP_085",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "feature_space_composite_concentration/channel_r2/rank_topn": {
+      "branch_key": "feature_space_composite_concentration/channel_r2/rank_topn",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.111434+00:00",
+          "run_id": "EXP_088",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_11_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.111434+00:00",
+          "run_id": "EXP_089",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_12_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.112591+00:00",
+          "run_id": "EXP_090",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_14_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.126652+00:00",
+          "run_id": "EXP_102",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_17_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.134846+00:00",
+          "run_id": "EXP_110",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_19_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.141134+00:00",
+          "run_id": "EXP_119",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.149825+00:00",
+          "run_id": "EXP_125",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_7_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.157925+00:00",
+          "run_id": "EXP_131",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_9_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "accepted_for_followup",
+          "ledger_value": "defensive_secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 7,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "feature_space_composite_exit/channel_r2/rank_exit": {
+      "branch_key": "feature_space_composite_exit/channel_r2/rank_exit",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.114336+00:00",
+          "run_id": "EXP_092",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_14_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.114956+00:00",
+          "run_id": "EXP_093",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_17_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.115969+00:00",
+          "run_id": "EXP_094",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.128690+00:00",
+          "run_id": "EXP_103",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_23_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.134846+00:00",
+          "run_id": "EXP_111",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_24_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.141134+00:00",
+          "run_id": "EXP_118",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.147784+00:00",
+          "run_id": "EXP_124",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_28_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        }
+      ],
+      "duplicate_count": 7,
+      "bad_count": 7,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "duplicate_threshold_reached:7"
+    },
+    "paper_trend_following/v2/pure_ranking": {
+      "branch_key": "paper_trend_following/v2/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.115969+00:00",
+          "run_id": "EXP_095",
+          "hypothesis_id": "HYP_LIT_AUTO_002_FAST_TREND_SMA20_RANK_V2",
+          "family": "paper_trend_following",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_062"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_regime/close_sma_50_slope_5d_pct/rank_market_filter": {
+      "branch_key": "feature_space_regime/close_sma_50_slope_5d_pct/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.119502+00:00",
+          "run_id": "EXP_098",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_067"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.168639+00:00",
+          "run_id": "EXP_136",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_quality_momentum/v2/pure_ranking": {
+      "branch_key": "paper_quality_momentum/v2/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.130206+00:00",
+          "run_id": "EXP_105",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABI_QUALITY_R2_RANK_V2",
+          "family": "paper_quality_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_060"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_regime/close_vs_sma20w_pct/rank_market_filter": {
+      "branch_key": "feature_space_regime/close_vs_sma20w_pct/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.132785+00:00",
+          "run_id": "EXP_108",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.178312+00:00",
+          "run_id": "EXP_142",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_time_series_momentum/v2/pure_ranking": {
+      "branch_key": "paper_time_series_momentum/v2/pure_ranking",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.136631+00:00",
+          "run_id": "EXP_112",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_014"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.142591+00:00",
+          "run_id": "EXP_120",
+          "hypothesis_id": "HYP_LIT_AUTO_002_TSMOM_RET26_RANK_V2",
+          "family": "paper_time_series_momentum",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_063"
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "duplicate_threshold_reached:2"
+    },
+    "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation": {
+      "branch_key": "feature_space_composite_confirmation/close_sma_50_slope_5d_pct/rank_confirmation",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.138388+00:00",
+          "run_id": "EXP_115",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.143711+00:00",
+          "run_id": "EXP_121",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.152598+00:00",
+          "run_id": "EXP_127",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.162456+00:00",
+          "run_id": "EXP_133",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 4,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "bad_threshold_reached:4"
+    },
+    "feature_space_regime/distance_to_channel_lower_pct/rank_market_filter": {
+      "branch_key": "feature_space_regime/distance_to_channel_lower_pct/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.140128+00:00",
+          "run_id": "EXP_117",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.186528+00:00",
+          "run_id": "EXP_147",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_regime/ret_26w_pct/rank_market_filter": {
+      "branch_key": "feature_space_regime/ret_26w_pct/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.145464+00:00",
+          "run_id": "EXP_123",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.199692+00:00",
+          "run_id": "EXP_155",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_regime/ret_52w_pct/rank_market_filter": {
+      "branch_key": "feature_space_regime/ret_52w_pct/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.156918+00:00",
+          "run_id": "EXP_129",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1",
+          "family": "feature_space_regime",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "AUTO_059"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_composite_exit/channel_slope_pct/rank_exit": {
+      "branch_key": "feature_space_composite_exit/channel_slope_pct/rank_exit",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.157925+00:00",
+          "run_id": "EXP_130",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_14_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.169700+00:00",
+          "run_id": "EXP_137",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_17_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.180342+00:00",
+          "run_id": "EXP_143",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_18_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.188039+00:00",
+          "run_id": "EXP_148",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.189594+00:00",
+          "run_id": "EXP_149",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.191160+00:00",
+          "run_id": "EXP_150",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.193240+00:00",
+          "run_id": "EXP_151",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_066"
+        }
+      ],
+      "duplicate_count": 7,
+      "bad_count": 7,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "duplicate_threshold_reached:7"
+    },
+    "feature_space_composite_concentration/channel_slope_pct/rank_topn": {
+      "branch_key": "feature_space_composite_concentration/channel_slope_pct/rank_topn",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.159968+00:00",
+          "run_id": "EXP_132",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.165351+00:00",
+          "run_id": "EXP_135",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_12_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.173248+00:00",
+          "run_id": "EXP_140",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_14_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "accepted_for_followup",
+          "ledger_value": "secondary_candidate",
+          "is_duplicate": false,
+          "is_bad": false,
+          "is_good": true,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.176287+00:00",
+          "run_id": "EXP_141",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_17_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.183365+00:00",
+          "run_id": "EXP_145",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_19_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.198685+00:00",
+          "run_id": "EXP_154",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_5_V1",
+          "family": "feature_space_composite_concentration",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 5,
+      "good_count": 1,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "has_good_recent_event"
+    },
+    "trend_following/close_vs_sma20w_pct/pure_ranking": {
+      "branch_key": "trend_following/close_vs_sma20w_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.164016+00:00",
+          "run_id": "EXP_134",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation": {
+      "branch_key": "feature_space_composite_confirmation/close_vs_sma20w_pct/rank_confirmation",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.170703+00:00",
+          "run_id": "EXP_138",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.182359+00:00",
+          "run_id": "EXP_144",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_SLOPE_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.196659+00:00",
+          "run_id": "EXP_153",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA50_SLOPE_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.202953+00:00",
+          "run_id": "EXP_157",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_080"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 4,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "bad_threshold_reached:4"
+    },
+    "trend_following/ret_26w_pct/pure_ranking": {
+      "branch_key": "trend_following/ret_26w_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.172742+00:00",
+          "run_id": "EXP_139",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1",
+          "family": "trend_following",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "time_series_momentum_refinement/ret_52w_pct/pure_ranking": {
+      "branch_key": "time_series_momentum_refinement/ret_52w_pct/pure_ranking",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.185521+00:00",
+          "run_id": "EXP_146",
+          "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_52W_PCT_V1",
+          "family": "time_series_momentum_refinement",
+          "decision": "rejected",
+          "ledger_value": null,
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_061"
+        }
+      ],
+      "duplicate_count": 1,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "feature_space_composite_exit/close_sma_50_slope_5d_pct/rank_exit": {
+      "branch_key": "feature_space_composite_exit/close_sma_50_slope_5d_pct/rank_exit",
+      "status": "exhausted",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.195262+00:00",
+          "run_id": "EXP_152",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_14_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_067"
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.201228+00:00",
+          "run_id": "EXP_156",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
+          "family": "feature_space_composite_exit",
+          "decision": "rejected",
+          "ledger_value": "duplicate_blocked",
+          "is_duplicate": true,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": "EXP_067"
+        }
+      ],
+      "duplicate_count": 2,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "duplicate_threshold_reached:2"
+    },
+    "feature_space_composite_confirmation/distance_to_channel_lower_pct/rank_confirmation": {
+      "branch_key": "feature_space_composite_confirmation/distance_to_channel_lower_pct/rank_confirmation",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.204467+00:00",
+          "run_id": "EXP_158",
+          "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+          "family": "feature_space_composite_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_quality_pullback_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_quality_pullback_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.210219+00:00",
+          "run_id": "EXP_162",
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1",
+          "family": "paper_quality_pullback_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_drawdown_proxy_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_drawdown_proxy_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.211336+00:00",
+          "run_id": "EXP_163",
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_DRAWDOWN26_PROXY_V1",
+          "family": "paper_drawdown_proxy_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_near_horizon_confirmation/unknown_field/unknown_layer": {
+      "branch_key": "paper_near_horizon_confirmation/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.213465+00:00",
+          "run_id": "EXP_164",
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1",
+          "family": "paper_near_horizon_confirmation",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_regime_slope_filter/unknown_field/rank_market_filter": {
+      "branch_key": "paper_regime_slope_filter/unknown_field/rank_market_filter",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.213970+00:00",
+          "run_id": "EXP_165",
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+          "family": "paper_regime_slope_filter",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_volatility_proxy_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_volatility_proxy_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.215482+00:00",
+          "run_id": "EXP_166",
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1",
+          "family": "paper_volatility_proxy_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_downside_risk_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_downside_risk_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.216685+00:00",
+          "run_id": "EXP_167",
+          "hypothesis_id": "HYP_LIT_AUTO_002_DRAWDOWN_AWARE_RET52_MAXDD26_V4",
+          "family": "paper_downside_risk_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        },
+        {
+          "created_at": "2026-05-20T01:26:46.217694+00:00",
+          "run_id": "EXP_168",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_DOWNSIDE_VOL13_RET26_V4",
+          "family": "paper_downside_risk_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 2,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_breadth_regime/unknown_field/unknown_layer": {
+      "branch_key": "paper_breadth_regime/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.218704+00:00",
+          "run_id": "EXP_169",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4",
+          "family": "paper_breadth_regime",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    },
+    "paper_residual_momentum/unknown_field/unknown_layer": {
+      "branch_key": "paper_residual_momentum/unknown_field/unknown_layer",
+      "status": "active",
+      "events": [
+        {
+          "created_at": "2026-05-20T01:26:46.219712+00:00",
+          "run_id": "EXP_170",
+          "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4",
+          "family": "paper_residual_momentum",
+          "decision": "rejected",
+          "ledger_value": "rejected_with_learning",
+          "is_duplicate": false,
+          "is_bad": true,
+          "is_good": false,
+          "duplicate_of_run_id": null
+        }
+      ],
+      "duplicate_count": 0,
+      "bad_count": 1,
+      "good_count": 0,
+      "last_updated_at": "2026-05-20T01:26:46.222239+00:00",
+      "reason": "below_threshold"
+    }
+  },
+  "updated_at": "2026-05-20T01:26:46.224759+00:00"
+}

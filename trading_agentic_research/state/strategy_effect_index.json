@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created_at": "2026-05-19T16:24:25.877893+00:00",
-  "updated_at": "2026-05-19T16:43:01.652399+00:00",
+  "updated_at": "2026-05-19T22:22:56.117630+00:00",
   "signatures": {
     "aca740e81ec06e344ac1539f9249f7a17671a865ac13d01a019f5aa9425af71b": {
       "strategy_effect_signature": "aca740e81ec06e344ac1539f9249f7a17671a865ac13d01a019f5aa9425af71b",
@@ -9631,6 +9631,96 @@
       "consumed": {
         "written": 1,
         "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_52W_PCT_V1",
+        "path": "state\\consumed_hypotheses.jsonl"
+      }
+    },
+    {
+      "created_at": "2026-05-19T17:19:04.827163+00:00",
+      "run_id": "EXP_148",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+      "family": "feature_space_composite_exit",
+      "reason": "duplicate_threshold_reached:3",
+      "duplicate_of_run_id": "EXP_066",
+      "strategy_effect_signature": "6ea88f41a5ecbd72c21faf2423643bb2a738ba8acf2b9dbedce39f343a03fccb",
+      "config_hash": "d8a3f2cf5b275e3899dfeb2ee9e4fc1f06311bb64854d5d5617e79d1a61089de",
+      "consumed": {
+        "written": 1,
+        "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+        "path": "state\\consumed_hypotheses.jsonl"
+      }
+    },
+    {
+      "created_at": "2026-05-19T17:25:45.547848+00:00",
+      "run_id": "EXP_149",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+      "family": "feature_space_composite_exit",
+      "reason": "duplicate_threshold_reached:4",
+      "duplicate_of_run_id": "EXP_066",
+      "strategy_effect_signature": "b8716ebbb1969cbe52b019ae7d30efe6657f75562d9dba12ba82052b95f29844",
+      "config_hash": "1a7e438973c58801be5f87cb8a57a041f5120dbc63542dc61af406d328406a6d",
+      "consumed": {
+        "written": 1,
+        "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+        "path": "state\\consumed_hypotheses.jsonl"
+      }
+    },
+    {
+      "created_at": "2026-05-19T17:25:46.150002+00:00",
+      "run_id": "EXP_150",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+      "family": "feature_space_composite_exit",
+      "reason": "duplicate_threshold_reached:5",
+      "duplicate_of_run_id": "EXP_066",
+      "strategy_effect_signature": "ef1f35901a5ba4395b0ca4fb614eed5f1346bb8d91da10d6936e10f91a67c578",
+      "config_hash": "ff071ed71f7736088728397138c242628e0f79772670d6dc17f204f164dbe3ad",
+      "consumed": {
+        "written": 1,
+        "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+        "path": "state\\consumed_hypotheses.jsonl"
+      }
+    },
+    {
+      "created_at": "2026-05-19T17:52:09.215713+00:00",
+      "run_id": "EXP_151",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+      "family": "feature_space_composite_exit",
+      "reason": "duplicate_threshold_reached:6",
+      "duplicate_of_run_id": "EXP_066",
+      "strategy_effect_signature": "eee9fcea1d31600c34c3e740555cabca536906f9bd5b57e10408da642a0ef436",
+      "config_hash": "c7376b39b45285ce218fa7f71313bdfdfaaaa87b7a167abedbd2b0b0d41abab3",
+      "consumed": {
+        "written": 1,
+        "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+        "path": "state\\consumed_hypotheses.jsonl"
+      }
+    },
+    {
+      "created_at": "2026-05-19T18:42:17.568182+00:00",
+      "run_id": "EXP_157",
+      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+      "family": "feature_space_composite_confirmation",
+      "reason": "duplicate_strategy_effect_signature",
+      "duplicate_of_run_id": "EXP_080",
+      "strategy_effect_signature": "570929c8553545411f1c848b0489d20665eab864c06f20417398b672fead825c",
+      "config_hash": "b189961cc12897b65005b6b1aa6a31bb801ea3ebf9fca4c4f9d4915eae25f5b6",
+      "consumed": {
+        "written": 1,
+        "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+        "path": "state\\consumed_hypotheses.jsonl"
+      }
+    },
+    {
+      "created_at": "2026-05-19T22:22:56.114998+00:00",
+      "run_id": "EXP_161",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4",
+      "family": "paper_low_vol_momentum",
+      "reason": "duplicate_strategy_effect_signature",
+      "duplicate_of_run_id": "EXP_059",
+      "strategy_effect_signature": "849d18a092e98036c35e4f70840ce17db5d63eee38e975d33f19a0d3a59071b4",
+      "config_hash": "eadae021d23ea1b3275efb03e1e1fe8d964b6e5c7e7def0bda8d87c734f0d0aa",
+      "consumed": {
+        "written": 1,
+        "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4",
         "path": "state\\consumed_hypotheses.jsonl"
       }
     }

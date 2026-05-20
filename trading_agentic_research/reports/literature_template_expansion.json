@@ -1,0 +1,842 @@
+{
+  "generated_at": "2026-05-19T23:56:29.186386+00:00",
+  "mode": "write",
+  "available_feature_count": 188,
+  "proposals": [
+    {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_DRAWDOWN26_PROXY_V1",
+      "family": "paper_drawdown_proxy_momentum",
+      "axis": "paper_drawdown_proxy_filter",
+      "source_id": "drawdown_aware_momentum_proxy_template",
+      "paper_title": "Drawdown-aware momentum using existing drawdown proxy",
+      "claim": "52-week momentum filtered by an existing 26-week drawdown-from-high proxy may avoid fragile winners without new feature engineering.",
+      "features_required": [
+        "ret_52w_pct",
+        "drawdown_from_high_26w_pct",
+        "close"
+      ],
+      "missing_features": [],
+      "mechanism_is_clearly_new": true,
+      "duplicate_override_signature": false,
+      "advisory_cooldown": false,
+      "effective_status": {
+        "blocked": false,
+        "reason": "effective",
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_DRAWDOWN26_PROXY_V1",
+        "family": "paper_drawdown_proxy_momentum",
+        "semantic": {
+          "blocked": false,
+          "advisory": true,
+          "reason": null,
+          "branch_key": "paper_drawdown_proxy_momentum/unknown_field/unknown_layer",
+          "exhausted": false,
+          "status": "active",
+          "duplicate_count": 0,
+          "bad_count": 0,
+          "good_count": 0,
+          "events": []
+        },
+        "exact_duplicate": {
+          "checked": true,
+          "synthetic": true,
+          "blocked": false,
+          "reason": "synthetic_config_unique",
+          "strategy_effect_signature": "0bf66b205b12029761d2a40fd42aee0d1d4113c7c4d9893406485bccdd493b52",
+          "canonical_payload": {
+            "benchmark_ticker": "SPY",
+            "entry_rule": {
+              "by": "ret_52w_pct",
+              "top_n": 15,
+              "type": "top_n"
+            },
+            "exit_rule": {
+              "rank_threshold": 20,
+              "type": "drop_below_rank"
+            },
+            "market_filter": {
+              "benchmark": "SPY",
+              "condition_any": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "spy_close_vs_sma50_pct",
+                  "operator": ">",
+                  "value": 0
+                }
+              ],
+              "require_positive_trend": true
+            },
+            "ranking": {
+              "field": "ret_52w_pct",
+              "order": "desc"
+            },
+            "risk_filters": {
+              "conditions": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "drawdown_from_high_26w_pct",
+                  "operator": ">",
+                  "value": -25.0
+                }
+              ],
+              "require_non_null_fields": [
+                "ret_52w_pct",
+                "drawdown_from_high_26w_pct",
+                "close"
+              ]
+            }
+          },
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_DRAWDOWN26_PROXY_V1",
+          "family": "paper_drawdown_proxy_momentum"
+        },
+        "feature_space_stall": {
+          "stalled": true,
+          "reason": "feature_space_recent_bad:10_good:0_window:10",
+          "recent_bad": 10,
+          "recent_good": 0,
+          "recent_count": 10,
+          "consumed_feature_space": 67,
+          "recent_events": [
+            {
+              "source": "ledger",
+              "run_id": "EXP_155",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+              "family": "feature_space_composite_market_filter",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_156",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_blocked"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_158",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_148",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:3"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_149",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:4"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_150",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:5"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_151",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:6"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_157",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_strategy_effect_signature"
+            }
+          ]
+        },
+        "family_stall": {
+          "stalled": false,
+          "reason": "paper_family_advisory",
+          "family": "paper_drawdown_proxy_momentum"
+        }
+      },
+      "blocked_reasons": [],
+      "would_write": true
+    },
+    {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1",
+      "family": "paper_volatility_proxy_momentum",
+      "axis": "paper_low_vol_proxy_filter",
+      "source_id": "low_volatility_existing_proxy_template",
+      "paper_title": "Low-volatility momentum using existing 12-week volatility proxy",
+      "claim": "52-week momentum filtered by existing 12-week volatility may reduce crash-prone winners without inventing missing volatility features.",
+      "features_required": [
+        "ret_52w_pct",
+        "volatility_12w_pct",
+        "close"
+      ],
+      "missing_features": [],
+      "mechanism_is_clearly_new": true,
+      "duplicate_override_signature": false,
+      "advisory_cooldown": false,
+      "effective_status": {
+        "blocked": false,
+        "reason": "effective",
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1",
+        "family": "paper_volatility_proxy_momentum",
+        "semantic": {
+          "blocked": false,
+          "advisory": true,
+          "reason": null,
+          "branch_key": "paper_volatility_proxy_momentum/unknown_field/unknown_layer",
+          "exhausted": false,
+          "status": "active",
+          "duplicate_count": 0,
+          "bad_count": 0,
+          "good_count": 0,
+          "events": []
+        },
+        "exact_duplicate": {
+          "checked": true,
+          "synthetic": true,
+          "blocked": false,
+          "reason": "synthetic_config_unique",
+          "strategy_effect_signature": "20b9ab303f70647dbd24fcfc826a8454228c9faf4b22c8757b1646944150d7cf",
+          "canonical_payload": {
+            "benchmark_ticker": "SPY",
+            "entry_rule": {
+              "by": "ret_52w_pct",
+              "top_n": 15,
+              "type": "top_n"
+            },
+            "exit_rule": {
+              "rank_threshold": 20,
+              "type": "drop_below_rank"
+            },
+            "market_filter": {
+              "benchmark": "SPY",
+              "condition_any": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "spy_close_vs_sma50_pct",
+                  "operator": ">",
+                  "value": 0
+                }
+              ],
+              "require_positive_trend": true
+            },
+            "ranking": {
+              "field": "ret_52w_pct",
+              "order": "desc"
+            },
+            "risk_filters": {
+              "conditions": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "volatility_12w_pct",
+                  "operator": "<",
+                  "value": 12.0
+                }
+              ],
+              "require_non_null_fields": [
+                "ret_52w_pct",
+                "volatility_12w_pct",
+                "close"
+              ]
+            }
+          },
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1",
+          "family": "paper_volatility_proxy_momentum"
+        },
+        "feature_space_stall": {
+          "stalled": true,
+          "reason": "feature_space_recent_bad:10_good:0_window:10",
+          "recent_bad": 10,
+          "recent_good": 0,
+          "recent_count": 10,
+          "consumed_feature_space": 67,
+          "recent_events": [
+            {
+              "source": "ledger",
+              "run_id": "EXP_155",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+              "family": "feature_space_composite_market_filter",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_156",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_blocked"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_158",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_148",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:3"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_149",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:4"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_150",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:5"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_151",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:6"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_157",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_strategy_effect_signature"
+            }
+          ]
+        },
+        "family_stall": {
+          "stalled": false,
+          "reason": "paper_family_advisory",
+          "family": "paper_volatility_proxy_momentum"
+        }
+      },
+      "blocked_reasons": [],
+      "would_write": true
+    },
+    {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1",
+      "family": "paper_near_horizon_confirmation",
+      "axis": "paper_ret12_confirmation_proxy",
+      "source_id": "multi_lookback_existing_ret12_proxy_template",
+      "paper_title": "Multi-lookback confirmation using existing ret_12w_pct proxy",
+      "claim": "52-week momentum confirmed by existing 12-week return may approximate the blocked ret_13w confirmation axis without fabricating ret_13w_pct.",
+      "features_required": [
+        "ret_52w_pct",
+        "ret_12w_pct",
+        "close"
+      ],
+      "missing_features": [],
+      "mechanism_is_clearly_new": true,
+      "duplicate_override_signature": false,
+      "advisory_cooldown": false,
+      "effective_status": {
+        "blocked": false,
+        "reason": "effective",
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1",
+        "family": "paper_near_horizon_confirmation",
+        "semantic": {
+          "blocked": false,
+          "advisory": true,
+          "reason": null,
+          "branch_key": "paper_near_horizon_confirmation/unknown_field/unknown_layer",
+          "exhausted": false,
+          "status": "active",
+          "duplicate_count": 0,
+          "bad_count": 0,
+          "good_count": 0,
+          "events": []
+        },
+        "exact_duplicate": {
+          "checked": true,
+          "synthetic": true,
+          "blocked": false,
+          "reason": "synthetic_config_unique",
+          "strategy_effect_signature": "3026f14e14c16a0d65bfa221a31110446efbf1e0f3b89b867844405d2e32c3cb",
+          "canonical_payload": {
+            "benchmark_ticker": "SPY",
+            "entry_rule": {
+              "by": "ret_52w_pct",
+              "top_n": 15,
+              "type": "top_n"
+            },
+            "exit_rule": {
+              "rank_threshold": 20,
+              "type": "drop_below_rank"
+            },
+            "market_filter": {
+              "benchmark": "SPY",
+              "condition_any": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "spy_close_vs_sma50_pct",
+                  "operator": ">",
+                  "value": 0
+                }
+              ],
+              "require_positive_trend": true
+            },
+            "ranking": {
+              "field": "ret_52w_pct",
+              "order": "desc"
+            },
+            "risk_filters": {
+              "conditions": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "ret_12w_pct",
+                  "operator": ">",
+                  "value": 0.0
+                }
+              ],
+              "require_non_null_fields": [
+                "ret_52w_pct",
+                "ret_12w_pct",
+                "close"
+              ]
+            }
+          },
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1",
+          "family": "paper_near_horizon_confirmation"
+        },
+        "feature_space_stall": {
+          "stalled": true,
+          "reason": "feature_space_recent_bad:10_good:0_window:10",
+          "recent_bad": 10,
+          "recent_good": 0,
+          "recent_count": 10,
+          "consumed_feature_space": 67,
+          "recent_events": [
+            {
+              "source": "ledger",
+              "run_id": "EXP_155",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+              "family": "feature_space_composite_market_filter",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_156",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_blocked"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_158",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_148",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:3"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_149",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:4"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_150",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:5"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_151",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:6"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_157",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_strategy_effect_signature"
+            }
+          ]
+        },
+        "family_stall": {
+          "stalled": false,
+          "reason": "paper_family_advisory",
+          "family": "paper_near_horizon_confirmation"
+        }
+      },
+      "blocked_reasons": [],
+      "would_write": true
+    },
+    {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+      "family": "paper_regime_slope_filter",
+      "axis": "paper_spy_slope_regime_filter",
+      "source_id": "market_state_existing_spy_slope_template",
+      "paper_title": "Market-state filter using existing SPY slope feature",
+      "claim": "52-week momentum gated by positive SPY SMA50 slope may test market-state behavior without reusing the exhausted strict/relaxed SMA gate.",
+      "features_required": [
+        "ret_52w_pct",
+        "spy_close_sma_50_slope_5d_pct",
+        "close"
+      ],
+      "missing_features": [],
+      "mechanism_is_clearly_new": true,
+      "duplicate_override_signature": false,
+      "advisory_cooldown": false,
+      "effective_status": {
+        "blocked": false,
+        "reason": "effective",
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+        "family": "paper_regime_slope_filter",
+        "semantic": {
+          "blocked": false,
+          "advisory": true,
+          "reason": null,
+          "branch_key": "paper_regime_slope_filter/unknown_field/rank_market_filter",
+          "exhausted": false,
+          "status": "active",
+          "duplicate_count": 0,
+          "bad_count": 0,
+          "good_count": 0,
+          "events": []
+        },
+        "exact_duplicate": {
+          "checked": true,
+          "synthetic": true,
+          "blocked": false,
+          "reason": "synthetic_config_unique",
+          "strategy_effect_signature": "83f10ec1a846adb3fff0df8849d9f7e02d8da2a8979ee36f826b3c22a03e4c68",
+          "canonical_payload": {
+            "benchmark_ticker": "SPY",
+            "entry_rule": {
+              "by": "ret_52w_pct",
+              "top_n": 15,
+              "type": "top_n"
+            },
+            "exit_rule": {
+              "rank_threshold": 20,
+              "type": "drop_below_rank"
+            },
+            "market_filter": {
+              "benchmark": "SPY",
+              "condition_any": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "spy_close_vs_sma50_pct",
+                  "operator": ">",
+                  "value": 0
+                }
+              ],
+              "require_positive_trend": true
+            },
+            "ranking": {
+              "field": "ret_52w_pct",
+              "order": "desc"
+            },
+            "risk_filters": {
+              "conditions": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "spy_close_sma_50_slope_5d_pct",
+                  "operator": ">",
+                  "value": 0.0
+                }
+              ],
+              "require_non_null_fields": [
+                "ret_52w_pct",
+                "spy_close_sma_50_slope_5d_pct",
+                "close"
+              ]
+            }
+          },
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+          "family": "paper_regime_slope_filter"
+        },
+        "feature_space_stall": {
+          "stalled": true,
+          "reason": "feature_space_recent_bad:10_good:0_window:10",
+          "recent_bad": 10,
+          "recent_good": 0,
+          "recent_count": 10,
+          "consumed_feature_space": 67,
+          "recent_events": [
+            {
+              "source": "ledger",
+              "run_id": "EXP_155",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+              "family": "feature_space_composite_market_filter",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_156",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_blocked"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_158",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_148",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:3"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_149",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:4"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_150",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:5"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_151",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:6"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_157",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_strategy_effect_signature"
+            }
+          ]
+        },
+        "family_stall": {
+          "stalled": false,
+          "reason": "paper_family_advisory",
+          "family": "paper_regime_slope_filter"
+        }
+      },
+      "blocked_reasons": [],
+      "would_write": true
+    },
+    {
+      "hypothesis_id": "HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1",
+      "family": "paper_quality_pullback_momentum",
+      "axis": "paper_quality_drawdown_proxy_filter",
+      "source_id": "quality_drawdown_existing_proxy_template",
+      "paper_title": "Quality trend filtered by drawdown proxy",
+      "claim": "Ranking by trend quality while excluding severe drawdown-from-high names may test whether clean trends with controlled pullbacks outperform raw momentum.",
+      "features_required": [
+        "channel_r2",
+        "drawdown_from_high_26w_pct",
+        "close"
+      ],
+      "missing_features": [],
+      "mechanism_is_clearly_new": true,
+      "duplicate_override_signature": false,
+      "advisory_cooldown": false,
+      "effective_status": {
+        "blocked": false,
+        "reason": "effective",
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1",
+        "family": "paper_quality_pullback_momentum",
+        "semantic": {
+          "blocked": false,
+          "advisory": true,
+          "reason": null,
+          "branch_key": "paper_quality_pullback_momentum/unknown_field/unknown_layer",
+          "exhausted": false,
+          "status": "active",
+          "duplicate_count": 0,
+          "bad_count": 0,
+          "good_count": 0,
+          "events": []
+        },
+        "exact_duplicate": {
+          "checked": true,
+          "synthetic": true,
+          "blocked": false,
+          "reason": "synthetic_config_unique",
+          "strategy_effect_signature": "86f8eb7cf00d338b91174974fc8ee99be69a33168fb0ff52cd52d93127dbfd85",
+          "canonical_payload": {
+            "benchmark_ticker": "SPY",
+            "entry_rule": {
+              "by": "ret_52w_pct",
+              "top_n": 15,
+              "type": "top_n"
+            },
+            "exit_rule": {
+              "rank_threshold": 20,
+              "type": "drop_below_rank"
+            },
+            "market_filter": {
+              "benchmark": "SPY",
+              "condition_any": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "spy_close_vs_sma50_pct",
+                  "operator": ">",
+                  "value": 0
+                }
+              ],
+              "require_positive_trend": true
+            },
+            "ranking": {
+              "field": "channel_r2",
+              "order": "desc"
+            },
+            "risk_filters": {
+              "conditions": [
+                {
+                  "enabled_if_field_exists": true,
+                  "field": "drawdown_from_high_26w_pct",
+                  "operator": ">",
+                  "value": -20.0
+                }
+              ],
+              "require_non_null_fields": [
+                "channel_r2",
+                "drawdown_from_high_26w_pct",
+                "close"
+              ]
+            }
+          },
+          "hypothesis_id": "HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1",
+          "family": "paper_quality_pullback_momentum"
+        },
+        "feature_space_stall": {
+          "stalled": true,
+          "reason": "feature_space_recent_bad:10_good:0_window:10",
+          "recent_bad": 10,
+          "recent_good": 0,
+          "recent_count": 10,
+          "consumed_feature_space": 67,
+          "recent_events": [
+            {
+              "source": "ledger",
+              "run_id": "EXP_155",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_RELAXED_V1",
+              "family": "feature_space_composite_market_filter",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_156",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_blocked"
+            },
+            {
+              "source": "ledger",
+              "run_id": "EXP_158",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "rejected_with_learning"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_148",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_23_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:3"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_149",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_24_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:4"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_150",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_26_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:5"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_151",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_28_V1",
+              "family": "feature_space_composite_exit",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_threshold_reached:6"
+            },
+            {
+              "source": "pre_run_block",
+              "run_id": "EXP_157",
+              "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_SMA52_POS_V1",
+              "family": "feature_space_composite_confirmation",
+              "value": "duplicate_preflight_blocked",
+              "reason": "duplicate_strategy_effect_signature"
+            }
+          ]
+        },
+        "family_stall": {
+          "stalled": false,
+          "reason": "paper_family_advisory",
+          "family": "paper_quality_pullback_momentum"
+        }
+      },
+      "blocked_reasons": [],
+      "would_write": true
+    }
+  ],
+  "blocked": [],
+  "written": [
+    "HYP_LITEXP_AUTO_002_RET52_DRAWDOWN26_PROXY_V1",
+    "HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1",
+    "HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1",
+    "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+    "HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1"
+  ],
+  "missing_tasks_written": 0,
+  "next_action": "Review proposals; if acceptable, run with --write after confirming they are genuinely new research mechanisms."
+}

@@ -1,34 +1,34 @@
 # Generation Eligibility Feedback
 
-- Generated at: 2026-05-19T16:43:01.908788+00:00
-- Events: 29
+- Generated at: 2026-05-20T01:26:46.273268+00:00
+- Events: 71
 
 ## Recent events
 
 | phase | generated | eligible_after | hypothesis | family | reason | warning |
 |---|---:|:---:|---|---|---|---|
+| literature_miner | 0 | no |  |  | no_supported_literature_hypotheses |  |
+| paper_searcher | 0 | no |  |  | No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature). |  |
 | literature_after_paper_search | 0 | no |  |  | no_supported_literature_hypotheses |  |
-| candidate_under_review | 0 | yes | HYP_REVIEW_EXP_052_EXIT_16_V1 | candidate_under_review_exit_refinement | no_new_candidate_under_review_hypotheses | candidate_review_generated_zero |
-| candidate_under_review | 0 | no |  |  | no_new_candidate_under_review_hypotheses | candidate_review_generated_zero |
+| feature_space_expansion | 0 | no |  |  | no_new_feature_space_hypotheses |  |
+| candidate_under_review | 0 | no |  |  | candidate_under_review_already_exhausted | candidate_review_generated_zero |
 | value_factory | 0 | no |  |  | no_new_value_hypotheses |  |
 | literature_miner | 0 | no |  |  | no_supported_literature_hypotheses |  |
 | paper_searcher | 0 | no |  |  | No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature). |  |
 | literature_after_paper_search | 0 | no |  |  | no_supported_literature_hypotheses |  |
-| feature_space_expansion | 5 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_V1 | feature_space_quality_momentum | feature_space_hypotheses_generated |  |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_V1 | feature_space_quality_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_V1 | feature_space_trend_following | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_CHANNEL_SLOPE_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA52_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SPY_REGIME_STRICT_NO_FALLBACK_V1 | paper_regime_filter | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SMA20_FAST_SMA52_CONFIRM_V1 | paper_trend_following | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1 | paper_regime_filter | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_18_V1 | feature_space_composite_exit | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA20_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1 | feature_space_regime | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1 | quality_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_QUALITY_MOMENTUM_CONCENTRATION_7_V1 | quality_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_CONF_SMA52_POS_V1 | feature_space_composite_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_RET_52W_PCT_MKT_STRICT_SPY_V1 | feature_space_regime | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_14_V1 | feature_space_composite_concentration | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_EXIT_18_V1 | feature_space_composite_exit | candidate_under_review_already_exhausted | candidate_review_generated_zero |
-| candidate_under_review | 0 | yes | HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_19_V1 | feature_space_composite_concentration | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| feature_space_expansion | 0 | no |  |  | no_new_feature_space_hypotheses |  |
+| candidate_under_review | 0 | no |  |  | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| value_factory | 0 | no |  |  | no_new_value_hypotheses |  |
+| literature_miner | 0 | no |  |  | no_supported_literature_hypotheses |  |
+| paper_searcher | 0 | no |  |  | No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature). |  |
+| literature_after_paper_search | 0 | no |  |  | no_supported_literature_hypotheses |  |
+| candidate_under_review | 0 | yes | HYP_LITEXP_AUTO_002_R2_DRAWDOWN26_QUALITY_PULLBACK_V1 | paper_quality_pullback_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_LITEXP_AUTO_002_RET52_RET12_CONFIRM_PROXY_V1 | paper_near_horizon_confirmation | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_LITEXP_AUTO_002_RET52_VOL12_LOW_VOL_PROXY_V1 | paper_volatility_proxy_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_DRAWDOWN_AWARE_RET52_MAXDD26_V4 | paper_downside_risk_momentum | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | yes | HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4 | paper_breadth_regime | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| candidate_under_review | 0 | no |  |  | candidate_under_review_already_exhausted | candidate_review_generated_zero |
+| value_factory | 0 | no |  |  | no_new_value_hypotheses |  |
+| literature_miner | 0 | no |  |  | no_supported_literature_hypotheses |  |
+| paper_searcher | 0 | no |  |  | No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature). |  |
+| literature_after_paper_search | 0 | no |  |  | no_supported_literature_hypotheses |  |

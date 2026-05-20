@@ -1,30 +1,63 @@
 {
   "version": 1,
   "status": "stopped",
-  "max_runs": 5,
-  "completed": 2,
-  "consecutive_rejections": 2,
+  "max_runs": 20,
+  "completed": 3,
+  "consecutive_rejections": 1,
   "history": [
     {
       "iteration": 1,
-      "run_id": "EXP_145",
-      "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_19_V1",
-      "family": "feature_space_composite_concentration",
+      "run_id": "EXP_169",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4",
+      "family": "paper_breadth_regime",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     },
     {
       "iteration": 2,
-      "run_id": "EXP_146",
-      "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_RANK_RET_52W_PCT_V1",
-      "family": "time_series_momentum_refinement",
+      "run_id": "EXP_170",
+      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4",
+      "family": "paper_residual_momentum",
+      "decision": "rejected",
+      "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
+    },
+    {
+      "iteration": 3,
+      "run_id": "EXP_171",
+      "hypothesis_id": "HYP_LIT_AUTO_002_VOL_MANAGED_RET26_REALIZED_VOL13_V4",
+      "family": "paper_low_vol_momentum",
       "decision": "rejected",
       "parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json"
     }
   ],
-  "last_updated_at": "2026-05-19T16:43:01.790168+00:00",
-  "stop_reason": "consecutive_rejections:2",
+  "last_updated_at": "2026-05-20T01:18:40.669437+00:00",
+  "stop_reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
   "effective_parent_strategy_config": "configs/generated/HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json",
-  "recovery_cycles": 0,
-  "recovery_history": []
+  "recovery_cycles": 1,
+  "recovery_history": [
+    {
+      "cycle": 1,
+      "trigger": "consecutive_rejections",
+      "after_iteration": 2,
+      "generated": 5,
+      "selectable": 5,
+      "selectable_hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_19_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_18_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_23_V1"
+      ],
+      "generated_hypotheses": [
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_TOPN_19_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_14_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_17_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_18_V1",
+        "HYP_FSPACE_AUTO_002_RANK_RET_13W_PCT_EXIT_23_V1"
+      ],
+      "timestamp": "2026-05-20T01:13:58.463331+00:00"
+    }
+  ],
+  "pre_run_guard_blocks": 3,
+  "recommended_mode": "literature_or_new_family"
 }

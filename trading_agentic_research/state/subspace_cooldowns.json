@@ -96,6 +96,10 @@
     "paper_trend_following": {
       "reason": "repeated_failed_hypotheses",
       "failure_threshold": 3
+    },
+    "paper_low_vol_momentum": {
+      "reason": "repeated_failed_hypotheses",
+      "failure_threshold": 3
     }
   },
   "default_failure_threshold": 3,
