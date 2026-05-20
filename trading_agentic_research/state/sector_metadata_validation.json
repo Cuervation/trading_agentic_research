@@ -1,0 +1,18 @@
+{
+  "status": "valid",
+  "source": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\data\\sp500_sector_metadata.csv",
+  "weekly_file": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\sp500_feature_store_weekly_master_all_260330223625_research_expanded_research_expanded.csv",
+  "cache_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\data\\sp500_sector_metadata.csv",
+  "dataset_ticker_count": 412,
+  "metadata_ticker_count": 503,
+  "covered_ticker_count": 409,
+  "coverage": 0.9927184466019418,
+  "min_coverage": 0.8,
+  "duplicates_removed": 0,
+  "missing_tickers_sample": [
+    "CTRA",
+    "HOLX",
+    "SPY"
+  ],
+  "validated_at": "2026-05-20T15:59:40.784019+00:00"
+}

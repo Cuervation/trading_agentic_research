@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-20T14:47:39.934022+00:00",
+  "generated_at": "2026-05-20T16:17:55.708394+00:00",
   "parent": {
     "run_id": "AUTO_002",
     "hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
@@ -11,17 +11,17 @@
   "final_eligibility": {
     "eligible": false,
     "reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
-    "bank_size": 359,
-    "rejected_count": 163,
+    "bank_size": 361,
+    "rejected_count": 165,
     "accepted_count": 29,
-    "consumed_count": 182,
-    "repeat_blocked_count": 1,
+    "consumed_count": 184,
+    "repeat_blocked_count": 2,
     "effective_summary": {
-      "checked": 359,
+      "checked": 361,
       "executable_count": 0,
       "executable_sample": [],
       "blocked_counts": {
-        "rejected": 133,
+        "rejected": 135,
         "accepted_already": 8,
         "duplicate_override_signature": 69,
         "consumed": 19,
@@ -185,7 +185,7 @@
     },
     "recommended_mode": "literature_or_new_family",
     "blocked_counts": {
-      "rejected": 133,
+      "rejected": 135,
       "accepted_already": 8,
       "duplicate_override_signature": 69,
       "consumed": 19,
@@ -197,14 +197,14 @@
   "why_no_executable": [
     "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
     "Selector-equivalent executable_count=0.",
-    "Top blockers: rejected=133, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.",
+    "Top blockers: rejected=135, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.",
     "Feature-space stall is active: feature_space_recent_bad:10_good:0_window:10.",
     "Literature mining produced no supported executable hypotheses.",
     "Feature-space expansion produced no new rows; current combinations are exhausted or duplicate."
   ],
   "generation_feedback": {
-    "event_count": 98,
-    "updated_at": "2026-05-20T14:45:14.532455+00:00",
+    "event_count": 105,
+    "updated_at": "2026-05-20T16:14:49.545332+00:00",
     "recent_events": [
       {
         "phase": "candidate_under_review",
@@ -287,19 +287,6 @@
       {
         "phase": "candidate_under_review",
         "generated": 0,
-        "eligible_after_generation": true,
-        "reason": "candidate_under_review_already_exhausted",
-        "warning": "candidate_review_generated_zero",
-        "missing_feature_tasks_seen": null,
-        "skipped_family_cooldown": null,
-        "skipped_duplicate_signature": null,
-        "rows_written": null,
-        "ideas_seen": null,
-        "supported_seen": null
-      },
-      {
-        "phase": "candidate_under_review",
-        "generated": 0,
         "eligible_after_generation": false,
         "reason": "candidate_under_review_already_exhausted",
         "warning": "candidate_review_generated_zero",
@@ -329,12 +316,12 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 2,
+        "missing_feature_tasks_seen": 0,
         "skipped_family_cooldown": 28,
-        "skipped_duplicate_signature": 7,
+        "skipped_duplicate_signature": 8,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 7
+        "supported_seen": 8
       },
       {
         "phase": "paper_searcher",
@@ -355,12 +342,25 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 2,
+        "missing_feature_tasks_seen": 0,
         "skipped_family_cooldown": 28,
-        "skipped_duplicate_signature": 7,
+        "skipped_duplicate_signature": 8,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 7
+        "supported_seen": 8
+      },
+      {
+        "phase": "feature_space_expansion",
+        "generated": 0,
+        "eligible_after_generation": false,
+        "reason": "no_new_feature_space_hypotheses",
+        "warning": null,
+        "missing_feature_tasks_seen": null,
+        "skipped_family_cooldown": null,
+        "skipped_duplicate_signature": null,
+        "rows_written": null,
+        "ideas_seen": null,
+        "supported_seen": null
       }
     ],
     "latest_by_phase": {
@@ -393,12 +393,12 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 2,
+        "missing_feature_tasks_seen": 0,
         "skipped_family_cooldown": 28,
-        "skipped_duplicate_signature": 7,
+        "skipped_duplicate_signature": 8,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 7
+        "supported_seen": 8
       },
       "paper_searcher": {
         "generated": 0,
@@ -417,12 +417,12 @@
         "eligible_after_generation": false,
         "reason": "no_supported_literature_hypotheses",
         "warning": null,
-        "missing_feature_tasks_seen": 2,
+        "missing_feature_tasks_seen": 0,
         "skipped_family_cooldown": 28,
-        "skipped_duplicate_signature": 7,
+        "skipped_duplicate_signature": 8,
         "rows_written": null,
         "ideas_seen": 41,
-        "supported_seen": 7
+        "supported_seen": 8
       },
       "feature_space_expansion": {
         "generated": 0,
@@ -439,15 +439,15 @@
     },
     "totals": {
       "missing_feature_tasks_seen": 186,
-      "skipped_family_cooldown": 504,
-      "skipped_duplicate_signature": 130,
-      "ideas_seen": 871,
-      "supported_seen": 131
+      "skipped_family_cooldown": 560,
+      "skipped_duplicate_signature": 146,
+      "ideas_seen": 953,
+      "supported_seen": 147
     }
   },
   "families": {
     "semantic_exhaustion": {
-      "branch_count": 63,
+      "branch_count": 65,
       "exhausted_branch_count": 13,
       "exhausted_branches": [
         {
@@ -791,8 +791,8 @@
       "hard_cooldown_families": []
     },
     "hypothesis_bank": {
-      "row_count": 359,
-      "family_count": 36,
+      "row_count": 361,
+      "family_count": 38,
       "families": [
         {
           "family": "feature_space_composite_concentration",
@@ -1040,6 +1040,20 @@
           }
         },
         {
+          "family": "paper_sector_momentum",
+          "total": 1,
+          "statuses": {
+            "candidate": 1
+          }
+        },
+        {
+          "family": "paper_sector_relative_momentum",
+          "total": 1,
+          "statuses": {
+            "candidate": 1
+          }
+        },
+        {
           "family": "paper_volatility_proxy_momentum",
           "total": 1,
           "statuses": {
@@ -1050,7 +1064,7 @@
       "top_required_features": [
         [
           "close",
-          220
+          222
         ],
         [
           "channel_r2",
@@ -1097,6 +1111,10 @@
           3
         ],
         [
+          "max_drawdown_26w_pct",
+          3
+        ],
+        [
           "residual_ret_26w_pct",
           3
         ],
@@ -1109,11 +1127,11 @@
           2
         ],
         [
-          "max_drawdown_26w_pct",
+          "realized_vol_13w_pct",
           2
         ],
         [
-          "realized_vol_13w_pct",
+          "ret_vs_sector_26w_pct",
           2
         ],
         [
@@ -1122,10 +1140,6 @@
         ],
         [
           "ret_12w_pct",
-          1
-        ],
-        [
-          "spy_close_sma_50_slope_5d_pct",
           1
         ]
       ]
@@ -1396,14 +1410,15 @@
           "close"
         ],
         "variant_count": 1,
-        "missing_features": [
-          "ret_vs_sector_26w_pct"
+        "missing_features": [],
+        "generated_hypotheses": [
+          "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+          "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1"
         ],
-        "generated_hypotheses": [],
         "missing_task_count": 2,
         "blocker_reasons": [
-          "missing_required_features",
           "family_cooldown_or_exhausted",
+          "converted_but_currently_not_executable",
           "missing_feature_task_exists"
         ]
       },
@@ -1504,31 +1519,6 @@
       }
     ],
     "not_converted_or_not_executable": [
-      {
-        "source_id": "sector_industry_relative_momentum",
-        "title": "Sector and industry relative strength",
-        "families": [
-          "paper_sector_momentum",
-          "paper_time_series_momentum"
-        ],
-        "required_features_hint": [
-          "sector_ret_26w_pct",
-          "ret_vs_sector_26w_pct",
-          "ret_26w_pct",
-          "close"
-        ],
-        "variant_count": 1,
-        "missing_features": [
-          "ret_vs_sector_26w_pct"
-        ],
-        "generated_hypotheses": [],
-        "missing_task_count": 2,
-        "blocker_reasons": [
-          "missing_required_features",
-          "family_cooldown_or_exhausted",
-          "missing_feature_task_exists"
-        ]
-      },
       {
         "source_id": "multi_lookback_momentum_confirmation",
         "title": "Multi-lookback momentum confirmation",
@@ -1646,6 +1636,32 @@
         "missing_features": [],
         "generated_hypotheses": [
           "HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4"
+        ],
+        "missing_task_count": 2,
+        "blocker_reasons": [
+          "family_cooldown_or_exhausted",
+          "converted_but_currently_not_executable",
+          "missing_feature_task_exists"
+        ]
+      },
+      {
+        "source_id": "sector_industry_relative_momentum",
+        "title": "Sector and industry relative strength",
+        "families": [
+          "paper_sector_momentum",
+          "paper_time_series_momentum"
+        ],
+        "required_features_hint": [
+          "sector_ret_26w_pct",
+          "ret_vs_sector_26w_pct",
+          "ret_26w_pct",
+          "close"
+        ],
+        "variant_count": 1,
+        "missing_features": [],
+        "generated_hypotheses": [
+          "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
+          "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1"
         ],
         "missing_task_count": 2,
         "blocker_reasons": [
@@ -3047,116 +3063,27 @@
     }
   },
   "missing_feature_priority": {
-    "generated_at": "2026-05-20T14:47:39.899587+00:00",
+    "generated_at": "2026-05-20T16:17:55.636417+00:00",
     "state_dir": "state",
     "reports_dir": "reports",
     "task_count": 25,
-    "missing_feature_count": 1,
+    "missing_feature_count": 0,
     "already_available_task_features": [
       "downside_vol_13w_pct",
       "market_breadth_above_sma50_pct",
       "max_drawdown_26w_pct",
       "realized_vol_13w_pct",
       "residual_ret_26w_pct",
-      "ret_13w_pct"
+      "ret_13w_pct",
+      "ret_vs_sector_26w_pct"
     ],
-    "weekly_feature_count": 194,
+    "weekly_feature_count": 195,
     "daily_feature_count": 169,
-    "priorities": [
-      {
-        "feature": "ret_vs_sector_26w_pct",
-        "priority": "low",
-        "score": 6,
-        "paper_ideas_unlocked": 1,
-        "source_ids": [
-          "sector_industry_relative_momentum"
-        ],
-        "paper_titles": [
-          "Sector and industry relative strength"
-        ],
-        "families": [
-          "paper_sector_momentum"
-        ],
-        "axes": [
-          "paper_sector_relative_strength"
-        ],
-        "candidate_suffixes": [
-          "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
-          "SECTOR_REL_STRENGTH_RET26_V4"
-        ],
-        "recipe": {
-          "source": "weekly returns plus sector metadata",
-          "formula": "stock ret_26w_pct minus sector aggregate ret_26w_pct",
-          "base_columns": [
-            "ticker",
-            "close"
-          ],
-          "cost": "high",
-          "calculable_from": "weekly+metadata",
-          "note": "Requires sector/industry mapping; none is assumed from price columns alone."
-        },
-        "base_columns_available": [
-          "ticker",
-          "close"
-        ],
-        "base_columns_missing": [],
-        "external_requirements_missing": [
-          "sector_or_industry_classification"
-        ],
-        "nearby_existing_columns": [
-          "close_above_sma26w",
-          "close_ema_26w",
-          "close_ema_26w_slope_2w_pct",
-          "close_ema_26w_slope_4w_pct",
-          "close_vs_ema26w_pct",
-          "close_vs_sma26w_pct",
-          "close_vs_sma52w_pct",
-          "dist_to_low_26w_pct",
-          "ret_12w_pct",
-          "ret_26w_pct",
-          "ret_2w_pct",
-          "ret_52w_pct"
-        ],
-        "calculable_from_current_data": false,
-        "implementation_cost": "high",
-        "opens_non_exhausted_family": true,
-        "semantic_exhausted_families": [],
-        "hard_cooldown_families": [],
-        "advisory_cooldown_families": [],
-        "example_tasks": [
-          {
-            "source_id": "sector_industry_relative_momentum",
-            "paper_title": "Sector and industry relative strength",
-            "candidate_suffix": "SECTOR_REL_STRENGTH_RET26_V4",
-            "family": "paper_sector_momentum",
-            "claim": "Ranking by ret_vs_sector_26w_pct may favor stocks outperforming their own sector.",
-            "paper_idea_hint": [
-              "sector_ret_26w_pct",
-              "ret_vs_sector_26w_pct",
-              "ret_26w_pct",
-              "close"
-            ]
-          },
-          {
-            "source_id": "sector_industry_relative_momentum",
-            "paper_title": "Sector and industry relative strength",
-            "candidate_suffix": "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
-            "family": "paper_sector_momentum",
-            "claim": "Momentum may be more robust when a stock also leads its sector or industry peer group.",
-            "paper_idea_hint": [
-              "sector_ret_26w_pct",
-              "ret_vs_sector_26w_pct",
-              "ret_26w_pct",
-              "close"
-            ]
-          }
-        ]
-      }
-    ],
+    "priorities": [],
     "next_action": "Implement the highest-priority feature(s) in the feature store or add supported templates that use existing proxy columns; then rerun literature mining before any backtest."
   },
   "literature_template_expansion": {
-    "available_feature_count": 194,
+    "available_feature_count": 195,
     "proposals": [],
     "blocked": [
       {
@@ -3333,6 +3260,29 @@
           "channel_r2",
           "channel_slope_pct",
           "market_breadth_above_sma50_pct",
+          "close"
+        ],
+        "missing_features": [],
+        "mechanism_is_clearly_new": true,
+        "duplicate_override_signature": true,
+        "advisory_cooldown": false,
+        "effective_status": {},
+        "blocked_reasons": [
+          "id_exists",
+          "duplicate_override_signature"
+        ],
+        "would_write": false
+      },
+      {
+        "hypothesis_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1",
+        "family": "paper_sector_relative_momentum",
+        "axis": "paper_sector_relative_strength_filter",
+        "source_id": "sector_industry_relative_momentum",
+        "paper_title": "Sector-relative strength momentum",
+        "claim": "Stocks outperforming their own sector on 26-week return may represent idiosyncratic strength rather than sector beta alone.",
+        "features_required": [
+          "ret_vs_sector_26w_pct",
+          "max_drawdown_26w_pct",
           "close"
         ],
         "missing_features": [],
@@ -3579,26 +3529,7 @@
     ],
     "blocked_attempt_count": 7
   },
-  "possible_new_hypotheses_if_unblocked": [
-    {
-      "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4",
-      "unblocked_by": "ret_vs_sector_26w_pct",
-      "source": "missing_feature_task",
-      "priority": "low",
-      "families": [
-        "paper_sector_momentum"
-      ]
-    },
-    {
-      "hypothesis_id": "HYP_LIT_AUTO_002_SECTOR_REL_STRENGTH_RET26_V4",
-      "unblocked_by": "ret_vs_sector_26w_pct",
-      "source": "missing_feature_task",
-      "priority": "low",
-      "families": [
-        "paper_sector_momentum"
-      ]
-    }
-  ],
+  "possible_new_hypotheses_if_unblocked": [],
   "priority_actions": {
     "high": [
       "Create a genuinely new family/template before backtesting again; current space is exhausted."

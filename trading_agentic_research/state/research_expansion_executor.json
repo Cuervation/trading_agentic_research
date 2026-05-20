@@ -1,21 +1,21 @@
 {
   "status": "NO_SAFE_ACTION",
-  "blocker_type": "missing_sector_classification_source",
+  "blocker_type": "new_literature_family_required",
   "action_taken": "research_expansion_executor",
   "eligibility_before": {
     "eligible": false,
     "reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
-    "bank_size": 359,
-    "rejected_count": 163,
+    "bank_size": 361,
+    "rejected_count": 165,
     "accepted_count": 29,
-    "consumed_count": 182,
-    "repeat_blocked_count": 1,
+    "consumed_count": 184,
+    "repeat_blocked_count": 2,
     "effective_summary": {
-      "checked": 359,
+      "checked": 361,
       "executable_count": 0,
       "executable_sample": [],
       "blocked_counts": {
-        "rejected": 133,
+        "rejected": 135,
         "accepted_already": 8,
         "duplicate_override_signature": 69,
         "consumed": 19,
@@ -179,7 +179,7 @@
     },
     "recommended_mode": "literature_or_new_family",
     "blocked_counts": {
-      "rejected": 133,
+      "rejected": 135,
       "accepted_already": 8,
       "duplicate_override_signature": 69,
       "consumed": 19,
@@ -191,17 +191,17 @@
   "eligibility_after": {
     "eligible": false,
     "reason": "No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).",
-    "bank_size": 359,
-    "rejected_count": 163,
+    "bank_size": 361,
+    "rejected_count": 165,
     "accepted_count": 29,
-    "consumed_count": 182,
-    "repeat_blocked_count": 1,
+    "consumed_count": 184,
+    "repeat_blocked_count": 2,
     "effective_summary": {
-      "checked": 359,
+      "checked": 361,
       "executable_count": 0,
       "executable_sample": [],
       "blocked_counts": {
-        "rejected": 133,
+        "rejected": 135,
         "accepted_already": 8,
         "duplicate_override_signature": 69,
         "consumed": 19,
@@ -365,7 +365,7 @@
     },
     "recommended_mode": "literature_or_new_family",
     "blocked_counts": {
-      "rejected": 133,
+      "rejected": 135,
       "accepted_already": 8,
       "duplicate_override_signature": 69,
       "consumed": 19,
@@ -380,7 +380,7 @@
     "reports/research_expansion_executor.json",
     "state/research_expansion_executor.json"
   ],
-  "next_action": "Provide a ticker->sector/industry classification source to compute `ret_vs_sector_26w_pct`; no sector/industry/GICS column exists in the active weekly/daily CSVs. Otherwise add a genuinely new non-duplicate literature family.",
+  "next_action": "Add a genuinely new non-duplicate literature family/template; current features/templates are exhausted.",
   "actions": [
     {
       "action": "literature_template_expander",
@@ -389,36 +389,7 @@
     {
       "action": "feature_engineering_skipped",
       "reason": "no_known_unblocked_feature_recipe",
-      "blocked_features": [
-        {
-          "feature": "ret_vs_sector_26w_pct",
-          "request_count": 2,
-          "known_recipe": false,
-          "recipe": {
-            "source": "unknown",
-            "formula": "TBD",
-            "required_base_columns": [],
-            "implementation_hint": "Define formula before implementation."
-          },
-          "base_columns_available": [],
-          "base_columns_missing": [],
-          "blocked": false,
-          "examples": [
-            {
-              "source_id": "sector_industry_relative_momentum",
-              "paper_title": "Sector and industry relative strength",
-              "claim": "Ranking by ret_vs_sector_26w_pct may favor stocks outperforming their own sector.",
-              "candidate_suffix": "SECTOR_REL_STRENGTH_RET26_V4"
-            },
-            {
-              "source_id": "sector_industry_relative_momentum",
-              "paper_title": "Sector and industry relative strength",
-              "claim": "Momentum may be more robust when a stock also leads its sector or industry peer group.",
-              "candidate_suffix": "PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4"
-            }
-          ]
-        }
-      ],
+      "blocked_features": [],
       "files_changed": [
         "reports/feature_engineering_plan.md",
         "reports/feature_engineering_plan.json"

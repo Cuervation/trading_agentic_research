@@ -2,7 +2,7 @@
 
 Current result: **research is exhausted under the current hypothesis space; do not launch backtests until a new feature/template/family creates executable work.**
 
-- Generated at: `2026-05-20T14:47:39.934022+00:00`
+- Generated at: `2026-05-20T16:17:55.708394+00:00`
 - Parent stays locked: `AUTO_002` / `HYP_AUTO_TIME_SERIES_MOMENTUM_SEED`
 - Recommended mode: `literature_or_new_family`
 - Eligible: `False`
@@ -13,7 +13,7 @@ Current result: **research is exhausted under the current hypothesis space; do n
 
 - No eligible hypotheses found (all rejected/cooldown/invalid/consumed/scoped/duplicate-signature).
 - Selector-equivalent executable_count=0.
-- Top blockers: rejected=133, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.
+- Top blockers: rejected=135, feature_space_stalled_literature_mode=113, duplicate_override_signature=69, consumed=19, candidate_review_scope:no_active_candidate_under_review=12, accepted_already=8.
 - Feature-space stall is active: feature_space_recent_bad:10_good:0_window:10.
 - Literature mining produced no supported executable hypotheses.
 - Feature-space expansion produced no new rows; current combinations are exhausted or duplicate.
@@ -22,7 +22,7 @@ Current result: **research is exhausted under the current hypothesis space; do n
 
 | blocker | count |
 |---|---:|
-| `rejected` | 133 |
+| `rejected` | 135 |
 | `feature_space_stalled_literature_mode` | 113 |
 | `duplicate_override_signature` | 69 |
 | `consumed` | 19 |
@@ -77,12 +77,12 @@ Paper ideas read: **15**
 
 | source | title | blockers | missing features | generated hypotheses |
 |---|---|---|---|---:|
-| `sector_industry_relative_momentum` | Sector and industry relative strength | missing_required_features, family_cooldown_or_exhausted, missing_feature_task_exists | `ret_vs_sector_26w_pct` | 0 |
 | `multi_lookback_momentum_confirmation` | Multi-lookback momentum confirmation | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 3 |
 | `trend_following_fast_slow_confirmation` | Trend following fast and slow confirmation | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 4 |
 | `drawdown_aware_momentum` | Drawdown-aware momentum | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
 | `idiosyncratic_momentum_residual_returns` | Residual / idiosyncratic momentum | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
 | `market_breadth_momentum_regime` | Market breadth as momentum regime filter | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
+| `sector_industry_relative_momentum` | Sector and industry relative strength | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 2 |
 | `time_series_momentum_moskowitz_ooi_pedersen` | Time Series Momentum | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 2 |
 | `volatility_managed_portfolios` | Volatility managed portfolios | family_cooldown_or_exhausted, converted_but_currently_not_executable, missing_feature_task_exists | - | 1 |
 | `cross_sectional_momentum_jegadeesh_titman` | Cross-sectional momentum | family_cooldown_or_exhausted, missing_feature_task_exists, supported_template_not_materialized | - | 0 |
@@ -97,7 +97,7 @@ Paper ideas read: **15**
 
 | priority | feature | papers unlocked | cost | calculable now | nearby/current columns |
 |---|---|---:|---|:---:|---|
-| low | `ret_vs_sector_26w_pct` | 1 | high | no | `close_above_sma26w`, `close_ema_26w`, `close_ema_26w_slope_2w_pct`, `close_ema_26w_slope_4w_pct`, `close_vs_ema26w_pct` |
+| - | - | 0 | - | - | - |
 
 ## Supported literature templates using existing features
 
@@ -111,8 +111,7 @@ These are proposals only. They are not written to the hypothesis bank by this pl
 
 | hypothesis | unlocked by | source | priority |
 |---|---|---|---|
-| `HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4` | `ret_vs_sector_26w_pct` | missing_feature_task | low |
-| `HYP_LIT_AUTO_002_SECTOR_REL_STRENGTH_RET26_V4` | `ret_vs_sector_26w_pct` | missing_feature_task | low |
+| - | - | - | - |
 
 ## Duplicate pressure
 
