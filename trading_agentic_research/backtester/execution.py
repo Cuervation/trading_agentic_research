@@ -95,7 +95,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 positions=positions,
                 day_prices=day_prices,
                 cost_per_side_pct=cost_per_side_pct,
-                max_gross_exposure_pct=max_gross_exposure_pct,
+                max_gross_exposure_pct=plan.get("max_gross_exposure_pct", max_gross_exposure_pct),
                 trade_rows=trade_rows,
                 warnings=warnings,
             )
@@ -183,9 +183,22 @@ def _build_rebalance_plan(
             "target_tickers": target_tickers,
             "target_details": target_details,
             "market_filter_passed": market_filter_passed,
+            "max_gross_exposure_pct": _plan_max_gross_exposure_pct(group),
         }
 
     return plan
+
+
+def _plan_max_gross_exposure_pct(group: pd.DataFrame) -> float:
+    if "target_gross_exposure_pct" not in group.columns:
+        return 1.0
+    value = pd.to_numeric(group["target_gross_exposure_pct"], errors="coerce").dropna()
+    if value.empty:
+        return 1.0
+    pct = float(value.iloc[0])
+    if pct <= 0:
+        return 0.0
+    return min(pct, 100.0) / 100.0
 
 
 def _first_daily_date_after(daily_index: pd.Index, signal_date: pd.Timestamp):

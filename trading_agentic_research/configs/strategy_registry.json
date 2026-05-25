@@ -2129,6 +2129,76 @@
       "evaluation_mode": "dd_first",
       "generation_axis": "exposure_reduction_partial",
       "notes": "DD_FIRST long-loop causal candidate axis=exposure_reduction_partial."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_50_25_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_50_25_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dynamic_regime_exposure",
+      "notes": "DD_FIRST autonomous daemon candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_60_50_25_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_60_50_25_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dynamic_regime_exposure",
+      "notes": "DD_FIRST autonomous daemon candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_55_35_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_55_35_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dynamic_regime_exposure",
+      "notes": "DD_FIRST autonomous daemon candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_55_45_25_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_55_45_25_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dynamic_regime_exposure",
+      "notes": "DD_FIRST autonomous daemon candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dynamic_regime_exposure",
+      "notes": "DD_FIRST autonomous daemon candidate."
     }
   ]
 }

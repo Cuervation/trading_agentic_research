@@ -327,7 +327,7 @@ def load_existing_dd_first_rows(runs_dir: str, min_trades: int, parent_run_id: s
         return rows
     parent_run_dir = Path(runs_dir) / parent_run_id if parent_run_id else None
     for run_dir in sorted(p for p in root.iterdir() if p.is_dir()):
-        if not run_dir.name.startswith("DD_FIRST_"):
+        if not (run_dir.name.startswith("DD_FIRST_") or run_dir.name.startswith("DDDAEMON_")):
             continue
         try:
             manifest_path = run_dir / "run_manifest.json"

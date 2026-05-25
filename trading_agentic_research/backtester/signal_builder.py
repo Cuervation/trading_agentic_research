@@ -48,6 +48,7 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
                 "selected_top_n",
                 "in_exit_universe",
                 "market_filter_passed",
+                "target_gross_exposure_pct",
                 "action_candidate",
             ]
         )
@@ -82,6 +83,7 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
             market_filter_passed=market_filter_passed,
             strategy_config=strategy_config,
         )
+        target_gross_exposure_pct = _dynamic_target_gross_exposure_pct(snapshot, strategy_config, benchmark_ticker)
 
         operable = snapshot[snapshot["ticker"] != benchmark_ticker].copy()
         operable = _apply_risk_filters(operable, strategy_config)
@@ -104,6 +106,7 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
         operable["selected_top_n"] = operable["rank"] <= effective_top_n
         operable["in_exit_universe"] = operable["rank"] <= exit_rank_threshold
         operable["market_filter_passed"] = bool(action_market_filter_passed)
+        operable["target_gross_exposure_pct"] = float(target_gross_exposure_pct)
         operable["action_candidate"] = operable.apply(_candidate_action, axis=1)
 
         output_frames.append(
@@ -116,6 +119,7 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
                     "selected_top_n",
                     "in_exit_universe",
                     "market_filter_passed",
+                    "target_gross_exposure_pct",
                     "action_candidate",
                 ]
             ]
@@ -131,6 +135,7 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
                 "selected_top_n",
                 "in_exit_universe",
                 "market_filter_passed",
+                "target_gross_exposure_pct",
                 "action_candidate",
             ]
         )
@@ -190,6 +195,39 @@ def _effective_top_n_and_filter(*, top_n: int, market_filter_passed: bool, strat
         return top_n, False
     weak_top_n = max(0, min(top_n, weak_top_n))
     return weak_top_n, weak_top_n > 0
+
+
+def _dynamic_target_gross_exposure_pct(snapshot: pd.DataFrame, strategy_config: dict, benchmark_ticker: str) -> float:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    cfg = risk_management.get("dynamic_regime_exposure_pct")
+    if not isinstance(cfg, dict):
+        return float(risk_management.get("max_gross_exposure_pct", 100) or 100)
+
+    spy_rows = snapshot[snapshot["ticker"] == benchmark_ticker]
+    if spy_rows.empty:
+        return float(cfg.get("weak", cfg.get("neutral", risk_management.get("max_gross_exposure_pct", 60))) or 60)
+
+    row = spy_rows.iloc[0]
+    close_vs_52 = _row_float(row, "close_vs_sma52w_pct")
+    close_vs_20 = _row_float(row, "close_vs_sma20w_pct")
+    dd_26 = _row_float(row, "drawdown_from_high_26w_pct")
+
+    if dd_26 <= -20 or close_vs_52 <= -20:
+        regime = "crisis"
+    elif close_vs_52 > 0 and close_vs_20 > 0:
+        regime = "strong"
+    elif close_vs_52 > 0 or close_vs_20 > 0:
+        regime = "neutral"
+    else:
+        regime = "weak"
+    return float(cfg.get(regime, cfg.get("neutral", risk_management.get("max_gross_exposure_pct", 60))) or 60)
+
+
+def _row_float(row: pd.Series, field: str) -> float:
+    if field not in row:
+        return 0.0
+    value = pd.to_numeric(row[field], errors="coerce")
+    return 0.0 if pd.isna(value) else float(value)
 
 
 def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, benchmark_ticker: str) -> bool:

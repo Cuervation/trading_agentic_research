@@ -1374,6 +1374,106 @@
       "event_type": "exposure_refinement_summary",
       "lesson": "Exposure reduction partial is the first useful DD_FIRST axis. Monotonic exposure refinement should identify the best fixed exposure between 50 and 75 before testing dynamic regime exposure.",
       "next_axis": "dynamic_regime_exposure_after_fixed_exposure_selection"
+    },
+    {
+      "created_at": "2026-05-25T22:21:40.113446+00:00",
+      "axis": "dynamic_regime_exposure",
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_50_25_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_50_25_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "dynamic_regime_exposure: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.dynamic_regime_exposure_pct": {
+          "strong": 75,
+          "neutral": 60,
+          "weak": 50,
+          "crisis": 25
+        },
+        "risk_management.max_gross_exposure_pct": 60
+      }
+    },
+    {
+      "created_at": "2026-05-25T22:33:45.462136+00:00",
+      "axis": "dynamic_regime_exposure",
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_60_50_25_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_60_50_25_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "dynamic_regime_exposure: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.dynamic_regime_exposure_pct": {
+          "strong": 70,
+          "neutral": 60,
+          "weak": 50,
+          "crisis": 25
+        },
+        "risk_management.max_gross_exposure_pct": 60
+      }
+    },
+    {
+      "created_at": "2026-05-25T22:45:08.657715+00:00",
+      "axis": "dynamic_regime_exposure",
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_55_35_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_55_35_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "dynamic_regime_exposure: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.dynamic_regime_exposure_pct": {
+          "strong": 75,
+          "neutral": 60,
+          "weak": 55,
+          "crisis": 35
+        },
+        "risk_management.max_gross_exposure_pct": 60
+      }
+    },
+    {
+      "created_at": "2026-05-25T22:56:39.605026+00:00",
+      "axis": "dynamic_regime_exposure",
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_55_45_25_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_55_45_25_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "dynamic_regime_exposure: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.dynamic_regime_exposure_pct": {
+          "strong": 70,
+          "neutral": 55,
+          "weak": 45,
+          "crisis": 25
+        },
+        "risk_management.max_gross_exposure_pct": 55
+      }
+    },
+    {
+      "created_at": "2026-05-25T23:15:51.948413+00:00",
+      "axis": "dynamic_regime_exposure",
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "dynamic_regime_exposure: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.dynamic_regime_exposure_pct": {
+          "strong": 65,
+          "neutral": 55,
+          "weak": 45,
+          "crisis": 25
+        },
+        "risk_management.max_gross_exposure_pct": 55
+      }
     }
   ]
 }
