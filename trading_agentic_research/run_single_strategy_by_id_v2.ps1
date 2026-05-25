@@ -113,7 +113,7 @@ function Find-WeeklyFileInFolder {
   $files = @(Get-ChildItem -Path $Folder -File -Filter $Pattern | Sort-Object LastWriteTime -Descending)
 
   if ($files.Count -eq 0) {
-    throw "No encontré ningún CSV semanal en '$Folder' con patrón '$Pattern'. Probá con -WeeklyPattern '*weekly*master*.csv' o pasá -WeeklyFile directo."
+    return ""
   }
 
   if ($files.Count -gt 1) {
@@ -124,6 +124,19 @@ function Find-WeeklyFileInFolder {
   }
 
   return $files[0].FullName
+}
+
+function Has-DailyFeatureFiles {
+  param([string]$Folder)
+
+  if (-not (Test-Path $Folder)) {
+    return $false
+  }
+
+  return @(
+    Get-ChildItem -Path $Folder -File -Filter "sp500_feature_store_daily_master_*.csv"
+    Get-ChildItem -Path $Folder -File -Filter "sp500_feature_store_spy_daily_master_*.csv"
+  ).Count -gt 0
 }
 
 function Invoke-Step {
@@ -184,10 +197,26 @@ if (-not [string]::IsNullOrWhiteSpace($DataFolder)) {
 
   if ([string]::IsNullOrWhiteSpace($WeeklyFile)) {
     $WeeklyFile = Find-WeeklyFileInFolder -Folder $dataFolderPath -Pattern $WeeklyPattern
+    if ([string]::IsNullOrWhiteSpace($WeeklyFile)) {
+      $parentFolder = Split-Path -Parent $dataFolderPath
+      if (-not [string]::IsNullOrWhiteSpace($parentFolder) -and (Test-Path $parentFolder)) {
+        Write-Host "No encontré weekly en DataFolder; pruebo en el padre: $parentFolder" -ForegroundColor Yellow
+        $WeeklyFile = Find-WeeklyFileInFolder -Folder $parentFolder -Pattern $WeeklyPattern
+      }
+    }
   }
 
   if ([string]::IsNullOrWhiteSpace($DailyFolder)) {
     $DailyFolder = $dataFolderPath
+  }
+
+  $dailyFolderCandidate = Resolve-AnyPath -Base $ProjectRoot -PathValue $DailyFolder
+  if (-not (Has-DailyFeatureFiles -Folder $dailyFolderCandidate)) {
+    $parentFolder = Split-Path -Parent $dataFolderPath
+    if (-not [string]::IsNullOrWhiteSpace($parentFolder) -and (Test-Path $parentFolder) -and (Has-DailyFeatureFiles -Folder $parentFolder)) {
+      Write-Host "No encontré daily en DataFolder; uso el padre: $parentFolder" -ForegroundColor Yellow
+      $DailyFolder = $parentFolder
+    }
   }
 }
 else {

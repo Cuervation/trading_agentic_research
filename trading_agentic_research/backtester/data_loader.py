@@ -28,12 +28,15 @@ def load_daily_feature_store_folder(folder_path: str) -> pd.DataFrame:
     if not folder.exists() or not folder.is_dir():
         raise FileNotFoundError(f"Daily feature store folder not found: {folder_path}")
 
-    pattern = str(folder / "sp500_feature_store_daily_master_*.csv")
-    file_paths = sorted(glob(pattern))
+    patterns = [
+        str(folder / "sp500_feature_store_daily_master_*.csv"),
+        str(folder / "sp500_feature_store_spy_daily_master_*.csv"),
+    ]
+    file_paths = sorted({path for pattern in patterns for path in glob(pattern)})
 
     if not file_paths:
         raise FileNotFoundError(
-            f"No daily feature store files matched pattern: {pattern}"
+            f"No daily feature store files matched patterns: {patterns}"
         )
 
     frames = [pd.read_csv(file_path) for file_path in file_paths]
