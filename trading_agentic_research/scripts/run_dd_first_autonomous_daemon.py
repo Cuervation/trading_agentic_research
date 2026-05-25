@@ -99,6 +99,8 @@ def main() -> int:
         return 2
 
     state.setdefault("started_at", datetime.now(timezone.utc).isoformat())
+    if state.get("stop_reason") == "target_champions_reached":
+        state["stop_reason"] = ""
     state["status"] = "running"
     save_daemon_state(args.state_dir, state)
 
@@ -198,8 +200,9 @@ def main() -> int:
         if completed_this_batch < args.batch_size and state.get("stop_reason"):
             break
 
-    state["status"] = "completed" if state.get("champions_found", 0) >= args.target_champions or state.get("completed_batches", 0) >= args.max_batches else "stopped"
-    state.setdefault("stop_reason", "target_or_limit_reached")
+    stop_reason = state.get("stop_reason") or "target_or_limit_reached"
+    state["status"] = "completed" if stop_reason in {"max_batches_reached", "max_total_attempts_reached", "max_wall_clock_hours_reached", "all_axes_exhausted_or_cooldown"} else "stopped"
+    state["stop_reason"] = stop_reason
     save_progress(args, state, axis_memory, batch_rows, args.parent_run_id)
     print(f"DD_FIRST daemon {state['status']}: batches={state.get('completed_batches')} attempts={state.get('total_attempts')} champions={state.get('champions_found')} stop={state.get('stop_reason')}")
     return 0 if state["status"] in {"completed", "stopped"} else 2
@@ -564,9 +567,6 @@ def classify_daemon_error(error: str) -> str:
 
 
 def should_stop(args: argparse.Namespace, state: dict[str, Any], started: float, axis_memory: dict[str, Any]) -> bool:
-    if int(state.get("champions_found", 0)) >= args.target_champions:
-        state["stop_reason"] = "target_champions_reached"
-        return True
     if int(state.get("completed_batches", 0)) >= args.max_batches:
         state["stop_reason"] = "max_batches_reached"
         return True
