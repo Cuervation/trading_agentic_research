@@ -164,6 +164,17 @@ def audit_run_folder(run_dir: str | Path, min_trades: int = 10, parent_run_dir: 
     return payload
 
 
+def audit_run_folder_dd_first(run_dir: str | Path, min_trades: int = 50, parent_run_dir: str | Path | None = None) -> dict:
+    """Audit one run with drawdown-first governance.
+
+    This intentionally does not share the normal promotion semantics: DD_FIRST
+    may mark a candidate for follow-up, but it never moves parent/baseline.
+    """
+    from backtester.dd_first import evaluate_dd_first_run
+
+    return evaluate_dd_first_run(run_dir, min_trades=min_trades, parent_run_dir=parent_run_dir)
+
+
 def build_parent_comparison(run_dir: str | Path, parent_run_dir: str | Path) -> dict:
     """Compare a candidate run against the current parent run."""
     candidate_path = Path(run_dir)

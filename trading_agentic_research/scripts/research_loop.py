@@ -221,17 +221,24 @@ def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_di
     if evaluation_mode == "dd_first":
         evaluation_command = [
             sys.executable,
-            "scripts/evaluate_dd_first.py",
+            "scripts/evaluate_candidate.py",
             "--run-id",
             inputs.run_id,
             "--runs-dir",
             str(runs_dir),
             "--reports-dir",
             str(reports_dir),
+            "--evaluation-mode",
+            "dd_first",
+            "--hypothesis-id",
+            inputs.hypothesis_id,
+            "--family",
+            inputs.family,
+            "--state-dir",
+            str(inputs.state_dir),
         ]
-        parent_strategy_id = read_json(inputs.strategy_config_path).get("parent_strategy_id")
-        if parent_strategy_id:
-            evaluation_command.extend(["--parent-strategy-id", str(parent_strategy_id)])
+        if inputs.parent_run_id:
+            evaluation_command.extend(["--parent-run-id", inputs.parent_run_id])
     else:
         evaluation_command = [
             sys.executable,
@@ -346,6 +353,13 @@ def main() -> int:
         print(f"Research loop blocked before backtest: {score.get('reason')}")
         return 2
 
+    if args.dry_run:
+        commands = build_commands(inputs, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
+        print(f"Research loop plan for {inputs.run_id}: {len(commands)} commands")
+        for command in commands:
+            print(" ".join(command))
+        return 0
+
     # AUTONOMY_DIRECT_PATCH_PRE_RUN_DUPLICATE_GUARD
     guard = check_pre_run_duplicate(
         strategy_config_path=inputs.strategy_config_path,
@@ -386,10 +400,6 @@ def main() -> int:
 
     commands = build_commands(inputs, runs_dir=args.runs_dir, reports_dir=args.reports_dir)
     print(f"Research loop plan for {inputs.run_id}: {len(commands)} commands")
-    if args.dry_run:
-        for command in commands:
-            print(" ".join(command))
-        return 0
 
     update_research_state(args.state_dir, inputs.run_id, "running", "Loop iteration started.")
     try:

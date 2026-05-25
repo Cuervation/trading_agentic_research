@@ -1840,43 +1840,43 @@
       "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4."
     },
     {
-      "strategy_id": "DD_SPY_REGIME_EXPOSURE_V1",
-      "strategy_family": "dd_first",
-      "status": "dd_first_candidate",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_SPY_REGIME_EXPOSURE_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
       "benchmark_ticker": "SPY",
-      "config_path": "configs/generated/DD_SPY_REGIME_EXPOSURE_V1.json",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_SPY_REGIME_EXPOSURE_V1.json",
       "signal_frequency": "weekly",
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
-      "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "evaluation_mode": "dd_first",
-      "notes": "DD_FIRST_SERIES phase 2 candidate; drawdown-first lexicographic evaluation, no automatic parent/baseline promotion."
+      "notes": "DD_FIRST_SERIES candidate; drawdown-first evaluation only, no automatic parent/baseline promotion."
     },
     {
-      "strategy_id": "DD_QUALITY_LOWVOL_RANKING_V1",
-      "strategy_family": "dd_first",
-      "status": "dd_first_candidate",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
       "benchmark_ticker": "SPY",
-      "config_path": "configs/generated/DD_QUALITY_LOWVOL_RANKING_V1.json",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1.json",
       "signal_frequency": "weekly",
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
-      "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "evaluation_mode": "dd_first",
-      "notes": "DD_FIRST_SERIES phase 2 candidate; drawdown-first lexicographic evaluation, no automatic parent/baseline promotion."
+      "notes": "DD_FIRST_SERIES candidate; drawdown-first evaluation only, no automatic parent/baseline promotion."
     },
     {
-      "strategy_id": "DD_EXIT_BREAKEVEN_TRAIL_V1",
-      "strategy_family": "dd_first",
-      "status": "dd_first_candidate",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
       "benchmark_ticker": "SPY",
-      "config_path": "configs/generated/DD_EXIT_BREAKEVEN_TRAIL_V1.json",
+      "config_path": "configs/generated/HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1.json",
       "signal_frequency": "weekly",
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
-      "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "evaluation_mode": "dd_first",
-      "notes": "DD_FIRST_SERIES phase 2 candidate; drawdown-first lexicographic evaluation, no automatic parent/baseline promotion."
+      "notes": "DD_FIRST_SERIES candidate; drawdown-first evaluation only, no automatic parent/baseline promotion."
     }
   ]
 }

@@ -19,7 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from backtester.validation import audit_run_folder
+from backtester.dd_first import append_dd_first_summary
+from backtester.validation import audit_run_folder, audit_run_folder_dd_first
 from scripts.update_evidence_memory import persist_learning_from_run
 from scripts.research.artifact_index import (
     apply_duplicate_to_audit,
@@ -43,6 +44,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--family", default="cross_sectional_momentum")
     parser.add_argument("--state-dir", default="state")
     parser.add_argument("--allow-parent-update", action="store_true")
+    parser.add_argument("--evaluation-mode", choices=["standard", "dd_first"], default="standard")
+    parser.add_argument("--reports-dir", default="reports")
     return parser.parse_args()
 
 
@@ -58,6 +61,18 @@ def main() -> int:
         raise FileNotFoundError(f"Run folder not found: {run_dir}")
 
     parent_run_dir = Path(args.runs_dir) / args.parent_run_id if args.parent_run_id else None
+    if args.evaluation_mode == "dd_first":
+        audit = audit_run_folder_dd_first(run_dir, min_trades=args.min_trades, parent_run_dir=parent_run_dir)
+        audit_path = run_dir / "audit.json"
+        _write_json(audit_path, audit)
+        append_dd_first_summary(Path(args.reports_dir) / "dd_first_summary.csv", audit["dd_first"])
+        print(f"DD_FIRST audit completed: {args.run_id}")
+        print(f"Decision: {audit['dd_first_decision']}")
+        print(f"Audit file: {audit_path}")
+        print(f"Report: {Path(args.reports_dir) / 'dd_first_summary.csv'}")
+        print("Parent/baseline promotion: blocked by DD_FIRST mode")
+        return 0
+
     audit = audit_run_folder(run_dir, min_trades=args.min_trades, parent_run_dir=parent_run_dir)
 
     duplicate_info = find_duplicate_artifact(run_dir, args.state_dir)

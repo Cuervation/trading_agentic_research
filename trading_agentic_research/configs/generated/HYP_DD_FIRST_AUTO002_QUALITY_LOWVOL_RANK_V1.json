@@ -1,0 +1,99 @@
+{
+  "strategy_id": "HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1",
+  "hypothesis_id": "HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1",
+  "strategy_family": "dd_first_drawdown_control",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "channel_r2",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 15,
+    "by": "channel_r2"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 20
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close",
+      "channel_r2"
+    ],
+    "conditions": [
+      {
+        "field": "channel_r2",
+        "operator": ">=",
+        "value": 0.35,
+        "enabled_if_field_exists": true
+      },
+      {
+        "field": "daily_range_pct",
+        "operator": "<=",
+        "value": 3.5,
+        "enabled_if_field_exists": true
+      }
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Keep momentum exposure but rank smoother/higher-quality trends first to reduce drawdown risk.",
+  "causal_mechanism": "Trend persistence and behavioral anchoring can create continuation across 24/52 week windows.",
+  "changed_parameters": [
+    "ranking.field",
+    "entry_rule.by",
+    "risk_filters.require_non_null_fields",
+    "risk_filters.conditions.channel_r2",
+    "risk_filters.conditions.daily_range_pct"
+  ],
+  "expected_effect": "Reduce max drawdown first while preserving positive excess CAGR versus SPY and enough trades for a non-anecdotal sample.",
+  "falsification_rule": "Reject if drawdown does not improve materially versus parent, Calmar fails to improve for promotion, SPY comparison weakens, trades become insufficient, or artifacts duplicate parent.",
+  "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "empirical_basis": [
+    {
+      "run_id": "AUTO_002",
+      "reason": "Current locked parent for DD_FIRST_SERIES drawdown-control exploration."
+    }
+  ],
+  "dominant_dimension": "quality_lowvol_ranking",
+  "evaluation_mode": "dd_first",
+  "dd_first_objective": {
+    "priority_order": [
+      "minimize_max_drawdown",
+      "improve_calmar_ratio",
+      "keep_positive_excess_cagr",
+      "keep_spy_year_month_robustness",
+      "keep_sufficient_trades"
+    ],
+    "notes": "DD_FIRST never moves current_parent or baseline automatically."
+  }
+}
