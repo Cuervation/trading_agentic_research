@@ -1,0 +1,8 @@
+axis;attempts;completed_runs;useful_candidates;rejected;zero_trade_runs;metric_no_effect_runs;best_run_id;best_drawdown;best_cagr;best_calmar;status;next_action
+exposure_reduction_partial;7;7;7;0;0;0;DD_FIRST_02_HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1;-31,549424;13,183145;0,417857;active;refine_monotonically
+soft_spy_regime;2;2;0;2;0;2;DD_FIRST_04_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1;-54,644063;25,929269;0,474512;exhausted;do_not_retry_without_new_columns_or_engine_support
+low_vol_momentum_soft_penalty;2;2;0;2;0;0;DD_FIRST_12_HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_LIGHT_V1;-54,567962;25,161063;0,461096;exhausted;do_not_retry_without_new_columns_or_engine_support
+anti_extension_soft_filter;2;2;0;2;0;0;DD_FIRST_13_HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA20W_60_V1;-54,053049;25,161374;0,465494;exhausted;do_not_retry_without_new_columns_or_engine_support
+drawdown_proxy_filter;3;3;0;3;0;1;DD_FIRST_07_HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V1;-54,644063;25,929269;0,474512;cooldown;skip_until_new_evidence
+trailing_and_exit_refinement;2;2;0;2;0;0;DD_FIRST_09_HYP_DD_FIRST_AUTO002_TOPN_12_V1;-54,10438;29,768113;0,550198;exhausted;do_not_retry_without_new_columns_or_engine_support
+diversification_cap;0;0;0;0;0;0;;;;;exhausted;do_not_retry_without_new_columns_or_engine_support

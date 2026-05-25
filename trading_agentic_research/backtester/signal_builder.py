@@ -31,6 +31,10 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
     - exit_rule.rank_threshold
     - market_filter.require_positive_trend
     - market_filter.fallback_allow_if_missing_spy_metric
+    - market_filter.soft_weak_regime_top_n: reduce breadth instead of
+      blocking all entries when SPY regime is weak
+    - ranking.secondary_penalty_field / secondary_penalty_weight: soft
+      one-field penalty applied to the primary ranking score
     - risk_filters.require_non_null_fields
     - risk_filters.conditions: [{field, operator, value, enabled_if_field_exists}]
     """
@@ -73,6 +77,11 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
     for signal_date in decision_dates:
         snapshot = df[df["date"] == signal_date].copy()
         market_filter_passed = _evaluate_market_filter(snapshot, strategy_config, benchmark_ticker)
+        effective_top_n, action_market_filter_passed = _effective_top_n_and_filter(
+            top_n=top_n,
+            market_filter_passed=market_filter_passed,
+            strategy_config=strategy_config,
+        )
 
         operable = snapshot[snapshot["ticker"] != benchmark_ticker].copy()
         operable = _apply_risk_filters(operable, strategy_config)
@@ -82,19 +91,19 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
         if operable.empty:
             continue
 
+        ranking_values = _ranking_values(operable, ranking_column, strategy_config)
         operable["rank"] = (
-            operable[ranking_column]
-            .astype(float)
+            ranking_values
             .rank(method="first", ascending=ranking_ascending)
             .astype(int)
         )
         operable = operable.sort_values("rank", kind="mergesort")
 
         operable["signal_date"] = signal_date
-        operable["ranking_value"] = operable[ranking_column].astype(float)
-        operable["selected_top_n"] = operable["rank"] <= top_n
+        operable["ranking_value"] = ranking_values
+        operable["selected_top_n"] = operable["rank"] <= effective_top_n
         operable["in_exit_universe"] = operable["rank"] <= exit_rank_threshold
-        operable["market_filter_passed"] = bool(market_filter_passed)
+        operable["market_filter_passed"] = bool(action_market_filter_passed)
         operable["action_candidate"] = operable.apply(_candidate_action, axis=1)
 
         output_frames.append(
@@ -143,6 +152,44 @@ def _get_ranking_ascending(strategy_config: dict) -> bool:
         warnings.warn(f"Unsupported ranking.order={order!r}; using desc.", UserWarning)
         order = "desc"
     return order in {"asc", "ascending"}
+
+
+def _ranking_values(operable: pd.DataFrame, ranking_column: str, strategy_config: dict) -> pd.Series:
+    values = pd.to_numeric(operable[ranking_column], errors="coerce")
+    ranking_cfg = strategy_config.get("ranking", {}) or {}
+    penalty_field = str(ranking_cfg.get("secondary_penalty_field") or "")
+    if not penalty_field or penalty_field not in operable.columns:
+        return values
+    penalty = pd.to_numeric(operable[penalty_field], errors="coerce").fillna(0.0)
+    try:
+        weight = float(ranking_cfg.get("secondary_penalty_weight", 0.0) or 0.0)
+    except (TypeError, ValueError):
+        weight = 0.0
+    if weight <= 0:
+        return values
+    if _get_ranking_ascending(strategy_config):
+        return values + (weight * penalty)
+    return values - (weight * penalty)
+
+
+def _effective_top_n_and_filter(*, top_n: int, market_filter_passed: bool, strategy_config: dict) -> tuple[int, bool]:
+    """Return breadth/filter behavior for hard vs soft market regime.
+
+    Normal strategies remain unchanged. DD_FIRST soft regime candidates can set
+    market_filter.soft_weak_regime_top_n to keep trading a smaller basket when
+    SPY trend is weak instead of forcing zero new entries.
+    """
+    if market_filter_passed:
+        return top_n, True
+    market_filter_cfg = strategy_config.get("market_filter", {}) or {}
+    if "soft_weak_regime_top_n" not in market_filter_cfg:
+        return top_n, False
+    try:
+        weak_top_n = int(market_filter_cfg.get("soft_weak_regime_top_n"))
+    except (TypeError, ValueError):
+        return top_n, False
+    weak_top_n = max(0, min(top_n, weak_top_n))
+    return weak_top_n, weak_top_n > 0
 
 
 def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, benchmark_ticker: str) -> bool:

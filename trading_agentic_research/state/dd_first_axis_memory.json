@@ -1,0 +1,148 @@
+{
+  "axes": {
+    "exposure_reduction_partial": {
+      "attempts": 7,
+      "failures": [],
+      "status": "active",
+      "lessons": [
+        "exposure_reduction_partial: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "exposure_reduction_partial: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "exposure_reduction_partial: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+        "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+        "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+        "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido."
+      ],
+      "completed_runs": 7,
+      "useful_candidates": 7,
+      "rejected": 0,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 0,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": "DD_FIRST_02_HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1",
+      "best_drawdown": -31.549424,
+      "best_cagr": 13.183145,
+      "best_calmar": 0.417857
+    },
+    "soft_spy_regime": {
+      "attempts": 2,
+      "failures": [],
+      "status": "exhausted",
+      "lessons": [
+        "soft_spy_regime: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "soft_spy_regime: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "No remaining non-duplicate causal variants for this axis."
+      ],
+      "completed_runs": 2,
+      "useful_candidates": 0,
+      "rejected": 2,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 2,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": "DD_FIRST_04_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1",
+      "best_drawdown": -54.644063,
+      "best_cagr": 25.929269,
+      "best_calmar": 0.474512
+    },
+    "low_vol_momentum_soft_penalty": {
+      "attempts": 2,
+      "failures": [],
+      "status": "exhausted",
+      "lessons": [
+        "Axis low_vol_momentum_soft_penalty unsupported by available columns.",
+        "Axis revived because current weekly columns support a causal variant.",
+        "low_vol_momentum_soft_penalty: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "low_vol_momentum_soft_penalty: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "No remaining non-duplicate causal variants for this axis."
+      ],
+      "completed_runs": 2,
+      "useful_candidates": 0,
+      "rejected": 2,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 0,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": "DD_FIRST_12_HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_LIGHT_V1",
+      "best_drawdown": -54.567962,
+      "best_cagr": 25.161063,
+      "best_calmar": 0.461096
+    },
+    "anti_extension_soft_filter": {
+      "attempts": 2,
+      "failures": [],
+      "status": "exhausted",
+      "lessons": [
+        "anti_extension_soft_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "anti_extension_soft_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "No remaining non-duplicate causal variants for this axis."
+      ],
+      "completed_runs": 2,
+      "useful_candidates": 0,
+      "rejected": 2,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 0,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": "DD_FIRST_13_HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA20W_60_V1",
+      "best_drawdown": -54.053049,
+      "best_cagr": 25.161374,
+      "best_calmar": 0.465494
+    },
+    "drawdown_proxy_filter": {
+      "attempts": 3,
+      "failures": [],
+      "status": "cooldown",
+      "lessons": [
+        "drawdown_proxy_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "drawdown_proxy_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "drawdown_proxy_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown."
+      ],
+      "completed_runs": 3,
+      "useful_candidates": 0,
+      "rejected": 3,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 1,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": "DD_FIRST_07_HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V1",
+      "best_drawdown": -54.644063,
+      "best_cagr": 25.929269,
+      "best_calmar": 0.474512
+    },
+    "trailing_and_exit_refinement": {
+      "attempts": 2,
+      "failures": [],
+      "status": "exhausted",
+      "lessons": [
+        "trailing_and_exit_refinement: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "trailing_and_exit_refinement: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+        "No remaining non-duplicate causal variants for this axis."
+      ],
+      "completed_runs": 2,
+      "useful_candidates": 0,
+      "rejected": 2,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 0,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": "DD_FIRST_09_HYP_DD_FIRST_AUTO002_TOPN_12_V1",
+      "best_drawdown": -54.10438,
+      "best_cagr": 29.768113,
+      "best_calmar": 0.550198
+    },
+    "diversification_cap": {
+      "attempts": 0,
+      "failures": [],
+      "status": "exhausted",
+      "lessons": [
+        "Axis diversification_cap unsupported by available columns."
+      ],
+      "completed_runs": 0,
+      "useful_candidates": 0,
+      "rejected": 0,
+      "zero_trade_runs": 0,
+      "metric_no_effect_runs": 0,
+      "strong_worse_drawdown_runs": 0,
+      "best_run_id": null,
+      "best_drawdown": null,
+      "best_cagr": null,
+      "best_calmar": null
+    }
+  }
+}

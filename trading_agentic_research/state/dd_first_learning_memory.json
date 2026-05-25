@@ -71,6 +71,1309 @@
       "lesson": "Rejected by DD_FIRST: worse_drawdown_than_parent",
       "exhausted_axis": "trailing_stop",
       "next_recommended_axis": "try_more_defensive_axis"
+    },
+    {
+      "created_at": "2026-05-25T16:00:44.325921+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 75
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_01_HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 19.640769,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 12.838294,
+      "strategy_max_drawdown_pct": -44.052781,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -83.643377,
+      "calmar_ratio": 0.445846,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3796,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "exposure_reduction_partial: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T16:09:50.485364+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 50
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_02_HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 13.183145,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 6.38067,
+      "strategy_max_drawdown_pct": -31.549424,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -31.520479,
+      "calmar_ratio": 0.417857,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 20,
+      "years_losing_to_spy": 8,
+      "trades": 3847,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "exposure_reduction_partial: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T16:19:20.444382+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 85
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_03_HYP_DD_FIRST_AUTO002_EXPOSURE_85_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_85_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_85_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 22.183311,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 15.380836,
+      "strategy_max_drawdown_pct": -48.517761,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -102.256596,
+      "calmar_ratio": 0.45722,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 23,
+      "years_losing_to_spy": 5,
+      "trades": 3767,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "exposure_reduction_partial: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T16:25:48.055118+00:00",
+      "axis": "soft_spy_regime",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true,
+          "soft_weak_regime_top_n": 8,
+          "fallback_allow_if_missing_spy_metric": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_04_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 25.929269,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 19.126795,
+      "strategy_max_drawdown_pct": -54.644063,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -127.795388,
+      "calmar_ratio": 0.474512,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3706,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "soft_spy_regime: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "low_vol_momentum_soft_penalty",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T16:33:17.035165+00:00",
+      "axis": "soft_spy_regime",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true,
+          "soft_weak_regime_top_n": 5,
+          "fallback_allow_if_missing_spy_metric": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_05_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 25.929269,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 19.126795,
+      "strategy_max_drawdown_pct": -54.644063,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -127.795388,
+      "calmar_ratio": 0.474512,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3706,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "soft_spy_regime: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "low_vol_momentum_soft_penalty",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T16:41:06.861241+00:00",
+      "axis": "anti_extension_soft_filter",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ],
+          "conditions": [
+            {
+              "field": "close_vs_sma52w_pct",
+              "operator": "<=",
+              "value": 80,
+              "enabled_if_field_exists": true
+            }
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_06_HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA52_80_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA52_80_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA52_80_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 22.846647,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 16.044173,
+      "strategy_max_drawdown_pct": -58.361365,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -143.291754,
+      "calmar_ratio": 0.391469,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3772,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "anti_extension_soft_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "drawdown_proxy_filter",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T16:49:55.673695+00:00",
+      "axis": "drawdown_proxy_filter",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ],
+          "conditions": [
+            {
+              "field": "max_drawdown_26w_pct",
+              "operator": ">=",
+              "value": -30,
+              "enabled_if_field_exists": true
+            }
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_07_HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 25.929269,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 19.126795,
+      "strategy_max_drawdown_pct": -54.644063,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -127.795388,
+      "calmar_ratio": 0.474512,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3706,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "drawdown_proxy_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "trailing_and_exit_refinement",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T17:00:57.752957+00:00",
+      "axis": "trailing_and_exit_refinement",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "trailing_stop_pct": 24
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_08_HYP_DD_FIRST_AUTO002_TRAILING_24_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_TRAILING_24_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_TRAILING_24_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 20.520474,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 13.717999,
+      "strategy_max_drawdown_pct": -59.129016,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -146.491868,
+      "calmar_ratio": 0.347046,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 21,
+      "years_losing_to_spy": 7,
+      "trades": 3845,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "trailing_and_exit_refinement: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "diversification_cap",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T17:51:10.931722+00:00",
+      "axis": "trailing_and_exit_refinement",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 12,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_09_HYP_DD_FIRST_AUTO002_TOPN_12_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_TOPN_12_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_TOPN_12_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 29.768113,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 22.965638,
+      "strategy_max_drawdown_pct": -54.10438,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -125.545605,
+      "calmar_ratio": 0.550198,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 2938,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "trailing_and_exit_refinement: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "diversification_cap",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T18:05:45.568608+00:00",
+      "axis": "low_vol_momentum_soft_penalty",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc",
+          "secondary_penalty_field": "weekly_range_pct",
+          "secondary_penalty_weight": 0.15
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_11_HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 25.241914,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 18.439439,
+      "strategy_max_drawdown_pct": -54.568365,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -127.479824,
+      "calmar_ratio": 0.462574,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3704,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "low_vol_momentum_soft_penalty: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "anti_extension_soft_filter",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T18:10:33.438756+00:00",
+      "axis": "low_vol_momentum_soft_penalty",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc",
+          "secondary_penalty_field": "weekly_range_pct",
+          "secondary_penalty_weight": 0.05
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_12_HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_LIGHT_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_LIGHT_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_LIGHT_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 25.161063,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 18.358588,
+      "strategy_max_drawdown_pct": -54.567962,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -127.478145,
+      "calmar_ratio": 0.461096,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3708,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "low_vol_momentum_soft_penalty: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "anti_extension_soft_filter",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T18:20:17.414861+00:00",
+      "axis": "anti_extension_soft_filter",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ],
+          "conditions": [
+            {
+              "field": "close_vs_sma20w_pct",
+              "operator": "<=",
+              "value": 60,
+              "enabled_if_field_exists": true
+            }
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_13_HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA20W_60_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA20W_60_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_ANTI_EXTENSION_SMA20W_60_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 25.161374,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 18.358899,
+      "strategy_max_drawdown_pct": -54.053049,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -125.331621,
+      "calmar_ratio": 0.465494,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 22,
+      "years_losing_to_spy": 6,
+      "trades": 3700,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "anti_extension_soft_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "drawdown_proxy_filter",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T18:30:42.125868+00:00",
+      "axis": "drawdown_proxy_filter",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ],
+          "conditions": [
+            {
+              "field": "drawdown_from_high_26w_pct",
+              "operator": ">=",
+              "value": -30,
+              "enabled_if_field_exists": true
+            }
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_14_HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V2",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V2",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_DD_PROXY_26W_V2",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 24.462241,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 17.659766,
+      "strategy_max_drawdown_pct": -54.753286,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -128.250708,
+      "calmar_ratio": 0.446772,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 20,
+      "years_losing_to_spy": 8,
+      "trades": 3741,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "drawdown_proxy_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "trailing_and_exit_refinement",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T18:38:23.595809+00:00",
+      "axis": "drawdown_proxy_filter",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ],
+          "conditions": [
+            {
+              "field": "drawdown_from_high_13w_pct",
+              "operator": ">=",
+              "value": -20,
+              "enabled_if_field_exists": true
+            }
+          ]
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": false,
+      "run_id": "DD_FIRST_15_HYP_DD_FIRST_AUTO002_DD_PROXY_13W_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_DD_PROXY_13W_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_DD_PROXY_13W_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "rejected",
+      "strategy_cagr_pct": 21.773932,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 14.971457,
+      "strategy_max_drawdown_pct": -54.874142,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -23.988222,
+      "drawdown_improvement_vs_parent_pct": -128.754523,
+      "calmar_ratio": 0.396798,
+      "parent_calmar_ratio": 2.171522,
+      "years_beating_spy": 20,
+      "years_losing_to_spy": 8,
+      "trades": 3829,
+      "value_delivered": "return_signal_without_dd_improvement",
+      "lesson": "drawdown_proxy_filter: not_dd_first; mejora retorno o cambia señal pero empeora drawdown.",
+      "failure_mode": "worse_drawdown_than_parent",
+      "next_axis": "trailing_and_exit_refinement",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "worse_or_no_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T20:29:20.282621+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 60
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": true,
+      "run_id": "DD_FIRST_16_HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 15.78141,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 8.978936,
+      "strategy_max_drawdown_pct": -36.789786,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -54.644063,
+      "drawdown_improvement_vs_parent_pct": 32.673772,
+      "calmar_ratio": 0.428962,
+      "parent_calmar_ratio": 0.474512,
+      "years_beating_spy": 21,
+      "years_losing_to_spy": 7,
+      "trades": 3837,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+      "failure_mode": "accepted_or_informative",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "material_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T20:33:53.679272+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 65
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": true,
+      "run_id": "DD_FIRST_17_HYP_DD_FIRST_AUTO002_EXPOSURE_65_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_65_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_65_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 17.073327,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 10.270852,
+      "strategy_max_drawdown_pct": -39.288674,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -54.644063,
+      "drawdown_improvement_vs_parent_pct": 28.100745,
+      "calmar_ratio": 0.434561,
+      "parent_calmar_ratio": 0.474512,
+      "years_beating_spy": 21,
+      "years_losing_to_spy": 7,
+      "trades": 3822,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+      "failure_mode": "accepted_or_informative",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "material_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T20:38:31.019809+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 70
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": true,
+      "run_id": "DD_FIRST_18_HYP_DD_FIRST_AUTO002_EXPOSURE_70_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_70_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_70_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 18.359931,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 11.557456,
+      "strategy_max_drawdown_pct": -41.709045,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -54.644063,
+      "drawdown_improvement_vs_parent_pct": 23.671405,
+      "calmar_ratio": 0.440191,
+      "parent_calmar_ratio": 0.474512,
+      "years_beating_spy": 21,
+      "years_losing_to_spy": 7,
+      "trades": 3816,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+      "failure_mode": "accepted_or_informative",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "material_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T20:43:17.790349+00:00",
+      "axis": "exposure_reduction_partial",
+      "parameter_patch": {
+        "ranking": {
+          "field": "close_vs_sma52w_pct",
+          "order": "desc"
+        },
+        "entry_rule": {
+          "type": "top_n",
+          "top_n": 15,
+          "by": "ret_52w_pct"
+        },
+        "exit_rule": {
+          "type": "drop_below_rank",
+          "rank_threshold": 20
+        },
+        "market_filter": {
+          "benchmark": "SPY",
+          "condition_any": [
+            {
+              "field": "spy_close_vs_sma50_pct",
+              "operator": ">",
+              "value": 0,
+              "enabled_if_field_exists": true
+            }
+          ],
+          "require_positive_trend": true
+        },
+        "risk_filters": {
+          "require_non_null_fields": [
+            "ret_52w_pct",
+            "close"
+          ]
+        },
+        "risk_management": {
+          "max_gross_exposure_pct": 55
+        }
+      },
+      "completed_run": true,
+      "useful_candidate": true,
+      "run_id": "DD_FIRST_19_HYP_DD_FIRST_AUTO002_EXPOSURE_55_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_55_V1",
+      "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_55_V1",
+      "family": "dd_first_drawdown_control",
+      "decision": "accepted_for_followup",
+      "strategy_cagr_pct": 14.484545,
+      "spy_cagr_pct": 6.802475,
+      "excess_cagr_pct": 7.682071,
+      "strategy_max_drawdown_pct": -34.210675,
+      "spy_max_drawdown_pct": -56.473669,
+      "parent_max_drawdown_pct": -54.644063,
+      "drawdown_improvement_vs_parent_pct": 37.39361,
+      "calmar_ratio": 0.423393,
+      "parent_calmar_ratio": 0.474512,
+      "years_beating_spy": 20,
+      "years_losing_to_spy": 8,
+      "trades": 3842,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_reduction_partial: useful DD_FIRST candidate; follow-up monotónico permitido.",
+      "failure_mode": "accepted_or_informative",
+      "next_axis": "soft_spy_regime",
+      "exhausted_axis": "",
+      "should_retry_axis": false,
+      "should_cooldown_axis": false,
+      "trade_count_effect": "sample_preserved",
+      "drawdown_effect": "material_improvement",
+      "cagr_effect": "positive_excess",
+      "calmar_effect": "not_improved",
+      "spy_consistency_effect": "years_ok"
+    },
+    {
+      "created_at": "2026-05-25T20:43:50.724240+00:00",
+      "axis": "exposure_reduction_partial",
+      "event_type": "exposure_refinement_summary",
+      "lesson": "Exposure reduction partial is the first useful DD_FIRST axis. Monotonic exposure refinement should identify the best fixed exposure between 50 and 75 before testing dynamic regime exposure.",
+      "next_axis": "dynamic_regime_exposure_after_fixed_exposure_selection"
     }
   ]
 }
