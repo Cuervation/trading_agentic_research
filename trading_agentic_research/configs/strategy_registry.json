@@ -1850,7 +1850,7 @@
       "rebalance_frequency": "monthly",
       "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "evaluation_mode": "dd_first",
-      "notes": "DD_FIRST_SERIES candidate; drawdown-first evaluation only, no automatic parent/baseline promotion."
+      "notes": "DD_FIRST_SERIES initial candidate."
     },
     {
       "strategy_id": "HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1",
@@ -1863,7 +1863,7 @@
       "rebalance_frequency": "monthly",
       "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "evaluation_mode": "dd_first",
-      "notes": "DD_FIRST_SERIES candidate; drawdown-first evaluation only, no automatic parent/baseline promotion."
+      "notes": "DD_FIRST_SERIES initial candidate."
     },
     {
       "strategy_id": "HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1",
@@ -1876,7 +1876,7 @@
       "rebalance_frequency": "monthly",
       "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
       "evaluation_mode": "dd_first",
-      "notes": "DD_FIRST_SERIES candidate; drawdown-first evaluation only, no automatic parent/baseline promotion."
+      "notes": "DD_FIRST_SERIES initial candidate."
     }
   ]
 }

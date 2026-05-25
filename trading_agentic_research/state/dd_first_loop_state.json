@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "completed_real_runs": 3,
+  "failed_attempts": 0,
+  "repaired_errors": 0,
+  "generated_hypotheses": [
+    "HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1",
+    "HYP_DD_FIRST_AUTO002_SPY_REGIME_EXPOSURE_V1",
+    "HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1"
+  ],
+  "rejected_hypotheses": [
+    "HYP_DD_FIRST_AUTO002_QUALITY_LOWVOL_RANK_V1",
+    "HYP_DD_FIRST_AUTO002_SPY_REGIME_EXPOSURE_V1",
+    "HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1"
+  ],
+  "current_cycle": 3,
+  "stop_reason": "target_completed_runs_reached",
+  "last_run_id": "DD_FIRST_03_HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1",
+  "last_error": "",
+  "last_updated_at": "2026-05-25T15:27:48.772527+00:00",
+  "exhausted_axes": [
+    "quality_momentum",
+    "spy_regime_strict",
+    "trailing_stop"
+  ]
+}

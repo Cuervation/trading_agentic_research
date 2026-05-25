@@ -46,45 +46,37 @@
     "require_non_null_fields": [
       "ret_52w_pct",
       "close"
-    ],
-    "conditions": [
-      {
-        "field": "spy_close_vs_sma50_pct",
-        "operator": ">",
-        "value": 0,
-        "enabled_if_field_exists": true
-      }
     ]
   },
   "costs": {
     "entry_cost_pct": 0.24,
     "exit_cost_pct": 0.24
   },
-  "claim": "Reduce exposure only when SPY regime is constructive, without changing ranking yet.",
+  "claim": "SPY regime strict filter to reduce weak-regime drawdown.",
   "causal_mechanism": "Trend persistence and behavioral anchoring can create continuation across 24/52 week windows.",
   "changed_parameters": [
+    "market_filter.require_positive_trend",
     "market_filter.fallback_allow_if_missing_spy_metric",
-    "risk_filters.conditions.spy_close_vs_sma50_pct"
+    "market_filter.condition_any"
   ],
-  "expected_effect": "Reduce max drawdown first while preserving positive excess CAGR versus SPY and enough trades for a non-anecdotal sample.",
-  "falsification_rule": "Reject if drawdown does not improve materially versus parent, Calmar fails to improve for promotion, SPY comparison weakens, trades become insufficient, or artifacts duplicate parent.",
+  "expected_effect": "Reduce max drawdown first while preserving positive excess CAGR vs SPY and enough trades.",
+  "falsification_rule": "Reject if drawdown fails to improve materially, Calmar worsens for promotion, SPY edge disappears, trades become insufficient, or artifacts duplicate parent.",
   "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
   "empirical_basis": [
     {
       "run_id": "AUTO_002",
-      "reason": "Current locked parent for DD_FIRST_SERIES drawdown-control exploration."
+      "reason": "Locked parent for DD_FIRST_SERIES controlled loop."
     }
   ],
-  "dominant_dimension": "regime_exposure",
+  "dominant_dimension": "spy_regime_strict",
   "evaluation_mode": "dd_first",
   "dd_first_objective": {
     "priority_order": [
       "minimize_max_drawdown",
-      "improve_calmar_ratio",
+      "improve_calmar",
       "keep_positive_excess_cagr",
-      "keep_spy_year_month_robustness",
+      "beat_spy_year_month",
       "keep_sufficient_trades"
-    ],
-    "notes": "DD_FIRST never moves current_parent or baseline automatically."
+    ]
   }
 }

@@ -14,6 +14,7 @@ from scripts.governance import artifact_hashes, artifacts_are_duplicate
 DD_FIRST_COLUMNS = [
     "run_id",
     "strategy_id",
+    "hypothesis_id",
     "parent_run_id",
     "parent_strategy_id",
     "decision",
@@ -34,7 +35,10 @@ DD_FIRST_COLUMNS = [
     "months_losing_to_spy",
     "trades",
     "dd_first_score",
+    "value_delivered",
+    "rejection_reason",
     "dd_first_rejection_reason",
+    "next_action",
 ]
 
 DD_REQUIRED_RUN_FILES = [
@@ -205,6 +209,7 @@ def evaluate_dd_first_run(
     row = {
         "run_id": path.name,
         "strategy_id": str(manifest.get("strategy_id") or ""),
+        "hypothesis_id": str(manifest.get("hypothesis_id") or manifest.get("strategy_id") or ""),
         "parent_run_id": parent_run_id,
         "parent_strategy_id": parent_strategy_id,
         "decision": dd_decision,
@@ -225,7 +230,10 @@ def evaluate_dd_first_run(
         "months_losing_to_spy": months_losing,
         "trades": trades,
         "dd_first_score": round(score, 6),
+        "value_delivered": _value_delivered(dd_decision, improvement_parent, excess_cagr),
+        "rejection_reason": "; ".join(dict.fromkeys(rejection_reasons)),
         "dd_first_rejection_reason": "; ".join(dict.fromkeys(rejection_reasons)),
+        "next_action": _next_action(dd_decision, rejection_reasons),
     }
 
     return {
@@ -319,6 +327,33 @@ def _dd_first_score(**kwargs: Any) -> float:
     trade_score = min(trades / min_trades, 2.0)
     calmar_delta = max(calmar - parent_calmar, 0.0)
     return (4.0 * improvement) + (20.0 * calmar_delta) + excess + (10.0 * yearly) + (5.0 * monthly) + trade_score
+
+
+def _value_delivered(decision: str, improvement_parent: float | None, excess_cagr: float | None) -> str:
+    if decision == "promoted_candidate":
+        return "strong_drawdown_adjusted_candidate"
+    if decision == "accepted_for_followup":
+        return "dd_first_followup_signal"
+    if (improvement_parent or 0.0) > 0:
+        return "defensive_learning"
+    if (excess_cagr or 0.0) > 0:
+        return "return_signal_without_dd_improvement"
+    return "rejected_learning"
+
+
+def _next_action(decision: str, rejection_reasons: list[str]) -> str:
+    if decision == "promoted_candidate":
+        return "manual_review_for_dd_first_followup"
+    if decision == "accepted_for_followup":
+        return "expand_same_axis_once"
+    reason_text = ";".join(rejection_reasons)
+    if "worse_drawdown_than_parent" in reason_text:
+        return "try_more_defensive_axis"
+    if "insufficient_trades" in reason_text or "drawdown_reduction_killed_trade_sample" in reason_text:
+        return "relax_filter_or_increase_breadth"
+    if "duplicate_artifact" in reason_text or "metric_no_effect" in reason_text:
+        return "generate_new_axis"
+    return "reject_or_repair"
 
 
 def _metric_no_effect(strategy_cagr, parent_cagr, strategy_dd, parent_dd, trades: int, parent_trades: pd.DataFrame | None) -> bool:
