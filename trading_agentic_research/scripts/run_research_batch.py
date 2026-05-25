@@ -303,6 +303,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--reports-dir", default="reports")
     parser.add_argument("--prefer-unseen", action="store_true")
     parser.add_argument("--allow-parent-update", action="store_true")
+    parser.add_argument(
+        "--evaluation-mode",
+        choices=["standard", "dd_first"],
+        default="standard",
+        help="Use standard candidate governance or DD_FIRST drawdown-first reporting.",
+    )
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--stop-after-consecutive-rejections", type=int, default=2)
     parser.add_argument("--stop-on-metric-no-effect", action="store_true")
@@ -541,6 +547,8 @@ def main() -> int:
             args.strategy_registry,
             "--parent-strategy-config",
             effective_parent_strategy_config,
+            "--evaluation-mode",
+            args.evaluation_mode,
         ]
         if args.allow_parent_update:
             cmd.append("--allow-parent-update")

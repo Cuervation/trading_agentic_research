@@ -88,6 +88,8 @@ def build_run_manifest(
         "parent_run_id": parent_run_id,
         "strategy_id": str(strategy_config.get("strategy_id", "unknown_strategy")),
         "strategy_version": str(strategy_config.get("strategy_version", "1")),
+        "strategy_config_path": str(strategy_config_path),
+        "parent_strategy_id": strategy_config.get("parent_strategy_id"),
         "hypothesis_id": str(strategy_config.get("hypothesis_id", strategy_config.get("strategy_id", "unknown_hypothesis"))),
         "hypothesis_family": str(strategy_config.get("strategy_family", "unknown_family")),
         "bibliography_basis": strategy_config.get("bibliography_basis", []),

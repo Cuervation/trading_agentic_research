@@ -44,6 +44,9 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     initial_capital = float(project_config.get("initial_capital", 100000))
     cost_per_side_pct = float(project_config.get("cost_per_side_pct", 0.24))
     trailing_stop_pct = _get_trailing_stop_pct(strategy_config)
+    breakeven_after_gain_pct = _get_breakeven_after_gain_pct(strategy_config)
+    breakeven_buffer_pct = _get_breakeven_buffer_pct(strategy_config)
+    max_gross_exposure_pct = _get_max_gross_exposure_pct(strategy_config)
     benchmark_ticker = str(
         strategy_config.get("benchmark_ticker")
         or project_config.get("benchmark_ticker", "SPY")
@@ -92,6 +95,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 positions=positions,
                 day_prices=day_prices,
                 cost_per_side_pct=cost_per_side_pct,
+                max_gross_exposure_pct=max_gross_exposure_pct,
                 trade_rows=trade_rows,
                 warnings=warnings,
             )
@@ -104,6 +108,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             positions=positions,
             prices=valuation_prices,
             trailing_stop_pct=trailing_stop_pct,
+            breakeven_after_gain_pct=breakeven_after_gain_pct,
+            breakeven_buffer_pct=breakeven_buffer_pct,
             cost_per_side_pct=cost_per_side_pct,
             trade_rows=trade_rows,
         )
@@ -198,6 +204,7 @@ def _process_rebalance(
     positions: dict[str, Position],
     day_prices: dict[str, float],
     cost_per_side_pct: float,
+    max_gross_exposure_pct: float,
     trade_rows: list[dict],
     warnings: list[str],
 ) -> float:
@@ -250,11 +257,12 @@ def _process_rebalance(
         target_tickers=valid_target_tickers,
         day_prices=day_prices,
         cost_per_side_pct=cost_per_side_pct,
+        max_gross_exposure_pct=max_gross_exposure_pct,
         trade_rows=trade_rows,
     )
 
     portfolio_value = cash + calculate_positions_value(positions, day_prices)
-    target_value = portfolio_value / len(valid_target_tickers)
+    target_value = (portfolio_value * max_gross_exposure_pct) / len(valid_target_tickers)
 
     buy_orders: list[tuple[str, float]] = []
     for ticker in sorted(valid_target_tickers):
@@ -311,13 +319,14 @@ def _trim_overweights_to_target(
     target_tickers: set[str],
     day_prices: dict[str, float],
     cost_per_side_pct: float,
+    max_gross_exposure_pct: float,
     trade_rows: list[dict],
 ) -> float:
     if not target_tickers:
         return cash
 
     portfolio_value = cash + calculate_positions_value(positions, day_prices)
-    target_value = portfolio_value / len(target_tickers)
+    target_value = (portfolio_value * max_gross_exposure_pct) / len(target_tickers)
 
     for ticker in sorted(target_tickers):
         position = positions.get(ticker)
@@ -382,19 +391,51 @@ def _get_trailing_stop_pct(strategy_config: dict) -> float | None:
     return value if value > 0 else None
 
 
+def _get_breakeven_after_gain_pct(strategy_config: dict) -> float | None:
+    risk_management = strategy_config.get("risk_management", {})
+    value = risk_management.get("breakeven_after_gain_pct")
+    if value is None:
+        return None
+    value = float(value)
+    return value if value > 0 else None
+
+
+def _get_breakeven_buffer_pct(strategy_config: dict) -> float:
+    risk_management = strategy_config.get("risk_management", {})
+    value = float(risk_management.get("breakeven_buffer_pct", 0.0) or 0.0)
+    return max(value, 0.0)
+
+
+def _get_max_gross_exposure_pct(strategy_config: dict) -> float:
+    risk_management = strategy_config.get("risk_management", {})
+    value = risk_management.get("max_gross_exposure_pct", 100)
+    value = float(value)
+    if value <= 0:
+        return 1.0
+    return min(value, 100.0) / 100.0
+
+
 def _process_trailing_stops(
     current_date: pd.Timestamp,
     cash: float,
     positions: dict[str, Position],
     prices: dict[str, float],
     trailing_stop_pct: float | None,
+    breakeven_after_gain_pct: float | None,
+    breakeven_buffer_pct: float,
     cost_per_side_pct: float,
     trade_rows: list[dict],
 ) -> float:
-    if trailing_stop_pct is None:
+    if trailing_stop_pct is None and breakeven_after_gain_pct is None:
         return cash
 
-    stop_fraction = trailing_stop_pct / 100.0
+    stop_fraction = trailing_stop_pct / 100.0 if trailing_stop_pct is not None else None
+    breakeven_trigger = (
+        1.0 + (breakeven_after_gain_pct / 100.0)
+        if breakeven_after_gain_pct is not None
+        else None
+    )
+    breakeven_floor = 1.0 + (breakeven_buffer_pct / 100.0)
     for ticker in list(positions.keys()):
         price = prices.get(ticker)
         if price is None:
@@ -403,7 +444,26 @@ def _process_trailing_stops(
         price = float(price)
         position.max_price_since_entry = max(float(position.max_price_since_entry), price)
         drawdown_from_peak_pct = ((price / position.max_price_since_entry) - 1.0) * 100.0
-        if price <= position.max_price_since_entry * (1.0 - stop_fraction):
+        if (
+            breakeven_trigger is not None
+            and position.max_price_since_entry >= position.entry_price * breakeven_trigger
+            and price <= position.entry_price * breakeven_floor
+        ):
+            position.stop_exit_peak_price = float(position.max_price_since_entry)
+            position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
+            cash = _close_position(
+                ticker=ticker,
+                exit_date=current_date,
+                exit_price=price,
+                cash=cash,
+                positions=positions,
+                cost_per_side_pct=cost_per_side_pct,
+                exit_reason="breakeven_stop",
+                trade_rows=trade_rows,
+            )
+            continue
+
+        if stop_fraction is not None and price <= position.max_price_since_entry * (1.0 - stop_fraction):
             position.stop_exit_peak_price = float(position.max_price_since_entry)
             position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
             cash = _close_position(

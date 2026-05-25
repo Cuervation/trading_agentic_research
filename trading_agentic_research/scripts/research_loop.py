@@ -36,6 +36,7 @@ class LoopInputs:
     allow_parent_update: bool
     state_dir: str | Path = "state"
     parent_strategy_config_path: Path | None = None
+    evaluation_mode: str = "standard"
 
 
 def read_json(path: str | Path) -> dict:
@@ -89,7 +90,17 @@ def resolve_loop_inputs(args: argparse.Namespace) -> LoopInputs:
     run_id = args.run_id or next_run_id(args.runs_dir)
     hypothesis_id = args.hypothesis_id or strategy_config.get("hypothesis_id") or strategy_config.get("strategy_id")
     family = args.family or strategy_config.get("strategy_family") or current_parent.get("current_parent_strategy_id")
+    evaluation_mode = getattr(args, "evaluation_mode", "standard")
     parent_run_id = args.parent_run_id if args.parent_run_id is not None else current_parent.get("current_parent_run_id")
+    if evaluation_mode == "dd_first" and args.parent_run_id is None:
+        parent_run_id = None
+    parent_strategy_config_path = resolve_parent_strategy_config_path(
+        state_dir=args.state_dir,
+        strategy_registry_path=getattr(args, "strategy_registry", "configs/strategy_registry.json"),
+        explicit_parent_strategy_config=getattr(args, "parent_strategy_config", None),
+        current_parent=current_parent,
+        strategy_id_override=strategy_config.get("parent_strategy_id") if evaluation_mode == "dd_first" else None,
+    )
 
     return LoopInputs(
         run_id=run_id,
@@ -102,12 +113,8 @@ def resolve_loop_inputs(args: argparse.Namespace) -> LoopInputs:
         parent_run_id=str(parent_run_id) if parent_run_id else None,
         allow_parent_update=bool(args.allow_parent_update),
         state_dir=args.state_dir,
-        parent_strategy_config_path=resolve_parent_strategy_config_path(
-            state_dir=args.state_dir,
-            strategy_registry_path=getattr(args, "strategy_registry", "configs/strategy_registry.json"),
-            explicit_parent_strategy_config=getattr(args, "parent_strategy_config", None),
-            current_parent=current_parent,
-        ),
+        parent_strategy_config_path=parent_strategy_config_path,
+        evaluation_mode=evaluation_mode,
     )
 
 
@@ -117,21 +124,23 @@ def resolve_parent_strategy_config_path(
     strategy_registry_path: str | Path,
     explicit_parent_strategy_config: str | None,
     current_parent: dict | None = None,
+    strategy_id_override: str | None = None,
 ) -> Path | None:
     if explicit_parent_strategy_config:
         p = Path(explicit_parent_strategy_config)
         return p if p.exists() else None
 
     parent = current_parent if current_parent is not None else (read_json(Path(state_dir) / "current_parent.json") if (Path(state_dir) / "current_parent.json").exists() else {})
-    direct_path = parent.get("current_parent_config_path")
-    if direct_path:
-        p = Path(direct_path)
-        if not p.is_absolute():
-            p = ROOT / p
-        if p.exists():
-            return p
+    if not strategy_id_override:
+        direct_path = parent.get("current_parent_config_path")
+        if direct_path:
+            p = Path(direct_path)
+            if not p.is_absolute():
+                p = ROOT / p
+            if p.exists():
+                return p
 
-    parent_strategy_id = parent.get("current_parent_strategy_id")
+    parent_strategy_id = strategy_id_override or parent.get("current_parent_strategy_id")
     if not parent_strategy_id or not Path(strategy_registry_path).exists():
         return None
 
@@ -208,9 +217,23 @@ def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_di
     if inputs.parent_strategy_config_path:
         backtest_command.extend(["--parent-strategy-config", str(inputs.parent_strategy_config_path)])
 
-    commands = [
-        backtest_command,
-        [
+    evaluation_mode = str(getattr(inputs, "evaluation_mode", "standard"))
+    if evaluation_mode == "dd_first":
+        evaluation_command = [
+            sys.executable,
+            "scripts/evaluate_dd_first.py",
+            "--run-id",
+            inputs.run_id,
+            "--runs-dir",
+            str(runs_dir),
+            "--reports-dir",
+            str(reports_dir),
+        ]
+        parent_strategy_id = read_json(inputs.strategy_config_path).get("parent_strategy_id")
+        if parent_strategy_id:
+            evaluation_command.extend(["--parent-strategy-id", str(parent_strategy_id)])
+    else:
+        evaluation_command = [
             sys.executable,
             "scripts/evaluate_candidate.py",
             "--run-id",
@@ -223,7 +246,13 @@ def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_di
             inputs.family,
             "--state-dir",
             str(inputs.state_dir),
-        ],
+        ]
+        if inputs.parent_run_id:
+            evaluation_command.extend(["--parent-run-id", inputs.parent_run_id])
+
+    commands = [
+        backtest_command,
+        evaluation_command,
         [
             sys.executable,
             "scripts/summarize_runs.py",
@@ -233,9 +262,9 @@ def build_commands(inputs: LoopInputs, runs_dir: str | Path = "runs", reports_di
             str(Path(reports_dir) / "runs_summary.csv"),
         ],
     ]
-    if inputs.parent_run_id:
+    if inputs.parent_run_id and evaluation_mode != "dd_first":
         commands[1].extend(["--parent-run-id", inputs.parent_run_id])
-    if inputs.allow_parent_update:
+    if inputs.allow_parent_update and evaluation_mode != "dd_first":
         strategy_id = read_json(inputs.strategy_config_path).get("strategy_id")
         commands.append(
             [
@@ -290,6 +319,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--strategy-registry", default="configs/strategy_registry.json")
     parser.add_argument("--parent-strategy-config", default=None)
     parser.add_argument("--allow-parent-update", action="store_true")
+    parser.add_argument("--evaluation-mode", choices=["standard", "dd_first"], default="standard")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 

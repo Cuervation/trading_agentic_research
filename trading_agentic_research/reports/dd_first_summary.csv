@@ -1,0 +1,1 @@
+﻿run_id,strategy_id,parent_id,cagr,spy_cagr,excess_spy_cagr,max_drawdown,parent_max_drawdown,drawdown_improvement_pct,calmar,spy_years,spy_months,trades,decision,rejection_reason,dd_first_score,drawdown_score,calmar_score,excess_spy_cagr_score,yearly_spy_consistency_score,monthly_consistency_score,trade_count_score

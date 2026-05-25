@@ -101,6 +101,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max-paper-ideas", type=int, default=5)
     p.add_argument("--max-feature-space-hypotheses", type=int, default=5)
     p.add_argument("--max-repeats-per-hypothesis", type=int, default=1)
+    p.add_argument(
+        "--evaluation-mode",
+        choices=["standard", "dd_first"],
+        default="standard",
+        help="Pass-through evaluation mode for the inner research batch.",
+    )
 
     # Long-run recovery controls passed through to run_research_batch.py.
     p.add_argument(
@@ -737,6 +743,7 @@ def main() -> int:
         "--stop-after-consecutive-rejections", str(args.stop_after_consecutive_rejections),
         "--max-recovery-cycles", str(args.max_recovery_cycles),
         "--parent-strategy-config", parent_config,
+        "--evaluation-mode", args.evaluation_mode,
     ]
     if args.no_continue_after_recovery_generation:
         cmd.append("--no-continue-after-recovery-generation")

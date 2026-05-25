@@ -1838,6 +1838,45 @@
       "execution_frequency": "daily",
       "rebalance_frequency": "monthly",
       "notes": "Auto-generated from HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json via hypothesis HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4."
+    },
+    {
+      "strategy_id": "DD_SPY_REGIME_EXPOSURE_V1",
+      "strategy_family": "dd_first",
+      "status": "dd_first_candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/DD_SPY_REGIME_EXPOSURE_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "evaluation_mode": "dd_first",
+      "notes": "DD_FIRST_SERIES phase 2 candidate; drawdown-first lexicographic evaluation, no automatic parent/baseline promotion."
+    },
+    {
+      "strategy_id": "DD_QUALITY_LOWVOL_RANKING_V1",
+      "strategy_family": "dd_first",
+      "status": "dd_first_candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/DD_QUALITY_LOWVOL_RANKING_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "evaluation_mode": "dd_first",
+      "notes": "DD_FIRST_SERIES phase 2 candidate; drawdown-first lexicographic evaluation, no automatic parent/baseline promotion."
+    },
+    {
+      "strategy_id": "DD_EXIT_BREAKEVEN_TRAIL_V1",
+      "strategy_family": "dd_first",
+      "status": "dd_first_candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/DD_EXIT_BREAKEVEN_TRAIL_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+      "evaluation_mode": "dd_first",
+      "notes": "DD_FIRST_SERIES phase 2 candidate; drawdown-first lexicographic evaluation, no automatic parent/baseline promotion."
     }
   ]
 }
