@@ -75,6 +75,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--allow-second-dimension-after-success", action="store_true")
     p.add_argument("--no-parent-update", action=argparse.BooleanOptionalAction, default=True)
     p.add_argument("--min-trades", type=int, default=MIN_TRADES)
+    p.add_argument("--per-run-timeout-minutes", type=float, default=45.0)
     return p.parse_args()
 
 

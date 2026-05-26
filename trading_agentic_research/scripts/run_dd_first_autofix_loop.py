@@ -365,8 +365,17 @@ def run_one_candidate(*, run_id: str, strategy_id: str, config_path: str, weekly
         [sys.executable, "scripts/summarize_runs.py", "--runs-dir", args.runs_dir, "--output", str(Path(args.reports_dir) / "runs_summary.csv")],
         [sys.executable, "scripts/summarize_dd_first.py", "--runs-dir", args.runs_dir, "--output", str(Path(args.reports_dir) / "dd_first_summary.csv"), "--min-trades", str(args.min_trades)],
     ]
+    timeout_minutes = float(getattr(args, "per_run_timeout_minutes", 0) or 0)
+    timeout_seconds = timeout_minutes * 60 if timeout_minutes > 0 else None
     for command in commands:
-        result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
+        try:
+            result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False, timeout=timeout_seconds)
+        except subprocess.TimeoutExpired as exc:
+            return {
+                "ok": False,
+                "error": f"command_timeout_after_{timeout_minutes:g}_minutes: {' '.join(command)}\n{exc.stderr or exc.stdout or ''}".strip(),
+                "command": command,
+            }
         if result.returncode != 0:
             return {"ok": False, "error": (result.stderr or result.stdout or "").strip(), "command": command}
     run_dir = Path(args.runs_dir) / run_id

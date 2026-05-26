@@ -1474,6 +1474,169 @@
         },
         "risk_management.max_gross_exposure_pct": 55
       }
+    },
+    {
+      "created_at": "2026-05-26T00:16:59.151781+00:00",
+      "axis": "exposure_plus_breakeven",
+      "run_id": "DDDAEMON_003_HYP_DD_FIRST_AUTO002_EXPOSURE60_BREAKEVEN_10_0_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_BREAKEVEN_10_0_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_breakeven: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "risk_management.breakeven_after_gain_pct": 10,
+        "risk_management.breakeven_buffer_pct": 0
+      }
+    },
+    {
+      "created_at": "2026-05-26T00:28:11.387131+00:00",
+      "axis": "exposure_plus_breakeven",
+      "run_id": "DDDAEMON_003_HYP_DD_FIRST_AUTO002_EXPOSURE60_BREAKEVEN_12_0_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_BREAKEVEN_12_0_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_breakeven: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "risk_management.breakeven_after_gain_pct": 12,
+        "risk_management.breakeven_buffer_pct": 0
+      }
+    },
+    {
+      "created_at": "2026-05-26T00:39:57.032993+00:00",
+      "axis": "exposure_plus_breakeven",
+      "run_id": "DDDAEMON_003_HYP_DD_FIRST_AUTO002_EXPOSURE60_BREAKEVEN_10_1_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_BREAKEVEN_10_1_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_breakeven: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "risk_management.breakeven_after_gain_pct": 10,
+        "risk_management.breakeven_buffer_pct": 1
+      }
+    },
+    {
+      "created_at": "2026-05-26T00:50:33.650696+00:00",
+      "axis": "exposure_plus_soft_spy_topn",
+      "run_id": "DDDAEMON_003_HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_soft_spy_topn: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "market_filter.soft_weak_regime_top_n": 5
+      }
+    },
+    {
+      "created_at": "2026-05-26T01:01:06.021982+00:00",
+      "axis": "exposure_plus_soft_spy_topn",
+      "run_id": "DDDAEMON_003_HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_8_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_8_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_soft_spy_topn: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "market_filter.soft_weak_regime_top_n": 8
+      }
+    },
+    {
+      "created_at": "2026-05-26T01:07:40.236166+00:00",
+      "axis": "exposure_plus_soft_spy_topn",
+      "run_id": "DDDAEMON_004_HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_10_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_10_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_soft_spy_topn: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "market_filter.soft_weak_regime_top_n": 10
+      }
+    },
+    {
+      "created_at": "2026-05-26T01:17:12.004492+00:00",
+      "axis": "exposure_plus_low_vol_penalty",
+      "run_id": "DDDAEMON_004_HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_low_vol_penalty: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "ranking.secondary_penalty_field": "weekly_range_pct",
+        "ranking.secondary_penalty_weight": 0.05
+      }
+    },
+    {
+      "created_at": "2026-05-26T01:23:40.711904+00:00",
+      "axis": "exposure_plus_low_vol_penalty",
+      "run_id": "DDDAEMON_004_HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_ATR_14W_PCT_W5_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_ATR_14W_PCT_W5_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_low_vol_penalty: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "ranking.secondary_penalty_field": "atr_14w_pct",
+        "ranking.secondary_penalty_weight": 0.05
+      }
+    },
+    {
+      "created_at": "2026-05-26T01:29:06.124164+00:00",
+      "axis": "exposure_plus_low_vol_penalty",
+      "run_id": "DDDAEMON_004_HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_VOLATILITY_12W_PCT_W5_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_VOLATILITY_12W_PCT_W5_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_low_vol_penalty: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "ranking.secondary_penalty_field": "volatility_12w_pct",
+        "ranking.secondary_penalty_weight": 0.05
+      }
+    },
+    {
+      "created_at": "2026-05-26T01:34:36.875932+00:00",
+      "axis": "exposure_plus_anti_extension",
+      "run_id": "DDDAEMON_004_HYP_DD_FIRST_AUTO002_EXPOSURE60_ANTI_EXTENSION_CLOSE_VS_SMA52W_PCT_80_V1",
+      "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_ANTI_EXTENSION_CLOSE_VS_SMA52W_PCT_80_V1",
+      "decision": "accepted_for_followup",
+      "completed_run": true,
+      "useful_candidate": true,
+      "value_delivered": "dd_first_followup_signal",
+      "lesson": "exposure_plus_anti_extension: champion candidate under DD_FIRST constraints.",
+      "parameter_patch": {
+        "risk_management.max_gross_exposure_pct": 60,
+        "risk_filters.conditions": [
+          {
+            "field": "close_vs_sma52w_pct",
+            "operator": "<=",
+            "value": 80,
+            "enabled_if_field_exists": true
+          }
+        ]
+      }
     }
   ]
 }

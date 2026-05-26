@@ -1,13 +1,13 @@
 # DD_FIRST Autonomous Daemon Summary
 
 - Status: completed
-- Batch: 1
-- Total attempts: 5
-- Completed runs: 26
+- Batch: 4
+- Total attempts: 15
+- Completed runs: 36
 - Champions found: 2
 - Last error: 
-- Last lesson: dynamic_regime_exposure: champion candidate under DD_FIRST constraints.
-- Next batch plan: HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_50_25_V1, HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_60_50_25_V1, HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_55_35_V1, HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_55_45_25_V1, HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1
+- Last lesson: exposure_plus_anti_extension: champion candidate under DD_FIRST constraints.
+- Next batch plan: HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_10_V1, HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1, HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_ATR_14W_PCT_W5_V1, HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_VOLATILITY_12W_PCT_W5_V1, HYP_DD_FIRST_AUTO002_EXPOSURE60_ANTI_EXTENSION_CLOSE_VS_SMA52W_PCT_80_V1
 
 ## Champions
 - dd_min_champion: HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1 / DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1 DD=-28.804358 CAGR=11.87758
@@ -24,14 +24,8 @@
 - diversification_cap: exhausted attempts=0 champions=0
 - dynamic_regime_exposure: active attempts=5 champions=5
 - exposure_plus_crisis_guard: active attempts=0 champions=0
-- exposure_plus_breakeven: active attempts=0 champions=0
-- exposure_plus_soft_spy_topn: active attempts=0 champions=0
-- exposure_plus_low_vol_penalty: active attempts=0 champions=0
-- exposure_plus_anti_extension: active attempts=0 champions=0
+- exposure_plus_breakeven: active attempts=3 champions=3
+- exposure_plus_soft_spy_topn: active attempts=3 champions=3
+- exposure_plus_low_vol_penalty: active attempts=3 champions=3
+- exposure_plus_anti_extension: active attempts=1 champions=1
 - controlled_combos: active attempts=0 champions=0
-
-## Validation notes
-
-- Focused DD_FIRST daemon validation passed: py_compile and 10 targeted tests.
-- Full pytest still fails during collection on legacy imports outside DD_FIRST: classify_candidate, all_literature_ideas, hard_cooldown_families.
-- Parent/baseline locks were not moved; no --allow-parent-update was used.

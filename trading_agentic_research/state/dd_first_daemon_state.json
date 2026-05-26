@@ -1,28 +1,28 @@
 {
   "status": "completed",
-  "current_batch": 1,
+  "current_batch": 4,
   "batch_size": 5,
-  "completed_batches": 1,
-  "total_attempts": 5,
-  "completed_runs": 26,
-  "useful_candidates": 9,
+  "completed_batches": 3,
+  "total_attempts": 15,
+  "completed_runs": 36,
+  "useful_candidates": 19,
   "champions_found": 2,
   "failed_attempts": 0,
   "repaired_errors": 0,
-  "current_axis": "dynamic_regime_exposure",
+  "current_axis": "exposure_plus_anti_extension",
   "cooldown_axes": [],
   "exhausted_axes": [],
   "last_error": "",
   "last_repair": "",
-  "last_lesson": "dynamic_regime_exposure: champion candidate under DD_FIRST constraints.",
+  "last_lesson": "exposure_plus_anti_extension: champion candidate under DD_FIRST constraints.",
   "next_batch_plan": [
-    "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_50_25_V1",
-    "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_60_50_25_V1",
-    "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_75_60_55_35_V1",
-    "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_70_55_45_25_V1",
-    "HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1"
+    "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_10_V1",
+    "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1",
+    "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_ATR_14W_PCT_W5_V1",
+    "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_VOLATILITY_12W_PCT_W5_V1",
+    "HYP_DD_FIRST_AUTO002_EXPOSURE60_ANTI_EXTENSION_CLOSE_VS_SMA52W_PCT_80_V1"
   ],
   "started_at": "2026-05-25T22:13:29.006083+00:00",
-  "updated_at": "2026-05-25T23:25:29.600688+00:00",
-  "stop_reason": "target_champions_reached"
+  "updated_at": "2026-05-26T01:34:53.585555+00:00",
+  "stop_reason": "max_batches_reached"
 }
