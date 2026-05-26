@@ -23,6 +23,9 @@ class Position:
     max_price_since_entry: float
     stop_exit_peak_price: float | None = None
     stop_exit_drawdown_from_peak_pct: float | None = None
+    profit_lock_floor_price: float | None = None
+    partial_take_profit_done: bool = False
+    rank_deterioration_count: int = 0
 
 
 def calculate_positions_value(

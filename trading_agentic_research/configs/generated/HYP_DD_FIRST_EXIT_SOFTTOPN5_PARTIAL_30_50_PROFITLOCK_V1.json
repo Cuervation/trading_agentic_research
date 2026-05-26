@@ -1,0 +1,145 @@
+{
+  "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_30_50_PROFITLOCK_V1",
+  "hypothesis_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_30_50_PROFITLOCK_V1",
+  "strategy_family": "dd_first_drawdown_control",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "close_vs_sma52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 15,
+    "by": "ret_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 20
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true,
+    "soft_weak_regime_top_n": 5
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Assets with positive medium-term trend should be favored and weak trends should be cut earlier.",
+  "causal_mechanism": "Combine a deferred partial profit with a mild profit lock to capture upside and then defend the remainder.",
+  "changed_parameters": [
+    "risk_management.partial_take_profit",
+    "risk_management.profit_lock_steps"
+  ],
+  "expected_effect": "Improve the return/drawdown tradeoff by refining exits while keeping the same entry universe and exposure.",
+  "falsification_rule": "Reject if CAGR falls materially, drawdown worsens, or trades/sample quality deteriorate without improving Calmar.",
+  "generation_axis": "dd_first_exit_optimization",
+  "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+  "parent_hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+  "empirical_basis": [
+    {
+      "run_id": "DD_FIRST_16_HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1",
+      "reason": "Fixed 60% exposure is the best balance point so far."
+    },
+    {
+      "run_id": "DD_FIRST_02_HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1",
+      "reason": "Exposure reductions improved drawdown but reduced CAGR."
+    },
+    {
+      "run_id": "DD_FIRST_01_HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+      "reason": "Higher exposure improved CAGR but worsened drawdown."
+    },
+    {
+      "run_id": "DD_FIRST_04_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1",
+      "reason": "Soft SPY top-n remained tradeable and provided a usable exit-optimization base."
+    }
+  ],
+  "novelty_reason": "Exit-only refinement on the strongest DD_FIRST soft-top-n base.",
+  "why_not_duplicate": "Each config changes one exit mechanism only.",
+  "risk_of_overfit": "Medium: exit tuning can overfit if thresholds are too specific.",
+  "expected_trade_count_effect": "Keep most trades; partial exits may increase trade count slightly without killing sample size.",
+  "risk_management": {
+    "max_gross_exposure_pct": 60,
+    "partial_take_profit": {
+      "enabled": true,
+      "gain_pct": 30,
+      "sell_fraction": 0.5
+    },
+    "profit_lock_steps": [
+      {
+        "gain_pct": 20,
+        "lock_pct": 5
+      }
+    ]
+  },
+  "strategy_overrides": {
+    "risk_management": {
+      "max_gross_exposure_pct": 60,
+      "partial_take_profit": {
+        "enabled": true,
+        "gain_pct": 30,
+        "sell_fraction": 0.5
+      },
+      "profit_lock_steps": [
+        {
+          "gain_pct": 20,
+          "lock_pct": 5
+        }
+      ]
+    },
+    "exit_rule": {
+      "type": "drop_below_rank",
+      "rank_threshold": 20
+    },
+    "market_filter": {
+      "benchmark": "SPY",
+      "condition_any": [
+        {
+          "field": "spy_close_vs_sma50_pct",
+          "operator": ">",
+          "value": 0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "require_positive_trend": true,
+      "soft_weak_regime_top_n": 5
+    },
+    "ranking": {
+      "field": "close_vs_sma52w_pct",
+      "order": "desc"
+    },
+    "risk_filters": {
+      "require_non_null_fields": [
+        "ret_52w_pct",
+        "close"
+      ]
+    }
+  }
+}

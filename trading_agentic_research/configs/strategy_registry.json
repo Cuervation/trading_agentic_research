@@ -2353,6 +2353,76 @@
       "evaluation_mode": "dd_first",
       "generation_axis": "exposure_plus_anti_extension",
       "notes": "DD_FIRST autonomous daemon candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_15_3_25_8_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_15_3_25_8_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dd_first_exit_optimization",
+      "notes": "DD_FIRST exit optimization candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_20_5_35_12_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_20_5_35_12_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dd_first_exit_optimization",
+      "notes": "DD_FIRST exit optimization candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_25_50_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_25_50_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dd_first_exit_optimization",
+      "notes": "DD_FIRST exit optimization candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_30_50_PROFITLOCK_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_30_50_PROFITLOCK_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dd_first_exit_optimization",
+      "notes": "DD_FIRST exit optimization candidate."
+    },
+    {
+      "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_RANK_DETERIORATION_25_2_V1",
+      "strategy_family": "dd_first_drawdown_control",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD_FIRST_EXIT_SOFTTOPN5_RANK_DETERIORATION_25_2_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+      "evaluation_mode": "dd_first",
+      "generation_axis": "dd_first_exit_optimization",
+      "notes": "DD_FIRST exit optimization candidate."
     }
   ]
 }

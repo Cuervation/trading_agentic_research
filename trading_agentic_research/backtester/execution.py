@@ -46,6 +46,9 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     trailing_stop_pct = _get_trailing_stop_pct(strategy_config)
     breakeven_after_gain_pct = _get_breakeven_after_gain_pct(strategy_config)
     breakeven_buffer_pct = _get_breakeven_buffer_pct(strategy_config)
+    profit_lock_steps = _get_profit_lock_steps(strategy_config)
+    partial_take_profit = _get_partial_take_profit(strategy_config)
+    rank_deterioration_exit = _get_rank_deterioration_exit(strategy_config)
     max_gross_exposure_pct = _get_max_gross_exposure_pct(strategy_config)
     benchmark_ticker = str(
         strategy_config.get("benchmark_ticker")
@@ -89,13 +92,16 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             cash = _process_rebalance(
                 current_date=current_date,
                 target_tickers=plan["target_tickers"],
+                exit_tickers=plan.get("exit_tickers", set()),
                 target_details=plan["target_details"],
+                rank_map=plan.get("rank_map", {}),
                 market_filter_passed=plan["market_filter_passed"],
                 cash=cash,
                 positions=positions,
                 day_prices=day_prices,
                 cost_per_side_pct=cost_per_side_pct,
                 max_gross_exposure_pct=plan.get("max_gross_exposure_pct", max_gross_exposure_pct),
+                rank_deterioration_exit=rank_deterioration_exit,
                 trade_rows=trade_rows,
                 warnings=warnings,
             )
@@ -110,6 +116,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             trailing_stop_pct=trailing_stop_pct,
             breakeven_after_gain_pct=breakeven_after_gain_pct,
             breakeven_buffer_pct=breakeven_buffer_pct,
+            profit_lock_steps=profit_lock_steps,
+            partial_take_profit=partial_take_profit,
             cost_per_side_pct=cost_per_side_pct,
             trade_rows=trade_rows,
         )
@@ -164,9 +172,13 @@ def _build_rebalance_plan(
 
         market_filter_passed = bool(group["market_filter_passed"].all())
         target_details = {}
+        rank_map: dict[str, int] = {}
+        exit_tickers: set[str] = set()
         if market_filter_passed:
             selected = group.loc[group["selected_top_n"].astype(bool)].copy()
+            exit_universe = group.loc[group["in_exit_universe"].astype(bool)].copy()
             target_tickers = set(selected["ticker"].astype(str).tolist())
+            exit_tickers = set(exit_universe["ticker"].astype(str).tolist())
             for _, row in selected.iterrows():
                 ticker = str(row["ticker"])
                 target_details[ticker] = {
@@ -175,12 +187,18 @@ def _build_rebalance_plan(
                     "entry_rank": int(row["rank"]) if pd.notna(row.get("rank")) else None,
                     "entry_ranking_value": float(row["ranking_value"]) if pd.notna(row.get("ranking_value")) else None,
                 }
+            for _, row in group.iterrows():
+                ticker = str(row["ticker"])
+                if pd.notna(row.get("rank")):
+                    rank_map[ticker] = int(row["rank"])
         else:
             target_tickers = set()
 
         plan[execution_date] = {
             "signal_date": signal_date,
             "target_tickers": target_tickers,
+            "exit_tickers": exit_tickers,
+            "rank_map": rank_map,
             "target_details": target_details,
             "market_filter_passed": market_filter_passed,
             "max_gross_exposure_pct": _plan_max_gross_exposure_pct(group),
@@ -211,13 +229,16 @@ def _first_daily_date_after(daily_index: pd.Index, signal_date: pd.Timestamp):
 def _process_rebalance(
     current_date: pd.Timestamp,
     target_tickers: set[str],
+    exit_tickers: set[str],
     target_details: dict[str, dict],
+    rank_map: dict[str, int],
     market_filter_passed: bool,
     cash: float,
     positions: dict[str, Position],
     day_prices: dict[str, float],
     cost_per_side_pct: float,
     max_gross_exposure_pct: float,
+    rank_deterioration_exit: dict | None,
     trade_rows: list[dict],
     warnings: list[str],
 ) -> float:
@@ -241,7 +262,33 @@ def _process_rebalance(
 
     # First, close anything that should not remain in the portfolio.
     for ticker in list(positions.keys()):
-        if ticker not in valid_target_tickers:
+        if ticker in exit_tickers:
+            position = positions[ticker]
+            current_rank = rank_map.get(ticker)
+            if current_rank is not None and rank_deterioration_exit is not None:
+                max_rank = int(rank_deterioration_exit.get("max_rank", 25) or 25)
+                confirm = int(rank_deterioration_exit.get("confirm_rebalances", 2) or 2)
+                if current_rank > max_rank:
+                    position.rank_deterioration_count += 1
+                else:
+                    position.rank_deterioration_count = 0
+                if position.rank_deterioration_count >= confirm:
+                    price = day_prices.get(ticker)
+                    if price is None:
+                        warnings.append(f"No exit price for {ticker} on {current_date.date()}; position kept.")
+                        continue
+                    cash = _close_position(
+                        ticker=ticker,
+                        exit_date=current_date,
+                        exit_price=float(price),
+                        cash=cash,
+                        positions=positions,
+                        cost_per_side_pct=cost_per_side_pct,
+                        exit_reason="rank_deterioration_exit",
+                        trade_rows=trade_rows,
+                    )
+                    continue
+        if ticker not in valid_target_tickers and ticker not in exit_tickers:
             price = day_prices.get(ticker)
             if price is None:
                 warnings.append(f"No exit price for {ticker} on {current_date.date()}; position kept.")
@@ -419,6 +466,67 @@ def _get_breakeven_buffer_pct(strategy_config: dict) -> float:
     return max(value, 0.0)
 
 
+def _get_profit_lock_steps(strategy_config: dict) -> list[dict] | None:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    steps = risk_management.get("profit_lock_steps")
+    if not steps:
+        return None
+    if not isinstance(steps, list):
+        return None
+    normalized: list[dict] = []
+    for step in steps:
+        if not isinstance(step, dict):
+            continue
+        try:
+            gain_pct = float(step.get("gain_pct"))
+            lock_pct = float(step.get("lock_pct"))
+        except (TypeError, ValueError):
+            continue
+        if gain_pct > 0 and lock_pct >= 0:
+            normalized.append({"gain_pct": gain_pct, "lock_pct": lock_pct})
+    return normalized or None
+
+
+def _get_partial_take_profit(strategy_config: dict) -> dict | None:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    cfg = risk_management.get("partial_take_profit")
+    if not isinstance(cfg, dict) or not cfg.get("enabled"):
+        return None
+    try:
+        gain_pct = float(cfg.get("gain_pct"))
+        sell_fraction = float(cfg.get("sell_fraction"))
+    except (TypeError, ValueError):
+        return None
+    if gain_pct <= 0 or not (0 < sell_fraction < 1):
+        return None
+    return {"gain_pct": gain_pct, "sell_fraction": sell_fraction}
+
+
+def _get_rank_deterioration_exit(strategy_config: dict) -> dict | None:
+    exit_rule = strategy_config.get("exit_rule", {}) or {}
+    cfg = exit_rule.get("rank_deterioration_exit")
+    if not isinstance(cfg, dict) or not cfg.get("enabled"):
+        return None
+    try:
+        max_rank = int(cfg.get("max_rank"))
+        confirm_rebalances = int(cfg.get("confirm_rebalances"))
+    except (TypeError, ValueError):
+        return None
+    if max_rank <= 0 or confirm_rebalances <= 0:
+        return None
+    return {"max_rank": max_rank, "confirm_rebalances": confirm_rebalances}
+
+
+def _profit_lock_floor(position: Position, profit_lock_steps: list[dict] | None) -> float | None:
+    if not profit_lock_steps:
+        return None
+    applicable = [step for step in profit_lock_steps if float(position.max_price_since_entry) >= float(position.entry_price) * (1.0 + float(step["gain_pct"]) / 100.0)]
+    if not applicable:
+        return None
+    highest_lock = max(float(step["lock_pct"]) for step in applicable)
+    return float(position.entry_price) * (1.0 + highest_lock / 100.0)
+
+
 def _get_max_gross_exposure_pct(strategy_config: dict) -> float:
     risk_management = strategy_config.get("risk_management", {})
     value = risk_management.get("max_gross_exposure_pct", 100)
@@ -436,10 +544,12 @@ def _process_trailing_stops(
     trailing_stop_pct: float | None,
     breakeven_after_gain_pct: float | None,
     breakeven_buffer_pct: float,
+    profit_lock_steps: list[dict] | None,
+    partial_take_profit: dict | None,
     cost_per_side_pct: float,
     trade_rows: list[dict],
 ) -> float:
-    if trailing_stop_pct is None and breakeven_after_gain_pct is None:
+    if trailing_stop_pct is None and breakeven_after_gain_pct is None and not profit_lock_steps and not partial_take_profit:
         return cash
 
     stop_fraction = trailing_stop_pct / 100.0 if trailing_stop_pct is not None else None
@@ -457,6 +567,46 @@ def _process_trailing_stops(
         price = float(price)
         position.max_price_since_entry = max(float(position.max_price_since_entry), price)
         drawdown_from_peak_pct = ((price / position.max_price_since_entry) - 1.0) * 100.0
+
+        if partial_take_profit and not position.partial_take_profit_done:
+            gain_trigger = float(partial_take_profit.get("gain_pct", 0) or 0)
+            sell_fraction = float(partial_take_profit.get("sell_fraction", 0) or 0)
+            if gain_trigger > 0 and 0 < sell_fraction < 1 and price >= position.entry_price * (1.0 + gain_trigger / 100.0):
+                shares_to_sell = position.shares * sell_fraction
+                cash = _sell_position_shares(
+                    ticker=ticker,
+                    shares_to_sell=shares_to_sell,
+                    exit_date=current_date,
+                    exit_price=price,
+                    cash=cash,
+                    positions=positions,
+                    cost_per_side_pct=cost_per_side_pct,
+                    exit_reason="partial_take_profit",
+                    trade_rows=trade_rows,
+                )
+                remaining = positions.get(ticker)
+                if remaining is not None:
+                    remaining.partial_take_profit_done = True
+                continue
+
+        lock_price = _profit_lock_floor(position, profit_lock_steps)
+        if lock_price is not None:
+            position.profit_lock_floor_price = lock_price
+            if price <= lock_price:
+                position.stop_exit_peak_price = float(position.max_price_since_entry)
+                position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
+                cash = _close_position(
+                    ticker=ticker,
+                    exit_date=current_date,
+                    exit_price=price,
+                    cash=cash,
+                    positions=positions,
+                    cost_per_side_pct=cost_per_side_pct,
+                    exit_reason="profit_lock_stop",
+                    trade_rows=trade_rows,
+                )
+                continue
+
         if (
             breakeven_trigger is not None
             and position.max_price_since_entry >= position.entry_price * breakeven_trigger
