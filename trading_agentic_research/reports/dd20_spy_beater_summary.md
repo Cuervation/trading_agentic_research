@@ -4,9 +4,9 @@ Constraint: `max_drawdown >= -20`, `CAGR > SPY CAGR`, `trades >= 3000`, `years_b
 
 ## No valid candidates yet
 
-- Closest by DD: `HYP_DD20_SPY_DYN_80_50_20_0_EQUITY_GUARD_18_10_V1` already passes DD20 at DD -19.9052%; missing: add 1301 trades.
+- Closest by DD: `HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1` already passes DD20 at DD -19.3252%; missing: add 655 trades.
 - Closest by CAGR: `HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1` at CAGR 15.7814% vs SPY 6.8025%.
-- Missing to pass: add 1301 trades
+- Missing to pass: add 655 trades
 - Parameter adjustment indicated: lower weak/crisis exposure first; if DD passes but yearly SPY balance fails, keep crisis at 0 and restore selective strong-regime exposure or use a softer equity guard.
 
 ## Reference comparison

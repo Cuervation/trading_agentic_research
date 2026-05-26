@@ -44,6 +44,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     initial_capital = float(project_config.get("initial_capital", 100000))
     cost_per_side_pct = float(project_config.get("cost_per_side_pct", 0.24))
     trailing_stop_pct = _get_trailing_stop_pct(strategy_config)
+    trailing_activation_gain_pct = _get_trailing_activation_gain_pct(strategy_config)
+    stop_loss_pct = _get_stop_loss_pct(strategy_config)
     breakeven_after_gain_pct = _get_breakeven_after_gain_pct(strategy_config)
     breakeven_buffer_pct = _get_breakeven_buffer_pct(strategy_config)
     profit_lock_steps = _get_profit_lock_steps(strategy_config)
@@ -139,6 +141,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             positions=positions,
             prices=valuation_prices,
             trailing_stop_pct=trailing_stop_pct,
+            trailing_activation_gain_pct=trailing_activation_gain_pct,
+            stop_loss_pct=stop_loss_pct,
             breakeven_after_gain_pct=breakeven_after_gain_pct,
             breakeven_buffer_pct=breakeven_buffer_pct,
             profit_lock_steps=profit_lock_steps,
@@ -491,6 +495,24 @@ def _get_trailing_stop_pct(strategy_config: dict) -> float | None:
     return value if value > 0 else None
 
 
+def _get_trailing_activation_gain_pct(strategy_config: dict) -> float | None:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    value = risk_management.get("trailing_activation_gain_pct")
+    if value is None:
+        return None
+    value = float(value)
+    return value if value > 0 else None
+
+
+def _get_stop_loss_pct(strategy_config: dict) -> float | None:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    value = risk_management.get("stop_loss_pct")
+    if value is None:
+        return None
+    value = float(value)
+    return value if value > 0 else None
+
+
 def _get_breakeven_after_gain_pct(strategy_config: dict) -> float | None:
     risk_management = strategy_config.get("risk_management", {})
     value = risk_management.get("breakeven_after_gain_pct")
@@ -609,6 +631,8 @@ def _process_trailing_stops(
     positions: dict[str, Position],
     prices: dict[str, float],
     trailing_stop_pct: float | None,
+    trailing_activation_gain_pct: float | None,
+    stop_loss_pct: float | None,
     breakeven_after_gain_pct: float | None,
     breakeven_buffer_pct: float,
     profit_lock_steps: list[dict] | None,
@@ -616,10 +640,16 @@ def _process_trailing_stops(
     cost_per_side_pct: float,
     trade_rows: list[dict],
 ) -> float:
-    if trailing_stop_pct is None and breakeven_after_gain_pct is None and not profit_lock_steps and not partial_take_profit:
+    if stop_loss_pct is None and trailing_stop_pct is None and breakeven_after_gain_pct is None and not profit_lock_steps and not partial_take_profit:
         return cash
 
+    loss_fraction = stop_loss_pct / 100.0 if stop_loss_pct is not None else None
     stop_fraction = trailing_stop_pct / 100.0 if trailing_stop_pct is not None else None
+    trailing_activation = (
+        1.0 + (trailing_activation_gain_pct / 100.0)
+        if trailing_activation_gain_pct is not None
+        else None
+    )
     breakeven_trigger = (
         1.0 + (breakeven_after_gain_pct / 100.0)
         if breakeven_after_gain_pct is not None
@@ -634,6 +664,80 @@ def _process_trailing_stops(
         price = float(price)
         position.max_price_since_entry = max(float(position.max_price_since_entry), price)
         drawdown_from_peak_pct = ((price / position.max_price_since_entry) - 1.0) * 100.0
+
+        if loss_fraction is not None and price <= position.entry_price * (1.0 - loss_fraction):
+            position.stop_exit_peak_price = float(position.max_price_since_entry)
+            position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
+            cash = _close_position(
+                ticker=ticker,
+                exit_date=current_date,
+                exit_price=price,
+                cash=cash,
+                positions=positions,
+                cost_per_side_pct=cost_per_side_pct,
+                exit_reason="stop_loss",
+                trade_rows=trade_rows,
+            )
+            continue
+
+        lock_price = _profit_lock_floor(position, profit_lock_steps)
+        if lock_price is not None:
+            position.profit_lock_floor_price = lock_price
+            if price <= lock_price:
+                position.stop_exit_peak_price = float(position.max_price_since_entry)
+                position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
+                cash = _close_position(
+                    ticker=ticker,
+                    exit_date=current_date,
+                    exit_price=price,
+                    cash=cash,
+                    positions=positions,
+                    cost_per_side_pct=cost_per_side_pct,
+                    exit_reason="profit_lock_stop",
+                    trade_rows=trade_rows,
+                )
+                continue
+
+        trailing_is_active = (
+            stop_fraction is not None
+            and (
+                trailing_activation is None
+                or position.max_price_since_entry >= position.entry_price * trailing_activation
+            )
+        )
+        if trailing_is_active and price <= position.max_price_since_entry * (1.0 - stop_fraction):
+            position.stop_exit_peak_price = float(position.max_price_since_entry)
+            position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
+            cash = _close_position(
+                ticker=ticker,
+                exit_date=current_date,
+                exit_price=price,
+                cash=cash,
+                positions=positions,
+                cost_per_side_pct=cost_per_side_pct,
+                exit_reason="trailing_stop",
+                trade_rows=trade_rows,
+            )
+            continue
+
+        if (
+            breakeven_trigger is not None
+            and position.max_price_since_entry >= position.entry_price * breakeven_trigger
+            and price <= position.entry_price * breakeven_floor
+        ):
+            position.stop_exit_peak_price = float(position.max_price_since_entry)
+            position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
+            cash = _close_position(
+                ticker=ticker,
+                exit_date=current_date,
+                exit_price=price,
+                cash=cash,
+                positions=positions,
+                cost_per_side_pct=cost_per_side_pct,
+                exit_reason="breakeven_stop",
+                trade_rows=trade_rows,
+            )
+            continue
 
         if partial_take_profit and not position.partial_take_profit_done:
             gain_trigger = float(partial_take_profit.get("gain_pct", 0) or 0)
@@ -655,57 +759,6 @@ def _process_trailing_stops(
                 if remaining is not None:
                     remaining.partial_take_profit_done = True
                 continue
-
-        lock_price = _profit_lock_floor(position, profit_lock_steps)
-        if lock_price is not None:
-            position.profit_lock_floor_price = lock_price
-            if price <= lock_price:
-                position.stop_exit_peak_price = float(position.max_price_since_entry)
-                position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
-                cash = _close_position(
-                    ticker=ticker,
-                    exit_date=current_date,
-                    exit_price=price,
-                    cash=cash,
-                    positions=positions,
-                    cost_per_side_pct=cost_per_side_pct,
-                    exit_reason="profit_lock_stop",
-                    trade_rows=trade_rows,
-                )
-                continue
-
-        if (
-            breakeven_trigger is not None
-            and position.max_price_since_entry >= position.entry_price * breakeven_trigger
-            and price <= position.entry_price * breakeven_floor
-        ):
-            position.stop_exit_peak_price = float(position.max_price_since_entry)
-            position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
-            cash = _close_position(
-                ticker=ticker,
-                exit_date=current_date,
-                exit_price=price,
-                cash=cash,
-                positions=positions,
-                cost_per_side_pct=cost_per_side_pct,
-                exit_reason="breakeven_stop",
-                trade_rows=trade_rows,
-            )
-            continue
-
-        if stop_fraction is not None and price <= position.max_price_since_entry * (1.0 - stop_fraction):
-            position.stop_exit_peak_price = float(position.max_price_since_entry)
-            position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
-            cash = _close_position(
-                ticker=ticker,
-                exit_date=current_date,
-                exit_price=price,
-                cash=cash,
-                positions=positions,
-                cost_per_side_pct=cost_per_side_pct,
-                exit_reason="trailing_stop",
-                trade_rows=trade_rows,
-            )
     return cash
 
 
