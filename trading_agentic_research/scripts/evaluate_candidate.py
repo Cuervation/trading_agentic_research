@@ -19,8 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from backtester.dd20_spy_beater import write_dd20_summary_csv, write_dd20_summary_markdown
 from backtester.dd_first import append_dd_first_summary
-from backtester.validation import audit_run_folder, audit_run_folder_dd_first
+from backtester.validation import audit_run_folder, audit_run_folder_dd20_spy_beater, audit_run_folder_dd_first
 from scripts.update_evidence_memory import persist_learning_from_run
 from scripts.research.artifact_index import (
     apply_duplicate_to_audit,
@@ -44,7 +45,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--family", default="cross_sectional_momentum")
     parser.add_argument("--state-dir", default="state")
     parser.add_argument("--allow-parent-update", action="store_true")
-    parser.add_argument("--evaluation-mode", choices=["standard", "dd_first"], default="standard")
+    parser.add_argument("--evaluation-mode", choices=["standard", "dd_first", "dd20_spy_beater"], default="standard")
     parser.add_argument("--reports-dir", default="reports")
     return parser.parse_args()
 
@@ -71,6 +72,30 @@ def main() -> int:
         print(f"Audit file: {audit_path}")
         print(f"Report: {Path(args.reports_dir) / 'dd_first_summary.csv'}")
         print("Parent/baseline promotion: blocked by DD_FIRST mode")
+        return 0
+
+    if args.evaluation_mode == "dd20_spy_beater":
+        audit = audit_run_folder_dd20_spy_beater(run_dir, min_trades=args.min_trades, parent_run_dir=parent_run_dir)
+        audit_path = run_dir / "audit.json"
+        _write_json(audit_path, audit)
+        row = audit["dd20_spy_beater"]
+        report_csv = Path(args.reports_dir) / "dd20_spy_beater_summary.csv"
+        existing_rows = []
+        if report_csv.exists():
+            import csv
+
+            with report_csv.open("r", encoding="utf-8-sig", newline="") as f:
+                existing_rows = list(csv.DictReader(f, delimiter=";"))
+        rows_by_run = {str(r.get("run_id")): r for r in existing_rows}
+        rows_by_run[str(row.get("run_id"))] = row
+        rows = list(rows_by_run.values())
+        write_dd20_summary_csv(report_csv, rows)
+        write_dd20_summary_markdown(Path(args.reports_dir) / "dd20_spy_beater_summary.md", rows)
+        print(f"DD20_SPY_BEATER audit completed: {args.run_id}")
+        print(f"Decision: {audit['decision']}")
+        print(f"Audit file: {audit_path}")
+        print(f"Report: {report_csv}")
+        print("Parent/baseline promotion: blocked by DD20_SPY_BEATER mode")
         return 0
 
     audit = audit_run_folder(run_dir, min_trades=args.min_trades, parent_run_dir=parent_run_dir)

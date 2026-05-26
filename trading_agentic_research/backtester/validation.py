@@ -175,6 +175,13 @@ def audit_run_folder_dd_first(run_dir: str | Path, min_trades: int = 50, parent_
     return evaluate_dd_first_run(run_dir, min_trades=min_trades, parent_run_dir=parent_run_dir)
 
 
+def audit_run_folder_dd20_spy_beater(run_dir: str | Path, min_trades: int = 3000, parent_run_dir: str | Path | None = None) -> dict:
+    """Audit one run with the DD20 + SPY-beater hard constraint."""
+    from backtester.dd20_spy_beater import evaluate_dd20_spy_beater_run
+
+    return evaluate_dd20_spy_beater_run(run_dir, min_trades=min_trades, parent_run_dir=parent_run_dir)
+
+
 def build_parent_comparison(run_dir: str | Path, parent_run_dir: str | Path) -> dict:
     """Compare a candidate run against the current parent run."""
     candidate_path = Path(run_dir)

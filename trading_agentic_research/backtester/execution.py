@@ -50,6 +50,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     partial_take_profit = _get_partial_take_profit(strategy_config)
     rank_deterioration_exit = _get_rank_deterioration_exit(strategy_config)
     max_gross_exposure_pct = _get_max_gross_exposure_pct(strategy_config)
+    equity_drawdown_guard = _get_equity_drawdown_guard(strategy_config)
+    max_drawdown_kill_switch = _get_max_drawdown_kill_switch(strategy_config)
     benchmark_ticker = str(
         strategy_config.get("benchmark_ticker")
         or project_config.get("benchmark_ticker", "SPY")
@@ -84,8 +86,29 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     trade_rows: list[dict] = []
     equity_rows: list[dict] = []
     processed_rebalances = 0
+    equity_peak = initial_capital
+    equity_guard_active = False
+    equity_guard_activations = 0
+    equity_guard_blocked_rebalances = 0
+    kill_switch_violated = False
+    kill_switch_first_date = None
 
     for current_date in daily_dates:
+        valuation_prices = valuation_matrix.loc[current_date].dropna().to_dict()
+        current_equity = cash + calculate_positions_value(positions, valuation_prices)
+        equity_peak = max(equity_peak, current_equity)
+        current_equity_dd_pct = ((current_equity / equity_peak) - 1.0) * 100.0 if equity_peak > 0 else 0.0
+        if equity_drawdown_guard:
+            if equity_guard_active and current_equity_dd_pct >= equity_drawdown_guard["resume_drawdown_pct"]:
+                equity_guard_active = False
+            elif (not equity_guard_active) and current_equity_dd_pct <= equity_drawdown_guard["stop_new_entries_drawdown_pct"]:
+                equity_guard_active = True
+                equity_guard_activations += 1
+        if max_drawdown_kill_switch and current_equity_dd_pct <= max_drawdown_kill_switch["stop_backtest_drawdown_pct"]:
+            if not kill_switch_violated:
+                kill_switch_first_date = current_date
+            kill_switch_violated = True
+
         if current_date in rebalance_plan:
             plan = rebalance_plan[current_date]
             day_prices = close_matrix.loc[current_date].dropna().to_dict()
@@ -102,12 +125,14 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 cost_per_side_pct=cost_per_side_pct,
                 max_gross_exposure_pct=plan.get("max_gross_exposure_pct", max_gross_exposure_pct),
                 rank_deterioration_exit=rank_deterioration_exit,
+                block_new_entries=equity_guard_active,
                 trade_rows=trade_rows,
                 warnings=warnings,
             )
+            if equity_guard_active:
+                equity_guard_blocked_rebalances += 1
             processed_rebalances += 1
 
-        valuation_prices = valuation_matrix.loc[current_date].dropna().to_dict()
         cash = _process_trailing_stops(
             current_date=current_date,
             cash=cash,
@@ -132,6 +157,17 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
         "start_date": equity_curve["date"].min() if not equity_curve.empty else None,
         "end_date": equity_curve["date"].max() if not equity_curve.empty else None,
         "warnings": warnings,
+        "equity_drawdown_guard": {
+            "enabled": bool(equity_drawdown_guard),
+            "activations": int(equity_guard_activations),
+            "blocked_rebalances": int(equity_guard_blocked_rebalances),
+            "active_at_end": bool(equity_guard_active),
+        },
+        "max_drawdown_kill_switch": {
+            "enabled": bool(max_drawdown_kill_switch),
+            "violated": bool(kill_switch_violated),
+            "first_violation_date": kill_switch_first_date,
+        },
     }
 
     return {"equity_curve": equity_curve, "trades": trades, "diagnostics": diagnostics}
@@ -239,6 +275,7 @@ def _process_rebalance(
     cost_per_side_pct: float,
     max_gross_exposure_pct: float,
     rank_deterioration_exit: dict | None,
+    block_new_entries: bool,
     trade_rows: list[dict],
     warnings: list[str],
 ) -> float:
@@ -303,6 +340,9 @@ def _process_rebalance(
                 exit_reason=exit_reason,
                 trade_rows=trade_rows,
             )
+
+    if block_new_entries:
+        return cash
 
     if not market_filter_passed or not valid_target_tickers:
         return cash
@@ -515,6 +555,33 @@ def _get_rank_deterioration_exit(strategy_config: dict) -> dict | None:
     if max_rank <= 0 or confirm_rebalances <= 0:
         return None
     return {"max_rank": max_rank, "confirm_rebalances": confirm_rebalances}
+
+
+def _get_equity_drawdown_guard(strategy_config: dict) -> dict | None:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    cfg = risk_management.get("equity_drawdown_guard")
+    if not isinstance(cfg, dict) or not cfg.get("enabled"):
+        return None
+    try:
+        stop = float(cfg.get("stop_new_entries_drawdown_pct"))
+        resume = float(cfg.get("resume_drawdown_pct"))
+    except (TypeError, ValueError):
+        return None
+    if resume < stop:
+        return None
+    return {"stop_new_entries_drawdown_pct": stop, "resume_drawdown_pct": resume}
+
+
+def _get_max_drawdown_kill_switch(strategy_config: dict) -> dict | None:
+    risk_management = strategy_config.get("risk_management", {}) or {}
+    cfg = risk_management.get("max_drawdown_kill_switch")
+    if not isinstance(cfg, dict) or not cfg.get("enabled"):
+        return None
+    try:
+        stop = float(cfg.get("stop_backtest_drawdown_pct"))
+    except (TypeError, ValueError):
+        return None
+    return {"stop_backtest_drawdown_pct": stop}
 
 
 def _profit_lock_floor(position: Position, profit_lock_steps: list[dict] | None) -> float | None:

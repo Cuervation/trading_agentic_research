@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_55_45_35_15_V1",
+      "run_id": "DD20BATCH_001_HYP_DD20_SPY_DYN_55_45_35_15_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_60_45_30_10_V1",
+      "run_id": "DD20BATCH_001_HYP_DD20_SPY_DYN_60_45_30_10_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_65_45_25_0_V1",
+      "run_id": "DD20BATCH_001_HYP_DD20_SPY_DYN_65_45_25_0_V1",
+      "decision": "rejected",
+      "lesson": "Rejected: loses_more_years_than_beats:13<15"
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_70_50_30_0_V1",
+      "run_id": "DD20BATCH_001_HYP_DD20_SPY_DYN_70_50_30_0_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_65_55_45_25_NO_NEW_CRISIS_V1",
+      "run_id": "DD20BATCH_001_HYP_DD20_SPY_DYN_65_55_45_25_NO_NEW_CRISIS_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_70_55_40_15_NO_NEW_CRISIS_V1",
+      "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_70_55_40_15_NO_NEW_CRISIS_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+      "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_70_55_40_15_EQUITY_GUARD_18_10_V1",
+      "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_70_55_40_15_EQUITY_GUARD_18_10_V1",
+      "decision": "rejected",
+      "lesson": "Return is the binding constraint; preserve strong-regime exposure while cutting only weak/crisis risk."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_60_45_30_10_PARTIAL_20_33_V1",
+      "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_60_45_30_10_PARTIAL_20_33_V1",
+      "decision": "rejected",
+      "lesson": "DD remains the binding constraint; next batch should lower weak/crisis exposure or add entry throttles."
+    },
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1",
+      "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1",
+      "decision": "rejected",
+      "lesson": "Rejected: loses_more_years_than_beats:13<15"
+    }
+  ],
+  "recommendations": [
+    "Lower weak/crisis exposure",
+    "Keep strong exposure selectively high",
+    "Combine no_new_entries_in_crisis with equity_drawdown_guard -15/-8"
+  ]
+}
