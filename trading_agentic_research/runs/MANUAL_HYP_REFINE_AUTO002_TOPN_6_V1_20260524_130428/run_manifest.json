@@ -1,0 +1,23 @@
+{
+  "run_id": "MANUAL_HYP_REFINE_AUTO002_TOPN_6_V1_20260524_130428",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+  "hypothesis_family": "trend_following",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "0552694ed4052e26fdc27753da9e79de00001125af786c68100e371aa0b989b8",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "b0bdeebb93165669b80aa46d3b1d619154668bed4c5966cb5028bd4bab3e80e6",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T16:12:36.227289+00:00"
+}

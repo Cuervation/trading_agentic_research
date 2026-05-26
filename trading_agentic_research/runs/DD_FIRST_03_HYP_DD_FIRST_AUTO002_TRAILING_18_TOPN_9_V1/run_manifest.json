@@ -1,0 +1,30 @@
+{
+  "run_id": "DD_FIRST_03_HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1.json",
+  "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "hypothesis_id": "HYP_DD_FIRST_AUTO002_TRAILING_18_TOPN_9_V1",
+  "hypothesis_family": "dd_first_drawdown_control",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "run_id": "AUTO_002",
+      "reason": "Locked parent for DD_FIRST_SERIES controlled loop."
+    }
+  ],
+  "changed_parameters": [
+    "entry_rule.top_n",
+    "risk_management.trailing_stop_pct"
+  ],
+  "config_hash": "f812ba7de3eae79e3ea79aee06e30aac919bc40c796a931fd967c49bf38b2f46",
+  "code_hash": "a9a8a707c0884beba14b77661a61b10272369bdf5bd5d896c4f5375b759330b6",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T15:27:24.588687+00:00"
+}

@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1_1999_2026_20260524_205210",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_QUALITY_MOMENTUM_AND_TREND_STABILITY_QUALITY_R2_SLOPE_CONFIRM_V1",
+  "hypothesis_family": "paper_quality_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "8b5357214af54484ba301505ca5785772e114a1c0c0280b5a6d0acff04a930e0",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T23:58:21.907647+00:00"
+}

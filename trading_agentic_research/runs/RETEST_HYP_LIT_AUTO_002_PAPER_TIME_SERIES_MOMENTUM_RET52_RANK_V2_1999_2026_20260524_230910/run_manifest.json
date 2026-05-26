@@ -1,0 +1,25 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2_1999_2026_20260524_230910",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_RANK_V2",
+  "hypothesis_family": "paper_time_series_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking",
+    "risk_filters",
+    "strategy_family",
+    "strategy_id"
+  ],
+  "config_hash": "f6107af528f033ccbffd2aa3e269dd6289fb84b6db53c71f36e2f11ea5e32683",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T02:13:11.771280+00:00"
+}

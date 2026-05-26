@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_AUTOREFINE_AUTO_002_TOPN_19_V1_1999_2026_20260524_235445",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_AUTOREFINE_AUTO_002_TOPN_19_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_19_V1",
+  "hypothesis_family": "trend_following",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "a515f49eca97c78b9743e2685714785f51c4498bcb697cd93b81d87125b3a308",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T02:59:07.245526+00:00"
+}

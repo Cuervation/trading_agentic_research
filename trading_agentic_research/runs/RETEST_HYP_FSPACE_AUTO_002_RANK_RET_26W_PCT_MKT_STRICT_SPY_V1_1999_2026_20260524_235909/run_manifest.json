@@ -1,0 +1,24 @@
+{
+  "run_id": "RETEST_HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1_1999_2026_20260524_235909",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_MKT_STRICT_SPY_V1",
+  "hypothesis_family": "feature_space_regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking.field",
+    "ranking.order",
+    "market_filter"
+  ],
+  "config_hash": "5ac30698e47ee57edb8945e709ff3edd9bf5a4edfea4aa078e43628381b05f21",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T03:03:08.332410+00:00"
+}

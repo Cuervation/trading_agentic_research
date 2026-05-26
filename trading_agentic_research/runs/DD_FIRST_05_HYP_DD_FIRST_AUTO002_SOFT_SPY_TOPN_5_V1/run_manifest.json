@@ -1,0 +1,30 @@
+{
+  "run_id": "DD_FIRST_05_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1.json",
+  "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "hypothesis_id": "HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_5_V1",
+  "hypothesis_family": "dd_first_drawdown_control",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "run_id": "DD_FIRST_SERIES",
+      "reason": "Prior DD_FIRST runs showed binary filters can kill trades; generated causal one-axis refinement."
+    }
+  ],
+  "changed_parameters": [
+    "market_filter.soft_weak_regime_top_n",
+    "market_filter.fallback_allow_if_missing_spy_metric"
+  ],
+  "config_hash": "c900c83a662cd514429f34809c51a9c908827d4f46667ea356bf51b7471c126c",
+  "code_hash": "3fb58263428f54e81554f0f52755a88ecc520137fe991bdfda54185c2a637eff",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T16:33:00.519910+00:00"
+}

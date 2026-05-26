@@ -1,0 +1,29 @@
+{
+  "run_id": "RETEST_HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1_1999_2026_20260524_174858",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_CHANNEL_QUALITY_TREND_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_LOCAL_CHANNEL_QUALITY_TREND_SEED"
+    },
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "market_filter.fallback_allow_if_missing_spy_metric",
+    "ranking.field"
+  ],
+  "config_hash": "8cbdb569c5ae7b1933b985b0caad902abcbd347ebbe7d3925dbf49d060f63f28",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T20:53:10.565834+00:00"
+}

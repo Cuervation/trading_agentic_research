@@ -1,0 +1,25 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4_1999_2026_20260525_030357",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_MARKET_BREADTH_AS_MOMENTUM_REGIM_BREADTH_REGIME_V4",
+  "hypothesis_family": "paper_breadth_regime",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking",
+    "risk_filters",
+    "strategy_family",
+    "strategy_id"
+  ],
+  "config_hash": "9976344bd13808877ab2727cff1caa79f93bd7cd386ab7a997ac80f34aecd4d4",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T06:07:50.934815+00:00"
+}

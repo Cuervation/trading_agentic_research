@@ -1,0 +1,47 @@
+# Run Summary - HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_17_V1
+
+- Run id: `RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_17_V1_1999_2026_20260525_011442`
+- Strategy: `HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_17_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 93800.57% vs SPY 506.06%
+- CAGR: strategy 28.40% vs SPY 6.80%
+- Max drawdown: strategy -67.80% vs SPY -56.47%
+- Months beating/losing SPY: 207 / 122
+- Years beating/losing SPY: 24 / 4
+- Trades: 3188
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 46.75% | -9.80% | 56.55% | strategy |
+| 2001 | 32.51% | -11.27% | 43.78% | strategy |
+| 2002 | -8.36% | -23.63% | 15.27% | strategy |
+| 2003 | 110.85% | 22.19% | 88.65% | strategy |
+| 2004 | 28.46% | 8.67% | 19.79% | strategy |
+| 2005 | 45.25% | 3.50% | 41.75% | strategy |
+| 2006 | 19.16% | 11.78% | 7.38% | strategy |
+| 2007 | 38.65% | 3.42% | 35.23% | strategy |
+| 2008 | -52.67% | -37.74% | -14.93% | spy |
+| 2009 | 86.12% | 19.88% | 66.24% | strategy |
+| 2010 | 46.94% | 10.96% | 35.98% | strategy |
+| 2011 | -9.34% | -1.22% | -8.12% | spy |
+| 2012 | 28.92% | 11.69% | 17.23% | strategy |
+| 2013 | 45.94% | 26.45% | 19.49% | strategy |
+| 2014 | 17.56% | 12.37% | 5.20% | strategy |
+| 2015 | 11.04% | -0.76% | 11.80% | strategy |
+| 2016 | 26.78% | 11.20% | 15.58% | strategy |
+| 2017 | 32.45% | 18.48% | 13.98% | strategy |
+| 2018 | 9.91% | -7.01% | 16.93% | strategy |
+| 2019 | 46.16% | 28.65% | 17.50% | strategy |
+| 2020 | 44.93% | 15.09% | 29.84% | strategy |
+| 2021 | 27.98% | 28.79% | -0.81% | spy |
+| 2022 | -14.27% | -19.95% | 5.67% | strategy |
+| 2023 | 53.73% | 24.81% | 28.92% | strategy |
+| 2024 | 115.81% | 24.00% | 91.81% | strategy |
+| 2025 | 37.56% | 16.64% | 20.92% | strategy |
+| 2026 | 43.68% | 9.14% | 34.54% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.

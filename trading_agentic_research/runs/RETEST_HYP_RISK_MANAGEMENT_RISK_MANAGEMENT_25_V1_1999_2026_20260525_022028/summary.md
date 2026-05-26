@@ -1,0 +1,47 @@
+# Run Summary - HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_25_V1
+
+- Run id: `RETEST_HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_25_V1_1999_2026_20260525_022028`
+- Strategy: `HYP_RISK_MANAGEMENT_RISK_MANAGEMENT_25_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 19720.24% vs SPY 506.06%
+- CAGR: strategy 21.31% vs SPY 6.80%
+- Max drawdown: strategy -58.10% vs SPY -56.47%
+- Months beating/losing SPY: 194 / 135
+- Years beating/losing SPY: 21 / 7
+- Trades: 3828
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 56.82% | -9.80% | 66.61% | strategy |
+| 2001 | -18.90% | -11.27% | -7.64% | spy |
+| 2002 | -27.51% | -23.63% | -3.88% | spy |
+| 2003 | 100.53% | 22.19% | 78.34% | strategy |
+| 2004 | 43.51% | 8.67% | 34.84% | strategy |
+| 2005 | 35.09% | 3.50% | 31.59% | strategy |
+| 2006 | 15.07% | 11.78% | 3.30% | strategy |
+| 2007 | 47.78% | 3.42% | 44.36% | strategy |
+| 2008 | -47.82% | -37.74% | -10.08% | spy |
+| 2009 | 10.90% | 19.88% | -8.97% | spy |
+| 2010 | 37.81% | 10.96% | 26.85% | strategy |
+| 2011 | -9.33% | -1.22% | -8.11% | spy |
+| 2012 | 24.47% | 11.69% | 12.78% | strategy |
+| 2013 | 36.72% | 26.45% | 10.28% | strategy |
+| 2014 | 24.70% | 12.37% | 12.33% | strategy |
+| 2015 | 5.15% | -0.76% | 5.91% | strategy |
+| 2016 | 22.58% | 11.20% | 11.38% | strategy |
+| 2017 | 17.61% | 18.48% | -0.87% | spy |
+| 2018 | 19.83% | -7.01% | 26.84% | strategy |
+| 2019 | 30.44% | 28.65% | 1.79% | strategy |
+| 2020 | 34.90% | 15.09% | 19.81% | strategy |
+| 2021 | 35.14% | 28.79% | 6.35% | strategy |
+| 2022 | -6.55% | -19.95% | 13.40% | strategy |
+| 2023 | 41.91% | 24.81% | 17.10% | strategy |
+| 2024 | 93.66% | 24.00% | 69.66% | strategy |
+| 2025 | 43.01% | 16.64% | 26.37% | strategy |
+| 2026 | 34.26% | 9.14% | 25.11% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.

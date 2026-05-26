@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1_1999_2026_20260524_193155",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_TIME_SERIES_MOMENTUM_RET52_V1",
+  "hypothesis_family": "paper_time_series_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "84579e4463a2012bc21ede10ad960a83e93d9bc4cb41c4b01545e0f8315c4d82",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T22:35:43.239577+00:00"
+}

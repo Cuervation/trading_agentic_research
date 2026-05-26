@@ -1,0 +1,719 @@
+
+ProjectRoot:      C:\Pythons\ML-Trading\Momentum\trading_agentic_research
+Mode:             BacktestOnly
+RunId:            RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1_1999_2026_20260524_234409
+StrategyId:       HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1
+Strategy family:  feature_space_composite_concentration
+Strategy config:  C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1.json
+Weekly file:      C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data\sp500_feature_store_weekly_master_260523155332.csv
+Daily folder:     C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data
+Runs dir:         C:\Pythons\ML-Trading\Momentum\trading_agentic_research\runs
+
+=== Backtest single strategy ===
+python scripts\run_backtest.py --weekly-file C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data\sp500_feature_store_weekly_master_260523155332.csv --daily-folder C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data --strategy-config C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1.json --project-config C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\project_config.json --run-id RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1_1999_2026_20260524_234409 --runs-dir C:\Pythons\ML-Trading\Momentum\trading_agentic_research\runs --parent-run-id AUTO_002 --parent-strategy-config C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json
+Run completed: RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1_1999_2026_20260524_234409
+Output folder: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\runs\RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1_1999_2026_20260524_234409
+Rows -> equity: 6889, trades: 1145
+
+Listo. Carpeta generada:
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\runs\RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1_1999_2026_20260524_234409
+
+Resumen:
+# Run Summary - HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1
+
+- Run id: `RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1_1999_2026_20260524_234409`
+- Strategy: `HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_TOPN_5_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 4348.46% vs SPY 506.06%
+- CAGR: strategy 14.87% vs SPY 6.80%
+- Max drawdown: strategy -86.27% vs SPY -56.47%
+- Months beating/losing SPY: 177 / 152
+- Years beating/losing SPY: 18 / 10
+- Trades: 1145
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 57.93% | -9.80% | 67.73% | strategy |
+| 2001 | -7.60% | -11.27% | 3.67% | strategy |
+| 2002 | 71.58% | -23.63% | 95.21% | strategy |
+| 2003 | 50.01% | 22.19% | 27.82% | strategy |
+| 2004 | 22.11% | 8.67% | 13.44% | strategy |
+| 2005 | 40.89% | 3.50% | 37.39% | strategy |
+| 2006 | 0.05% | 11.78% | -11.72% | spy |
+| 2007 | 34.80% | 3.42% | 31.38% | strategy |
+| 2008 | -63.80% | -37.74% | -26.06% | spy |
+| 2009 | 124.14% | 19.88% | 104.26% | strategy |
+| 2010 | 15.68% | 10.96% | 4.72% | strategy |
+| 2011 | 6.07% | -1.22% | 7.29% | strategy |
+| 2012 | 15.48% | 11.69% | 3.79% | strategy |
+| 2013 | 36.02% | 26.45% | 9.57% | strategy |
+| 2014 | 30.79% | 12.37% | 18.43% | strategy |
+| 2015 | 3.95% | -0.76% | 4.71% | strategy |
+| 2016 | 3.97% | 11.20% | -7.22% | spy |
+| 2017 | 26.34% | 18.48% | 7.86% | strategy |
+| 2018 | -12.22% | -7.01% | -5.21% | spy |
+| 2019 | 24.78% | 28.65% | -3.87% | spy |
+| 2020 | 19.00% | 15.09% | 3.92% | strategy |
+| 2021 | -1.30% | 28.79% | -30.09% | spy |
+| 2022 | -24.93% | -19.95% | -4.99% | spy |
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:161: UserWarning: critical: SPY market filter could not find SPY row on signal date; using fallback=True.
+  warnings.warn(

@@ -1,0 +1,22 @@
+{
+  "run_id": "RETEST_HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1_1999_2026_20260524_165754",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_TREND_FOLLOWING_EXIT_THRESHOLD_20_V1",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking.field"
+  ],
+  "config_hash": "2e9d8c10235ca11bfdf656ddcbd0cfaa4d751bd70b9cfecec99bb4667255dc94",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T20:00:28.352713+00:00"
+}

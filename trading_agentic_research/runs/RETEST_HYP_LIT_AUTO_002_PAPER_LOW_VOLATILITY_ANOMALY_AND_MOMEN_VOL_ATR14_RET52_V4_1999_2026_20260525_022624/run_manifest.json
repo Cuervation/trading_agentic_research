@@ -1,0 +1,25 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4_1999_2026_20260525_022624",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_PAPER_LOW_VOLATILITY_ANOMALY_AND_MOMEN_VOL_ATR14_RET52_V4",
+  "hypothesis_family": "paper_low_vol_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking",
+    "risk_filters",
+    "strategy_family",
+    "strategy_id"
+  ],
+  "config_hash": "eadae021d23ea1b3275efb03e1e1fe8d964b6e5c7e7def0bda8d87c734f0d0aa",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T05:32:05.212299+00:00"
+}

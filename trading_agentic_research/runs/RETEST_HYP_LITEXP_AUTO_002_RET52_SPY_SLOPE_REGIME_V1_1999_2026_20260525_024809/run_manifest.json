@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1_1999_2026_20260525_024809",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LITEXP_AUTO_002_RET52_SPY_SLOPE_REGIME_V1",
+  "hypothesis_family": "paper_regime_slope_filter",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking.field",
+    "risk_filters.conditions"
+  ],
+  "config_hash": "dd5943d32f5787f4f4d76d835590cb20a09f02f524e69988089b63c25c91ad4a",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T05:52:04.546002+00:00"
+}

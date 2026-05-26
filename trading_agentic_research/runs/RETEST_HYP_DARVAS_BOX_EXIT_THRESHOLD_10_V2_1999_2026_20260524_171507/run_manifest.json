@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2_1999_2026_20260524_171507",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_DARVAS_BOX_EXIT_THRESHOLD_10_V2",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "0e40681bfa0662bc9f72e72ef7b8727fae0d1f7cbf4e99203ac8f001294625f3",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T20:17:28.377396+00:00"
+}

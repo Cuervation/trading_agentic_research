@@ -1,0 +1,47 @@
+# Run Summary - HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1
+
+- Run id: `RETEST_HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1_1999_2026_20260525_010358`
+- Strategy: `HYP_AUTOREFINE_AUTO_002_RANK_RET_26W_PCT_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 50836.95% vs SPY 506.06%
+- CAGR: strategy 25.57% vs SPY 6.80%
+- Max drawdown: strategy -56.50% vs SPY -56.47%
+- Months beating/losing SPY: 206 / 123
+- Years beating/losing SPY: 20 / 8
+- Trades: 3628
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 55.38% | -9.80% | 65.18% | strategy |
+| 2001 | -13.98% | -11.27% | -2.72% | spy |
+| 2002 | -33.75% | -23.63% | -10.12% | spy |
+| 2003 | 172.05% | 22.19% | 149.86% | strategy |
+| 2004 | 56.38% | 8.67% | 47.71% | strategy |
+| 2005 | 48.72% | 3.50% | 45.22% | strategy |
+| 2006 | -2.65% | 11.78% | -14.42% | spy |
+| 2007 | 47.55% | 3.42% | 44.13% | strategy |
+| 2008 | -38.40% | -37.74% | -0.67% | spy |
+| 2009 | 5.93% | 19.88% | -13.95% | spy |
+| 2010 | 40.50% | 10.96% | 29.54% | strategy |
+| 2011 | -4.17% | -1.22% | -2.95% | spy |
+| 2012 | 23.82% | 11.69% | 12.13% | strategy |
+| 2013 | 38.42% | 26.45% | 11.98% | strategy |
+| 2014 | 27.86% | 12.37% | 15.50% | strategy |
+| 2015 | 16.61% | -0.76% | 17.37% | strategy |
+| 2016 | 39.22% | 11.20% | 28.02% | strategy |
+| 2017 | 20.30% | 18.48% | 1.83% | strategy |
+| 2018 | 23.24% | -7.01% | 30.26% | strategy |
+| 2019 | 22.78% | 28.65% | -5.88% | spy |
+| 2020 | 50.10% | 15.09% | 35.01% | strategy |
+| 2021 | 29.41% | 28.79% | 0.63% | strategy |
+| 2022 | 2.85% | -19.95% | 22.79% | strategy |
+| 2023 | 75.61% | 24.81% | 50.80% | strategy |
+| 2024 | 59.49% | 24.00% | 35.49% | strategy |
+| 2025 | 44.86% | 16.64% | 28.22% | strategy |
+| 2026 | 34.61% | 9.14% | 25.47% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.

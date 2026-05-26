@@ -1,0 +1,31 @@
+{
+  "run_id": "DDDAEMON_004_HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1.json",
+  "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_LOWVOL_WEEKLY_RANGE_PCT_W5_V1",
+  "hypothesis_family": "dd_first_drawdown_control",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "run_id": "DD_FIRST_16_HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1",
+      "reason": "Fixed 60% exposure was the best DD_FIRST balance before daemon generation."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.max_gross_exposure_pct",
+    "ranking.secondary_penalty_field",
+    "ranking.secondary_penalty_weight"
+  ],
+  "config_hash": "aa46f6283c069251c589c13419c65c97065013de236110edd21975d61c9bdd2a",
+  "code_hash": "2114f28eb18a8423f502643297b82fa633ed3045674d86e28aee8ff4e423b5b6",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-26T01:16:36.817270+00:00"
+}

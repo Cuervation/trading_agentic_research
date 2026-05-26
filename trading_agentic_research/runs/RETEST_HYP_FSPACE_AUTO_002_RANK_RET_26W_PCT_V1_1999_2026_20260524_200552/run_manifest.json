@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1_1999_2026_20260524_200552",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_RET_26W_PCT_V1",
+  "hypothesis_family": "feature_space_momentum",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking.field",
+    "risk_filters.require_non_null_fields"
+  ],
+  "config_hash": "2e611c2a1b149043ec38a8e0953126713ee3282066010c15f6abd577b40e071f",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T23:09:42.913975+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "run_id": "RETEST_SP500_MOMENTUM_TREND_CONCENTRATION_V1_1999_2026_20260524_160929",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "SP500_MOMENTUM_TREND_CONCENTRATION_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MOMENTUM_CONCENTRATION_V1",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "academic_momentum_jegadeesh_titman_1993",
+    "trend_following_general"
+  ],
+  "empirical_basis": [
+    {
+      "run_id": "EXP_003",
+      "learning_id": "LEARN_EXP_003",
+      "reason": "Baseline showed strong CAGR; test whether a more concentrated basket can preserve return while improving turnover and selection discipline."
+    }
+  ],
+  "changed_parameters": [
+    "entry_rule.top_n",
+    "ranking.field"
+  ],
+  "config_hash": "7d7d6e2ef4e9425902e6a6c74a413369fc234599f86a624a1991f0974acd17f6",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T19:14:48.930529+00:00"
+}

@@ -1,0 +1,33 @@
+
+ProjectRoot:      C:\Pythons\ML-Trading\Momentum\trading_agentic_research
+Mode:             BacktestOnly
+RunId:            RETEST_HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1_1999_2026_20260524_195837
+StrategyId:       HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1
+Strategy family:  feature_space_pullback
+Strategy config:  C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1.json
+Weekly file:      C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data\sp500_feature_store_weekly_master_260523155332.csv
+Daily folder:     C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data
+Runs dir:         C:\Pythons\ML-Trading\Momentum\trading_agentic_research\runs
+
+=== Backtest single strategy ===
+python scripts\run_backtest.py --weekly-file C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data\sp500_feature_store_weekly_master_260523155332.csv --daily-folder C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data --strategy-config C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1.json --project-config C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\project_config.json --run-id RETEST_HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1_1999_2026_20260524_195837 --runs-dir C:\Pythons\ML-Trading\Momentum\trading_agentic_research\runs --parent-run-id AUTO_002 --parent-strategy-config C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_AUTO_TIME_SERIES_MOMENTUM_SEED.json
+Traceback (most recent call last):
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\scripts\run_backtest.py", line 274, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\scripts\run_backtest.py", line 170, in main
+    result = run_strategy_backtest(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\execution.py", line 53, in run_strategy_backtest
+    signals = build_momentum_trend_signals(weekly_df, strategy_config)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py", line 63, in build_momentum_trend_signals
+    raise ValueError(f"weekly_df must contain ranking column: {ranking_column}")
+ValueError: weekly_df must contain ranking column: distance_to_channel_lower_pct
+Fall형 'Backtest single strategy' con exit code 1
+En C:\Pythons\ML-Trading\Momentum\trading_agentic_research\run_single_strategy_by_id_v2.ps1: 156 Car쟠ter: 5
++     throw "Fall형 '$Title' con exit code $exitCode"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Fall형 'Backtes...con exit code 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : Fall형 'Backtest single strategy' con exit code 1
+ 

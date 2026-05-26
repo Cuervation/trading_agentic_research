@@ -1,0 +1,23 @@
+{
+  "run_id": "MANUAL_SP500_MOMENTUM_TREND_BASELINE_V1_20260524_154251",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "SP500_MOMENTUM_TREND_BASELINE_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_BASELINE_MOMENTUM_TREND_V1",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "f4761cd0eb8b7aa6486d460abcc4e44164ff66ec4a15c8ee3413bdbbecd7ceaa",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T18:51:24.747176+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "run_id": "RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1_1999_2026_20260524_233817",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_EXIT_26_V1",
+  "hypothesis_family": "feature_space_composite_exit",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking.field",
+    "ranking.order",
+    "exit_rule.rank_threshold"
+  ],
+  "config_hash": "4d9d0b90c0d392462f3ce8a7f611aca50a1eb146333117dd4b2f69167e9ddd74",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T02:44:06.698238+00:00"
+}

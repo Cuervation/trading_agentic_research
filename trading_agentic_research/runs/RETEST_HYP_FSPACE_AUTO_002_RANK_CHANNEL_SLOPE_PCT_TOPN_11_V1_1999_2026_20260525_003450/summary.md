@@ -1,0 +1,47 @@
+# Run Summary - HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1
+
+- Run id: `RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1_1999_2026_20260525_003450`
+- Strategy: `HYP_FSPACE_AUTO_002_RANK_CHANNEL_SLOPE_PCT_TOPN_11_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 333423.55% vs SPY 506.06%
+- CAGR: strategy 34.49% vs SPY 6.80%
+- Max drawdown: strategy -70.83% vs SPY -56.47%
+- Months beating/losing SPY: 208 / 121
+- Years beating/losing SPY: 23 / 5
+- Trades: 2087
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 34.13% | -9.80% | 43.93% | strategy |
+| 2001 | 35.30% | -11.27% | 46.57% | strategy |
+| 2002 | -10.14% | -23.63% | 13.49% | strategy |
+| 2003 | 183.98% | 22.19% | 161.79% | strategy |
+| 2004 | 53.39% | 8.67% | 44.72% | strategy |
+| 2005 | 54.01% | 3.50% | 50.51% | strategy |
+| 2006 | 7.95% | 11.78% | -3.82% | spy |
+| 2007 | 49.14% | 3.42% | 45.71% | strategy |
+| 2008 | -55.04% | -37.74% | -17.31% | spy |
+| 2009 | 125.78% | 19.88% | 105.90% | strategy |
+| 2010 | 44.60% | 10.96% | 33.64% | strategy |
+| 2011 | -6.52% | -1.22% | -5.30% | spy |
+| 2012 | 41.88% | 11.69% | 30.19% | strategy |
+| 2013 | 50.72% | 26.45% | 24.27% | strategy |
+| 2014 | 18.32% | 12.37% | 5.95% | strategy |
+| 2015 | 13.78% | -0.76% | 14.54% | strategy |
+| 2016 | 29.41% | 11.20% | 18.22% | strategy |
+| 2017 | 29.35% | 18.48% | 10.88% | strategy |
+| 2018 | 10.41% | -7.01% | 17.42% | strategy |
+| 2019 | 60.21% | 28.65% | 31.56% | strategy |
+| 2020 | 51.65% | 15.09% | 36.56% | strategy |
+| 2021 | 25.86% | 28.79% | -2.93% | spy |
+| 2022 | -16.95% | -19.95% | 2.99% | strategy |
+| 2023 | 54.96% | 24.81% | 30.15% | strategy |
+| 2024 | 163.35% | 24.00% | 139.35% | strategy |
+| 2025 | 58.89% | 16.64% | 42.25% | strategy |
+| 2026 | 53.58% | 9.14% | 44.44% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.

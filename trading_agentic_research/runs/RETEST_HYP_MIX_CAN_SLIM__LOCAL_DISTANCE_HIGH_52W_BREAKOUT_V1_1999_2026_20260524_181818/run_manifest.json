@@ -1,0 +1,28 @@
+{
+  "run_id": "RETEST_HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1_1999_2026_20260524_181818",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+  "hypothesis_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CAN_SLIM_SEED"
+    },
+    {
+      "source_id": "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.by",
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "89021ade6e7379624dd24cf154621e5a0da408dfa1304ffb6328a6d8a78b0401",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T21:22:28.246718+00:00"
+}

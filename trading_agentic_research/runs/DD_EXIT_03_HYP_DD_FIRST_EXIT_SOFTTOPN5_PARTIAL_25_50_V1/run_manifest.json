@@ -1,0 +1,41 @@
+{
+  "run_id": "DD_EXIT_03_HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_25_50_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_25_50_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_25_50_V1.json",
+  "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+  "hypothesis_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PARTIAL_25_50_V1",
+  "hypothesis_family": "dd_first_drawdown_control",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "run_id": "DD_FIRST_16_HYP_DD_FIRST_AUTO002_EXPOSURE_60_V1",
+      "reason": "Fixed 60% exposure is the best balance point so far."
+    },
+    {
+      "run_id": "DD_FIRST_02_HYP_DD_FIRST_AUTO002_EXPOSURE_50_V1",
+      "reason": "Exposure reductions improved drawdown but reduced CAGR."
+    },
+    {
+      "run_id": "DD_FIRST_01_HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+      "reason": "Higher exposure improved CAGR but worsened drawdown."
+    },
+    {
+      "run_id": "DD_FIRST_04_HYP_DD_FIRST_AUTO002_SOFT_SPY_TOPN_8_V1",
+      "reason": "Soft SPY top-n remained tradeable and provided a usable exit-optimization base."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.partial_take_profit"
+  ],
+  "config_hash": "e2d06b228115226a553b7d7acc3a262ebee8a8736081fcdb7c097a1cc497285a",
+  "code_hash": "6526b984ff0eb7d8282dc3f9fbe559f527996d507cea1a4847a8f067fc70ecf4",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-26T02:39:06.061275+00:00"
+}

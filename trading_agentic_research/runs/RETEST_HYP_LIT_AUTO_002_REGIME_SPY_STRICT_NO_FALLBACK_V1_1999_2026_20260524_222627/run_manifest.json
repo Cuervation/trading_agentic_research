@@ -1,0 +1,24 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1_1999_2026_20260524_222627",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_REGIME_SPY_STRICT_NO_FALLBACK_V1",
+  "hypothesis_family": "paper_regime_filter",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "market_filter",
+    "strategy_family",
+    "strategy_id"
+  ],
+  "config_hash": "7d03128aa2260bcfce10b21549c3bef0aba759cd303bbf379e6a024f95d5adb8",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T01:30:07.237817+00:00"
+}

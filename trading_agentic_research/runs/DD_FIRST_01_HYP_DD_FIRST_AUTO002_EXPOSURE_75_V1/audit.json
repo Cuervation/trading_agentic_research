@@ -1,0 +1,56 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd_first",
+  "decision": "rejected",
+  "dd_first_decision": "rejected",
+  "dd_first_rejection_reason": "worse_drawdown_than_parent",
+  "reasons": [
+    "worse_drawdown_than_parent"
+  ],
+  "blocking_issues": [
+    "worse_drawdown_than_parent"
+  ],
+  "warnings": [
+    "No daily price date after signal_date=2026-05-22; skipped rebalance."
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "flags": [],
+  "dd_first": {
+    "run_id": "DD_FIRST_01_HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+    "strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+    "hypothesis_id": "HYP_DD_FIRST_AUTO002_EXPOSURE_75_V1",
+    "parent_run_id": "AUTO_002",
+    "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+    "decision": "rejected",
+    "dd_first_decision": "rejected",
+    "strategy_cagr_pct": 19.640769,
+    "spy_cagr_pct": 6.802475,
+    "excess_cagr_pct": 12.838294,
+    "strategy_max_drawdown_pct": -44.052781,
+    "spy_max_drawdown_pct": -56.473669,
+    "parent_max_drawdown_pct": -23.988222,
+    "drawdown_improvement_vs_parent_pct": -83.643377,
+    "drawdown_improvement_vs_spy_pct": 21.994124,
+    "calmar_ratio": 0.445846,
+    "parent_calmar_ratio": 2.171522,
+    "years_beating_spy": 22,
+    "years_losing_to_spy": 6,
+    "months_beating_spy": 205,
+    "months_losing_to_spy": 124,
+    "trades": 3796,
+    "dd_first_score": 25.810939,
+    "value_delivered": "return_signal_without_dd_improvement",
+    "rejection_reason": "worse_drawdown_than_parent",
+    "dd_first_rejection_reason": "worse_drawdown_than_parent",
+    "next_action": "try_more_defensive_axis"
+  },
+  "parent_comparison": {
+    "parent_run_id": "AUTO_002",
+    "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+    "parent_cagr_pct": 52.09094654873998,
+    "parent_max_drawdown_pct": -23.988221786353048,
+    "parent_calmar_ratio": 2.1715217998515683,
+    "drawdown_improvement_vs_parent_pct": -83.64337719800838
+  }
+}

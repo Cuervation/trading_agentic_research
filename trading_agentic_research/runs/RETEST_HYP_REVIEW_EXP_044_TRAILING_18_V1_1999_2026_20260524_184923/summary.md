@@ -1,0 +1,47 @@
+# Run Summary - HYP_REVIEW_EXP_044_TRAILING_18_V1
+
+- Run id: `RETEST_HYP_REVIEW_EXP_044_TRAILING_18_V1_1999_2026_20260524_184923`
+- Strategy: `HYP_REVIEW_EXP_044_TRAILING_18_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 88880.49% vs SPY 506.06%
+- CAGR: strategy 28.15% vs SPY 6.80%
+- Max drawdown: strategy -61.23% vs SPY -56.47%
+- Months beating/losing SPY: 201 / 128
+- Years beating/losing SPY: 22 / 6
+- Trades: 1609
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 27.28% | -9.80% | 37.08% | strategy |
+| 2001 | -5.93% | -11.27% | 5.34% | strategy |
+| 2002 | -33.51% | -23.63% | -9.88% | spy |
+| 2003 | 126.79% | 22.19% | 104.60% | strategy |
+| 2004 | 46.36% | 8.67% | 37.70% | strategy |
+| 2005 | 33.49% | 3.50% | 29.99% | strategy |
+| 2006 | -1.12% | 11.78% | -12.89% | spy |
+| 2007 | 81.49% | 3.42% | 78.07% | strategy |
+| 2008 | -48.22% | -37.74% | -10.48% | spy |
+| 2009 | 3.75% | 19.88% | -16.13% | spy |
+| 2010 | 26.26% | 10.96% | 15.30% | strategy |
+| 2011 | -17.95% | -1.22% | -16.73% | spy |
+| 2012 | 33.77% | 11.69% | 22.08% | strategy |
+| 2013 | 49.70% | 26.45% | 23.25% | strategy |
+| 2014 | 34.93% | 12.37% | 22.57% | strategy |
+| 2015 | 1.91% | -0.76% | 2.66% | strategy |
+| 2016 | 46.33% | 11.20% | 35.14% | strategy |
+| 2017 | 33.46% | 18.48% | 14.98% | strategy |
+| 2018 | 35.37% | -7.01% | 42.38% | strategy |
+| 2019 | 35.82% | 28.65% | 7.17% | strategy |
+| 2020 | 58.15% | 15.09% | 43.06% | strategy |
+| 2021 | 31.27% | 28.79% | 2.48% | strategy |
+| 2022 | 25.80% | -19.95% | 45.74% | strategy |
+| 2023 | 67.15% | 24.81% | 42.33% | strategy |
+| 2024 | 124.67% | 24.00% | 100.68% | strategy |
+| 2025 | 65.07% | 16.64% | 48.43% | strategy |
+| 2026 | 55.32% | 9.14% | 46.17% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.

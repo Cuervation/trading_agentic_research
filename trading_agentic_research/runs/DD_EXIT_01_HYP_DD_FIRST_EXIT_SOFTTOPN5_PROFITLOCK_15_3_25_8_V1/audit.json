@@ -1,0 +1,52 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd_first",
+  "decision": "accepted_for_followup",
+  "dd_first_decision": "accepted_for_followup",
+  "dd_first_rejection_reason": "",
+  "reasons": [],
+  "blocking_issues": [],
+  "warnings": [
+    "No daily price date after signal_date=2026-05-22; skipped rebalance."
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "flags": [],
+  "dd_first": {
+    "run_id": "DD_EXIT_01_HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_15_3_25_8_V1",
+    "strategy_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_15_3_25_8_V1",
+    "hypothesis_id": "HYP_DD_FIRST_EXIT_SOFTTOPN5_PROFITLOCK_15_3_25_8_V1",
+    "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+    "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+    "decision": "accepted_for_followup",
+    "dd_first_decision": "accepted_for_followup",
+    "strategy_cagr_pct": 14.517303,
+    "spy_cagr_pct": 6.802475,
+    "excess_cagr_pct": 7.714828,
+    "strategy_max_drawdown_pct": -42.444424,
+    "spy_max_drawdown_pct": -56.473669,
+    "parent_max_drawdown_pct": -54.644063,
+    "drawdown_improvement_vs_parent_pct": 22.325644,
+    "drawdown_improvement_vs_spy_pct": 24.842099,
+    "calmar_ratio": 0.342031,
+    "parent_calmar_ratio": 0.474512,
+    "years_beating_spy": 18,
+    "years_losing_to_spy": 10,
+    "months_beating_spy": 192,
+    "months_losing_to_spy": 137,
+    "trades": 3880,
+    "dd_first_score": 108.363907,
+    "value_delivered": "dd_first_followup_signal",
+    "rejection_reason": "",
+    "dd_first_rejection_reason": "",
+    "next_action": "expand_same_axis_once"
+  },
+  "parent_comparison": {
+    "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+    "parent_strategy_id": "HYP_DD_FIRST_AUTO002_EXPOSURE60_SOFT_SPY_TOPN_5_V1",
+    "parent_cagr_pct": 25.929269380826135,
+    "parent_max_drawdown_pct": -54.64406277795371,
+    "parent_calmar_ratio": 0.4745121073114528,
+    "drawdown_improvement_vs_parent_pct": 22.325643567036604
+  }
+}

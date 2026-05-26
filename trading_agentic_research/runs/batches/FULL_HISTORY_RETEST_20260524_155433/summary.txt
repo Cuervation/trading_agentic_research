@@ -1,0 +1,5 @@
+﻿BatchId: FULL_HISTORY_RETEST_20260524_155433
+Started: 05/24/2026 15:54:33
+Total strategies: 167
+DataFolder: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\data
+

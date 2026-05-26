@@ -1,0 +1,1 @@
+ticker;signal_date;entry_date;exit_date;holding_days;entry_reason;exit_reason;entry_rank;entry_ranking_value;shares;entry_price;exit_price;notional_entry;notional_exit;entry_cost;exit_cost;max_price_since_entry;drawdown_from_peak_pct;gross_return_pct;net_return_pct

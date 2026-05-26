@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1_1999_2026_20260524_212753",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_LIT_AUTO_002_SPY_REGIME_DISABLED_V1",
+  "hypothesis_family": "paper_regime_filter",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "5ae2a14a4da7ea66be7d608fe6221e1b3bb50a8a342d5dbaa8907b3f83b0ad73",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-25T00:31:54.155155+00:00"
+}

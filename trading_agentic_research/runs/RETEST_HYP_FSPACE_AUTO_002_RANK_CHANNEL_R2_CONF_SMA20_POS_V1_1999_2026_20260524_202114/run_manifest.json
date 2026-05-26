@@ -1,0 +1,24 @@
+{
+  "run_id": "RETEST_HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1_1999_2026_20260524_202114",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_FSPACE_AUTO_002_RANK_CHANNEL_R2_CONF_SMA20_POS_V1",
+  "hypothesis_family": "feature_space_composite_confirmation",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "ranking.field",
+    "ranking.order",
+    "risk_filters.conditions"
+  ],
+  "config_hash": "422889a737d13861084f3a9e7402d67a238e1a65f6b82c7620360c4c03a18ee1",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T23:27:20.334396+00:00"
+}

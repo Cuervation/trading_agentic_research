@@ -1,0 +1,24 @@
+{
+  "run_id": "RETEST_HYP_CAN_SLIM_CONCENTRATION_20_V2_1999_2026_20260524_171024",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_20_V2",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_20_V2",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "d3fb799f5dde739623425c6dbe8390945eb84aaac74163b84760852a1e58c349",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T20:12:45.744686+00:00"
+}

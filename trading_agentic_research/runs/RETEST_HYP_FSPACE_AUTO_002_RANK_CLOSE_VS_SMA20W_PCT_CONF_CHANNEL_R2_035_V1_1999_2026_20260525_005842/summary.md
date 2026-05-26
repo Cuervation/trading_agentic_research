@@ -1,0 +1,47 @@
+# Run Summary - HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1
+
+- Run id: `RETEST_HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1_1999_2026_20260525_005842`
+- Strategy: `HYP_FSPACE_AUTO_002_RANK_CLOSE_VS_SMA20W_PCT_CONF_CHANNEL_R2_035_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 23771.69% vs SPY 506.06%
+- CAGR: strategy 22.14% vs SPY 6.80%
+- Max drawdown: strategy -53.52% vs SPY -56.47%
+- Months beating/losing SPY: 203 / 126
+- Years beating/losing SPY: 23 / 5
+- Trades: 4269
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 31.71% | -9.80% | 41.51% | strategy |
+| 2001 | -25.23% | -11.27% | -13.96% | spy |
+| 2002 | -17.73% | -23.63% | 5.90% | strategy |
+| 2003 | 111.34% | 22.19% | 89.15% | strategy |
+| 2004 | 40.46% | 8.67% | 31.79% | strategy |
+| 2005 | 28.18% | 3.50% | 24.68% | strategy |
+| 2006 | 19.68% | 11.78% | 7.91% | strategy |
+| 2007 | 47.10% | 3.42% | 43.68% | strategy |
+| 2008 | -39.63% | -37.74% | -1.89% | spy |
+| 2009 | 87.89% | 19.88% | 68.01% | strategy |
+| 2010 | 26.34% | 10.96% | 15.39% | strategy |
+| 2011 | -5.15% | -1.22% | -3.93% | spy |
+| 2012 | 17.30% | 11.69% | 5.60% | strategy |
+| 2013 | 31.37% | 26.45% | 4.92% | strategy |
+| 2014 | 32.80% | 12.37% | 20.44% | strategy |
+| 2015 | 7.34% | -0.76% | 8.10% | strategy |
+| 2016 | 34.20% | 11.20% | 23.00% | strategy |
+| 2017 | 30.29% | 18.48% | 11.81% | strategy |
+| 2018 | -2.39% | -7.01% | 4.63% | strategy |
+| 2019 | 11.60% | 28.65% | -17.05% | spy |
+| 2020 | 28.58% | 15.09% | 13.50% | strategy |
+| 2021 | 45.15% | 28.79% | 16.36% | strategy |
+| 2022 | -4.57% | -19.95% | 15.37% | strategy |
+| 2023 | 28.73% | 24.81% | 3.91% | strategy |
+| 2024 | 74.74% | 24.00% | 50.75% | strategy |
+| 2025 | 33.24% | 16.64% | 16.60% | strategy |
+| 2026 | 42.00% | 9.14% | 32.85% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.

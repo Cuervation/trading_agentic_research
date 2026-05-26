@@ -1,0 +1,10 @@
+{
+  "strategy_cagr_pct": 5.218042972396653,
+  "spy_cagr_pct": 6.802474621020882,
+  "excess_cagr_pct": -1.5844316486242294,
+  "months_beating_spy": 168,
+  "months_losing_to_spy": 161,
+  "years_beating_spy": 12,
+  "years_losing_to_spy": 16,
+  "recommendation_hint": "reject"
+}

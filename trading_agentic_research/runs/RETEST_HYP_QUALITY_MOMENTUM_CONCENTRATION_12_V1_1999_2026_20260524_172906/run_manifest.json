@@ -1,0 +1,24 @@
+{
+  "run_id": "RETEST_HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1_1999_2026_20260524_172906",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_QUALITY_MOMENTUM_CONCENTRATION_12_V1",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "entry_rule.top_n",
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "195613e0c9cf2b02b1ed783c537bead247b5a3b7908710afc75b4d7b797d4967",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T20:33:53.273398+00:00"
+}

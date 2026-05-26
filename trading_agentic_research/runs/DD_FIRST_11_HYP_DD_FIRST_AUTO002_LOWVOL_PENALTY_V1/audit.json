@@ -1,0 +1,56 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd_first",
+  "decision": "rejected",
+  "dd_first_decision": "rejected",
+  "dd_first_rejection_reason": "worse_drawdown_than_parent",
+  "reasons": [
+    "worse_drawdown_than_parent"
+  ],
+  "blocking_issues": [
+    "worse_drawdown_than_parent"
+  ],
+  "warnings": [
+    "No daily price date after signal_date=2026-05-22; skipped rebalance."
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "flags": [],
+  "dd_first": {
+    "run_id": "DD_FIRST_11_HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_V1",
+    "strategy_id": "HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_V1",
+    "hypothesis_id": "HYP_DD_FIRST_AUTO002_LOWVOL_PENALTY_V1",
+    "parent_run_id": "AUTO_002",
+    "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+    "decision": "rejected",
+    "dd_first_decision": "rejected",
+    "strategy_cagr_pct": 25.241914,
+    "spy_cagr_pct": 6.802475,
+    "excess_cagr_pct": 18.439439,
+    "strategy_max_drawdown_pct": -54.568365,
+    "spy_max_drawdown_pct": -56.473669,
+    "parent_max_drawdown_pct": -23.988222,
+    "drawdown_improvement_vs_parent_pct": -127.479824,
+    "drawdown_improvement_vs_spy_pct": 3.373793,
+    "calmar_ratio": 0.462574,
+    "parent_calmar_ratio": 2.171522,
+    "years_beating_spy": 22,
+    "years_losing_to_spy": 6,
+    "months_beating_spy": 207,
+    "months_losing_to_spy": 122,
+    "trades": 3704,
+    "dd_first_score": 31.442478,
+    "value_delivered": "return_signal_without_dd_improvement",
+    "rejection_reason": "worse_drawdown_than_parent",
+    "dd_first_rejection_reason": "worse_drawdown_than_parent",
+    "next_action": "try_more_defensive_axis"
+  },
+  "parent_comparison": {
+    "parent_run_id": "AUTO_002",
+    "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+    "parent_cagr_pct": 52.09094654873998,
+    "parent_max_drawdown_pct": -23.988221786353048,
+    "parent_calmar_ratio": 2.1715217998515683,
+    "drawdown_improvement_vs_parent_pct": -127.4798240813376
+  }
+}

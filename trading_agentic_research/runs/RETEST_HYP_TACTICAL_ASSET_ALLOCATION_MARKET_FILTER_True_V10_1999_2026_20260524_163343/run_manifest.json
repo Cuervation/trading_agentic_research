@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10_1999_2026_20260524_163343",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_TACTICAL_ASSET_ALLOCATION_MARKET_FILTER_True_V10",
+  "hypothesis_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "a9ca8f0056485c7c32df569ffc57f4f95ad1e543c6ebeceff13f2ddeaf71cc0c",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T19:39:54.505387+00:00"
+}

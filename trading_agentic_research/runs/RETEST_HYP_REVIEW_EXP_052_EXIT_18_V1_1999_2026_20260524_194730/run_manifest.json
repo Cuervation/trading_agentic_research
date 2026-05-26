@@ -1,0 +1,23 @@
+{
+  "run_id": "RETEST_HYP_REVIEW_EXP_052_EXIT_18_V1_1999_2026_20260524_194730",
+  "parent_run_id": "AUTO_002",
+  "strategy_id": "HYP_REVIEW_EXP_052_EXIT_18_V1",
+  "strategy_version": "1",
+  "hypothesis_id": "HYP_REVIEW_EXP_052_EXIT_18_V1",
+  "hypothesis_family": "candidate_under_review_drawdown_refinement",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "exit_rule.rank_threshold",
+    "ranking.field"
+  ],
+  "config_hash": "71ef3d4a35fd6e359ab6a5f0df1530a4ebe0aa198349d7a5b7c756b73c6c3227",
+  "code_hash": "7e1f0e7057f181359ee7bc3fbabf73953efa7dc807e121f1dbafa8c9b70cd104",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-24T22:51:20.288944+00:00"
+}

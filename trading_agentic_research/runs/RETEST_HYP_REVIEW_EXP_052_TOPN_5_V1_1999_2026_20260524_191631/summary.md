@@ -1,0 +1,47 @@
+# Run Summary - HYP_REVIEW_EXP_052_TOPN_5_V1
+
+- Run id: `RETEST_HYP_REVIEW_EXP_052_TOPN_5_V1_1999_2026_20260524_191631`
+- Strategy: `HYP_REVIEW_EXP_052_TOPN_5_V1`
+- Period: 1999-01-04 00:00:00 -> 2026-05-22 00:00:00
+- Total return: strategy 137272.40% vs SPY 506.06%
+- CAGR: strategy 30.20% vs SPY 6.80%
+- Max drawdown: strategy -65.08% vs SPY -56.47%
+- Months beating/losing SPY: 192 / 137
+- Years beating/losing SPY: 20 / 8
+- Trades: 1330
+- Recommendation hint: candidate
+
+## Yearly Strategy Stats
+| year | strategy_return_pct | spy_return_pct | excess_return_pct | winner |
+|---:|---:|---:|---:|:---|
+| 1999 | 0.00% | 19.38% | -19.38% | spy |
+| 2000 | 25.59% | -9.80% | 35.38% | strategy |
+| 2001 | -3.21% | -11.27% | 8.05% | strategy |
+| 2002 | -29.49% | -23.63% | -5.86% | spy |
+| 2003 | 145.81% | 22.19% | 123.62% | strategy |
+| 2004 | 58.25% | 8.67% | 49.59% | strategy |
+| 2005 | 43.95% | 3.50% | 40.45% | strategy |
+| 2006 | 7.64% | 11.78% | -4.14% | spy |
+| 2007 | 108.23% | 3.42% | 104.81% | strategy |
+| 2008 | -49.63% | -37.74% | -11.89% | spy |
+| 2009 | 0.41% | 19.88% | -19.47% | spy |
+| 2010 | 32.76% | 10.96% | 21.80% | strategy |
+| 2011 | -28.49% | -1.22% | -27.27% | spy |
+| 2012 | 36.46% | 11.69% | 24.77% | strategy |
+| 2013 | 44.48% | 26.45% | 18.03% | strategy |
+| 2014 | 29.98% | 12.37% | 17.61% | strategy |
+| 2015 | -1.95% | -0.76% | -1.19% | spy |
+| 2016 | 54.39% | 11.20% | 43.19% | strategy |
+| 2017 | 34.45% | 18.48% | 15.97% | strategy |
+| 2018 | 34.00% | -7.01% | 41.01% | strategy |
+| 2019 | 26.38% | 28.65% | -2.27% | spy |
+| 2020 | 33.20% | 15.09% | 18.12% | strategy |
+| 2021 | 39.78% | 28.79% | 11.00% | strategy |
+| 2022 | 17.77% | -19.95% | 37.72% | strategy |
+| 2023 | 66.49% | 24.81% | 41.67% | strategy |
+| 2024 | 143.92% | 24.00% | 119.92% | strategy |
+| 2025 | 95.09% | 16.64% | 78.45% | strategy |
+| 2026 | 73.44% | 9.14% | 64.30% | strategy |
+
+## Warnings
+- No daily price date after signal_date=2026-05-22; skipped rebalance.
