@@ -210,14 +210,12 @@ def _dynamic_target_gross_exposure_pct(snapshot: pd.DataFrame, strategy_config: 
     if not isinstance(cfg, dict):
         return float(risk_management.get("max_gross_exposure_pct", 100) or 100)
 
-    spy_rows = snapshot[snapshot["ticker"] == benchmark_ticker]
-    if spy_rows.empty:
+    row = _benchmark_context_row(snapshot, benchmark_ticker)
+    if row is None:
         return float(cfg.get("weak", cfg.get("neutral", risk_management.get("max_gross_exposure_pct", 60))) or 60)
-
-    row = spy_rows.iloc[0]
-    close_vs_52 = _row_float(row, "close_vs_sma52w_pct")
-    close_vs_20 = _row_float(row, "close_vs_sma20w_pct")
-    dd_26 = _row_float(row, "drawdown_from_high_26w_pct")
+    close_vs_52 = _row_float(row, "spy_close_vs_sma52w_pct", "close_vs_sma52w_pct")
+    close_vs_20 = _row_float(row, "spy_close_vs_sma20w_pct", "close_vs_sma20w_pct")
+    dd_26 = _row_float(row, "spy_drawdown_from_high_26w_pct", "drawdown_from_high_26w_pct")
 
     if dd_26 <= -20 or close_vs_52 <= -20:
         regime = "crisis"
@@ -235,10 +233,9 @@ def _entry_blocked_by_crisis(snapshot: pd.DataFrame, strategy_config: dict, benc
     cfg = risk_management.get("no_new_entries_in_crisis")
     if not isinstance(cfg, dict) or not cfg.get("enabled"):
         return False
-    spy_rows = snapshot[snapshot["ticker"] == benchmark_ticker]
-    if spy_rows.empty:
+    row = _benchmark_context_row(snapshot, benchmark_ticker)
+    if row is None:
         return False
-    row = spy_rows.iloc[0]
     threshold = float(cfg.get("crisis_threshold_pct", -10) or -10)
     priority = cfg.get("regime_field_priority") or [
         "spy_close_vs_sma50_pct",
@@ -246,17 +243,34 @@ def _entry_blocked_by_crisis(snapshot: pd.DataFrame, strategy_config: dict, benc
         "close_vs_sma52w_pct",
     ]
     for field in priority:
-        value = _row_float(row, str(field))
-        if value != 0.0 or str(field) in row:
+        value = _row_float(row, str(field), _spy_prefixed_field(str(field)))
+        if value != 0.0 or str(field) in row or _spy_prefixed_field(str(field)) in row:
             return value <= threshold
     return False
 
 
-def _row_float(row: pd.Series, field: str) -> float:
-    if field not in row:
-        return 0.0
-    value = pd.to_numeric(row[field], errors="coerce")
-    return 0.0 if pd.isna(value) else float(value)
+def _benchmark_context_row(snapshot: pd.DataFrame, benchmark_ticker: str) -> pd.Series | None:
+    benchmark_rows = snapshot[snapshot["ticker"] == benchmark_ticker]
+    if not benchmark_rows.empty:
+        return benchmark_rows.iloc[0]
+    spy_columns = [c for c in snapshot.columns if str(c).startswith("spy_")]
+    if spy_columns and not snapshot.empty:
+        return snapshot.iloc[0]
+    return None
+
+
+def _spy_prefixed_field(field: str) -> str:
+    return field if field.startswith("spy_") else f"spy_{field}"
+
+
+def _row_float(row: pd.Series, *fields: str) -> float:
+    for field in fields:
+        if field not in row:
+            continue
+        value = pd.to_numeric(row[field], errors="coerce")
+        if not pd.isna(value):
+            return float(value)
+    return 0.0
 
 
 def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, benchmark_ticker: str) -> bool:
@@ -270,15 +284,14 @@ def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, bench
     if not require_positive_trend:
         return True
 
-    spy_rows = snapshot[snapshot["ticker"] == benchmark_ticker]
-    if spy_rows.empty:
+    row = _benchmark_context_row(snapshot, benchmark_ticker)
+    if row is None:
         warnings.warn(
             f"critical: SPY market filter could not find {benchmark_ticker} row on signal date; using fallback={fallback_if_missing}.",
             UserWarning,
         )
         return fallback_if_missing
 
-    row = spy_rows.iloc[0]
     metric_candidates = [
         "spy_close_vs_sma50_pct",
         "close_vs_sma50_pct",
@@ -286,7 +299,7 @@ def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, bench
     ]
 
     for col in metric_candidates:
-        if col not in spy_rows.columns:
+        if col not in row:
             continue
         value = pd.to_numeric(row[col], errors="coerce")
         if not pd.isna(value):
