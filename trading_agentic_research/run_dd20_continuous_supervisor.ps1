@@ -25,6 +25,8 @@ $cmd = @(
   "--runs-dir", "runs",
   "--reports-dir", "reports",
   "--state-dir", "state",
+  "--min-trades", "1000",
+  "--substantial-improvement-mode",
   "--resume"
 )
 

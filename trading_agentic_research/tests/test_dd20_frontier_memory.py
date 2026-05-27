@@ -3,7 +3,7 @@ import csv
 from scripts.dd20_adaptive_strategy_generator import build_frontier_memory
 
 
-def test_detects_sl10_as_best_near_valid_low_trades(tmp_path):
+def test_detects_valid_candidate_and_prioritizes_cagr_repair(tmp_path):
     reports = tmp_path / "reports"
     state = tmp_path / "state"
     runs = tmp_path / "runs"
@@ -39,5 +39,6 @@ def test_detects_sl10_as_best_near_valid_low_trades(tmp_path):
 
     memory = build_frontier_memory(reports_dir=reports, runs_dir=runs, state_dir=state)
 
-    assert memory["best_near_valid_low_trades"]["strategy_id"] == "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1"
-    assert memory["next_axis_recommendation"] == "trade_count_repair_around_sl10"
+    assert memory["best_valid_by_cagr"]["strategy_id"] == "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1"
+    assert memory["best_near_valid_low_trades"] is None
+    assert memory["next_axis_recommendation"] == "cagr_repair_under_dd20"

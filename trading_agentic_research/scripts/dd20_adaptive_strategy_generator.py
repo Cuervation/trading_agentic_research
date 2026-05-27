@@ -20,8 +20,29 @@ from backtester.dd20_spy_beater import DD20_MIN_TRADES, row_from_dd20_audit_or_r
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_NEAR_VALID_SL10 = "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1"
-BASE_NEAR_VALID_SL10_CONFIG = ROOT / "configs/generated/HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1.json"
+BASE_DD20_CHAMPION = "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1"
+BASE_NEAR_VALID_SL10_CONFIG = ROOT / "configs/generated/HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1.json"
+FALLBACK_BASE_CONFIG = ROOT / "configs/generated/HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1.json"
 FAMILY = "dd20_adaptive_research"
+DD20_AXIS_ORDER = [
+    "cagr_repair_under_dd20",
+    "dd_rescue_for_high_cagr",
+    "annual_consistency_repair",
+    "controlled_combo",
+    "trade_count_repair_around_sl10",
+]
+CURRENT_DD20_CHAMPION_ROW = {
+    "run_id": "DD20ADAPT_005_HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+    "strategy_id": BASE_DD20_CHAMPION,
+    "cagr": 10.5412,
+    "spy_cagr": 6.802475,
+    "max_drawdown": -19.6588,
+    "trades": 2354,
+    "years_beating_spy": 16,
+    "years_losing_to_spy": 12,
+    "calmar": 0.536,
+    "frontier_class": "valid_candidate",
+}
 DEFAULT_AXIS_MEMORY = {
     "cooldown_axes": [],
     "exhausted_axes": [],
@@ -129,8 +150,10 @@ def choose_next_axis(frontier_memory: dict[str, Any], axis_memory: dict[str, Any
     exhausted = set(axis_memory.get("exhausted_axes", [])) | set(frontier_memory.get("exhausted_axes", []))
     blocked = cooldown | exhausted
     near_low = frontier_memory.get("best_near_valid_low_trades")
-    if near_low and _axis_available("trade_count_repair_around_sl10", blocked):
-        return "trade_count_repair_around_sl10", f"Best near-valid `{near_low.get('strategy_id')}` already passes DD20/CAGR/years and only lacks trades."
+    if near_low and _i(near_low, "trades") < DD20_MIN_TRADES and _axis_available("trade_count_repair_around_sl10", blocked):
+        return "trade_count_repair_around_sl10", f"Best near-valid `{near_low.get('strategy_id')}` only lacks trades below {DD20_MIN_TRADES}."
+    if frontier_memory.get("best_valid_by_cagr") and _axis_available("cagr_repair_under_dd20", blocked):
+        return "cagr_repair_under_dd20", "Valid DD20 candidate exists at min_trades=1000; prioritize material CAGR repair under DD20 instead of trade-count repair."
     if frontier_memory.get("best_high_cagr_dd_breach") and _axis_available("dd_rescue_for_high_cagr", blocked):
         return "dd_rescue_for_high_cagr", "High-CAGR variants breach DD20; reduce drawdown without chasing raw CAGR."
     bad_years = frontier_memory.get("near_valid_bad_years")
@@ -151,6 +174,10 @@ def generate_next_dd20_strategies(
     axis, _reason = choose_next_axis(frontier_memory, axis_memory)
     if axis == "trade_count_repair_around_sl10":
         specs = _trade_count_repair_around_sl10_specs() + list(axis_memory.get("expanded_specs", []))
+    elif axis == "cagr_repair_under_dd20":
+        specs = _cagr_repair_under_dd20_specs() + list(axis_memory.get("expanded_specs", []))
+    elif axis == "dd_rescue_for_high_cagr":
+        specs = _dd_rescue_for_high_cagr_specs() + list(axis_memory.get("expanded_specs", []))
     else:
         specs = _fallback_controlled_specs(axis)
     existing_ids = {str(r.get("strategy_id")) for r in frontier_memory.get("all_rows", [])}
@@ -190,7 +217,9 @@ def expand_generation_space(frontier_memory: dict[str, Any], axis_memory: dict[s
     if "trailing" in cooldown:
         expanded = [s for s in expanded if "trailing_stop_pct" not in s.get("risk_management", {})]
         existing_ids = {s.get("strategy_id") for s in expanded}
-    for spec in _expanded_trade_count_specs():
+    axis, _reason = choose_next_axis(frontier_memory, axis_memory)
+    candidate_specs = _expanded_trade_count_specs() if axis == "trade_count_repair_around_sl10" else _expanded_cagr_repair_specs()
+    for spec in candidate_specs:
         if spec["strategy_id"] in existing_ids:
             continue
         cfg = render_strategy_config(spec)
@@ -200,15 +229,18 @@ def expand_generation_space(frontier_memory: dict[str, Any], axis_memory: dict[s
         existing_ids.add(spec["strategy_id"])
     axis_memory["expanded_specs"] = expanded
     axis_memory["last_expansion"] = {
-        "axis": "trade_count_repair_around_sl10",
-        "reason": "Expanded top-N/guard/SL/dynamic templates after duplicate/no-new strategy frontier.",
+        "axis": axis,
+        "reason": "Expanded deterministic DD20 templates after duplicate/no-new strategy frontier.",
         "spec_count": len(expanded),
     }
     return axis_memory
 
 
 def render_strategy_config(spec: dict[str, Any], base_config_path: str | Path = BASE_NEAR_VALID_SL10_CONFIG) -> dict[str, Any]:
-    cfg = _read_json(Path(base_config_path), {})
+    base_path = Path(base_config_path)
+    if not base_path.exists():
+        base_path = FALLBACK_BASE_CONFIG
+    cfg = _read_json(base_path, {})
     risk = deepcopy(cfg.get("risk_management", {}) or {})
     risk.update(deepcopy(spec.get("risk_management", {})))
     cfg.update(
@@ -218,8 +250,8 @@ def render_strategy_config(spec: dict[str, Any], base_config_path: str | Path = 
             "strategy_family": FAMILY,
             "evaluation_mode": "dd20_spy_beater",
             "generation_axis": spec["generation_axis"],
-            "parent_strategy_id": BASE_NEAR_VALID_SL10,
-            "parent_hypothesis_id": BASE_NEAR_VALID_SL10,
+            "parent_strategy_id": spec.get("parent_strategy_id", BASE_DD20_CHAMPION),
+            "parent_hypothesis_id": spec.get("parent_hypothesis_id", BASE_DD20_CHAMPION),
             "claim": spec["expected_effect"],
             "causal_mechanism": spec["causal_mechanism"],
             "expected_effect": spec["expected_effect"],
@@ -250,7 +282,7 @@ def strategy_registry_entry(spec: dict[str, Any], config_path: str | Path) -> di
         "signal_frequency": "weekly",
         "execution_frequency": "daily",
         "rebalance_frequency": "monthly",
-        "parent_strategy_id": BASE_NEAR_VALID_SL10,
+        "parent_strategy_id": spec.get("parent_strategy_id", BASE_DD20_CHAMPION),
         "evaluation_mode": "dd20_spy_beater",
         "generation_axis": spec["generation_axis"],
         "notes": "Adaptive DD20 daemon candidate generated from empirical frontier.",
@@ -264,8 +296,8 @@ def hypothesis_entry(spec: dict[str, Any], cfg: dict[str, Any]) -> dict[str, Any
         "status": "candidate",
         "evaluation_mode": "dd20_spy_beater",
         "generation_axis": spec["generation_axis"],
-        "parent_strategy_id": BASE_NEAR_VALID_SL10,
-        "parent_hypothesis_id": BASE_NEAR_VALID_SL10,
+        "parent_strategy_id": spec.get("parent_strategy_id", BASE_DD20_CHAMPION),
+        "parent_hypothesis_id": spec.get("parent_hypothesis_id", BASE_DD20_CHAMPION),
         "causal_mechanism": spec["causal_mechanism"],
         "expected_effect": spec["expected_effect"],
         "falsification_rule": spec["falsification_rule"],
@@ -300,7 +332,7 @@ def constraint_gap_score(row: dict[str, Any], *, min_trades: int = DD20_MIN_TRAD
 def _trade_count_repair_around_sl10_specs() -> list[dict[str, Any]]:
     base = {
         "generation_axis": "trade_count_repair_around_sl10",
-        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 1000.",
         "empirical_basis": [
             {
                 "strategy_id": BASE_NEAR_VALID_SL10,
@@ -318,10 +350,65 @@ def _trade_count_repair_around_sl10_specs() -> list[dict[str, Any]]:
     ]
 
 
+def _cagr_repair_under_dd20_specs() -> list[dict[str, Any]]:
+    base = {
+        "generation_axis": "cagr_repair_under_dd20",
+        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, trades < 1000, years W/L turns negative, or CAGR/Calmar improvement is only incremental.",
+        "empirical_basis": [
+            {
+                "strategy_id": BASE_DD20_CHAMPION,
+                "reason": "Current DD20 champion: CAGR 10.5412, DD -19.6588, trades 2354, years 16/12, Calmar ~0.536.",
+            },
+            {
+                "strategy_id": "HYP_DD20_EXP_SL9_TOPN5_WHEN_GUARD_V1",
+                "reason": "Best balance: CAGR 10.1524, DD -18.5957, trades 2385, years 17/11, Calmar ~0.546.",
+            },
+        ],
+        "risk_of_overfit": "Medium-low: only coarse SL/TOPN/guard/dynamic exposure moves; no trailing, profit-lock, rank-deterioration, or 0.1 micro-variants.",
+    }
+    return [
+        _spec("HYP_DD20_CAGR_SL11_TOPN8_GUARD18_10_V1", _risk(top_n=8, stop_loss=11), "Re-run champion geometry as the anchor for duplicate-aware follow-up gating.", ["risk_management.stop_loss_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base),
+        _spec("HYP_DD20_CAGR_SL11_TOPN10_GUARD18_10_V1", _risk(top_n=10, stop_loss=11), "Broaden guard-active participation from top-8 to top-10 while keeping champion SL11 risk control.", ["risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base),
+        _spec("HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1", _risk(top_n=8, stop_loss=12), "Relax single-position stop from SL11 to SL12 to test whether slightly longer holds improve CAGR without breaking DD20.", ["risk_management.stop_loss_pct"], base),
+        _spec("HYP_DD20_CAGR_SL12_TOPN10_GUARD18_10_V1", _risk(top_n=10, stop_loss=12), "Combine SL12 with top-10 guard entries to test a coarse CAGR push under the DD20 guard.", ["risk_management.stop_loss_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base),
+        _spec("HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1", _risk(top_n=8, stop_loss=10.5), "Test the only decimal SL midpoint requested by the research plan; reject if the runner does not support decimal stop-loss semantics.", ["risk_management.stop_loss_pct"], base),
+        _spec("HYP_DD20_CAGR_SL11_TOPN8_GUARD18_12_V1", _risk(top_n=8, stop_loss=11, resume=-12), "Resume entries earlier at -12 while preserving champion SL11/top-8 structure.", ["risk_management.equity_drawdown_guard.resume_drawdown_pct"], base),
+        _spec("HYP_DD20_CAGR_SL11_TOPN8_GUARD18_14_V1", _risk(top_n=8, stop_loss=11, resume=-14), "Resume entries at -14 to balance participation and drawdown recovery without changing stop loss.", ["risk_management.equity_drawdown_guard.resume_drawdown_pct"], base),
+        _spec("HYP_DD20_CAGR_SL11_TOPN8_GUARD19_12_V1", _risk(top_n=8, stop_loss=11, stop=-19, resume=-12), "Delay guard activation to -19 and resume at -12 for a coarse CAGR/participation test.", ["risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct", "risk_management.equity_drawdown_guard.resume_drawdown_pct"], base),
+        _spec("HYP_DD20_CAGR_SL11_TOPN8_GUARD18_14_V2", _risk(top_n=8, stop_loss=11, stop=-18, resume=-14), "Keep guard activation at -18 and resume at -14 as the defensive guard/top-N balance candidate.", ["risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct", "risk_management.equity_drawdown_guard.resume_drawdown_pct"], base),
+        _spec("HYP_DD20_CAGR_DYN8055200_SL11_TOPN8_V1", _risk(top_n=8, stop_loss=11, dynamic={"strong": 80, "neutral": 55, "weak": 20, "crisis": 0}), "Controlled dynamic exposure 80/55/20/0 with champion SL11/top-8; crisis remains zero.", ["risk_management.dynamic_regime_exposure_pct"], base),
+        _spec("HYP_DD20_CAGR_DYN8550200_SL11_TOPN8_V1", _risk(top_n=8, stop_loss=11, dynamic={"strong": 85, "neutral": 50, "weak": 20, "crisis": 0}), "Controlled dynamic exposure 85/50/20/0 to test strong-regime CAGR while crisis remains zero.", ["risk_management.dynamic_regime_exposure_pct"], base),
+        _spec("HYP_DD20_CAGR_DYN8050250_SL11_TOPN8_V1", _risk(top_n=8, stop_loss=11, dynamic={"strong": 80, "neutral": 50, "weak": 25, "crisis": 0}), "Controlled dynamic exposure 80/50/25/0 to test weak-regime participation without crisis exposure.", ["risk_management.dynamic_regime_exposure_pct"], base),
+        _spec("HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1", _risk(top_n=8, stop_loss=10, dynamic={"strong": 80, "neutral": 55, "weak": 25, "crisis": 0}), "Controlled dynamic exposure 80/55/25/0 with tighter SL10/top-8 for CAGR repair under DD20.", ["risk_management.dynamic_regime_exposure_pct", "risk_management.stop_loss_pct"], base),
+    ]
+
+
+def _dd_rescue_for_high_cagr_specs() -> list[dict[str, Any]]:
+    base = {
+        "generation_axis": "dd_rescue_for_high_cagr",
+        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, trades < 1000, years W/L turns negative, or rescue is only incremental.",
+        "empirical_basis": [{"strategy_id": BASE_DD20_CHAMPION, "reason": "Use champion geometry and rescue only DD20 breaches that are close to valid."}],
+        "risk_of_overfit": "Medium: rescue templates are coarse exposure reductions; no trailing for now.",
+    }
+    return [
+        _spec("HYP_DD20_RESCUE_DYN8050200_SL11_TOPN8_V1", _risk(top_n=8, stop_loss=11, dynamic={"strong": 80, "neutral": 50, "weak": 20, "crisis": 0}), "Lower weak exposure 25->20 and neutral 55->50 to rescue small DD20 breaches.", ["risk_management.dynamic_regime_exposure_pct"], base),
+        _spec("HYP_DD20_RESCUE_DYN8050200_NO_NEW_CRISIS_SL11_TOPN8_V1", _risk(top_n=8, stop_loss=11, dynamic={"strong": 80, "neutral": 50, "weak": 20, "crisis": 0}, no_new_crisis=True), "Add no-new-entries in crisis while keeping crisis exposure at zero.", ["risk_management.dynamic_regime_exposure_pct", "risk_management.no_new_entries_in_crisis"], base),
+    ]
+
+
+def _expanded_cagr_repair_specs() -> list[dict[str, Any]]:
+    base_specs = _cagr_repair_under_dd20_specs()
+    extras = [
+        _spec("HYP_DD20_CAGR_SL12_TOPN12_GUARD18_12_V1", _risk(top_n=12, stop_loss=12, resume=-12), "Coarse expansion: SL12/top-12 with earlier resume, still under DD20 guard.", ["risk_management.stop_loss_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n", "risk_management.equity_drawdown_guard.resume_drawdown_pct"], base_specs[0]),
+        _spec("HYP_DD20_CAGR_DYN8555200_SL11_TOPN10_V1", _risk(top_n=10, stop_loss=11, dynamic={"strong": 85, "neutral": 55, "weak": 20, "crisis": 0}), "Coarse dynamic expansion: 85/55/20/0 with top-10 guard participation.", ["risk_management.dynamic_regime_exposure_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base_specs[0]),
+    ]
+    return base_specs + extras
+
+
 def _expanded_trade_count_specs() -> list[dict[str, Any]]:
     base = {
         "generation_axis": "trade_count_repair_around_sl10",
-        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 1000.",
         "empirical_basis": [
             {
                 "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
@@ -351,10 +438,11 @@ def _expanded_trade_count_specs() -> list[dict[str, Any]]:
 def _risk(
     *,
     top_n: int,
-    stop_loss: int = 10,
+    stop_loss: int | float = 10,
     stop: int = -18,
     resume: int = -10,
     dynamic: dict[str, int] | None = None,
+    no_new_crisis: bool = False,
 ) -> dict[str, Any]:
     risk = {
         "equity_drawdown_guard": {
@@ -367,6 +455,8 @@ def _risk(
     }
     if dynamic is not None:
         risk["dynamic_regime_exposure_pct"] = dynamic
+    if no_new_crisis:
+        risk["no_new_entries_in_crisis"] = True
     return risk
 
 

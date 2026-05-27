@@ -23,6 +23,7 @@ if str(ROOT) not in sys.path:
 from backtester.dd20_spy_beater import DD20_MIN_TRADES, row_from_dd20_audit_or_run, write_dd20_summary_csv, write_dd20_summary_markdown
 from scripts.dd20_adaptive_strategy_generator import (
     BASE_NEAR_VALID_SL10,
+    CURRENT_DD20_CHAMPION_ROW,
     DEFAULT_AXIS_MEMORY,
     FAMILY,
     build_frontier_memory,
@@ -63,6 +64,23 @@ ADAPTIVE_COLUMNS = [
     "frontier_class",
     "rejection_reason",
 ]
+SUBSTANTIAL_COLUMNS = [
+    "run_id",
+    "strategy_id",
+    "cagr",
+    "spy_cagr",
+    "max_drawdown",
+    "trades",
+    "years_wl",
+    "calmar",
+    "compared_to",
+    "cagr_delta",
+    "dd_delta",
+    "calmar_delta",
+    "years_net_delta",
+    "substantial_reason",
+    "followup_allowed",
+]
 REQUIRED_REAL_RUN_FILES = {
     "equity_curve.csv",
     "trades.csv",
@@ -97,6 +115,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--state-dir", default="state")
     p.add_argument("--per-run-timeout-minutes", type=float, default=45)
     p.add_argument("--min-trades", type=int, default=DD20_MIN_TRADES)
+    p.add_argument("--substantial-improvement-mode", action="store_true")
     return p.parse_args()
 
 
@@ -188,7 +207,16 @@ def main() -> int:
                 state.setdefault("completed_strategy_ids", []).append(spec["strategy_id"])
                 state["completed_real_runs"] = completed_real
                 state["last_run_id"] = run_id
-                update_axis_memory(args.state_dir, spec["generation_axis"], {"row": row, "frontier_class": frontier_class})
+                substantial = substantial_improvement_row(row, frontier.get("all_rows", []))
+                if args.substantial_improvement_mode and not substantial["followup_allowed"]:
+                    row = dict(row)
+                    row["frontier_class"] = "small_incremental_change"
+                update_axis_memory(
+                    args.state_dir,
+                    spec["generation_axis"],
+                    {"row": row, "frontier_class": frontier_class, "substantial": substantial["followup_allowed"]},
+                    substantial_only=args.substantial_improvement_mode,
+                )
                 update_reports(args, parent_run_id, batch_number, state)
                 write_json(state_path, state)
             if stop_reason:
@@ -263,6 +291,10 @@ def update_reports(args: argparse.Namespace, parent_run_id: str, batch_number: i
     write_csv(Path(args.reports_dir) / "dd20_adaptive_batches.csv", adaptive_rows, ADAPTIVE_COLUMNS)
     write_csv(Path(args.reports_dir) / "dd20_frontier.csv", all_rows, sorted({k for row in all_rows for k in row.keys()}))
     write_axis_summary(args.state_dir, args.reports_dir)
+    substantial_rows = build_substantial_improvement_rows(all_rows)
+    write_csv(Path(args.reports_dir) / "dd20_substantial_improvements.csv", substantial_rows, SUBSTANTIAL_COLUMNS)
+    Path(args.reports_dir, "dd20_substantial_improvements.md").write_text(build_substantial_markdown(substantial_rows), encoding="utf-8")
+    update_substantial_state(args, frontier, substantial_rows, batch_number)
     Path(args.reports_dir, "dd20_adaptive_daemon_summary.md").write_text(build_adaptive_markdown(frontier, adaptive_rows, state), encoding="utf-8")
     Path(args.reports_dir, "dd20_best_so_far.md").write_text(build_best_so_far(frontier), encoding="utf-8")
     state["frontier"] = {k: frontier.get(k) for k in ["class_counts", "best_valid_by_cagr", "best_near_valid", "best_near_valid_low_trades", "next_axis_recommendation", "last_generation_reason"]}
@@ -294,6 +326,132 @@ def enrich_adaptive_row(args: argparse.Namespace, row: dict[str, Any], batch_num
         }
     )
     return out
+
+
+def build_substantial_improvement_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    candidates = [
+        r
+        for r in rows
+        if str(r.get("strategy_id", "")).startswith(("HYP_DD20_ADAPT_", "HYP_DD20_EXP_", "HYP_DD20_CAGR_", "HYP_DD20_RESCUE_"))
+    ]
+    return [substantial_improvement_row(row, rows) for row in sorted(candidates, key=lambda r: (-f(r.get("cagr")), -f(r.get("calmar"))))]
+
+
+def substantial_improvement_row(row: dict[str, Any], all_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    compared = comparison_champion_for(row, all_rows)
+    cagr_delta = f(row.get("cagr")) - f(compared.get("cagr"))
+    dd_delta = f(row.get("max_drawdown")) - f(compared.get("max_drawdown"))
+    calmar_delta = f(row.get("calmar")) - f(compared.get("calmar"))
+    years_net_delta = years_net(row) - years_net(compared)
+    reasons = substantial_reasons(row, compared, all_rows, cagr_delta, dd_delta, calmar_delta, years_net_delta)
+    return {
+        "run_id": row.get("run_id", ""),
+        "strategy_id": row.get("strategy_id", ""),
+        "cagr": f(row.get("cagr")),
+        "spy_cagr": f(row.get("spy_cagr")),
+        "max_drawdown": f(row.get("max_drawdown")),
+        "trades": i(row.get("trades")),
+        "years_wl": f"{i(row.get('years_beating_spy'))}/{i(row.get('years_losing_to_spy'))}",
+        "calmar": f(row.get("calmar")),
+        "compared_to": compared.get("strategy_id", ""),
+        "cagr_delta": round(cagr_delta, 6),
+        "dd_delta": round(dd_delta, 6),
+        "calmar_delta": round(calmar_delta, 6),
+        "years_net_delta": years_net_delta,
+        "substantial_reason": "; ".join(reasons) if reasons else "small_incremental_change",
+        "followup_allowed": bool(reasons),
+    }
+
+
+def substantial_reasons(row: dict[str, Any], compared: dict[str, Any], all_rows: list[dict[str, Any]], cagr_delta: float, dd_delta: float, calmar_delta: float, years_net_delta: int) -> list[str]:
+    if classify_row(row) != "valid_candidate" or f(row.get("max_drawdown")) < -20:
+        return []
+    reasons: list[str] = []
+    if cagr_delta >= 0.50:
+        reasons.append("cagr_delta_ge_0.50_dd20")
+    if cagr_delta >= 0.25 and calmar_delta > 0:
+        reasons.append("cagr_delta_ge_0.25_and_calmar_improved")
+    if dd_delta >= 1.00 and cagr_delta >= -0.25:
+        reasons.append("dd_improved_ge_1.00_with_cagr_within_0.25")
+    if years_net_delta >= 2:
+        reasons.append("years_net_improved_ge_2_dd20")
+    if is_real_pareto_improvement(row, compared, all_rows):
+        reasons.append("new_real_pareto")
+    return reasons
+
+
+def comparison_champion_for(row: dict[str, Any], all_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    sid = str(row.get("strategy_id") or "")
+    valid = [r for r in all_rows if classify_row(r) == "valid_candidate" and str(r.get("strategy_id") or "") != sid]
+    if not valid:
+        return dict(CURRENT_DD20_CHAMPION_ROW)
+    return max(valid, key=lambda r: (f(r.get("cagr")), f(r.get("calmar")), f(r.get("max_drawdown"))))
+
+
+def is_real_pareto_improvement(row: dict[str, Any], compared: dict[str, Any], all_rows: list[dict[str, Any]]) -> bool:
+    cagr = f(row.get("cagr"))
+    dd = f(row.get("max_drawdown"))
+    extends_frontier = (cagr > f(compared.get("cagr")) and dd >= f(compared.get("max_drawdown"))) or (dd > f(compared.get("max_drawdown")) and cagr >= f(compared.get("cagr")))
+    if not extends_frontier:
+        return False
+    for other in all_rows:
+        if str(other.get("strategy_id")) == str(row.get("strategy_id")):
+            continue
+        if classify_row(other) != "valid_candidate":
+            continue
+        other_cagr = f(other.get("cagr"))
+        other_dd = f(other.get("max_drawdown"))
+        if other_cagr >= cagr and other_dd >= dd and (other_cagr > cagr or other_dd > dd):
+            return False
+    return True
+
+
+def years_net(row: dict[str, Any]) -> int:
+    return i(row.get("years_beating_spy")) - i(row.get("years_losing_to_spy"))
+
+
+def build_substantial_markdown(rows: list[dict[str, Any]]) -> str:
+    lines = [
+        "# DD20 Substantial Improvements",
+        "",
+        "Follow-up is allowed only for rows with a material CAGR, Calmar, drawdown, years W/L, or Pareto improvement under DD20.",
+        "",
+        "| strategy_id | CAGR | DD | trades | years W/L | Calmar | compared_to | reason | follow-up |",
+        "|:---|---:|---:|---:|:---|---:|:---|:---|:---|",
+    ]
+    if not rows:
+        lines.append("| _none_ |  |  |  |  |  |  |  |  |")
+    for row in rows:
+        lines.append(f"| `{row.get('strategy_id')}` | {f(row.get('cagr')):.4f}% | {f(row.get('max_drawdown')):.4f}% | {i(row.get('trades'))} | {row.get('years_wl')} | {f(row.get('calmar')):.4f} | `{row.get('compared_to')}` | {row.get('substantial_reason')} | {row.get('followup_allowed')} |")
+    return "\n".join(lines) + "\n"
+
+
+def update_substantial_state(args: argparse.Namespace, frontier: dict[str, Any], substantial_rows: list[dict[str, Any]], batch_number: int) -> None:
+    path = Path(args.state_dir) / "dd20_substantial_improvement_state.json"
+    previous = read_json(path) if path.exists() else {}
+    allowed = [r for r in substantial_rows if r.get("followup_allowed")]
+    last = allowed[0] if allowed else previous.get("last_substantial_improvement")
+    previous_last_id = ((previous.get("last_substantial_improvement") or {}).get("strategy_id") if isinstance(previous.get("last_substantial_improvement"), dict) else "")
+    current_last_id = (last or {}).get("strategy_id", "") if isinstance(last, dict) else ""
+    last_counted_batch = int(previous.get("last_counted_batch", 0) or 0)
+    batches_since = int(previous.get("batches_since_last_substantial_improvement", 0) or 0)
+    if current_last_id and current_last_id != previous_last_id:
+        batches_since = 0
+    elif batch_number > last_counted_batch:
+        batches_since += 1
+    axis_memory = load_axis_memory(args.state_dir)
+    state = {
+        "best_valid_by_cagr": frontier.get("best_valid_by_cagr"),
+        "best_valid_by_calmar": frontier.get("best_valid_by_calmar"),
+        "best_valid_by_drawdown": frontier.get("best_valid_by_drawdown"),
+        "last_substantial_improvement": last,
+        "batches_since_last_substantial_improvement": batches_since,
+        "axes_in_cooldown": axis_memory.get("cooldown_axes", []),
+        "next_axis": frontier.get("next_axis_recommendation", ""),
+        "last_counted_batch": max(batch_number, last_counted_batch),
+        "updated_at": utc_now(),
+    }
+    write_json(path, state)
 
 
 def build_adaptive_markdown(frontier: dict[str, Any], adaptive_rows: list[dict[str, Any]], state: dict[str, Any]) -> str:
@@ -371,7 +529,7 @@ def load_axis_memory(state_dir: str) -> dict[str, Any]:
     return read_json(path) if path.exists() else dict(DEFAULT_AXIS_MEMORY)
 
 
-def update_axis_memory(state_dir: str, axis: str, outcome: dict[str, Any]) -> None:
+def update_axis_memory(state_dir: str, axis: str, outcome: dict[str, Any], *, substantial_only: bool = False) -> None:
     memory = load_axis_memory(state_dir)
     data = memory.setdefault("axis_outcomes", {}).setdefault(axis, {"runs": 0, "dd_breaches": 0, "low_trade_runs": 0, "duplicates": 0, "improvements": 0})
     data["runs"] = int(data.get("runs", 0)) + 1
@@ -381,8 +539,10 @@ def update_axis_memory(state_dir: str, axis: str, outcome: dict[str, Any]) -> No
             data["dd_breaches"] = int(data.get("dd_breaches", 0)) + 1
         if i(row.get("trades")) < 500:
             data["low_trade_runs"] = int(data.get("low_trade_runs", 0)) + 1
-        if outcome.get("frontier_class") in {"valid_candidate", "near_valid_low_trades"}:
+        if (outcome.get("frontier_class") in {"valid_candidate", "near_valid_low_trades"}) and (not substantial_only or outcome.get("substantial")):
             data["improvements"] = int(data.get("improvements", 0)) + 1
+        if substantial_only and row and not outcome.get("substantial"):
+            data["small_incremental_changes"] = int(data.get("small_incremental_changes", 0)) + 1
     if outcome.get("error") in {"duplicate", "no_op"}:
         data["duplicates"] = int(data.get("duplicates", 0)) + 1
     cooldown = set(memory.get("cooldown_axes", []))

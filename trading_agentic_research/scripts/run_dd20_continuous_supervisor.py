@@ -20,7 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.dd20_adaptive_strategy_generator import build_frontier_memory, classify_row, expand_generation_space
+from backtester.dd20_spy_beater import DD20_MIN_TRADES
+from scripts.dd20_adaptive_strategy_generator import DD20_AXIS_ORDER, build_frontier_memory, classify_row, expand_generation_space
 from scripts.run_dd20_adaptive_research_daemon import load_axis_memory
 from scripts.run_dd20_spy_beater_daemon import FULL_HISTORY_PARENT, assert_full_history_parent
 from scripts.run_dd20_stop_trailing_repair import f, i
@@ -76,6 +77,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--runs-dir", default="runs")
     p.add_argument("--reports-dir", default="reports")
     p.add_argument("--state-dir", default="state")
+    p.add_argument("--min-trades", type=int, default=DD20_MIN_TRADES)
+    p.add_argument("--substantial-improvement-mode", action="store_true")
     return p.parse_args()
 
 
@@ -98,6 +101,7 @@ def main() -> int:
     cycles = load_cycles(args.reports_dir) if args.resume else []
     repeated_errors = dict(state.get("repeated_errors", {}))
     no_improve_cycles = int(state.get("no_improve_cycles", 0))
+    no_substantial_cycles = int(state.get("no_substantial_cycles", 0))
     previous_best_key = best_key(read_frontier(args))
     cycle_start_number = int(state.get("cycle", 0)) + 1 if args.resume else 1
 
@@ -123,6 +127,7 @@ def main() -> int:
             runs_dir=args.runs_dir,
             state_dir=args.state_dir,
             parent_run_id=args.parent_run_id,
+            min_trades=args.min_trades,
         )
 
         repair_done = ""
@@ -140,12 +145,20 @@ def main() -> int:
         current_best_key = best_key(frontier_after)
         no_improve_cycles = no_improve_cycles + 1 if current_best_key == previous_best_key else 0
         previous_best_key = current_best_key
-        if stop_reason == "no_new_non_duplicate_strategies" or no_improve_cycles >= 2:
+        no_substantial_cycles = substantial_cycles_since_improvement(args, no_substantial_cycles)
+        if args.substantial_improvement_mode and no_substantial_cycles >= 15:
+            switch_axis_after_stale_substantial_search(args, frontier_after)
+            expansion_done = "axis_changed_after_15_no_substantial"
+        if args.substantial_improvement_mode and no_substantial_cycles >= 40:
+            stop_reason = "expand_after_40_no_substantial"
+        if stop_reason in {"no_new_non_duplicate_strategies", "expand_after_40_no_substantial"} or no_improve_cycles >= 2:
             axis_memory = load_axis_memory(args.state_dir)
             expanded = expand_generation_space(frontier_after, axis_memory)
             write_json(Path(args.state_dir) / "dd20_axis_memory.json", expanded)
             expansion_done = str((expanded.get("last_expansion") or {}).get("spec_count", ""))
             no_improve_cycles = 0
+        if args.substantial_improvement_mode and all_axes_exhausted(args.state_dir):
+            stop_reason = "all_axes_exhausted"
 
         row = {
             "cycle": cycle,
@@ -177,6 +190,7 @@ def main() -> int:
                 "last_repair": repair_done,
                 "last_expansion": expansion_done,
                 "no_improve_cycles": no_improve_cycles,
+                "no_substantial_cycles": no_substantial_cycles,
                 "repeated_errors": repeated_errors,
                 "next_action": decide_next_action(stop_reason, args, frontier_after),
                 "updated_at": utc_now(),
@@ -246,10 +260,14 @@ def run_daemon_cycle(args: argparse.Namespace, daemon_before: dict[str, Any]) ->
         args.reports_dir,
         "--state-dir",
         args.state_dir,
+        "--min-trades",
+        str(args.min_trades),
         "--resume",
     ]
     if args.continue_after_first_valid:
         cmd.append("--continue-after-first-valid")
+    if args.substantial_improvement_mode:
+        cmd.append("--substantial-improvement-mode")
     return subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, check=False)
 
 
@@ -265,7 +283,45 @@ def should_stop_after_cycle(stop_reason: str, args: argparse.Namespace, frontier
     return stop_reason in {"parent_or_baseline_lock_compromised", "missing_real_data", "same_error_appeared_5_times", "all_axes_exhausted"}
 
 
+def substantial_cycles_since_improvement(args: argparse.Namespace, current: int) -> int:
+    state = read_substantial_state(args.state_dir)
+    last = state.get("last_substantial_improvement") or {}
+    marker = str(last.get("strategy_id") or "") if isinstance(last, dict) else ""
+    previous_marker = str(read_daemon_state(args.state_dir).get("last_substantial_marker") or "")
+    daemon_state = read_daemon_state(args.state_dir)
+    if marker and marker != previous_marker:
+        daemon_state["last_substantial_marker"] = marker
+        write_json(Path(args.state_dir) / "dd20_adaptive_daemon_state.json", daemon_state)
+        return 0
+    return current + 1
+
+
+def switch_axis_after_stale_substantial_search(args: argparse.Namespace, frontier: dict[str, Any]) -> None:
+    axis = str(frontier.get("next_axis_recommendation") or "")
+    memory = load_axis_memory(args.state_dir)
+    cooldown = set(memory.get("cooldown_axes", []))
+    if axis:
+        cooldown.add(axis)
+    memory["cooldown_axes"] = sorted(cooldown)
+    write_json(Path(args.state_dir) / "dd20_axis_memory.json", memory)
+
+
+def all_axes_exhausted(state_dir: str) -> bool:
+    memory = load_axis_memory(state_dir)
+    exhausted = set(memory.get("exhausted_axes", []))
+    return bool(DD20_AXIS_ORDER) and set(DD20_AXIS_ORDER).issubset(exhausted)
+
+
+def read_substantial_state(state_dir: str) -> dict[str, Any]:
+    path = Path(state_dir) / "dd20_substantial_improvement_state.json"
+    return read_json(path) if path.exists() else {}
+
+
 def decide_next_action(stop_reason: str, args: argparse.Namespace, frontier: dict[str, Any]) -> str:
+    if stop_reason == "all_axes_exhausted":
+        return "stopped_all_axes_exhausted"
+    if stop_reason == "expand_after_40_no_substantial":
+        return "expand_generation_space_then_continue"
     if stop_reason == "no_new_non_duplicate_strategies":
         return "expand_generation_space_then_continue"
     if stop_reason in CONTINUE_STOP_REASONS:
@@ -322,7 +378,7 @@ def read_daemon_state(state_dir: str) -> dict[str, Any]:
 
 
 def read_frontier(args: argparse.Namespace) -> dict[str, Any]:
-    return build_frontier_memory(reports_dir=args.reports_dir, runs_dir=args.runs_dir, state_dir=args.state_dir, parent_run_id=args.parent_run_id)
+    return build_frontier_memory(reports_dir=args.reports_dir, runs_dir=args.runs_dir, state_dir=args.state_dir, parent_run_id=args.parent_run_id, min_trades=getattr(args, "min_trades", DD20_MIN_TRADES))
 
 
 def manual_stop_requested(root: Path = ROOT) -> bool:
