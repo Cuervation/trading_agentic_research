@@ -3,14 +3,534 @@
   "exhausted_axes": [],
   "axis_outcomes": {
     "trade_count_repair_around_sl10": {
-      "runs": 5,
+      "runs": 11,
       "dd_breaches": 0,
       "low_trade_runs": 0,
       "duplicates": 0,
-      "improvements": 4
+      "improvements": 10
     }
   },
   "active_axes": [
     "trade_count_repair_around_sl10"
-  ]
+  ],
+  "expanded_specs": [
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL10_TOPN3_WHEN_GUARD_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 3
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Permit only top-3 ranked entries while guard is active to trade only strongest momentum names under drawdown pressure.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL10_TOPN3_WHEN_GUARD_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "a5dbeebb88ccb670"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL10_TOPN8_WHEN_GUARD_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 8
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Permit only top-8 ranked entries while guard is active to trade only strongest momentum names under drawdown pressure.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL10_TOPN8_WHEN_GUARD_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "c13a7fcecb4ec447"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL10_TOPN10_WHEN_GUARD_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 10
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Permit only top-10 ranked entries while guard is active to trade only strongest momentum names under drawdown pressure.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL10_TOPN10_WHEN_GUARD_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "a2bafb23a214d3d1"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL10_TOPN5_GUARD18_12_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -12,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Combine top-5 guard-active entries with earlier resume at -12 to recover trade count without removing SL10.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n",
+        "risk_management.equity_drawdown_guard.resume_drawdown_pct"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL10_TOPN5_GUARD18_12_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "eb6c936db81cf188"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL10_TOPN8_GUARD18_12_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -12,
+          "allow_entries_when_active_top_n": 8
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Combine top-8 guard-active entries with earlier resume at -12 to recover trade count without removing SL10.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n",
+        "risk_management.equity_drawdown_guard.resume_drawdown_pct"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL10_TOPN8_GUARD18_12_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "9c8455fd82f1d28d"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL10_TOPN10_GUARD18_12_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -12,
+          "allow_entries_when_active_top_n": 10
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Combine top-10 guard-active entries with earlier resume at -12 to recover trade count without removing SL10.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n",
+        "risk_management.equity_drawdown_guard.resume_drawdown_pct"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL10_TOPN10_GUARD18_12_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "2bb2c2322138bb10"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL8_TOPN5_WHEN_GUARD_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 8
+      },
+      "causal_mechanism": "Test SL8 with top-5 guard entries to see whether position-level loss control can free more entries while respecting DD20.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.stop_loss_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL8_TOPN5_WHEN_GUARD_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "2de85a05eae036b1"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL9_TOPN5_WHEN_GUARD_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 9
+      },
+      "causal_mechanism": "Test SL9 with top-5 guard entries to see whether position-level loss control can free more entries while respecting DD20.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.stop_loss_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL9_TOPN5_WHEN_GUARD_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "2c5377c22ef6eaa1"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 8
+        },
+        "stop_loss_pct": 11
+      },
+      "causal_mechanism": "Test SL11 with top-8 guard entries to see whether position-level loss control can free more entries while respecting DD20.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.stop_loss_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "78f817e055ad9985"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_DYN8055200_SL10_TOPN5_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10,
+        "dynamic_regime_exposure_pct": {
+          "strong": 80,
+          "neutral": 55,
+          "weak": 20,
+          "crisis": 0
+        }
+      },
+      "causal_mechanism": "Adjust dynamic exposure {'strong': 80, 'neutral': 55, 'weak': 20, 'crisis': 0} with SL10 and top-5 guard entries to repair trades/CAGR without broad risk-on exposure.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.dynamic_regime_exposure_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_DYN8055200_SL10_TOPN5_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "e905592fd14ed0d0"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_DYN8550200_SL10_TOPN5_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10,
+        "dynamic_regime_exposure_pct": {
+          "strong": 85,
+          "neutral": 50,
+          "weak": 20,
+          "crisis": 0
+        }
+      },
+      "causal_mechanism": "Adjust dynamic exposure {'strong': 85, 'neutral': 50, 'weak': 20, 'crisis': 0} with SL10 and top-5 guard entries to repair trades/CAGR without broad risk-on exposure.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.dynamic_regime_exposure_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_DYN8550200_SL10_TOPN5_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "e0bf50ed0958b228"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_DYN8050250_SL10_TOPN5_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10,
+        "dynamic_regime_exposure_pct": {
+          "strong": 80,
+          "neutral": 50,
+          "weak": 25,
+          "crisis": 0
+        }
+      },
+      "causal_mechanism": "Adjust dynamic exposure {'strong': 80, 'neutral': 50, 'weak': 25, 'crisis': 0} with SL10 and top-5 guard entries to repair trades/CAGR without broad risk-on exposure.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.dynamic_regime_exposure_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_DYN8050250_SL10_TOPN5_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "384703c3b2ee19a2"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_GUARD19_12_SL10_TOPN5_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -19,
+          "resume_drawdown_pct": -12,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Change guard activation/resume to -19/-12 while keeping SL10 and top-5 guard entries.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct",
+        "risk_management.equity_drawdown_guard.resume_drawdown_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_GUARD19_12_SL10_TOPN5_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "37175fbcc6a3d270"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_GUARD18_14_SL10_TOPN5_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -18,
+          "resume_drawdown_pct": -14,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Change guard activation/resume to -18/-14 while keeping SL10 and top-5 guard entries.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct",
+        "risk_management.equity_drawdown_guard.resume_drawdown_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_GUARD18_14_SL10_TOPN5_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "3a84164debee9df3"
+    },
+    {
+      "generation_axis": "trade_count_repair_around_sl10",
+      "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+      "empirical_basis": [
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+          "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+        },
+        {
+          "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+          "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+        }
+      ],
+      "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+      "strategy_id": "HYP_DD20_EXP_GUARD17_10_SL10_TOPN5_V1",
+      "risk_management": {
+        "equity_drawdown_guard": {
+          "enabled": true,
+          "stop_new_entries_drawdown_pct": -17,
+          "resume_drawdown_pct": -10,
+          "allow_entries_when_active_top_n": 5
+        },
+        "stop_loss_pct": 10
+      },
+      "causal_mechanism": "Change guard activation/resume to -17/-10 while keeping SL10 and top-5 guard entries.",
+      "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+      "changed_parameters": [
+        "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct",
+        "risk_management.equity_drawdown_guard.resume_drawdown_pct",
+        "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+      ],
+      "why_not_duplicate": "HYP_DD20_EXP_GUARD17_10_SL10_TOPN5_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+      "config_hash": "1007787a8371421f"
+    }
+  ],
+  "last_expansion": {
+    "axis": "trade_count_repair_around_sl10",
+    "reason": "Expanded top-N/guard/SL/dynamic templates after duplicate/no-new strategy frontier.",
+    "spec_count": 16
+  }
 }

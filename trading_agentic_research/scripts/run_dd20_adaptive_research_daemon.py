@@ -255,7 +255,11 @@ def update_reports(args: argparse.Namespace, parent_run_id: str, batch_number: i
     write_dd20_summary_csv(Path(args.reports_dir) / "dd20_spy_beater_summary.csv", all_rows)
     write_dd20_summary_markdown(Path(args.reports_dir) / "dd20_spy_beater_summary.md", all_rows)
 
-    adaptive_rows = [enrich_adaptive_row(args, r, batch_number) for r in all_rows if str(r.get("strategy_id", "")).startswith("HYP_DD20_ADAPT_")]
+    adaptive_rows = [
+        enrich_adaptive_row(args, r, batch_number)
+        for r in all_rows
+        if str(r.get("strategy_id", "")).startswith(("HYP_DD20_ADAPT_", "HYP_DD20_EXP_"))
+    ]
     write_csv(Path(args.reports_dir) / "dd20_adaptive_batches.csv", adaptive_rows, ADAPTIVE_COLUMNS)
     write_csv(Path(args.reports_dir) / "dd20_frontier.csv", all_rows, sorted({k for row in all_rows for k in row.keys()}))
     write_axis_summary(args.state_dir, args.reports_dir)

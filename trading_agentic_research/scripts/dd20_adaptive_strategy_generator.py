@@ -50,6 +50,7 @@ def build_frontier_memory(
     for row in rows:
         row["frontier_class"] = classify_row(row, min_trades=min_trades)
         row["constraint_gap_score"] = constraint_gap_score(row, min_trades=min_trades)
+        row["config_hash"] = _config_hash_for_strategy(str(row.get("strategy_id") or ""))
 
     classes = {
         name: [r for r in rows if r["frontier_class"] == name]
@@ -149,7 +150,7 @@ def generate_next_dd20_strategies(
     axis_memory = axis_memory or DEFAULT_AXIS_MEMORY
     axis, _reason = choose_next_axis(frontier_memory, axis_memory)
     if axis == "trade_count_repair_around_sl10":
-        specs = _trade_count_repair_around_sl10_specs()
+        specs = _trade_count_repair_around_sl10_specs() + list(axis_memory.get("expanded_specs", []))
     else:
         specs = _fallback_controlled_specs(axis)
     existing_ids = {str(r.get("strategy_id")) for r in frontier_memory.get("all_rows", [])}
@@ -174,6 +175,36 @@ def generate_next_dd20_strategies(
         if len(out) >= batch_size:
             break
     return out
+
+
+def expand_generation_space(frontier_memory: dict[str, Any], axis_memory: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Add deterministic causal templates when the current axis runs out.
+
+    Expansion is not random. It keeps the useful SL10 + guard/top-N insight and
+    tries small, interpretable changes around the current trade-count frontier.
+    """
+    axis_memory = deepcopy(axis_memory or DEFAULT_AXIS_MEMORY)
+    cooldown = set(axis_memory.get("cooldown_axes", [])) | set(frontier_memory.get("cooldown_axes", []))
+    expanded = list(axis_memory.get("expanded_specs", []))
+    existing_ids = {s.get("strategy_id") for s in expanded}
+    if "trailing" in cooldown:
+        expanded = [s for s in expanded if "trailing_stop_pct" not in s.get("risk_management", {})]
+        existing_ids = {s.get("strategy_id") for s in expanded}
+    for spec in _expanded_trade_count_specs():
+        if spec["strategy_id"] in existing_ids:
+            continue
+        cfg = render_strategy_config(spec)
+        spec = dict(spec)
+        spec["config_hash"] = config_hash(cfg)
+        expanded.append(spec)
+        existing_ids.add(spec["strategy_id"])
+    axis_memory["expanded_specs"] = expanded
+    axis_memory["last_expansion"] = {
+        "axis": "trade_count_repair_around_sl10",
+        "reason": "Expanded top-N/guard/SL/dynamic templates after duplicate/no-new strategy frontier.",
+        "spec_count": len(expanded),
+    }
+    return axis_memory
 
 
 def render_strategy_config(spec: dict[str, Any], base_config_path: str | Path = BASE_NEAR_VALID_SL10_CONFIG) -> dict[str, Any]:
@@ -287,6 +318,58 @@ def _trade_count_repair_around_sl10_specs() -> list[dict[str, Any]]:
     ]
 
 
+def _expanded_trade_count_specs() -> list[dict[str, Any]]:
+    base = {
+        "generation_axis": "trade_count_repair_around_sl10",
+        "falsification_rule": "Reject if DD < -20, CAGR <= SPY, years W/L turns negative, or trades do not improve toward 3000.",
+        "empirical_basis": [
+            {
+                "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+                "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388.",
+            },
+            {
+                "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+                "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR.",
+            },
+        ],
+        "risk_of_overfit": "Medium: expansions are coarse causal moves around top-N guard participation; no trailing is generated while trailing is cooling down.",
+    }
+    out: list[dict[str, Any]] = []
+    for top_n in [3, 8, 10]:
+        out.append(_spec(f"HYP_DD20_EXP_SL10_TOPN{top_n}_WHEN_GUARD_V1", _risk(top_n=top_n), f"Permit only top-{top_n} ranked entries while guard is active to trade only strongest momentum names under drawdown pressure.", ["risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base))
+    for top_n in [5, 8, 10]:
+        out.append(_spec(f"HYP_DD20_EXP_SL10_TOPN{top_n}_GUARD18_12_V1", _risk(top_n=top_n, resume=-12), f"Combine top-{top_n} guard-active entries with earlier resume at -12 to recover trade count without removing SL10.", ["risk_management.equity_drawdown_guard.allow_entries_when_active_top_n", "risk_management.equity_drawdown_guard.resume_drawdown_pct"], base))
+    for sl, top_n in [(8, 5), (9, 5), (10, 8), (11, 8)]:
+        out.append(_spec(f"HYP_DD20_EXP_SL{sl}_TOPN{top_n}_WHEN_GUARD_V1", _risk(top_n=top_n, stop_loss=sl), f"Test SL{sl} with top-{top_n} guard entries to see whether position-level loss control can free more entries while respecting DD20.", ["risk_management.stop_loss_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base))
+    for label, exposure in [("8055200", {"strong": 80, "neutral": 55, "weak": 20, "crisis": 0}), ("8550200", {"strong": 85, "neutral": 50, "weak": 20, "crisis": 0}), ("8050250", {"strong": 80, "neutral": 50, "weak": 25, "crisis": 0})]:
+        out.append(_spec(f"HYP_DD20_EXP_DYN{label}_SL10_TOPN5_V1", _risk(top_n=5, dynamic=exposure), f"Adjust dynamic exposure {exposure} with SL10 and top-5 guard entries to repair trades/CAGR without broad risk-on exposure.", ["risk_management.dynamic_regime_exposure_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base))
+    for label, stop, resume in [("19_12", -19, -12), ("18_14", -18, -14), ("17_10", -17, -10)]:
+        out.append(_spec(f"HYP_DD20_EXP_GUARD{label}_SL10_TOPN5_V1", _risk(top_n=5, stop=stop, resume=resume), f"Change guard activation/resume to {stop}/{resume} while keeping SL10 and top-5 guard entries.", ["risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct", "risk_management.equity_drawdown_guard.resume_drawdown_pct", "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"], base))
+    return out
+
+
+def _risk(
+    *,
+    top_n: int,
+    stop_loss: int = 10,
+    stop: int = -18,
+    resume: int = -10,
+    dynamic: dict[str, int] | None = None,
+) -> dict[str, Any]:
+    risk = {
+        "equity_drawdown_guard": {
+            "enabled": True,
+            "stop_new_entries_drawdown_pct": stop,
+            "resume_drawdown_pct": resume,
+            "allow_entries_when_active_top_n": top_n,
+        },
+        "stop_loss_pct": stop_loss,
+    }
+    if dynamic is not None:
+        risk["dynamic_regime_exposure_pct"] = dynamic
+    return risk
+
+
 def _fallback_controlled_specs(axis: str) -> list[dict[str, Any]]:
     spec = _trade_count_repair_around_sl10_specs()[0]
     spec["generation_axis"] = axis
@@ -350,6 +433,16 @@ def _read_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return deepcopy(default)
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _config_hash_for_strategy(strategy_id: str) -> str:
+    path = ROOT / "configs/generated" / f"{strategy_id}.json"
+    if not path.exists():
+        return ""
+    try:
+        return config_hash(_read_json(path, {}))
+    except Exception:
+        return ""
 
 
 def _sort_valid(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:

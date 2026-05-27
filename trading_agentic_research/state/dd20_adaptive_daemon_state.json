@@ -3,27 +3,38 @@
   "phase": "dd20_adaptive_research",
   "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
   "last_error": "",
-  "total_attempts": 5,
+  "total_attempts": 11,
   "attempted_strategy_ids": [
     "HYP_DD20_ADAPT_SL10_GUARD18_12_V1",
     "HYP_DD20_ADAPT_SL10_REDUCED_20_V1",
     "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
     "HYP_DD20_ADAPT_SL10_COOLDOWN_3_V1",
-    "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1"
+    "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN3_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN5_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN8_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN10_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN5_GUARD18_12_V1",
+    "HYP_DD20_EXP_SL10_TOPN8_GUARD18_12_V1"
   ],
   "completed_strategy_ids": [
     "HYP_DD20_ADAPT_SL10_GUARD18_12_V1",
     "HYP_DD20_ADAPT_SL10_REDUCED_20_V1",
     "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
     "HYP_DD20_ADAPT_SL10_COOLDOWN_3_V1",
-    "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1"
+    "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN3_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN8_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN10_WHEN_GUARD_V1",
+    "HYP_DD20_EXP_SL10_TOPN5_GUARD18_12_V1",
+    "HYP_DD20_EXP_SL10_TOPN8_GUARD18_12_V1"
   ],
-  "completed_real_runs": 5,
-  "last_run_id": "DD20ADAPT_001_HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+  "completed_real_runs": 10,
+  "last_run_id": "DD20ADAPT_004_HYP_DD20_EXP_SL10_TOPN8_GUARD18_12_V1",
   "frontier": {
     "class_counts": {
       "valid_candidate": 0,
-      "near_valid_low_trades": 6,
+      "near_valid_low_trades": 9,
       "near_valid_bad_years": 2,
       "high_cagr_dd_breach": 235,
       "dd20_low_cagr": 0,
@@ -50,7 +61,8 @@
       "rejection_reason": "insufficient_trades:2405<3000",
       "rank_under_constraint": "",
       "frontier_class": "near_valid_low_trades",
-      "constraint_gap_score": 0.198333
+      "constraint_gap_score": 0.198333,
+      "config_hash": "b5b68a86b5098159"
     },
     "best_near_valid_low_trades": {
       "run_id": "DD20ADAPT_001_HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
@@ -72,12 +84,13 @@
       "rejection_reason": "insufficient_trades:2405<3000",
       "rank_under_constraint": "",
       "frontier_class": "near_valid_low_trades",
-      "constraint_gap_score": 0.198333
+      "constraint_gap_score": 0.198333,
+      "config_hash": "b5b68a86b5098159"
     },
     "next_axis_recommendation": "trade_count_repair_around_sl10",
     "last_generation_reason": "Best near-valid `HYP_DD20_ADAPT_SL10_REDUCED_25_V1` already passes DD20/CAGR/years and only lacks trades."
   },
-  "updated_at": "2026-05-27T01:13:00.719134+00:00",
-  "last_batch": 1,
+  "updated_at": "2026-05-27T02:49:22.045767+00:00",
+  "last_batch": 4,
   "stop_reason": "max_batches_reached"
 }

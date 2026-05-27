@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "last_error": "",
+  "cycle": 2,
+  "last_stop_reason": "max_batches_reached",
+  "last_repair": "",
+  "last_expansion": "",
+  "no_improve_cycles": 1,
+  "repeated_errors": {},
+  "next_action": "continue_next_cycle",
+  "updated_at": "2026-05-27T02:31:45.889932+00:00",
+  "stop_reason": "max_cycles_reached",
+  "daemon_state": {
+    "total_attempts": 11,
+    "completed_real_runs": 10,
+    "last_batch": 4
+  }
+}

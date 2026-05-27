@@ -193,7 +193,8 @@
         "rejection_reason": "insufficient_trades:2405<3000",
         "rank_under_constraint": "",
         "frontier_class": "near_valid_low_trades",
-        "constraint_gap_score": 0.198333
+        "constraint_gap_score": 0.198333,
+        "config_hash": "b5b68a86b5098159"
       },
       "next_axis": "trade_count_repair_around_sl10",
       "lesson": "Best near-valid `HYP_DD20_ADAPT_SL10_REDUCED_25_V1` already passes DD20/CAGR/years and only lacks trades."
