@@ -170,6 +170,33 @@
         "rank_exit_count": 0
       },
       "lesson": "Stop/trailing exits are useful only if they recover trades without breaking DD20; compare exit counts before expanding."
+    },
+    {
+      "phase": "dd20_adaptive_research",
+      "best_near_valid": {
+        "run_id": "DD20ADAPT_001_HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+        "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+        "cagr": 9.137432,
+        "spy_cagr": 6.802475,
+        "excess_cagr": 2.334958,
+        "max_drawdown": -19.797966,
+        "dd_limit": -20.0,
+        "passes_dd20": true,
+        "beats_spy_cagr": true,
+        "years_beating_spy": 16,
+        "years_losing_to_spy": 12,
+        "months_beating_spy": 173,
+        "months_losing_to_spy": 156,
+        "calmar": 0.461534,
+        "trades": 2405,
+        "decision": "rejected",
+        "rejection_reason": "insufficient_trades:2405<3000",
+        "rank_under_constraint": "",
+        "frontier_class": "near_valid_low_trades",
+        "constraint_gap_score": 0.198333
+      },
+      "next_axis": "trade_count_repair_around_sl10",
+      "lesson": "Best near-valid `HYP_DD20_ADAPT_SL10_REDUCED_25_V1` already passes DD20/CAGR/years and only lacks trades."
     }
   ],
   "summary": {
@@ -200,7 +227,6 @@
     "learning": "After enabling embedded spy_* regime fields, stronger strong/neutral exposure improves years W/L and CAGR but breaks DD20/trade-count constraints; soft equity guard preserves DD20 but cuts trades below 3000."
   },
   "recommendations": [
-    "Prioritize variants that pass DD20 and exceed 2200 trades before chasing CAGR.",
-    "If no stop/trailing variant improves trade count, the equity guard is the bottleneck."
+    "Best near-valid `HYP_DD20_ADAPT_SL10_REDUCED_25_V1` already passes DD20/CAGR/years and only lacks trades."
   ]
 }

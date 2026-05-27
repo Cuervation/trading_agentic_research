@@ -1,0 +1,16 @@
+{
+  "cooldown_axes": [],
+  "exhausted_axes": [],
+  "axis_outcomes": {
+    "trade_count_repair_around_sl10": {
+      "runs": 5,
+      "dd_breaches": 0,
+      "low_trade_runs": 0,
+      "duplicates": 0,
+      "improvements": 4
+    }
+  },
+  "active_axes": [
+    "trade_count_repair_around_sl10"
+  ]
+}

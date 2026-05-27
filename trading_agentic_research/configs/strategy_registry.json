@@ -2843,6 +2843,76 @@
       "evaluation_mode": "dd20_spy_beater",
       "generation_axis": "dd20_stop_trailing_repair",
       "notes": "DD20_STOP_TRAILING_REPAIR candidate."
+    },
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_GUARD18_12_V1",
+      "strategy_family": "dd20_adaptive_research",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD20_ADAPT_SL10_GUARD18_12_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+      "evaluation_mode": "dd20_spy_beater",
+      "generation_axis": "trade_count_repair_around_sl10",
+      "notes": "Adaptive DD20 daemon candidate generated from empirical frontier."
+    },
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_20_V1",
+      "strategy_family": "dd20_adaptive_research",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD20_ADAPT_SL10_REDUCED_20_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+      "evaluation_mode": "dd20_spy_beater",
+      "generation_axis": "trade_count_repair_around_sl10",
+      "notes": "Adaptive DD20 daemon candidate generated from empirical frontier."
+    },
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+      "strategy_family": "dd20_adaptive_research",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD20_ADAPT_SL10_REDUCED_25_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+      "evaluation_mode": "dd20_spy_beater",
+      "generation_axis": "trade_count_repair_around_sl10",
+      "notes": "Adaptive DD20 daemon candidate generated from empirical frontier."
+    },
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_COOLDOWN_3_V1",
+      "strategy_family": "dd20_adaptive_research",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD20_ADAPT_SL10_COOLDOWN_3_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+      "evaluation_mode": "dd20_spy_beater",
+      "generation_axis": "trade_count_repair_around_sl10",
+      "notes": "Adaptive DD20 daemon candidate generated from empirical frontier."
+    },
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+      "strategy_family": "dd20_adaptive_research",
+      "status": "candidate",
+      "benchmark_ticker": "SPY",
+      "config_path": "configs/generated/HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1.json",
+      "signal_frequency": "weekly",
+      "execution_frequency": "daily",
+      "rebalance_frequency": "monthly",
+      "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+      "evaluation_mode": "dd20_spy_beater",
+      "generation_axis": "trade_count_repair_around_sl10",
+      "notes": "Adaptive DD20 daemon candidate generated from empirical frontier."
     }
   ]
 }

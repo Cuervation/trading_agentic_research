@@ -92,6 +92,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     equity_guard_active = False
     equity_guard_activations = 0
     equity_guard_blocked_rebalances = 0
+    equity_guard_partial_rebalances = 0
+    equity_guard_cooldown_remaining = 0
     kill_switch_violated = False
     kill_switch_first_date = None
 
@@ -103,9 +105,11 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
         if equity_drawdown_guard:
             if equity_guard_active and current_equity_dd_pct >= equity_drawdown_guard["resume_drawdown_pct"]:
                 equity_guard_active = False
+                equity_guard_cooldown_remaining = 0
             elif (not equity_guard_active) and current_equity_dd_pct <= equity_drawdown_guard["stop_new_entries_drawdown_pct"]:
                 equity_guard_active = True
                 equity_guard_activations += 1
+                equity_guard_cooldown_remaining = int(equity_drawdown_guard.get("cooldown_rebalances") or 0)
         if max_drawdown_kill_switch and current_equity_dd_pct <= max_drawdown_kill_switch["stop_backtest_drawdown_pct"]:
             if not kill_switch_violated:
                 kill_switch_first_date = current_date
@@ -114,6 +118,12 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
         if current_date in rebalance_plan:
             plan = rebalance_plan[current_date]
             day_prices = close_matrix.loc[current_date].dropna().to_dict()
+            guard_policy = _equity_guard_rebalance_policy(
+                equity_guard_active=equity_guard_active,
+                current_equity_dd_pct=current_equity_dd_pct,
+                equity_drawdown_guard=equity_drawdown_guard,
+                cooldown_remaining=equity_guard_cooldown_remaining,
+            )
             cash = _process_rebalance(
                 current_date=current_date,
                 target_tickers=plan["target_tickers"],
@@ -127,12 +137,21 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 cost_per_side_pct=cost_per_side_pct,
                 max_gross_exposure_pct=plan.get("max_gross_exposure_pct", max_gross_exposure_pct),
                 rank_deterioration_exit=rank_deterioration_exit,
-                block_new_entries=equity_guard_active,
+                block_new_entries=bool(guard_policy["block_new_entries"]),
+                reduced_exposure_pct_when_active=guard_policy["reduced_exposure_pct_when_active"],
+                allow_entries_when_active_top_n=guard_policy["allow_entries_when_active_top_n"],
                 trade_rows=trade_rows,
                 warnings=warnings,
             )
-            if equity_guard_active:
+            if guard_policy["block_new_entries"]:
                 equity_guard_blocked_rebalances += 1
+            elif equity_guard_active and (
+                guard_policy["reduced_exposure_pct_when_active"] is not None
+                or guard_policy["allow_entries_when_active_top_n"] is not None
+            ):
+                equity_guard_partial_rebalances += 1
+            if equity_guard_active and equity_guard_cooldown_remaining > 0:
+                equity_guard_cooldown_remaining -= 1
             processed_rebalances += 1
 
         cash = _process_trailing_stops(
@@ -165,6 +184,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             "enabled": bool(equity_drawdown_guard),
             "activations": int(equity_guard_activations),
             "blocked_rebalances": int(equity_guard_blocked_rebalances),
+            "partial_rebalances": int(equity_guard_partial_rebalances),
+            "cooldown_remaining": int(equity_guard_cooldown_remaining),
             "active_at_end": bool(equity_guard_active),
         },
         "max_drawdown_kill_switch": {
@@ -282,6 +303,8 @@ def _process_rebalance(
     block_new_entries: bool,
     trade_rows: list[dict],
     warnings: list[str],
+    reduced_exposure_pct_when_active: float | None = None,
+    allow_entries_when_active_top_n: int | None = None,
 ) -> float:
     """Rebalance to equal-weight targets using current-day close prices.
 
@@ -350,6 +373,20 @@ def _process_rebalance(
 
     if not market_filter_passed or not valid_target_tickers:
         return cash
+
+    if allow_entries_when_active_top_n is not None and allow_entries_when_active_top_n > 0:
+        allowed = {
+            ticker for ticker, _rank in sorted(
+                ((ticker, int(rank_map.get(ticker, 10**9))) for ticker in valid_target_tickers),
+                key=lambda item: (item[1], item[0]),
+            )[:allow_entries_when_active_top_n]
+        }
+        valid_target_tickers = {ticker for ticker in valid_target_tickers if ticker in allowed or ticker in positions}
+        if not valid_target_tickers:
+            return cash
+
+    if reduced_exposure_pct_when_active is not None:
+        max_gross_exposure_pct = min(max_gross_exposure_pct, float(reduced_exposure_pct_when_active) / 100.0)
 
     cost_rate = cost_per_side_pct / 100.0
 
@@ -591,7 +628,70 @@ def _get_equity_drawdown_guard(strategy_config: dict) -> dict | None:
         return None
     if resume < stop:
         return None
-    return {"stop_new_entries_drawdown_pct": stop, "resume_drawdown_pct": resume}
+    guard = {"stop_new_entries_drawdown_pct": stop, "resume_drawdown_pct": resume}
+    reduced = cfg.get("reduced_exposure_pct_when_active")
+    if reduced is not None:
+        try:
+            reduced_value = float(reduced)
+            if reduced_value > 0:
+                guard["reduced_exposure_pct_when_active"] = reduced_value
+        except (TypeError, ValueError):
+            pass
+    cooldown = cfg.get("cooldown_rebalances")
+    if cooldown is not None:
+        try:
+            cooldown_value = int(cooldown)
+            if cooldown_value > 0:
+                guard["cooldown_rebalances"] = cooldown_value
+        except (TypeError, ValueError):
+            pass
+    top_n = cfg.get("allow_entries_when_active_top_n")
+    if top_n is not None:
+        try:
+            top_n_value = int(top_n)
+            if top_n_value > 0:
+                guard["allow_entries_when_active_top_n"] = top_n_value
+        except (TypeError, ValueError):
+            pass
+    return guard
+
+
+def _equity_guard_rebalance_policy(
+    *,
+    equity_guard_active: bool,
+    current_equity_dd_pct: float,
+    equity_drawdown_guard: dict | None,
+    cooldown_remaining: int,
+) -> dict[str, float | int | bool | None]:
+    policy = {
+        "block_new_entries": False,
+        "reduced_exposure_pct_when_active": None,
+        "allow_entries_when_active_top_n": None,
+    }
+    if not equity_guard_active or not equity_drawdown_guard:
+        return policy
+
+    reduced = equity_drawdown_guard.get("reduced_exposure_pct_when_active")
+    top_n = equity_drawdown_guard.get("allow_entries_when_active_top_n")
+    cooldown = int(equity_drawdown_guard.get("cooldown_rebalances") or 0)
+    hard_stop = float(equity_drawdown_guard["stop_new_entries_drawdown_pct"]) - 3.0
+    hard_breach = current_equity_dd_pct <= hard_stop
+
+    if hard_breach:
+        policy["block_new_entries"] = True
+        return policy
+
+    if cooldown and cooldown_remaining > 0:
+        policy["block_new_entries"] = True
+        return policy
+
+    if reduced is None and top_n is None:
+        policy["block_new_entries"] = True
+        return policy
+
+    policy["reduced_exposure_pct_when_active"] = reduced
+    policy["allow_entries_when_active_top_n"] = top_n
+    return policy
 
 
 def _get_max_drawdown_kill_switch(strategy_config: dict) -> dict | None:
