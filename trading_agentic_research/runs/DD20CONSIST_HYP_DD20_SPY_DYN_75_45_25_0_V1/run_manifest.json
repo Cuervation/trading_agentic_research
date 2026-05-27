@@ -1,0 +1,29 @@
+{
+  "run_id": "DD20CONSIST_HYP_DD20_SPY_DYN_75_45_25_0_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD20_SPY_DYN_75_45_25_0_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD20_SPY_DYN_75_45_25_0_V1.json",
+  "parent_strategy_id": "HYP_DD20_SPY_DYN_65_45_25_0_V1",
+  "hypothesis_id": "HYP_DD20_SPY_DYN_75_45_25_0_V1",
+  "hypothesis_family": "dd20_spy_consistency_repair",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_65_45_25_0_V1",
+      "reason": "Best near-miss: DD20 passed and CAGR beat SPY, but years W/L was 13/15."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.dynamic_regime_exposure_pct"
+  ],
+  "config_hash": "e6f3c678f7589bd44cff98365c2bb6c103497979462c2872fd3a63864bb4ee93",
+  "code_hash": "b2b15bb1fb40e71602a3f1600dfd8154ab141195e3b9f928eb16168db187bc27",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-26T15:47:01.215874+00:00"
+}

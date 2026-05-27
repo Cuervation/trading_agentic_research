@@ -1,0 +1,39 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd20_spy_beater",
+  "decision": "rejected",
+  "reasons": [
+    "insufficient_trades:1069<3000",
+    "max_drawdown_breaches_dd20:-20.665231<-20.000000",
+    "does_not_beat_spy_cagr:3.795805<=6.802475",
+    "loses_more_years_than_beats:12<16"
+  ],
+  "blocking_issues": [
+    "insufficient_trades:1069<3000",
+    "max_drawdown_breaches_dd20:-20.665231<-20.000000",
+    "does_not_beat_spy_cagr:3.795805<=6.802475",
+    "loses_more_years_than_beats:12<16"
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "dd20_spy_beater": {
+    "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+    "strategy_id": "HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+    "cagr": 3.795805,
+    "spy_cagr": 6.802475,
+    "excess_cagr": -3.00667,
+    "max_drawdown": -20.665231,
+    "dd_limit": -20.0,
+    "passes_dd20": false,
+    "beats_spy_cagr": false,
+    "years_beating_spy": 12,
+    "years_losing_to_spy": 16,
+    "months_beating_spy": 152,
+    "months_losing_to_spy": 177,
+    "calmar": 0.183681,
+    "trades": 1069,
+    "decision": "rejected",
+    "rejection_reason": "insufficient_trades:1069<3000; max_drawdown_breaches_dd20:-20.665231<-20.000000; does_not_beat_spy_cagr:3.795805<=6.802475; loses_more_years_than_beats:12<16",
+    "rank_under_constraint": ""
+  }
+}

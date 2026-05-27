@@ -1,0 +1,34 @@
+{
+  "run_id": "DD20ADAPT_005_HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1.json",
+  "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+  "hypothesis_id": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+  "hypothesis_family": "dd20_adaptive_research",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_TOPN5_WHEN_GUARD_V1",
+      "reason": "Top-N while guard active raised CAGR to 10.240538 with DD -19.325183 and years 17/11, but trades remained 2388."
+    },
+    {
+      "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_25_V1",
+      "reason": "Reduced guard exposure reached 2405 trades and kept DD20, but reduced CAGR."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.stop_loss_pct",
+    "risk_management.equity_drawdown_guard.allow_entries_when_active_top_n"
+  ],
+  "config_hash": "c0f95e35e74ef854321e8af055b2dbe971ba9de05e01d5d7b02263047ece6d7b",
+  "code_hash": "d0cd1df94bb118197fd5c73429af7113ca48bee71e70ff429542deb086092654",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-27T03:41:34.819476+00:00"
+}

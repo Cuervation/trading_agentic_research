@@ -1,0 +1,32 @@
+{
+  "run_id": "DD20STOPTRAIL_HYP_DD20_STOPTRAIL_DYN8050200_NO_GUARD_SL12_TR18_ACT10_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD20_STOPTRAIL_DYN8050200_NO_GUARD_SL12_TR18_ACT10_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD20_STOPTRAIL_DYN8050200_NO_GUARD_SL12_TR18_ACT10_V1.json",
+  "parent_strategy_id": "HYP_DD20_SPY_DYN_80_50_20_0_EQUITY_GUARD_18_10_V1",
+  "hypothesis_id": "HYP_DD20_STOPTRAIL_DYN8050200_NO_GUARD_SL12_TR18_ACT10_V1",
+  "hypothesis_family": "dd20_stop_trailing_repair",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "strategy_id": "HYP_DD20_SPY_DYN_80_50_20_0_EQUITY_GUARD_18_10_V1",
+      "reason": "Near-valid DD20 candidate with CAGR > SPY and years W/L 14/14, but only 1699 trades."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.equity_drawdown_guard",
+    "risk_management.stop_loss_pct",
+    "risk_management.trailing_stop_pct",
+    "risk_management.trailing_activation_gain_pct"
+  ],
+  "config_hash": "f0b8a5a8f68a166a00e73ef333587647e9abdf5c7c82c55cefc6dd5fa6afdfa0",
+  "code_hash": "7ddffcc8cd1f9746c2b7b75dfcb0292be4288d76e804c7dbe5a9dc8dad5b04b4",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-26T23:16:53.477229+00:00"
+}

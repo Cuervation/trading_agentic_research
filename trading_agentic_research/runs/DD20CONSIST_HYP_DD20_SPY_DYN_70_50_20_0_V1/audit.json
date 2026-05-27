@@ -1,0 +1,35 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd20_spy_beater",
+  "decision": "rejected",
+  "reasons": [
+    "does_not_beat_spy_cagr:5.671146<=6.802475",
+    "loses_more_years_than_beats:12<16"
+  ],
+  "blocking_issues": [
+    "does_not_beat_spy_cagr:5.671146<=6.802475",
+    "loses_more_years_than_beats:12<16"
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "dd20_spy_beater": {
+    "run_id": "DD20CONSIST_HYP_DD20_SPY_DYN_70_50_20_0_V1",
+    "strategy_id": "HYP_DD20_SPY_DYN_70_50_20_0_V1",
+    "cagr": 5.671146,
+    "spy_cagr": 6.802475,
+    "excess_cagr": -1.131329,
+    "max_drawdown": -15.11644,
+    "dd_limit": -20.0,
+    "passes_dd20": true,
+    "beats_spy_cagr": false,
+    "years_beating_spy": 12,
+    "years_losing_to_spy": 16,
+    "months_beating_spy": 161,
+    "months_losing_to_spy": 168,
+    "calmar": 0.375164,
+    "trades": 3844,
+    "decision": "rejected",
+    "rejection_reason": "does_not_beat_spy_cagr:5.671146<=6.802475; loses_more_years_than_beats:12<16",
+    "rank_under_constraint": ""
+  }
+}

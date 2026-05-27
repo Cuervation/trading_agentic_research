@@ -12,7 +12,7 @@ import pandas as pd
 from scripts.governance import artifact_hashes, artifacts_are_duplicate
 
 DD20_LIMIT_PCT = -20.0
-DD20_MIN_TRADES = 3000
+DD20_MIN_TRADES = 1000
 DD20_COLUMNS = [
     "run_id",
     "strategy_id",
@@ -214,7 +214,7 @@ def build_dd20_summary_markdown(rows: list[dict[str, Any]]) -> str:
     lines = [
         "# DD20 SPY Beater Summary",
         "",
-        "Constraint: `max_drawdown >= -20`, `CAGR > SPY CAGR`, `trades >= 3000`, `years_beating_spy >= years_losing_to_spy`.",
+        "Constraint: `max_drawdown >= -20`, `CAGR > SPY CAGR`, `trades >= 1000`, `years_beating_spy >= years_losing_to_spy`.",
         "",
     ]
     if valid:

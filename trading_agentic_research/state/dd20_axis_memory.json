@@ -3,11 +3,11 @@
   "exhausted_axes": [],
   "axis_outcomes": {
     "trade_count_repair_around_sl10": {
-      "runs": 11,
+      "runs": 21,
       "dd_breaches": 0,
       "low_trade_runs": 0,
       "duplicates": 0,
-      "improvements": 10
+      "improvements": 19
     }
   },
   "active_axes": [
@@ -531,6 +531,6 @@
   "last_expansion": {
     "axis": "trade_count_repair_around_sl10",
     "reason": "Expanded top-N/guard/SL/dynamic templates after duplicate/no-new strategy frontier.",
-    "spec_count": 16
+    "spec_count": 15
   }
 }

@@ -1,0 +1,29 @@
+{
+  "run_id": "DD20BATCH_002_HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1.json",
+  "parent_strategy_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "hypothesis_id": "HYP_DD20_SPY_DYN_65_55_45_25_EQUITY_GUARD_15_8_V1",
+  "hypothesis_family": "dd20_spy_beater",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1",
+      "reason": "Best useful defensive DD_FIRST candidate so far."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.equity_drawdown_guard"
+  ],
+  "config_hash": "fefa3245ca969971532a998bf21e2bdf09a0470c980ece87b18d0b3aad9b7c09",
+  "code_hash": "1b284821236c9b43f575c57bdb8143c9281c2be49f48f1ca65f33a91b9b671de",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-26T04:09:24.410510+00:00"
+}

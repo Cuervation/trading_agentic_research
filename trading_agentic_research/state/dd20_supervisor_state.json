@@ -2,18 +2,18 @@
   "status": "completed",
   "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
   "last_error": "",
-  "cycle": 2,
-  "last_stop_reason": "max_batches_reached",
+  "cycle": 100,
+  "last_stop_reason": "no_new_non_duplicate_strategies",
   "last_repair": "",
-  "last_expansion": "",
-  "no_improve_cycles": 1,
+  "last_expansion": "15",
+  "no_improve_cycles": 0,
   "repeated_errors": {},
-  "next_action": "continue_next_cycle",
-  "updated_at": "2026-05-27T02:31:45.889932+00:00",
+  "next_action": "expand_generation_space_then_continue",
+  "updated_at": "2026-05-27T06:44:48.882919+00:00",
   "stop_reason": "max_cycles_reached",
   "daemon_state": {
-    "total_attempts": 11,
-    "completed_real_runs": 10,
-    "last_batch": 4
+    "total_attempts": 21,
+    "completed_real_runs": 20,
+    "last_batch": 104
   }
 }

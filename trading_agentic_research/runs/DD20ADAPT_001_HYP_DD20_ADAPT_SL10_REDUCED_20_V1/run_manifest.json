@@ -1,0 +1,29 @@
+{
+  "run_id": "DD20ADAPT_001_HYP_DD20_ADAPT_SL10_REDUCED_20_V1",
+  "parent_run_id": "RETEST_HYP_AUTO_TIME_SERIES_MOMENTUM_SEED_1999_2026_20260524_174409",
+  "strategy_id": "HYP_DD20_ADAPT_SL10_REDUCED_20_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "configs/generated/HYP_DD20_ADAPT_SL10_REDUCED_20_V1.json",
+  "parent_strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+  "hypothesis_id": "HYP_DD20_ADAPT_SL10_REDUCED_20_V1",
+  "hypothesis_family": "dd20_adaptive_research",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [
+    {
+      "strategy_id": "HYP_DD20_STOP_DYN8050200_GUARD1810_SL10_V1",
+      "reason": "Near-valid DD20/SPY strategy with CAGR 9.675868, DD -19.325183, years 17/11, but only 2345 trades."
+    }
+  ],
+  "changed_parameters": [
+    "risk_management.equity_drawdown_guard.reduced_exposure_pct_when_active"
+  ],
+  "config_hash": "def0d8418ef04544930e280ba25bc988a4d7226492e7ee29770af4e4ffd20078",
+  "code_hash": "3345345818e4dbb82b066f73a4548069c3dccd2481ac75597910a5045310924e",
+  "data_hash": "df2abe8f2df7020c42bf589107aaaffd0f316eb43bdbe0a393e7af8694b26110",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-05-27T00:34:24.037568+00:00"
+}

@@ -1,0 +1,35 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd20_spy_beater",
+  "decision": "rejected",
+  "reasons": [
+    "insufficient_trades:2338<3000",
+    "max_drawdown_breaches_dd20:-20.424879<-20.000000"
+  ],
+  "blocking_issues": [
+    "insufficient_trades:2338<3000",
+    "max_drawdown_breaches_dd20:-20.424879<-20.000000"
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "dd20_spy_beater": {
+    "run_id": "DD20ADAPT_006_HYP_DD20_EXP_DYN8550200_SL10_TOPN5_V1",
+    "strategy_id": "HYP_DD20_EXP_DYN8550200_SL10_TOPN5_V1",
+    "cagr": 10.546561,
+    "spy_cagr": 6.802475,
+    "excess_cagr": 3.744086,
+    "max_drawdown": -20.424879,
+    "dd_limit": -20.0,
+    "passes_dd20": false,
+    "beats_spy_cagr": true,
+    "years_beating_spy": 17,
+    "years_losing_to_spy": 11,
+    "months_beating_spy": 173,
+    "months_losing_to_spy": 156,
+    "calmar": 0.516359,
+    "trades": 2338,
+    "decision": "rejected",
+    "rejection_reason": "insufficient_trades:2338<3000; max_drawdown_breaches_dd20:-20.424879<-20.000000",
+    "rank_under_constraint": ""
+  }
+}

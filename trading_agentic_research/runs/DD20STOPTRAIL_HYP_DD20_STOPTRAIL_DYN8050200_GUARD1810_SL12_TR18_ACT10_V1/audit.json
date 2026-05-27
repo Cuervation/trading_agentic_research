@@ -1,0 +1,37 @@
+{
+  "audit_status": "completed",
+  "evaluation_mode": "dd20_spy_beater",
+  "decision": "rejected",
+  "reasons": [
+    "insufficient_trades:99<3000",
+    "does_not_beat_spy_cagr:0.090526<=6.802475",
+    "loses_more_years_than_beats:8<20"
+  ],
+  "blocking_issues": [
+    "insufficient_trades:99<3000",
+    "does_not_beat_spy_cagr:0.090526<=6.802475",
+    "loses_more_years_than_beats:8<20"
+  ],
+  "can_move_parent": false,
+  "can_promote_baseline": false,
+  "dd20_spy_beater": {
+    "run_id": "DD20STOPTRAIL_HYP_DD20_STOPTRAIL_DYN8050200_GUARD1810_SL12_TR18_ACT10_V1",
+    "strategy_id": "HYP_DD20_STOPTRAIL_DYN8050200_GUARD1810_SL12_TR18_ACT10_V1",
+    "cagr": 0.090526,
+    "spy_cagr": 6.802475,
+    "excess_cagr": -6.711949,
+    "max_drawdown": -19.487662,
+    "dd_limit": -20.0,
+    "passes_dd20": true,
+    "beats_spy_cagr": false,
+    "years_beating_spy": 8,
+    "years_losing_to_spy": 20,
+    "months_beating_spy": 128,
+    "months_losing_to_spy": 201,
+    "calmar": 0.004645,
+    "trades": 99,
+    "decision": "rejected",
+    "rejection_reason": "insufficient_trades:99<3000; does_not_beat_spy_cagr:0.090526<=6.802475; loses_more_years_than_beats:8<20",
+    "rank_under_constraint": ""
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "strategy": {
+    "total_return_pct": 1317.7583780777502,
+    "cagr_pct": 10.169726471924445,
+    "max_drawdown_pct": -19.32518255937923,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 506.0574160210821,
+    "cagr_pct": 6.802474621020882,
+    "max_drawdown_pct": -56.473669178171626,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 316,
+    "number_of_trades": 2398,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-05-22; skipped rebalance."
+    ],
+    "equity_drawdown_guard": {
+      "enabled": true,
+      "activations": 3,
+      "blocked_rebalances": 0,
+      "partial_rebalances": 1,
+      "cooldown_remaining": 0,
+      "active_at_end": false
+    },
+    "max_drawdown_kill_switch": {
+      "enabled": false,
+      "violated": false,
+      "first_violation_date": null
+    }
+  },
+  "costs": {
+    "applied": true,
+    "cost_per_side_pct": 0.24
+  }
+}
