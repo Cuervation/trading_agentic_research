@@ -1,0 +1,44 @@
+{
+  "run_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_18_6_V1",
+  "strategy_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_18_6_V1",
+  "family": "topn_dynamic",
+  "promoted_to_baseline": false,
+  "accepted_for_followup": false,
+  "decision": "rejected",
+  "decision_reason": "Breaks DD20: max_drawdown_pct is worse than -20%.",
+  "infrastructure_flags": [
+    "declared_controls_not_fully_accounted"
+  ],
+  "risk_flags": [
+    "dd20_broken",
+    "cagr_not_beating_spy"
+  ],
+  "missing_artifacts": [],
+  "metrics": {
+    "strategy_cagr_pct": 3.512336021721496,
+    "strategy_max_drawdown_pct": -26.353233678076638,
+    "strategy_total_return_pct": 157.31291957982987,
+    "spy_cagr_pct": 6.802474621020882,
+    "spy_total_return_pct": 506.0574160210821,
+    "years_beating_spy": 13,
+    "months_beating_spy": 145,
+    "trades": 955
+  },
+  "comparison_summary": {
+    "strategy_cagr_pct": 3.512336021721496,
+    "spy_cagr_pct": 6.802474621020882,
+    "excess_cagr_pct": -3.290138599299386,
+    "months_beating_spy": 145,
+    "months_losing_to_spy": 184,
+    "years_beating_spy": 13,
+    "years_losing_to_spy": 15,
+    "recommendation_hint": "review"
+  },
+  "comparison_rows": {
+    "yearly_rows": 28,
+    "monthly_rows": 329
+  },
+  "support_status": "supported",
+  "support_issue": "",
+  "effective_config_audit_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\runs\\HYP_DD20_CTRL_TOPN_DYNAMIC_18_6_V1\\effective_config_audit.json"
+}

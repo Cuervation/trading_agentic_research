@@ -1,0 +1,125 @@
+{
+  "run_id": "HYP_DD20_CTRL_DD_COMPRESS_17_45_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_DD_COMPRESS_17_45_V1",
+  "family": "dd_compression",
+  "declared_controls": {
+    "risk_management.equity_drawdown_guard.enabled": true,
+    "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct": -18,
+    "risk_management.equity_drawdown_guard.resume_drawdown_pct": -12,
+    "risk_management.equity_drawdown_guard.max_drawdown_target_pct": -17,
+    "risk_management.max_gross_exposure_pct": 45
+  },
+  "translated_controls": {
+    "risk_management.max_gross_exposure_pct": 45,
+    "risk_management.equity_drawdown_guard.enabled": true,
+    "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct": -18,
+    "risk_management.equity_drawdown_guard.resume_drawdown_pct": -12
+  },
+  "unsupported_controls": [
+    "risk_management.equity_drawdown_guard.max_drawdown_target_pct"
+  ],
+  "ignored_controls": [
+    "risk_management.equity_drawdown_guard.max_drawdown_target_pct"
+  ],
+  "parent_config_hash": "77981ae4792ce58c5b809b6990c7c6672d49407f11ff3869b09046fe9a41fa47",
+  "candidate_config_hash": "9cf7afaa2b3d3361e4bfc268145be5dbfe781b61b393a95fbbf3228a9c9c9391",
+  "effect_signature": "209d9726913c8879235700114dba9b8050aa05a543b8b1ca2724ec0a9f1f2a0e",
+  "effect_signature_equals_parent": false,
+  "changed_fields_vs_parent": {
+    "engine_translation_note": {
+      "parent": "__MISSING__",
+      "candidate": "Applied dd_compression controls to max_gross_exposure_pct/equity_drawdown_guard; direct max_drawdown_target_pct is unsupported and ignored."
+    },
+    "hypothesis_id": {
+      "parent": "HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+      "candidate": "HYP_DD20_CTRL_DD_COMPRESS_17_45_V1"
+    },
+    "risk_management.equity_drawdown_guard.resume_drawdown_pct": {
+      "parent": -10,
+      "candidate": -12
+    },
+    "risk_management.max_gross_exposure_pct": {
+      "parent": 50,
+      "candidate": 45
+    },
+    "strategy_id": {
+      "parent": "HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+      "candidate": "HYP_DD20_CTRL_DD_COMPRESS_17_45_V1"
+    },
+    "strategy_overrides.market_filter.benchmark": {
+      "parent": "SPY",
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.market_filter.condition_any": {
+      "parent": [
+        {
+          "field": "spy_close_vs_sma50_pct",
+          "operator": ">",
+          "value": 0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.market_filter.require_positive_trend": {
+      "parent": true,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.ranking.field": {
+      "parent": "close_vs_sma52w_pct",
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.ranking.order": {
+      "parent": "desc",
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_filters.require_non_null_fields": {
+      "parent": [
+        "ret_52w_pct",
+        "close"
+      ],
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.equity_drawdown_guard.resume_drawdown_pct": {
+      "parent": -10,
+      "candidate": -12
+    },
+    "strategy_overrides.risk_management.max_gross_exposure_pct": {
+      "parent": 50,
+      "candidate": 45
+    }
+  },
+  "materialized_parent_strategy_overrides": {
+    "strategy_overrides.market_filter": {
+      "materialized_as": "market_filter",
+      "status": "preserved"
+    },
+    "strategy_overrides.ranking": {
+      "materialized_as": "ranking",
+      "status": "preserved"
+    },
+    "strategy_overrides.risk_filters": {
+      "materialized_as": "risk_filters",
+      "status": "preserved"
+    }
+  },
+  "risk_control_fields_applied": [
+    "risk_management.max_gross_exposure_pct",
+    "risk_management.equity_drawdown_guard.enabled",
+    "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct",
+    "risk_management.equity_drawdown_guard.resume_drawdown_pct"
+  ],
+  "risk_control_fields_ignored": [
+    "risk_management.equity_drawdown_guard.max_drawdown_target_pct",
+    "risk_management.equity_drawdown_guard.max_drawdown_target_pct"
+  ],
+  "covered_controls": [
+    "risk_management.equity_drawdown_guard.enabled",
+    "risk_management.equity_drawdown_guard.max_drawdown_target_pct",
+    "risk_management.equity_drawdown_guard.resume_drawdown_pct",
+    "risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct",
+    "risk_management.max_gross_exposure_pct"
+  ],
+  "missing_declared_controls": [],
+  "conclusion": "translated_controls_applied"
+}

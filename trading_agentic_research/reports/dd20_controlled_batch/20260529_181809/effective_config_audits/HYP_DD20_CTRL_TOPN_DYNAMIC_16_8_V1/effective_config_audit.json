@@ -1,0 +1,133 @@
+{
+  "run_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_16_8_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_16_8_V1",
+  "family": "topn_dynamic",
+  "declared_controls": {
+    "entry_rule.type": "top_n_dynamic",
+    "entry_rule.top_n_strong_regime": 16,
+    "entry_rule.top_n_weak_regime": 8,
+    "entry_rule.benchmark": "SPY",
+    "market_filter.benchmark": "SPY",
+    "market_filter.require_positive_trend": true,
+    "market_filter.condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ]
+  },
+  "translated_controls": {
+    "entry_rule.top_n": 16,
+    "market_filter.soft_weak_regime_top_n": 8
+  },
+  "unsupported_controls": [],
+  "ignored_controls": [
+    "entry_rule.type=top_n_dynamic",
+    "entry_rule.top_n_strong_regime",
+    "entry_rule.top_n_weak_regime"
+  ],
+  "parent_config_hash": "89232cffa14a45d4ab308641e4c1dd0a5ef2f11fda174912af9dbb7915426dfe",
+  "candidate_config_hash": "f4558290b6da1a4a173e55713466133d6b5861f5033afb257acaedc23b6ab7bf",
+  "effect_signature": "8647f2bf48636958e7abf4ab0f494c2479c811d5b32cb7a0a50e246e0e94a827",
+  "effect_signature_equals_parent": false,
+  "changed_fields_vs_parent": {
+    "engine_translation_note": {
+      "parent": "__MISSING__",
+      "candidate": "Translated top_n_dynamic -> entry_rule.top_n=16, market_filter.soft_weak_regime_top_n=8."
+    },
+    "entry_rule.top_n": {
+      "parent": 15,
+      "candidate": 16
+    },
+    "hypothesis_id": {
+      "parent": "HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+      "candidate": "HYP_DD20_CTRL_TOPN_DYNAMIC_16_8_V1"
+    },
+    "market_filter.soft_weak_regime_top_n": {
+      "parent": "__MISSING__",
+      "candidate": 8
+    },
+    "strategy_id": {
+      "parent": "HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+      "candidate": "HYP_DD20_CTRL_TOPN_DYNAMIC_16_8_V1"
+    },
+    "strategy_overrides.entry_rule.by": {
+      "parent": "__MISSING__",
+      "candidate": "ret_52w_pct"
+    },
+    "strategy_overrides.entry_rule.top_n": {
+      "parent": "__MISSING__",
+      "candidate": 16
+    },
+    "strategy_overrides.entry_rule.type": {
+      "parent": "__MISSING__",
+      "candidate": "top_n"
+    },
+    "strategy_overrides.market_filter.soft_weak_regime_top_n": {
+      "parent": "__MISSING__",
+      "candidate": 8
+    },
+    "strategy_overrides.ranking.field": {
+      "parent": "close_vs_sma52w_pct",
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.ranking.order": {
+      "parent": "desc",
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_filters.require_non_null_fields": {
+      "parent": [
+        "ret_52w_pct",
+        "close"
+      ],
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.dynamic_regime_exposure_pct.crisis": {
+      "parent": 0,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.dynamic_regime_exposure_pct.neutral": {
+      "parent": 50,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.dynamic_regime_exposure_pct.strong": {
+      "parent": 80,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.dynamic_regime_exposure_pct.weak": {
+      "parent": 20,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.equity_drawdown_guard.allow_entries_when_active_top_n": {
+      "parent": 8,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.equity_drawdown_guard.enabled": {
+      "parent": true,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.equity_drawdown_guard.resume_drawdown_pct": {
+      "parent": -10,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.equity_drawdown_guard.stop_new_entries_drawdown_pct": {
+      "parent": -18,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.max_gross_exposure_pct": {
+      "parent": 50,
+      "candidate": "__MISSING__"
+    },
+    "strategy_overrides.risk_management.stop_loss_pct": {
+      "parent": 12,
+      "candidate": "__MISSING__"
+    }
+  },
+  "risk_control_fields_applied": [
+    "market_filter.soft_weak_regime_top_n"
+  ],
+  "risk_control_fields_ignored": [],
+  "conclusion": "translated_controls_applied"
+}

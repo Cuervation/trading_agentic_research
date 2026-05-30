@@ -1,0 +1,11 @@
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}

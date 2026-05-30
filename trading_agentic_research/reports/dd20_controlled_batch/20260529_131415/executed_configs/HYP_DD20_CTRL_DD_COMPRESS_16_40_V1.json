@@ -1,0 +1,80 @@
+{
+  "strategy_id": "HYP_DD20_CTRL_DD_COMPRESS_16_40_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_DD_COMPRESS_16_40_V1",
+  "strategy_family": "dd20_controlled_hypotheses",
+  "benchmark_ticker": "SPY",
+  "rebalance_frequency": "monthly",
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "require_positive_trend": true,
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ]
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "claim": "Move max drawdown toward -15/-17 while keeping the strategy above SPY.",
+  "causal_mechanism": "The three audited champions are all already near -19.2 to -19.8 DD. That makes DD compression a sensible controlled experiment, but only if CAGR stays above SPY.",
+  "changed_parameters": [
+    "risk_management"
+  ],
+  "expected_effect": "Move max drawdown toward -15/-17 while keeping the strategy above SPY.",
+  "falsification_rule": "Reject if DD breaks -20, CAGR <= SPY, or the tighter risk band meaningfully weakens parent DD20 metrics without a compensating DD reduction.",
+  "generation_axis": "dd_compression",
+  "parent_strategy_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+  "parent_hypothesis_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+  "parent_strategy": "DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+  "empirical_basis": [
+    {
+      "run_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+      "reason": "Champion cluster already sits near the DD cap; this family tests whether that band can be compressed without losing SPY-beating CAGR."
+    }
+  ],
+  "metadata": {
+    "parent_strategy": "DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1",
+    "hypothesis_family": "dd_compression",
+    "expected_effect": "Target max drawdown -16% with gross exposure capped near 40%.",
+    "risk": "High",
+    "why_this_should_help": "All current champions are clustered just under the -20% cap; compressed DD is the natural next safety experiment if CAGR survives.",
+    "guardrail_max_drawdown_pct": -20,
+    "success_rule": "max_drawdown_pct no worse than -20; CAGR must exceed SPY; and one parent DD20 metric must improve materially.",
+    "rejection_rule": "Reject if DD < -20, CAGR <= SPY, or no parent metric improves materially."
+  },
+  "strategy_overrides": {
+    "risk_management": {
+      "equity_drawdown_guard": {
+        "enabled": true,
+        "stop_new_entries_drawdown_pct": -18,
+        "resume_drawdown_pct": -12,
+        "max_drawdown_target_pct": -16
+      },
+      "max_gross_exposure_pct": 45
+    }
+  },
+  "evaluation_mode": "dd20_controlled_hypotheses",
+  "status": "draft_controlled_hypothesis",
+  "risk_of_overfit": "Controlled: evidence-driven and limited to 12 variants.",
+  "novelty_reason": "Derived directly from the latest DD20 champion audit and bad-period evidence.",
+  "why_not_duplicate": "Each variant changes one controlled lever within dd_compression rather than making random parameter noise.",
+  "engine_translation_note": "Translated drawdown compression target to supported max_gross_exposure_pct =45 plus existing guardrail controls."
+}

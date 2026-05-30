@@ -1,2 +1,4 @@
-axis;dd_breaches;duplicates;improvements;low_trade_runs;runs
-trade_count_repair_around_sl10;0;0;19;0;21
+axis;dd_breaches;duplicates;improvements;low_trade_runs;runs;small_incremental_changes
+trade_count_repair_around_sl10;0;0;19;0;21;
+cagr_repair_under_dd20;0;0;6;0;13;7
+dd_rescue_for_high_cagr;0;0;1;0;1;

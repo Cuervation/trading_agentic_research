@@ -1,0 +1,748 @@
+﻿**********************
+Inicio de la transcripción de Windows PowerShell
+Hora de inicio: 20260529204558
+Nombre de usuario: TASA\CELESTINOH
+Usuario RunAs: TASA\CELESTINOH
+Nombre de la configuración: 
+Máquina: T214142 (Microsoft Windows NT 10.0.26100.0)
+Aplicación host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\run_dd20_12h.ps1 -Hours 12
+Id. de proceso: 92008
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+La transcripción ha comenzado. El archivo de salida es C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\overnight_dd20\overnight_dd20_20260529_204558.log
+DD20 overnight started: 05/29/2026 20:45:58
+Will stop after: 05/30/2026 08:45:58
+Log: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\overnight_dd20\overnight_dd20_20260529_204558.log
+
+============================================================
+Iteration started: 05/29/2026 20:45:58
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260529_204559
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/29/2026 21:37:51
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/29/2026 21:38:51
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260529_213852
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/29/2026 22:19:35
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/29/2026 22:20:35
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260529_222036
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/29/2026 23:00:33
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/29/2026 23:01:33
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260529_230134
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/29/2026 23:41:39
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/29/2026 23:42:39
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260529_234240
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 00:22:49
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 00:23:49
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_002350
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 01:04:11
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 01:05:11
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_010512
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 01:48:11
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 01:49:11
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_014912
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 02:30:10
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 02:31:10
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_023111
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 03:10:58
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 03:11:58
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_031159
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 03:52:06
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 03:53:06
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_035307
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 04:33:11
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 04:34:11
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_043412
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 05:14:16
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 05:15:16
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_051517
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 05:55:37
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 05:56:37
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_055638
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 06:36:30
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 06:37:30
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_063731
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 07:17:31
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 07:18:31
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_071832
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 07:58:34
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 07:59:34
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_075935
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 08:39:47
+Sleeping 60 seconds...
+
+============================================================
+Iteration started: 05/30/2026 08:40:47
+============================================================
+
+
+
+
+Latest batch: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\dd20_controlled_batch\20260530_084048
+batch_status.json:
+{
+  "batch_invalid_translation_collapse": false,
+  "translation_collapse_groups": {},
+  "configs_queued": 12,
+  "configs_executed": 9,
+  "accepted": 0,
+  "rejected": 4,
+  "no_effect": 5,
+  "requires_engine_support": 3,
+  "dd20_control_not_effective": 0
+}
+batch_summary.csv first rows:
+
+run_id                               strategy_id                          family               parent_run_id                                          parent_strate
+                                                                                                                                                      gy_id
+------                               -----------                          ------               -------------                                          -------------
+HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   HYP_DD20_CTRL_DD_COMPRESS_15_35_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   HYP_DD20_CTRL_DD_COMPRESS_16_40_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   HYP_DD20_CTRL_DD_COMPRESS_17_45_V1   dd_compression       DD20ADAPT_105_HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1 HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_13_25_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1 guardrail_dynamic    DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_25_V1     HYP_DD20_CTRL_SPY_FALLBACK_25_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_50_V1     HYP_DD20_CTRL_SPY_FALLBACK_50_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_SPY_FALLBACK_75_V1     HYP_DD20_CTRL_SPY_FALLBACK_75_V1     spy_fallback_partial DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1   topn_dynamic         DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1   HYP_DD20_C...
+
+
+Iteration finished: 05/30/2026 09:21:01
+Sleeping 60 seconds...
+
+DD20 overnight finished: 05/30/2026 09:22:01
+**********************
+Fin de la transcripción de Windows PowerShell
+Hora de finalización: 20260530092201
+**********************

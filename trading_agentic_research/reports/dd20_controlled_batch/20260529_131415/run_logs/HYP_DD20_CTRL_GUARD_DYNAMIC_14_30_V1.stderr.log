@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\scripts\run_backtest.py", line 274, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\scripts\run_backtest.py", line 165, in main
+    daily_df = load_daily_feature_store_folder(args.daily_folder)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\data_loader.py", line 38, in load_daily_feature_store_folder
+    raise FileNotFoundError(
+FileNotFoundError: No daily feature store files matched patterns: ['C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\sp500_feature_store_daily_master_*.csv', 'C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\sp500_feature_store_spy_daily_master_*.csv']

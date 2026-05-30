@@ -1,0 +1,117 @@
+{
+  "strategy_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1",
+  "strategy_family": "dd20_adaptive_research",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "close_vs_sma52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 12,
+    "by": "ret_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 20
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true,
+    "soft_weak_regime_top_n": 8
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+  "causal_mechanism": "Relax single-position stop from SL11 to SL12 to test whether slightly longer holds improve CAGR without breaking DD20.",
+  "changed_parameters": [
+    "risk_management.stop_loss_pct"
+  ],
+  "expected_effect": "Maintain DD20/CAGR/SPY yearly consistency while repairing the remaining trade-count shortfall.",
+  "falsification_rule": "Reject if DD < -20, CAGR <= SPY, trades < 1000, years W/L turns negative, or CAGR/Calmar improvement is only incremental.",
+  "generation_axis": "cagr_repair_under_dd20",
+  "parent_strategy_id": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+  "parent_hypothesis_id": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+  "empirical_basis": [
+    {
+      "strategy_id": "HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1",
+      "reason": "Current DD20 champion: CAGR 10.5412, DD -19.6588, trades 2354, years 16/12, Calmar ~0.536."
+    },
+    {
+      "strategy_id": "HYP_DD20_EXP_SL9_TOPN5_WHEN_GUARD_V1",
+      "reason": "Best balance: CAGR 10.1524, DD -18.5957, trades 2385, years 17/11, Calmar ~0.546."
+    }
+  ],
+  "novelty_reason": "Autonomous daemon causal batch axis=dynamic_regime_exposure.",
+  "why_not_duplicate": "HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1 changes a distinct equity-guard behavior around the proven SL10 near-valid frontier.",
+  "risk_of_overfit": "Medium-low: only coarse SL/TOPN/guard/dynamic exposure moves; no trailing, profit-lock, rank-deterioration, or 0.1 micro-variants.",
+  "expected_trade_count_effect": "Preserve trade count; no hard zero-trade filters.",
+  "risk_management": {
+    "dynamic_regime_exposure_pct": {
+      "strong": 80,
+      "neutral": 50,
+      "weak": 20,
+      "crisis": 0
+    },
+    "max_gross_exposure_pct": 50,
+    "equity_drawdown_guard": {
+      "enabled": true,
+      "stop_new_entries_drawdown_pct": -18,
+      "resume_drawdown_pct": -10,
+      "allow_entries_when_active_top_n": 8
+    },
+    "stop_loss_pct": 12
+  },
+  "strategy_overrides": {
+    "entry_rule": {
+      "type": "top_n",
+      "top_n": 12,
+      "by": "ret_52w_pct"
+    },
+    "market_filter": {
+      "benchmark": "SPY",
+      "require_positive_trend": true,
+      "condition_any": [
+        {
+          "field": "spy_close_vs_sma50_pct",
+          "operator": ">",
+          "value": 0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "soft_weak_regime_top_n": 8
+    }
+  },
+  "evaluation_mode": "dd20_spy_beater",
+  "engine_translation_note": "Translated top_n_dynamic -> entry_rule.top_n=12, market_filter.soft_weak_regime_top_n=8."
+}

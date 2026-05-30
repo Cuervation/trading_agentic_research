@@ -1,0 +1,39 @@
+{
+  "run_id": "HYP_DD20_CTRL_DD_COMPRESS_16_40_V1",
+  "strategy_id": "HYP_DD20_CTRL_DD_COMPRESS_16_40_V1",
+  "family": "dd_compression",
+  "promoted_to_baseline": false,
+  "accepted_for_followup": false,
+  "decision": "no_effect",
+  "decision_reason": "No material improvement versus parent DD20 metrics.",
+  "infrastructure_flags": [],
+  "risk_flags": [],
+  "missing_artifacts": [],
+  "metrics": {
+    "strategy_cagr_pct": 10.184982506360175,
+    "strategy_max_drawdown_pct": -19.19292917065336,
+    "strategy_total_return_pct": 1323.1433667488309,
+    "spy_cagr_pct": 6.802474621020882,
+    "spy_total_return_pct": 506.0574160210821,
+    "years_beating_spy": 16,
+    "months_beating_spy": 174,
+    "trades": 2385
+  },
+  "comparison_summary": {
+    "strategy_cagr_pct": 10.184982506360175,
+    "spy_cagr_pct": 6.802474621020882,
+    "excess_cagr_pct": 3.382507885339293,
+    "months_beating_spy": 174,
+    "months_losing_to_spy": 155,
+    "years_beating_spy": 16,
+    "years_losing_to_spy": 12,
+    "recommendation_hint": "candidate"
+  },
+  "comparison_rows": {
+    "yearly_rows": 28,
+    "monthly_rows": 329
+  },
+  "support_status": "supported",
+  "support_issue": "",
+  "effective_config_audit_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\runs\\HYP_DD20_CTRL_DD_COMPRESS_16_40_V1\\effective_config_audit.json"
+}

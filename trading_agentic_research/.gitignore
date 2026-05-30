@@ -5,11 +5,13 @@ __pycache__/
 # Local data (do NOT commit)
 sp500_feature_store_*.csv
 runs.7z
+runs/
 
 # Local runtime config/state (do NOT commit)
 configs/local_data_paths.json
 state/data_paths_resolved.json
 state/autonomy_blocker.json
+~$*.xlsx
 
 # Run artifacts
 runs/EXP_*/

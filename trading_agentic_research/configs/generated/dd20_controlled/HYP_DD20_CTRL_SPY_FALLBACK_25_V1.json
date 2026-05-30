@@ -1,0 +1,88 @@
+{
+  "strategy_id": "HYP_DD20_CTRL_SPY_FALLBACK_25_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_SPY_FALLBACK_25_V1",
+  "strategy_family": "dd20_controlled_hypotheses",
+  "benchmark_ticker": "SPY",
+  "rebalance_frequency": "monthly",
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "require_positive_trend": true,
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ]
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "claim": "Reduce opportunity loss in positive SPY regimes by replacing a controlled slice of idle cash with SPY exposure.",
+  "causal_mechanism": "The audit shows 2023 and 2025 underperformance with cash above 80% and very low exposure; partial SPY fallback should recover upside that the champion left on the table in bull regimes.",
+  "changed_parameters": [
+    "market_filter",
+    "risk_management"
+  ],
+  "expected_effect": "Reduce opportunity loss in positive SPY regimes by replacing a controlled slice of idle cash with SPY exposure.",
+  "falsification_rule": "Reject if drawdown breaks -20, CAGR does not exceed SPY, or the fallback merely increases exposure without improving any parent DD20 metric materially.",
+  "generation_axis": "spy_fallback_partial",
+  "parent_strategy_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+  "parent_hypothesis_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+  "parent_strategy": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+  "empirical_basis": [
+    {
+      "run_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+      "reason": "Champion audit and bad-period metrics show high cash / low exposure in weak years."
+    }
+  ],
+  "metadata": {
+    "parent_strategy": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+    "hypothesis_family": "spy_fallback_partial",
+    "expected_effect": "Replace 25/50/75% of idle cash with SPY only when SPY regime is positive.",
+    "risk": "Medium",
+    "why_this_should_help": "2023/2025 were dominated by high cash and missed upside; controlled SPY fallback targets that specific opportunity loss.",
+    "guardrail_max_drawdown_pct": -20,
+    "success_rule": "max_drawdown_pct no worse than -20; CAGR must exceed SPY; and improve at least one material metric versus parent DD20.",
+    "rejection_rule": "Reject if DD < -20, CAGR <= SPY, or no parent metric improves materially."
+  },
+  "strategy_overrides": {
+    "market_filter": {
+      "benchmark": "SPY",
+      "require_positive_trend": true,
+      "condition_any": [
+        {
+          "field": "spy_close_vs_sma50_pct",
+          "operator": ">",
+          "value": 0,
+          "enabled_if_field_exists": true
+        }
+      ]
+    },
+    "risk_management": {
+      "spy_fallback_partial_pct": 25,
+      "spy_fallback_only_when_positive_regime": true,
+      "max_gross_exposure_pct": 100
+    }
+  },
+  "evaluation_mode": "dd20_controlled_hypotheses",
+  "status": "draft_controlled_hypothesis",
+  "risk_of_overfit": "Controlled: evidence-driven and limited to 12 variants.",
+  "novelty_reason": "Derived directly from the latest DD20 champion audit and bad-period evidence.",
+  "why_not_duplicate": "Each variant changes one controlled lever within spy_fallback_partial rather than making random parameter noise."
+}

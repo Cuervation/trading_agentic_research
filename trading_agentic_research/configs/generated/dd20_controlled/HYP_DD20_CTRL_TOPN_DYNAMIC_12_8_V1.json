@@ -1,0 +1,89 @@
+{
+  "strategy_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_TOPN_DYNAMIC_12_8_V1",
+  "strategy_family": "dd20_controlled_hypotheses",
+  "benchmark_ticker": "SPY",
+  "rebalance_frequency": "monthly",
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "require_positive_trend": true,
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ]
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "claim": "Expand the book only in strong SPY regimes and keep TOPN tight when SPY is weak.",
+  "causal_mechanism": "The audit shows concentrated weakness in bear/defensive periods and strong performance when regime is favorable; controlled TOPN expansion is a low-risk way to harvest more names only in bullish conditions.",
+  "changed_parameters": [
+    "entry_rule",
+    "market_filter"
+  ],
+  "expected_effect": "Expand the book only in strong SPY regimes and keep TOPN tight when SPY is weak.",
+  "falsification_rule": "Reject if breadth expansion increases drawdown or lowers CAGR below SPY, or if it does not improve over parent DD20 metrics.",
+  "generation_axis": "topn_dynamic",
+  "parent_strategy_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+  "parent_hypothesis_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+  "parent_strategy": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+  "empirical_basis": [
+    {
+      "run_id": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+      "reason": "Champion audit shows strong bull-regime performance but weak years with high cash and low exposure."
+    }
+  ],
+  "metadata": {
+    "parent_strategy": "DD20ADAPT_105_HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1",
+    "hypothesis_family": "topn_dynamic",
+    "expected_effect": "Use TOPN=12 in strong regimes and TOPN=8 in weak regimes.",
+    "risk": "Medium",
+    "why_this_should_help": "The audit shows 2023/2025 underperformance with low exposure; dynamic breadth should help capture more winners in strong regimes without always increasing risk.",
+    "guardrail_max_drawdown_pct": -20,
+    "success_rule": "max_drawdown_pct no worse than -20; CAGR must exceed SPY; and one parent DD20 metric must improve materially.",
+    "rejection_rule": "Reject if DD < -20, CAGR <= SPY, or no parent metric improves materially."
+  },
+  "strategy_overrides": {
+    "entry_rule": {
+      "type": "top_n_dynamic",
+      "top_n_strong_regime": 12,
+      "top_n_weak_regime": 8,
+      "benchmark": "SPY"
+    },
+    "market_filter": {
+      "benchmark": "SPY",
+      "require_positive_trend": true,
+      "condition_any": [
+        {
+          "field": "spy_close_vs_sma50_pct",
+          "operator": ">",
+          "value": 0,
+          "enabled_if_field_exists": true
+        }
+      ]
+    }
+  },
+  "evaluation_mode": "dd20_controlled_hypotheses",
+  "status": "draft_controlled_hypothesis",
+  "risk_of_overfit": "Controlled: evidence-driven and limited to 12 variants.",
+  "novelty_reason": "Derived directly from the latest DD20 champion audit and bad-period evidence.",
+  "why_not_duplicate": "Each variant changes one controlled lever within topn_dynamic rather than making random parameter noise."
+}

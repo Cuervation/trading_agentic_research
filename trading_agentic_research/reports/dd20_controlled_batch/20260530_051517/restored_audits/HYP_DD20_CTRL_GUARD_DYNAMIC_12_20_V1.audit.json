@@ -1,0 +1,39 @@
+{
+  "run_id": "HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1",
+  "strategy_id": "HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1",
+  "family": "guardrail_dynamic",
+  "promoted_to_baseline": false,
+  "accepted_for_followup": false,
+  "decision": "no_effect",
+  "decision_reason": "No material improvement versus parent DD20 metrics.",
+  "infrastructure_flags": [],
+  "risk_flags": [],
+  "missing_artifacts": [],
+  "metrics": {
+    "strategy_cagr_pct": 9.10020428540006,
+    "strategy_max_drawdown_pct": -19.325182559379282,
+    "strategy_total_return_pct": 985.4441837819782,
+    "spy_cagr_pct": 6.802474621020882,
+    "spy_total_return_pct": 506.0574160210821,
+    "years_beating_spy": 16,
+    "months_beating_spy": 173,
+    "trades": 2376
+  },
+  "comparison_summary": {
+    "strategy_cagr_pct": 9.10020428540006,
+    "spy_cagr_pct": 6.802474621020882,
+    "excess_cagr_pct": 2.2977296643791787,
+    "months_beating_spy": 173,
+    "months_losing_to_spy": 156,
+    "years_beating_spy": 16,
+    "years_losing_to_spy": 12,
+    "recommendation_hint": "candidate"
+  },
+  "comparison_rows": {
+    "yearly_rows": 28,
+    "monthly_rows": 329
+  },
+  "support_status": "supported",
+  "support_issue": "",
+  "effective_config_audit_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\runs\\HYP_DD20_CTRL_GUARD_DYNAMIC_12_20_V1\\effective_config_audit.json"
+}

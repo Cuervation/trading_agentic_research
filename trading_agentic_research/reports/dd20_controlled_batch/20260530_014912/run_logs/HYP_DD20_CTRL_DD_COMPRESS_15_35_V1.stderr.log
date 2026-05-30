@@ -1,0 +1,44 @@
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(
+C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py:308: UserWarning: critical: SPY market filter metrics unavailable/NaN (tried=['spy_close_vs_sma50_pct', 'close_vs_sma50_pct', 'close_vs_sma52w_pct']); using fallback=True.
+  warnings.warn(

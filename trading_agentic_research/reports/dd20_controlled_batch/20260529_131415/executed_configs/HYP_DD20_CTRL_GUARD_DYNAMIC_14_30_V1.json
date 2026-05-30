@@ -1,0 +1,80 @@
+{
+  "strategy_id": "HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_GUARD_DYNAMIC_14_30_V1",
+  "strategy_family": "dd20_controlled_hypotheses",
+  "benchmark_ticker": "SPY",
+  "rebalance_frequency": "monthly",
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "require_positive_trend": true,
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ]
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "claim": "Reduce time spent locked out by the guard while still hard-stopping near -20%.",
+  "causal_mechanism": "The audit shows the guard activated multiple times and the champion already sat close to the -20% limit; a dynamic resume threshold may recover participation without losing drawdown control.",
+  "changed_parameters": [
+    "risk_management"
+  ],
+  "expected_effect": "Reduce time spent locked out by the guard while still hard-stopping near -20%.",
+  "falsification_rule": "Reject if DD breaks -20, CAGR fails to beat SPY, or the guard tweak adds no measurable improvement vs parent DD20.",
+  "generation_axis": "guardrail_dynamic",
+  "parent_strategy_id": "DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1",
+  "parent_hypothesis_id": "DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1",
+  "parent_strategy": "DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1",
+  "empirical_basis": [
+    {
+      "run_id": "DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1",
+      "reason": "Guard activations and partial rebalances suggest the current lockout is active enough to matter."
+    }
+  ],
+  "metadata": {
+    "parent_strategy": "DD20ADAPT_107_HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1",
+    "hypothesis_family": "guardrail_dynamic",
+    "expected_effect": "Resume at 14% DD with reduced exposure 30% while preserving the -20% hard cap.",
+    "risk": "Medium-high",
+    "why_this_should_help": "The guard was active several times and caused partial rebalances; a dynamic guard should restore participation when DD is still under control.",
+    "guardrail_max_drawdown_pct": -20,
+    "success_rule": "max_drawdown_pct no worse than -20; CAGR must exceed SPY; and one parent DD20 metric must improve materially.",
+    "rejection_rule": "Reject if DD < -20, CAGR <= SPY, or no parent metric improves materially."
+  },
+  "strategy_overrides": {
+    "risk_management": {
+      "equity_drawdown_guard": {
+        "enabled": true,
+        "stop_new_entries_drawdown_pct": -18,
+        "resume_drawdown_pct": -14,
+        "reduced_exposure_pct_when_active": 30
+      },
+      "max_gross_exposure_pct": 50
+    }
+  },
+  "evaluation_mode": "dd20_controlled_hypotheses",
+  "status": "draft_controlled_hypothesis",
+  "risk_of_overfit": "Controlled: evidence-driven and limited to 12 variants.",
+  "novelty_reason": "Derived directly from the latest DD20 champion audit and bad-period evidence.",
+  "why_not_duplicate": "Each variant changes one controlled lever within guardrail_dynamic rather than making random parameter noise.",
+  "engine_translation_note": "No translation required; guardrail fields are supported by the current engine."
+}

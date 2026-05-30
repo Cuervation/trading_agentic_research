@@ -1,0 +1,35 @@
+{
+  "run_id": "HYP_DD20_CTRL_SPY_FALLBACK_50_V1",
+  "hypothesis_id": "HYP_DD20_CTRL_SPY_FALLBACK_50_V1",
+  "family": "spy_fallback_partial",
+  "declared_controls": {
+    "market_filter.benchmark": "SPY",
+    "market_filter.require_positive_trend": true,
+    "market_filter.condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "risk_management.spy_fallback_partial_pct": 50,
+    "risk_management.spy_fallback_only_when_positive_regime": true,
+    "risk_management.max_gross_exposure_pct": 100
+  },
+  "translated_controls": {},
+  "unsupported_controls": [
+    "risk_management.spy_fallback_partial_pct"
+  ],
+  "ignored_controls": [],
+  "parent_config_hash": "89232cffa14a45d4ab308641e4c1dd0a5ef2f11fda174912af9dbb7915426dfe",
+  "candidate_config_hash": "",
+  "effect_signature": "a468e585bc212d8a17f901393ad77ad2ae6911df3a130c9224d34e7853e3706e",
+  "effect_signature_equals_parent": true,
+  "changed_fields_vs_parent": {},
+  "risk_control_fields_applied": [],
+  "risk_control_fields_ignored": [
+    "risk_management.spy_fallback_partial_pct"
+  ],
+  "conclusion": "requires_engine_support"
+}

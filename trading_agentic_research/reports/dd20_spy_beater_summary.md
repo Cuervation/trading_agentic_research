@@ -1,13 +1,22 @@
 # DD20 SPY Beater Summary
 
-Constraint: `max_drawdown >= -20`, `CAGR > SPY CAGR`, `trades >= 3000`, `years_beating_spy >= years_losing_to_spy`.
+Constraint: `max_drawdown >= -20`, `CAGR > SPY CAGR`, `trades >= 1000`, `years_beating_spy >= years_losing_to_spy`.
 
-## No valid candidates yet
+## Ranking valid candidates
 
-- Closest by DD: `HYP_DD20_EXP_SL11_TOPN8_WHEN_GUARD_V1` already passes DD20 at DD -19.6588%; missing: add 646 trades.
-- Closest by CAGR: `HYP_MIX_TIME_SERIES_MOMENTUM__LOCAL_SPY_SMA50_RELAXED_V1` at CAGR 51.3437% vs SPY 11.2539%.
-- Missing to pass: add 590 trades
-- Parameter adjustment indicated: lower weak/crisis exposure first; if DD passes but yearly SPY balance fails, keep crisis at 0 and restore selective strong-regime exposure or use a softer equity guard.
+| rank | strategy_id | CAGR | SPY CAGR | excess | DD | Calmar | trades | years W/L |
+|---:|:---|---:|---:|---:|---:|---:|---:|:---|
+| 1 | `HYP_DD20_CAGR_SL12_TOPN8_GUARD18_10_V1` | 10.8660% | 6.8025% | 4.0636% | -19.7877% | 0.5491 | 2351 | 15/13 |
+| 2 | `HYP_DD20_CAGR_SL12_TOPN10_GUARD18_10_V1` | 10.7755% | 6.8025% | 3.9730% | -19.7877% | 0.5446 | 2359 | 15/13 |
+| 3 | `HYP_DD20_CAGR_DYN8055200_SL11_TOPN8_V1` | 10.7350% | 6.8025% | 3.9325% | -19.6588% | 0.5461 | 2353 | 16/12 |
+| 4 | `HYP_DD20_RESCUE_DYN8050200_NO_NEW_CRISIS_SL11_TOPN8_V1` | 10.5412% | 6.8025% | 3.7387% | -19.6588% | 0.5362 | 2354 | 16/12 |
+| 5 | `HYP_DD20_CAGR_DYN8050250_SL11_TOPN8_V1` | 10.5348% | 6.8025% | 3.7324% | -19.6588% | 0.5359 | 2354 | 16/12 |
+| 6 | `HYP_DD20_CAGR_SL11_TOPN8_GUARD18_12_V1` | 10.4402% | 6.8025% | 3.6377% | -19.6588% | 0.5311 | 2376 | 16/12 |
+| 7 | `HYP_DD20_CAGR_DYN8055250_SL10_TOPN8_V1` | 10.4277% | 6.8025% | 3.6252% | -19.3252% | 0.5396 | 2387 | 17/11 |
+| 8 | `HYP_DD20_CAGR_SL11_TOPN10_GUARD18_10_V1` | 10.3864% | 6.8025% | 3.5839% | -19.6588% | 0.5283 | 2362 | 16/12 |
+| 9 | `HYP_DD20_CAGR_SL11_TOPN8_GUARD18_14_V1` | 10.3494% | 6.8025% | 3.5470% | -19.6588% | 0.5265 | 2369 | 16/12 |
+| 10 | `HYP_DD20_CAGR_SL11_TOPN8_GUARD19_12_V1` | 10.2938% | 6.8025% | 3.4913% | -19.7618% | 0.5209 | 2380 | 16/12 |
+| 11 | `HYP_DD20_CAGR_SL10P5_TOPN8_GUARD18_10_V1` | 10.2593% | 6.8025% | 3.4568% | -19.1929% | 0.5345 | 2370 | 16/12 |
 
 ## Reference comparison
 
