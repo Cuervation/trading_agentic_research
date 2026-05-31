@@ -1,0 +1,80 @@
+[
+  {
+    "date": "2000-03-14 00:00:00",
+    "event": "guard_reduce_on",
+    "state": "reduced",
+    "drawdown_pct": -19.532989903163234,
+    "target_exposure_pct": 33.0
+  },
+  {
+    "date": "2000-03-14 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -19.532989903163234,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-03-22 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -17.376428916587727,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 6
+  },
+  {
+    "date": "2000-03-24 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -17.27703226926827,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 6
+  },
+  {
+    "date": "2000-04-04 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -24.47022997707826,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-04-05 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -23.722437567072376,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-04-06 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -22.37546181654154,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-04-07 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -21.184056386465244,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-04-13 00:00:00",
+    "event": "guard_crisis_on",
+    "state": "crisis",
+    "drawdown_pct": -25.305972395069563,
+    "target_exposure_pct": 0.0
+  },
+  {
+    "date": "2000-04-13 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "crisis",
+    "drawdown_pct": -25.305972395069563,
+    "target_exposure_pct": 0.0,
+    "positions_scaled": 6
+  }
+]

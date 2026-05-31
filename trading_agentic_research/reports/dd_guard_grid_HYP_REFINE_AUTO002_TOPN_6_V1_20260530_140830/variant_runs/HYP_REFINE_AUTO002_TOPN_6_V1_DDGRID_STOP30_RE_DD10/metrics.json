@@ -1,0 +1,72 @@
+{
+  "strategy": {
+    "total_return_pct": 4.804017703902197,
+    "cagr_pct": 0.17152926365811005,
+    "max_drawdown_pct": -31.981950293243035,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 506.0574160210821,
+    "cagr_pct": 6.802474621020882,
+    "max_drawdown_pct": -56.473669178171626,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 316,
+    "number_of_trades": 10,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-05-22; skipped rebalance."
+    ],
+    "equity_drawdown_guard": {
+      "enabled": false,
+      "activations": 0,
+      "blocked_rebalances": 0,
+      "partial_rebalances": 0,
+      "cooldown_remaining": 0,
+      "active_at_end": false
+    },
+    "max_drawdown_kill_switch": {
+      "enabled": false,
+      "violated": false,
+      "first_violation_date": null
+    },
+    "risk_controls": {
+      "portfolio_drawdown_guard": {
+        "enabled": true,
+        "activations": 1,
+        "reentries": 0,
+        "reduced_exposure_days": 0,
+        "crisis_mode_days": 6574,
+        "scale_operations": 1,
+        "active_at_end": true,
+        "state_at_end": "crisis"
+      },
+      "position_stop_loss": {
+        "enabled": false,
+        "stop_loss_pct": null,
+        "count": 0
+      }
+    },
+    "risk_events": [
+      {
+        "date": "2000-04-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -31.843839324085376,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2000-04-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.445720433456238,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 1
+      }
+    ]
+  }
+}

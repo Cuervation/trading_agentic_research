@@ -1,0 +1,56 @@
+[
+  {
+    "date": "2000-03-14 00:00:00",
+    "event": "guard_reduce_on",
+    "state": "reduced",
+    "drawdown_pct": -19.532989903163234,
+    "target_exposure_pct": 33.0
+  },
+  {
+    "date": "2000-03-14 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -19.532989903163234,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-03-22 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -17.376428916587727,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 6
+  },
+  {
+    "date": "2000-03-24 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -17.27703226926827,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 6
+  },
+  {
+    "date": "2000-04-04 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "reduced",
+    "drawdown_pct": -24.170769605548536,
+    "target_exposure_pct": 33.0,
+    "positions_scaled": 7
+  },
+  {
+    "date": "2000-04-14 00:00:00",
+    "event": "guard_crisis_on",
+    "state": "crisis",
+    "drawdown_pct": -26.482565787175748,
+    "target_exposure_pct": 0.0
+  },
+  {
+    "date": "2000-04-14 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "crisis",
+    "drawdown_pct": -26.482565787175748,
+    "target_exposure_pct": 0.0,
+    "positions_scaled": 6
+  }
+]

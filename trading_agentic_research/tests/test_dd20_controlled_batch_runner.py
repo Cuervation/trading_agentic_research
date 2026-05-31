@@ -3,6 +3,7 @@ from pathlib import Path
 
 from scripts.run.run_dd20_controlled_batch import (
     build_effective_config_audit,
+    changed_parameters_for_translation,
     filter_rankable_rows,
     restore_audit_json,
     detect_translation_collapse,
@@ -27,19 +28,19 @@ def test_dd20_family_translation_changes_config():
         "costs": {"entry_cost_pct": 0.24, "exit_cost_pct": 0.24},
     }
     hypothesis_cfg = {
-        "strategy_id": "HYP_TOPN",
+        "strategy_id": "HYP_GUARD",
         "strategy_overrides": {
-            "entry_rule": {"type": "top_n_dynamic", "top_n_strong_regime": 16, "top_n_weak_regime": 8},
-            "market_filter": {"benchmark": "SPY", "require_positive_trend": True},
+            "risk_management": {
+                "max_gross_exposure_pct": 50,
+                "equity_drawdown_guard": {"resume_drawdown_pct": -12, "reduced_exposure_pct_when_active": 20},
+            }
         },
     }
-    translated = translate_hypothesis_for_execution(hypothesis_cfg, parent_cfg, "topn_dynamic")
+    translated = translate_hypothesis_for_execution(hypothesis_cfg, parent_cfg, "guardrail_dynamic")
     cfg = translated["executable_config"]
     assert cfg is not None
-    assert cfg["entry_rule"]["type"] == "top_n"
-    assert cfg["entry_rule"]["top_n"] == 16
-    assert cfg["market_filter"]["soft_weak_regime_top_n"] == 8
-    assert cfg["entry_rule"]["top_n"] != parent_cfg["entry_rule"]["top_n"]
+    assert cfg["risk_management"]["equity_drawdown_guard"]["resume_drawdown_pct"] == -12
+    assert cfg["risk_management"]["equity_drawdown_guard"]["reduced_exposure_pct_when_active"] == 20
 
 
 def test_dd20_unsupported_controls_are_preflight_blocked():
@@ -51,6 +52,47 @@ def test_dd20_unsupported_controls_are_preflight_blocked():
     assert translated["executable_config"] is None
     assert translated["support_issue"]
     assert "spy_fallback_partial_pct" in translated["support_issue"]
+
+
+def test_topn_dynamic_with_ignored_controls_is_blocked():
+    translated = translate_hypothesis_for_execution(
+        {
+            "strategy_id": "HYP_TOPN",
+            "strategy_overrides": {
+                "entry_rule": {
+                    "type": "top_n_dynamic",
+                    "top_n_strong_regime": 16,
+                    "top_n_weak_regime": 8,
+                    "benchmark": "SPY",
+                },
+                "market_filter": {"benchmark": "SPY", "condition_any": [{"field": "spy_close_vs_sma50_pct"}]},
+            },
+        },
+        {"strategy_id": "PARENT", "entry_rule": {"type": "top_n", "top_n": 8}},
+        "topn_dynamic",
+    )
+    assert translated["executable_config"] is None
+    assert translated["support_issue"]
+    assert "entry_rule.top_n_strong_regime" in translated["unsupported_controls"]
+
+
+def test_dd_compression_with_target_dd_unsupported_requires_engine_support():
+    translated = translate_hypothesis_for_execution(
+        {
+            "strategy_id": "HYP_DD",
+            "strategy_overrides": {
+                "risk_management": {
+                    "max_gross_exposure_pct": 40,
+                    "equity_drawdown_guard": {"max_drawdown_target_pct": -16},
+                }
+            },
+        },
+        {"strategy_id": "PARENT", "risk_management": {"max_gross_exposure_pct": 50}},
+        "dd_compression",
+    )
+    assert translated["executable_config"] is None
+    assert translated["support_issue"]
+    assert "risk_management.equity_drawdown_guard.max_drawdown_target_pct" in translated["unsupported_controls"]
 
 
 def test_dd20_batch_detects_translation_collapse():
@@ -205,3 +247,31 @@ def test_max_gross_exposure_pct_is_applied_or_marked_unsupported():
         or "risk_management.max_gross_exposure_pct" in translation["unsupported_controls"]
     )
     assert "risk_management.max_gross_exposure_pct" in translation["risk_control_fields_applied"]
+
+
+def test_changed_parameters_reflect_real_family_fields():
+    translation = {
+        "translated_controls": {
+            "risk_management.equity_drawdown_guard.resume_drawdown_pct": -12,
+            "risk_management.equity_drawdown_guard.reduced_exposure_pct_when_active": 20,
+        },
+        "unsupported_controls": [],
+    }
+    changed = changed_parameters_for_translation("guardrail_dynamic", translation)
+    assert "risk_management.equity_drawdown_guard.resume_drawdown_pct" in changed
+    assert "risk_management.stop_loss_pct" not in changed
+
+
+def test_spy_fallback_partial_not_silent():
+    translated = translate_hypothesis_for_execution(
+        {
+            "strategy_id": "HYP_SPY_FB",
+            "spy_fallback_partial_pct": 50,
+            "strategy_overrides": {},
+        },
+        {"strategy_id": "PARENT"},
+        "spy_fallback_partial",
+    )
+    assert translated["executable_config"] is None
+    assert translated["support_issue"]
+    assert "risk_management.spy_fallback_partial_pct" in translated["unsupported_controls"]

@@ -1,0 +1,840 @@
+{
+  "strategy": {
+    "total_return_pct": -0.14980883718628268,
+    "cagr_pct": -0.005475720548997476,
+    "max_drawdown_pct": -35.33226926844932,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 506.0574160210821,
+    "cagr_pct": 6.802474621020882,
+    "max_drawdown_pct": -56.473669178171626,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 316,
+    "number_of_trades": 40,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-05-22; skipped rebalance."
+    ],
+    "equity_drawdown_guard": {
+      "enabled": false,
+      "activations": 0,
+      "blocked_rebalances": 0,
+      "partial_rebalances": 0,
+      "cooldown_remaining": 0,
+      "active_at_end": false
+    },
+    "max_drawdown_kill_switch": {
+      "enabled": false,
+      "violated": false,
+      "first_violation_date": null
+    },
+    "risk_controls": {
+      "portfolio_drawdown_guard": {
+        "enabled": true,
+        "activations": 53,
+        "reentries": 52,
+        "reduced_exposure_days": 0,
+        "crisis_mode_days": 6522,
+        "scale_operations": 6,
+        "active_at_end": true,
+        "state_at_end": "crisis"
+      },
+      "position_stop_loss": {
+        "enabled": false,
+        "stop_loss_pct": null,
+        "count": 0
+      }
+    },
+    "risk_events": [
+      {
+        "date": "2000-04-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -31.843839324085376,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2000-04-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.445720433456238,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 1
+      },
+      {
+        "date": "2000-10-02 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -30.474871201584275,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2000-10-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -32.21437578644153,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2000-10-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.21437578644153,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2001-04-02 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -32.377061284554074,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2001-04-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -32.377061284554074,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2001-10-01 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -32.377061284554074,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2001-10-02 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -32.377061284554074,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2002-04-01 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -32.377061284554074,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2002-04-02 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -34.44132688991722,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2002-04-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.44132688991722,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2002-09-30 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -34.598667705381416,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2002-10-01 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -34.598667705381416,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2003-03-31 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -34.598667705381416,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2003-04-01 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -34.598667705381416,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2003-09-29 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -34.598667705381416,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2003-09-30 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -35.021117396445064,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2003-09-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -35.021117396445064,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2004-03-29 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -35.17706671469358,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2004-03-30 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.428670423610704,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2004-03-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.428670423610704,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2004-09-27 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2004-09-28 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2005-03-28 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2005-03-29 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2005-09-26 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2005-09-27 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2006-03-27 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2006-03-28 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2006-09-25 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2006-09-26 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2007-03-26 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2007-03-27 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2007-09-24 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2007-09-25 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2008-03-24 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2008-03-25 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2008-09-22 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2008-09-23 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2009-03-23 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2009-03-24 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2009-09-21 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2009-09-22 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2010-03-22 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2010-03-23 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2010-09-20 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2010-09-21 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2011-03-21 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2011-03-22 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2011-09-19 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2011-09-20 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2012-03-19 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2012-03-20 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2012-09-17 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2012-09-18 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2013-03-18 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2013-03-19 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2013-09-16 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2013-09-17 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2014-03-17 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2014-03-18 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2014-09-15 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2014-09-16 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2015-03-16 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2015-03-17 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2015-09-14 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2015-09-15 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2016-03-14 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2016-03-15 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2016-09-12 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2016-09-13 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2017-03-13 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2017-03-14 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2017-09-11 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2017-09-12 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2018-03-12 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2018-03-13 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2018-09-10 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2018-09-11 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2019-03-11 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2019-03-12 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2019-09-09 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2019-09-10 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2020-03-09 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2020-03-10 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2020-09-08 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2020-09-09 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2021-03-08 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2021-03-09 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2021-09-07 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2021-09-08 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2022-03-07 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2022-03-08 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2022-09-06 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2022-09-07 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2023-03-06 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2023-03-07 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2023-09-05 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2023-09-06 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2024-03-04 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2024-03-05 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.58844161459405,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2024-09-03 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.58844161459405,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2024-09-04 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.60179628567661,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2024-09-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.60179628567661,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2025-03-03 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.761151974590966,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2025-03-04 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.761151974590966,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2025-09-02 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.761151974590966,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2025-09-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.761151974590966,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2026-03-02 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -33.761151974590966,
+        "reentry_mode": "cooldown_180"
+      },
+      {
+        "date": "2026-03-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.761151974590966,
+        "target_exposure_pct": 0.0
+      }
+    ]
+  }
+}

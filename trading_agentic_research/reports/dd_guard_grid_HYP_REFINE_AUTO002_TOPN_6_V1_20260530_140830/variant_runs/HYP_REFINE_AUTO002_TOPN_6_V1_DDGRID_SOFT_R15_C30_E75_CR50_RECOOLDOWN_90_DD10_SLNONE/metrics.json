@@ -1,0 +1,5863 @@
+{
+  "strategy": {
+    "total_return_pct": 4292.247406772032,
+    "cagr_pct": 14.815133518480582,
+    "max_drawdown_pct": -38.815285061146135,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 506.0574160210821,
+    "cagr_pct": 6.802474621020882,
+    "max_drawdown_pct": -56.473669178171626,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 316,
+    "number_of_trades": 6084,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-05-22; skipped rebalance."
+    ],
+    "equity_drawdown_guard": {
+      "enabled": false,
+      "activations": 0,
+      "blocked_rebalances": 0,
+      "partial_rebalances": 0,
+      "cooldown_remaining": 0,
+      "active_at_end": false
+    },
+    "max_drawdown_kill_switch": {
+      "enabled": false,
+      "violated": false,
+      "first_violation_date": null
+    },
+    "risk_controls": {
+      "portfolio_drawdown_guard": {
+        "enabled": true,
+        "activations": 65,
+        "reentries": 17,
+        "reduced_exposure_days": 2965,
+        "crisis_mode_days": 1263,
+        "scale_operations": 654,
+        "active_at_end": false,
+        "state_at_end": "normal"
+      },
+      "position_stop_loss": {
+        "enabled": false,
+        "stop_loss_pct": null,
+        "count": 0
+      }
+    },
+    "risk_events": [
+      {
+        "date": "2000-03-14 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -19.532989903163234,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2000-03-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.532989903163234,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-03-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.545591070627832,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-03-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.24952210841328,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-03-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.672433350344537,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-04-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -29.903693302315915,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-04-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.340723030666805,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-04-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.483518358867986,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-04-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.90847675755948,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-04-12 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -31.19080504336781,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2000-04-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.19080504336781,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-04-18 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -27.982360666713923,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2000-05-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.971216569522337,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-05-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.357265487710364,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-05-10 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.229676455895703,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2000-05-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.229676455895703,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-05-11 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -28.80476917891214,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2000-05-23 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.77520638437209,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2000-05-30 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -28.87975748398549,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2000-05-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.879782241406726,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.07264317870699,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.027118667570214,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.92306005567768,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.57852432998061,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.18389244387584,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.877151793694395,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.510788326535824,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.44358323943676,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.396208578073182,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-06-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.045134549929365,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.7196960149286,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.058690748558462,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.883639880130445,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.10013719978685,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.570836124918877,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.3620380716494,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-07-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.43834060682835,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.7832292409519,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.985890261978117,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.6977468721035,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.30781261008209,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.066884880683425,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.878110080808767,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.38160441506464,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.969602480178885,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.566805623406026,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2000-08-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.06117135683183,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-08-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.029191732288833,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-08-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.628743274540263,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-09-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.42527990856162,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2000-10-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.618682577911468,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-10-10 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.62037446410857,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2000-10-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.62037446410857,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-10-16 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.54959966524482,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2000-10-25 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -31.772436122195735,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2000-10-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.77556246322501,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2000-11-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.10891016416576,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2000-11-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.785673977961416,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2000-11-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.544809540845808,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2000-11-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.872434660408267,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2002-04-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -35.29114575109148,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2002-05-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -35.070505491864225,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2002-05-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.68968660310787,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-06-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -37.7668067056192,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2003-06-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -36.6328548509415,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2003-06-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -36.193185251860115,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2003-06-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -36.00499839102087,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2003-07-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -37.72579991423491,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-07-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -36.08444004162589,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-07-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -35.58889046749108,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-07-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.1898548576608,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-07-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.45009210549451,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-07-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.96805233290997,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-07-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.558340471741765,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-07-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.186630692317124,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-08-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.11954343623685,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-08-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.9407906413189,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-08-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.016916908062576,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.759609934191058,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.84886576319118,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.754702177977666,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.624423604493632,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.42267281702653,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-19 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.860533360218888,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2003-09-22 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.19177866898034,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2003-09-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.19177866898034,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2003-09-23 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.655738786133632,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2003-09-24 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.96345821263159,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2003-09-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.682456796311875,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-10-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.773034866613315,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-10-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.97240053975089,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-10-03 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.93294603215516,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2003-11-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.792585254691495,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.33234870975431,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.16820718591421,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.698413775266488,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.36008336042757,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.208008388963705,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.534413807482284,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.651669331517724,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.780949744535642,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.307017822771181,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-11-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.072983538478042,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2003-12-01 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -8.493942036228807,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2003-12-05 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -16.364544839669136,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2003-12-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.364544839669136,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-12-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.22758897053471,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-12-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.12133687169076,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-12-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.099981132147178,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-12-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.009611950943535,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2003-12-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.54563701298347,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.805607071761894,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.732516144404425,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.745828125238788,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.743040605843966,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.676011889662136,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.4594551758910685,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.3489352565298596,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-01-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2004-02-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.361293191371575,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-02-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.610322058792539,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-02-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.1889610417052516,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-02-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.032661239880884,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-02-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.029469566351736365,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-02-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-03-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.163593518219066,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2004-03-04 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -4.222130947699565,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2004-04-28 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.946910060797226,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2004-04-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.946910060797226,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2004-05-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.327305902824776,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2004-05-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.93264634834899,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2004-05-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.187353455146116,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2004-06-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.080420416343056,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2004-07-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.063920250739738,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.022840993571958,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.64155086783328,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.52154996131539,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.201370750214036,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.69281936715647,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.524625584985646,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.0151791550263,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.75723530935645,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2005-06-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.35706473883814,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-06-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.746205684452747,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.597346414433105,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.79552735912943,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.708081224397233,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.161375453370123,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.427578292796987,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.741025803193022,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.590054636396403,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.92879454740479,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.513286161865146,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-07-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.723621560746501,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2005-08-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.302799012782362,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2005-08-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.994419785758327,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2005-08-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.65549854952691,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2005-08-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.36967219287809,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2005-08-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.574550080225986,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2005-09-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.421291629691243,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2005-09-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.595730413733694,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2005-09-07 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -9.821416703021413,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2006-05-17 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.632013361825159,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2006-05-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.632013361825159,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2006-05-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.68835363041109,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2006-05-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.626261128643392,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2006-06-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.99247416678715,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2006-06-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.709308861815929,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2006-06-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.083831662212997,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2006-10-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.338556304243854,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2006-11-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.290989072558956,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2006-11-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.079482596981748,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2006-11-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.550859170947358,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2006-11-20 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -9.719907615825186,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2007-11-12 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -17.818490371602813,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2007-11-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.818490371602813,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-11-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.904766653004575,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-11-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.563147285539268,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-11-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.65340694001815,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-11-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.000481866691068,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.878020866719893,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.874669983329563,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.687629374550484,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.393037876632599,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.9684793555942335,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.5927963554877134,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.22307004010638787,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2007-12-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2008-01-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.2088748491349333,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-01-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.21805928621716486,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-06-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.664649400236806,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2008-06-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.202072363077965,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2008-06-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.269327010782249,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2008-06-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.371350214620856,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2008-06-17 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -8.778954401834893,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2008-07-02 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -19.791013794287338,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2008-07-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.791013794287338,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-07-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.452797369268627,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-07-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.15679108063909,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-07-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.398207750110174,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-07-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.60635771597172,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2008-07-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.114515536363253,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2008-07-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.45790501259912,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2008-09-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.471212192994674,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2008-09-15 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.479646188688182,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2008-09-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.479646188688182,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2008-09-16 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.33107856418986,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2008-09-17 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.989257572828187,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2008-09-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.2189485660203,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2008-09-19 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -28.78607702359719,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2008-09-23 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.226643152407306,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2009-08-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.59034944524952,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2009-08-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.22024698074246,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2009-08-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.127223742248077,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2009-08-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.019053806590236,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2009-08-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.77872694974215,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2009-08-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.64542141754033,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2009-09-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.774178332234186,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.502801177120276,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.73620231951653,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.38951172338934,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.906707983915176,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.19167161354364,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.6781348845778,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2009-09-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.616248392572636,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-10-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.646825965321995,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-10-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.26929456615469,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-10-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.05546462060322,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-10-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.54499202091321,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-11-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -36.341481368915765,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -35.842863954802176,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -35.638640416936255,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.15146961611799,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -34.06913102689525,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.62987068220414,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.1446482638339,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-11-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.88572726826007,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2009-12-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.07843245003601,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.73752348399229,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.63215202830537,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.219687465107526,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.833959064634897,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.646789447439026,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.196811446631546,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.56850152970404,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.3587266079425,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2009-12-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.4662213524163,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-01-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.25196327798708,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-01-05 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.363093711577527,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-01-12 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.61761006765401,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-01-13 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.684815772349772,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-01-15 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.36451377658481,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-01-19 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.992749588238578,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-01-20 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.42590365823552,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-02-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.797858714807102,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-02-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.684489785256865,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-02-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.37877113367946,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-02-16 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.68006124429342,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-03-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.314455528024585,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.012597176975827,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.509695925131695,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.05026933095973,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.090852432844436,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.007921009839997,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.386295932636358,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.088511359729036,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-03-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.68200782918436,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.855395330916597,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.665511321953726,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.342250006693877,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.22978204485495,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.132653524617208,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.391546099128778,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-04-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.53116271380183,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2010-05-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.739098047016476,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-05-06 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -32.41666344471792,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-05-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.41666344471792,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-05-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.794788160810395,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-05-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.505099599558527,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-05-12 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -28.972701201736605,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-05-14 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.650508606373894,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-05-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.40978786827503,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2010-06-02 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.97562062118223,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-06-04 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.71352094400337,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-06-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.71352094400337,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-06-10 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.96847518643374,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-06-29 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -33.436266734135266,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-06-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.436266734135266,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.61541267431356,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.3980154073228,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.958800060027205,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.92177324476476,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.1920496311501,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.846344348822285,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-07-23 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.954391632902897,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-07-27 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.249340547769734,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2010-07-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.249340547769734,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2010-09-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.342972747539278,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2010-09-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.28574688985043,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2010-10-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.243133441815186,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2010-10-22 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.858747794146968,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2010-11-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.365329955077065,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2010-11-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.700593656729364,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2010-11-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.324982139178697,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2010-11-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.905802235202156,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2010-11-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.1028968361211,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2010-11-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.044960217487276,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2010-11-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.524491245749193,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2010-12-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.277757349356953,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2010-12-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.2230574042941,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2010-12-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.983574927108265,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2010-12-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.776505240622193,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-01-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.63525173192833,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-01-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.06127947139378,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-01-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.89355429051507,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-01-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.152875627314106,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-01-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.736286458203146,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-01-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.583088273813367,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-02-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.326519659140676,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.810892123851012,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.30109977791146,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.810290149537956,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.44857335536949,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.498361299961697,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.244520265515572,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-02-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.71291576178526,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.63484068332886,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.577874287123667,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.18124224341471,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.643276500866993,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.287403928233037,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.947010747636384,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-03-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.7200004525493,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-04-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.65275167412839,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-04-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.19184297637271,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-04-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.334710622033136,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2011-05-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.960667117763375,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-05-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.22026356873513,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-05-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.935490298270388,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-05-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.882223010631428,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2011-06-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.713564673587115,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-06-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.285294711802003,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-06-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.38536048690721,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-06-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.282458798289824,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-06-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.541533058553913,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-06-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.582685590706669,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-06-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.347517354356066,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-07-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.15445488398641,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-07-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.476264379253788,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-07-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.152767351399053,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2011-07-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.006019390872202,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2012-01-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.911581485134402,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.16578714494389,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.88801572995741,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.844711352286414,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.266365860171895,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.155882509290233,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.310737955220514,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.24444427054678,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.428939988034262,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2012-02-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.0548394864063,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.324704652085186,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.973493219624723,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.571097183943738,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.542321599604701,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.377661046117339,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.2872685999481,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.05384929691954,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.957767114232132,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.797350011846397,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.761275280831907,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-03-26 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -9.316959969359683,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2012-04-10 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.144351916845144,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2012-04-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.144351916845144,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-04-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.799031952888463,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-04-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.563464218875374,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-04-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.074459691109984,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-04-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.161633805184334,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-04-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.108402177959974,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-04-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.03775379150309,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-05-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.729011994868841,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2012-05-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.604430511414208,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2012-05-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.74066858541062,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-06-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.368469511479331,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-06-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.881664252214463,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-06-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.250682359930455,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2012-07-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.120334543205711,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2012-07-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.637886458025925,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2013-01-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.10564156051247,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2013-02-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.986744475909317,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2013-02-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.010105423581852,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2013-02-08 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -9.397601423410308,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2014-04-07 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.909310733826166,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2014-04-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.909310733826166,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-04-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.963197263535879,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-04-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.240520532814271,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-04-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.219353752945773,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-04-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.190232720688066,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-04-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.886603413488984,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-04-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.31019508589443,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-05-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.373664601784032,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-05-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.197071234205197,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-05-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.299889450989468,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-05-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.85353926702706,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2014-06-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.393934634994675,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.596200305495588,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.019982940843434,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.733657515943598,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.545729691468999,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.534771339472684,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.797260734734161,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.764306772805499,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.242888230190484,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-06-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.769917799294648,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2014-07-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.47289100768467,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-07-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.328751994345875,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-07-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.00421729325911,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-07-21 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -9.54600765863578,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2014-10-09 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.60013559361435,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2014-10-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.60013559361435,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.60363357212562,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.479730035387117,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.103840885048179,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.22639862431316,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.029356035122317,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.020155800085206,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.784758943640659,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-10-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.996100137333595,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2014-12-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.831317839005969,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.341842247454499,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.561661482471304,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.135383489880864,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.899210935479504,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.5982508624000986,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.449335580963442,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.4189267815733273,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.303776933196844,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.9989607906245155,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2014-12-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.466786985836945,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2015-01-07 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -4.568816363030026,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2016-01-08 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.427692455360887,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2016-01-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.427692455360887,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-01-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.88840942351789,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-01-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.73264985880327,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-03-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.0105387476189,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2016-03-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.998509679427965,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2016-04-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.86107731967148,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2016-04-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.013948103550103,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2016-04-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.911347438639023,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2016-05-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.031574800637596,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.021392585394924,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.358921828369557,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.298021430989174,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.08540002031621,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.685768057195371,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.653285214587108,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.089460183272395,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-05-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.610285921039566,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2016-06-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.05144726629155,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.830730242102884,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.311868514281299,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.283324363774739,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.090686122884776,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.475228840288665,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.732698929391038,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.644508040284318,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.060347947935766,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2016-06-23 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -9.726921002033095,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2018-10-10 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -20.25877250342617,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2018-10-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.25877250342617,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2018-10-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.61637609693586,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2018-10-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.645982479338596,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2018-12-04 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -31.59699765537878,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2018-12-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.59699765537878,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2018-12-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.129682587443575,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-01-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -33.12409566571475,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-01-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.80914609236183,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.50999070222783,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.151069102448595,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -32.05225432009517,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.859411990473742,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.25375911057762,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.226696881276496,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -31.090073599146162,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.044569629294827,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-02-25 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.875329221078463,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2019-02-26 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.075402300562658,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2019-02-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.075402300562658,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-03-01 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.868557701027576,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2019-03-04 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.554325983733943,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2019-03-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.034831051953926,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-03-12 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.826027938005506,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2019-03-27 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.496880253233826,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2019-03-28 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.76125586419697,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2019-04-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.818463786964465,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.350947023568562,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.244631831368004,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.01085343183427,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.760996937763114,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.34453071013423,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.027569703640275,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-04-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.492068178796078,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2019-05-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.18951276202599,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2019-07-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.89149040321376,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-07-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.372866237627814,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-07-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.339815845053153,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-07-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.211390182642614,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-07-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.963394022445588,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-07-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.528880054399796,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-10-01 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.02828835502055,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2019-10-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.02828835502055,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-10-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.111185856812185,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2019-10-09 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.96315565689498,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2019-10-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.65576866310994,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.57079020419444,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.52520064489741,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -28.380165842934492,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.988392319949217,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.5651431455481,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.211725964017653,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -27.202632012655613,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -26.65631397107123,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.387333699539482,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -25.13023059737236,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.772371550773187,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.66062141906863,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.046269398818453,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-11-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.474365311759893,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2019-12-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.8453095611607,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.553279716297627,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -24.027603841630206,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.864777876153276,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.59281093058231,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.127725823198418,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.85932743533413,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.3894085127454,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.113062699201556,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2019-12-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.896259971603783,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2020-01-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.848262066288825,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2020-01-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.68562517749846,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2020-01-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.90226702399286,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2020-01-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.69233696264976,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2020-01-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.249289489237444,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 11
+      },
+      {
+        "date": "2020-02-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.571238301912576,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.288163901596835,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.57630253069309,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.566345006815933,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.315521700685288,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.029127936127132,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.233033318300905,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.146077576881524,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-02-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.387533957534593,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-06-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.736414919864867,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2020-06-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.126911172052278,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2020-06-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.988753146459516,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2020-06-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.92325963273658,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2020-06-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.56990463977214,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2020-06-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.870268214286682,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -20.263330145432324,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.964594770378817,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.233300828955223,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.49467205894245,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.756089154215246,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.88347593146594,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-07-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.26465465692387,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-08-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.566532458046275,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2020-08-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.472957785532166,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2020-08-06 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -8.309310820941718,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2020-09-08 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -18.07737127360912,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2020-09-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.07737127360912,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2020-09-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.529588266066032,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2020-09-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.911668751930108,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2020-09-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.676702588658017,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2020-09-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.806855789968239,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-09-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.26679246465124,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.002895493898819,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.320829053903387,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.909420527292775,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.82233538691831,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.7910823012044865,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.854781578342326,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-10-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.7936051112977034,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2020-11-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.156349578073577,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.860828507152808,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.088653096267883,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.7702923733575755,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.7021367587322773,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.660383373419717,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.5806473575859958,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-11-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2020-12-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.5271271722919755,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 12
+      },
+      {
+        "date": "2020-12-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.909357955957768,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 12
+      },
+      {
+        "date": "2020-12-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 12
+      },
+      {
+        "date": "2020-12-07 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": 0.0,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2021-03-08 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.481550329310256,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2021-03-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.481550329310256,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-03-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.276739866548992,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-03-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.759409120676912,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-03-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.149191655244637,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-03-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.216965167422075,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-03-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.17092041415145,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-03-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.308125970912222,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-03-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.37923274546806,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-04-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.25799044160076,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-04-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.121638284135969,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-04-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.987714333495234,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-04-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.718031180929055,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-04-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.582459991421644,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-04-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.8401067827825415,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2021-05-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.599635643572814,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2021-05-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.962484967789386,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2021-05-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.792413531582131,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2021-06-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.201321358551969,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-06-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.12942579094795,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-06-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.457728879632805,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 10
+      },
+      {
+        "date": "2021-06-07 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -4.223571813093086,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2022-01-19 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -15.51793482247601,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2022-01-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.51793482247601,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2022-11-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.59444864292745,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.058502227329065,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.854144849232675,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.216825560016566,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-07 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.194692959223486,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.06399272558264,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.049000242269436,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.970747383872649,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.501072942543333,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.696520214778559,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.159521730628763,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2022-11-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.139404536367149,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2022-11-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.147697674454204,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2023-01-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.15529651209411,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.457415319121505,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.452835196448166,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.66036561221602,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.642096765614598,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -14.184083681860615,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.54363370940359,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-01-31 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.861172371459741,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-02-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.031515512401636,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-02-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.955397830331805,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-02-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.70069259635418,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-02-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.118848203753785,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2023-02-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.14922973797723,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2023-03-01 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -8.731886994013072,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2024-04-19 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -19.021018529676535,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2024-04-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.021018529676535,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-04-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.721746223355627,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-04-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.014141080321963,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-04-26 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.146881012851408,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-04-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.53383470139974,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.153590933727786,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -9.70654265329629,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.897882770282083,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.135531188896738,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.919433732232594,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.817940733495916,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.020781587992637,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-28 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.9668477490896388,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-05-29 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.7999651324863799,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-06-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.234309904001313,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.773859350725607,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.331716539193797,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.666796059034372,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.5559656100547232,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -3.1859574800623958,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.8496231036568944,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-06-27 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.5171823722186617,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-07-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -1.9983065954526147,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-07-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.5800265111237879,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-07-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.32068534863092246,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-07-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-07-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-07-18 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -6.0138805368406985,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2024-08-02 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -16.864716289382454,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2024-08-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.864716289382454,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.420372893614367,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.890513461355049,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.532968492281164,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.967278440580055,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.762471034544587,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.370066538766165,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.898017988951533,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.19305445364611,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -7.26282893253668,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-08-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.151426162366869,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -12.97795779142744,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -13.085114086448247,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.168250365498643,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-12 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -8.391061947888723,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -6.749228590585277,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -5.640163722510505,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-17 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.541041238747989,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-18 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -4.082015678072315,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-19 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -2.414070094807086,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.9006689872208984,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-23 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-09-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 8
+      },
+      {
+        "date": "2024-10-01 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -0.6745310235640734,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-11 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-16 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-25 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": 0.0,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2024-10-31 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -0.1805699613867895,
+        "reentry_mode": "cooldown_90"
+      },
+      {
+        "date": "2025-02-21 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -16.17029946008065,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2025-02-21 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.17029946008065,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2025-11-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.968292116449962,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2025-11-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.71637509494517,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2025-11-20 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -30.516113644565156,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2025-11-20 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -30.516113644565156,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2025-11-21 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -29.642644802052544,
+        "target_exposure_pct": 75.0
+      },
+      {
+        "date": "2025-12-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.707556631133343,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-03 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -23.26903563129611,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -22.95717198195957,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-05 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -21.169517995486885,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-08 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.907514941507753,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-09 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -18.65363822853262,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-10 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.40970046611393,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 9
+      },
+      {
+        "date": "2025-12-30 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -17.85868795217409,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2026-01-02 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -15.387203728375287,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2026-01-06 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -11.240286719466507,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2026-01-13 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.616906382383318,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2026-01-15 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -10.528649246409472,
+        "target_exposure_pct": 75.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2026-01-21 00:00:00",
+        "event": "guard_reentry",
+        "state": "normal",
+        "drawdown_pct": -7.83283495734951,
+        "reentry_mode": "cooldown_90"
+      }
+    ]
+  }
+}

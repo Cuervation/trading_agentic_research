@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 import pandas as pd
 
 from backtester.costs import calculate_trade_net_return
@@ -9,7 +11,16 @@ from backtester.portfolio import Position, build_equity_row, calculate_positions
 from backtester.signal_builder import build_momentum_trend_signals
 
 
-EQUITY_COLUMNS = ["date", "equity", "cash", "gross_exposure", "positions_count"]
+EQUITY_COLUMNS = [
+    "date",
+    "equity",
+    "cash",
+    "gross_exposure",
+    "positions_count",
+    "portfolio_drawdown_pct",
+    "risk_state",
+    "risk_target_exposure_pct",
+]
 TRADE_COLUMNS = [
     "ticker",
     "signal_date",
@@ -34,12 +45,12 @@ TRADE_COLUMNS = [
 ]
 
 
-def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) -> dict:
+def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, signals_override=None) -> dict:
     """Run a simple monthly long-only momentum backtest.
 
-    V1 intentionally does not implement stop loss, take profit, or trailing stops.
     Signals are generated from weekly snapshots and executed at the first daily close
-    strictly after each signal date.
+    strictly after each signal date. Optional risk controls stay disabled unless the
+    config explicitly enables them.
     """
     initial_capital = float(project_config.get("initial_capital", 100000))
     cost_per_side_pct = float(project_config.get("cost_per_side_pct", 0.24))
@@ -53,6 +64,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     rank_deterioration_exit = _get_rank_deterioration_exit(strategy_config)
     max_gross_exposure_pct = _get_max_gross_exposure_pct(strategy_config)
     equity_drawdown_guard = _get_equity_drawdown_guard(strategy_config)
+    portfolio_drawdown_guard = _get_portfolio_drawdown_guard(strategy_config)
     max_drawdown_kill_switch = _get_max_drawdown_kill_switch(strategy_config)
     benchmark_ticker = str(
         strategy_config.get("benchmark_ticker")
@@ -60,7 +72,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     )
 
     warnings: list[str] = []
-    signals = build_momentum_trend_signals(weekly_df, strategy_config)
+    signals = signals_override.copy() if signals_override is not None else build_momentum_trend_signals(weekly_df, strategy_config)
+    benchmark_context = _prepare_benchmark_context(daily_df, benchmark_ticker=benchmark_ticker)
     prices = _prepare_daily_prices(daily_df, benchmark_ticker=benchmark_ticker)
 
     if prices.empty:
@@ -96,6 +109,17 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
     equity_guard_cooldown_remaining = 0
     kill_switch_violated = False
     kill_switch_first_date = None
+    risk_events: list[dict] = []
+    portfolio_guard_runtime = {
+        "state": "normal",
+        "active_since": None,
+        "last_state_change": None,
+    }
+    portfolio_guard_activations = 0
+    portfolio_guard_reentries = 0
+    portfolio_guard_scales = 0
+    reduced_exposure_days = 0
+    crisis_mode_days = 0
 
     for current_date in daily_dates:
         valuation_prices = valuation_matrix.loc[current_date].dropna().to_dict()
@@ -115,6 +139,65 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 kill_switch_first_date = current_date
             kill_switch_violated = True
 
+        if portfolio_drawdown_guard:
+            benchmark_row = _benchmark_row_for_date(benchmark_context, current_date)
+            portfolio_events = _update_portfolio_guard_runtime(
+                runtime=portfolio_guard_runtime,
+                guard=portfolio_drawdown_guard,
+                current_date=current_date,
+                current_drawdown_pct=current_equity_dd_pct,
+                benchmark_row=benchmark_row,
+            )
+            for event in portfolio_events:
+                if event.get("event") in {"guard_reduce_on", "guard_crisis_on"}:
+                    portfolio_guard_activations += 1
+                if event.get("event") == "guard_reentry":
+                    portfolio_guard_reentries += 1
+                risk_events.append(event)
+
+        portfolio_risk_state = str(portfolio_guard_runtime.get("state", "normal"))
+        portfolio_target_exposure_pct = _portfolio_guard_target_exposure_pct(
+            portfolio_drawdown_guard,
+            portfolio_risk_state,
+        )
+
+        if portfolio_risk_state == "crisis":
+            crisis_mode_days += 1
+        elif portfolio_risk_state == "reduced":
+            reduced_exposure_days += 1
+
+        if (
+            portfolio_drawdown_guard
+            and portfolio_target_exposure_pct is not None
+            and current_date not in rebalance_plan
+        ):
+            cash, scaled_count = _scale_positions_to_target_gross_exposure(
+                current_date=current_date,
+                cash=cash,
+                positions=positions,
+                prices=valuation_prices,
+                cost_per_side_pct=cost_per_side_pct,
+                target_exposure_pct=portfolio_target_exposure_pct,
+                exit_reason=(
+                    "portfolio_guard_crisis"
+                    if portfolio_risk_state == "crisis"
+                    else "portfolio_guard_reduce"
+                ),
+                trade_rows=trade_rows,
+            )
+            if scaled_count:
+                portfolio_guard_scales += 1
+                risk_events.append(
+                    {
+                        "date": current_date,
+                        "event": "guard_scale_positions",
+                        "state": portfolio_risk_state,
+                        "drawdown_pct": float(current_equity_dd_pct),
+                        "target_exposure_pct": float(portfolio_target_exposure_pct),
+                        "positions_scaled": int(scaled_count),
+                    }
+                )
+
         if current_date in rebalance_plan:
             plan = rebalance_plan[current_date]
             day_prices = close_matrix.loc[current_date].dropna().to_dict()
@@ -124,6 +207,18 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 equity_drawdown_guard=equity_drawdown_guard,
                 cooldown_remaining=equity_guard_cooldown_remaining,
             )
+            effective_reduced_exposure = guard_policy["reduced_exposure_pct_when_active"]
+            if portfolio_target_exposure_pct is not None:
+                base_plan_exposure_pct = float(plan.get("max_gross_exposure_pct", max_gross_exposure_pct)) * 100.0
+                portfolio_reduced_exposure = min(
+                    base_plan_exposure_pct,
+                    base_plan_exposure_pct * (portfolio_target_exposure_pct / 100.0),
+                )
+                effective_reduced_exposure = (
+                    portfolio_reduced_exposure
+                    if effective_reduced_exposure is None
+                    else min(float(effective_reduced_exposure), portfolio_reduced_exposure)
+                )
             cash = _process_rebalance(
                 current_date=current_date,
                 target_tickers=plan["target_tickers"],
@@ -138,7 +233,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
                 max_gross_exposure_pct=plan.get("max_gross_exposure_pct", max_gross_exposure_pct),
                 rank_deterioration_exit=rank_deterioration_exit,
                 block_new_entries=bool(guard_policy["block_new_entries"]),
-                reduced_exposure_pct_when_active=guard_policy["reduced_exposure_pct_when_active"],
+                reduced_exposure_pct_when_active=effective_reduced_exposure,
                 allow_entries_when_active_top_n=guard_policy["allow_entries_when_active_top_n"],
                 trade_rows=trade_rows,
                 warnings=warnings,
@@ -169,7 +264,15 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             cost_per_side_pct=cost_per_side_pct,
             trade_rows=trade_rows,
         )
-        equity_rows.append(build_equity_row(current_date, cash, positions, valuation_prices))
+        equity_row = build_equity_row(current_date, cash, positions, valuation_prices)
+        equity_row["portfolio_drawdown_pct"] = float(current_equity_dd_pct)
+        equity_row["risk_state"] = portfolio_risk_state
+        equity_row["risk_target_exposure_pct"] = (
+            float(portfolio_target_exposure_pct)
+            if portfolio_target_exposure_pct is not None
+            else 100.0
+        )
+        equity_rows.append(equity_row)
 
     equity_curve = pd.DataFrame(equity_rows, columns=EQUITY_COLUMNS)
     trades = pd.DataFrame(trade_rows, columns=TRADE_COLUMNS)
@@ -193,9 +296,63 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config) 
             "violated": bool(kill_switch_violated),
             "first_violation_date": kill_switch_first_date,
         },
+        "risk_controls": {
+            "portfolio_drawdown_guard": {
+                "enabled": bool(portfolio_drawdown_guard),
+                "activations": int(portfolio_guard_activations),
+                "reentries": int(portfolio_guard_reentries),
+                "reduced_exposure_days": int(reduced_exposure_days),
+                "crisis_mode_days": int(crisis_mode_days),
+                "scale_operations": int(portfolio_guard_scales),
+                "active_at_end": portfolio_guard_runtime.get("state") != "normal",
+                "state_at_end": portfolio_guard_runtime.get("state"),
+            },
+            "position_stop_loss": {
+                "enabled": bool(stop_loss_pct),
+                "stop_loss_pct": float(stop_loss_pct) if stop_loss_pct is not None else None,
+                "count": int((trades["exit_reason"] == "stop_loss").sum()) if not trades.empty else 0,
+            },
+        },
+        "risk_events": risk_events,
     }
 
     return {"equity_curve": equity_curve, "trades": trades, "diagnostics": diagnostics}
+
+
+def _prepare_benchmark_context(daily_df: pd.DataFrame, benchmark_ticker: str) -> pd.DataFrame:
+    if daily_df is None or daily_df.empty or "ticker" not in daily_df.columns:
+        return pd.DataFrame()
+    required = {"date", "ticker", "close"}
+    if not required.issubset(daily_df.columns):
+        return pd.DataFrame()
+    spy = daily_df[daily_df["ticker"].astype(str) == str(benchmark_ticker)].copy()
+    if spy.empty:
+        return pd.DataFrame()
+    spy["date"] = pd.to_datetime(spy["date"], errors="coerce")
+    spy = spy.dropna(subset=["date", "close"]).sort_values("date", kind="mergesort")
+    spy = spy.drop_duplicates(subset=["date"], keep="last")
+    spy["close"] = pd.to_numeric(spy["close"], errors="coerce")
+    if "close_sma_200" not in spy.columns:
+        spy["close_sma_200"] = spy["close"].rolling(200, min_periods=200).mean()
+    if "close_sma_50" not in spy.columns:
+        spy["close_sma_50"] = spy["close"].rolling(50, min_periods=50).mean()
+    if "close_sma_50_slope_5d_pct" not in spy.columns:
+        spy["close_sma_50_slope_5d_pct"] = (
+            (spy["close_sma_50"] / spy["close_sma_50"].shift(5)) - 1.0
+        ) * 100.0
+    return spy.set_index("date", drop=False)
+
+
+def _benchmark_row_for_date(benchmark_context: pd.DataFrame, current_date: pd.Timestamp):
+    if benchmark_context is None or benchmark_context.empty:
+        return None
+    try:
+        row = benchmark_context.loc[pd.to_datetime(current_date)]
+    except KeyError:
+        return None
+    if isinstance(row, pd.DataFrame):
+        return row.iloc[-1]
+    return row
 
 
 def _prepare_daily_prices(daily_df: pd.DataFrame, benchmark_ticker: str) -> pd.DataFrame:
@@ -542,6 +699,13 @@ def _get_trailing_activation_gain_pct(strategy_config: dict) -> float | None:
 
 
 def _get_stop_loss_pct(strategy_config: dict) -> float | None:
+    risk_controls = strategy_config.get("risk_controls", {}) or {}
+    position_stop = risk_controls.get("position_stop_loss")
+    if isinstance(position_stop, dict) and position_stop.get("enabled"):
+        value = position_stop.get("stop_loss_pct")
+        if value is not None:
+            value = abs(float(value))
+            return value if value > 0 else None
     risk_management = strategy_config.get("risk_management", {}) or {}
     value = risk_management.get("stop_loss_pct")
     if value is None:
@@ -654,6 +818,183 @@ def _get_equity_drawdown_guard(strategy_config: dict) -> dict | None:
         except (TypeError, ValueError):
             pass
     return guard
+
+
+def _get_portfolio_drawdown_guard(strategy_config: dict) -> dict | None:
+    risk_controls = strategy_config.get("risk_controls", {}) or {}
+    cfg = risk_controls.get("portfolio_drawdown_guard")
+    if not isinstance(cfg, dict) or not cfg.get("enabled"):
+        return None
+    try:
+        reduce_dd = float(cfg.get("reduce_exposure_drawdown_pct"))
+        crisis_dd = float(cfg.get("crisis_drawdown_pct", reduce_dd))
+    except (TypeError, ValueError):
+        return None
+    if crisis_dd > reduce_dd:
+        return None
+    try:
+        reduced_multiplier = float(cfg.get("reduced_exposure_multiplier", 0.5))
+    except (TypeError, ValueError):
+        reduced_multiplier = 0.5
+    try:
+        crisis_multiplier = float(cfg.get("crisis_exposure_multiplier", 0.0))
+    except (TypeError, ValueError):
+        crisis_multiplier = 0.0
+    reentry_drawdown = cfg.get("reentry_drawdown_pct")
+    if reentry_drawdown is not None:
+        try:
+            reentry_drawdown = float(reentry_drawdown)
+        except (TypeError, ValueError):
+            reentry_drawdown = None
+    mode = str(cfg.get("reentry_mode") or "dd_recovered").lower()
+    cooldown_days = cfg.get("cooldown_days")
+    if cooldown_days is None:
+        match = re.search(r"cooldown_(\d+)", mode)
+        cooldown_days = int(match.group(1)) if match else 0
+    try:
+        cooldown_days = int(cooldown_days or 0)
+    except (TypeError, ValueError):
+        cooldown_days = 0
+    return {
+        "reduce_exposure_drawdown_pct": reduce_dd,
+        "reduced_exposure_multiplier": max(0.0, min(1.0, reduced_multiplier)),
+        "crisis_drawdown_pct": crisis_dd,
+        "crisis_exposure_multiplier": max(0.0, min(1.0, crisis_multiplier)),
+        "reentry_drawdown_pct": reentry_drawdown,
+        "reentry_mode": mode,
+        "cooldown_days": max(0, cooldown_days),
+    }
+
+
+def _portfolio_guard_target_exposure_pct(
+    portfolio_drawdown_guard: dict | None,
+    state: str,
+) -> float | None:
+    if not portfolio_drawdown_guard or state == "normal":
+        return None
+    if state == "crisis":
+        return float(portfolio_drawdown_guard.get("crisis_exposure_multiplier", 0.0)) * 100.0
+    return float(portfolio_drawdown_guard.get("reduced_exposure_multiplier", 1.0)) * 100.0
+
+
+def _update_portfolio_guard_runtime(
+    *,
+    runtime: dict,
+    guard: dict,
+    current_date: pd.Timestamp,
+    current_drawdown_pct: float,
+    benchmark_row,
+) -> list[dict]:
+    events: list[dict] = []
+    old_state = str(runtime.get("state", "normal"))
+    new_state = old_state
+
+    if old_state != "normal" and _portfolio_reentry_allowed(
+        guard=guard,
+        runtime=runtime,
+        current_date=current_date,
+        current_drawdown_pct=current_drawdown_pct,
+        benchmark_row=benchmark_row,
+    ):
+        new_state = "normal"
+        runtime["state"] = "normal"
+        runtime["active_since"] = None
+        runtime["last_state_change"] = current_date
+        return [
+            {
+                "date": current_date,
+                "event": "guard_reentry",
+                "state": "normal",
+                "drawdown_pct": float(current_drawdown_pct),
+                "reentry_mode": guard.get("reentry_mode"),
+            }
+        ]
+
+    if current_drawdown_pct <= float(guard["crisis_drawdown_pct"]):
+        new_state = "crisis"
+    elif old_state != "normal" or current_drawdown_pct <= float(guard["reduce_exposure_drawdown_pct"]):
+        new_state = "reduced"
+
+    if new_state != old_state:
+        runtime["state"] = new_state
+        runtime["last_state_change"] = current_date
+        if old_state == "normal":
+            runtime["active_since"] = current_date
+        event_name = "guard_crisis_on" if new_state == "crisis" else "guard_reduce_on"
+        if new_state == "normal":
+            event_name = "guard_off"
+        events.append(
+            {
+                "date": current_date,
+                "event": event_name,
+                "state": new_state,
+                "drawdown_pct": float(current_drawdown_pct),
+                "target_exposure_pct": _portfolio_guard_target_exposure_pct(guard, new_state),
+            }
+        )
+
+    return events
+
+
+def _portfolio_reentry_allowed(
+    *,
+    guard: dict,
+    runtime: dict,
+    current_date: pd.Timestamp,
+    current_drawdown_pct: float,
+    benchmark_row,
+) -> bool:
+    mode = str(guard.get("reentry_mode") or "dd_recovered").lower()
+    if mode in {"never", "permanent", "none_permanent"}:
+        return False
+
+    reentry_drawdown = guard.get("reentry_drawdown_pct")
+    if reentry_drawdown is not None and current_drawdown_pct < float(reentry_drawdown):
+        return False
+
+    cooldown_days = int(guard.get("cooldown_days") or 0)
+    active_since = runtime.get("active_since")
+    if cooldown_days > 0:
+        if active_since is None:
+            return False
+        elapsed_days = (pd.to_datetime(current_date) - pd.to_datetime(active_since)).days
+        if elapsed_days < cooldown_days:
+            return False
+
+    if "spy_sma200" in mode and not _spy_above_sma(benchmark_row, 200):
+        return False
+    if "sma50" in mode and not _spy_above_sma(benchmark_row, 50):
+        return False
+    if "slope50" in mode and not _spy_sma50_slope_positive(benchmark_row):
+        return False
+
+    return True
+
+
+def _spy_above_sma(benchmark_row, window: int) -> bool:
+    if benchmark_row is None:
+        return False
+    close = _series_float(benchmark_row, "close")
+    sma = _series_float(benchmark_row, f"close_sma_{window}")
+    if close is None or sma is None:
+        return False
+    return close > sma
+
+
+def _spy_sma50_slope_positive(benchmark_row) -> bool:
+    if benchmark_row is None:
+        return False
+    slope = _series_float(benchmark_row, "close_sma_50_slope_5d_pct")
+    return slope is not None and slope > 0
+
+
+def _series_float(row, field: str) -> float | None:
+    if row is None or field not in row:
+        return None
+    value = pd.to_numeric(row[field], errors="coerce")
+    if pd.isna(value):
+        return None
+    return float(value)
 
 
 def _equity_guard_rebalance_policy(
@@ -860,6 +1201,53 @@ def _process_trailing_stops(
                     remaining.partial_take_profit_done = True
                 continue
     return cash
+
+
+def _scale_positions_to_target_gross_exposure(
+    *,
+    current_date: pd.Timestamp,
+    cash: float,
+    positions: dict[str, Position],
+    prices: dict[str, float],
+    cost_per_side_pct: float,
+    target_exposure_pct: float,
+    exit_reason: str,
+    trade_rows: list[dict],
+) -> tuple[float, int]:
+    if not positions:
+        return cash, 0
+    target_exposure_pct = max(0.0, min(100.0, float(target_exposure_pct)))
+    gross_value = calculate_positions_value(positions, prices)
+    if gross_value <= 0:
+        return cash, 0
+    equity = cash + gross_value
+    target_value = max(0.0, equity * (target_exposure_pct / 100.0))
+    if gross_value <= target_value * 1.000001:
+        return cash, 0
+    sell_fraction = 1.0 - (target_value / gross_value if gross_value > 0 else 0.0)
+    sell_fraction = max(0.0, min(1.0, sell_fraction))
+    scaled = 0
+    for ticker in list(positions.keys()):
+        position = positions.get(ticker)
+        price = prices.get(ticker)
+        if position is None or price is None:
+            continue
+        shares_to_sell = float(position.shares) * sell_fraction
+        if shares_to_sell <= 1e-10:
+            continue
+        cash = _sell_position_shares(
+            ticker=ticker,
+            shares_to_sell=shares_to_sell,
+            exit_date=current_date,
+            exit_price=float(price),
+            cash=cash,
+            positions=positions,
+            cost_per_side_pct=cost_per_side_pct,
+            exit_reason=exit_reason,
+            trade_rows=trade_rows,
+        )
+        scaled += 1
+    return cash, scaled
 
 
 def _close_position(

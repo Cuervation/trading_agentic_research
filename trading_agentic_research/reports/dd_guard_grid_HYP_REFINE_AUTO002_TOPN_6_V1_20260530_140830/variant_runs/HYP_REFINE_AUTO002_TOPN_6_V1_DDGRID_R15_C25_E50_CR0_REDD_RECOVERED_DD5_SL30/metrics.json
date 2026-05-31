@@ -1,0 +1,103 @@
+{
+  "strategy": {
+    "total_return_pct": 12.561084310891113,
+    "cagr_pct": 0.43312047060544145,
+    "max_drawdown_pct": -26.076931128659485,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "spy": {
+    "total_return_pct": 506.0574160210821,
+    "cagr_pct": 6.802474621020882,
+    "max_drawdown_pct": -56.473669178171626,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00"
+  },
+  "diagnostics": {
+    "number_of_rebalances": 316,
+    "number_of_trades": 29,
+    "start_date": "1999-01-04 00:00:00",
+    "end_date": "2026-05-22 00:00:00",
+    "warnings": [
+      "No daily price date after signal_date=2026-05-22; skipped rebalance."
+    ],
+    "equity_drawdown_guard": {
+      "enabled": false,
+      "activations": 0,
+      "blocked_rebalances": 0,
+      "partial_rebalances": 0,
+      "cooldown_remaining": 0,
+      "active_at_end": false
+    },
+    "max_drawdown_kill_switch": {
+      "enabled": false,
+      "violated": false,
+      "first_violation_date": null
+    },
+    "risk_controls": {
+      "portfolio_drawdown_guard": {
+        "enabled": true,
+        "activations": 2,
+        "reentries": 0,
+        "reduced_exposure_days": 14,
+        "crisis_mode_days": 6574,
+        "scale_operations": 4,
+        "active_at_end": true,
+        "state_at_end": "crisis"
+      },
+      "position_stop_loss": {
+        "enabled": true,
+        "stop_loss_pct": 30.0,
+        "count": 2
+      }
+    },
+    "risk_events": [
+      {
+        "date": "2000-03-14 00:00:00",
+        "event": "guard_reduce_on",
+        "state": "reduced",
+        "drawdown_pct": -19.532989903163234,
+        "target_exposure_pct": 50.0
+      },
+      {
+        "date": "2000-03-14 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -19.532989903163234,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 7
+      },
+      {
+        "date": "2000-03-22 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.165986771626063,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2000-03-24 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "reduced",
+        "drawdown_pct": -16.011697413065374,
+        "target_exposure_pct": 50.0,
+        "positions_scaled": 6
+      },
+      {
+        "date": "2000-04-03 00:00:00",
+        "event": "guard_crisis_on",
+        "state": "crisis",
+        "drawdown_pct": -26.022669529461197,
+        "target_exposure_pct": 0.0
+      },
+      {
+        "date": "2000-04-04 00:00:00",
+        "event": "guard_scale_positions",
+        "state": "crisis",
+        "drawdown_pct": -25.314503155666067,
+        "target_exposure_pct": 0.0,
+        "positions_scaled": 1
+      }
+    ]
+  }
+}

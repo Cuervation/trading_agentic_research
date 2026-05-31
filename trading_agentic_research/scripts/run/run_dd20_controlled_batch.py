@@ -31,6 +31,7 @@ HYPOTHESIS_INDEX = ROOT / "reports" / "dd20_controlled_hypotheses" / "hypotheses
 HYPOTHESIS_SUMMARY = ROOT / "reports" / "dd20_controlled_hypotheses" / "latest_summary.md"
 CONFIG_DIR = ROOT / "configs" / "generated" / "dd20_controlled"
 BATCH_REPORT_ROOT = ROOT / "reports" / "dd20_controlled_batch"
+SUPPORT_AUDIT_ROOT = ROOT / "reports" / "dd20_pipeline_support_audit"
 RUNS_DIR = ROOT / "runs"
 PROJECT_CONFIG = ROOT / "configs" / "project_config.json"
 RUN_BACKTEST = ROOT / "scripts" / "run_backtest.py"
@@ -63,6 +64,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run DD20 controlled batch with strict governance and translation auditing.")
     parser.add_argument("--max-candidates", type=int, default=None, help="Optional cap for number of hypotheses to run (after filters).")
     parser.add_argument("--strategy-ids", default="", help="Optional comma-separated strategy_ids to run as a short validation batch.")
+    parser.add_argument("--support-audit-only", action="store_true", help="Only write the DD20 support preflight audit; do not run backtests.")
     return parser.parse_args()
 
 
@@ -208,6 +210,25 @@ def materialize_candidate_config(parent_cfg: dict[str, Any], hypothesis_cfg: dic
     return candidate
 
 
+def changed_parameters_for_translation(family: str, translation: dict[str, Any]) -> list[str]:
+    controls = set(translation.get("translated_controls") or {})
+    if family == "spy_fallback_partial":
+        controls.update(translation.get("unsupported_controls") or ["risk_management.spy_fallback_partial_pct"])
+    elif family == "topn_dynamic":
+        controls.update(
+            {
+                "entry_rule.type",
+                "entry_rule.top_n_strong_regime",
+                "entry_rule.top_n_weak_regime",
+                "market_filter.benchmark",
+                "market_filter.condition_any",
+            }
+        )
+    elif family == "dd_compression":
+        controls.update(translation.get("unsupported_controls") or [])
+    return sorted(controls)
+
+
 def resolve_data_paths() -> tuple[str, str, list[str]]:
     from scripts.research.data_path_resolver import resolve_data_paths as _resolve
 
@@ -343,12 +364,23 @@ def translate_hypothesis_for_execution(
     note = ""
 
     if family == "spy_fallback_partial":
+        rm_declared = deepcopy(overrides.get("risk_management") or {})
+        market_declared = deepcopy(overrides.get("market_filter") or {})
         fallback_pct = (
-            variant.get("spy_fallback_partial_pct")
+            rm_declared.get("spy_fallback_partial_pct")
+            or rm_declared.get("fallback_pct")
+            or variant.get("spy_fallback_partial_pct")
             or variant.get("fallback_pct")
             or hypothesis_cfg.get("spy_fallback_partial_pct")
         )
         unsupported_controls.append("risk_management.spy_fallback_partial_pct")
+        if "spy_fallback_only_when_positive_regime" in rm_declared:
+            unsupported_controls.append("risk_management.spy_fallback_only_when_positive_regime")
+        if "max_gross_exposure_pct" in rm_declared:
+            translated_controls["risk_management.max_gross_exposure_pct"] = rm_declared["max_gross_exposure_pct"]
+        for key in ("benchmark", "condition_any", "require_positive_trend"):
+            if key in market_declared:
+                translated_controls[f"market_filter.{key}"] = market_declared[key]
         support_issue = (
             "spy_fallback_partial_pct is not supported by the current backtester; "
             f"requested value={fallback_pct!r}."
@@ -367,11 +399,25 @@ def translate_hypothesis_for_execution(
         if entry_declared.get("type") == "top_n_dynamic":
             ignored_controls.extend(
                 [
-                    "entry_rule.type=top_n_dynamic",
+                    "entry_rule.type",
                     "entry_rule.top_n_strong_regime",
                     "entry_rule.top_n_weak_regime",
                 ]
             )
+            unsupported_controls.extend(
+                [
+                    "entry_rule.type",
+                    "entry_rule.top_n_strong_regime",
+                    "entry_rule.top_n_weak_regime",
+                ]
+            )
+            support_issue = (
+                "top_n_dynamic is material but not supported as declared by the engine; "
+                "entry_rule.type=top_n_dynamic and top_n_strong_regime/top_n_weak_regime would be translated/ignored."
+            )
+        if "benchmark" in entry_declared:
+            ignored_controls.append("entry_rule.benchmark")
+            unsupported_controls.append("entry_rule.benchmark")
         translated_overrides["entry_rule"] = {
             "type": "top_n",
             "top_n": strong_topn,
@@ -381,6 +427,9 @@ def translate_hypothesis_for_execution(
         market_filter["soft_weak_regime_top_n"] = weak_topn
         market_filter["benchmark"] = "SPY"
         market_filter["require_positive_trend"] = bool(market_filter.get("require_positive_trend", True))
+        for key in ("benchmark", "condition_any", "require_positive_trend"):
+            if key in market_filter:
+                translated_controls[f"market_filter.{key}"] = market_filter[key]
         translated_overrides["market_filter"] = market_filter
         translated_controls["entry_rule.top_n"] = strong_topn
         translated_controls["market_filter.soft_weak_regime_top_n"] = weak_topn
@@ -421,6 +470,10 @@ def translate_hypothesis_for_execution(
         if target_dd is not None:
             unsupported_controls.append("risk_management.equity_drawdown_guard.max_drawdown_target_pct")
             ignored_controls.append("risk_management.equity_drawdown_guard.max_drawdown_target_pct")
+            support_issue = (
+                "dd_compression declares material max_drawdown_target_pct, but the engine has no direct target-DD control; "
+                "blocking instead of treating the target as metadata."
+            )
 
         gross = parse_int(
             rm_declared.get("max_gross_exposure_pct", variant.get("max_gross_exposure_pct")),
@@ -460,11 +513,19 @@ def translate_hypothesis_for_execution(
             "risk_control_fields_ignored": [
                 c for c in unsupported_controls + ignored_controls if c.startswith("risk_management.") or c.startswith("market_filter.")
             ],
+            "changed_parameters": changed_parameters_for_translation(family, {
+                "translated_controls": translated_controls,
+                "unsupported_controls": unsupported_controls,
+            }),
         }
 
     executable = materialize_candidate_config(parent_cfg, hypothesis_cfg, translated_overrides)
     executable["engine_translation_note"] = note
     executable["strategy_overrides"] = translated_overrides
+    executable["changed_parameters"] = changed_parameters_for_translation(family, {
+        "translated_controls": translated_controls,
+        "unsupported_controls": unsupported_controls,
+    })
     return {
         "family": family,
         "executable_config": executable,
@@ -477,6 +538,7 @@ def translate_hypothesis_for_execution(
         "risk_control_fields_ignored": [
             c for c in unsupported_controls + ignored_controls if c.startswith("risk_management.") or c.startswith("market_filter.")
         ],
+        "changed_parameters": executable["changed_parameters"],
     }
 
 
@@ -780,8 +842,135 @@ def filter_rankable_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     ]
 
 
+def selected_hypotheses(args: argparse.Namespace, hypotheses: list[dict[str, str]]) -> list[dict[str, str]]:
+    requested_ids = {x.strip() for x in str(args.strategy_ids or "").split(",") if x.strip()}
+    if requested_ids:
+        hypotheses = [row for row in hypotheses if str(row.get("strategy_id") or "").strip() in requested_ids]
+    if args.max_candidates is not None and args.max_candidates >= 0:
+        hypotheses = hypotheses[: int(args.max_candidates)]
+    return hypotheses
+
+
+def build_support_preflight_row(hyp_row: dict[str, str]) -> dict[str, Any]:
+    strategy_id = str(hyp_row.get("strategy_id") or "").strip()
+    family = str(hyp_row.get("family") or "").strip()
+    parent_run_id = str(hyp_row.get("parent_strategy") or "").strip()
+    hyp_cfg = load_hypothesis_config(strategy_id)
+    parent_manifest = load_parent_run_manifest(parent_run_id)
+    parent_cfg_path = parent_manifest.get("strategy_config_path")
+    parent_cfg: dict[str, Any] = {}
+    if parent_cfg_path:
+        p = Path(parent_cfg_path)
+        if not p.is_absolute():
+            p = ROOT / p
+        parent_cfg = read_json(p, {})
+
+    translation = translate_hypothesis_for_execution(hyp_cfg, parent_cfg, family)
+    effective_audit = build_effective_config_audit(
+        run_id=strategy_id,
+        hypothesis_id=str(hyp_cfg.get("hypothesis_id") or strategy_id),
+        family=family,
+        parent_cfg=parent_cfg,
+        candidate_cfg=translation.get("executable_config"),
+        hypothesis_cfg=hyp_cfg,
+        translation=translation,
+    )
+    support_status = "runnable" if translation.get("executable_config") is not None else "requires_engine_support"
+    blocked_reason = translation.get("support_issue") or ""
+    if effective_audit.get("missing_declared_controls"):
+        support_status = "blocked"
+        blocked_reason = "declared_controls_not_fully_accounted"
+    return {
+        "strategy_id": strategy_id,
+        "family": family,
+        "parent_strategy": parent_run_id,
+        "support_status": support_status,
+        "support_issue": translation.get("support_issue") or "",
+        "blocked_reason": blocked_reason,
+        "declared_controls": "|".join(sorted(effective_audit.get("declared_controls", {}).keys())),
+        "translated_controls": "|".join(sorted((translation.get("translated_controls") or {}).keys())),
+        "unsupported_controls": "|".join(sorted(translation.get("unsupported_controls") or [])),
+        "ignored_controls": "|".join(sorted(translation.get("ignored_controls") or [])),
+        "missing_declared_controls": "|".join(effective_audit.get("missing_declared_controls") or []),
+        "changed_parameters": "|".join(translation.get("changed_parameters") or []),
+        "conclusion": effective_audit.get("conclusion", ""),
+    }
+
+
+def write_support_audit_report(args: argparse.Namespace) -> Path:
+    report_dir = SUPPORT_AUDIT_ROOT / datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_dir.mkdir(parents=True, exist_ok=False)
+    hypotheses = selected_hypotheses(args, load_hypotheses_index())
+    if not hypotheses:
+        raise RuntimeError("No hypotheses selected for support audit.")
+    rows = [build_support_preflight_row(row) for row in hypotheses]
+    fields = [
+        "strategy_id",
+        "family",
+        "parent_strategy",
+        "support_status",
+        "support_issue",
+        "blocked_reason",
+        "declared_controls",
+        "translated_controls",
+        "unsupported_controls",
+        "ignored_controls",
+        "missing_declared_controls",
+        "changed_parameters",
+        "conclusion",
+    ]
+    runnable = [r for r in rows if r["support_status"] == "runnable"]
+    requires = [r for r in rows if r["support_status"] == "requires_engine_support"]
+    blocked = [r for r in rows if r["support_status"] != "runnable"]
+    write_csv_rows(report_dir / "support_matrix.csv", rows, fields)
+    write_csv_rows(report_dir / "skipped_requires_engine_support.csv", requires, fields)
+    write_csv_rows(report_dir / "runnable_hypotheses.csv", runnable, fields)
+    write_csv_rows(report_dir / "blocked_hypotheses.csv", blocked, fields)
+    family_counts = Counter(r["family"] for r in rows)
+    readme = [
+        "# DD20 Pipeline Support Audit",
+        "",
+        "No backtests were run. This is preflight only.",
+        "",
+        "## Summary",
+        f"- total_hypotheses: {len(rows)}",
+        f"- runnable_hypotheses: {len(runnable)}",
+        f"- requires_engine_support: {len(requires)}",
+        f"- blocked_hypotheses: {len(blocked)}",
+        "",
+        "## Families",
+    ]
+    for family, count in sorted(family_counts.items()):
+        readme.append(f"- {family}: {count}")
+    readme.extend(["", "## Why spy_fallback_partial did not run"])
+    spy_rows = [r for r in rows if r["family"] == "spy_fallback_partial"]
+    if spy_rows:
+        for row in spy_rows:
+            readme.append(f"- {row['strategy_id']}: {row['support_status']} — {row['support_issue']}")
+    else:
+        readme.append("- No spy_fallback_partial rows found in hypotheses.csv.")
+    readme.extend(
+        [
+            "",
+            "## Next engine file for SPY fallback",
+            "- `backtester/execution.py` is the likely implementation point because cash/exposure allocation happens there.",
+            "- `backtester/signal_builder.py` may also need signal-level support if fallback is regime-gated by SPY features.",
+            "",
+        ]
+    )
+    (report_dir / "README_DD20_PIPELINE_SUPPORT_AUDIT.md").write_text("\n".join(readme), encoding="utf-8")
+    print(f"Support audit folder: {report_dir}")
+    print(f"Runnable: {len(runnable)}")
+    print(f"Requires engine support: {len(requires)}")
+    print(f"Blocked: {len(blocked)}")
+    return report_dir
+
+
 def main(args: argparse.Namespace | None = None) -> int:
     args = args or parse_args()
+    if args.support_audit_only:
+        write_support_audit_report(args)
+        return 0
     HYPOTHESIS_SUMMARY.parent.mkdir(parents=True, exist_ok=True)
     batch_dir = BATCH_REPORT_ROOT / datetime.now().strftime("%Y%m%d_%H%M%S")
     batch_dir.mkdir(parents=True, exist_ok=False)
@@ -798,11 +987,7 @@ def main(args: argparse.Namespace | None = None) -> int:
     hypotheses = load_hypotheses_index()
     if not hypotheses:
         raise RuntimeError(f"No hypotheses found at {HYPOTHESIS_INDEX}")
-    requested_ids = {x.strip() for x in str(args.strategy_ids or "").split(",") if x.strip()}
-    if requested_ids:
-        hypotheses = [row for row in hypotheses if str(row.get("strategy_id") or "").strip() in requested_ids]
-    if args.max_candidates is not None and args.max_candidates >= 0:
-        hypotheses = hypotheses[: int(args.max_candidates)]
+    hypotheses = selected_hypotheses(args, hypotheses)
     if not hypotheses:
         raise RuntimeError("No hypotheses selected after applying --strategy-ids / --max-candidates filters.")
 

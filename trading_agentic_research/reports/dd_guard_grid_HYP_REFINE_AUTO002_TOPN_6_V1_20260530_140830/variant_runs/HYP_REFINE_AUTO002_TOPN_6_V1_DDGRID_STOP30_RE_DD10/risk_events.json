@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2000-04-03 00:00:00",
+    "event": "guard_crisis_on",
+    "state": "crisis",
+    "drawdown_pct": -31.843839324085376,
+    "target_exposure_pct": 0.0
+  },
+  {
+    "date": "2000-04-04 00:00:00",
+    "event": "guard_scale_positions",
+    "state": "crisis",
+    "drawdown_pct": -30.445720433456238,
+    "target_exposure_pct": 0.0,
+    "positions_scaled": 1
+  }
+]
