@@ -213,13 +213,24 @@ def main() -> int:
     equity_curve.to_csv(run_dir / "equity_curve.csv", index=False, sep=";", decimal=",")
     trades.to_csv(run_dir / "trades.csv", index=False, sep=";", decimal=",")
 
+    execution_timing_diag = diagnostics.get("execution_timing", {}) if isinstance(diagnostics, dict) else {}
+    execution_costs_diag = diagnostics.get("execution_costs", {}) if isinstance(diagnostics, dict) else {}
     metrics_payload = {
         "strategy": strategy_metrics,
         "spy": spy_metrics,
         "diagnostics": diagnostics,
+        "execution_timing_mode": execution_timing_diag.get("execution_timing_mode", "current_default"),
+        "strict_next_close_enabled": bool(execution_timing_diag.get("strict_next_close_enabled", False)),
+        "delayed_execution_count": int(execution_timing_diag.get("delayed_execution_count", 0) or 0),
+        "same_close_execution_count": int(execution_timing_diag.get("same_close_execution_count", 0) or 0),
+        "execution_timing_notes": execution_timing_diag.get("execution_timing_notes", []),
         "costs": {
             "applied": True,
-            "cost_per_side_pct": float(project_config.get("cost_per_side_pct", 0.24)),
+            "cost_per_side_pct": float(execution_costs_diag.get("effective_cost_per_side_pct", project_config.get("cost_per_side_pct", 0.24))),
+            "base_cost_per_side_pct": float(execution_costs_diag.get("base_cost_per_side_pct", project_config.get("cost_per_side_pct", 0.24))),
+            "base_slippage_per_side_pct": float(execution_costs_diag.get("base_slippage_per_side_pct", 0.0) or 0.0),
+            "cost_multiplier": float(execution_costs_diag.get("cost_multiplier", 1.0) or 1.0),
+            "slippage_multiplier": float(execution_costs_diag.get("slippage_multiplier", 1.0) or 1.0),
         },
     }
 
@@ -261,6 +272,10 @@ def main() -> int:
         daily_folder=args.daily_folder,
         parent_strategy_config=parent_strategy_config,
     )
+    manifest["execution_timing_mode"] = metrics_payload["execution_timing_mode"]
+    manifest["strict_next_close_enabled"] = metrics_payload["strict_next_close_enabled"]
+    manifest["delayed_execution_count"] = metrics_payload["delayed_execution_count"]
+    manifest["execution_costs"] = metrics_payload["costs"]
     with (run_dir / "run_manifest.json").open("w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False, default=str)
 

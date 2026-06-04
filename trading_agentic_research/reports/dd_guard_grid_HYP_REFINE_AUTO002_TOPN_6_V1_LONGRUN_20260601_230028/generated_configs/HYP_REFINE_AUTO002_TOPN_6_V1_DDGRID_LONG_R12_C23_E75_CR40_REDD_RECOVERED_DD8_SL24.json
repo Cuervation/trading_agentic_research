@@ -1,0 +1,80 @@
+{
+  "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL24",
+  "hypothesis_id": "HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL24",
+  "strategy_family": "dd_guard_grid",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "close_vs_sma52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 6,
+    "by": "ret_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 20
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Assets with positive medium-term trend should be favored and weak trends should be cut earlier.",
+  "causal_mechanism": "Trend persistence and behavioral anchoring can create continuation across 24/52 week windows.",
+  "changed_parameters": [
+    "risk_controls.portfolio_drawdown_guard",
+    "risk_controls.position_stop_loss"
+  ],
+  "expected_effect": "Improve drawdown/stability versus parent, accepting lower CAGR only if SPY-relative robustness improves.",
+  "falsification_rule": "Reject if artifacts/trades duplicate parent or monthly/yearly SPY comparison does not improve.",
+  "parent_strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1",
+  "empirical_basis": [],
+  "risk_controls": {
+    "portfolio_drawdown_guard": {
+      "enabled": true,
+      "reduce_exposure_drawdown_pct": -12.0,
+      "reduced_exposure_multiplier": 0.75,
+      "crisis_drawdown_pct": -23.0,
+      "crisis_exposure_multiplier": 0.4,
+      "reentry_mode": "dd_recovered",
+      "reentry_drawdown_pct": -8.0
+    },
+    "position_stop_loss": {
+      "enabled": true,
+      "stop_loss_pct": -24
+    }
+  },
+  "dd_guard_grid_notes": "DD guard grid family=longrun_adaptive_seed"
+}

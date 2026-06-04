@@ -1,0 +1,20 @@
+{
+  "report_dir": "reports\\dd_guard_grid_HYP_REFINE_AUTO002_TOPN_6_V1_CHEAP_20260601_195820",
+  "csv": "reports\\dd_guard_grid_HYP_REFINE_AUTO002_TOPN_6_V1_CHEAP_20260601_195820\\grid_results.csv",
+  "excel": "reports\\dd_guard_grid_HYP_REFINE_AUTO002_TOPN_6_V1_CHEAP_20260601_195820\\dd_guard_grid_results_cheap.xlsx",
+  "new_completed": 40,
+  "failed": 0,
+  "metric_no_effect": 0,
+  "missing_artifacts": 0,
+  "best_previous": "HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_EXT_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL20",
+  "best_previous_cagr": 14.037913866503926,
+  "best_previous_dd": -32.64117625890698,
+  "best_new": "HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_CHEAP_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL18",
+  "best_new_cagr": 13.522211472530522,
+  "best_new_dd": -31.73231196633627,
+  "best_to_trade": "HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_CHEAP_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL18",
+  "best_to_trade_cagr": 13.522211472530522,
+  "best_to_trade_dd": -31.73231196633627,
+  "excel_exists": true,
+  "combined_rows": 468
+}

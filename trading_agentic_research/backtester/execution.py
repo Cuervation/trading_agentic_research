@@ -53,7 +53,12 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
     config explicitly enables them.
     """
     initial_capital = float(project_config.get("initial_capital", 100000))
-    cost_per_side_pct = float(project_config.get("cost_per_side_pct", 0.24))
+    base_cost_per_side_pct = float(project_config.get("cost_per_side_pct", 0.24))
+    execution_costs = _get_execution_costs(strategy_config, project_config, base_cost_per_side_pct)
+    cost_per_side_pct = float(execution_costs["effective_cost_per_side_pct"])
+    execution_timing = _get_execution_timing(strategy_config)
+    strict_next_close = bool(execution_timing.get("strict_next_close_enabled"))
+    execution_timing_mode = str(execution_timing.get("execution_timing_mode", "current_default"))
     trailing_stop_pct = _get_trailing_stop_pct(strategy_config)
     trailing_activation_gain_pct = _get_trailing_activation_gain_pct(strategy_config)
     stop_loss_pct = _get_stop_loss_pct(strategy_config)
@@ -120,6 +125,11 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
     portfolio_guard_scales = 0
     reduced_exposure_days = 0
     crisis_mode_days = 0
+    delayed_execution_count = 0
+    same_close_execution_count = 0
+    previous_equity_dd_pct = None
+    previous_benchmark_row = None
+    previous_valuation_prices = None
 
     for current_date in daily_dates:
         valuation_prices = valuation_matrix.loc[current_date].dropna().to_dict()
@@ -141,14 +151,25 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
 
         if portfolio_drawdown_guard:
             benchmark_row = _benchmark_row_for_date(benchmark_context, current_date)
-            portfolio_events = _update_portfolio_guard_runtime(
-                runtime=portfolio_guard_runtime,
-                guard=portfolio_drawdown_guard,
-                current_date=current_date,
-                current_drawdown_pct=current_equity_dd_pct,
-                benchmark_row=benchmark_row,
-            )
+            guard_signal_dd = previous_equity_dd_pct if strict_next_close else current_equity_dd_pct
+            guard_signal_benchmark = previous_benchmark_row if strict_next_close else benchmark_row
+            if guard_signal_dd is not None:
+                portfolio_events = _update_portfolio_guard_runtime(
+                    runtime=portfolio_guard_runtime,
+                    guard=portfolio_drawdown_guard,
+                    current_date=current_date,
+                    current_drawdown_pct=guard_signal_dd,
+                    benchmark_row=guard_signal_benchmark,
+                )
+            else:
+                portfolio_events = []
             for event in portfolio_events:
+                if strict_next_close:
+                    event["execution_timing_mode"] = "strict_next_close"
+                    event["signal_detected_previous_close"] = True
+                    delayed_execution_count += 1
+                else:
+                    same_close_execution_count += 1
                 if event.get("event") in {"guard_reduce_on", "guard_crisis_on"}:
                     portfolio_guard_activations += 1
                 if event.get("event") == "guard_reentry":
@@ -184,6 +205,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
                     else "portfolio_guard_reduce"
                 ),
                 trade_rows=trade_rows,
+                execution_timing_mode=execution_timing_mode if strict_next_close else None,
+                signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_next_close and daily_dates.index(current_date) > 0 else None),
             )
             if scaled_count:
                 portfolio_guard_scales += 1
@@ -249,11 +272,14 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
                 equity_guard_cooldown_remaining -= 1
             processed_rebalances += 1
 
-        cash = _process_trailing_stops(
+        stop_signal_prices = previous_valuation_prices if strict_next_close else valuation_prices
+        cash, stop_delays = _process_trailing_stops(
             current_date=current_date,
             cash=cash,
             positions=positions,
             prices=valuation_prices,
+            signal_prices=stop_signal_prices,
+            strict_next_close=strict_next_close,
             trailing_stop_pct=trailing_stop_pct,
             trailing_activation_gain_pct=trailing_activation_gain_pct,
             stop_loss_pct=stop_loss_pct,
@@ -263,7 +289,10 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
             partial_take_profit=partial_take_profit,
             cost_per_side_pct=cost_per_side_pct,
             trade_rows=trade_rows,
+            execution_timing_mode=execution_timing_mode if strict_next_close else None,
+            signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_next_close and daily_dates.index(current_date) > 0 else None),
         )
+        delayed_execution_count += int(stop_delays)
         equity_row = build_equity_row(current_date, cash, positions, valuation_prices)
         equity_row["portfolio_drawdown_pct"] = float(current_equity_dd_pct)
         equity_row["risk_state"] = portfolio_risk_state
@@ -273,9 +302,15 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
             else 100.0
         )
         equity_rows.append(equity_row)
+        previous_equity_dd_pct = current_equity_dd_pct
+        previous_benchmark_row = _benchmark_row_for_date(benchmark_context, current_date)
+        previous_valuation_prices = valuation_prices
 
     equity_curve = pd.DataFrame(equity_rows, columns=EQUITY_COLUMNS)
-    trades = pd.DataFrame(trade_rows, columns=TRADE_COLUMNS)
+    trades = pd.DataFrame(trade_rows) if trade_rows else pd.DataFrame(columns=TRADE_COLUMNS)
+    if not trades.empty:
+        ordered_cols = [c for c in TRADE_COLUMNS if c in trades.columns] + [c for c in trades.columns if c not in TRADE_COLUMNS]
+        trades = trades[ordered_cols]
 
     diagnostics = {
         "number_of_rebalances": int(processed_rebalances),
@@ -314,10 +349,60 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
             },
         },
         "risk_events": risk_events,
+        "execution_timing": {
+            "execution_timing_mode": execution_timing_mode,
+            "strict_next_close_enabled": bool(strict_next_close),
+            "delayed_execution_count": int(delayed_execution_count),
+            "same_close_execution_count": int(same_close_execution_count),
+            "execution_timing_notes": execution_timing.get("execution_timing_notes", []),
+        },
+        "execution_costs": execution_costs,
     }
 
     return {"equity_curve": equity_curve, "trades": trades, "diagnostics": diagnostics}
 
+
+
+def _get_execution_timing(strategy_config: dict) -> dict:
+    cfg = strategy_config.get("execution_timing", {}) or {}
+    enabled = bool(isinstance(cfg, dict) and cfg.get("enabled"))
+    mode = str(cfg.get("mode", "current_default") if isinstance(cfg, dict) else "current_default")
+    strict = enabled and mode == "strict_next_close"
+    return {
+        "execution_timing_mode": "strict_next_close" if strict else "current_default",
+        "strict_next_close_enabled": bool(strict),
+        "apply_to": list(cfg.get("apply_to", [])) if isinstance(cfg, dict) and isinstance(cfg.get("apply_to", []), list) else [],
+        "execution_timing_notes": [
+            "Default engine remains unchanged unless execution_timing.enabled=true and mode=strict_next_close.",
+            "Strict mode evaluates portfolio guard/reentry and position stops from the previous available close, then executes at the current available close.",
+            "Weekly rebalance signals were already executed at the first daily close strictly after signal_date.",
+        ] if strict else ["Default current engine timing."],
+    }
+
+
+def _get_execution_costs(strategy_config: dict, project_config: dict, base_cost_per_side_pct: float) -> dict:
+    cfg = strategy_config.get("execution_costs", {}) or {}
+    if not isinstance(cfg, dict) or not cfg.get("enabled"):
+        return {
+            "enabled": False,
+            "base_cost_per_side_pct": float(base_cost_per_side_pct),
+            "base_slippage_per_side_pct": 0.0,
+            "cost_multiplier": 1.0,
+            "slippage_multiplier": 1.0,
+            "effective_cost_per_side_pct": float(base_cost_per_side_pct),
+        }
+    cost_multiplier = float(cfg.get("cost_multiplier", 1.0) or 1.0)
+    slippage_multiplier = float(cfg.get("slippage_multiplier", 1.0) or 1.0)
+    base_slippage = float(cfg.get("slippage_per_side_pct", project_config.get("slippage_per_side_pct", 0.0)) or 0.0)
+    effective = max(0.0, float(base_cost_per_side_pct) * cost_multiplier) + max(0.0, base_slippage * slippage_multiplier)
+    return {
+        "enabled": True,
+        "base_cost_per_side_pct": float(base_cost_per_side_pct),
+        "base_slippage_per_side_pct": float(base_slippage),
+        "cost_multiplier": float(cost_multiplier),
+        "slippage_multiplier": float(slippage_multiplier),
+        "effective_cost_per_side_pct": float(effective),
+    }
 
 def _prepare_benchmark_context(daily_df: pd.DataFrame, benchmark_ticker: str) -> pd.DataFrame:
     if daily_df is None or daily_df.empty or "ticker" not in daily_df.columns:
@@ -1071,6 +1156,8 @@ def _process_trailing_stops(
     cash: float,
     positions: dict[str, Position],
     prices: dict[str, float],
+    signal_prices: dict[str, float] | None,
+    strict_next_close: bool,
     trailing_stop_pct: float | None,
     trailing_activation_gain_pct: float | None,
     stop_loss_pct: float | None,
@@ -1080,9 +1167,13 @@ def _process_trailing_stops(
     partial_take_profit: dict | None,
     cost_per_side_pct: float,
     trade_rows: list[dict],
-) -> float:
+    execution_timing_mode: str | None = None,
+    signal_detected_date: pd.Timestamp | None = None,
+) -> tuple[float, int]:
     if stop_loss_pct is None and trailing_stop_pct is None and breakeven_after_gain_pct is None and not profit_lock_steps and not partial_take_profit:
-        return cash
+        return cash, 0
+    delayed_count = 0
+    signal_prices = signal_prices or prices
 
     loss_fraction = stop_loss_pct / 100.0 if stop_loss_pct is not None else None
     stop_fraction = trailing_stop_pct / 100.0 if trailing_stop_pct is not None else None
@@ -1098,15 +1189,17 @@ def _process_trailing_stops(
     )
     breakeven_floor = 1.0 + (breakeven_buffer_pct / 100.0)
     for ticker in list(positions.keys()):
-        price = prices.get(ticker)
-        if price is None:
+        signal_price = signal_prices.get(ticker)
+        execution_price = prices.get(ticker)
+        if signal_price is None or execution_price is None:
             continue
         position = positions[ticker]
-        price = float(price)
-        position.max_price_since_entry = max(float(position.max_price_since_entry), price)
-        drawdown_from_peak_pct = ((price / position.max_price_since_entry) - 1.0) * 100.0
+        signal_price = float(signal_price)
+        price = float(execution_price)
+        position.max_price_since_entry = max(float(position.max_price_since_entry), signal_price)
+        drawdown_from_peak_pct = ((signal_price / position.max_price_since_entry) - 1.0) * 100.0
 
-        if loss_fraction is not None and price <= position.entry_price * (1.0 - loss_fraction):
+        if loss_fraction is not None and signal_price <= position.entry_price * (1.0 - loss_fraction):
             position.stop_exit_peak_price = float(position.max_price_since_entry)
             position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
             cash = _close_position(
@@ -1118,13 +1211,17 @@ def _process_trailing_stops(
                 cost_per_side_pct=cost_per_side_pct,
                 exit_reason="stop_loss",
                 trade_rows=trade_rows,
+                execution_timing_mode=execution_timing_mode,
+                signal_detected_date=signal_detected_date,
             )
+            if strict_next_close:
+                delayed_count += 1
             continue
 
         lock_price = _profit_lock_floor(position, profit_lock_steps)
         if lock_price is not None:
             position.profit_lock_floor_price = lock_price
-            if price <= lock_price:
+            if signal_price <= lock_price:
                 position.stop_exit_peak_price = float(position.max_price_since_entry)
                 position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
                 cash = _close_position(
@@ -1146,7 +1243,7 @@ def _process_trailing_stops(
                 or position.max_price_since_entry >= position.entry_price * trailing_activation
             )
         )
-        if trailing_is_active and price <= position.max_price_since_entry * (1.0 - stop_fraction):
+        if trailing_is_active and signal_price <= position.max_price_since_entry * (1.0 - stop_fraction):
             position.stop_exit_peak_price = float(position.max_price_since_entry)
             position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
             cash = _close_position(
@@ -1164,7 +1261,7 @@ def _process_trailing_stops(
         if (
             breakeven_trigger is not None
             and position.max_price_since_entry >= position.entry_price * breakeven_trigger
-            and price <= position.entry_price * breakeven_floor
+            and signal_price <= position.entry_price * breakeven_floor
         ):
             position.stop_exit_peak_price = float(position.max_price_since_entry)
             position.stop_exit_drawdown_from_peak_pct = float(drawdown_from_peak_pct)
@@ -1183,7 +1280,7 @@ def _process_trailing_stops(
         if partial_take_profit and not position.partial_take_profit_done:
             gain_trigger = float(partial_take_profit.get("gain_pct", 0) or 0)
             sell_fraction = float(partial_take_profit.get("sell_fraction", 0) or 0)
-            if gain_trigger > 0 and 0 < sell_fraction < 1 and price >= position.entry_price * (1.0 + gain_trigger / 100.0):
+            if gain_trigger > 0 and 0 < sell_fraction < 1 and signal_price >= position.entry_price * (1.0 + gain_trigger / 100.0):
                 shares_to_sell = position.shares * sell_fraction
                 cash = _sell_position_shares(
                     ticker=ticker,
@@ -1200,7 +1297,7 @@ def _process_trailing_stops(
                 if remaining is not None:
                     remaining.partial_take_profit_done = True
                 continue
-    return cash
+    return cash, delayed_count
 
 
 def _scale_positions_to_target_gross_exposure(
@@ -1213,6 +1310,8 @@ def _scale_positions_to_target_gross_exposure(
     target_exposure_pct: float,
     exit_reason: str,
     trade_rows: list[dict],
+    execution_timing_mode: str | None = None,
+    signal_detected_date: pd.Timestamp | None = None,
 ) -> tuple[float, int]:
     if not positions:
         return cash, 0
@@ -1245,6 +1344,8 @@ def _scale_positions_to_target_gross_exposure(
             cost_per_side_pct=cost_per_side_pct,
             exit_reason=exit_reason,
             trade_rows=trade_rows,
+            execution_timing_mode=execution_timing_mode,
+            signal_detected_date=signal_detected_date,
         )
         scaled += 1
     return cash, scaled
@@ -1259,6 +1360,8 @@ def _close_position(
     cost_per_side_pct: float,
     exit_reason: str,
     trade_rows: list[dict],
+    execution_timing_mode: str | None = None,
+    signal_detected_date: pd.Timestamp | None = None,
 ) -> float:
     position = positions.get(ticker)
     if position is None:
@@ -1273,6 +1376,8 @@ def _close_position(
         cost_per_side_pct=cost_per_side_pct,
         exit_reason=exit_reason,
         trade_rows=trade_rows,
+        execution_timing_mode=execution_timing_mode,
+        signal_detected_date=signal_detected_date,
     )
 
 
@@ -1286,6 +1391,8 @@ def _sell_position_shares(
     cost_per_side_pct: float,
     exit_reason: str,
     trade_rows: list[dict],
+    execution_timing_mode: str | None = None,
+    signal_detected_date: pd.Timestamp | None = None,
 ) -> float:
     position = positions[ticker]
     shares_to_sell = min(float(shares_to_sell), float(position.shares))
@@ -1333,6 +1440,12 @@ def _sell_position_shares(
             ),
             "gross_return_pct": float(gross_return_pct),
             "net_return_pct": float(net_return_pct),
+            "execution_timing_mode": execution_timing_mode,
+            "signal_detected_date": signal_detected_date,
+            "delayed_execution_days": (
+                int((pd.to_datetime(exit_date) - pd.to_datetime(signal_detected_date)).days)
+                if signal_detected_date is not None else None
+            ),
         }
     )
 
