@@ -50,6 +50,11 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
                 "market_filter_passed",
                 "target_gross_exposure_pct",
                 "entry_blocked_by_crisis",
+                "spy_filter_policy",
+                "spy_filter_warmup_days",
+                "spy_filter_fallback_used",
+                "spy_filter_fallback_outside_warmup",
+                "spy_filter_missing_or_nan",
                 "action_candidate",
             ]
         )
@@ -71,14 +76,23 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df.dropna(subset=["date"]).sort_values(["date", "ticker"], kind="mergesort")
 
-    # Decision date: last weekly date available each month.
-    month_key = df["date"].dt.to_period("M")
-    decision_dates = df.groupby(month_key)["date"].max().sort_values().tolist()
+    decision_frequency = str(strategy_config.get("decision_frequency", "monthly")).lower()
+    if decision_frequency == "weekly":
+        decision_dates = df["date"].drop_duplicates().sort_values().tolist()
+    elif decision_frequency == "monthly":
+        # Legacy behavior: last weekly snapshot available in each month.
+        month_key = df["date"].dt.to_period("M")
+        decision_dates = df.groupby(month_key)["date"].max().sort_values().tolist()
+    else:
+        raise ValueError(
+            f"Unsupported decision_frequency={decision_frequency!r}; expected 'monthly' or 'weekly'."
+        )
 
     output_frames = []
-    for signal_date in decision_dates:
+    for signal_index, signal_date in enumerate(decision_dates):
         snapshot = df[df["date"] == signal_date].copy()
-        market_filter_passed = _evaluate_market_filter(snapshot, strategy_config, benchmark_ticker)
+        market_eval = _evaluate_market_filter(snapshot, strategy_config, benchmark_ticker, signal_date=signal_date, first_signal_date=decision_dates[0], signal_index=signal_index)
+        market_filter_passed = bool(market_eval["passed"])
         entry_blocked_by_crisis = _entry_blocked_by_crisis(snapshot, strategy_config, benchmark_ticker)
         effective_top_n, action_market_filter_passed = _effective_top_n_and_filter(
             top_n=top_n,
@@ -110,6 +124,11 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
         operable["market_filter_passed"] = bool(action_market_filter_passed)
         operable["target_gross_exposure_pct"] = float(target_gross_exposure_pct)
         operable["entry_blocked_by_crisis"] = bool(entry_blocked_by_crisis)
+        operable["spy_filter_policy"] = str(market_eval["policy"])
+        operable["spy_filter_warmup_days"] = int(market_eval["warmup_days"])
+        operable["spy_filter_fallback_used"] = bool(market_eval["fallback_used"])
+        operable["spy_filter_fallback_outside_warmup"] = bool(market_eval["fallback_outside_warmup"])
+        operable["spy_filter_missing_or_nan"] = bool(market_eval["missing_or_nan"])
         if entry_blocked_by_crisis:
             operable["selected_top_n"] = False
         operable["action_candidate"] = operable.apply(_candidate_action, axis=1)
@@ -126,6 +145,11 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
                     "market_filter_passed",
                     "target_gross_exposure_pct",
                     "entry_blocked_by_crisis",
+                    "spy_filter_policy",
+                    "spy_filter_warmup_days",
+                    "spy_filter_fallback_used",
+                    "spy_filter_fallback_outside_warmup",
+                    "spy_filter_missing_or_nan",
                     "action_candidate",
                 ]
             ]
@@ -143,6 +167,11 @@ def build_momentum_trend_signals(weekly_df, strategy_config) -> pd.DataFrame:
                 "market_filter_passed",
                 "target_gross_exposure_pct",
                 "entry_blocked_by_crisis",
+                "spy_filter_policy",
+                "spy_filter_warmup_days",
+                "spy_filter_fallback_used",
+                "spy_filter_fallback_outside_warmup",
+                "spy_filter_missing_or_nan",
                 "action_candidate",
             ]
         )
@@ -273,24 +302,64 @@ def _row_float(row: pd.Series, *fields: str) -> float:
     return 0.0
 
 
-def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, benchmark_ticker: str) -> bool:
+def _evaluate_market_filter(
+    snapshot: pd.DataFrame,
+    strategy_config: dict,
+    benchmark_ticker: str,
+    *,
+    signal_date=None,
+    first_signal_date=None,
+    signal_index: int = 0,
+) -> dict[str, Any]:
     # AUTONOMY_DIRECT_PATCH_SPY_MARKET_FILTER
     market_filter_cfg = strategy_config.get("market_filter", {})
     require_positive_trend = bool(market_filter_cfg.get("require_positive_trend", True))
-    fallback_if_missing = bool(
-        market_filter_cfg.get("fallback_allow_if_missing_spy_metric", True)
-    )
+    fallback_if_missing = bool(market_filter_cfg.get("fallback_allow_if_missing_spy_metric", True))
+    policy_cfg = strategy_config.get("spy_filter_missing_policy", {}) or {}
+    policy = str(policy_cfg.get("mode", "current") or "current")
+    if policy not in {"current", "allow_warmup_only", "block_on_nan"}:
+        policy = "current"
+    warmup_days = int(policy_cfg.get("warmup_days", 252) or 252)
+
+    def within_warmup() -> bool:
+        if signal_date is not None and first_signal_date is not None:
+            try:
+                return (pd.to_datetime(signal_date) - pd.to_datetime(first_signal_date)).days < warmup_days
+            except Exception:
+                pass
+        return int(signal_index) < warmup_days
+
+    def result(passed: bool, *, fallback_used=False, missing_or_nan=False) -> dict[str, Any]:
+        outside = bool(fallback_used and not within_warmup())
+        return {
+            "passed": bool(passed),
+            "policy": policy,
+            "warmup_days": int(warmup_days),
+            "fallback_used": bool(fallback_used),
+            "fallback_outside_warmup": outside,
+            "missing_or_nan": bool(missing_or_nan),
+        }
 
     if not require_positive_trend:
-        return True
+        return result(True)
+
+    def fallback_decision() -> bool:
+        if policy == "current":
+            return fallback_if_missing
+        if policy == "allow_warmup_only":
+            return bool(within_warmup() and fallback_if_missing)
+        if policy == "block_on_nan":
+            return False
+        return fallback_if_missing
 
     row = _benchmark_context_row(snapshot, benchmark_ticker)
     if row is None:
+        decision = fallback_decision()
         warnings.warn(
-            f"critical: SPY market filter could not find {benchmark_ticker} row on signal date; using fallback={fallback_if_missing}.",
+            f"critical: SPY market filter could not find {benchmark_ticker} row on signal date; using fallback={decision}.",
             UserWarning,
         )
-        return fallback_if_missing
+        return result(decision, fallback_used=True, missing_or_nan=True)
 
     metric_candidates = [
         "spy_close_vs_sma50_pct",
@@ -303,13 +372,14 @@ def _evaluate_market_filter(snapshot: pd.DataFrame, strategy_config: dict, bench
             continue
         value = pd.to_numeric(row[col], errors="coerce")
         if not pd.isna(value):
-            return bool(value > 0)
+            return result(bool(value > 0))
 
+    decision = fallback_decision()
     warnings.warn(
-        f"critical: SPY market filter metrics unavailable/NaN (tried={metric_candidates}); using fallback={fallback_if_missing}.",
+        f"critical: SPY market filter metrics unavailable/NaN (tried={metric_candidates}); using fallback={decision}.",
         UserWarning,
     )
-    return fallback_if_missing
+    return result(decision, fallback_used=True, missing_or_nan=True)
 
 
 def _apply_risk_filters(operable: pd.DataFrame, strategy_config: dict[str, Any]) -> pd.DataFrame:

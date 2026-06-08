@@ -1,0 +1,44 @@
+{
+  "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1_PAPER_V1",
+  "version": "PAPER_V1",
+  "config_hash": "6eec9d3db945fd50c756fc021b08512f316933e3090837cc526ee83e38fff482",
+  "created_at": "2026-06-04T21:27:48",
+  "frozen_parameters": {
+    "risk_controls": {
+      "portfolio_drawdown_guard": {
+        "enabled": true,
+        "reduce_exposure_drawdown_pct": -12,
+        "crisis_drawdown_pct": -22,
+        "reduced_exposure_multiplier": 0.75,
+        "crisis_exposure_multiplier": 0.4,
+        "reentry_drawdown_recovered_pct": -7
+      },
+      "position_stop_loss": {
+        "enabled": true,
+        "stop_loss_pct": -18
+      }
+    },
+    "execution_timing": {
+      "enabled": true,
+      "mode": "strict_next_open",
+      "apply_to": [
+        "portfolio_drawdown_guard",
+        "position_stop_loss",
+        "reentry",
+        "rebalance_exits",
+        "market_filter_exits"
+      ]
+    },
+    "execution_costs": {
+      "enabled": true,
+      "cost_multiplier": 1.0,
+      "slippage_bps_per_side": 10,
+      "slippage_multiplier": 1.0
+    },
+    "spy_filter_missing_policy": {
+      "mode": "block_on_nan",
+      "warmup_days": 252
+    }
+  },
+  "note": "No modificar durante paper trading sin crear PAPER_V2."
+}

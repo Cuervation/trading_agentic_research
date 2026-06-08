@@ -1,0 +1,138 @@
+{
+  "strategy_id": "HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1_WEEKLY_ENTRY_EXIT_V1",
+  "hypothesis_id": "HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1_WEEKLY_ENTRY_EXIT_V1",
+  "strategy_family": "dd20_spy_beater",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "close_vs_sma52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 15,
+    "by": "ret_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 20
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Maximize CAGR only after satisfying DD20 and SPY-beater constraints.",
+  "causal_mechanism": "Pair zero crisis exposure with soft partial profits to defend DD while keeping strong-regime upside.",
+  "changed_parameters": [
+    "decision_frequency",
+    "entry_frequency",
+    "exit_frequency",
+    "position_retention"
+  ],
+  "expected_effect": "Reduce max drawdown below 20% while preserving enough upside to beat SPY.",
+  "falsification_rule": "Reject automatically if DD is below -20%, CAGR does not beat SPY, trades < 3000, or yearly SPY win/loss is negative.",
+  "generation_axis": "dd20_spy_beater",
+  "parent_strategy_id": "HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1",
+  "parent_hypothesis_id": "HYP_AUTO_TIME_SERIES_MOMENTUM_SEED",
+  "empirical_basis": [
+    {
+      "run_id": "DDDAEMON_001_HYP_DD_FIRST_AUTO002_DYN_EXPOSURE_65_55_45_25_V1",
+      "reason": "Best useful defensive DD_FIRST candidate so far."
+    }
+  ],
+  "novelty_reason": "Autonomous daemon causal batch axis=dynamic_regime_exposure.",
+  "why_not_duplicate": "HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1 changes a named DD20 causal axis and has a distinct config hash.",
+  "risk_of_overfit": "Medium: thresholds are coarse causal risk controls, not micro-optimized curve fitting.",
+  "expected_trade_count_effect": "Preserve trade count; no hard zero-trade filters.",
+  "risk_management": {
+    "dynamic_regime_exposure_pct": {
+      "strong": 65,
+      "neutral": 45,
+      "weak": 25,
+      "crisis": 0
+    },
+    "max_gross_exposure_pct": 45,
+    "partial_take_profit": {
+      "enabled": true,
+      "gain_pct": 25,
+      "sell_fraction": 0.33
+    }
+  },
+  "strategy_overrides": {
+    "risk_management": {
+      "dynamic_regime_exposure_pct": {
+        "strong": 65,
+        "neutral": 45,
+        "weak": 25,
+        "crisis": 0
+      },
+      "max_gross_exposure_pct": 45,
+      "partial_take_profit": {
+        "enabled": true,
+        "gain_pct": 25,
+        "sell_fraction": 0.33
+      }
+    },
+    "market_filter": {
+      "benchmark": "SPY",
+      "condition_any": [
+        {
+          "field": "spy_close_vs_sma50_pct",
+          "operator": ">",
+          "value": 0,
+          "enabled_if_field_exists": true
+        }
+      ],
+      "require_positive_trend": true
+    },
+    "ranking": {
+      "field": "close_vs_sma52w_pct",
+      "order": "desc"
+    },
+    "risk_filters": {
+      "require_non_null_fields": [
+        "ret_52w_pct",
+        "close"
+      ]
+    }
+  },
+  "evaluation_mode": "dd20_spy_beater",
+  "decision_frequency": "weekly",
+  "entry_frequency": "weekly",
+  "exit_frequency": "weekly",
+  "position_retention": "hold_until_exit_rank_threshold",
+  "weekly_entry_exit_experiment": true,
+  "experiment_type": "weekly_entry_exit_frequency_only",
+  "original_config_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\configs\\generated\\HYP_DD20_SPY_DYN_65_45_25_0_PARTIAL_25_33_V1.json",
+  "generated_at": "2026-06-07T09:02:30"
+}

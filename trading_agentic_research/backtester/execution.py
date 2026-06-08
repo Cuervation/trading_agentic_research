@@ -58,7 +58,12 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
     cost_per_side_pct = float(execution_costs["effective_cost_per_side_pct"])
     execution_timing = _get_execution_timing(strategy_config)
     strict_next_close = bool(execution_timing.get("strict_next_close_enabled"))
+    strict_next_open = bool(execution_timing.get("strict_next_open_enabled"))
     execution_timing_mode = str(execution_timing.get("execution_timing_mode", "current_default"))
+    strict_apply_to = set(execution_timing.get("apply_to", []))
+    strict_any_delayed = strict_next_close or strict_next_open
+    strict_guard_timing = strict_any_delayed and bool(strict_apply_to & {"portfolio_drawdown_guard", "reentry"})
+    strict_stop_timing = strict_any_delayed and "position_stop_loss" in strict_apply_to
     trailing_stop_pct = _get_trailing_stop_pct(strategy_config)
     trailing_activation_gain_pct = _get_trailing_activation_gain_pct(strategy_config)
     stop_loss_pct = _get_stop_loss_pct(strategy_config)
@@ -78,6 +83,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
 
     warnings: list[str] = []
     signals = signals_override.copy() if signals_override is not None else build_momentum_trend_signals(weekly_df, strategy_config)
+    spy_filter_diagnostics = _summarize_spy_filter_diagnostics(signals, strategy_config)
     benchmark_context = _prepare_benchmark_context(daily_df, benchmark_ticker=benchmark_ticker)
     prices = _prepare_daily_prices(daily_df, benchmark_ticker=benchmark_ticker)
 
@@ -96,10 +102,22 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
         }
 
     close_matrix = prices.pivot(index="date", columns="ticker", values="close").sort_index()
+    open_matrix = (
+        prices.pivot(index="date", columns="ticker", values="open").sort_index()
+        if "open" in prices.columns
+        else close_matrix
+    )
     valuation_matrix = close_matrix.ffill()
     daily_dates = list(close_matrix.index)
 
-    rebalance_plan = _build_rebalance_plan(signals, close_matrix, warnings)
+    rebalance_plan = _build_rebalance_plan(
+        signals,
+        close_matrix,
+        warnings,
+        position_retention=str(
+            strategy_config.get("position_retention", "legacy")
+        ),
+    )
 
     cash = initial_capital
     positions: dict[str, Position] = {}
@@ -151,8 +169,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
 
         if portfolio_drawdown_guard:
             benchmark_row = _benchmark_row_for_date(benchmark_context, current_date)
-            guard_signal_dd = previous_equity_dd_pct if strict_next_close else current_equity_dd_pct
-            guard_signal_benchmark = previous_benchmark_row if strict_next_close else benchmark_row
+            guard_signal_dd = previous_equity_dd_pct if strict_guard_timing else current_equity_dd_pct
+            guard_signal_benchmark = previous_benchmark_row if strict_guard_timing else benchmark_row
             if guard_signal_dd is not None:
                 portfolio_events = _update_portfolio_guard_runtime(
                     runtime=portfolio_guard_runtime,
@@ -164,7 +182,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
             else:
                 portfolio_events = []
             for event in portfolio_events:
-                if strict_next_close:
+                if strict_guard_timing:
                     event["execution_timing_mode"] = "strict_next_close"
                     event["signal_detected_previous_close"] = True
                     delayed_execution_count += 1
@@ -205,8 +223,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
                     else "portfolio_guard_reduce"
                 ),
                 trade_rows=trade_rows,
-                execution_timing_mode=execution_timing_mode if strict_next_close else None,
-                signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_next_close and daily_dates.index(current_date) > 0 else None),
+                execution_timing_mode=execution_timing_mode if strict_guard_timing else None,
+                signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_guard_timing and daily_dates.index(current_date) > 0 else None),
             )
             if scaled_count:
                 portfolio_guard_scales += 1
@@ -223,7 +241,11 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
 
         if current_date in rebalance_plan:
             plan = rebalance_plan[current_date]
-            day_prices = close_matrix.loc[current_date].dropna().to_dict()
+            day_prices = (
+                open_matrix.loc[current_date].dropna().to_dict()
+                if strict_next_open
+                else close_matrix.loc[current_date].dropna().to_dict()
+            )
             guard_policy = _equity_guard_rebalance_policy(
                 equity_guard_active=equity_guard_active,
                 current_equity_dd_pct=current_equity_dd_pct,
@@ -260,6 +282,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
                 allow_entries_when_active_top_n=guard_policy["allow_entries_when_active_top_n"],
                 trade_rows=trade_rows,
                 warnings=warnings,
+                position_retention=plan.get("position_retention", "legacy"),
             )
             if guard_policy["block_new_entries"]:
                 equity_guard_blocked_rebalances += 1
@@ -272,14 +295,14 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
                 equity_guard_cooldown_remaining -= 1
             processed_rebalances += 1
 
-        stop_signal_prices = previous_valuation_prices if strict_next_close else valuation_prices
+        stop_signal_prices = previous_valuation_prices if strict_stop_timing else valuation_prices
         cash, stop_delays = _process_trailing_stops(
             current_date=current_date,
             cash=cash,
             positions=positions,
-            prices=valuation_prices,
+            prices=(open_matrix.loc[current_date].dropna().to_dict() if strict_next_open else valuation_prices),
             signal_prices=stop_signal_prices,
-            strict_next_close=strict_next_close,
+            strict_next_close=strict_stop_timing,
             trailing_stop_pct=trailing_stop_pct,
             trailing_activation_gain_pct=trailing_activation_gain_pct,
             stop_loss_pct=stop_loss_pct,
@@ -289,8 +312,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
             partial_take_profit=partial_take_profit,
             cost_per_side_pct=cost_per_side_pct,
             trade_rows=trade_rows,
-            execution_timing_mode=execution_timing_mode if strict_next_close else None,
-            signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_next_close and daily_dates.index(current_date) > 0 else None),
+            execution_timing_mode=execution_timing_mode if strict_stop_timing else None,
+            signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_stop_timing and daily_dates.index(current_date) > 0 else None),
         )
         delayed_execution_count += int(stop_delays)
         equity_row = build_equity_row(current_date, cash, positions, valuation_prices)
@@ -352,31 +375,70 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config, 
         "execution_timing": {
             "execution_timing_mode": execution_timing_mode,
             "strict_next_close_enabled": bool(strict_next_close),
+            "strict_next_open_enabled": bool(strict_next_open),
+            "next_open_available": bool("open" in prices.columns),
             "delayed_execution_count": int(delayed_execution_count),
             "same_close_execution_count": int(same_close_execution_count),
             "execution_timing_notes": execution_timing.get("execution_timing_notes", []),
         },
         "execution_costs": execution_costs,
+        "spy_filter": spy_filter_diagnostics,
     }
 
     return {"equity_curve": equity_curve, "trades": trades, "diagnostics": diagnostics}
 
+
+def _summarize_spy_filter_diagnostics(signals: pd.DataFrame, strategy_config: dict) -> dict:
+    policy_cfg = strategy_config.get("spy_filter_missing_policy", {}) or {}
+    policy = str(policy_cfg.get("mode", "current") or "current")
+    warmup_days = int(policy_cfg.get("warmup_days", 252) or 252)
+    empty = {
+        "spy_filter_policy": policy,
+        "spy_filter_warmup_days": warmup_days,
+        "spy_filter_fallback_count": 0,
+        "spy_filter_fallback_dates": [],
+        "spy_filter_fallback_outside_warmup_count": 0,
+        "spy_filter_nan_count": 0,
+        "blocked_entry_count": 0,
+    }
+    if signals is None or signals.empty or "signal_date" not in signals.columns:
+        return empty
+    grouped = signals.drop_duplicates(subset=["signal_date"]).copy()
+    fallback = grouped.get("spy_filter_fallback_used", pd.Series(False, index=grouped.index)).fillna(False).astype(bool)
+    outside = grouped.get("spy_filter_fallback_outside_warmup", pd.Series(False, index=grouped.index)).fillna(False).astype(bool)
+    missing = grouped.get("spy_filter_missing_or_nan", pd.Series(False, index=grouped.index)).fillna(False).astype(bool)
+    dates = pd.to_datetime(grouped.loc[fallback, "signal_date"], errors="coerce").dropna().dt.strftime("%Y-%m-%d").tolist()
+    blocked_entries = 0
+    if "selected_top_n" in signals.columns:
+        blocked_entries = int((~signals["selected_top_n"].fillna(False).astype(bool)).sum())
+    return {
+        "spy_filter_policy": str(grouped.get("spy_filter_policy", pd.Series([policy])).iloc[0] if len(grouped) else policy),
+        "spy_filter_warmup_days": int(grouped.get("spy_filter_warmup_days", pd.Series([warmup_days])).iloc[0] if len(grouped) else warmup_days),
+        "spy_filter_fallback_count": int(fallback.sum()),
+        "spy_filter_fallback_dates": dates,
+        "spy_filter_fallback_outside_warmup_count": int(outside.sum()),
+        "spy_filter_nan_count": int(missing.sum()),
+        "blocked_entry_count": blocked_entries,
+    }
 
 
 def _get_execution_timing(strategy_config: dict) -> dict:
     cfg = strategy_config.get("execution_timing", {}) or {}
     enabled = bool(isinstance(cfg, dict) and cfg.get("enabled"))
     mode = str(cfg.get("mode", "current_default") if isinstance(cfg, dict) else "current_default")
-    strict = enabled and mode == "strict_next_close"
+    strict_close = enabled and mode == "strict_next_close"
+    strict_open = enabled and mode == "strict_next_open"
     return {
-        "execution_timing_mode": "strict_next_close" if strict else "current_default",
-        "strict_next_close_enabled": bool(strict),
+        "execution_timing_mode": "strict_next_open" if strict_open else ("strict_next_close" if strict_close else "current_default"),
+        "strict_next_close_enabled": bool(strict_close),
+        "strict_next_open_enabled": bool(strict_open),
         "apply_to": list(cfg.get("apply_to", [])) if isinstance(cfg, dict) and isinstance(cfg.get("apply_to", []), list) else [],
         "execution_timing_notes": [
-            "Default engine remains unchanged unless execution_timing.enabled=true and mode=strict_next_close.",
-            "Strict mode evaluates portfolio guard/reentry and position stops from the previous available close, then executes at the current available close.",
+            "Default engine remains unchanged unless execution_timing.enabled=true and mode is strict_next_close or strict_next_open.",
+            "Strict close mode evaluates portfolio guard/reentry and position stops from the previous available close, then executes at the current available close.",
+            "Strict open mode uses the same delayed signal rule but executes at the current available open when open prices are available.",
             "Weekly rebalance signals were already executed at the first daily close strictly after signal_date.",
-        ] if strict else ["Default current engine timing."],
+        ] if (strict_close or strict_open) else ["Default current engine timing."],
     }
 
 
@@ -393,7 +455,10 @@ def _get_execution_costs(strategy_config: dict, project_config: dict, base_cost_
         }
     cost_multiplier = float(cfg.get("cost_multiplier", 1.0) or 1.0)
     slippage_multiplier = float(cfg.get("slippage_multiplier", 1.0) or 1.0)
-    base_slippage = float(cfg.get("slippage_per_side_pct", project_config.get("slippage_per_side_pct", 0.0)) or 0.0)
+    if cfg.get("slippage_bps_per_side") is not None:
+        base_slippage = float(cfg.get("slippage_bps_per_side") or 0.0) / 100.0
+    else:
+        base_slippage = float(cfg.get("slippage_per_side_pct", project_config.get("slippage_per_side_pct", 0.0)) or 0.0)
     effective = max(0.0, float(base_cost_per_side_pct) * cost_multiplier) + max(0.0, base_slippage * slippage_multiplier)
     return {
         "enabled": True,
@@ -451,14 +516,18 @@ def _prepare_daily_prices(daily_df: pd.DataFrame, benchmark_ticker: str) -> pd.D
     prices = prices.dropna(subset=["date", "ticker", "close"])
     prices = prices[prices["ticker"] != benchmark_ticker]
     prices["close"] = prices["close"].astype(float)
+    if "open" in prices.columns:
+        prices["open"] = pd.to_numeric(prices["open"], errors="coerce")
     prices = prices.sort_values(["date", "ticker"], kind="mergesort")
-    return prices[["date", "ticker", "close"]]
+    cols = ["date", "ticker", "close"] + (["open"] if "open" in prices.columns else [])
+    return prices[cols]
 
 
 def _build_rebalance_plan(
     signals: pd.DataFrame,
     close_matrix: pd.DataFrame,
     warnings: list[str],
+    position_retention: str = "legacy",
 ) -> dict[pd.Timestamp, dict]:
     if signals.empty:
         return {}
@@ -505,6 +574,7 @@ def _build_rebalance_plan(
             "target_details": target_details,
             "market_filter_passed": market_filter_passed,
             "max_gross_exposure_pct": _plan_max_gross_exposure_pct(group),
+            "position_retention": position_retention,
         }
 
     return plan
@@ -545,6 +615,7 @@ def _process_rebalance(
     block_new_entries: bool,
     trade_rows: list[dict],
     warnings: list[str],
+    position_retention: str = "legacy",
     reduced_exposure_pct_when_active: float | None = None,
     allow_entries_when_active_top_n: int | None = None,
 ) -> float:
@@ -556,12 +627,29 @@ def _process_rebalance(
     3. Trim overweight target positions.
     4. Scale buys to available cash so rebalances do not fail due to cash shortage.
     """
-    exit_reason = "market_filter_failed" if not market_filter_passed else "left_top_n"
+    exit_reason = (
+        "market_filter_failed"
+        if not market_filter_passed
+        else (
+            "left_exit_rank_threshold"
+            if position_retention == "hold_until_exit_rank_threshold"
+            else "left_top_n"
+        )
+    )
 
     valid_target_tickers = {
         ticker for ticker in target_tickers
         if ticker in day_prices and float(day_prices[ticker]) > 0
     }
+    if position_retention == "hold_until_exit_rank_threshold":
+        retained_tickers = {
+            ticker
+            for ticker in positions
+            if ticker in exit_tickers
+            and ticker in day_prices
+            and float(day_prices[ticker]) > 0
+        }
+        valid_target_tickers |= retained_tickers
     missing_entry_tickers = sorted(target_tickers - valid_target_tickers)
     for ticker in missing_entry_tickers:
         warnings.append(f"No entry price for {ticker} on {current_date.date()}; entry skipped.")
@@ -599,6 +687,11 @@ def _process_rebalance(
             if price is None:
                 warnings.append(f"No exit price for {ticker} on {current_date.date()}; position kept.")
                 continue
+            if position_retention == "hold_until_exit_rank_threshold" and ticker not in rank_map:
+                warnings.append(
+                    f"No valid weekly rank for held {ticker} on {current_date.date()}; "
+                    "position closed conservatively."
+                )
             cash = _close_position(
                 ticker=ticker,
                 exit_date=current_date,

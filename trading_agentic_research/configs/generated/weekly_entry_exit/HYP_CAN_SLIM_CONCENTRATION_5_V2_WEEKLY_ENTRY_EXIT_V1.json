@@ -1,0 +1,70 @@
+{
+  "strategy_id": "HYP_CAN_SLIM_CONCENTRATION_5_V2_WEEKLY_ENTRY_EXIT_V1",
+  "hypothesis_id": "HYP_CAN_SLIM_CONCENTRATION_5_V2_WEEKLY_ENTRY_EXIT_V1",
+  "strategy_family": "cross_sectional_momentum",
+  "bibliography_basis": [
+    "Jegadeesh and Titman 1993 momentum",
+    "time series momentum / trend following",
+    "moving average market filter"
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "ret_52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 5,
+    "by": "ret_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 30
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "parent_strategy_id": "HYP_CAN_SLIM_CONCENTRATION_5_V2",
+  "empirical_basis": [],
+  "decision_frequency": "weekly",
+  "entry_frequency": "weekly",
+  "exit_frequency": "weekly",
+  "position_retention": "hold_until_exit_rank_threshold",
+  "weekly_entry_exit_experiment": true,
+  "experiment_type": "weekly_entry_exit_frequency_only",
+  "original_config_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\configs\\generated\\HYP_CAN_SLIM_CONCENTRATION_5_V2.json",
+  "generated_at": "2026-06-07T04:03:31",
+  "changed_parameters": [
+    "decision_frequency",
+    "entry_frequency",
+    "exit_frequency",
+    "position_retention"
+  ]
+}
