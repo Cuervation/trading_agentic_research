@@ -1,0 +1,1059 @@
+START 2026-06-16T18:25:19-0300
+PASS 0 pending=335 covered=879
+RUN 1/335 HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED
+Source: runs
+Selected: 1
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED 0 covered=879 delta=0
+RUN 2/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD10_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD10_SL24 0 covered=880 delta=1
+RUN 3/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD10_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD10_SLNONE 0 covered=881 delta=1
+RUN 4/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL18 0 covered=882 delta=1
+RUN 5/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL20 0 covered=883 delta=1
+RUN 6/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL22 0 covered=884 delta=1
+RUN 7/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SL24 0 covered=885 delta=1
+RUN 8/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD6_SLNONE 0 covered=886 delta=1
+RUN 9/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL18 0 covered=887 delta=1
+RUN 10/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL20 0 covered=888 delta=1
+RUN 11/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL22 0 covered=889 delta=1
+RUN 12/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SL24 0 covered=890 delta=1
+RUN 13/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD7_SLNONE 0 covered=891 delta=1
+RUN 14/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL18 0 covered=892 delta=1
+RUN 15/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL20 0 covered=893 delta=1
+RUN 16/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL22 0 covered=894 delta=1
+RUN 17/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SL24 0 covered=895 delta=1
+RUN 18/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD8_SLNONE 0 covered=896 delta=1
+RUN 19/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL18 0 covered=897 delta=1
+RUN 20/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL20 0 covered=898 delta=1
+RUN 21/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL22 0 covered=899 delta=1
+RUN 22/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SL24 0 covered=900 delta=1
+RUN 23/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR40_REDD_RECOVERED_DD9_SLNONE 0 covered=901 delta=1
+RUN 24/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD10_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD10_SL18 0 covered=902 delta=1
+RUN 25/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD10_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD10_SL20 0 covered=903 delta=1
+RUN 26/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD6_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD6_SL18 0 covered=904 delta=1
+RUN 27/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD6_SL20 0 covered=905 delta=1
+RUN 28/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL18 0 covered=906 delta=1
+RUN 29/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL20 0 covered=907 delta=1
+RUN 30/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL22 0 covered=908 delta=1
+RUN 31/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SL24 0 covered=909 delta=1
+RUN 32/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD7_SLNONE 0 covered=910 delta=1
+RUN 33/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL18 0 covered=911 delta=1
+RUN 34/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL20 0 covered=912 delta=1
+RUN 35/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL22 0 covered=913 delta=1
+RUN 36/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SL24 0 covered=914 delta=1
+RUN 37/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD8_SLNONE 0 covered=915 delta=1
+RUN 38/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD9_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD9_SL18 0 covered=916 delta=1
+RUN 39/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR42_REDD_RECOVERED_DD9_SL20 0 covered=917 delta=1
+RUN 40/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD10_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD10_SL20 0 covered=918 delta=1
+RUN 41/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD6_SL20 0 covered=919 delta=1
+RUN 42/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD7_SL18 0 covered=920 delta=1
+RUN 43/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD7_SL20 0 covered=921 delta=1
+RUN 44/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD7_SL22 0 covered=922 delta=1
+RUN 45/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL18 0 covered=923 delta=1
+RUN 46/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL20 0 covered=924 delta=1
+RUN 47/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL22 0 covered=925 delta=1
+RUN 48/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SL24 0 covered=926 delta=1
+RUN 49/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD8_SLNONE 0 covered=927 delta=1
+RUN 50/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD9_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD9_SL18 0 covered=928 delta=1
+RUN 51/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD9_SL20 0 covered=929 delta=1
+RUN 52/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR45_REDD_RECOVERED_DD9_SL22 0 covered=930 delta=1
+RUN 53/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR50_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR50_REDD_RECOVERED_DD7_SL18 0 covered=931 delta=1
+RUN 54/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR50_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E75_CR50_REDD_RECOVERED_DD8_SL20 0 covered=932 delta=1
+RUN 55/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR33_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR33_REDD_RECOVERED_DD8_SL20 0 covered=933 delta=1
+RUN 56/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR36_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR36_REDD_RECOVERED_DD8_SL20 0 covered=934 delta=1
+RUN 57/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD10_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD10_SL18 0 covered=935 delta=1
+RUN 58/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD10_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD10_SL20 0 covered=936 delta=1
+RUN 59/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD6_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD6_SL18 0 covered=937 delta=1
+RUN 60/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD6_SL20 0 covered=938 delta=1
+RUN 61/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL18 0 covered=939 delta=1
+RUN 62/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL20 0 covered=940 delta=1
+RUN 63/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL22 0 covered=941 delta=1
+RUN 64/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SL24 0 covered=942 delta=1
+RUN 65/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD7_SLNONE 0 covered=943 delta=1
+RUN 66/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL18 0 covered=944 delta=1
+RUN 67/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL20 0 covered=945 delta=1
+RUN 68/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL22 0 covered=946 delta=1
+RUN 69/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SL24 0 covered=947 delta=1
+RUN 70/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD8_SLNONE 0 covered=948 delta=1
+RUN 71/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD9_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD9_SL18 0 covered=949 delta=1
+RUN 72/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR40_REDD_RECOVERED_DD9_SL20 0 covered=950 delta=1
+RUN 73/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR42_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR42_REDD_RECOVERED_DD7_SL18 0 covered=951 delta=1
+RUN 74/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR42_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR42_REDD_RECOVERED_DD8_SL20 0 covered=952 delta=1
+RUN 75/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD7_SL20 0 covered=953 delta=1
+RUN 76/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD8_SL18 0 covered=954 delta=1
+RUN 77/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD8_SL20 0 covered=955 delta=1
+RUN 78/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD8_SL22 0 covered=956 delta=1
+RUN 79/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E78_CR45_REDD_RECOVERED_DD9_SL20 0 covered=957 delta=1
+RUN 80/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR36_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR36_REDD_RECOVERED_DD8_SL20 0 covered=958 delta=1
+RUN 81/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD10_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD10_SL20 0 covered=959 delta=1
+RUN 82/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD6_SL20 0 covered=960 delta=1
+RUN 83/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD7_SL18 0 covered=961 delta=1
+RUN 84/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD7_SL20 0 covered=962 delta=1
+RUN 85/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD7_SL22 0 covered=963 delta=1
+RUN 86/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL18 0 covered=964 delta=1
+RUN 87/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL20 0 covered=965 delta=1
+RUN 88/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL22 0 covered=966 delta=1
+RUN 89/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SL24 0 covered=967 delta=1
+RUN 90/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD8_SLNONE 0 covered=968 delta=1
+RUN 91/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD9_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD9_SL18 0 covered=969 delta=1
+RUN 92/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR40_REDD_RECOVERED_DD9_SL20 0 covered=970 delta=1
+RUN 93/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR42_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR42_REDD_RECOVERED_DD8_SL20 0 covered=971 delta=1
+RUN 94/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C22_E80_CR45_REDD_RECOVERED_DD8_SL20 0 covered=972 delta=1
+RUN 95/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E68_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E68_CR40_REDD_RECOVERED_DD8_SL22 0 covered=973 delta=1
+RUN 96/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E70_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E70_CR40_REDD_RECOVERED_DD8_SL18 0 covered=974 delta=1
+RUN 97/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E70_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E70_CR40_REDD_RECOVERED_DD8_SL20 0 covered=975 delta=1
+RUN 98/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E70_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E70_CR40_REDD_RECOVERED_DD8_SL22 0 covered=976 delta=1
+RUN 99/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD7_SL18 0 covered=977 delta=1
+RUN 100/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD7_SL22 0 covered=978 delta=1
+RUN 101/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL18 0 covered=979 delta=1
+RUN 102/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL20 0 covered=980 delta=1
+RUN 103/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL22 0 covered=981 delta=1
+RUN 104/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SL24 0 covered=982 delta=1
+RUN 105/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD8_SLNONE 0 covered=983 delta=1
+RUN 106/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR40_REDD_RECOVERED_DD9_SL22 0 covered=984 delta=1
+RUN 107/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR42_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR42_REDD_RECOVERED_DD8_SL22 0 covered=985 delta=1
+RUN 108/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E72_CR45_REDD_RECOVERED_DD8_SL20 0 covered=986 delta=1
+RUN 109/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR30_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR30_REDD_RECOVERED_DD8_SL22 0 covered=987 delta=1
+RUN 110/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR33_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR33_REDD_RECOVERED_DD8_SL20 0 covered=988 delta=1
+RUN 111/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR33_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR33_REDD_RECOVERED_DD8_SL22 0 covered=989 delta=1
+RUN 112/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD7_SL18 0 covered=990 delta=1
+RUN 113/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD7_SL22 0 covered=991 delta=1
+RUN 114/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL18 0 covered=992 delta=1
+RUN 115/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL20 0 covered=993 delta=1
+RUN 116/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL22 0 covered=994 delta=1
+RUN 117/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SL24 0 covered=995 delta=1
+RUN 118/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD8_SLNONE 0 covered=996 delta=1
+RUN 119/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR36_REDD_RECOVERED_DD9_SL22 0 covered=997 delta=1
+RUN 120/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD10_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD10_SL18 0 covered=998 delta=1
+RUN 121/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD10_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD10_SL20 0 covered=999 delta=1
+RUN 122/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD10_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD10_SL22 0 covered=1000 delta=1
+RUN 123/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD6_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD6_SL18 0 covered=1001 delta=1
+RUN 124/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD6_SL20 0 covered=1002 delta=1
+RUN 125/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD6_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD6_SL22 0 covered=1003 delta=1
+RUN 126/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL18 0 covered=1004 delta=1
+RUN 127/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL20 0 covered=1005 delta=1
+RUN 128/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL22 0 covered=1006 delta=1
+RUN 129/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SL24 0 covered=1007 delta=1
+RUN 130/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD7_SLNONE 0 covered=1008 delta=1
+RUN 131/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL18 0 covered=1009 delta=1
+RUN 132/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL20 0 covered=1010 delta=1
+RUN 133/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL22 0 covered=1011 delta=1
+RUN 134/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SL24 0 covered=1012 delta=1
+RUN 135/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD8_SLNONE 0 covered=1013 delta=1
+RUN 136/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL18 0 covered=1014 delta=1
+RUN 137/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL20 0 covered=1015 delta=1
+RUN 138/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL22 0 covered=1016 delta=1
+RUN 139/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SL24 0 covered=1017 delta=1
+RUN 140/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR40_REDD_RECOVERED_DD9_SLNONE 0 covered=1018 delta=1
+RUN 141/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD7_SL18 0 covered=1019 delta=1
+RUN 142/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD7_SL22 0 covered=1020 delta=1
+RUN 143/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL18 0 covered=1021 delta=1
+RUN 144/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL20 0 covered=1022 delta=1
+RUN 145/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL22 0 covered=1023 delta=1
+RUN 146/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SL24 0 covered=1024 delta=1
+RUN 147/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD8_SLNONE 0 covered=1025 delta=1
+RUN 148/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR42_REDD_RECOVERED_DD9_SL22 0 covered=1026 delta=1
+RUN 149/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD7_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD7_SL20 0 covered=1027 delta=1
+RUN 150/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD8_SL18 0 covered=1028 delta=1
+RUN 151/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD8_SL20 0 covered=1029 delta=1
+RUN 152/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD8_SL22 0 covered=1030 delta=1
+RUN 153/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD9_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR45_REDD_RECOVERED_DD9_SL20 0 covered=1031 delta=1
+RUN 154/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR50_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E75_CR50_REDD_RECOVERED_DD8_SL22 0 covered=1032 delta=1
+RUN 155/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD7_SL18 0 covered=1033 delta=1
+RUN 156/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD7_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD7_SL22 0 covered=1034 delta=1
+RUN 157/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL18 0 covered=1035 delta=1
+RUN 158/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL20 0 covered=1036 delta=1
+RUN 159/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL22 0 covered=1037 delta=1
+RUN 160/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL24
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SL24 0 covered=1038 delta=1
+RUN 161/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SLNONE
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD8_SLNONE 0 covered=1039 delta=1
+RUN 162/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD9_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR40_REDD_RECOVERED_DD9_SL22 0 covered=1040 delta=1
+RUN 163/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR42_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR42_REDD_RECOVERED_DD8_SL22 0 covered=1041 delta=1
+RUN 164/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E78_CR45_REDD_RECOVERED_DD8_SL20 0 covered=1042 delta=1
+RUN 165/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E80_CR40_REDD_RECOVERED_DD8_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E80_CR40_REDD_RECOVERED_DD8_SL18 0 covered=1043 delta=1
+RUN 166/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E80_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E80_CR40_REDD_RECOVERED_DD8_SL20 0 covered=1044 delta=1
+RUN 167/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E80_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C23_E80_CR40_REDD_RECOVERED_DD8_SL22 0 covered=1045 delta=1
+RUN 168/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E70_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E70_CR40_REDD_RECOVERED_DD8_SL20 0 covered=1046 delta=1
+RUN 169/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E72_CR40_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E72_CR40_REDD_RECOVERED_DD8_SL20 0 covered=1047 delta=1
+RUN 170/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E72_CR40_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E72_CR40_REDD_RECOVERED_DD8_SL22 0 covered=1048 delta=1
+RUN 171/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR33_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR33_REDD_RECOVERED_DD8_SL20 0 covered=1049 delta=1
+RUN 172/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR36_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR36_REDD_RECOVERED_DD8_SL20 0 covered=1050 delta=1
+RUN 173/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR36_REDD_RECOVERED_DD8_SL22
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR36_REDD_RECOVERED_DD8_SL22 0 covered=1051 delta=1
+RUN 174/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD10_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD10_SL20 0 covered=1052 delta=1
+RUN 175/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD6_SL20
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD6_SL20 0 covered=1053 delta=1
+RUN 176/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD7_SL18
+Source: runs
+Selected: 1
+Completed/reused: 1
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD7_SL18 0 covered=1054 delta=1
+RUN 177/335 HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R12_C24_E75_CR40_REDD_RECOVERED_DD7_SL20

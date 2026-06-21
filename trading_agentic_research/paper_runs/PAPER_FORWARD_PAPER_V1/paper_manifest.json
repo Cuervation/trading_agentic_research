@@ -1,0 +1,9 @@
+{
+  "paper_run_id": "PAPER_FORWARD_PAPER_V1",
+  "PAPER": true,
+  "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1_PAPER_V1",
+  "config_hash": "6eec9d3db945fd50c756fc021b08512f316933e3090837cc526ee83e38fff482",
+  "start": "2026-06-04",
+  "end": "2026-06-04",
+  "no_live_orders": true
+}

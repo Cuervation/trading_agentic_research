@@ -1,0 +1,22 @@
+START 2026-06-17T23:50:09-0300 workers=4 chunk_size=48
+PASS 0 original=1213 covered=1073 pending=141
+BATCH pass=0 chunk=1 size=48 first=HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED last=HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R13_C22_E75_CR45_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 48
+Completed/reused: 45
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT pass=0 chunk=1 rc=0 covered=1118 delta=45
+BATCH pass=0 chunk=2 size=48 first=HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONG_R13_C22_E75_CR45_REDD_RECOVERED_DD8_SL22 last=HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_STOP30_EXT_SPY200_SMA50_DD10
+Source: runs
+Selected: 48
+Completed/reused: 39
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT pass=0 chunk=2 rc=0 covered=1157 delta=39
+BATCH pass=0 chunk=3 size=45 first=HYP_REFINE_AUTO002_TRAILING_18_V1 last=HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_STRICT_R12_C21_E75_CR33_REDD_RECOVERED_DD8_SL20
+Source: runs
+Selected: 45
+Completed/reused: 26
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT pass=0 chunk=3 rc=0 covered=1182 delta=25
+PASS 1 original=1213 covered=1182 pending=32
+BATCH pass=1 chunk=1 size=32 first=HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED last=HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONGRUN_STRICT_STRICT_NEXT_CLOSE_R13_C22_E75_CR33_REDD_DD7_SL18

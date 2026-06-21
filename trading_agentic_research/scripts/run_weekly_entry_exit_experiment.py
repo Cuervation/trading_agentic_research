@@ -5,14 +5,25 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from backtester.data_loader import (
+    load_daily_feature_store_folder,
+    load_weekly_feature_store,
+)
+from scripts.run_backtest import run_backtest_and_write_artifacts
+
 SUFFIX = "_WEEKLY_ENTRY_EXIT_V1"
 PRIORITY_STATUSES = (
     "champion_history",
@@ -54,6 +65,7 @@ REPORT_COLUMNS = [
     "warnings",
     "error",
 ]
+REPORT_CHECKPOINT_EVERY = 25
 
 
 def read_json(path: Path, default=None):
@@ -312,42 +324,12 @@ def find_existing_weekly_run(
     return max(matches, key=lambda path: path.stat().st_mtime_ns).name
 
 
-def run_variant(
+def update_weekly_manifest(
     root: Path,
-    weekly_file: Path,
-    daily_folder: Path,
-    project_path: Path,
-    original_path: Path,
-    weekly_path: Path,
+    run_id: str,
     candidate: dict,
-    weekly_id: str,
-) -> str:
+) -> None:
     original_id = candidate["strategy_id"]
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    run_id = f"WEEKLY_{sanitize_run_component(original_id)}_{stamp}"
-    command = [
-        sys.executable,
-        str(root / "scripts" / "run_backtest.py"),
-        "--weekly-file",
-        str(weekly_file),
-        "--daily-folder",
-        str(daily_folder),
-        "--strategy-config",
-        str(weekly_path),
-        "--project-config",
-        str(project_path),
-        "--run-id",
-        run_id,
-        "--runs-dir",
-        str(root / "runs"),
-        "--parent-strategy-config",
-        str(original_path),
-    ]
-    if candidate.get("run_id"):
-        command.extend(["--parent-run-id", str(candidate["run_id"])])
-    completed = subprocess.run(command, cwd=root, capture_output=True, text=True)
-    if completed.returncode:
-        raise RuntimeError((completed.stderr or completed.stdout)[-1200:])
     manifest_path = root / "runs" / run_id / "run_manifest.json"
     manifest = read_json(manifest_path, {}) or {}
     manifest.update(
@@ -371,7 +353,204 @@ def run_variant(
         }
     )
     write_json(manifest_path, manifest)
+
+
+def build_weekly_run_id(original_id: str) -> str:
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    return (
+        f"WEEKLY_{sanitize_run_component(original_id)}_{stamp}_{os.getpid()}"
+    )
+
+
+def run_variant(
+    root: Path,
+    weekly_file: Path,
+    daily_folder: Path,
+    project_path: Path,
+    original_path: Path,
+    weekly_path: Path,
+    candidate: dict,
+    weekly_id: str,
+) -> str:
+    original_id = candidate["strategy_id"]
+    run_id = build_weekly_run_id(original_id)
+    command = [
+        sys.executable,
+        str(root / "scripts" / "run_backtest.py"),
+        "--weekly-file",
+        str(weekly_file),
+        "--daily-folder",
+        str(daily_folder),
+        "--strategy-config",
+        str(weekly_path),
+        "--project-config",
+        str(project_path),
+        "--run-id",
+        run_id,
+        "--runs-dir",
+        str(root / "runs"),
+        "--parent-strategy-config",
+        str(original_path),
+    ]
+    if candidate.get("run_id"):
+        command.extend(["--parent-run-id", str(candidate["run_id"])])
+    completed = subprocess.run(command, cwd=root, capture_output=True, text=True)
+    if completed.returncode:
+        raise RuntimeError((completed.stderr or completed.stdout)[-1200:])
+    update_weekly_manifest(root, run_id, candidate)
     return run_id
+
+
+def run_variant_inprocess(
+    root: Path,
+    weekly_file: Path,
+    daily_folder: Path,
+    original_path: Path,
+    weekly_path: Path,
+    weekly_config: dict,
+    project_config: dict,
+    candidate: dict,
+    weekly_df,
+    daily_df,
+) -> str:
+    original_id = candidate["strategy_id"]
+    run_id = build_weekly_run_id(original_id)
+    parent_strategy_config = read_json(original_path, {}) or {}
+    run_backtest_and_write_artifacts(
+        weekly_df=weekly_df,
+        daily_df=daily_df,
+        strategy_config=weekly_config,
+        project_config=project_config,
+        run_id=run_id,
+        runs_dir=root / "runs",
+        strategy_config_path=weekly_path,
+        weekly_file=weekly_file,
+        daily_folder=daily_folder,
+        parent_run_id=candidate.get("run_id"),
+        parent_strategy_config=parent_strategy_config,
+        parent_strategy_config_path=original_path,
+    )
+    update_weekly_manifest(root, run_id, candidate)
+    return run_id
+
+
+def process_candidate(
+    root: Path,
+    weekly_file: Path,
+    daily_folder: Path,
+    project_path: Path,
+    generated_dir: Path,
+    candidate: dict,
+    *,
+    generate_only: bool,
+    resume: bool,
+    force: bool,
+    execution_backend: str = "subprocess",
+    weekly_df=None,
+    daily_df=None,
+    project_config: dict | None = None,
+) -> dict:
+    original_id = candidate["strategy_id"]
+    weekly_id = f"{original_id}{SUFFIX}"
+    weekly_path = generated_dir / f"{weekly_id}.json"
+    original_path = candidate.get("config_path")
+    if not original_path:
+        return result_row(
+            root,
+            candidate,
+            None,
+            weekly_path,
+            weekly_id,
+            None,
+            "skipped_missing_config",
+            "Original config could not be resolved from manifest/registry/generated configs.",
+        )
+    original = read_json(original_path, {}) or {}
+    if not original:
+        return result_row(
+            root,
+            candidate,
+            original_path,
+            weekly_path,
+            weekly_id,
+            None,
+            "skipped_invalid_config",
+            "Original config is unreadable or empty.",
+        )
+    weekly, weekly_path = clone_weekly_config(
+        original, original_path, generated_dir, force=force
+    )
+    weekly_id = weekly["strategy_id"]
+    existing_run = (
+        find_existing_weekly_run(root, original_id, weekly_id)
+        if resume and not force
+        else None
+    )
+    if existing_run:
+        return result_row(
+            root,
+            candidate,
+            original_path,
+            weekly_path,
+            weekly_id,
+            existing_run,
+            "reused",
+        )
+    if generate_only:
+        return result_row(
+            root,
+            candidate,
+            original_path,
+            weekly_path,
+            weekly_id,
+            None,
+            "generated_only",
+        )
+    try:
+        if execution_backend == "inprocess":
+            weekly_run_id = run_variant_inprocess(
+                root,
+                weekly_file,
+                daily_folder,
+                original_path,
+                weekly_path,
+                weekly,
+                project_config or {},
+                candidate,
+                weekly_df,
+                daily_df,
+            )
+        else:
+            weekly_run_id = run_variant(
+                root,
+                weekly_file,
+                daily_folder,
+                project_path,
+                original_path,
+                weekly_path,
+                candidate,
+                weekly_id,
+            )
+        return result_row(
+            root,
+            candidate,
+            original_path,
+            weekly_path,
+            weekly_id,
+            weekly_run_id,
+            "completed",
+        )
+    except Exception as exc:
+        return result_row(
+            root,
+            candidate,
+            original_path,
+            weekly_path,
+            weekly_id,
+            None,
+            "failed",
+            str(exc)[:1200],
+        )
 
 
 def trade_count(run_dir: Path, metrics: dict) -> int | None:
@@ -623,6 +802,12 @@ def parse_args():
     parser.add_argument("--generate-only", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument(
+        "--execution-backend",
+        choices=("subprocess", "inprocess"),
+        default="subprocess",
+    )
     parser.add_argument(
         "--report-dir", default="reports/weekly_entry_exit_experiment"
     )
@@ -631,6 +816,12 @@ def parse_args():
 
 def main() -> int:
     args = parse_args()
+    if args.workers < 1:
+        raise ValueError("--workers must be at least 1")
+    if args.execution_backend == "inprocess" and args.workers != 1:
+        raise ValueError(
+            "--execution-backend inprocess currently requires --workers 1"
+        )
     root = Path(args.repo_root).resolve()
     report_dir = Path(args.report_dir)
     if not report_dir.is_absolute():
@@ -647,113 +838,51 @@ def main() -> int:
     project = read_json(project_path, {}) or {}
     weekly_file, daily_folder = resolve_data_paths(root, project)
     rows = []
-    for candidate in candidates:
-        original_id = candidate["strategy_id"]
-        weekly_id = f"{original_id}{SUFFIX}"
-        weekly_path = generated_dir / f"{weekly_id}.json"
-        original_path = candidate.get("config_path")
-        if not original_path:
+    if args.execution_backend == "inprocess":
+        weekly_df = load_weekly_feature_store(weekly_file)
+        daily_df = load_daily_feature_store_folder(daily_folder)
+        for candidate in candidates:
             rows.append(
-                result_row(
+                process_candidate(
                     root,
+                    weekly_file,
+                    daily_folder,
+                    project_path,
+                    generated_dir,
                     candidate,
-                    None,
-                    weekly_path,
-                    weekly_id,
-                    None,
-                    "skipped_missing_config",
-                    "Original config could not be resolved from manifest/registry/generated configs.",
+                    generate_only=args.generate_only,
+                    resume=args.resume,
+                    force=args.force,
+                    execution_backend=args.execution_backend,
+                    weekly_df=weekly_df,
+                    daily_df=daily_df,
+                    project_config=project,
                 )
             )
-            write_report(report_dir, rows)
-            continue
-        original = read_json(original_path, {}) or {}
-        if not original:
-            rows.append(
-                result_row(
+            if len(rows) % REPORT_CHECKPOINT_EVERY == 0:
+                write_report(report_dir, rows)
+    else:
+        with ThreadPoolExecutor(max_workers=args.workers) as executor:
+            futures = [
+                executor.submit(
+                    process_candidate,
                     root,
+                    weekly_file,
+                    daily_folder,
+                    project_path,
+                    generated_dir,
                     candidate,
-                    original_path,
-                    weekly_path,
-                    weekly_id,
-                    None,
-                    "skipped_invalid_config",
-                    "Original config is unreadable or empty.",
+                    generate_only=args.generate_only,
+                    resume=args.resume,
+                    force=args.force,
+                    execution_backend=args.execution_backend,
                 )
-            )
-            write_report(report_dir, rows)
-            continue
-        weekly, weekly_path = clone_weekly_config(
-            original, original_path, generated_dir, force=args.force
-        )
-        weekly_id = weekly["strategy_id"]
-        existing_run = None if args.force else find_existing_weekly_run(
-            root, original_id, weekly_id
-        )
-        if existing_run:
-            rows.append(
-                result_row(
-                    root,
-                    candidate,
-                    original_path,
-                    weekly_path,
-                    weekly_id,
-                    existing_run,
-                    "reused",
-                )
-            )
-            write_report(report_dir, rows)
-            continue
-        if args.generate_only:
-            rows.append(
-                result_row(
-                    root,
-                    candidate,
-                    original_path,
-                    weekly_path,
-                    weekly_id,
-                    None,
-                    "generated_only",
-                )
-            )
-            write_report(report_dir, rows)
-            continue
-        try:
-            weekly_run_id = run_variant(
-                root,
-                weekly_file,
-                daily_folder,
-                project_path,
-                original_path,
-                weekly_path,
-                candidate,
-                weekly_id,
-            )
-            rows.append(
-                result_row(
-                    root,
-                    candidate,
-                    original_path,
-                    weekly_path,
-                    weekly_id,
-                    weekly_run_id,
-                    "completed",
-                )
-            )
-        except Exception as exc:
-            rows.append(
-                result_row(
-                    root,
-                    candidate,
-                    original_path,
-                    weekly_path,
-                    weekly_id,
-                    None,
-                    "failed",
-                    str(exc)[:1200],
-                )
-            )
-        write_report(report_dir, rows)
+                for candidate in candidates
+            ]
+            for future in as_completed(futures):
+                rows.append(future.result())
+                if len(rows) % REPORT_CHECKPOINT_EVERY == 0:
+                    write_report(report_dir, rows)
     write_report(report_dir, rows)
     print(f"Source: {args.source}")
     print(f"Selected: {len(rows)}")

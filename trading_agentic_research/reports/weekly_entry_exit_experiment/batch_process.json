@@ -1,0 +1,8 @@
+﻿{
+    "total_strategies":  1213,
+    "pid":  36904,
+    "command":  "python scripts/run_weekly_entry_exit_experiment.py --source runs --resume",
+    "stderr":  "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\reports\\weekly_entry_exit_experiment\\batch_stderr.log",
+    "stdout":  "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\reports\\weekly_entry_exit_experiment\\batch_stdout.log",
+    "started_at":  "2026-06-07T01:17:54.5590657-03:00"
+}

@@ -1,0 +1,38 @@
+{
+  "run_id": "INPROCESS_COMPARE",
+  "parent_run_id": null,
+  "strategy_id": "HYP_AUTOREFINE_AUTO_002_TOPN_17_V1_WEEKLY_ENTRY_EXIT_V1",
+  "strategy_version": "1",
+  "strategy_config_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\configs\\generated\\weekly_entry_exit\\HYP_AUTOREFINE_AUTO_002_TOPN_17_V1_WEEKLY_ENTRY_EXIT_V1.json",
+  "parent_strategy_id": "HYP_AUTOREFINE_AUTO_002_TOPN_17_V1",
+  "hypothesis_id": "HYP_AUTOREFINE_AUTO_002_TOPN_17_V1_WEEKLY_ENTRY_EXIT_V1",
+  "hypothesis_family": "trend_following",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_TIME_SERIES_MOMENTUM_SEED"
+    }
+  ],
+  "empirical_basis": [],
+  "changed_parameters": [
+    "decision_frequency",
+    "entry_frequency",
+    "exit_frequency",
+    "position_retention"
+  ],
+  "config_hash": "97a36c4bef1b9301de7e77a016a5c3cc288351d784d8edd0d2a486ec8fefeb5b",
+  "code_hash": "6ecb5bf968125feafcc2ca820e58dda840c5e98cde0537e4060457b2fa8d6e80",
+  "data_hash": "ff50add0396ebde9de0c3d08044e805b3b613be73eed07f05c1b3bc2a2a9ba94",
+  "initial_capital": 10000.0,
+  "generated_at": "2026-06-09T00:07:59.798192+00:00",
+  "execution_timing_mode": "current_default",
+  "strict_next_close_enabled": false,
+  "delayed_execution_count": 0,
+  "execution_costs": {
+    "applied": true,
+    "cost_per_side_pct": 0.24,
+    "base_cost_per_side_pct": 0.24,
+    "base_slippage_per_side_pct": 0.0,
+    "cost_multiplier": 1.0,
+    "slippage_multiplier": 1.0
+  }
+}

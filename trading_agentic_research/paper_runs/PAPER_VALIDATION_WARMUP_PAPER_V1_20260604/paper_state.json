@@ -1,0 +1,10 @@
+{
+  "cash": 10000.0,
+  "positions": {},
+  "equity": 10000.0,
+  "peak_equity": 10000.0,
+  "drawdown_pct": 0,
+  "orders_pending": [],
+  "last_day_processed": "2026-06-04",
+  "config_hash": "6eec9d3db945fd50c756fc021b08512f316933e3090837cc526ee83e38fff482"
+}

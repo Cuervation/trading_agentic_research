@@ -1,0 +1,31 @@
+{
+  "cash": 70.73368041379263,
+  "positions": {
+    "TSCO": {
+      "shares": 7490,
+      "entry_price": 0.2995492566823959,
+      "entry_date": "2001-09-04"
+    },
+    "DHI": {
+      "shares": 268,
+      "entry_price": 12.011999999999999,
+      "entry_date": "2002-01-28"
+    },
+    "FFIV": {
+      "shares": 306,
+      "entry_price": 11.441430305480955,
+      "entry_date": "2002-04-01"
+    },
+    "GEN": {
+      "shares": 343,
+      "entry_price": 10.225215152740477,
+      "entry_date": "2002-04-01"
+    }
+  },
+  "equity": 14834.82762722833,
+  "peak_equity": 14834.82762722833,
+  "drawdown_pct": 0.0,
+  "orders_pending": [],
+  "last_day_processed": "2002-03-31",
+  "config_hash": "6eec9d3db945fd50c756fc021b08512f316933e3090837cc526ee83e38fff482"
+}

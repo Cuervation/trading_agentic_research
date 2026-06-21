@@ -154,16 +154,24 @@ def build_yearly_strategy_stats(run_id: str, strategy_id: str, comparison_yearly
     ]
 
 
-def main() -> int:
-    args = parse_args()
-
-    strategy_config = load_json(args.strategy_config)
-    project_config = load_json(args.project_config)
-    parent_strategy_config = load_json(args.parent_strategy_config) if args.parent_strategy_config else None
-
-    weekly_df = load_weekly_feature_store(args.weekly_file)
-    daily_df = load_daily_feature_store_folder(args.daily_folder)
-
+def run_backtest_and_write_artifacts(
+    *,
+    weekly_df: pd.DataFrame,
+    daily_df: pd.DataFrame,
+    strategy_config: dict,
+    project_config: dict,
+    run_id: str,
+    runs_dir: str | Path,
+    strategy_config_path: str | Path,
+    weekly_file: str | Path,
+    daily_folder: str | Path,
+    parent_run_id: str | None = None,
+    parent_strategy_config: dict | None = None,
+    parent_strategy_config_path: str | Path | None = None,
+) -> dict:
+    """Run one backtest from preloaded data and write the standard artifacts."""
+    if parent_strategy_config is None and parent_strategy_config_path:
+        parent_strategy_config = load_json(str(parent_strategy_config_path))
     ensure_valid_feature_store(weekly_df, label="weekly feature store")
     ensure_valid_feature_store(daily_df, label="daily feature store")
 
@@ -207,7 +215,7 @@ def main() -> int:
         spy_metrics=spy_metrics,
     )
 
-    run_dir = Path(args.runs_dir) / args.run_id
+    run_dir = Path(runs_dir) / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
 
     equity_curve.to_csv(run_dir / "equity_curve.csv", index=False, sep=";", decimal=",")
@@ -241,7 +249,7 @@ def main() -> int:
     comparison_monthly.to_csv(run_dir / "spy_comparison_monthly.csv", index=False, sep=";", decimal=",")
     comparison_yearly.to_csv(run_dir / "spy_comparison_yearly.csv", index=False, sep=";", decimal=",")
     yearly_stats = build_yearly_strategy_stats(
-        run_id=args.run_id,
+        run_id=run_id,
         strategy_id=str(strategy_config.get("strategy_id", "unknown_strategy")),
         comparison_yearly=comparison_yearly,
     )
@@ -251,7 +259,7 @@ def main() -> int:
         json.dump(comparison_summary, f, indent=2, default=str)
 
     summary_md = build_summary_markdown(
-        run_id=args.run_id,
+        run_id=run_id,
         strategy_id=str(strategy_config.get("strategy_id", "unknown_strategy")),
         strategy_metrics=strategy_metrics,
         spy_metrics=spy_metrics,
@@ -263,13 +271,13 @@ def main() -> int:
     (run_dir / "summary.md").write_text(summary_md, encoding="utf-8")
 
     manifest = build_run_manifest(
-        run_id=args.run_id,
-        parent_run_id=args.parent_run_id,
+        run_id=run_id,
+        parent_run_id=parent_run_id,
         strategy_config=strategy_config,
-        strategy_config_path=args.strategy_config,
+        strategy_config_path=strategy_config_path,
         project_config=project_config,
-        weekly_file=args.weekly_file,
-        daily_folder=args.daily_folder,
+        weekly_file=weekly_file,
+        daily_folder=daily_folder,
         parent_strategy_config=parent_strategy_config,
     )
     manifest["execution_timing_mode"] = metrics_payload["execution_timing_mode"]
@@ -279,9 +287,54 @@ def main() -> int:
     with (run_dir / "run_manifest.json").open("w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False, default=str)
 
+    return {
+        "run_id": run_id,
+        "run_dir": run_dir,
+        "equity_curve": equity_curve,
+        "trades": trades,
+        "metrics": metrics_payload,
+        "comparison_summary": comparison_summary,
+        "manifest": manifest,
+    }
+
+
+def main() -> int:
+    args = parse_args()
+
+    strategy_config = load_json(args.strategy_config)
+    project_config = load_json(args.project_config)
+    parent_strategy_config = (
+        load_json(args.parent_strategy_config)
+        if args.parent_strategy_config
+        else None
+    )
+    weekly_df = load_weekly_feature_store(args.weekly_file)
+    daily_df = load_daily_feature_store_folder(args.daily_folder)
+
+    output = run_backtest_and_write_artifacts(
+        weekly_df=weekly_df,
+        daily_df=daily_df,
+        strategy_config=strategy_config,
+        project_config=project_config,
+        run_id=args.run_id,
+        runs_dir=args.runs_dir,
+        strategy_config_path=args.strategy_config,
+        weekly_file=args.weekly_file,
+        daily_folder=args.daily_folder,
+        parent_run_id=args.parent_run_id,
+        parent_strategy_config=parent_strategy_config,
+        parent_strategy_config_path=args.parent_strategy_config,
+    )
+
     print(f"Run completed: {args.run_id}")
+    run_dir = output["run_dir"]
     print(f"Output folder: {run_dir}")
-    print(f"Rows -> equity: {len(equity_curve)}, trades: {len(trades)}")
+    print(
+        "Rows -> equity: {equity}, trades: {trades}".format(
+            equity=len(output["equity_curve"]),
+            trades=len(output["trades"]),
+        )
+    )
     return 0
 
 

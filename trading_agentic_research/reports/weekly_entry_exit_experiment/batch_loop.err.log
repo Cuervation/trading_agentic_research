@@ -1,0 +1,43 @@
+En l¡nea: 12 Car cter: 43
++  $failed = ([regex]::Matches($content, '',failed,'')).Count
++                                           ~
+Falta una expresi¢n despu‚s de ','.
+En l¡nea: 12 Car cter: 43
++  $failed = ([regex]::Matches($content, '',failed,'')).Count
++                                           ~~~~~~
+Token 'failed' inesperado en la expresi¢n o la instrucci¢n.
+En l¡nea: 12 Car cter: 43
++  $failed = ([regex]::Matches($content, '',failed,'')).Count
++                                           ~
+Falta el par‚ntesis de cierre ')' en la expresi¢n.
+En l¡nea: 12 Car cter: 49
++  $failed = ([regex]::Matches($content, '',failed,'')).Count
++                                                 ~
+Falta un argumento en la lista de par metros.
+En l¡nea: 10 Car cter: 26
++  if (Test-Path $summary) {
++                          ~
+Falta la llave de cierre "}" en el bloque de instrucciones o la definici¢n de tipo.
+En l¡nea: 6 Car cter: 31
++ for ($i = 1; $i -le 10; $i++) {
++                               ~
+Falta la llave de cierre "}" en el bloque de instrucciones o la definici¢n de tipo.
+En l¡nea: 12 Car cter: 52
++  $failed = ([regex]::Matches($content, '',failed,'')).Count
++                                                    ~
+Token ')' inesperado en la expresi¢n o la instrucci¢n.
+En l¡nea: 12 Car cter: 53
++  $failed = ([regex]::Matches($content, '',failed,'')).Count
++                                                     ~
+Token ')' inesperado en la expresi¢n o la instrucci¢n.
+En l¡nea: 15 Car cter: 2
++  }
++  ~
+Token '}' inesperado en la expresi¢n o la instrucci¢n.
+En l¡nea: 16 Car cter: 1
++ }
++ ~
+Token '}' inesperado en la expresi¢n o la instrucci¢n.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingExpressionAfterToken
+ 

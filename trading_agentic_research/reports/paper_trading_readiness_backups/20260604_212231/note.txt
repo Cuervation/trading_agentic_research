@@ -1,0 +1,1 @@
+No existing files modified by paper stage at backup creation time. Existing repo modifications pre-existed from strict/SPY stages.

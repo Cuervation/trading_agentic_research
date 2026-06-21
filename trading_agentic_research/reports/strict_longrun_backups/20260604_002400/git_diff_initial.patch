@@ -1,0 +1,73 @@
+﻿diff --git a/trading_agentic_research/backtester/execution.py b/trading_agentic_research/backtester/execution.py
+index f75f2b6..283b825 100644
+--- a/trading_agentic_research/backtester/execution.py
++++ b/trading_agentic_research/backtester/execution.py
+@@ -59,6 +59,9 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config,
+     execution_timing = _get_execution_timing(strategy_config)
+     strict_next_close = bool(execution_timing.get("strict_next_close_enabled"))
+     execution_timing_mode = str(execution_timing.get("execution_timing_mode", "current_default"))
++    strict_apply_to = set(execution_timing.get("apply_to", []))
++    strict_guard_timing = strict_next_close and bool(strict_apply_to & {"portfolio_drawdown_guard", "reentry"})
++    strict_stop_timing = strict_next_close and "position_stop_loss" in strict_apply_to
+     trailing_stop_pct = _get_trailing_stop_pct(strategy_config)
+     trailing_activation_gain_pct = _get_trailing_activation_gain_pct(strategy_config)
+     stop_loss_pct = _get_stop_loss_pct(strategy_config)
+@@ -151,8 +154,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config,
+ 
+         if portfolio_drawdown_guard:
+             benchmark_row = _benchmark_row_for_date(benchmark_context, current_date)
+-            guard_signal_dd = previous_equity_dd_pct if strict_next_close else current_equity_dd_pct
+-            guard_signal_benchmark = previous_benchmark_row if strict_next_close else benchmark_row
++            guard_signal_dd = previous_equity_dd_pct if strict_guard_timing else current_equity_dd_pct
++            guard_signal_benchmark = previous_benchmark_row if strict_guard_timing else benchmark_row
+             if guard_signal_dd is not None:
+                 portfolio_events = _update_portfolio_guard_runtime(
+                     runtime=portfolio_guard_runtime,
+@@ -164,7 +167,7 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config,
+             else:
+                 portfolio_events = []
+             for event in portfolio_events:
+-                if strict_next_close:
++                if strict_guard_timing:
+                     event["execution_timing_mode"] = "strict_next_close"
+                     event["signal_detected_previous_close"] = True
+                     delayed_execution_count += 1
+@@ -205,8 +208,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config,
+                     else "portfolio_guard_reduce"
+                 ),
+                 trade_rows=trade_rows,
+-                execution_timing_mode=execution_timing_mode if strict_next_close else None,
+-                signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_next_close and daily_dates.index(current_date) > 0 else None),
++                execution_timing_mode=execution_timing_mode if strict_guard_timing else None,
++                signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_guard_timing and daily_dates.index(current_date) > 0 else None),
+             )
+             if scaled_count:
+                 portfolio_guard_scales += 1
+@@ -272,14 +275,14 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config,
+                 equity_guard_cooldown_remaining -= 1
+             processed_rebalances += 1
+ 
+-        stop_signal_prices = previous_valuation_prices if strict_next_close else valuation_prices
++        stop_signal_prices = previous_valuation_prices if strict_stop_timing else valuation_prices
+         cash, stop_delays = _process_trailing_stops(
+             current_date=current_date,
+             cash=cash,
+             positions=positions,
+             prices=valuation_prices,
+             signal_prices=stop_signal_prices,
+-            strict_next_close=strict_next_close,
++            strict_next_close=strict_stop_timing,
+             trailing_stop_pct=trailing_stop_pct,
+             trailing_activation_gain_pct=trailing_activation_gain_pct,
+             stop_loss_pct=stop_loss_pct,
+@@ -289,8 +292,8 @@ def run_strategy_backtest(weekly_df, daily_df, strategy_config, project_config,
+             partial_take_profit=partial_take_profit,
+             cost_per_side_pct=cost_per_side_pct,
+             trade_rows=trade_rows,
+-            execution_timing_mode=execution_timing_mode if strict_next_close else None,
+-            signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_next_close and daily_dates.index(current_date) > 0 else None),
++            execution_timing_mode=execution_timing_mode if strict_stop_timing else None,
++            signal_detected_date=(daily_dates[daily_dates.index(current_date)-1] if strict_stop_timing and daily_dates.index(current_date) > 0 else None),
+         )
+         delayed_execution_count += int(stop_delays)
+         equity_row = build_equity_row(current_date, cash, positions, valuation_prices)

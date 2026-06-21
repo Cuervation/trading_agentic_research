@@ -1,0 +1,138 @@
+{
+  "closed_at": "2026-06-20T21:45:19.750486+00:00",
+  "closures": [
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED_20260620_184526_355375",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_AUTO_LOCAL_PULLBACK_TO_SMA26_SEED"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1_20260620_184526_361031",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1_20260620_184526_365131",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1_20260620_184526_370783",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_STRICT_SPY_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1_20260620_184526_374826",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_R2_035_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1_20260620_184526_378679",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_STRICT_SPY_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1_20260620_184526_384294",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_CHANNEL_SLOPE_POS_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1_20260620_184526_388370",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA20_POS_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1_20260620_184526_392444",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_CONF_SMA52_POS_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1_20260620_184526_397773",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_MKT_RELAXED_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1_20260620_184526_401324",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_MKT_RELAXED_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_14_V1_20260620_184526_404885",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_14_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1_20260620_184526_409864",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_EXIT_17_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1_20260620_184526_414688",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_FSPACE_AUTO_002_RANK_DISTANCE_TO_CHANNEL_LOWER_PCT_CONF_CHANNEL_R2_035_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_LIT_AUTO_002_PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4_20260620_184526_419275",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_LIT_AUTO_002_PAPER_RESIDUAL_IDIOSYNCRATIC_MOMENTUM_RESIDUAL_RET26_V4"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1_20260620_184526_423619",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_BREADTH45_DD26_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1_20260620_184526_429249",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_LITEXP_AUTO_002_RESIDUAL26_LOWVOL13_CONFIRM_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1_20260620_184526_432657",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_LITEXP_AUTO_002_SECTOR_REL26_LOWDD_V1"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4_20260620_184526_439812",
+      "status": "attempted_no_coverage",
+      "strategy_id": "HYP_LIT_AUTO_002_PAPER_SECTOR_AND_INDUSTRY_RELATIVE_STR_SECTOR_REL_RET26_V4"
+    },
+    {
+      "action": "created_closure_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_CLOSURE_SP500_MOMENTUM_TREND_BASELINE_V1_20260620_184526_444889",
+      "status": "skipped_missing_config",
+      "strategy_id": "SP500_MOMENTUM_TREND_BASELINE_V1"
+    },
+    {
+      "action": "patched_existing_weekly_manifest",
+      "run_dir": "trading_agentic_research\\runs\\WEEKLY_HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONGRUN_STRICT_STRICT_NEXT_CLOSE_R13_C22_E75_CR33_REDD_DD7_SL18_20260610_093645_584698_18208",
+      "status": "covered_existing_artifact",
+      "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1_DDGRID_LONGRUN_STRICT_STRICT_NEXT_CLOSE_R13_C22_E75_CR33_REDD_DD7_SL18"
+    }
+  ],
+  "covered_after": 1214,
+  "covered_before": 1193,
+  "original_total": 1213,
+  "pending_after": 0,
+  "pending_before": 21,
+  "remaining_pending": [],
+  "weekly_entry_exit_manifests_after": 1284
+}

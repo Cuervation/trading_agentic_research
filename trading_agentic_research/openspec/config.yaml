@@ -1,0 +1,44 @@
+schema: spec-driven
+
+context: |
+  Project: trading_agentic_research
+  Stack: Python 3.12 with pandas, numpy, scipy, pydantic, yfinance, and pytest.
+  Architecture: module-oriented backtester plus agentic research scripts and compact JSON/Markdown state.
+  Testing: pytest unit and integration-style workflow tests; no dedicated E2E, coverage, CI, or build workflow.
+  Conventions: English code/JSON; Spanish documentation allowed; agents consume compact evidence before large CSVs.
+  Constraints: do not run backtests unless explicitly requested; never promote without audit and SPY comparisons.
+
+testing:
+  strict_tdd: true
+  framework: pytest
+  focused_command: "python -m pytest tests/<test_file>.py -q"
+  full_command: "python -m pytest -q"
+  build_command: ""
+  coverage_command: ""
+
+rules:
+  proposal:
+    - State evidence requirements, risks, and rollback for behavior changes.
+  specs:
+    - Use Given/When/Then scenarios and RFC 2119 keywords.
+    - Preserve mandatory audit, cost, and SPY-comparison requirements.
+  design:
+    - Keep Python responsible for heavy computation and agents focused on compact evidence.
+    - Prefer simple, auditable modules without unnecessary dependencies.
+  tasks:
+    - Keep work units small, reviewable, and reversible.
+    - Keep code, tests, and documentation for each unit together.
+  apply:
+    tdd: true
+    test_command: "python -m pytest tests/<test_file>.py -q"
+    full_test_command: "python -m pytest -q"
+    constraints:
+      - Do not run builds or backtests.
+      - Do not overwrite unrelated work in the dirty workspace.
+  verify:
+    focused_test_command: "python -m pytest tests/<test_file>.py -q"
+    test_command: "python -m pytest -q"
+    build_command: ""
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas.

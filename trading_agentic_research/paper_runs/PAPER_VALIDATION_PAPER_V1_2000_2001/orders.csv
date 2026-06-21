@@ -1,0 +1,14 @@
+PAPER,date,fill_date,order_id,reason,shares,side,status,ticker
+True,2002-01-25,2002-01-28,1,left_target_or_filter,287,SELL,FILLED,FFIV
+True,2002-01-25,2002-01-28,2,selected_top_n,268,BUY,FILLED,DHI
+True,2002-01-25,2002-01-28,3,selected_top_n,39,BUY,FILLED,EQIX
+True,2002-01-25,2002-01-28,4,selected_top_n,5797,BUY,FILLED,NVDA
+True,2002-01-25,2002-01-28,5,selected_top_n,621,BUY,FILLED,WDC
+True,2002-02-22,2002-02-25,6,selected_top_n,173,BUY,FILLED,DRI
+True,2002-02-22,2002-02-25,7,selected_top_n,386,BUY,FILLED,FFIV
+True,2002-02-22,2002-02-25,8,selected_top_n,966,BUY,FILLED,ROST
+True,2002-03-29,2002-04-01,9,left_target_or_filter,59,SELL,FILLED,AZO
+True,2002-03-29,2002-04-01,10,selected_top_n,306,BUY,FILLED,FFIV
+True,2002-03-29,2002-04-01,11,selected_top_n,343,BUY,FILLED,GEN
+True,2002-03-29,2002-04-01,12,selected_top_n,148,BUY,FILLED,PCG
+True,2002-03-29,2002-04-01,13,selected_top_n,741,BUY,FILLED,WDC

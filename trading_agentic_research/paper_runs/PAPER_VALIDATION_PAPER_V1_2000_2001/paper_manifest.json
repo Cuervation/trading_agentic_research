@@ -1,0 +1,9 @@
+{
+  "paper_run_id": "PAPER_VALIDATION_PAPER_V1_2000_2001",
+  "PAPER": true,
+  "strategy_id": "HYP_REFINE_AUTO002_TOPN_6_V1_PAPER_V1",
+  "config_hash": "6eec9d3db945fd50c756fc021b08512f316933e3090837cc526ee83e38fff482",
+  "start": "2002-01-01",
+  "end": "2002-03-31",
+  "no_live_orders": true
+}

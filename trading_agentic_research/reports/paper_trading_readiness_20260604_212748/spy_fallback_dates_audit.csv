@@ -1,0 +1,11 @@
+blocked_entries_under_block_on_nan,date,gap_or_nan,missing_data,posterior_impact,probable_cause,spy_row_available,ticker_series
+yes,2000-01-28,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-02-25,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-03-31,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-04-28,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-05-26,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-06-30,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-07-28,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-08-25,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-09-29,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing
+yes,2000-10-27,missing_row,SPY trend metrics all missing_or_nan,block_on_nan mini-validation improved vs current,indicator warmup/alignment NaN in weekly feature store,False,missing

@@ -1,0 +1,13 @@
+change: implement-agentic-runtime
+artifact_store: openspec
+execution_mode: auto
+delivery_strategy: ask-on-risk
+phases:
+  exploration: in_progress
+  proposal: pending
+  specs: pending
+  design: pending
+  tasks: pending
+  apply: pending
+  verify: pending
+  archive: pending

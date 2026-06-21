@@ -1,0 +1,62 @@
+START
+RUN HYP_AUTO_ADAPTIVE_MARKETS_REGIME_SEED_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_ADAPTIVE_MARKETS_REGIME_SEED_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CAN_SLIM_SEED_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CAN_SLIM_SEED_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CARHART_MOMENTUM_SEED_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CARHART_MOMENTUM_SEED_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CR_10_1016_J_PACFIN_2024_102525_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CR_10_14264_223019_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CR_10_14264_223019_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CR_10_2139_SSRN_4554268_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CR_10_2139_SSRN_4554268_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CR_10_2139_SSRN_6516598_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CR_10_2139_SSRN_6516598_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CR_10_54097_P2FHXD83_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CR_10_54097_P2FHXD83_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_CROSS_SECTIONAL_MOMENTUM_SEED_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_CROSS_SECTIONAL_MOMENTUM_SEED_WEEKLY_ENTRY_EXIT_V1 0
+RUN HYP_AUTO_FAMA_FRENCH_FACTORS_SEED_WEEKLY_ENTRY_EXIT_V1
+Source: runs
+Selected: 0
+Completed/reused: 0
+Report: C:\Pythons\ML-Trading\Momentum\trading_agentic_research\reports\weekly_entry_exit_experiment
+EXIT HYP_AUTO_FAMA_FRENCH_FACTORS_SEED_WEEKLY_ENTRY_EXIT_V1 0
+DONE

@@ -1,0 +1,6 @@
+﻿ M backtester/execution.py
+?? reports/reports.zip
+?? reports/strict_execution_backups/20260603_221726/
+?? reports/strict_execution_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260603_215652.7z
+?? reports/strict_execution_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260603_225311/
+?? reports/strict_longrun_backups/

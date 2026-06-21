@@ -1,0 +1,17 @@
+original_run_id,original_strategy_id,weekly_run_id,weekly_strategy_id,original_config_path,weekly_config_path,source,original_cagr_pct,weekly_cagr_pct,spy_cagr_pct,weekly_excess_cagr_pct,original_max_drawdown_pct,weekly_max_drawdown_pct,spy_max_drawdown_pct,dd_delta_vs_original,dd_delta_vs_spy,original_total_return_pct,weekly_total_return_pct,spy_total_return_pct,original_trades,weekly_trades,trade_delta,trade_multiplier,years_beating_spy,years_losing_to_spy,months_beating_spy,months_losing_to_spy,recommendation_hint,status,warnings,error
+EXP_067,HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1,,HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1_WEEKLY_ENTRY_EXIT_V1,C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1.json,C:\Pythons\ML-Trading\Momentum\trading_agentic_research\configs\generated\weekly_entry_exit\HYP_FSPACE_AUTO_002_RANK_CLOSE_SMA_50_SLOPE_5D_PCT_V1_WEEKLY_ENTRY_EXIT_V1.json,runs,20.557206876183255,,,,-38.742248930815705,,,,,221.07749083661855,,,694,,,,,,,,,failed,,"ch\scripts\run_backtest.py"", line 342, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File ""C:\Pythons\ML-Trading\Momentum\trading_agentic_research\scripts\run_backtest.py"", line 314, in main
+    output = run_backtest_and_write_artifacts(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Pythons\ML-Trading\Momentum\trading_agentic_research\scripts\run_backtest.py"", line 178, in run_backtest_and_write_artifacts
+    result = run_strategy_backtest(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\execution.py"", line 85, in run_strategy_backtest
+    signals = signals_override.copy() if signals_override is not None else build_momentum_trend_signals(weekly_df, strategy_config)
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Pythons\ML-Trading\Momentum\trading_agentic_research\backtester\signal_builder.py"", line 74, in build_momentum_trend_signals
+    raise ValueError(f""weekly_df must contain ranking column: {ranking_column}"")
+ValueError: weekly_df must contain ranking column: close_sma_50_slope_5d_pct
+"

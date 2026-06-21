@@ -1,0 +1,76 @@
+{
+  "strategy_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1_WEEKLY_ENTRY_EXIT_V1",
+  "hypothesis_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1_WEEKLY_ENTRY_EXIT_V1",
+  "strategy_family": "mixed",
+  "bibliography_basis": [
+    {
+      "source_id": "SRC_CAN_SLIM_SEED"
+    },
+    {
+      "source_id": "SRC_LOCAL_DISTANCE_HIGH_52W_BREAKOUT_SEED"
+    }
+  ],
+  "universe": {
+    "source": "feature_store_tickers",
+    "exclude_tickers": [
+      "SPY"
+    ],
+    "trade_spy": false
+  },
+  "benchmark_ticker": "SPY",
+  "ranking": {
+    "field": "dist_to_high_52w_pct",
+    "order": "desc"
+  },
+  "rebalance_frequency": "monthly",
+  "entry_rule": {
+    "type": "top_n",
+    "top_n": 7,
+    "by": "dist_to_high_52w_pct"
+  },
+  "exit_rule": {
+    "type": "drop_below_rank",
+    "rank_threshold": 24
+  },
+  "market_filter": {
+    "benchmark": "SPY",
+    "condition_any": [
+      {
+        "field": "spy_close_vs_sma50_pct",
+        "operator": ">",
+        "value": 0,
+        "enabled_if_field_exists": true
+      }
+    ],
+    "require_positive_trend": true
+  },
+  "risk_filters": {
+    "require_non_null_fields": [
+      "ret_52w_pct",
+      "close"
+    ]
+  },
+  "costs": {
+    "entry_cost_pct": 0.24,
+    "exit_cost_pct": 0.24
+  },
+  "claim": "Combine Market direction and leadership concentration should matter more than broad diversification. WITH Stocks closer to 52-week highs can sustain leadership via anchoring and breakout behavior.",
+  "causal_mechanism": "Leadership baskets can compound when market regime supports risk-on participation. Combined with: Price proximity to highs is a simple behavioral anchor that can reinforce continuation.",
+  "changed_parameters": [
+    "decision_frequency",
+    "entry_frequency",
+    "exit_frequency",
+    "position_retention"
+  ],
+  "expected_effect": "Improve 24/52 week stability versus SPY and parent while avoiding duplicate artifacts.",
+  "falsification_rule": "Reject if selected universe, trades, or artifacts duplicate parent, or if monthly/yearly SPY comparison does not improve.",
+  "parent_strategy_id": "HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1",
+  "decision_frequency": "weekly",
+  "entry_frequency": "weekly",
+  "exit_frequency": "weekly",
+  "position_retention": "hold_until_exit_rank_threshold",
+  "weekly_entry_exit_experiment": true,
+  "experiment_type": "weekly_entry_exit_frequency_only",
+  "original_config_path": "C:\\Pythons\\ML-Trading\\Momentum\\trading_agentic_research\\configs\\generated\\HYP_MIX_CAN_SLIM__LOCAL_DISTANCE_HIGH_52W_BREAKOUT_V1.json",
+  "generated_at": "2026-06-08T04:48:00"
+}

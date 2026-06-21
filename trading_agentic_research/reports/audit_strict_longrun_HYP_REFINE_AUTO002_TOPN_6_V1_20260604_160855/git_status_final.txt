@@ -1,0 +1,12 @@
+ M backtester/execution.py
+ D reports/dd_guard_grid_HYP_REFINE_AUTO002_TOPN_6_V1_20260530_140830.zip
+ D reports/dd_guard_grid_HYP_REFINE_AUTO002_TOPN_6_V1_LONGRUN_20260601_230028.7z
+ D reports/robust_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260602_203724.zip
+?? reports/audit_strict_longrun_HYP_REFINE_AUTO002_TOPN_6_V1_20260604_160855/
+?? reports/strict_execution_backups/20260603_221726/
+?? reports/strict_execution_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260603_225311/
+?? reports/strict_longrun_backups/
+?? reports/strict_longrun_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260604_002649/
+?? reports/strict_longrun_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260604_003142.7z
+?? reports/strict_longrun_validate_HYP_REFINE_AUTO002_TOPN_6_V1_20260604_003142/
+?? scripts/validation/run_strict_longrun_validation.py

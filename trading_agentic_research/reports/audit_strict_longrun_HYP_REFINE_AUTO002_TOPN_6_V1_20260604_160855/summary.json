@@ -1,0 +1,10 @@
+{
+  "report": "reports\\audit_strict_longrun_HYP_REFINE_AUTO002_TOPN_6_V1_20260604_160855",
+  "next_open_status": "ready_not_prioritized",
+  "slippage_status": "cost_path_dependent",
+  "spy_fallback_status": "medium_risk",
+  "mini_validation": "yes",
+  "files_modified": "none",
+  "py_compile": "pass",
+  "mini_rows": 6
+}
